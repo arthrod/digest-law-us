@@ -1,0 +1,256 @@
+---
+/**
+ * About — what this project is, why it exists, and what it refuses to do.
+ * Every number on this page is read from the corpus at build time, so the
+ * page cannot drift from the thing it describes.
+ */
+
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCorpus } from "@/lib/corpus";
+import { formatBytes } from "@/lib/labels";
+
+const corpus = await getCorpus();
+const { doctrinalAreas, compositeAreas, stats } = corpus;
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+const commitments = [
+  {
+    body: "A digest that cites an authority also holds it. The full retained text ships at the same URL as the summary — not a link that may rot, not a citation you are asked to take on faith. If we could not retain it, we do not cite it.",
+    n: "01",
+    name: "The evidence is attached",
+  },
+  {
+    body: "Every search that produced a digest is published with it, including the queries that found nothing and the results we threw away — paywalled, duplicate, non-authoritative, conversion failed. You can read what was rejected and why, and disagree with the call.",
+    n: "02",
+    name: "The rejections are public",
+  },
+  {
+    body: "A digest ships only with at least two retained authorities. When the floor did not hold, the digest was deleted rather than padded — 993 of them on 28 July 2026. Thin coverage is reported as absence, never dressed up as brevity.",
+    n: "03",
+    name: "The floor is enforced by deletion",
+  },
+  {
+    body: "Digests are drafted by machine from retained texts alone and gated by review before merge. The model chain for every bundle is recorded in its run.json. Where provenance capture postdates the work, the page says so instead of inventing a record.",
+    n: "04",
+    name: "The machine is disclosed",
+  },
+];
+
+const limits = [
+  "It is not legal advice, and it is not a substitute for a lawyer. It is a map of doctrine that points at authorities.",
+  "It is machine-researched and machine-drafted. Review gates the merge; it does not make the prose authoritative.",
+  "It covers only what free public sources could establish. Paywalled reporters and subscription databases are out of scope by design, which leaves real gaps.",
+  "Coverage is uneven on purpose. An area with two topics is an area where two topics cleared the floor — not a promise of more.",
+];
+
+const title = "About — American Legal Digest";
+const description =
+  "What American Legal Digest is, why it exists, and what it refuses to do: " +
+  "free public sources only, a two-source evidence floor, published audits, " +
+  "and 993 digests deleted rather than shipped thin.";
+---
+
+<Layout {description} {title}>
+  <SiteHeader />
+  <main class="mx-auto w-full max-w-250 flex-1 px-5 sm:px-9" id="main">
+    <div class="pt-9 pb-11">
+      <div class="ald-meta text-ink-muted mb-4 text-[0.6875rem]">
+        About the project
+      </div>
+      <h1
+        class="font-display max-w-[22ch] text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
+      >
+        A reference you are allowed to check
+      </h1>
+      <p
+        class="font-prose text-ink/78 mt-3.5 max-w-[58ch] text-[1.09375rem] leading-[1.55] sm:text-[1.1875rem]"
+      >
+        American legal doctrine is mostly available in two forms: summaries you
+        cannot verify, and primary sources you cannot afford. This project is an
+        attempt at a third — {fmt(stats.digests)} topic digests, each shipping
+        with the full text of the authorities behind it and the log of every
+        search that produced it.
+      </p>
+
+      <!-- What is actually here -->
+      <div
+        class="border-hairline mt-9 grid grid-cols-2 border-t sm:grid-cols-4"
+      >
+        <div class="pt-4.5 pr-5">
+          <div class="font-display text-[1.625rem] leading-none tabular-nums">
+            {fmt(stats.digests)}
+          </div>
+          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+            Topics digested
+          </div>
+        </div>
+        <div class="border-hairline border-l px-5 pt-4.5">
+          <div class="font-display text-[1.625rem] leading-none tabular-nums">
+            {doctrinalAreas.length}
+            + {compositeAreas.length}
+          </div>
+          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+            Doctrinal areas + cross-cutting roots
+          </div>
+        </div>
+        <div class="sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5">
+          <div class="font-display text-[1.625rem] leading-none tabular-nums">
+            {fmt(stats.sources)}
+          </div>
+          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+            Source texts held — {formatBytes(stats.sourceBytes)}
+          </div>
+        </div>
+        <div class="border-hairline border-l px-5 pt-4.5">
+          <div class="font-display text-[1.625rem] leading-none tabular-nums">
+            993
+          </div>
+          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+            Deleted at the evidence floor
+          </div>
+        </div>
+      </div>
+
+      <!-- Why it exists -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">01 | Why it exists</div>
+        <div class="border-ink mt-3 border-t pt-5">
+          <p
+            class="font-prose text-ink/80 m-0 max-w-[64ch] text-[1.0625rem] leading-[1.62]"
+          >
+            The useful question about any legal summary is the same one you
+            would ask about any claim: <em>how do you know?</em> Most reference
+            writing answers it badly. Citations point at documents the reader
+            cannot open. Coverage gaps are invisible, because nothing
+            distinguishes a topic that was researched and found thin from a
+            topic nobody touched. And the work behind the summary — what was
+            searched, what was found, what was discarded — is thrown away as a
+            byproduct.
+          </p>
+          <p
+            class="font-prose text-ink/80 mt-4 max-w-[64ch] text-[1.0625rem] leading-[1.62]"
+          >
+            That byproduct is the interesting part. This project keeps it. Every
+            digest is published together with the authorities it rests on, the
+            searches that found them, and the record of what was rejected along
+            the way. The point is not that a machine wrote a summary. The point
+            is that you can go behind it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Commitments -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">02 | What we commit to</div>
+        <div class="border-ink mt-3 border-t">
+          {commitments.map(item => (
+              <div class="border-hairline grid grid-cols-[40px_1fr] gap-x-6 border-b py-4 sm:grid-cols-[52px_230px_1fr]">
+                <span class="ald-meta text-[0.6875rem]">{item.n}</span>
+                <span class="font-display text-[1.25rem] leading-tight tracking-[-0.02em]">
+                  {item.name}
+                </span>
+                <div class="col-span-2 mt-2 sm:col-span-1 sm:mt-0">
+                  <p class="font-ui text-ink/75 m-0 text-[0.875rem] leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <div class="border-l-accent mt-9 border-l-2 py-1.5 pl-6">
+        <div
+          class="font-display max-w-[30ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]"
+        >
+          A reference that never reports absence is a reference that is hiding
+          something.
+        </div>
+        <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
+          Why the purge is published, not buried
+        </div>
+      </div>
+
+      <!-- What it is not -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">03 | What it is not</div>
+        <div class="border-ink mt-3 border-t">
+          {limits.map(text => (
+              <div class="border-hairline flex gap-4 border-b py-3.5">
+                <span class="text-ink-muted mt-[0.4em] leading-none">—</span>
+                <p class="font-ui text-ink/75 m-0 max-w-[70ch] text-[0.875rem] leading-relaxed">
+                  {text}
+                </p>
+              </div>
+            ))}
+        </div>
+      </div>
+
+      <!-- How to read a digest -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">04 | How to read a digest</div>
+        <div class="border-ink mt-3 border-t pt-5">
+          <p
+            class="font-prose text-ink/80 m-0 max-w-[64ch] text-[1.0625rem] leading-[1.62]"
+          >
+            Read the digest for the shape of the doctrine, then go straight to
+            the sources — they are on the page, in full, not behind a link. If
+            you want to know whether the digest is trustworthy, skip it and open
+            the audit: it lists every query run, every authority retained, and
+            every candidate rejected with its technical reason. A digest whose
+            audit looks thin <em>is</em> thin, and the page will not pretend
+            otherwise.
+          </p>
+          <div class="ald-meta mt-5 flex flex-wrap gap-2 text-[0.59375rem]">
+            <a
+              class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+              href="/methodology/"
+              >How digests are made ↗</a
+            >
+            <a
+              class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+              href="/methodology/#the-floor"
+              >The purge ↗</a
+            >
+            <a
+              class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+              href="/sitemap/"
+              >Full area map ↗</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Provenance -->
+      <div class="ald-meta text-ink-muted mt-12 max-w-[74ch] leading-[1.8]">
+        Digest text is licensed
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="https://creativecommons.org/licenses/by/4.0/"
+          rel="license"
+          >CC BY 4.0</a
+        >; retained sources are public domain or as-licensed by their
+        publishers. Permanent identifiers live at
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="https://w3id.org/digest-law/us/"
+          >w3id.org/digest-law/us/</a
+        >, the machine-readable scheme at
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/skos.jsonld"
+          >SKOS JSON-LD</a
+        >, and the companion vocabulary at
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="https://w3id.org/legal-taxonomy/"
+          >Open Legal Issue Taxonomy</a
+        >. Corrections ship as new commits, never as silent edits. Last corpus
+        update: {stats.latest}.
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

@@ -9,30 +9,38 @@
  * node before the first depth-1 heading. The frontmatter itself is untouched;
  * DigestView renders it as the SKOS record in the rail.
  */
-type MdNode = {
-  type: string;
-  depth?: number;
-  value?: string;
+interface MdNode {
   children?: MdNode[];
-};
+  depth?: number;
+  type: string;
+  value?: string;
+}
 
 function leadingText(node: MdNode | undefined): string {
-  if (!node) return "";
-  if (typeof node.value === "string") return node.value;
+  if (!node) {
+    return "";
+  }
+  if (typeof node.value === "string") {
+    return node.value;
+  }
   return leadingText(node.children?.[0]);
 }
 
 export function remarkStripFmEcho() {
   return (tree: MdNode) => {
     const children = tree.children ?? [];
-    const first = children[0];
-    if (first?.type !== "paragraph") return;
-    if (!/^\s*okf_version\s*:/.test(leadingText(first))) return;
-<<<<<<< HEAD
-    const h1 = children.findIndex(n => n.type === "heading" && n.depth === 1);
-=======
+    const [first] = children;
+    if (first?.type !== "paragraph") {
+      return;
+    }
+    if (!/^\s*okf_version\s*:/u.test(leadingText(first))) {
+      return;
+    }
+
     const h1 = children.findIndex((n) => n.type === "heading" && n.depth === 1);
->>>>>>> 6005d978 (After purge for sources with 1 or less items.)
-    if (h1 > 0) tree.children = children.slice(h1);
+
+    if (h1 > 0) {
+      tree.children = children.slice(h1);
+    }
   };
 }

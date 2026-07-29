@@ -5,30 +5,36 @@
  * retained-sources block, and the SKOS rail. Fully readable with JS off.
  */
 import { render } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import SiteFooter from "@/components/SiteFooter.astro";
-import Crumbs, { type CrumbItem } from "@/components/Crumbs.astro";
+import type { CrumbItem } from "@/components/Crumbs.astro";
+import Crumbs from "@/components/Crumbs.astro";
 import ProvenanceStrip from "@/components/ProvenanceStrip.astro";
-import SkosRail, { type RailRef } from "@/components/SkosRail.astro";
-import { getCorpus, crumbsFor, resolveRef } from "@/lib/corpus";
-import { formatDate, formatBytes, humanize } from "@/lib/labels";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import type { RailRef } from "@/components/SkosRail.astro";
+import SkosRail from "@/components/SkosRail.astro";
+import Layout from "@/layouts/Layout.astro";
 import { channelFor, cleanProfile } from "@/lib/channels";
-import { conceptJsonLd, articleJsonLd } from "@/lib/skos";
+import { crumbsFor, getCorpus, resolveRef } from "@/lib/corpus";
+import { formatBytes, formatDate, humanize } from "@/lib/labels";
+import { articleJsonLd, conceptJsonLd } from "@/lib/skos";
 
-type Props = { slugPath: string };
+interface Props {
+  slugPath: string;
+}
 const { slugPath } = Astro.props;
 
 const corpus = await getCorpus();
 const node = corpus.nodeBySlugPath.get(slugPath);
-if (!node?.digest) throw new Error(`No digest at ${slugPath}`);
-const digest = node.digest;
-const dir = node.dir;
+if (!node?.digest) {
+  throw new Error(`No digest at ${slugPath}`);
+}
+const { digest } = node;
+const { dir } = node;
 const fm = digest.data;
 
 const { Content, headings } = await render(digest);
 const toc = headings
-  .filter(h => h.depth === 1)
+  .filter((h) => h.depth === 1)
   .map((h, i) => ({
     n: String(i + 1).padStart(2, "0"),
     slug: h.slug,
@@ -43,10 +49,10 @@ const run = corpus.runsByDir.get(dir);
 
 const crumbTrail = crumbsFor(corpus, slugPath);
 const crumbs: CrumbItem[] = [
-  { label: "Digest", href: "/" },
-  ...crumbTrail.slice(0, -1).map(c => ({
-    label: c.label,
+  { href: "/", label: "Digest" },
+  ...crumbTrail.slice(0, -1).map((c) => ({
     href: c.published ? `/${c.slugPath}/` : undefined,
+    label: c.label,
   })),
   { label: node.label },
 ];
@@ -55,23 +61,24 @@ const generated = formatDate(run?.data.run?.finished_at ?? fm.timestamp);
 const profile = cleanProfile(fm.source_profile);
 
 const toRail = (urns: string[]): RailRef[] =>
-  urns.map(urn => resolveRef(corpus, urn));
+  urns.map((urn) => resolveRef(corpus, urn));
 const broader = toRail(fm.broader);
-const childRefs: RailRef[] = node.children.map(c => ({
-  slugPath: c.slugPath,
+const childRefs: RailRef[] = node.children.map((c) => ({
   label: c.label,
   published: true,
+  slugPath: c.slugPath,
 }));
 const narrowerSet = new Map<string, RailRef>();
-for (const r of [...toRail(fm.narrower), ...childRefs])
+for (const r of [...toRail(fm.narrower), ...childRefs]) {
   narrowerSet.set(r.slugPath, r);
+}
 const narrower = [...narrowerSet.values()];
 const related = toRail(fm.related);
 
 const relationLabels: Record<string, string> = {
   defenseTo: "defense to",
-  remedyFor: "remedy for",
   procedureFor: "procedure for",
+  remedyFor: "remedy for",
 };
 const relations = Object.entries(fm.legal_relations ?? {})
   .filter(([, urns]) => Array.isArray(urns) && urns.length > 0)
@@ -81,24 +88,28 @@ const relations = Object.entries(fm.legal_relations ?? {})
   }));
 
 const mappingLabels: Record<string, string> = {
-  folio: "FOLIO",
   eurovoc: "EuroVoc",
-  west_1914: "West 1914",
-  sali_lmss: "SALI/LMSS",
+  folio: "FOLIO",
   list: "LIST",
+  sali_lmss: "SALI/LMSS",
+  west_1914: "West 1914",
 };
-const mappings: Array<{ label: string; url?: string; text?: string }> = [];
+const mappings: { label: string; url?: string; text?: string }[] = [];
 for (const [key, group] of Object.entries(fm.mappings ?? {})) {
-  if (!group || typeof group !== "object") continue;
+  if (!group || typeof group !== "object") {
+    continue;
+  }
   const values = Object.values(group as Record<string, unknown>)
     .flat()
     .filter((v): v is string => typeof v === "string" && v.length > 0);
-  if (!values.length) continue;
-  const url = values.find(v => /^https?:\/\//.test(v));
+  if (!values.length) {
+    continue;
+  }
+  const url = values.find((v) => /^https?:\/\//u.test(v));
   mappings.push({
     label: mappingLabels[key] ?? humanize(key),
-    url,
     text: url ? undefined : values[0],
+    url,
   });
 }
 
@@ -107,28 +118,28 @@ for (const [key, group] of Object.entries(fm.mappings ?? {})) {
  *  mappings already render above it as navigation. */
 const itemIds = (fm as Record<string, unknown>)["item_ids"];
 const recordRows = [
-  { label: "URN", value: fm.id ?? "", mono: true },
-  { label: "Notation", value: fm.notation ?? "", mono: true },
+  { label: "URN", mono: true, value: fm.id ?? "" },
+  { label: "Notation", mono: true, value: fm.notation ?? "" },
   { label: "Scheme", value: fm.scheme ?? "" },
   { label: "Status", value: fm.status ?? "" },
-  { label: "OKF", value: fm.okf_version ?? "", mono: true },
-  { label: "Version", value: fm.version ?? "", mono: true },
+  { label: "OKF", mono: true, value: fm.okf_version ?? "" },
+  { label: "Version", mono: true, value: fm.version ?? "" },
   { label: "Created", value: fm.created ? formatDate(fm.created) : "" },
   { label: "Modified", value: fm.modified ? formatDate(fm.modified) : "" },
-  { label: "Issue ID", value: fm.issue_id ?? "", mono: true },
+  { label: "Issue ID", mono: true, value: fm.issue_id ?? "" },
   {
     label: "Item IDs",
-    value: Array.isArray(itemIds) ? itemIds.join(" · ") : "",
     mono: true,
+    value: Array.isArray(itemIds) ? itemIds.join(" · ") : "",
   },
   { label: "Objectives path", value: fm.objectives_path.join(" → ") },
   { label: "Source profile", value: profile ?? "" },
-].filter(r => r.value);
+].filter((r) => r.value);
 const recordProse = [
   { label: "Definition", text: fm.definition },
   { label: "Scope", text: fm.scope_note },
   { label: "Not to be used for", text: fm.do_not_use_for.join("; ") },
-].filter(r => r.text);
+].filter((r) => r.text);
 
 const areaLabel = crumbTrail[0]?.label ?? "";
 const title = `${node.label} — ${areaLabel} — American Legal Digest`;
@@ -137,15 +148,15 @@ const description =
   fm.definition ||
   `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`;
 
-const altLine = fm.alt_labels.filter(l => humanize(l) !== node.label);
+const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label);
 const historicalLine = fm.historical_labels;
 
 const sourceUrls = sources
-  .map(s => s.data.resource)
-  .filter(u => /^https?:\/\//.test(u));
+  .map((s) => s.data.resource)
+  .filter((u) => /^https?:\/\//u.test(u));
 ---
 
-<Layout {title} {description}>
+<Layout {description} {title}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={conceptJsonLd(corpus, node)} />
     <script
@@ -158,7 +169,7 @@ const sourceUrls = sources
     />
   </Fragment>
   <SiteHeader />
-  <main id="main" class="mx-auto w-full max-w-[1280px] flex-1 px-5 sm:px-10">
+  <main class="mx-auto w-full max-w-[1280px] flex-1 px-5 sm:px-10" id="main">
     <div class="pt-7">
       <Crumbs items={crumbs} />
       <h1
@@ -166,12 +177,12 @@ const sourceUrls = sources
       >
         {node.label}
       </h1>
-      {
-        (altLine.length > 0 || historicalLine.length > 0) && (
+      {(altLine.length > 0 || historicalLine.length > 0) && (
           <div class="font-ui text-ink-muted mt-3 text-[0.8125rem] leading-normal">
             {altLine.length > 0 && (
               <>
-                also: {altLine.map((l, i) => (
+                also:{" "}
+                {altLine.map((l, i) => (
                   <>
                     {i > 0 && " · "}
                     <em>{l}</em>
@@ -192,37 +203,30 @@ const sourceUrls = sources
               </>
             )}
           </div>
-        )
-      }
-      {
-        description && (
+        )}
+      {description && (
           <p class="font-prose text-ink/78 mt-4 max-w-[62ch] text-[1.0625rem] leading-normal sm:text-[1.25rem]">
             {description}
           </p>
-        )
-      }
+        )}
       <div class="mt-5">
         <ProvenanceStrip
           {generated}
-          {profile}
-          preProvenance={!run}
-          sourceCount={sources.length}
           links={{
-            sources: sources.length
-              ? `#retained-sources`
-              : undefined,
+            sources: sources.length ? `#retained-sources` : undefined,
             audit: audit ? `/${slugPath}/audit/` : undefined,
             caselaw: caselawIdx ? `/${slugPath}/caselaw/` : undefined,
             statutory: statutoryIdx ? `/${slugPath}/statutory/` : undefined,
             run: run ? `/provenance/${slugPath}.json` : undefined,
           }}
+          preProvenance={!run}
+          {profile}
+          sourceCount={sources.length}
         />
       </div>
     </div>
 
-    <div
-      class="grid gap-x-14 pt-2 pb-12 lg:grid-cols-[minmax(0,1fr)_268px]"
-    >
+    <div class="grid gap-x-14 pt-2 pb-12 lg:grid-cols-[minmax(0,1fr)_268px]">
       <div class="min-w-0">
         <span class="hidden" data-pagefind-filter="area">{areaLabel}</span>
         <span class="hidden" data-pagefind-filter="kind">digest</span>
@@ -230,8 +234,7 @@ const sourceUrls = sources
           <Content />
         </article>
 
-        {
-          sources.length > 0 && (
+        {sources.length > 0 && (
             <section
               id="retained-sources"
               class="border-ink mt-10 border-t pt-4"
@@ -261,25 +264,25 @@ const sourceUrls = sources
                   <span class="flex-1" />
                   <span class="ald-meta text-ink-muted text-[0.5625rem] whitespace-nowrap">
                     {channelFor(s.data.resource)} · {formatBytes(s.data.bytes)}
-                    {s.data.retained && ` · retained ${formatDate(s.data.retained)}`}
+                    {s.data.retained &&
+                      ` · retained ${formatDate(s.data.retained)}`}
                   </span>
                 </a>
               ))}
             </section>
-          )
-        }
+          )}
       </div>
 
       <aside class="pt-8 lg:pt-7" data-pagefind-ignore>
         <div class="lg:sticky lg:top-6">
           <SkosRail
-            {toc}
             {broader}
+            {mappings}
             {narrower}
+            record={{ rows: recordRows, prose: recordProse }}
             {related}
             {relations}
-            {mappings}
-            record={{ rows: recordRows, prose: recordProse }}
+            {toc}
           />
         </div>
       </aside>

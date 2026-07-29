@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": ["-c", "ASTRO_DEV_BACKGROUND=1 exec pnpm dev"],
+      "port": 4321,
+      "autoPort": false
+    }
+  ]
+}

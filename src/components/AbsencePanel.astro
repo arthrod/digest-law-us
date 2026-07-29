@@ -4,12 +4,12 @@
  * files render this panel: never an empty page, never a hidden link.
  * Icon-free, factual, the probe queries listed verbatim, no red anywhere.
  */
-type Props = {
-  kind: "caselaw" | "statutory";
-  probes: Array<{ channel: string; query: string; note: string }>;
-  recorded?: string;
+interface Props {
   auditHref?: string;
-};
+  kind: "caselaw" | "statutory";
+  probes: { channel: string; query: string; note: string }[];
+  recorded?: string;
+}
 const { kind, probes, recorded, auditHref } = Astro.props;
 const noun = kind === "caselaw" ? "caselaw" : "statutory";
 ---
@@ -18,19 +18,20 @@ const noun = kind === "caselaw" ? "caselaw" : "statutory";
   <p class="font-prose max-w-[52ch] text-[1.25rem] leading-snug">
     No {noun} authorities were retained for this issue.
   </p>
-  <p class="font-ui text-ink-muted mt-2.5 max-w-[62ch] text-[0.875rem] leading-relaxed">
+  <p
+    class="font-ui text-ink-muted mt-2.5 max-w-[62ch] text-[0.875rem] leading-relaxed"
+  >
     The pipeline searched for them and nothing met the retention bar.
     {probes.length > 0 && " The searches that ran:"}
   </p>
-  {
-    probes.length > 0 && (
+  {probes.length > 0 && (
       <div class="border-hairline mt-4 border-t">
         {probes.map(p => (
           <div class="border-hairline/80 flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b py-2">
             <span class="ald-meta text-ink-muted w-28 flex-none text-[0.5625rem]">
               {p.channel}
             </span>
-            <span class="font-mono min-w-0 text-[0.6875rem] break-words">
+            <span class="min-w-0 font-mono text-[0.6875rem] break-words">
               {p.query}
             </span>
             <span class="font-ui text-ink-muted text-[0.78125rem]">
@@ -39,20 +40,19 @@ const noun = kind === "caselaw" ? "caselaw" : "statutory";
           </div>
         ))}
       </div>
-    )
-  }
+    )}
   <div class="ald-meta text-ink-muted mt-4 flex items-baseline gap-3">
-    <span>Documented absence is a finding{recorded && ` — recorded ${recorded}`}</span>
+    <span
+      >Documented absence is a finding{recorded && ` — recorded ${recorded}`}</span
+    >
     <span class="flex-1"></span>
-    {
-      auditHref && (
+    {auditHref && (
         <a
           href={auditHref}
           class="decoration-cite-ext underline underline-offset-2"
         >
           Full audit
         </a>
-      )
-    }
+      )}
   </div>
 </div>

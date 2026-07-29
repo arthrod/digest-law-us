@@ -3,12 +3,12 @@ import { ClientRouter } from "astro:transitions";
 import SITE from "@/config";
 import "@/styles/global.css";
 
-type Props = {
-  title?: string;
+interface Props {
+  canonicalURL?: string;
   description?: string;
   ogImage?: string;
-  canonicalURL?: string;
-};
+  title?: string;
+}
 
 const {
   title = SITE.title,
@@ -21,61 +21,61 @@ const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
-<html lang={SITE.lang} class="overflow-y-scroll scroll-smooth">
+<html class="overflow-y-scroll scroll-smooth" lang={SITE.lang}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalURL} />
-    <meta name="generator" content={Astro.generator} />
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="/favicon.svg" rel="icon" type="image/svg+xml">
+    <link href={canonicalURL} rel="canonical">
+    <meta content={Astro.generator} name="generator">
 
     <!-- Brand webfonts (subset woff2, font-display: swap) -->
     <link
-      rel="preload"
+      as="font"
+      crossorigin
       href="/fonts/eliza.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
       rel="preload"
+      type="font/woff2"
+    >
+    <link
+      as="font"
+      crossorigin
       href="/fonts/basier-square.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
       rel="preload"
-      href="/fonts/basier-square-mono.woff2"
-      as="font"
       type="font/woff2"
+    >
+    <link
+      as="font"
       crossorigin
-    />
+      href="/fonts/basier-square-mono.woff2"
+      rel="preload"
+      type="font/woff2"
+    >
 
     <!-- Primary meta -->
     <title>{title}</title>
-    <meta name="title" content={title} />
-    <meta name="description" content={description} />
-    <meta name="author" content={SITE.author} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta content={title} name="title">
+    <meta content={description} name="description">
+    <meta content={SITE.author} name="author">
+    <link href="/sitemap-index.xml" rel="sitemap">
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={SITE.title} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={socialImageURL} />
+    <meta content="website" property="og:type">
+    <meta content={SITE.title} property="og:site_name">
+    <meta content={title} property="og:title">
+    <meta content={description} property="og:description">
+    <meta content={canonicalURL} property="og:url">
+    <meta content={socialImageURL} property="og:image">
 
     <!-- Twitter / X -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialImageURL} />
+    <meta content="summary_large_image" property="twitter:card">
+    <meta content={canonicalURL} property="twitter:url">
+    <meta content={title} property="twitter:title">
+    <meta content={description} property="twitter:description">
+    <meta content={socialImageURL} property="twitter:image">
 
     <!-- Filled at runtime by theme.ts to match the current background -->
-    <meta name="theme-color" content="" />
+    <meta content="" name="theme-color">
 
     <!-- Extra head content injected by pages (JSON-LD, etc.) -->
     <slot name="head" />
@@ -84,16 +84,18 @@ const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
       Inline FOUC-prevention script: sets data-theme on <html> before the
       browser paints. The page is fully readable before (and without) any
       hydration — the theme toggle is an enhancement.
+
+      Light is the default surface. The OS dark preference is deliberately
+      NOT consulted: dark ships only when the reader picks it from the toggle.
     -->
     <script is:inline>
-      (function () {
+      (() => {
         const stored = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        const theme = stored ?? (prefersDark ? "dark" : "light");
+        const theme = stored ?? "light";
         const root = document.firstElementChild;
-        root?.setAttribute("data-theme", theme);
+        if (root) {
+          root.dataset.theme = theme;
+        }
         root?.classList.toggle("dark", theme === "dark");
         // Expose value so theme.ts can skip re-detection.
         window.__theme = { value: theme };
@@ -106,8 +108,8 @@ const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
     class="bg-surface font-ui text-ink flex min-h-svh flex-col text-[0.90625rem] leading-normal"
   >
     <a
-      href="#main"
       class="ald-meta bg-ink text-surface sr-only z-50 px-3 py-2 focus:not-sr-only focus:absolute focus:top-2 focus:left-2"
+      href="#main"
       >Skip to content</a
     >
     <slot />

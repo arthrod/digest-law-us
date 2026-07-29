@@ -4,28 +4,34 @@
  * Its identifier exists (URN chains pass through it), so the page exists:
  * a scoped subtree listing plus the SKOS concept, resolvable and honest.
  */
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
-import SiteFooter from "@/components/SiteFooter.astro";
-import Crumbs, { type CrumbItem } from "@/components/Crumbs.astro";
+
 import AreaTree from "@/components/AreaTree.astro";
-import { getCorpus, crumbsFor } from "@/lib/corpus";
+import type { CrumbItem } from "@/components/Crumbs.astro";
+import Crumbs from "@/components/Crumbs.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
+import { crumbsFor, getCorpus } from "@/lib/corpus";
 import { formatDate } from "@/lib/labels";
 import { conceptJsonLd } from "@/lib/skos";
 
-type Props = { slugPath: string };
+interface Props {
+  slugPath: string;
+}
 const { slugPath } = Astro.props;
 
 const corpus = await getCorpus();
 const node = corpus.nodeBySlugPath.get(slugPath);
-if (!node) throw new Error(`No container at ${slugPath}`);
+if (!node) {
+  throw new Error(`No container at ${slugPath}`);
+}
 
 const crumbTrail = crumbsFor(corpus, slugPath);
 const crumbs: CrumbItem[] = [
-  { label: "Digest", href: "/" },
-  ...crumbTrail.slice(0, -1).map(c => ({
-    label: c.label,
+  { href: "/", label: "Digest" },
+  ...crumbTrail.slice(0, -1).map((c) => ({
     href: c.published ? `/${c.slugPath}/` : undefined,
+    label: c.label,
   })),
   { label: node.label },
 ];
@@ -35,12 +41,12 @@ const title = `${node.label} — ${crumbTrail[0]?.label ?? ""} — American Lega
 const description = `${node.topicCount} published digest topics under ${node.label}.`;
 ---
 
-<Layout {title} {description}>
+<Layout {description} {title}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={conceptJsonLd(corpus, node)} />
   </Fragment>
   <SiteHeader />
-  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+  <main class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9" id="main">
     <div class="pt-7 pb-11">
       <Crumbs items={crumbs} />
       <div class="mt-4 flex flex-wrap items-baseline gap-x-5 gap-y-2">
@@ -51,7 +57,8 @@ const description = `${node.topicCount} published digest topics under ${node.lab
         </h1>
         <span class="flex-1"></span>
         <span class="ald-meta text-ink-muted text-[0.65625rem]">
-          {node.topicCount} topic{node.topicCount === 1 ? "" : "s"}
+          {node.topicCount}
+          topic{node.topicCount === 1 ? "" : "s"}
           {updated && ` · updated ${updated}`}
         </span>
       </div>

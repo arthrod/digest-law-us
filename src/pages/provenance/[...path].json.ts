@@ -10,9 +10,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const corpus = await getCorpus();
   const paths = [];
   for (const node of corpus.nodeBySlugPath.values()) {
-    if (!node.digest) continue;
+    if (!node.digest) {
+      continue;
+    }
     const run = corpus.runsByDir.get(node.dir);
-    if (!run) continue;
+    if (!run) {
+      continue;
+    }
     paths.push({
       params: { path: node.slugPath },
       props: { runData: run.data },
@@ -21,8 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return paths;
 };
 
-export const GET: APIRoute = ({ props }) => {
-  return new Response(JSON.stringify(props.runData, null, 1), {
+export const GET: APIRoute = ({ props }) =>
+  new Response(JSON.stringify(props.runData, null, 1), {
     headers: { "Content-Type": "application/json; charset=utf-8" },
   });
-};

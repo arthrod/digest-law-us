@@ -6,14 +6,15 @@
  * Depth differentiates by type, not indent alone: the serif size steps
  * down and dashed verticals carry depth.
  */
+
+import { cleanProfile } from "@/lib/channels";
 import type { TreeNode } from "@/lib/corpus";
 import { formatDate } from "@/lib/labels";
-import { cleanProfile } from "@/lib/channels";
 
-type Props = {
-  node: TreeNode;
+interface Props {
   depth?: number;
-};
+  node: TreeNode;
+}
 
 const { node, depth = 0 } = Astro.props;
 
@@ -25,11 +26,17 @@ function glance(child: TreeNode): string {
   const direct = child.digest;
   if (direct) {
     const n = child.sourceCount;
-    if (n) bits.push(`${n} src`);
+    if (n) {
+      bits.push(`${n} src`);
+    }
     const profile = cleanProfile(direct.data.source_profile);
-    if (profile) bits.push(profile);
+    if (profile) {
+      bits.push(profile);
+    }
     const date = formatDate(direct.data.timestamp);
-    if (date) bits.push(date);
+    if (date) {
+      bits.push(date);
+    }
   }
   return bits.join(" · ");
 }
@@ -38,8 +45,7 @@ function glance(child: TreeNode): string {
 <div class:list={[depth > 0 && "flex gap-4"]}>
   {depth > 0 && <div class="ald-dashed-vert text-cite-ext self-stretch" />}
   <div class="min-w-0 flex-1">
-    {
-      node.children.map(child =>
+    {node.children.map(child =>
         child.children.length === 0 && child.digest ? (
           <a
             href={`/${child.slugPath}/`}
@@ -64,10 +70,28 @@ function glance(child: TreeNode): string {
                 aria-hidden="true"
                 class="flex-none self-center"
               >
-                <rect x="1.71" y="1.5" width="1.14" height="1" fill="currentColor" />
+                <rect
+                  x="1.71"
+                  y="1.5"
+                  width="1.14"
+                  height="1"
+                  fill="currentColor"
+                />
                 <rect width="1.14" height="1" fill="currentColor" />
-                <rect x="3.43" y="3" width="1.14" height="1" fill="currentColor" />
-                <rect x="5.14" y="1.5" width="1.14" height="1" fill="currentColor" />
+                <rect
+                  x="3.43"
+                  y="3"
+                  width="1.14"
+                  height="1"
+                  fill="currentColor"
+                />
+                <rect
+                  x="5.14"
+                  y="1.5"
+                  width="1.14"
+                  height="1"
+                  fill="currentColor"
+                />
                 <rect x="6.86" width="1.14" height="1" fill="currentColor" />
               </svg>
               <span
@@ -101,8 +125,7 @@ function glance(child: TreeNode): string {
             </div>
           </details>
         )
-      )
-    }
+      )}
     <div class="border-hairline border-t"></div>
   </div>
 </div>

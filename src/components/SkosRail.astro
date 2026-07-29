@@ -8,39 +8,36 @@
  */
 export interface RailRef {
   label: string;
-  slugPath: string;
   published: boolean;
+  slugPath: string;
 }
 
-type Props = {
-  toc: Array<{ n: string; slug: string; text: string }>;
+interface Props {
   broader: RailRef[];
+  mappings: { label: string; url?: string; text?: string }[];
   narrower: RailRef[];
-  related: RailRef[];
-  relations: Array<{ label: string; refs: RailRef[] }>;
-  mappings: Array<{ label: string; url?: string; text?: string }>;
   record?: {
-    rows: Array<{ label: string; value: string; mono?: boolean }>;
-    prose: Array<{ label: string; text: string }>;
+    rows: { label: string; value: string; mono?: boolean }[];
+    prose: { label: string; text: string }[];
   };
-};
+  related: RailRef[];
+  relations: { label: string; refs: RailRef[] }[];
+  toc: { n: string; slug: string; text: string }[];
+}
 
 const { toc, broader, narrower, related, relations, mappings, record } =
   Astro.props;
 
-const chipGroups: Array<[string, RailRef[]]> = [
+const chipGroups: [string, RailRef[]][] = [
   ["Broader", broader],
   ["Narrower", narrower],
   ["Related", related],
-].filter(([, refs]) => (refs as RailRef[]).length > 0) as Array<
-  [string, RailRef[]]
->;
+].filter(([, refs]) => (refs as RailRef[]).length > 0) as [string, RailRef[]][];
 ---
 
 <div class="border-hairline border-l py-0.5 pl-5" data-toc>
   <div class="ald-meta text-ink-muted mb-3">On this page</div>
-  {
-    toc.map(item => (
+  {toc.map(item => (
       <a
         href={`#${item.slug}`}
         data-toc-link={item.slug}
@@ -51,12 +48,10 @@ const chipGroups: Array<[string, RailRef[]]> = [
         </span>
         <span class="font-ui text-[0.78125rem] leading-snug">{item.text}</span>
       </a>
-    ))
-  }
+    ))}
 </div>
 
-{
-  (chipGroups.length > 0 || relations.length > 0 || mappings.length > 0) && (
+{(chipGroups.length > 0 || relations.length > 0 || mappings.length > 0) && (
     <>
       <div class="ald-dashed text-cite-ext my-5" />
       <div class="border-hairline bg-panel rounded-[2px] border px-4 py-4">
@@ -147,11 +142,9 @@ const chipGroups: Array<[string, RailRef[]]> = [
         )}
       </div>
     </>
-  )
-}
+  )}
 
-{
-  record && (record.rows.length > 0 || record.prose.length > 0) && (
+{record && (record.rows.length > 0 || record.prose.length > 0) && (
     <details class="group border-hairline bg-panel mt-3 rounded-[2px] border">
       <summary class="ald-meta text-ink-muted flex list-none items-center gap-2 px-4 py-3 select-none [&::-webkit-details-marker]:hidden">
         <span
@@ -172,9 +165,7 @@ const chipGroups: Array<[string, RailRef[]]> = [
               <dd
                 class:list={[
                   "m-0 min-w-0 flex-1 text-[0.71875rem] leading-relaxed",
-                  r.mono
-                    ? "font-mono tracking-[0.01em] break-all"
-                    : "font-ui",
+                  r.mono ? "font-mono tracking-[0.01em] break-all" : "font-ui",
                 ]}
               >
                 {r.value}
@@ -194,32 +185,45 @@ const chipGroups: Array<[string, RailRef[]]> = [
         ))}
       </div>
     </details>
-  )
-}
+  )}
 
 <script>
   // Island № 2 — TOC scroll-highlight (~1 KB). Plain anchors without JS.
   function initTocHighlight() {
-    const links = document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]");
-    if (!links.length) return;
+    const links =
+      document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]");
+    if (!links.length) {
+      return;
+    }
     const bySlug = new Map<string, HTMLAnchorElement>();
-    links.forEach(l => bySlug.set(l.dataset.tocLink!, l));
+    for (const link of links) {
+      const slug = link.dataset.tocLink;
+      if (slug) {
+        bySlug.set(slug, link);
+      }
+    }
     const headings = [...bySlug.keys()]
-      .map(slug => document.getElementById(slug))
+      .map((slug) => document.querySelector(`#${slug}`))
       .filter((el): el is HTMLElement => Boolean(el));
-    if (!headings.length) return;
+    if (!headings.length) {
+      return;
+    }
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            links.forEach(l => l.removeAttribute("aria-current"));
+            for (const link of links) {
+              link.removeAttribute("aria-current");
+            }
             bySlug.get(entry.target.id)?.setAttribute("aria-current", "true");
           }
         }
       },
       { rootMargin: "0px 0px -70% 0px" }
     );
-    headings.forEach(h => observer.observe(h));
+    for (const heading of headings) {
+      observer.observe(heading);
+    }
   }
   initTocHighlight();
   document.addEventListener("astro:after-swap", initTocHighlight);

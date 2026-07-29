@@ -1,49 +1,58 @@
 ---
-// Ink-band footer: browse/trust/project columns, the wordmark, the license line.
+// Michigan-blue band footer: browse/trust/project columns, the wordmark, the
+// license line. The blue is hardcoded, not tokenised — this band stays the same
+// in both themes, whereas --ald-accent lifts to a pale blue under dark.
 ---
 
-<footer class="no-print mt-16 bg-[#2b2e35] text-white">
+<footer class="no-print mt-16 bg-[#00274c] text-white">
   <div class="mx-auto w-full max-w-[1280px] px-5 pt-11 pb-7 sm:px-10">
     <div class="flex flex-wrap items-start gap-x-14 gap-y-8">
       <div
-        class="ald-meta grid grid-cols-2 gap-x-14 gap-y-2 text-[0.65625rem] leading-8 sm:grid-cols-3"
+        class="ald-meta grid grid-cols-2 gap-x-14 gap-y-2 text-[0.6875rem] leading-8 sm:grid-cols-3"
       >
         <div>
-          <div class="mb-1.5 text-white/45">Browse</div>
-          <a href="/" class="hover:text-accent-lift block no-underline"
+          <div class="mb-1.5 text-white/65">Browse</div>
+          <a class="hover:text-accent-lift block no-underline" href="/"
             >All areas</a
           >
-          <a href="/search/" class="hover:text-accent-lift block no-underline"
+          <a class="hover:text-accent-lift block no-underline" href="/search/"
             >Search</a
           >
-          <a href="/sitemap/" class="hover:text-accent-lift block no-underline"
+          <a class="hover:text-accent-lift block no-underline" href="/sitemap/"
             >Sitemap</a
           >
         </div>
         <div>
-          <div class="mb-1.5 text-white/45">Trust</div>
+          <div class="mb-1.5 text-white/65">Trust</div>
+          <a class="hover:text-accent-lift block no-underline" href="/about/"
+            >About</a
+          >
           <a
+            class="hover:text-accent-lift block no-underline"
             href="/methodology/"
-            class="hover:text-accent-lift block no-underline">Methodology</a
+            >Methodology</a
           >
           <a
+            class="hover:text-accent-lift block no-underline"
             href="/methodology/#the-floor"
-            class="hover:text-accent-lift block no-underline">↳ The purge</a
+            >↳ The purge</a
           >
           <a
+            class="hover:text-accent-lift block no-underline"
             href="/skos.jsonld"
-            class="hover:text-accent-lift block no-underline">SKOS scheme</a
+            >SKOS scheme</a
           >
         </div>
         <div>
-          <div class="mb-1.5 text-white/45">Project</div>
+          <div class="mb-1.5 text-white/65">Project</div>
           <a
+            class="hover:text-accent-lift block no-underline"
             href="https://w3id.org/digest-law/us/"
-            class="hover:text-accent-lift block no-underline">w3id.org ↗</a
+            >w3id.org ↗</a
           >
           <a
-            href="https://w3id.org/legal-taxonomy/"
             class="hover:text-accent-lift block no-underline"
+            href="https://w3id.org/legal-taxonomy/"
             >Legal taxonomy ↗</a
           >
         </div>
@@ -55,9 +64,9 @@
         digest.law
       </div>
     </div>
-    <div class="ald-dashed my-6 text-white/40"></div>
+    <div class="ald-dashed my-6 text-white/45"></div>
     <div
-      class="ald-meta flex flex-wrap gap-x-6 gap-y-2 text-[0.59375rem] text-white/45"
+      class="ald-meta flex flex-wrap gap-x-6 gap-y-2 text-[0.65625rem] leading-[1.7] text-white/75"
     >
       <span
         >American Legal Digest — machine-researched, review-gated, evidence
@@ -65,12 +74,14 @@
       >
       <span class="flex-1"></span>
       <span
-        >Digest text: <a
+        >Digest text:
+        <a
+          class="hover:text-accent-lift underline decoration-white/55 underline-offset-2"
           href="https://creativecommons.org/licenses/by/4.0/"
           rel="license"
-          class="hover:text-accent-lift underline decoration-white/30 underline-offset-2"
           >Creative Commons Attribution 4.0 International Public License</a
-        > · sources public domain or as-licensed</span
+        >
+        · sources public domain or as-licensed</span
       >
     </div>
   </div>

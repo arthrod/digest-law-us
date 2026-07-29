@@ -1,22 +1,24 @@
 /** Channel attribution for retained sources, derived from the origin URL. */
-const CHANNEL_BY_HOST: Array<[RegExp, string]> = [
-  [/courtlistener\.com$/, "CourtListener"],
-  [/govinfo\.gov$/, "GovInfo"],
-  [/ecfr\.gov$/, "eCFR"],
-  [/law\.cornell\.edu$/, "Cornell LII"],
-  [/justia\.com$/, "Justia"],
-  [/supremecourt\.gov$/, "Supreme Court"],
-  [/congress\.gov$/, "Congress.gov"],
-  [/uscourts\.gov$/, "US Courts"],
-  [/federalregister\.gov$/, "Federal Register"],
-  [/gpo\.gov$/, "GPO"],
+const CHANNEL_BY_HOST: [RegExp, string][] = [
+  [/courtlistener\.com$/u, "CourtListener"],
+  [/govinfo\.gov$/u, "GovInfo"],
+  [/ecfr\.gov$/u, "eCFR"],
+  [/law\.cornell\.edu$/u, "Cornell LII"],
+  [/justia\.com$/u, "Justia"],
+  [/supremecourt\.gov$/u, "Supreme Court"],
+  [/congress\.gov$/u, "Congress.gov"],
+  [/uscourts\.gov$/u, "US Courts"],
+  [/federalregister\.gov$/u, "Federal Register"],
+  [/gpo\.gov$/u, "GPO"],
 ];
 
 export function channelFor(resourceUrl: string): string {
   try {
-    const host = new URL(resourceUrl).hostname.replace(/^www\./, "");
+    const host = new URL(resourceUrl).hostname.replace(/^www\./u, "");
     for (const [pattern, label] of CHANNEL_BY_HOST) {
-      if (pattern.test(host)) return label;
+      if (pattern.test(host)) {
+        return label;
+      }
     }
     return host || "Direct";
   } catch {
@@ -26,6 +28,8 @@ export function channelFor(resourceUrl: string): string {
 
 /** "statutory_only" → "statutory", "caselaw_leaning" → "caselaw-leaning" */
 export function cleanProfile(profile: string | undefined): string {
-  if (!profile) return "";
-  return profile.replace(/_only$/, "").replace(/_/g, "-");
+  if (!profile) {
+    return "";
+  }
+  return profile.replace(/_only$/u, "").replaceAll("_", "-");
 }

@@ -1,30 +1,27 @@
 ---
 export interface CrumbItem {
-  label: string;
   /** Omit for the current page (rendered as ink, unlinked). */
   href?: string;
+  label: string;
 }
 
-type Props = { items: CrumbItem[] };
+interface Props {
+  items: CrumbItem[];
+}
 const { items } = Astro.props;
 ---
 
-<nav
-  aria-label="Breadcrumb"
-  class="ald-meta text-ink-muted leading-relaxed"
->
-  {
-    items.map((item, i) => (
+<nav aria-label="Breadcrumb" class="ald-meta text-ink-muted leading-relaxed">
+  {items.map((item, i) => (
       <>
         {i > 0 && <span class="opacity-50">{" / "}</span>}
         {item.href ? (
-          <a href={item.href} class="no-underline hover:text-ink">
+          <a href={item.href} class="hover:text-ink no-underline">
             {item.label}
           </a>
         ) : (
           <span class="text-ink">{item.label}</span>
         )}
       </>
-    ))
-  }
+    ))}
 </nav>

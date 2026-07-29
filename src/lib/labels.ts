@@ -32,13 +32,17 @@ const SMALL_WORDS = new Set([
 
 /** "JUDICIAL_PRECEDENTS_AND_CASE_LAW" → "Judicial Precedents and Case Law" */
 export function humanize(segment: string): string {
-  const words = segment.replace(/_/g, " ").trim().split(/\s+/);
+  const words = segment.replaceAll("_", " ").trim().split(/\s+/u);
   const isScreaming = segment === segment.toUpperCase();
-  if (!isScreaming) return words.join(" ");
+  if (!isScreaming) {
+    return words.join(" ");
+  }
   return words
     .map((w, i) => {
       const lw = w.toLowerCase();
-      if (i !== 0 && i !== words.length - 1 && SMALL_WORDS.has(lw)) return lw;
+      if (i !== 0 && i !== words.length - 1 && SMALL_WORDS.has(lw)) {
+        return lw;
+      }
       return lw.charAt(0).toUpperCase() + lw.slice(1);
     })
     .join(" ");
@@ -48,8 +52,8 @@ export function humanize(segment: string): string {
 export function slugSegment(segment: string): string {
   return segment
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+    .replaceAll(/[^a-z0-9]+/gu, "-")
+    .replaceAll(/^-+|-+$/gu, "");
 }
 
 /** Corpus directory path → site URL path (no leading/trailing slash). */
@@ -59,9 +63,13 @@ export function slugPathOf(dirPath: string): string {
 
 /** "2026-07-16T12:18:39Z" or "2026-07-16" → "16 Jul 2026" (UTC, stable). */
 export function formatDate(value: string | Date | undefined): string {
-  if (!value) return "";
+  if (!value) {
+    return "";
+  }
   const d = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(d.getTime())) return String(value);
+  if (Number.isNaN(d.getTime())) {
+    return String(value);
+  }
   const months = [
     "Jan",
     "Feb",
@@ -81,7 +89,11 @@ export function formatDate(value: string | Date | undefined): string {
 
 /** Human file size: "12.5 MB", "188 KB". */
 export function formatBytes(bytes: number): string {
-  if (bytes >= 1_000_000) return `${(bytes / 1_000_000).toFixed(1)} MB`;
-  if (bytes >= 1_000) return `${Math.round(bytes / 1_000)} KB`;
+  if (bytes >= 1_000_000) {
+    return `${(bytes / 1_000_000).toFixed(1)} MB`;
+  }
+  if (bytes >= 1000) {
+    return `${Math.round(bytes / 1000)} KB`;
+  }
   return `${bytes} B`;
 }

@@ -5,25 +5,33 @@
  * /sources/{slug}/ with /2/…/n/ chunk continuations. URLs are the
  * lowercase-kebab mirror of the corpus tree — stable, citable.
  */
-import { getCorpus } from "@/lib/corpus";
-import DigestView from "@/components/views/DigestView.astro";
+
 import AreaView from "@/components/views/AreaView.astro";
-import ContainerView from "@/components/views/ContainerView.astro";
-import SourceView from "@/components/views/SourceView.astro";
 import AuditView from "@/components/views/AuditView.astro";
+import ContainerView from "@/components/views/ContainerView.astro";
+import DigestView from "@/components/views/DigestView.astro";
 import IndexView from "@/components/views/IndexView.astro";
+import SourceView from "@/components/views/SourceView.astro";
+import { getCorpus } from "@/lib/corpus";
 
 export async function getStaticPaths() {
   const corpus = await getCorpus();
-  type PathSpec = {
+  interface PathSpec {
     params: { path: string };
     props: {
-      kind: "digest" | "area" | "container" | "audit" | "caselaw" | "statutory" | "source";
+      kind:
+        | "digest"
+        | "area"
+        | "container"
+        | "audit"
+        | "caselaw"
+        | "statutory"
+        | "source";
       slugPath: string;
       sourceId?: string;
       part?: number;
     };
-  };
+  }
   const paths: PathSpec[] = [];
 
   for (const node of corpus.nodeBySlugPath.values()) {
@@ -40,8 +48,10 @@ export async function getStaticPaths() {
       });
     }
 
-    if (!node.digest) continue;
-    const dir = node.dir;
+    if (!node.digest) {
+      continue;
+    }
+    const { dir } = node;
     if (corpus.auditsByDir.has(dir)) {
       paths.push({
         params: { path: `${node.slugPath}/audit` },
@@ -61,7 +71,7 @@ export async function getStaticPaths() {
       });
     }
     for (const source of corpus.sourcesByBundle.get(dir) ?? []) {
-      for (let part = 1; part <= source.data.parts; part++) {
+      for (let part = 1; part <= source.data.parts; part += 1) {
         paths.push({
           params: {
             path:
@@ -71,9 +81,9 @@ export async function getStaticPaths() {
           },
           props: {
             kind: "source",
+            part,
             slugPath: node.slugPath,
             sourceId: source.id,
-            part,
           },
         });
       }
@@ -89,13 +99,9 @@ const { kind, slugPath, sourceId, part } = Astro.props;
 {kind === "area" && <AreaView {slugPath} />}
 {kind === "container" && <ContainerView {slugPath} />}
 {kind === "audit" && <AuditView {slugPath} />}
-{
-  (kind === "caselaw" || kind === "statutory") && (
+{(kind === "caselaw" || kind === "statutory") && (
     <IndexView {slugPath} kind={kind} />
-  )
-}
-{
-  kind === "source" && (
+  )}
+{kind === "source" && (
     <SourceView {slugPath} sourceId={sourceId!} part={part!} />
-  )
-}
+  )}

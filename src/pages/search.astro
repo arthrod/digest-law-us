@@ -7,44 +7,47 @@
  * Without JS: browse via the area directory and /sitemap/.
  */
 import "@pagefind/default-ui/css/ui.css";
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const title = "Search — American Legal Digest";
 const description =
   "Search digests and audits across every area of United States law.";
 ---
 
-<Layout {title} {description}>
+<Layout {description} {title}>
   <SiteHeader />
-  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+  <main class="mx-auto w-full max-w-225 flex-1 px-5 sm:px-9" id="main">
     <div class="pt-8 pb-12">
       <h1
         class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
       >
         Search
       </h1>
-      <div class="ald-meta text-ink-muted mt-3 flex flex-wrap gap-x-3.5 gap-y-1">
+      <div
+        class="ald-meta text-ink-muted mt-3 flex flex-wrap gap-x-3.5 gap-y-1"
+      >
         <span>↵ open</span>
         <span class="opacity-40">·</span>
         <span>/ or ⌘K from anywhere</span>
         <span class="opacity-40">·</span>
         <span>filters: area · kind</span>
       </div>
-      <div id="pagefind-search" class="mt-6" transition:persist>
+      <div class="mt-6" id="pagefind-search" transition:persist>
         <noscript>
           <p class="font-ui text-ink-muted text-[0.90625rem] leading-relaxed">
             Search needs JavaScript. Without it, browse the
-            <a href="/" class="decoration-cite-ext underline underline-offset-2"
+            <a class="decoration-cite-ext underline underline-offset-2" href="/"
               >area directory</a
             >
             or the
             <a
-              href="/sitemap/"
               class="decoration-cite-ext underline underline-offset-2"
+              href="/sitemap/"
               >full sitemap</a
-            > — every digest is a plain, linkable page.
+            >
+            — every digest is a plain, linkable page.
           </p>
         </noscript>
       </div>
@@ -54,59 +57,80 @@ const description =
 </Layout>
 
 <script>
+  const resetSearchParam = (e: Event) => {
+    if ((e.target as HTMLInputElement)?.value.trim() === "") {
+      history.replaceState(history.state, "", window.location.pathname);
+    }
+  };
+
   function initSearch() {
     const pageFindSearch: HTMLElement | null =
       document.querySelector("#pagefind-search");
-    if (!pageFindSearch) return;
+    if (!pageFindSearch) {
+      return;
+    }
 
     const params = new URLSearchParams(window.location.search);
-    const onIdle =
-      window.requestIdleCallback || (cb => setTimeout(cb, 1));
+    const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
 
     onIdle(async () => {
       // Warm Pagefind's boot assets while the user types their first query —
       // the UI defers all loading to the first keystroke. Fetch-only:
       // options()/init() must stay with the UI or its config is dropped.
       // @ts-expect-error — runtime URL resolved from the built site.
-      import(/* @vite-ignore */ "/pagefind/pagefind.js").catch(() => {});
+      import(/* @vite-ignore */ "/pagefind/pagefind.js").catch(() => {
+        /* empty */
+      });
       fetch("/pagefind/pagefind-entry.json")
-        .then(r => r.json())
-        .then(entry => {
+        .then((r) => r.json())
+        .then((entry) => {
           for (const lang of Object.values(entry?.languages ?? {})) {
             const { wasm, hash } = lang as { wasm?: string; hash?: string };
-            if (wasm) fetch(`/pagefind/wasm.${wasm}.pagefind`).catch(() => {});
-            if (hash) fetch(`/pagefind/pagefind.${hash}.pf_meta`).catch(() => {});
+            if (wasm) {
+              fetch(`/pagefind/wasm.${wasm}.pagefind`).catch(() => {
+                /* empty */
+              });
+            }
+            if (hash) {
+              fetch(`/pagefind/pagefind.${hash}.pf_meta`).catch(() => {
+                /* empty */
+              });
+            }
           }
         })
-        .catch(() => {});
+        .catch(() => {
+          /* empty */
+        });
 
       // @ts-expect-error — Missing types for @pagefind/default-ui package.
       const { PagefindUI } = await import("@pagefind/default-ui");
 
       if (import.meta.env.DEV) {
         pageFindSearch.innerHTML = `
-            <div class="bg-panel border border-hairline rounded-[2px] p-4 mb-4 font-ui text-[0.875rem]">
-              <strong>Dev mode:</strong> build once (<code>pnpm build</code>)
-              to generate the Pagefind index.
-            </div>
-          `;
+                <div class="bg-panel border border-hairline rounded-[2px] p-4 mb-4 font-ui text-[0.875rem]">
+                  <strong>Dev mode:</strong> build once (<code>pnpm build</code>)
+                  to generate the Pagefind index.
+                </div>
+              `;
       }
 
       const search = new PagefindUI({
-        element: "#pagefind-search",
         bundlePath: "/pagefind/",
-        showImages: false,
-        showSubResults: true,
-        showEmptyFilters: false,
-        processTerm: function (term: string) {
+        element: "#pagefind-search",
+        processTerm(term: string) {
           params.set("q", term);
-          history.replaceState(history.state, "", "?" + params.toString());
+          history.replaceState(history.state, "", `?${params.toString()}`);
           return term;
         },
+        showEmptyFilters: false,
+        showImages: false,
+        showSubResults: true,
       });
 
       const query = params.get("q");
-      if (query) search.triggerSearch(query);
+      if (query) {
+        search.triggerSearch(query);
+      }
 
       const searchInput = document.querySelector(
         ".pagefind-ui__search-input"
@@ -115,18 +139,14 @@ const description =
       const clearButton = document.querySelector(".pagefind-ui__search-clear");
       searchInput?.addEventListener("input", resetSearchParam);
       clearButton?.addEventListener("click", resetSearchParam);
-
-      function resetSearchParam(e: Event) {
-        if ((e.target as HTMLInputElement)?.value.trim() === "") {
-          history.replaceState(history.state, "", window.location.pathname);
-        }
-      }
     });
   }
 
   document.addEventListener("astro:after-swap", () => {
     const pagefindSearch = document.querySelector("#pagefind-search");
-    if (pagefindSearch && pagefindSearch.querySelector("form")) return;
+    if (pagefindSearch && pagefindSearch.querySelector("form")) {
+      return;
+    }
     initSearch();
   });
   initSearch();
@@ -144,10 +164,10 @@ const description =
     --pagefind-ui-border-width: 1px;
 
     input {
+      font-family: var(--ald-font-ui);
       font-weight: 400;
       border: 1px solid var(--ald-ink);
       border-radius: 2px;
-      font-family: var(--ald-font-ui);
     }
 
     input:focus-visible {
@@ -156,15 +176,15 @@ const description =
     }
 
     mark {
-      background: var(--ald-mark);
       color: inherit;
+      background: var(--ald-mark);
     }
 
     .pagefind-ui__result-title a {
       font-family: var(--ald-font-display);
       font-weight: 400;
-      letter-spacing: -0.02em;
       color: var(--ald-ink);
+      letter-spacing: -0.02em;
       text-decoration: none;
     }
 
@@ -175,8 +195,8 @@ const description =
     }
 
     .pagefind-ui__result {
-      border-bottom: 1px solid var(--ald-hairline);
       padding: 14px 0;
+      border-bottom: 1px solid var(--ald-hairline);
     }
 
     .pagefind-ui__result:last-of-type {
@@ -202,17 +222,17 @@ const description =
     .pagefind-ui__button,
     .pagefind-ui__search-clear {
       font-family: var(--ald-font-mono);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
       font-size: 0.6875rem;
       color: var(--ald-ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .pagefind-ui__button {
+      color: var(--ald-ink);
       background: transparent;
       border: 1px solid var(--ald-hairline);
       border-radius: 2px;
-      color: var(--ald-ink);
     }
 
     .pagefind-ui__result-excerpt {

@@ -1,59 +1,58 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro/zod";
 import { glob } from "astro/loaders";
-import { sourcesLoader } from "@/loaders/sources";
+import { z } from "astro/zod";
+
 import { CORPUS_DIR } from "@/corpus.config";
+import { sourcesLoader } from "@/loaders/sources";
 
 /** Keep raw corpus paths as ids — the URL scheme derives from them. */
-<<<<<<< HEAD
 const rawId = ({ entry }: { entry: string }) =>
-  entry.replace(/\.(md|mdx|json)$/, "");
-=======
-const rawId = ({ entry }: { entry: string }) => entry.replace(/\.(md|mdx|json)$/, "");
->>>>>>> 6005d978 (After purge for sources with 1 or less items.)
+  entry.replace(/\.(?<ext>md|mdx|json)$/u, "");
 
 /** SKOS `legal_issue` frontmatter carried by every digest. Deliberately
  *  loose: 69 pre-provenance bundles (June 2026) predate some fields. */
 const digestSchema = z
   .object({
-    okf_version: z.string().optional(),
-    type: z.string().optional(),
-    id: z.string().optional(),
-    notation: z.string().optional(),
-    title: z.string().optional(),
-    pref_label: z.string().optional(),
     alt_labels: z.array(z.string()).default([]),
-    historical_labels: z.array(z.string()).default([]),
-    description: z.string().default(""),
-    definition: z.string().default(""),
-    scope_note: z.string().default(""),
-    do_not_use_for: z.array(z.string()).default([]),
-    scheme: z.string().optional(),
-    status: z.string().optional(),
     broader: z.array(z.string()).default([]),
-    narrower: z.array(z.string()).default([]),
-    related: z.array(z.string()).default([]),
+    created: z.coerce.string().optional(),
+    definition: z.string().default(""),
+    description: z.string().default(""),
+    do_not_use_for: z.array(z.string()).default([]),
+    historical_labels: z.array(z.string()).default([]),
+    id: z.string().optional(),
+    issue_id: z.string().optional(),
     legal_relations: z
       .object({
         defenseTo: z.array(z.string()).default([]),
-        remedyFor: z.array(z.string()).default([]),
         procedureFor: z.array(z.string()).default([]),
+        remedyFor: z.array(z.string()).default([]),
       })
       .partial()
       .optional(),
     mappings: z.record(z.string(), z.any()).optional(),
-    version: z.string().optional(),
-    created: z.coerce.string().optional(),
     modified: z.coerce.string().optional(),
-    issue_id: z.string().optional(),
+    narrower: z.array(z.string()).default([]),
+    notation: z.string().optional(),
     objectives_path: z.array(z.string()).default([]),
-    timestamp: z.coerce.string().optional(),
+    okf_version: z.string().optional(),
+    pref_label: z.string().optional(),
+    related: z.array(z.string()).default([]),
+    scheme: z.string().optional(),
+    scope_note: z.string().default(""),
     source_profile: z.string().optional(),
+    status: z.string().optional(),
+    timestamp: z.coerce.string().optional(),
+    title: z.string().optional(),
+    type: z.string().optional(),
+    version: z.string().optional(),
   })
   .passthrough();
 
 const digests = defineCollection({
   loader: glob({
+    base: CORPUS_DIR,
+    generateId: rawId,
     pattern: [
       "**/*.md",
       "!**/index.md",
@@ -63,64 +62,62 @@ const digests = defineCollection({
       "!**/_source_snippet_audit.md",
       "!**/sources/**",
     ],
-    base: CORPUS_DIR,
-    generateId: rawId,
   }),
   schema: digestSchema,
 });
 
 const indexSchema = z
   .object({
-    type: z.string().optional(),
-    title: z.string().optional(),
     description: z.string().default(""),
-    issue_id: z.string().optional(),
     folio_area: z.string().optional(),
     folio_objective: z.string().optional(),
-    source_profile: z.string().optional(),
+    issue_id: z.string().optional(),
     source_counts: z
       .object({
         caselaw: z.number().optional(),
-        statutory: z.number().optional(),
         secondary: z.number().optional(),
+        statutory: z.number().optional(),
       })
       .partial()
       .optional(),
+    source_profile: z.string().optional(),
     timestamp: z.coerce.string().optional(),
+    title: z.string().optional(),
+    type: z.string().optional(),
   })
   .passthrough();
 
 const caselaw = defineCollection({
   loader: glob({
-    pattern: "**/caselaw_index.md",
     base: CORPUS_DIR,
     generateId: rawId,
+    pattern: "**/caselaw_index.md",
   }),
   schema: indexSchema,
 });
 
 const statutory = defineCollection({
   loader: glob({
-    pattern: "**/statutory_index.md",
     base: CORPUS_DIR,
     generateId: rawId,
+    pattern: "**/statutory_index.md",
   }),
   schema: indexSchema,
 });
 
 const audits = defineCollection({
   loader: glob({
-    pattern: "**/_source_snippet_audit.md",
     base: CORPUS_DIR,
     generateId: rawId,
+    pattern: "**/_source_snippet_audit.md",
   }),
   schema: z
     .object({
-      type: z.string().optional(),
-      title: z.string().optional(),
       description: z.string().default(""),
       resource: z.string().optional(),
       timestamp: z.coerce.string().optional(),
+      title: z.string().optional(),
+      type: z.string().optional(),
     })
     .passthrough(),
 });
@@ -128,31 +125,31 @@ const audits = defineCollection({
 /** run.json provenance manifests (1,552+ bundles; absent = pre-provenance) */
 const runs = defineCollection({
   loader: glob({
-    pattern: "**/run.json",
     base: CORPUS_DIR,
     generateId: rawId,
+    pattern: "**/run.json",
   }),
   schema: z
     .object({
-      manifest_version: z.number().optional(),
-      issue: z.record(z.string(), z.any()).optional(),
-      run: z
-        .object({
-          started_at: z.string().optional(),
-          finished_at: z.string().optional(),
-          attempts: z.number().optional(),
-          duration_seconds: z.number().optional(),
-          visited_urls: z.number().optional(),
-          retained_sources: z.number().optional(),
-        })
-        .partial()
-        .optional(),
       config: z.record(z.string(), z.any()).optional(),
-      probe: z.record(z.string(), z.any()).optional(),
       evidence: z.record(z.string(), z.any()).optional(),
       // Newer manifests: array of {path, sha256, bytes}. Oldest (June 2026):
       // a role→filename map. Kept loose; consumers must check the shape.
       files: z.any().optional(),
+      issue: z.record(z.string(), z.any()).optional(),
+      manifest_version: z.number().optional(),
+      probe: z.record(z.string(), z.any()).optional(),
+      run: z
+        .object({
+          attempts: z.number().optional(),
+          duration_seconds: z.number().optional(),
+          finished_at: z.string().optional(),
+          retained_sources: z.number().optional(),
+          started_at: z.string().optional(),
+          visited_urls: z.number().optional(),
+        })
+        .partial()
+        .optional(),
     })
     .passthrough(),
 });
@@ -162,18 +159,25 @@ const sources = defineCollection({
   loader: sourcesLoader(CORPUS_DIR),
   schema: z.object({
     bundle: z.string(),
-    slug: z.string(),
-    relFile: z.string(),
-    title: z.string(),
-    description: z.string().default(""),
-    resource: z.string().default(""),
-    tags: z.array(z.string()).default([]),
-    retained: z.string().default(""),
     bytes: z.number(),
     chars: z.number(),
+    description: z.string().default(""),
     parts: z.number(),
-    spans: z.array(z.object({ start: z.number(), end: z.number() })),
+    relFile: z.string(),
+    resource: z.string().default(""),
+    retained: z.string().default(""),
+    slug: z.string(),
+    spans: z.array(z.object({ end: z.number(), start: z.number() })),
+    tags: z.array(z.string()).default([]),
+    title: z.string(),
   }),
 });
 
-export const collections = { digests, caselaw, statutory, audits, runs, sources };
+export const collections = {
+  audits,
+  caselaw,
+  digests,
+  runs,
+  sources,
+  statutory,
+};

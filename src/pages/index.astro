@@ -4,9 +4,10 @@
  * area directory built for the skew. This page and /sitemap/ are the only
  * two places the full 42-area map renders (hard constraint 1).
  */
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
+
 import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
 import { schemeSummaryJsonLd } from "@/lib/skos";
 
@@ -19,16 +20,13 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 
 <Layout>
   <Fragment slot="head">
-    <script
-      type="application/ld+json"
-      set:html={schemeSummaryJsonLd(corpus)}
-    />
+    <script type="application/ld+json" set:html={schemeSummaryJsonLd(corpus)} />
     <link
-      rel="alternate"
-      type="application/ld+json"
       href="/skos.jsonld"
+      rel="alternate"
       title="SKOS concept scheme"
-    />
+      type="application/ld+json"
+    >
   </Fragment>
   <div class="bg-surface text-ink">
     <SiteHeader />
@@ -42,22 +40,22 @@ const fmt = (n: number) => n.toLocaleString("en-US");
         <h1
           class="font-display max-w-[20ch] text-[2.25rem] leading-[1.08] font-normal tracking-[-0.03em] sm:text-[3.375rem]"
         >
-          A digest of American legal doctrine, <span class="ald-hero-mark"
-            >with the evidence attached.</span
-          >
+          A digest of American legal doctrine
         </h1>
         <p
           class="font-ui text-ink-muted mt-5 max-w-[60ch] text-[1rem] leading-[1.55] sm:text-[1.03125rem]"
         >
-          {fmt(stats.digests)} topics across {doctrinalAreas.length} doctrinal
-          areas and {compositeAreas.length} cross-cutting roots of United
-          States law, researched from free public sources and gated by review.
-          Every digest holds the full text of at least two authorities — and
-          publishes the log of every search and rejection behind it.
+          {fmt(stats.digests)}
+          topics across {doctrinalAreas.length} doctrinal areas and
+          {compositeAreas.length}
+          cross-cutting roots of United States law, researched from free public
+          sources and gated by review. Every digest holds the full text of at
+          least two authorities — and publishes the log of every search and
+          rejection behind it.
         </p>
         <a
-          href="/search/"
           class="ald-meta border-hairline bg-field text-ink-muted hover:border-ink/50 mt-8 flex h-[52px] w-full max-w-[640px] items-center rounded-[2px] border px-4.5 text-[0.6875rem] no-underline"
+          href="/search/"
         >
           Search doctrine, cases, statutes — press / or ⌘K
         </a>
@@ -65,19 +63,22 @@ const fmt = (n: number) => n.toLocaleString("en-US");
     </div>
   </div>
 
-  <main id="main" class="mx-auto w-full max-w-[1280px] flex-1 px-5 sm:px-10">
+  <main class="mx-auto w-full max-w-[1280px] flex-1 px-5 sm:px-10" id="main">
     <section class="pt-12 pb-2">
       <div class="mb-1.5 flex items-baseline gap-3.5">
         <span class="ald-meta text-[0.6875rem]">01 | Doctrinal areas</span>
         <span class="flex-1"></span>
         <span class="ald-meta text-ink-muted text-[0.625rem]">
-          {doctrinalAreas.length} areas · {fmt(doctrinalTopics)} topics
+          {doctrinalAreas.length}
+          areas · {fmt(doctrinalTopics)} topics
         </span>
       </div>
-      <div class="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          doctrinalAreas.map((area, i) => (
-            <a href={`/${area.slugPath}/`} class="block text-inherit no-underline">
+      <div class="ald-rows ald-rows-3 -mx-3 grid sm:grid-cols-2 lg:grid-cols-3">
+        {doctrinalAreas.map((area, i) => (
+            <a
+              href={`/${area.slugPath}/`}
+              class="block px-3 text-inherit no-underline"
+            >
               <div class="ald-dashed text-ink mt-3.5 opacity-35" />
               <div class="flex items-baseline pt-3 pb-0.5">
                 <span class="ald-meta text-ink-muted text-[0.625rem]">
@@ -92,22 +93,23 @@ const fmt = (n: number) => n.toLocaleString("en-US");
                 {area.label}
               </div>
             </a>
-          ))
-        }
+          ))}
       </div>
 
       <div class="mt-10 mb-1.5 flex items-baseline gap-3.5">
         <span class="ald-meta text-[0.6875rem]">02 | Composite roots</span>
         <span class="flex-1"></span>
         <span class="ald-meta text-ink-muted text-[0.625rem]">
-          {compositeAreas.length} roots · {fmt(compositeTopics)} cross-cutting
-          topics
+          {compositeAreas.length}
+          roots · {fmt(compositeTopics)} cross-cutting topics
         </span>
       </div>
-      <div class="grid gap-x-6 sm:grid-cols-2">
-        {
-          compositeAreas.map((area, i) => (
-            <a href={`/${area.slugPath}/`} class="block text-inherit no-underline">
+      <div class="ald-rows -mx-3 grid sm:grid-cols-2">
+        {compositeAreas.map((area, i) => (
+            <a
+              href={`/${area.slugPath}/`}
+              class="block px-3 text-inherit no-underline"
+            >
               <div class="ald-dashed text-ink mt-3.5 opacity-35" />
               <div class="flex items-baseline pt-3 pb-0.5">
                 <span class="ald-meta text-ink-muted text-[0.625rem]">
@@ -125,18 +127,54 @@ const fmt = (n: number) => n.toLocaleString("en-US");
                 {area.segment}
               </div>
             </a>
-          ))
-        }
+          ))}
       </div>
 
       <p
         class="ald-meta text-ink-muted mt-7 mb-10 max-w-[70ch] text-[0.59375rem] leading-[1.7]"
       >
         Counts are published digests, not planned coverage — small areas are
-        small because the evidence floor held. One topic that cleared it is
-        one topic that cleared it.
+        small because the evidence floor held. One topic that cleared it is one
+        topic that cleared it.
       </p>
     </section>
   </main>
   <SiteFooter />
 </Layout>
+
+<style>
+  /* Zebra rows. The grid reflows 1 → 2 → 3 columns, so the shaded window has
+         to track the column count: shading every other *item* would stripe the
+         columns at 2-up and checkerboard at 3-up. One tone step (panel), so the
+         band separates rows without reading as a filled box. */
+  .ald-rows > a {
+    background-color: transparent;
+  }
+  .ald-rows > a:nth-child(2n + 1) {
+    background-color: var(--ald-panel);
+  }
+
+  /* 2 columns — shade in pairs */
+  @media (width >= 40rem) {
+    .ald-rows > a:nth-child(2n + 1) {
+      background-color: transparent;
+    }
+    .ald-rows > a:nth-child(4n + 1),
+    .ald-rows > a:nth-child(4n + 2) {
+      background-color: var(--ald-panel);
+    }
+  }
+
+  /* 3 columns — doctrinal grid only; composite stays 2-up */
+  @media (width >= 64rem) {
+    .ald-rows-3 > a:nth-child(4n + 1),
+    .ald-rows-3 > a:nth-child(4n + 2) {
+      background-color: transparent;
+    }
+    .ald-rows-3 > a:nth-child(6n + 1),
+    .ald-rows-3 > a:nth-child(6n + 2),
+    .ald-rows-3 > a:nth-child(6n + 3) {
+      background-color: var(--ald-panel);
+    }
+  }
+</style>

@@ -4,9 +4,10 @@
  * purge as brand. The pipeline is honest by construction — it publishes
  * what it can prove and deletes what it cannot.
  */
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
+
 import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
 import { formatBytes } from "@/lib/labels";
 
@@ -16,30 +17,30 @@ const fmt = (n: number) => n.toLocaleString("en-US");
 
 const steps = [
   {
-    n: "01",
-    name: "Search",
     body: "Free public channels only. Every query and hit count is logged to the audit.",
     chips: ["CourtListener", "GovInfo", "eCFR", "Cornell LII", "Direct fetch"],
+    n: "01",
+    name: "Search",
   },
   {
+    body: "Accepted texts are preserved in full and hashed. Rejections are recorded with their technical reason — paywalled, duplicate, non-authoritative, conversion failed.",
     n: "02",
     name: "Retain",
-    body: "Accepted texts are preserved in full and hashed. Rejections are recorded with their technical reason — paywalled, duplicate, non-authoritative, conversion failed.",
   },
   {
+    body: "The digest is written from retained texts alone, in a fixed section structure. The model chain is recorded in run.json — the disclosure every page carries.",
     n: "03",
     name: "Draft",
-    body: "The digest is written from retained texts alone, in a fixed section structure. The model chain is recorded in run.json — the disclosure every page carries.",
   },
   {
+    body: `Merge is blocked unless the floor holds: at least two retained sources, both indexes generated (or their absence documented), audit complete. The ${stats.preProvenance} June-2026 bundles that predate provenance capture are disclosed as such — never backfilled.`,
     n: "04",
     name: "Review gate",
-    body: `Merge is blocked unless the floor holds: at least two retained sources, both indexes generated (or their absence documented), audit complete. The ${stats.preProvenance} June-2026 bundles that predate provenance capture are disclosed as such — never backfilled.`,
   },
   {
+    body: "Digest, full source texts, audit, and run.json ship together at a stable URL — the permanent identifier lives at w3id.org/digest-law/us/. Corrections are new commits, not silent edits.",
     n: "05",
     name: "Publish",
-    body: "Digest, full source texts, audit, and run.json ship together at a stable URL — the permanent identifier lives at w3id.org/digest-law/us/. Corrections are new commits, not silent edits.",
   },
 ];
 
@@ -48,9 +49,9 @@ const description =
   "How digests are made: free public sources only, a two-source evidence floor, published audits — and 993 thin digests deleted rather than shipped.";
 ---
 
-<Layout {title} {description}>
+<Layout {description} {title}>
   <SiteHeader />
-  <main id="main" class="mx-auto w-full max-w-[1000px] flex-1 px-5 sm:px-9">
+  <main class="mx-auto w-full max-w-250 flex-1 px-5 sm:px-9" id="main">
     <div class="pt-9 pb-11">
       <h1
         class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
@@ -60,13 +61,12 @@ const description =
       <p
         class="font-prose text-ink/78 mt-3.5 max-w-[58ch] text-[1.09375rem] leading-[1.55] sm:text-[1.1875rem]"
       >
-        The pipeline is honest by construction — it publishes what it can
-        prove and deletes what it cannot.
+        The pipeline is honest by construction — it publishes what it can prove
+        and deletes what it cannot.
       </p>
 
       <div class="border-ink mt-8 border-t">
-        {
-          steps.map(step => (
+        {steps.map(step => (
             <div class="border-hairline grid grid-cols-[40px_1fr] gap-x-6 border-b py-4 sm:grid-cols-[52px_210px_1fr]">
               <span class="ald-meta text-[0.6875rem]">{step.n}</span>
               <span class="font-display text-[1.25rem] leading-tight tracking-[-0.02em]">
@@ -87,11 +87,10 @@ const description =
                 )}
               </div>
             </div>
-          ))
-        }
+          ))}
       </div>
 
-      <div id="the-floor" class="border-l-accent mt-9 border-l-2 py-1.5 pl-6">
+      <div class="border-l-accent mt-9 border-l-2 py-1.5 pl-6" id="the-floor">
         <div
           class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]"
         >
@@ -102,7 +101,9 @@ const description =
         </div>
       </div>
 
-      <div class="border-hairline mt-8 grid grid-cols-2 border-t sm:grid-cols-4">
+      <div
+        class="border-hairline mt-8 grid grid-cols-2 border-t sm:grid-cols-4"
+      >
         <div class="pt-4.5 pr-5">
           <div class="font-display text-[1.625rem] leading-none tabular-nums">
             {fmt(stats.digests)}
@@ -119,9 +120,7 @@ const description =
             Deleted at the floor
           </div>
         </div>
-        <div
-          class="sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5"
-        >
+        <div class="sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5">
           <div class="font-display text-[1.625rem] leading-none tabular-nums">
             {stats.preProvenance}
           </div>
@@ -141,21 +140,21 @@ const description =
 
       <div class="ald-meta text-ink-muted mt-9 max-w-[74ch] leading-[1.8]">
         Digests are machine-generated and machine-reviewed; they are a map of
-        doctrine pointing at authorities, not a treatise, and not legal
-        advice. Permanent identifiers:
+        doctrine pointing at authorities, not a treatise, and not legal advice.
+        Permanent identifiers:
         <a
-          href="https://w3id.org/digest-law/us/"
           class="decoration-cite-ext underline underline-offset-2"
+          href="https://w3id.org/digest-law/us/"
           >w3id.org/digest-law/us/</a
         >. Machine-readable scheme:
         <a
-          href="/skos.jsonld"
           class="decoration-cite-ext underline underline-offset-2"
+          href="/skos.jsonld"
           >SKOS JSON-LD</a
         >. Companion vocabulary:
         <a
-          href="https://w3id.org/legal-taxonomy/"
           class="decoration-cite-ext underline underline-offset-2"
+          href="https://w3id.org/legal-taxonomy/"
           >Open Legal Issue Taxonomy</a
         >.
       </div>

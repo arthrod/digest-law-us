@@ -3,13 +3,13 @@
 @import "./theme.css";
 @import "./typography.css";
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @layer base {
   * {
-    @apply border-hairline;
-    scrollbar-width: auto;
     scrollbar-color: var(--ald-hairline) transparent;
+    scrollbar-width: auto;
+    @apply border-hairline;
   }
   html {
     background-color: var(--ald-surface);
@@ -29,9 +29,9 @@
     background: var(--ald-mark);
   }
   mark {
-    background: var(--ald-mark);
-    color: inherit;
     padding: 0 2px;
+    color: inherit;
+    background: var(--ald-mark);
   }
 }
 
@@ -45,18 +45,18 @@
 @utility ald-meta {
   font-family: var(--ald-font-mono);
   font-size: 0.625rem;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Diamond separator between meta facts */
 @utility ald-diamond {
+  flex: none;
   width: 3px;
   height: 3px;
   background: currentColor;
-  transform: rotate(45deg);
-  flex: none;
   opacity: 0.5;
+  transform: rotate(45deg);
 }
 
 /* The held marker: we retain this document */
@@ -64,10 +64,10 @@
   display: inline-block;
   width: var(--ald-held-diamond);
   height: var(--ald-held-diamond);
-  background: var(--ald-accent);
-  transform: rotate(45deg);
   margin-left: 4px;
   vertical-align: 2px;
+  background: var(--ald-accent);
+  transform: rotate(45deg);
 }
 
 /* Horizontal dashed rule (1px on / 4px off) */
@@ -86,25 +86,25 @@
 @utility ald-chip {
   display: inline-block;
   padding: 6px 10px;
-  border: 1px solid var(--ald-cite-ext);
-  border-radius: var(--ald-radius);
-  background: var(--ald-surface);
-  text-decoration: none;
   font-family: var(--ald-font-ui);
   font-size: 0.78125rem;
   line-height: 1.35;
   color: var(--ald-ink);
+  text-decoration: none;
+  background: var(--ald-surface);
+  border: 1px solid var(--ald-cite-ext);
+  border-radius: var(--ald-radius);
 }
 
 @utility ald-chip-unresolved {
   display: inline-block;
   padding: 6px 10px;
-  border: 1px dashed var(--ald-cite-ext);
-  border-radius: var(--ald-radius);
-  color: var(--ald-ink-muted);
   font-family: var(--ald-font-ui);
   font-size: 0.78125rem;
   line-height: 1.35;
+  color: var(--ald-ink-muted);
+  border: 1px dashed var(--ald-cite-ext);
+  border-radius: var(--ald-radius);
 }
 
 .ald-chip:hover {
@@ -129,14 +129,14 @@
     display: none !important;
   }
   body {
-    background: #ffffff !important;
     color: #000000 !important;
+    background: #ffffff !important;
   }
   /* Links expand with their URL — printed copies carry their evidence */
   .ald-prose a[href^="http"]::after {
-    content: " (" attr(href) ")";
     font-family: var(--ald-font-mono);
     font-size: 0.65em;
     word-break: break-all;
+    content: " (" attr(href) ")";
   }
 }

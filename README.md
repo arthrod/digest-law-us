@@ -15,13 +15,13 @@ source and every search log attached.
 
 Every digest bundle is one researched legal issue:
 
-| Piece | URL |
-| --- | --- |
-| The digest | `/{area}/…/{topic}/` |
+| Piece                        | URL                                                              |
+| ---------------------------- | ---------------------------------------------------------------- |
+| The digest                   | `/{area}/…/{topic}/`                                             |
 | Retained sources (full text) | `/{area}/…/{topic}/sources/{slug}/` (+ `/2/…/n/` for long texts) |
-| Audit trail (build log) | `/{area}/…/{topic}/audit/` |
-| Tables of authorities | `/{area}/…/{topic}/caselaw/` · `…/statutory/` |
-| Provenance manifest | `/provenance/{area}/…/{topic}.json` |
+| Audit trail (build log)      | `/{area}/…/{topic}/audit/`                                       |
+| Tables of authorities        | `/{area}/…/{topic}/caselaw/` · `…/statutory/`                    |
+| Provenance manifest          | `/provenance/{area}/…/{topic}.json`                              |
 
 | Thing                 | Pattern                                                         |
 | --------------------- | --------------------------------------------------------------- |
@@ -84,7 +84,7 @@ pnpm deploy                          # build + wrangler deploy (Cloudflare)
 Digest text: [Creative Commons Attribution 4.0 International Public
 License](https://creativecommons.org/licenses/by/4.0/) — reuse anywhere,
 with attribution. Retained sources: public domain or as-licensed by their
-issuing authority (17 U.S.C. § 105; *Georgia v. Public.Resource.Org*, 590
+issuing authority (17 U.S.C. § 105; _Georgia v. Public.Resource.Org_, 590
 U.S. 255 (2020)). Site code: [Apache License
 2.0](https://www.apache.org/licenses/LICENSE-2.0) — see `LICENSE-CODE`. The
 AstroPaper base retains its own MIT notice in `LICENSE-THEME`.

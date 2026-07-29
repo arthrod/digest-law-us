@@ -6,15 +6,9 @@
  */
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import type { MarkdownRenderer } from "@astrojs/markdown-remark";
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import matter from "gray-matter";
-<<<<<<< HEAD
-import {
-  createMarkdownProcessor,
-  type MarkdownRenderer,
-} from "@astrojs/markdown-remark";
-=======
-import { createMarkdownProcessor, type MarkdownRenderer } from "@astrojs/markdown-remark";
->>>>>>> 6005d978 (After purge for sources with 1 or less items.)
 import { CORPUS_DIR } from "@/corpus.config";
 
 let processorPromise: Promise<MarkdownRenderer> | null = null;
@@ -38,12 +32,14 @@ async function readSourceContent(relFile: string): Promise<string> {
     contentCache.set(relFile, hit);
     return hit;
   }
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf-8");
+  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8");
   const { content } = matter(raw);
   contentCache.set(relFile, content);
   if (contentCache.size > CACHE_MAX) {
     const oldest = contentCache.keys().next().value;
-    if (oldest !== undefined) contentCache.delete(oldest);
+    if (oldest !== undefined) {
+      contentCache.delete(oldest);
+    }
   }
   return content;
 }
@@ -54,11 +50,7 @@ export interface RenderedChunk {
 
 export async function renderSourceChunk(
   relFile: string,
-<<<<<<< HEAD
   span: { start: number; end: number }
-=======
-  span: { start: number; end: number },
->>>>>>> 6005d978 (After purge for sources with 1 or less items.)
 ): Promise<RenderedChunk> {
   const content = await readSourceContent(relFile);
   const slice = content.slice(span.start, span.end);

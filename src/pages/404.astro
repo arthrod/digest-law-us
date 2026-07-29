@@ -1,12 +1,12 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Not found — American Legal Digest">
   <SiteHeader />
-  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+  <main class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9" id="main">
     <div class="pt-16 pb-14">
       <div class="ald-meta text-ink-muted mb-4">404 — no page here</div>
       <h1
@@ -22,10 +22,10 @@ import SiteFooter from "@/components/SiteFooter.astro";
         directory, the full map, or search.
       </p>
       <div class="mt-7 flex flex-wrap gap-2">
-        <a href="/" class="ald-chip">All areas</a>
-        <a href="/sitemap/" class="ald-chip">Sitemap</a>
-        <a href="/search/" class="ald-chip">Search</a>
-        <a href="/methodology/" class="ald-chip">Methodology</a>
+        <a class="ald-chip" href="/">All areas</a>
+        <a class="ald-chip" href="/sitemap/">Sitemap</a>
+        <a class="ald-chip" href="/search/">Search</a>
+        <a class="ald-chip" href="/methodology/">Methodology</a>
       </div>
     </div>
   </main>

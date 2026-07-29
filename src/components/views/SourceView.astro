@@ -6,31 +6,41 @@
  * verbatim; the original may drift, our copy does not.
  */
 import { getEntry } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import SiteHeader from "@/components/SiteHeader.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
-import { getCorpus } from "@/lib/corpus";
-import { renderSourceChunk } from "@/lib/render-md";
-import { formatDate, formatBytes } from "@/lib/labels";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
 import { channelFor } from "@/lib/channels";
-import { sourceJsonLd, pageUrl } from "@/lib/skos";
+import { getCorpus } from "@/lib/corpus";
+import { formatBytes, formatDate } from "@/lib/labels";
+import { renderSourceChunk } from "@/lib/render-md";
+import { pageUrl, sourceJsonLd } from "@/lib/skos";
 
-type Props = { slugPath: string; sourceId: string; part: number };
+interface Props {
+  part: number;
+  slugPath: string;
+  sourceId: string;
+}
 const { slugPath, sourceId, part } = Astro.props;
 
 const corpus = await getCorpus();
 const node = corpus.nodeBySlugPath.get(slugPath);
-if (!node?.digest) throw new Error(`No bundle at ${slugPath}`);
+if (!node?.digest) {
+  throw new Error(`No bundle at ${slugPath}`);
+}
 const source = await getEntry("sources", sourceId);
-if (!source) throw new Error(`No source ${sourceId}`);
+if (!source) {
+  throw new Error(`No source ${sourceId}`);
+}
 const meta = source.data;
 
 const span = meta.spans[part - 1];
-if (!span) throw new Error(`No part ${part} of ${sourceId}`);
+if (!span) {
+  throw new Error(`No part ${part} of ${sourceId}`);
+}
 const { html } = await renderSourceChunk(meta.relFile, span);
 
 const siblings = corpus.sourcesByBundle.get(node.dir) ?? [];
-const position = siblings.findIndex(s => s.id === sourceId) + 1;
+const position = siblings.findIndex((s) => s.id === sourceId) + 1;
 
 const baseHref = `/${slugPath}/sources/${meta.slug}`;
 const hrefFor = (p: number) => (p === 1 ? `${baseHref}/` : `${baseHref}/${p}/`);
@@ -51,10 +61,12 @@ const description = `Retained source for ${node.label}: ${sourceTitle}, preserve
 const shownStart = span.start;
 const shownEnd = span.end;
 const percent =
-  meta.parts > 1 ? Math.round(((shownEnd - shownStart) / meta.chars) * 100) : 100;
+  meta.parts > 1
+    ? Math.round(((shownEnd - shownStart) / meta.chars) * 100)
+    : 100;
 ---
 
-<Layout {title} {description} canonicalURL={canonicalURL}>
+<Layout canonicalURL={canonicalURL} {description} {title}>
   <Fragment slot="head">
     <script
       type="application/ld+json"
@@ -73,33 +85,29 @@ const percent =
   <div
     class="ald-meta bg-field border-hairline no-print flex items-center gap-3 border-b px-5 py-2.5 sm:px-9"
   >
-    <a href={`/${slugPath}/`} class="min-w-0 truncate no-underline"
+    <a class="min-w-0 truncate no-underline" href={`/${slugPath}/`}
       >Part of: {node.label} · return to digest</a
     >
     <span class="flex-1"></span>
-    {
-      siblings.length > 1 && (
+    {siblings.length > 1 && (
         <span class="text-ink-muted hidden sm:inline">
           Source {position} of {siblings.length}
         </span>
-      )
-    }
+      )}
   </div>
 
-  <main id="main" class="mx-auto w-full max-w-[1100px] flex-1 px-5 sm:px-9">
+  <main class="mx-auto w-full max-w-[1100px] flex-1 px-5 sm:px-9" id="main">
     <div class="pt-7 pb-10" data-pagefind-ignore>
       <div class="mb-3.5 flex flex-wrap items-center gap-2.5">
         <span
           class="ald-meta border-ink rounded-[2px] border px-2 py-1 tracking-[0.08em]"
           >{channel}</span
         >
-        {
-          meta.tags.length > 0 && (
+        {meta.tags.length > 0 && (
             <span class="ald-meta text-ink-muted min-w-0 truncate text-[0.5625rem]">
               {meta.tags[0]}
             </span>
-          )
-        }
+          )}
       </div>
       <h1
         class="font-display max-w-[30ch] text-[1.375rem] leading-[1.15] tracking-[-0.03em] sm:text-[1.875rem]"
@@ -109,8 +117,7 @@ const percent =
       <div
         class="ald-meta border-hairline mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-y py-3"
       >
-        {
-          meta.resource && (
+        {meta.resource && (
             <a
               href={meta.resource}
               class="decoration-cite-ext min-w-0 truncate underline underline-offset-3"
@@ -118,36 +125,30 @@ const percent =
             >
               Origin: {meta.resource.replace(/^https?:\/\//, "").slice(0, 48)}…
             </a>
-          )
-        }
-        {
-          meta.retained && (
+          )}
+        {meta.retained && (
             <>
               <span class="ald-diamond" />
               <span>Retained {formatDate(meta.retained)}</span>
             </>
-          )
-        }
+          )}
         <span class="ald-diamond"></span>
         <span>{formatBytes(meta.bytes)} markdown</span>
-        {
-          sha && (
+        {sha && (
             <>
               <span class="ald-diamond" />
               <span class="text-ink-muted">
                 sha-256 {sha.slice(0, 4)}…{sha.slice(-2)}
               </span>
             </>
-          )
-        }
+          )}
         <span class="flex-1"></span>
         <span class="text-ink-muted hidden lg:inline"
           >Preserved as retained — the original may drift</span
         >
       </div>
 
-      {
-        meta.parts > 1 && (
+      {meta.parts > 1 && (
           <div class="ald-meta text-ink-muted mt-4 flex items-center gap-3">
             <span>
               Part {part} of {meta.parts}
@@ -172,13 +173,11 @@ const percent =
               </a>
             )}
           </div>
-        )
-      }
+        )}
 
       <article class="ald-prose mt-7" set:html={html} />
 
-      {
-        part < meta.parts && (
+      {part < meta.parts && (
           <div class="mt-7 max-w-[720px]">
             <div class="ald-dashed text-ink" />
             <div class="bg-field border-hairline rounded-b-[2px] border border-t-0 px-6 py-5">
@@ -198,11 +197,12 @@ const percent =
               </a>
             </div>
           </div>
-        )
-      }
+        )}
 
       <div class="ald-meta text-ink-muted mt-8">
-        <a href={`/${slugPath}/`} class="decoration-cite-ext underline underline-offset-2"
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href={`/${slugPath}/`}
           >← Back to digest: {node.label}</a
         >
       </div>

@@ -1,8 +1,8 @@
 ---
-type Props = {
+interface Props {
   /** "dark" renders the ink-band header used by the home hero */
   tone?: "light" | "dark";
-};
+}
 const { tone = "light" } = Astro.props;
 const dark = tone === "dark";
 ---
@@ -16,12 +16,10 @@ const dark = tone === "dark";
   <div
     class:list={[
       "mx-auto flex w-full max-w-[1280px] flex-wrap items-center gap-x-5 px-5 py-3.5 sm:flex-nowrap sm:px-10",
-      dark ? "border-b border-white/16" : "border-b border-hairline",
+      dark ? "border-b border-white/16" : "border-hairline border-b",
     ]}
   >
-    <a
-      href="/"
-      class="font-display text-[17px] tracking-[-0.02em] no-underline"
+    <a class="font-display text-[17px] tracking-[-0.02em] no-underline" href="/"
       >digest.law</a
     >
     <span class="flex-1"></span>
@@ -29,10 +27,12 @@ const dark = tone === "dark";
     <nav
       class="font-ui order-last -ml-3 flex w-full items-center gap-1 text-[0.84375rem] sm:order-none sm:ml-0 sm:w-auto"
     >
-      <a href="/" class="px-3 py-2 no-underline hover:opacity-60">All areas</a>
-      <a
-        href="/methodology/"
-        class="px-3 py-2 no-underline hover:opacity-60">Methodology</a
+      <a class="px-3 py-2 no-underline hover:opacity-60" href="/">All areas</a>
+      <a class="px-3 py-2 no-underline hover:opacity-60" href="/methodology/"
+        >Methodology</a
+      >
+      <a class="px-3 py-2 no-underline hover:opacity-60" href="/about/"
+        >About</a
       >
     </nav>
     <a
@@ -52,9 +52,8 @@ const dark = tone === "dark";
         dark ? "text-white/60" : "text-ink-muted hover:text-ink",
       ]}
     >
-      <span class="dark:hidden">Dark</span><span class="hidden dark:inline"
-        >Light</span
-      >
+      <span class="dark:hidden">Dark</span
+      ><span class="hidden dark:inline">Light</span>
     </button>
   </div>
 </header>
@@ -68,9 +67,13 @@ const dark = tone === "dark";
       (target.tagName === "INPUT" ||
         target.tagName === "TEXTAREA" ||
         target.isContentEditable);
-    if (typing) return;
+    if (typing) {
+      return;
+    }
     if (e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key === "k")) {
-      if (window.location.pathname === "/search/") return;
+      if (window.location.pathname === "/search/") {
+        return;
+      }
       e.preventDefault();
       window.location.href = "/search/";
     }

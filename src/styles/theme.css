@@ -8,17 +8,13 @@
 
 :root {
   /* —— Type ————————————————————————————— */
-<<<<<<< HEAD
   --ald-font-display:
     "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
   --ald-font-prose:
     "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
-=======
-  --ald-font-display: "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
-  --ald-font-prose: "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
->>>>>>> 6005d978 (After purge for sources with 1 or less items.)
   --ald-font-ui: "basierSquare", ui-sans-serif, system-ui, sans-serif;
-  --ald-font-mono: "basierSquareMono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ald-font-mono:
+    "basierSquareMono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --ald-text-display: 2.625rem; /* 42 — h1, digest titles; 27 mobile */
   --ald-text-h2: 1.6875rem; /* 27 — page titles below digest    */
@@ -57,7 +53,12 @@
   --ald-panel: #fafafa; /* scope notes, absence    */
   --ald-field: #f1efee; /* seams, back-bars        */
   --ald-ink: #2b2e35;
-  --ald-ink-muted: rgba(43, 46, 53, 0.68); /* 4.9:1 on surface — AA floor, do not thin */
+  --ald-ink-muted: rgba(
+    43,
+    46,
+    53,
+    0.68
+  ); /* 4.9:1 on surface — AA floor, do not thin */
   --ald-hairline: #dfdfdf;
   --ald-accent: #00274c; /* Michigan blue — evidence held, ONLY */
   /* Michigan blue is hsl(209.2 100% 15%) — 1.1:1 on the ink bands, i.e.

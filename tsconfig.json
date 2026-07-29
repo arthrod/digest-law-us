@@ -6,6 +6,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/astro-paper.config": ["./astro-paper.config"]
-    }
+    },
+    "strictNullChecks": true
   }
 }

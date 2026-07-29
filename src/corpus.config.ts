@@ -6,12 +6,8 @@
  * a sibling checkout by default; override with the CORPUS_DIR env var.
  */
 export const CORPUS_DIR =
-<<<<<<< HEAD
   process.env.CORPUS_DIR ??
   "../key-digest-runner/key_digest/american_legal_digest/okf";
-=======
-  process.env.CORPUS_DIR ?? "../key-digest-runner/key_digest/american_legal_digest/okf";
->>>>>>> 6005d978 (After purge for sources with 1 or less items.)
 
 /** Markdown bytes rendered inline per source page (hard constraint 3). */
 export const SOURCE_CHUNK_BYTES = 200_000;

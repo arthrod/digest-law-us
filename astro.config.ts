@@ -1,12 +1,11 @@
-import { defineConfig } from "astro/config";
 import { unified } from "@astrojs/markdown-remark";
-import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 import { remarkStripFmEcho } from "./src/lib/remark-strip-fm-echo";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://digest.law",
   integrations: [sitemap()],
   markdown: {
     // Astro 7 defaults to the Sätteri processor and takes remark/rehype
@@ -17,11 +16,12 @@ export default defineConfig({
     // a shared option, not a unified() one.
     processor: unified({ remarkPlugins: [remarkStripFmEcho] }),
     shikiConfig: {
-      themes: { light: "min-light", dark: "night-owl" },
       defaultColor: false,
+      themes: { dark: "night-owl", light: "min-light" },
       wrap: true,
     },
   },
+  site: "https://digest.law",
   vite: {
     plugins: [tailwindcss()],
   },
