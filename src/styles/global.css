@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import "./fonts.css";
+@import "./theme.css";
+@import "./typography.css";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer base {
+  * {
+    @apply border-hairline;
+    scrollbar-width: auto;
+    scrollbar-color: var(--ald-hairline) transparent;
+  }
+  html {
+    background-color: var(--ald-surface);
+  }
+  a,
+  button,
+  summary {
+    outline-color: var(--ald-ink);
+    @apply outline-offset-2 focus-visible:outline-2;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--ald-mark);
+  }
+  mark {
+    background: var(--ald-mark);
+    color: inherit;
+    padding: 0 2px;
+  }
+}
+
+:target {
+  scroll-margin-block: 1.5rem;
+}
+
+/* —— Recurring ALD primitives ————————————————— */
+
+/* Provenance / metadata line: everything provenance speaks mono */
+@utility ald-meta {
+  font-family: var(--ald-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Diamond separator between meta facts */
+@utility ald-diamond {
+  width: 3px;
+  height: 3px;
+  background: currentColor;
+  transform: rotate(45deg);
+  flex: none;
+  opacity: 0.5;
+}
+
+/* The held marker: we retain this document */
+@utility ald-held {
+  display: inline-block;
+  width: var(--ald-held-diamond);
+  height: var(--ald-held-diamond);
+  background: var(--ald-accent);
+  transform: rotate(45deg);
+  margin-left: 4px;
+  vertical-align: 2px;
+}
+
+/* Horizontal dashed rule (1px on / 4px off) */
+@utility ald-dashed {
+  height: 1px;
+  background-image: var(--ald-dashed-rule);
+}
+
+/* Vertical dashed rule for tree depth */
+@utility ald-dashed-vert {
+  width: 1px;
+  background-image: var(--ald-dashed-rule-vert);
+}
+
+/* SKOS chips: resolved links vs unresolved (muted, unlinked, hinted) */
+@utility ald-chip {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px solid var(--ald-cite-ext);
+  border-radius: var(--ald-radius);
+  background: var(--ald-surface);
+  text-decoration: none;
+  font-family: var(--ald-font-ui);
+  font-size: 0.78125rem;
+  line-height: 1.35;
+  color: var(--ald-ink);
+}
+
+@utility ald-chip-unresolved {
+  display: inline-block;
+  padding: 6px 10px;
+  border: 1px dashed var(--ald-cite-ext);
+  border-radius: var(--ald-radius);
+  color: var(--ald-ink-muted);
+  font-family: var(--ald-font-ui);
+  font-size: 0.78125rem;
+  line-height: 1.35;
+}
+
+.ald-chip:hover {
+  border-color: var(--ald-ink);
+}
+
+/* Home-hero highlight: a maize marker over Michigan-blue text. The only
+   place maize appears (see theme.css). Clones across line wraps. */
+@utility ald-hero-mark {
+  background: var(--ald-maize);
+  color: #00274c;
+  padding: 0.02em 0.14em;
+  margin-inline: -0.02em;
+  border-radius: var(--ald-radius);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* —— Print — lawyers print ————————————————— */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  /* Links expand with their URL — printed copies carry their evidence */
+  .ald-prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--ald-font-mono);
+    font-size: 0.65em;
+    word-break: break-all;
+  }
+}

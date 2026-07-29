@@ -1,0 +1,107 @@
+---
+/**
+ * Area page — the route-scoped local tree, same anatomy at 2 topics or 158.
+ * A small area is a finding, not a gap. Adjacent-area chips keep small
+ * areas connected instead of dead-ended.
+ */
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import Crumbs from "@/components/Crumbs.astro";
+import AreaTree from "@/components/AreaTree.astro";
+import { getCorpus } from "@/lib/corpus";
+import { formatDate } from "@/lib/labels";
+import { conceptJsonLd } from "@/lib/skos";
+
+type Props = { slugPath: string };
+const { slugPath } = Astro.props;
+
+const corpus = await getCorpus();
+const node = corpus.nodeBySlugPath.get(slugPath);
+if (!node) throw new Error(`No area at ${slugPath}`);
+
+const groupCount = node.children.filter(c => c.children.length > 0).length;
+const updated = formatDate(node.latest);
+
+const isSmallArea = node.topicCount <= 4;
+
+const siblings = corpus.areas.filter(a => a.slugPath !== slugPath);
+const index = corpus.areas.findIndex(a => a.slugPath === slugPath);
+const adjacent = [
+  ...siblings.slice(Math.max(0, index - 2), index),
+  ...siblings.slice(index, index + 2),
+].slice(0, 3);
+
+const title = `${node.label} — American Legal Digest`;
+const description = `${node.topicCount} published digest topics in ${node.label}, each with retained public sources and a machine-readable audit trail.`;
+---
+
+<Layout {title} {description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={conceptJsonLd(corpus, node)} />
+  </Fragment>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+    <div class="pt-7 pb-11">
+      <Crumbs items={[{ label: "Digest", href: "/" }, { label: node.label }]} />
+      <div class="mt-4 flex flex-wrap items-baseline gap-x-5 gap-y-2">
+        <h1
+          class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.375rem]"
+        >
+          {node.label}
+        </h1>
+        <span class="flex-1"></span>
+        <span class="ald-meta text-ink-muted text-[0.65625rem]">
+          {node.topicCount} topic{node.topicCount === 1 ? "" : "s"}
+          {groupCount > 0 && ` · ${groupCount} groups`}
+          {updated && ` · updated ${updated}`}
+        </span>
+      </div>
+      <div
+        class="ald-meta border-hairline text-ink-muted mt-5 flex flex-wrap items-center gap-x-3.5 gap-y-2 border-y py-2.5"
+      >
+        {
+          node.maxDepth > 1 && (
+            <>
+              <span>Deepest nesting: {node.maxDepth} levels</span>
+              <span class="ald-diamond" />
+            </>
+          )
+        }
+        <span>{node.sourceCount} sources held</span>
+        <span class="flex-1"></span>
+        <span class="text-ink hidden sm:inline">Groups collapse — native, no JS</span>
+      </div>
+
+      <div class="mt-6">
+        <AreaTree {node} />
+      </div>
+
+      {
+        isSmallArea && (
+          <p class="ald-meta text-ink-muted mt-4 max-w-[70ch] leading-relaxed">
+            A small area is a finding, not a gap — only what cleared the
+            two-source evidence floor is published.
+          </p>
+        )
+      }
+
+      <div class="mt-7">
+        <div class="ald-meta text-ink-muted mb-2.5">Adjacent areas</div>
+        <div class="flex flex-wrap gap-2">
+          {
+            adjacent.map(a => (
+              <a href={`/${a.slugPath}/`} class="ald-chip">
+                {a.label}{" "}
+                <span class="ald-meta text-ink-muted text-[0.5625rem]">
+                  {a.topicCount}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

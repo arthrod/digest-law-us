@@ -1,0 +1,144 @@
+/* ============================================================
+   AMERICAN LEGAL DIGEST — digest.law
+   Design tokens · v1 · 2026-07-28 (from the design handoff)
+   Two values: readability, transparency. Near-monochrome ink on
+   paper; one accent (Michigan blue) marks documents we hold.
+   Maize is reserved for the home-hero highlight — nowhere else.
+   ============================================================ */
+
+:root {
+  /* —— Type ————————————————————————————— */
+<<<<<<< HEAD
+  --ald-font-display:
+    "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
+  --ald-font-prose:
+    "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
+=======
+  --ald-font-display: "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
+  --ald-font-prose: "eliza", "Source Serif 4", "Iowan Old Style", Palatino, Georgia, serif;
+>>>>>>> 6005d978 (After purge for sources with 1 or less items.)
+  --ald-font-ui: "basierSquare", ui-sans-serif, system-ui, sans-serif;
+  --ald-font-mono: "basierSquareMono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ald-text-display: 2.625rem; /* 42 — h1, digest titles; 27 mobile */
+  --ald-text-h2: 1.6875rem; /* 27 — page titles below digest    */
+  --ald-text-h3: 1.5rem; /* 24 — the 10 fixed sections       */
+  --ald-text-prose: 1.15625rem; /* 18.5 — sustained reading         */
+  --ald-text-ui: 0.90625rem; /* 14.5 */
+  --ald-text-meta: 0.6875rem; /* 11 — mono, uppercase, +0.05em    */
+
+  --ald-leading-display: 1.08;
+  --ald-leading-prose: 1.66; /* ≥ 1.6 required */
+  --ald-leading-ui: 1.5;
+  --ald-tracking-display: -0.03em;
+  --ald-tracking-mono: 0.05em;
+  --ald-measure: 68ch; /* 65–75ch window */
+
+  /* —— Space (4px base) · edges ————————————— */
+  --ald-radius: 0.125rem; /* chips + buttons only */
+  --ald-dashed-rule: repeating-linear-gradient(
+    to right,
+    currentColor 0,
+    currentColor 1px,
+    transparent 1px,
+    transparent 5px
+  );
+  --ald-dashed-rule-vert: repeating-linear-gradient(
+    to bottom,
+    currentColor 0,
+    currentColor 1px,
+    transparent 1px,
+    transparent 5px
+  );
+  /* No shadows: separation is line + surface tone. */
+
+  /* —— Light (default) ————————————————————— */
+  --ald-surface: #ffffff; /* page                    */
+  --ald-panel: #fafafa; /* scope notes, absence    */
+  --ald-field: #f1efee; /* seams, back-bars        */
+  --ald-ink: #2b2e35;
+  --ald-ink-muted: rgba(43, 46, 53, 0.68); /* 4.9:1 on surface — AA floor, do not thin */
+  --ald-hairline: #dfdfdf;
+  --ald-accent: #00274c; /* Michigan blue — evidence held, ONLY */
+  /* Michigan blue is hsl(209.2 100% 15%) — 1.1:1 on the ink bands, i.e.
+     invisible. Dark surfaces get the same hue lifted to 70% lightness
+     (6.2:1 on the footer band, 8.3:1 on the dark page). Same blue, legible. */
+  --ald-accent-lift: #7bb4ea;
+  --ald-mark: rgba(123, 180, 234, 0.45); /* search highlight — accent-lift */
+  --ald-maize: #ffcb05; /* home-hero highlight — ONLY */
+  --ald-warm: #b9704b; /* conversion-failed dot — never red */
+
+  /* —— Citations ———————————————————————— */
+  --ald-cite-held: var(--ald-accent); /* underline, internal     */
+  --ald-cite-ext: #b9bdbe; /* underline, external     */
+  --ald-held-diamond: 4px; /* rotated 45°             */
+  --ald-quote-rule: 2px solid var(--ald-ink);
+
+  /* —— Verdict dots (audit) ————————————————— */
+  --ald-verdict-accepted: #00274c;
+  --ald-verdict-rejected: #757575;
+  --ald-verdict-lead: #999b83;
+  --ald-verdict-unused: #a2bdd7; /* Michigan hue, muted */
+  --ald-verdict-convfail: #b9704b;
+
+  /* —— Motion — calm, expo-eased ————————————— */
+  --ald-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ald-duration: 300ms;
+}
+
+/* —— Dark — designed surfaces, not an inversion ————— */
+[data-theme="dark"] {
+  --ald-surface: #12151c;
+  --ald-panel: #2b2e35;
+  --ald-field: #1b1f27;
+  --ald-ink: #efeee9;
+  --ald-ink-muted: rgba(239, 238, 233, 0.55);
+  --ald-hairline: rgba(255, 255, 255, 0.14);
+  --ald-accent: var(--ald-accent-lift);
+  --ald-mark: rgba(123, 180, 234, 0.28);
+  --ald-cite-ext: rgba(255, 255, 255, 0.35);
+  --ald-quote-rule: 2px solid var(--ald-ink);
+  --ald-verdict-accepted: var(--ald-accent-lift);
+}
+
+/* Register design tokens for Tailwind v4 */
+@theme inline {
+  --color-surface: var(--ald-surface);
+  --color-panel: var(--ald-panel);
+  --color-field: var(--ald-field);
+  --color-ink: var(--ald-ink);
+  --color-ink-muted: var(--ald-ink-muted);
+  --color-hairline: var(--ald-hairline);
+  --color-accent: var(--ald-accent);
+  --color-accent-lift: var(--ald-accent-lift);
+  --color-mark: var(--ald-mark);
+  --color-warm: var(--ald-warm);
+  --color-cite-ext: var(--ald-cite-ext);
+  --color-verdict-accepted: var(--ald-verdict-accepted);
+  --color-verdict-rejected: var(--ald-verdict-rejected);
+  --color-verdict-lead: var(--ald-verdict-lead);
+  --color-verdict-unused: var(--ald-verdict-unused);
+  --color-verdict-convfail: var(--ald-verdict-convfail);
+
+  --font-display: var(--ald-font-display);
+  --font-prose: var(--ald-font-prose);
+  --font-ui: var(--ald-font-ui);
+  --font-mono: var(--ald-font-mono);
+
+  /* Aliases kept for template-inherited components */
+  --color-background: var(--ald-surface);
+  --color-foreground: var(--ald-ink);
+  --color-accent-foreground: #ffffff;
+  --color-muted: var(--ald-field);
+  --color-muted-foreground: var(--ald-ink-muted);
+  --color-border: var(--ald-hairline);
+  --font-app: var(--ald-font-ui);
+}
+
+/* —— Print — lawyers print ————————————————— */
+@media print {
+  :root {
+    --ald-text-prose: 11pt;
+    --ald-leading-prose: 1.5;
+  }
+}

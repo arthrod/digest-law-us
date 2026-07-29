@@ -1,0 +1,108 @@
+---
+/**
+ * The provenance strip — informational, always visible, never a tooltip.
+ * Three states: full provenance, pre-provenance (June 2026, disclosed
+ * honestly, never backfilled), and the responsive compact collapse.
+ * Prints in full: printed copies carry their evidence disclosure.
+ */
+type Props = {
+  generated?: string;
+  profile?: string;
+  preProvenance?: boolean;
+  sourceCount: number;
+  links: {
+    sources?: string;
+    audit?: string;
+    caselaw?: string;
+    statutory?: string;
+    run?: string;
+  };
+};
+const { generated, profile, preProvenance = false, sourceCount, links } =
+  Astro.props;
+---
+
+<div
+  class="ald-meta border-hairline text-ink flex flex-wrap items-center gap-x-3 gap-y-2 border-y py-3"
+>
+  {
+    preProvenance ? (
+      <>
+        <span class="bg-field rounded-[2px] border border-[#cecac2] px-2 py-1 dark:border-hairline">
+          Pre-provenance bundle — June 2026
+        </span>
+        <span class="ald-diamond" />
+        <span>
+          {sourceCount} retained source{sourceCount === 1 ? "" : "s"}
+        </span>
+        <span class="ald-diamond" />
+        <span class="text-ink-muted">
+          run.json not captured for this generation
+        </span>
+      </>
+    ) : (
+      <>
+        {generated && <span>Generated {generated}</span>}
+        {profile && (
+          <>
+            <span class="ald-diamond" />
+            <span>Profile: {profile}</span>
+          </>
+        )}
+        <span class="ald-diamond" />
+        <span class="text-ink-muted">Machine-researched · review-gated</span>
+      </>
+    )
+  }
+  <span class="flex-1"></span>
+  {
+    links.sources && (
+      <a
+        href={links.sources}
+        class="decoration-accent text-ink underline decoration-1 underline-offset-3"
+      >
+        Sources ({sourceCount})
+      </a>
+    )
+  }
+  {
+    links.audit && (
+      <a
+        href={links.audit}
+        class="decoration-cite-ext text-ink underline decoration-1 underline-offset-3"
+      >
+        Audit
+      </a>
+    )
+  }
+  {
+    links.caselaw && (
+      <a
+        href={links.caselaw}
+        class="decoration-cite-ext text-ink hidden underline decoration-1 underline-offset-3 sm:inline"
+      >
+        Caselaw index
+      </a>
+    )
+  }
+  {
+    links.statutory && (
+      <a
+        href={links.statutory}
+        class="decoration-cite-ext text-ink hidden underline decoration-1 underline-offset-3 sm:inline"
+      >
+        Statutory index
+      </a>
+    )
+  }
+  {
+    links.run && (
+      <a
+        href={links.run}
+        class="decoration-cite-ext text-ink-muted hidden underline decoration-1 underline-offset-3 sm:inline"
+      >
+        run.json
+      </a>
+    )
+  }
+</div>

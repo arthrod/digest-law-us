@@ -1,0 +1,79 @@
+---
+type Props = {
+  /** "dark" renders the ink-band header used by the home hero */
+  tone?: "light" | "dark";
+};
+const { tone = "light" } = Astro.props;
+const dark = tone === "dark";
+---
+
+<header
+  class:list={[
+    "no-print",
+    dark ? "bg-[#000000] text-white" : "bg-surface text-ink",
+  ]}
+>
+  <div
+    class:list={[
+      "mx-auto flex w-full max-w-[1280px] flex-wrap items-center gap-x-5 px-5 py-3.5 sm:flex-nowrap sm:px-10",
+      dark ? "border-b border-white/16" : "border-b border-hairline",
+    ]}
+  >
+    <a
+      href="/"
+      class="font-display text-[17px] tracking-[-0.02em] no-underline"
+      >digest.law</a
+    >
+    <span class="flex-1"></span>
+    <!-- On mobile the nav wraps to its own full-width row instead of vanishing -->
+    <nav
+      class="font-ui order-last -ml-3 flex w-full items-center gap-1 text-[0.84375rem] sm:order-none sm:ml-0 sm:w-auto"
+    >
+      <a href="/" class="px-3 py-2 no-underline hover:opacity-60">All areas</a>
+      <a
+        href="/methodology/"
+        class="px-3 py-2 no-underline hover:opacity-60">Methodology</a
+      >
+    </nav>
+    <a
+      href="/search/"
+      class:list={[
+        "ald-meta inline-flex h-[30px] items-center gap-2 rounded-[2px] border px-2.5 no-underline",
+        dark
+          ? "border-white/30 text-white/80 hover:bg-white/10"
+          : "border-hairline text-ink-muted hover:border-ink",
+      ]}
+      >Search<span class="opacity-50">/</span></a
+    >
+    <button
+      id="theme-btn"
+      class:list={[
+        "ald-meta px-1 py-2",
+        dark ? "text-white/60" : "text-ink-muted hover:text-ink",
+      ]}
+    >
+      <span class="dark:hidden">Dark</span><span class="hidden dark:inline"
+        >Light</span
+      >
+    </button>
+  </div>
+</header>
+
+<script>
+  // Keyboard entry to search from anywhere: "/" or Cmd/Ctrl+K.
+  function onKey(e: KeyboardEvent) {
+    const target = e.target as HTMLElement | null;
+    const typing =
+      target &&
+      (target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable);
+    if (typing) return;
+    if (e.key === "/" || ((e.metaKey || e.ctrlKey) && e.key === "k")) {
+      if (window.location.pathname === "/search/") return;
+      e.preventDefault();
+      window.location.href = "/search/";
+    }
+  }
+  document.addEventListener("keydown", onKey);
+</script>

@@ -1,0 +1,211 @@
+/* ============================================================
+   Digest reading styles — long-form legal typography.
+   Applied to rendered corpus markdown via .ald-prose.
+   Serif 18.5/1.66, 68ch measure, numbered top-level sections,
+   quoted passages set off with a left rule (no boxes),
+   citation treatment through typography and link styling only.
+   ============================================================ */
+
+.ald-prose {
+  font-family: var(--ald-font-prose);
+  font-size: var(--ald-text-prose);
+  line-height: var(--ald-leading-prose);
+  color: var(--ald-ink);
+  max-width: var(--ald-measure);
+  font-variant-numeric: tabular-nums;
+  counter-reset: ald-section;
+  overflow-wrap: break-word;
+}
+
+.ald-prose p {
+  margin: 0 0 0.9375rem;
+}
+
+/* Top-level sections (h1 in corpus digests) — the learnable TOC */
+.ald-prose h1 {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--ald-font-display);
+  font-weight: 400;
+  font-size: var(--ald-text-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 2.125rem 0 0.875rem;
+}
+
+.ald-prose h1::before {
+  counter-increment: ald-section;
+  content: counter(ald-section, decimal-leading-zero);
+  font-family: var(--ald-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  color: var(--ald-ink-muted);
+  flex: none;
+}
+
+.ald-prose h2 {
+  font-family: var(--ald-font-display);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 1.625rem 0 0.75rem;
+}
+
+.ald-prose h3,
+.ald-prose h4,
+.ald-prose h5,
+.ald-prose h6 {
+  font-family: var(--ald-font-display);
+  font-weight: 400;
+  font-size: 1.09375rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 1.375rem 0 0.625rem;
+}
+
+/* Citation treatment: links carry the external mark by styling only.
+   Internal (held) links are decorated by components, not prose. */
+.ald-prose a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--ald-cite-ext);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.ald-prose a:hover {
+  color: var(--ald-accent);
+}
+
+.ald-prose em {
+  font-style: italic;
+}
+
+.ald-prose strong {
+  font-weight: 500;
+}
+
+/* Quoted passages: left rule, not blockquote boxes */
+.ald-prose blockquote {
+  border-left: var(--ald-quote-rule);
+  padding: 2px 0 2px 22px;
+  margin: 1.125rem 0;
+}
+
+.ald-prose blockquote p {
+  max-width: 58ch;
+}
+
+.ald-prose ul,
+.ald-prose ol {
+  margin: 0 0 0.9375rem;
+  padding-left: 1.375rem;
+}
+
+.ald-prose li {
+  margin: 0.25rem 0;
+}
+
+.ald-prose li::marker {
+  color: var(--ald-ink-muted);
+  font-family: var(--ald-font-mono);
+  font-size: 0.8em;
+}
+
+.ald-prose hr {
+  border: 0;
+  height: 1px;
+  background-image: var(--ald-dashed-rule);
+  color: var(--ald-hairline);
+  margin: 1.5rem 0;
+}
+
+/* Authority tables: mono headers, hairline rows, tabular figures */
+.ald-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  font-family: var(--ald-font-ui);
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.ald-prose th {
+  font-family: var(--ald-font-mono);
+  font-size: 0.59375rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ald-ink-muted);
+  font-weight: 400;
+  text-align: left;
+  padding: 8px 14px 6px 0;
+  border-top: 1px solid var(--ald-ink);
+  border-bottom: 1px solid var(--ald-hairline);
+}
+
+.ald-prose td {
+  padding: 9px 14px 9px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ald-hairline) 70%, transparent);
+  vertical-align: baseline;
+  font-variant-numeric: tabular-nums;
+}
+
+.ald-prose code {
+  font-family: var(--ald-font-mono);
+  font-size: 0.8em;
+  background: var(--ald-panel);
+  border: 1px solid var(--ald-hairline);
+  border-radius: var(--ald-radius);
+  padding: 1px 4px;
+  overflow-wrap: break-word;
+}
+
+.ald-prose pre {
+  background: var(--ald-panel);
+  border: 1px solid var(--ald-hairline);
+  border-radius: var(--ald-radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+.ald-prose pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.ald-prose img {
+  max-width: 100%;
+  border: 1px solid var(--ald-hairline);
+}
+
+/* Shiki dual-theme */
+html[data-theme="dark"] .ald-prose .astro-code,
+html[data-theme="dark"] .ald-prose .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+}
+
+/* Compact mobile scale */
+@media (max-width: 640px) {
+  .ald-prose {
+    font-size: 1.0625rem;
+    line-height: 1.62;
+  }
+  .ald-prose h1 {
+    font-size: 1.25rem;
+  }
+}
+
+@media print {
+  .ald-prose {
+    max-width: none;
+  }
+}

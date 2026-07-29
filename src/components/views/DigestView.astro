@@ -1,0 +1,289 @@
+---
+/**
+ * The digest page — the core reading experience. Breadcrumbs, title block
+ * with SKOS labels, provenance strip, prose with the learnable section TOC,
+ * retained-sources block, and the SKOS rail. Fully readable with JS off.
+ */
+import { render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import Crumbs, { type CrumbItem } from "@/components/Crumbs.astro";
+import ProvenanceStrip from "@/components/ProvenanceStrip.astro";
+import SkosRail, { type RailRef } from "@/components/SkosRail.astro";
+import { getCorpus, crumbsFor, resolveRef } from "@/lib/corpus";
+import { formatDate, formatBytes, humanize } from "@/lib/labels";
+import { channelFor, cleanProfile } from "@/lib/channels";
+import { conceptJsonLd, articleJsonLd } from "@/lib/skos";
+
+type Props = { slugPath: string };
+const { slugPath } = Astro.props;
+
+const corpus = await getCorpus();
+const node = corpus.nodeBySlugPath.get(slugPath);
+if (!node?.digest) throw new Error(`No digest at ${slugPath}`);
+const digest = node.digest;
+const dir = node.dir;
+const fm = digest.data;
+
+const { Content, headings } = await render(digest);
+const toc = headings
+  .filter(h => h.depth === 1)
+  .map((h, i) => ({
+    n: String(i + 1).padStart(2, "0"),
+    slug: h.slug,
+    text: h.text,
+  }));
+
+const sources = corpus.sourcesByBundle.get(dir) ?? [];
+const audit = corpus.auditsByDir.get(dir);
+const caselawIdx = corpus.caselawByDir.get(dir);
+const statutoryIdx = corpus.statutoryByDir.get(dir);
+const run = corpus.runsByDir.get(dir);
+
+const crumbTrail = crumbsFor(corpus, slugPath);
+const crumbs: CrumbItem[] = [
+  { label: "Digest", href: "/" },
+  ...crumbTrail.slice(0, -1).map(c => ({
+    label: c.label,
+    href: c.published ? `/${c.slugPath}/` : undefined,
+  })),
+  { label: node.label },
+];
+
+const generated = formatDate(run?.data.run?.finished_at ?? fm.timestamp);
+const profile = cleanProfile(fm.source_profile);
+
+const toRail = (urns: string[]): RailRef[] =>
+  urns.map(urn => resolveRef(corpus, urn));
+const broader = toRail(fm.broader);
+const childRefs: RailRef[] = node.children.map(c => ({
+  slugPath: c.slugPath,
+  label: c.label,
+  published: true,
+}));
+const narrowerSet = new Map<string, RailRef>();
+for (const r of [...toRail(fm.narrower), ...childRefs])
+  narrowerSet.set(r.slugPath, r);
+const narrower = [...narrowerSet.values()];
+const related = toRail(fm.related);
+
+const relationLabels: Record<string, string> = {
+  defenseTo: "defense to",
+  remedyFor: "remedy for",
+  procedureFor: "procedure for",
+};
+const relations = Object.entries(fm.legal_relations ?? {})
+  .filter(([, urns]) => Array.isArray(urns) && urns.length > 0)
+  .map(([key, urns]) => ({
+    label: relationLabels[key] ?? key,
+    refs: toRail(urns as string[]),
+  }));
+
+const mappingLabels: Record<string, string> = {
+  folio: "FOLIO",
+  eurovoc: "EuroVoc",
+  west_1914: "West 1914",
+  sali_lmss: "SALI/LMSS",
+  list: "LIST",
+};
+const mappings: Array<{ label: string; url?: string; text?: string }> = [];
+for (const [key, group] of Object.entries(fm.mappings ?? {})) {
+  if (!group || typeof group !== "object") continue;
+  const values = Object.values(group as Record<string, unknown>)
+    .flat()
+    .filter((v): v is string => typeof v === "string" && v.length > 0);
+  if (!values.length) continue;
+  const url = values.find(v => /^https?:\/\//.test(v));
+  mappings.push({
+    label: mappingLabels[key] ?? humanize(key),
+    url,
+    text: url ? undefined : values[0],
+  });
+}
+
+/** The full SKOS record, for the rail's disclosure — identity and lifecycle
+ *  fields as key/value rows, semantic fields as prose. Relations and
+ *  mappings already render above it as navigation. */
+const itemIds = (fm as Record<string, unknown>)["item_ids"];
+const recordRows = [
+  { label: "URN", value: fm.id ?? "", mono: true },
+  { label: "Notation", value: fm.notation ?? "", mono: true },
+  { label: "Scheme", value: fm.scheme ?? "" },
+  { label: "Status", value: fm.status ?? "" },
+  { label: "OKF", value: fm.okf_version ?? "", mono: true },
+  { label: "Version", value: fm.version ?? "", mono: true },
+  { label: "Created", value: fm.created ? formatDate(fm.created) : "" },
+  { label: "Modified", value: fm.modified ? formatDate(fm.modified) : "" },
+  { label: "Issue ID", value: fm.issue_id ?? "", mono: true },
+  {
+    label: "Item IDs",
+    value: Array.isArray(itemIds) ? itemIds.join(" · ") : "",
+    mono: true,
+  },
+  { label: "Objectives path", value: fm.objectives_path.join(" → ") },
+  { label: "Source profile", value: profile ?? "" },
+].filter(r => r.value);
+const recordProse = [
+  { label: "Definition", text: fm.definition },
+  { label: "Scope", text: fm.scope_note },
+  { label: "Not to be used for", text: fm.do_not_use_for.join("; ") },
+].filter(r => r.text);
+
+const areaLabel = crumbTrail[0]?.label ?? "";
+const title = `${node.label} — ${areaLabel} — American Legal Digest`;
+const description =
+  fm.description ||
+  fm.definition ||
+  `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`;
+
+const altLine = fm.alt_labels.filter(l => humanize(l) !== node.label);
+const historicalLine = fm.historical_labels;
+
+const sourceUrls = sources
+  .map(s => s.data.resource)
+  .filter(u => /^https?:\/\//.test(u));
+---
+
+<Layout {title} {description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={conceptJsonLd(corpus, node)} />
+    <script
+      type="application/ld+json"
+      set:html={articleJsonLd(node, {
+        description,
+        dateModified: fm.modified ?? fm.timestamp,
+        sourceUrls,
+      })}
+    />
+  </Fragment>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[1280px] flex-1 px-5 sm:px-10">
+    <div class="pt-7">
+      <Crumbs items={crumbs} />
+      <h1
+        class="font-display mt-5 max-w-[26ch] text-[1.6875rem] leading-[1.08] tracking-[-0.03em] sm:text-[2.625rem]"
+      >
+        {node.label}
+      </h1>
+      {
+        (altLine.length > 0 || historicalLine.length > 0) && (
+          <div class="font-ui text-ink-muted mt-3 text-[0.8125rem] leading-normal">
+            {altLine.length > 0 && (
+              <>
+                also: {altLine.map((l, i) => (
+                  <>
+                    {i > 0 && " · "}
+                    <em>{l}</em>
+                  </>
+                ))}
+              </>
+            )}
+            {historicalLine.length > 0 && (
+              <>
+                {altLine.length > 0 && " "}
+                <span class="opacity-70">— formerly:</span>{" "}
+                {historicalLine.map((l, i) => (
+                  <>
+                    {i > 0 && " · "}
+                    <em>{l}</em>
+                  </>
+                ))}
+              </>
+            )}
+          </div>
+        )
+      }
+      {
+        description && (
+          <p class="font-prose text-ink/78 mt-4 max-w-[62ch] text-[1.0625rem] leading-normal sm:text-[1.25rem]">
+            {description}
+          </p>
+        )
+      }
+      <div class="mt-5">
+        <ProvenanceStrip
+          {generated}
+          {profile}
+          preProvenance={!run}
+          sourceCount={sources.length}
+          links={{
+            sources: sources.length
+              ? `#retained-sources`
+              : undefined,
+            audit: audit ? `/${slugPath}/audit/` : undefined,
+            caselaw: caselawIdx ? `/${slugPath}/caselaw/` : undefined,
+            statutory: statutoryIdx ? `/${slugPath}/statutory/` : undefined,
+            run: run ? `/provenance/${slugPath}.json` : undefined,
+          }}
+        />
+      </div>
+    </div>
+
+    <div
+      class="grid gap-x-14 pt-2 pb-12 lg:grid-cols-[minmax(0,1fr)_268px]"
+    >
+      <div class="min-w-0">
+        <span class="hidden" data-pagefind-filter="area">{areaLabel}</span>
+        <span class="hidden" data-pagefind-filter="kind">digest</span>
+        <article class="ald-prose" data-pagefind-body>
+          <Content />
+        </article>
+
+        {
+          sources.length > 0 && (
+            <section
+              id="retained-sources"
+              class="border-ink mt-10 border-t pt-4"
+              data-pagefind-ignore
+            >
+              <div class="mb-1.5 flex items-baseline gap-3">
+                <span class="ald-meta text-[0.65625rem]">
+                  Retained sources — {sources.length}
+                </span>
+                <span class="flex-1" />
+                <span class="ald-meta text-ink-muted hidden text-[0.5625rem] sm:inline">
+                  The evidence this digest rests on, preserved as retained
+                </span>
+              </div>
+              {sources.map((s, i) => (
+                <a
+                  href={`/${slugPath}/sources/${s.data.slug}/`}
+                  class="border-hairline/70 flex items-baseline gap-3.5 border-t py-2.5 text-inherit no-underline"
+                >
+                  <span class="ald-meta text-ink-muted w-6 flex-none text-[0.59375rem]">
+                    S{i + 1}
+                  </span>
+                  <span class="font-prose min-w-0 text-[1.03125rem] leading-snug">
+                    {s.data.description || s.data.title}
+                    <span class="ald-held" />
+                  </span>
+                  <span class="flex-1" />
+                  <span class="ald-meta text-ink-muted text-[0.5625rem] whitespace-nowrap">
+                    {channelFor(s.data.resource)} · {formatBytes(s.data.bytes)}
+                    {s.data.retained && ` · retained ${formatDate(s.data.retained)}`}
+                  </span>
+                </a>
+              ))}
+            </section>
+          )
+        }
+      </div>
+
+      <aside class="pt-8 lg:pt-7" data-pagefind-ignore>
+        <div class="lg:sticky lg:top-6">
+          <SkosRail
+            {toc}
+            {broader}
+            {narrower}
+            {related}
+            {relations}
+            {mappings}
+            record={{ rows: recordRows, prose: recordProse }}
+          />
+        </div>
+      </aside>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

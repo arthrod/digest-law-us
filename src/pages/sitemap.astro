@@ -1,0 +1,59 @@
+---
+/**
+ * The full corpus map — the only page besides home that renders all areas
+ * (hard constraint 1). Native details/summary; readable with JS off.
+ */
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import AreaTree from "@/components/AreaTree.astro";
+import { getCorpus } from "@/lib/corpus";
+
+const corpus = await getCorpus();
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+const title = "Sitemap — American Legal Digest";
+const description = `The full topic tree: ${fmt(corpus.stats.digests)} digests across ${corpus.stats.areas} areas of United States law.`;
+---
+
+<Layout {title} {description}>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+    <div class="pt-8 pb-11">
+      <h1
+        class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
+      >
+        The full map
+      </h1>
+      <div class="ald-meta text-ink-muted mt-3">
+        {corpus.stats.areas} areas · {fmt(corpus.stats.digests)} digests ·
+        machine sitemap at <a
+          href="/sitemap-index.xml"
+          class="decoration-cite-ext underline underline-offset-2"
+          >/sitemap-index.xml</a
+        >
+      </div>
+      {
+        corpus.areas.map(area => (
+          <details class="border-hairline mt-5 border-t">
+            <summary class="flex list-none items-baseline gap-3 py-3 [&::-webkit-details-marker]:hidden">
+              <span class="font-display text-[1.3125rem] leading-tight tracking-[-0.02em]">
+                <a href={`/${area.slugPath}/`} class="no-underline hover:opacity-70">
+                  {area.label}
+                </a>
+              </span>
+              <span class="flex-1" />
+              <span class="ald-meta text-ink-muted text-[0.625rem]">
+                {area.topicCount} topic{area.topicCount === 1 ? "" : "s"}
+              </span>
+            </summary>
+            <div class="pb-3 pl-1">
+              <AreaTree node={area} depth={1} />
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

@@ -1,0 +1,226 @@
+---
+/**
+ * The digest rail: "On this page" (the fixed-section TOC, plain anchors —
+ * scroll-highlight is a ~1 KB enhancement) and "In the taxonomy" — SKOS
+ * relations as navigation, not tags. Unresolved URNs (post-purge) render as
+ * muted, unlinked chips with an inline hint — never a dead link, never
+ * silently dropped.
+ */
+export interface RailRef {
+  label: string;
+  slugPath: string;
+  published: boolean;
+}
+
+type Props = {
+  toc: Array<{ n: string; slug: string; text: string }>;
+  broader: RailRef[];
+  narrower: RailRef[];
+  related: RailRef[];
+  relations: Array<{ label: string; refs: RailRef[] }>;
+  mappings: Array<{ label: string; url?: string; text?: string }>;
+  record?: {
+    rows: Array<{ label: string; value: string; mono?: boolean }>;
+    prose: Array<{ label: string; text: string }>;
+  };
+};
+
+const { toc, broader, narrower, related, relations, mappings, record } =
+  Astro.props;
+
+const chipGroups: Array<[string, RailRef[]]> = [
+  ["Broader", broader],
+  ["Narrower", narrower],
+  ["Related", related],
+].filter(([, refs]) => (refs as RailRef[]).length > 0) as Array<
+  [string, RailRef[]]
+>;
+---
+
+<div class="border-hairline border-l py-0.5 pl-5" data-toc>
+  <div class="ald-meta text-ink-muted mb-3">On this page</div>
+  {
+    toc.map(item => (
+      <a
+        href={`#${item.slug}`}
+        data-toc-link={item.slug}
+        class="text-ink-muted aria-[current=true]:text-ink flex items-baseline gap-2.5 py-[5px] no-underline"
+      >
+        <span class="ald-meta flex-none text-[0.5625rem] opacity-60">
+          {item.n}
+        </span>
+        <span class="font-ui text-[0.78125rem] leading-snug">{item.text}</span>
+      </a>
+    ))
+  }
+</div>
+
+{
+  (chipGroups.length > 0 || relations.length > 0 || mappings.length > 0) && (
+    <>
+      <div class="ald-dashed text-cite-ext my-5" />
+      <div class="border-hairline bg-panel rounded-[2px] border px-4 py-4">
+        <div class="ald-meta text-ink-muted mb-3">In the taxonomy</div>
+        {chipGroups.map(([label, refs]) => (
+          <>
+            <div class="ald-meta text-ink-muted mb-1.5 text-[0.53125rem]">
+              {label}
+            </div>
+            <div class="mb-3 flex flex-wrap gap-1.5">
+              {refs.map(ref =>
+                ref.published ? (
+                  <a href={`/${ref.slugPath}/`} class="ald-chip">
+                    {ref.label}
+                  </a>
+                ) : (
+                  <span class="ald-chip-unresolved">
+                    {ref.label}{" "}
+                    <span class="ald-meta text-[0.5rem]">
+                      · not yet published
+                    </span>
+                  </span>
+                )
+              )}
+            </div>
+          </>
+        ))}
+        {relations.length > 0 && (
+          <>
+            <div class="ald-dashed text-cite-ext mb-3" />
+            <div class="ald-meta text-ink-muted mb-2 text-[0.53125rem]">
+              Legal relations — directed
+            </div>
+            {relations.map(rel => (
+              <div class="mb-1.5 flex items-center gap-2">
+                <span class="ald-meta w-24 flex-none text-[0.5625rem]">
+                  {rel.label}
+                </span>
+                <span class="text-ink-muted" aria-hidden="true">
+                  →
+                </span>
+                <span class="flex flex-wrap gap-x-2">
+                  {rel.refs.map(ref =>
+                    ref.published ? (
+                      <a
+                        href={`/${ref.slugPath}/`}
+                        class="font-ui decoration-cite-ext text-[0.78125rem] underline underline-offset-3"
+                      >
+                        {ref.label}
+                      </a>
+                    ) : (
+                      <span class="font-ui text-ink-muted text-[0.78125rem]">
+                        {ref.label}{" "}
+                        <span class="ald-meta text-[0.5rem]">
+                          · not yet published
+                        </span>
+                      </span>
+                    )
+                  )}
+                </span>
+              </div>
+            ))}
+          </>
+        )}
+        {mappings.length > 0 && (
+          <>
+            <div class="ald-dashed text-cite-ext my-3" />
+            <div class="ald-meta text-ink-muted mb-2 text-[0.53125rem]">
+              External mappings
+            </div>
+            <div class="ald-meta flex flex-wrap gap-x-3 gap-y-1.5 text-[0.5625rem]">
+              {mappings.map(m =>
+                m.url ? (
+                  <a
+                    href={m.url}
+                    class="decoration-cite-ext underline underline-offset-2"
+                  >
+                    {m.label} ↗
+                  </a>
+                ) : (
+                  <span class="text-ink-muted">
+                    {m.label} {m.text}
+                  </span>
+                )
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </>
+  )
+}
+
+{
+  record && (record.rows.length > 0 || record.prose.length > 0) && (
+    <details class="group border-hairline bg-panel mt-3 rounded-[2px] border">
+      <summary class="ald-meta text-ink-muted flex list-none items-center gap-2 px-4 py-3 select-none [&::-webkit-details-marker]:hidden">
+        <span
+          class="inline-block transition-transform duration-150 group-open:rotate-90 motion-reduce:transition-none"
+          aria-hidden="true"
+        >
+          ›
+        </span>
+        SKOS record
+      </summary>
+      <div class="px-4 pb-4">
+        <dl class="m-0">
+          {record.rows.map(r => (
+            <div class="border-hairline/60 flex gap-3 border-t py-1.5 first:border-t-0 first:pt-0">
+              <dt class="ald-meta text-ink-muted w-[86px] flex-none pt-px text-[0.53125rem] leading-[1.9]">
+                {r.label}
+              </dt>
+              <dd
+                class:list={[
+                  "m-0 min-w-0 flex-1 text-[0.71875rem] leading-relaxed",
+                  r.mono
+                    ? "font-mono tracking-[0.01em] break-all"
+                    : "font-ui",
+                ]}
+              >
+                {r.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+        {record.prose.map(p => (
+          <div class="border-hairline/60 mt-2 border-t pt-2">
+            <div class="ald-meta text-ink-muted mb-1 text-[0.53125rem]">
+              {p.label}
+            </div>
+            <p class="font-ui m-0 text-[0.71875rem] leading-relaxed">
+              {p.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </details>
+  )
+}
+
+<script>
+  // Island № 2 — TOC scroll-highlight (~1 KB). Plain anchors without JS.
+  function initTocHighlight() {
+    const links = document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]");
+    if (!links.length) return;
+    const bySlug = new Map<string, HTMLAnchorElement>();
+    links.forEach(l => bySlug.set(l.dataset.tocLink!, l));
+    const headings = [...bySlug.keys()]
+      .map(slug => document.getElementById(slug))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!headings.length) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            links.forEach(l => l.removeAttribute("aria-current"));
+            bySlug.get(entry.target.id)?.setAttribute("aria-current", "true");
+          }
+        }
+      },
+      { rootMargin: "0px 0px -70% 0px" }
+    );
+    headings.forEach(h => observer.observe(h));
+  }
+  initTocHighlight();
+  document.addEventListener("astro:after-swap", initTocHighlight);
+</script>

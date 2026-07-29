@@ -1,0 +1,225 @@
+---
+/**
+ * Search — Pagefind-backed, keyboard-first (/ or ⌘K from anywhere).
+ * Island № 1, page-scoped. Filters (area, kind) ride on
+ * data-pagefind-filter attributes; results load as fragments — first
+ * results from the first fragment, never a monolithic index (constraint 2).
+ * Without JS: browse via the area directory and /sitemap/.
+ */
+import "@pagefind/default-ui/css/ui.css";
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+
+const title = "Search — American Legal Digest";
+const description =
+  "Search digests and audits across every area of United States law.";
+---
+
+<Layout {title} {description}>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+    <div class="pt-8 pb-12">
+      <h1
+        class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
+      >
+        Search
+      </h1>
+      <div class="ald-meta text-ink-muted mt-3 flex flex-wrap gap-x-3.5 gap-y-1">
+        <span>↵ open</span>
+        <span class="opacity-40">·</span>
+        <span>/ or ⌘K from anywhere</span>
+        <span class="opacity-40">·</span>
+        <span>filters: area · kind</span>
+      </div>
+      <div id="pagefind-search" class="mt-6" transition:persist>
+        <noscript>
+          <p class="font-ui text-ink-muted text-[0.90625rem] leading-relaxed">
+            Search needs JavaScript. Without it, browse the
+            <a href="/" class="decoration-cite-ext underline underline-offset-2"
+              >area directory</a
+            >
+            or the
+            <a
+              href="/sitemap/"
+              class="decoration-cite-ext underline underline-offset-2"
+              >full sitemap</a
+            > — every digest is a plain, linkable page.
+          </p>
+        </noscript>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>
+
+<script>
+  function initSearch() {
+    const pageFindSearch: HTMLElement | null =
+      document.querySelector("#pagefind-search");
+    if (!pageFindSearch) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const onIdle =
+      window.requestIdleCallback || (cb => setTimeout(cb, 1));
+
+    onIdle(async () => {
+      // Warm Pagefind's boot assets while the user types their first query —
+      // the UI defers all loading to the first keystroke. Fetch-only:
+      // options()/init() must stay with the UI or its config is dropped.
+      // @ts-expect-error — runtime URL resolved from the built site.
+      import(/* @vite-ignore */ "/pagefind/pagefind.js").catch(() => {});
+      fetch("/pagefind/pagefind-entry.json")
+        .then(r => r.json())
+        .then(entry => {
+          for (const lang of Object.values(entry?.languages ?? {})) {
+            const { wasm, hash } = lang as { wasm?: string; hash?: string };
+            if (wasm) fetch(`/pagefind/wasm.${wasm}.pagefind`).catch(() => {});
+            if (hash) fetch(`/pagefind/pagefind.${hash}.pf_meta`).catch(() => {});
+          }
+        })
+        .catch(() => {});
+
+      // @ts-expect-error — Missing types for @pagefind/default-ui package.
+      const { PagefindUI } = await import("@pagefind/default-ui");
+
+      if (import.meta.env.DEV) {
+        pageFindSearch.innerHTML = `
+            <div class="bg-panel border border-hairline rounded-[2px] p-4 mb-4 font-ui text-[0.875rem]">
+              <strong>Dev mode:</strong> build once (<code>pnpm build</code>)
+              to generate the Pagefind index.
+            </div>
+          `;
+      }
+
+      const search = new PagefindUI({
+        element: "#pagefind-search",
+        bundlePath: "/pagefind/",
+        showImages: false,
+        showSubResults: true,
+        showEmptyFilters: false,
+        processTerm: function (term: string) {
+          params.set("q", term);
+          history.replaceState(history.state, "", "?" + params.toString());
+          return term;
+        },
+      });
+
+      const query = params.get("q");
+      if (query) search.triggerSearch(query);
+
+      const searchInput = document.querySelector(
+        ".pagefind-ui__search-input"
+      ) as HTMLInputElement | null;
+      searchInput?.focus();
+      const clearButton = document.querySelector(".pagefind-ui__search-clear");
+      searchInput?.addEventListener("input", resetSearchParam);
+      clearButton?.addEventListener("click", resetSearchParam);
+
+      function resetSearchParam(e: Event) {
+        if ((e.target as HTMLInputElement)?.value.trim() === "") {
+          history.replaceState(history.state, "", window.location.pathname);
+        }
+      }
+    });
+  }
+
+  document.addEventListener("astro:after-swap", () => {
+    const pagefindSearch = document.querySelector("#pagefind-search");
+    if (pagefindSearch && pagefindSearch.querySelector("form")) return;
+    initSearch();
+  });
+  initSearch();
+</script>
+
+<style is:global>
+  #pagefind-search {
+    --pagefind-ui-font: var(--ald-font-ui);
+    --pagefind-ui-text: var(--ald-ink);
+    --pagefind-ui-background: var(--ald-surface);
+    --pagefind-ui-border: var(--ald-hairline);
+    --pagefind-ui-primary: var(--ald-ink);
+    --pagefind-ui-tag: var(--ald-field);
+    --pagefind-ui-border-radius: 2px;
+    --pagefind-ui-border-width: 1px;
+
+    input {
+      font-weight: 400;
+      border: 1px solid var(--ald-ink);
+      border-radius: 2px;
+      font-family: var(--ald-font-ui);
+    }
+
+    input:focus-visible {
+      outline: 2px solid var(--ald-ink);
+      outline-offset: 2px;
+    }
+
+    mark {
+      background: var(--ald-mark);
+      color: inherit;
+    }
+
+    .pagefind-ui__result-title a {
+      font-family: var(--ald-font-display);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--ald-ink);
+      text-decoration: none;
+    }
+
+    .pagefind-ui__result-title a:hover {
+      text-decoration: underline;
+      text-decoration-color: var(--ald-cite-ext);
+      text-underline-offset: 3px;
+    }
+
+    .pagefind-ui__result {
+      border-bottom: 1px solid var(--ald-hairline);
+      padding: 14px 0;
+    }
+
+    .pagefind-ui__result:last-of-type {
+      border-bottom: 0;
+    }
+
+    /* Wrapped filter labels: pin the checkbox and its tick to the first line */
+    .pagefind-ui__filter-value {
+      align-items: flex-start;
+    }
+
+    .pagefind-ui__filter-value::before {
+      top: 8px; /* stays centered on the 16px checkbox, which now tops the row */
+    }
+
+    .pagefind-ui__filter-checkbox {
+      flex: none;
+    }
+
+    .pagefind-ui__message,
+    .pagefind-ui__filter-name,
+    .pagefind-ui__filter-value,
+    .pagefind-ui__button,
+    .pagefind-ui__search-clear {
+      font-family: var(--ald-font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.6875rem;
+      color: var(--ald-ink-muted);
+    }
+
+    .pagefind-ui__button {
+      background: transparent;
+      border: 1px solid var(--ald-hairline);
+      border-radius: 2px;
+      color: var(--ald-ink);
+    }
+
+    .pagefind-ui__result-excerpt {
+      font-family: var(--ald-font-ui);
+      font-size: 0.84375rem;
+      line-height: 1.55;
+      color: color-mix(in srgb, var(--ald-ink) 72%, transparent);
+    }
+  }
+</style>

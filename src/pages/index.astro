@@ -1,0 +1,142 @@
+---
+/**
+ * Home — the two-sentence pitch, the honesty line, search entry, and the
+ * area directory built for the skew. This page and /sitemap/ are the only
+ * two places the full 42-area map renders (hard constraint 1).
+ */
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import { getCorpus } from "@/lib/corpus";
+import { schemeSummaryJsonLd } from "@/lib/skos";
+
+const corpus = await getCorpus();
+const { doctrinalAreas, compositeAreas, stats } = corpus;
+const doctrinalTopics = doctrinalAreas.reduce((n, a) => n + a.topicCount, 0);
+const compositeTopics = compositeAreas.reduce((n, a) => n + a.topicCount, 0);
+const fmt = (n: number) => n.toLocaleString("en-US");
+---
+
+<Layout>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={schemeSummaryJsonLd(corpus)}
+    />
+    <link
+      rel="alternate"
+      type="application/ld+json"
+      href="/skos.jsonld"
+      title="SKOS concept scheme"
+    />
+  </Fragment>
+  <div class="bg-surface text-ink">
+    <SiteHeader />
+    <div class="mx-auto w-full max-w-[1280px] px-5 sm:px-10">
+      <div
+        class="border-hairline max-w-[900px] border-b pt-14 pb-14 sm:pt-[72px] sm:pb-[60px]"
+      >
+        <div class="ald-meta text-ink-muted mb-5 text-[0.6875rem]">
+          Free · source-audited · machine-researched, review-gated
+        </div>
+        <h1
+          class="font-display max-w-[20ch] text-[2.25rem] leading-[1.08] font-normal tracking-[-0.03em] sm:text-[3.375rem]"
+        >
+          A digest of American legal doctrine, <span class="ald-hero-mark"
+            >with the evidence attached.</span
+          >
+        </h1>
+        <p
+          class="font-ui text-ink-muted mt-5 max-w-[60ch] text-[1rem] leading-[1.55] sm:text-[1.03125rem]"
+        >
+          {fmt(stats.digests)} topics across {doctrinalAreas.length} doctrinal
+          areas and {compositeAreas.length} cross-cutting roots of United
+          States law, researched from free public sources and gated by review.
+          Every digest holds the full text of at least two authorities — and
+          publishes the log of every search and rejection behind it.
+        </p>
+        <a
+          href="/search/"
+          class="ald-meta border-hairline bg-field text-ink-muted hover:border-ink/50 mt-8 flex h-[52px] w-full max-w-[640px] items-center rounded-[2px] border px-4.5 text-[0.6875rem] no-underline"
+        >
+          Search doctrine, cases, statutes — press / or ⌘K
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" class="mx-auto w-full max-w-[1280px] flex-1 px-5 sm:px-10">
+    <section class="pt-12 pb-2">
+      <div class="mb-1.5 flex items-baseline gap-3.5">
+        <span class="ald-meta text-[0.6875rem]">01 | Doctrinal areas</span>
+        <span class="flex-1"></span>
+        <span class="ald-meta text-ink-muted text-[0.625rem]">
+          {doctrinalAreas.length} areas · {fmt(doctrinalTopics)} topics
+        </span>
+      </div>
+      <div class="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          doctrinalAreas.map((area, i) => (
+            <a href={`/${area.slugPath}/`} class="block text-inherit no-underline">
+              <div class="ald-dashed text-ink mt-3.5 opacity-35" />
+              <div class="flex items-baseline pt-3 pb-0.5">
+                <span class="ald-meta text-ink-muted text-[0.625rem]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span class="flex-1" />
+                <span class="ald-meta text-ink-muted text-[0.625rem]">
+                  {area.topicCount} topic{area.topicCount === 1 ? "" : "s"}
+                </span>
+              </div>
+              <div class="font-display pb-4 text-[1.1875rem] leading-tight tracking-[-0.02em]">
+                {area.label}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-10 mb-1.5 flex items-baseline gap-3.5">
+        <span class="ald-meta text-[0.6875rem]">02 | Composite roots</span>
+        <span class="flex-1"></span>
+        <span class="ald-meta text-ink-muted text-[0.625rem]">
+          {compositeAreas.length} roots · {fmt(compositeTopics)} cross-cutting
+          topics
+        </span>
+      </div>
+      <div class="grid gap-x-6 sm:grid-cols-2">
+        {
+          compositeAreas.map((area, i) => (
+            <a href={`/${area.slugPath}/`} class="block text-inherit no-underline">
+              <div class="ald-dashed text-ink mt-3.5 opacity-35" />
+              <div class="flex items-baseline pt-3 pb-0.5">
+                <span class="ald-meta text-ink-muted text-[0.625rem]">
+                  {String(doctrinalAreas.length + i + 1).padStart(2, "0")}
+                </span>
+                <span class="flex-1" />
+                <span class="ald-meta text-ink-muted text-[0.625rem]">
+                  {area.topicCount} topic{area.topicCount === 1 ? "" : "s"}
+                </span>
+              </div>
+              <div class="font-display pb-1 text-[1.1875rem] leading-tight tracking-[-0.02em]">
+                {area.label}
+              </div>
+              <div class="ald-meta text-ink-muted overflow-hidden pb-4 text-[0.53125rem] tracking-[0.04em] [overflow-wrap:anywhere] sm:text-ellipsis sm:whitespace-nowrap">
+                {area.segment}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <p
+        class="ald-meta text-ink-muted mt-7 mb-10 max-w-[70ch] text-[0.59375rem] leading-[1.7]"
+      >
+        Counts are published digests, not planned coverage — small areas are
+        small because the evidence floor held. One topic that cleared it is
+        one topic that cleared it.
+      </p>
+    </section>
+  </main>
+  <SiteFooter />
+</Layout>

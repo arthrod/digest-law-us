@@ -1,0 +1,100 @@
+---
+/**
+ * Audit page — the build log rendered legibly, kept verbatim. Every search
+ * run, every candidate's verdict, every failure from the run that produced
+ * this digest. Failures are evidence of honesty: same calm ink as
+ * everything else, never error-red panic styling.
+ */
+import { render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import Crumbs, { type CrumbItem } from "@/components/Crumbs.astro";
+import { getCorpus, crumbsFor } from "@/lib/corpus";
+import { formatDate } from "@/lib/labels";
+
+type Props = { slugPath: string };
+const { slugPath } = Astro.props;
+
+const corpus = await getCorpus();
+const node = corpus.nodeBySlugPath.get(slugPath);
+if (!node?.digest) throw new Error(`No bundle at ${slugPath}`);
+const audit = corpus.auditsByDir.get(node.dir);
+if (!audit) throw new Error(`No audit at ${slugPath}`);
+const run = corpus.runsByDir.get(node.dir);
+
+const { Content } = await render(audit);
+
+const crumbTrail = crumbsFor(corpus, slugPath);
+const crumbs: CrumbItem[] = [
+  { label: "Digest", href: "/" },
+  ...crumbTrail.slice(0, -1).map(c => ({
+    label: c.label,
+    href: c.published ? `/${c.slugPath}/` : undefined,
+  })),
+  { label: node.label, href: `/${slugPath}/` },
+  { label: "Audit" },
+];
+
+const areaLabel = crumbTrail[0]?.label ?? "";
+const runInfo = run?.data.run;
+const started = formatDate(runInfo?.started_at);
+const retained = (corpus.sourcesByBundle.get(node.dir) ?? []).length;
+const visited = runInfo?.visited_urls;
+
+const title = `Build log — ${node.label} — American Legal Digest`;
+const description = `Search log, source verdicts and failures behind the ${node.label} digest — published as evidence, kept verbatim.`;
+---
+
+<Layout {title} {description}>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[1100px] flex-1 px-5 sm:px-9">
+    <div class="pt-7 pb-11">
+      <Crumbs items={crumbs} />
+      <h1
+        class="font-display mt-4 text-[1.375rem] leading-[1.15] tracking-[-0.03em] sm:text-[1.875rem]"
+      >
+        Build log — {node.label}
+      </h1>
+      <p
+        class="font-ui text-ink-muted mt-2.5 max-w-[66ch] text-[0.90625rem] leading-relaxed"
+      >
+        Every search run, every candidate’s verdict, every failure from the
+        run that produced this digest — published as evidence, kept verbatim.
+      </p>
+      <div
+        class="ald-meta border-hairline mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 border-y py-3"
+      >
+        {started && <span>Run {started}</span>}
+        {
+          typeof visited === "number" && (
+            <>
+              <span class="ald-diamond" />
+              <span>{visited} URLs visited</span>
+            </>
+          )
+        }
+        <span class="ald-diamond"></span>
+        <span class="text-accent">{retained} retained</span>
+        <span class="flex-1"></span>
+        {
+          run && (
+            <a
+              href={`/provenance/${slugPath}.json`}
+              class="decoration-cite-ext text-ink-muted underline underline-offset-3"
+            >
+              run.json — full machine log
+            </a>
+          )
+        }
+      </div>
+
+      <span class="hidden" data-pagefind-filter="area">{areaLabel}</span>
+      <span class="hidden" data-pagefind-filter="kind">audit</span>
+      <article class="ald-prose mt-7" data-pagefind-body>
+        <Content />
+      </article>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

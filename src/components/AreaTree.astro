@@ -1,0 +1,108 @@
+---
+/**
+ * Route-scoped topic tree — computed at build for this area/container only,
+ * never inlined elsewhere (hard constraint 1). Groups are native
+ * <details>/<summary>: collapsing needs no JS at all (constraint 4).
+ * Depth differentiates by type, not indent alone: the serif size steps
+ * down and dashed verticals carry depth.
+ */
+import type { TreeNode } from "@/lib/corpus";
+import { formatDate } from "@/lib/labels";
+import { cleanProfile } from "@/lib/channels";
+
+type Props = {
+  node: TreeNode;
+  depth?: number;
+};
+
+const { node, depth = 0 } = Astro.props;
+
+const groupSize = Math.max(21 - depth * 2, 15);
+const open = depth < 1;
+
+function glance(child: TreeNode): string {
+  const bits: string[] = [];
+  const direct = child.digest;
+  if (direct) {
+    const n = child.sourceCount;
+    if (n) bits.push(`${n} src`);
+    const profile = cleanProfile(direct.data.source_profile);
+    if (profile) bits.push(profile);
+    const date = formatDate(direct.data.timestamp);
+    if (date) bits.push(date);
+  }
+  return bits.join(" · ");
+}
+---
+
+<div class:list={[depth > 0 && "flex gap-4"]}>
+  {depth > 0 && <div class="ald-dashed-vert text-cite-ext self-stretch" />}
+  <div class="min-w-0 flex-1">
+    {
+      node.children.map(child =>
+        child.children.length === 0 && child.digest ? (
+          <a
+            href={`/${child.slugPath}/`}
+            class="border-hairline/55 flex items-baseline gap-3.5 border-t py-2 text-inherit no-underline"
+          >
+            <span class="font-ui text-[0.9375rem] leading-snug">
+              {child.label}
+            </span>
+            <span class="flex-1" />
+            <span class="ald-meta text-ink-muted text-[0.59375rem] whitespace-nowrap">
+              {glance(child)}
+            </span>
+          </a>
+        ) : (
+          <details open={open} class="border-hairline border-t">
+            <summary class="flex list-none items-baseline gap-3 py-3 [&::-webkit-details-marker]:hidden">
+              <svg
+                width="10"
+                height="5"
+                viewBox="0 0 8 4"
+                fill="none"
+                aria-hidden="true"
+                class="flex-none self-center"
+              >
+                <rect x="1.71" y="1.5" width="1.14" height="1" fill="currentColor" />
+                <rect width="1.14" height="1" fill="currentColor" />
+                <rect x="3.43" y="3" width="1.14" height="1" fill="currentColor" />
+                <rect x="5.14" y="1.5" width="1.14" height="1" fill="currentColor" />
+                <rect x="6.86" width="1.14" height="1" fill="currentColor" />
+              </svg>
+              <span
+                class="font-display leading-tight tracking-[-0.02em]"
+                style={`font-size:${groupSize}px`}
+              >
+                {child.label}
+              </span>
+              <span class="flex-1" />
+              <span class="ald-meta text-ink-muted text-[0.625rem]">
+                {child.topicCount} topic{child.topicCount === 1 ? "" : "s"}
+                {child.maxDepth > 1 ? ` · nests ${child.maxDepth} levels` : ""}
+              </span>
+            </summary>
+            <div class="pb-2 pl-[22px]">
+              {child.digest && (
+                <a
+                  href={`/${child.slugPath}/`}
+                  class="border-hairline/55 flex items-baseline gap-3.5 border-t py-2 text-inherit no-underline"
+                >
+                  <span class="font-ui text-[0.9375rem] italic">
+                    {child.label} — overview digest
+                  </span>
+                  <span class="flex-1" />
+                  <span class="ald-meta text-ink-muted text-[0.59375rem] whitespace-nowrap">
+                    {glance(child)}
+                  </span>
+                </a>
+              )}
+              <Astro.self node={child} depth={depth + 1} />
+            </div>
+          </details>
+        )
+      )
+    }
+    <div class="border-hairline border-t"></div>
+  </div>
+</div>

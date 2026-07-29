@@ -1,0 +1,15 @@
+// Cloudflare Workers — static assets deployment for digest.law
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "digest-law",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  // workers.dev stays on as the preview origin.
+  "workers_dev": true,
+  "preview_urls": true,
+  "observability": { "enabled": true },
+  "routes": [{ "pattern": "digest.law", "custom_domain": true }]
+}

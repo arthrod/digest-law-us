@@ -1,0 +1,38 @@
+/* American Legal Digest brand webfonts (design handoff, subset woff2).
+   eliza            → display + sustained-reading serif
+   basierSquare     → UI sans (has italic)
+   basierSquareMono → provenance, labels, metadata
+   Tokens are face-agnostic: Source Serif 4 / Iowan Old Style and a
+   system sans are the drop-ins if these files cannot ship. */
+
+@font-face {
+  font-family: "eliza";
+  src: url("/fonts/eliza.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "basierSquare";
+  src: url("/fonts/basier-square.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "basierSquare";
+  src: url("/fonts/basier-square-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "basierSquareMono";
+  src: url("/fonts/basier-square-mono.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

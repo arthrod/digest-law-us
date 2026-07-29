@@ -1,0 +1,68 @@
+---
+/**
+ * Container page — an intermediate taxonomy node without its own digest.
+ * Its identifier exists (URN chains pass through it), so the page exists:
+ * a scoped subtree listing plus the SKOS concept, resolvable and honest.
+ */
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import Crumbs, { type CrumbItem } from "@/components/Crumbs.astro";
+import AreaTree from "@/components/AreaTree.astro";
+import { getCorpus, crumbsFor } from "@/lib/corpus";
+import { formatDate } from "@/lib/labels";
+import { conceptJsonLd } from "@/lib/skos";
+
+type Props = { slugPath: string };
+const { slugPath } = Astro.props;
+
+const corpus = await getCorpus();
+const node = corpus.nodeBySlugPath.get(slugPath);
+if (!node) throw new Error(`No container at ${slugPath}`);
+
+const crumbTrail = crumbsFor(corpus, slugPath);
+const crumbs: CrumbItem[] = [
+  { label: "Digest", href: "/" },
+  ...crumbTrail.slice(0, -1).map(c => ({
+    label: c.label,
+    href: c.published ? `/${c.slugPath}/` : undefined,
+  })),
+  { label: node.label },
+];
+
+const updated = formatDate(node.latest);
+const title = `${node.label} — ${crumbTrail[0]?.label ?? ""} — American Legal Digest`;
+const description = `${node.topicCount} published digest topics under ${node.label}.`;
+---
+
+<Layout {title} {description}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={conceptJsonLd(corpus, node)} />
+  </Fragment>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9">
+    <div class="pt-7 pb-11">
+      <Crumbs items={crumbs} />
+      <div class="mt-4 flex flex-wrap items-baseline gap-x-5 gap-y-2">
+        <h1
+          class="font-display text-[1.5rem] leading-[1.12] tracking-[-0.03em] sm:text-[2rem]"
+        >
+          {node.label}
+        </h1>
+        <span class="flex-1"></span>
+        <span class="ald-meta text-ink-muted text-[0.65625rem]">
+          {node.topicCount} topic{node.topicCount === 1 ? "" : "s"}
+          {updated && ` · updated ${updated}`}
+        </span>
+      </div>
+      <p class="ald-meta text-ink-muted mt-3 max-w-[70ch] leading-relaxed">
+        A grouping node in the taxonomy — no digest of its own yet; the
+        published topics below carry the evidence.
+      </p>
+      <div class="mt-6">
+        <AreaTree {node} />
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

@@ -1,0 +1,137 @@
+---
+/**
+ * Table of authorities — caselaw or statutory. A frontmatter-only index is
+ * *documented absence*: the machine searched and found nothing retainable.
+ * That renders as an honest finding panel with the probe queries — never an
+ * empty page, never a hidden link.
+ */
+import { render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import Crumbs, { type CrumbItem } from "@/components/Crumbs.astro";
+import AbsencePanel from "@/components/AbsencePanel.astro";
+import { getCorpus, crumbsFor } from "@/lib/corpus";
+import { formatDate } from "@/lib/labels";
+
+type Props = { slugPath: string; kind: "caselaw" | "statutory" };
+const { slugPath, kind } = Astro.props;
+
+const corpus = await getCorpus();
+const node = corpus.nodeBySlugPath.get(slugPath);
+if (!node?.digest) throw new Error(`No bundle at ${slugPath}`);
+const entry = (kind === "caselaw" ? corpus.caselawByDir : corpus.statutoryByDir).get(
+  node.dir
+);
+if (!entry) throw new Error(`No ${kind} index at ${slugPath}`);
+const run = corpus.runsByDir.get(node.dir);
+const audit = corpus.auditsByDir.get(node.dir);
+
+// Documented absence: nothing left once headings and blank lines go.
+const bodyText = (entry.body ?? "")
+  .replace(/^#.*$/gm, "")
+  .replace(/^Derived deterministically.*$/m, "")
+  .trim();
+const isAbsent = bodyText.length === 0;
+
+const { Content } = await render(entry);
+
+const probeChannels = (run?.data.probe?.channels ?? []) as Array<
+  Record<string, unknown>
+>;
+const wantKind = kind === "caselaw" ? "caselaw" : "statutory";
+const probes = probeChannels
+  .filter(c => c.kind === wantKind)
+  .flatMap(c =>
+    (Array.isArray(c.queries) ? (c.queries as string[]) : []).map(q => ({
+      channel: String(c.channel ?? ""),
+      query: q,
+      note: "",
+    }))
+  )
+  .slice(0, 6)
+  .map((p, i, arr) => {
+    const c = probeChannels.find(ch => ch.channel === p.channel);
+    const isLast = i === arr.length - 1 || arr[i + 1]?.channel !== p.channel;
+    return isLast && c
+      ? {
+          ...p,
+          note: `${c.hits_total ?? 0} hits — ${c.hits_relevant ?? 0} relevant`,
+        }
+      : p;
+  });
+
+const counts = entry.data.source_counts;
+const count = kind === "caselaw" ? counts?.caselaw : counts?.statutory;
+
+const crumbTrail = crumbsFor(corpus, slugPath);
+const crumbs: CrumbItem[] = [
+  { label: "Digest", href: "/" },
+  ...crumbTrail.slice(0, -1).map(c => ({
+    label: c.label,
+    href: c.published ? `/${c.slugPath}/` : undefined,
+  })),
+  { label: node.label, href: `/${slugPath}/` },
+  { label: kind === "caselaw" ? "Caselaw index" : "Statutory index" },
+];
+
+const areaLabel = crumbTrail[0]?.label ?? "";
+const noun = kind === "caselaw" ? "caselaw" : "statutory";
+const title = `Table of authorities (${noun}) — ${node.label} — American Legal Digest`;
+const description = isAbsent
+  ? `No ${noun} authorities were retained for ${node.label} — a documented absence, with the searches that ran.`
+  : `Table of ${noun} authorities for ${node.label}, derived from the retained sources.`;
+---
+
+<Layout {title} {description}>
+  <SiteHeader />
+  <main id="main" class="mx-auto w-full max-w-[880px] flex-1 px-5 sm:px-8">
+    <div class="pt-7 pb-10">
+      <Crumbs items={crumbs} />
+      <h1
+        class="font-display mt-4 text-[1.375rem] leading-[1.15] tracking-[-0.03em] sm:text-[1.6875rem]"
+      >
+        Table of authorities — {noun}
+      </h1>
+
+      {
+        isAbsent ? (
+          <div class="mt-6">
+            <AbsencePanel
+              {kind}
+              {probes}
+              recorded={formatDate(entry.data.timestamp)}
+              auditHref={audit ? `/${slugPath}/audit/` : undefined}
+            />
+          </div>
+        ) : (
+          <>
+            <div class="ald-meta border-hairline mt-4 flex flex-wrap items-center gap-x-3 gap-y-2 border-y py-2.5">
+              {typeof count === "number" && (
+                <>
+                  <span>
+                    {count} authorit{count === 1 ? "y" : "ies"}
+                  </span>
+                  <span class="ald-diamond" />
+                </>
+              )}
+              <span class="text-ink-muted">
+                Derived from the retained sources of this run
+              </span>
+              <span class="flex-1" />
+              <span class="text-ink-muted inline-flex items-center gap-1.5">
+                <span class="ald-held !ml-0" /> full text held
+              </span>
+            </div>
+            <span class="hidden" data-pagefind-filter="area">{areaLabel}</span>
+            <span class="hidden" data-pagefind-filter="kind">{kind}</span>
+            <article class="ald-prose mt-5 max-w-none" data-pagefind-body>
+              <Content />
+            </article>
+          </>
+        )
+      }
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>
