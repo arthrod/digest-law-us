@@ -16,6 +16,22 @@ const { doctrinalAreas, compositeAreas, stats } = corpus;
 const doctrinalTopics = doctrinalAreas.reduce((n, a) => n + a.topicCount, 0);
 const compositeTopics = compositeAreas.reduce((n, a) => n + a.topicCount, 0);
 const fmt = (n: number) => n.toLocaleString("en-US");
+
+/**
+ * Sentences that interleave counts with prose are composed here, not in the
+ * template. Inline `{expr}` followed by text on the next line loses the space
+ * between them — JSX strips whitespace spanning a newline — and the formatter
+ * is free to introduce that break on any run. Building the string up front
+ * makes the spacing independent of how the markup is wrapped.
+ */
+const lede =
+  `${fmt(stats.digests)} topics across ${doctrinalAreas.length} doctrinal areas ` +
+  `and ${compositeAreas.length} cross-cutting roots of United States law, ` +
+  "researched from free public sources and gated by review. Every digest holds " +
+  "the full text of at least two authorities, and publishes the log of every " +
+  "search and rejection behind it.";
+const doctrinalCounts = `${doctrinalAreas.length} areas · ${fmt(doctrinalTopics)} topics`;
+const compositeCounts = `${compositeAreas.length} roots · ${fmt(compositeTopics)} cross-cutting topics`;
 ---
 
 <Layout>
@@ -34,9 +50,6 @@ const fmt = (n: number) => n.toLocaleString("en-US");
       <div
         class="border-hairline max-w-[900px] border-b pt-14 pb-14 sm:pt-[72px] sm:pb-[60px]"
       >
-        <div class="ald-meta text-ink-muted mb-5 text-[0.6875rem]">
-          Free · source-audited · machine-researched, review-gated
-        </div>
         <h1
           class="font-display max-w-[20ch] text-[2.25rem] leading-[1.08] font-normal tracking-[-0.03em] sm:text-[3.375rem]"
         >
@@ -45,13 +58,7 @@ const fmt = (n: number) => n.toLocaleString("en-US");
         <p
           class="font-ui text-ink-muted mt-5 max-w-[60ch] text-[1rem] leading-[1.55] sm:text-[1.03125rem]"
         >
-          {fmt(stats.digests)}
-          topics across {doctrinalAreas.length} doctrinal areas and
-          {compositeAreas.length}
-          cross-cutting roots of United States law, researched from free public
-          sources and gated by review. Every digest holds the full text of at
-          least two authorities — and publishes the log of every search and
-          rejection behind it.
+          {lede}
         </p>
         <a
           class="ald-meta border-hairline bg-field text-ink-muted hover:border-ink/50 mt-8 flex h-[52px] w-full max-w-[640px] items-center rounded-[2px] border px-4.5 text-[0.6875rem] no-underline"
@@ -69,8 +76,7 @@ const fmt = (n: number) => n.toLocaleString("en-US");
         <span class="ald-meta text-[0.6875rem]">01 | Doctrinal areas</span>
         <span class="flex-1"></span>
         <span class="ald-meta text-ink-muted text-[0.625rem]">
-          {doctrinalAreas.length}
-          areas · {fmt(doctrinalTopics)} topics
+          {doctrinalCounts}
         </span>
       </div>
       <div class="ald-rows ald-rows-3 -mx-3 grid sm:grid-cols-2 lg:grid-cols-3">
@@ -100,8 +106,7 @@ const fmt = (n: number) => n.toLocaleString("en-US");
         <span class="ald-meta text-[0.6875rem]">02 | Composite roots</span>
         <span class="flex-1"></span>
         <span class="ald-meta text-ink-muted text-[0.625rem]">
-          {compositeAreas.length}
-          roots · {fmt(compositeTopics)} cross-cutting topics
+          {compositeCounts}
         </span>
       </div>
       <div class="ald-rows -mx-3 grid sm:grid-cols-2">

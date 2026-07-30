@@ -76,23 +76,71 @@
       </div>
     </div>
     <div class="ald-dashed my-6 text-white/45"></div>
+    <!--
+      Theme toggle. Phosphor "moon"/"sun" (regular), inlined rather than
+      imported — the site ships no icon runtime, and these are the only two.
+      The moon shows on light (what you get if you press it) and vice versa.
+      theme.ts drives this by id; it is the only #theme-btn on the page.
+    -->
+    <button
+      class="ald-meta mb-5 inline-flex items-center gap-2 text-white/75 hover:text-white"
+      id="theme-btn"
+      type="button"
+    >
+      <svg
+        class="dark:hidden"
+        fill="none"
+        height="17"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"
+        viewBox="0 0 256 256"
+        width="17"
+        aria-hidden="true"
+      >
+        <path
+          d="M108.11,28.11A96.09,96.09,0,0,0,227.89,147.89,96,96,0,1,1,108.11,28.11Z"
+        ></path>
+      </svg>
+      <svg
+        class="hidden dark:inline"
+        fill="none"
+        height="17"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="16"
+        viewBox="0 0 256 256"
+        width="17"
+        aria-hidden="true"
+      >
+        <circle cx="128" cy="128" r="56"></circle>
+        <line x1="128" x2="128" y1="40" y2="16"></line>
+        <line x1="64" x2="48" y1="64" y2="48"></line>
+        <line x1="64" x2="48" y1="192" y2="208"></line>
+        <line x1="192" x2="208" y1="64" y2="48"></line>
+        <line x1="192" x2="208" y1="192" y2="208"></line>
+        <line x1="40" x2="16" y1="128" y2="128"></line>
+        <line x1="128" x2="128" y1="216" y2="240"></line>
+        <line x1="216" x2="240" y1="128" y2="128"></line>
+      </svg>
+      <span class="dark:hidden">Dark</span><span class="hidden dark:inline"
+        >Light</span
+      >
+    </button>
     <div
       class="ald-meta flex flex-wrap gap-x-6 gap-y-2 text-[0.65625rem] leading-[1.7] text-white/75"
     >
+      <!-- The {" "} are load-bearing: a newline between text and an inline
+           element is stripped, which glued "text:" to the link title. -->
       <span
-        >American Legal Digest — machine-researched, review-gated, evidence
-        attached · not legal advice</span
-      >
-      <span class="flex-1"></span>
-      <span
-        >Digest text:
-        <a
+        >Digest text:{" "}<a
           class="hover:text-accent-lift underline decoration-white/55 underline-offset-2"
           href="https://creativecommons.org/licenses/by/4.0/"
           rel="license"
           >Creative Commons Attribution 4.0 International Public License</a
-        >
-        · sources public domain or as-licensed</span
+        >{" "}· sources public domain or as-licensed</span
       >
     </div>
   </div>

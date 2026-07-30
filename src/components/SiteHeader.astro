@@ -5,6 +5,27 @@ interface Props {
 }
 const { tone = "light" } = Astro.props;
 const dark = tone === "dark";
+
+/**
+ * Nav lives behind a MENU disclosure rather than inline: the bar had grown to
+ * five links and was wrapping to a second row on narrow viewports. Built on
+ * <details>, so it opens without JavaScript — the script below only adds the
+ * dismissal affordances (outside click, Escape) that <details> lacks.
+ */
+const links = [
+  { href: "/", label: "All areas" },
+  { href: "/methodology/", label: "Methodology" },
+  { href: "/committee/", label: "Committee" },
+  { href: "/about/", label: "About" },
+  { href: "/contact/", label: "Contact" },
+];
+
+const chip = [
+  "ald-meta inline-flex h-[30px] items-center gap-2 rounded-[2px] border px-2.5 no-underline",
+  dark
+    ? "border-white/30 text-white/80 hover:bg-white/10"
+    : "border-hairline text-ink-muted hover:border-ink",
+];
 ---
 
 <header
@@ -15,7 +36,7 @@ const dark = tone === "dark";
 >
   <div
     class:list={[
-      "mx-auto flex w-full max-w-[1280px] flex-wrap items-center gap-x-5 px-5 py-3.5 sm:flex-nowrap sm:px-10",
+      "mx-auto flex w-full max-w-[1280px] items-center gap-x-3 px-5 py-3.5 sm:px-10",
       dark ? "border-b border-white/16" : "border-hairline border-b",
     ]}
   >
@@ -23,46 +44,62 @@ const dark = tone === "dark";
       >digest.law</a
     >
     <span class="flex-1"></span>
-    <!-- On mobile the nav wraps to its own full-width row instead of vanishing -->
-    <nav
-      class="font-ui order-last -ml-3 flex w-full items-center gap-1 text-[0.84375rem] sm:order-none sm:ml-0 sm:w-auto"
-    >
-      <a class="px-3 py-2 no-underline hover:opacity-60" href="/">All areas</a>
-      <a class="px-3 py-2 no-underline hover:opacity-60" href="/methodology/"
-        >Methodology</a
+
+    <details class="ald-menu relative" id="site-menu">
+      <summary class:list={["cursor-pointer list-none", ...chip]}>
+        Menu<span aria-hidden="true" class="ald-menu-caret opacity-50">▾</span>
+      </summary>
+      <nav
+        class:list={[
+          "font-ui absolute right-0 z-50 mt-2 flex min-w-[196px] flex-col rounded-[2px] border py-1.5 text-[0.84375rem]",
+          dark
+            ? "border-white/20 bg-[#000000] text-white"
+            : "border-hairline bg-surface text-ink",
+        ]}
       >
-      <a class="px-3 py-2 no-underline hover:opacity-60" href="/committee/"
-        >Committee</a
-      >
-      <a class="px-3 py-2 no-underline hover:opacity-60" href="/about/"
-        >About</a
-      >
-      <a class="px-3 py-2 no-underline hover:opacity-60" href="/contact/"
-        >Contact</a
-      >
-    </nav>
-    <a
-      href="/search/"
-      class:list={[
-        "ald-meta inline-flex h-[30px] items-center gap-2 rounded-[2px] border px-2.5 no-underline",
-        dark
-          ? "border-white/30 text-white/80 hover:bg-white/10"
-          : "border-hairline text-ink-muted hover:border-ink",
-      ]}
+        {
+          links.map(link => (
+            <a
+              class:list={[
+                "px-4 py-2 no-underline",
+                dark ? "hover:bg-white/10" : "hover:bg-field",
+              ]}
+              href={link.href}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </details>
+
+    <a class:list={chip} href="/search/"
       >Search<span class="opacity-50">/</span></a
     >
-    <button
-      id="theme-btn"
-      class:list={[
-        "ald-meta px-1 py-2",
-        dark ? "text-white/60" : "text-ink-muted hover:text-ink",
-      ]}
-    >
-      <span class="dark:hidden">Dark</span
-      ><span class="hidden dark:inline">Light</span>
-    </button>
   </div>
 </header>
+
+<style>
+  /* Kill the native disclosure triangle in both engines. */
+  .ald-menu > summary {
+    list-style: none;
+  }
+  .ald-menu > summary::-webkit-details-marker {
+    display: none;
+  }
+  .ald-menu[open] > summary .ald-menu-caret {
+    transform: rotate(180deg);
+  }
+  .ald-menu-caret {
+    display: inline-block;
+    transition: transform var(--ald-duration) var(--ald-ease);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ald-menu-caret {
+      transition: none;
+    }
+  }
+</style>
 
 <script>
   // Keyboard entry to search from anywhere: "/" or Cmd/Ctrl+K.
@@ -85,4 +122,31 @@ const dark = tone === "dark";
     }
   }
   document.addEventListener("keydown", onKey);
+
+  /*
+   * Menu dismissal. Both listeners are delegated from `document` and re-query
+   * the element each time, so they survive View Transitions swaps without
+   * needing to be rebound after astro:after-swap.
+   */
+  function menu(): HTMLDetailsElement | null {
+    return document.querySelector<HTMLDetailsElement>("#site-menu");
+  }
+
+  document.addEventListener("click", (e: MouseEvent) => {
+    const el = menu();
+    if (el?.open && !el.contains(e.target as Node)) {
+      el.open = false;
+    }
+  });
+
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key !== "Escape") {
+      return;
+    }
+    const el = menu();
+    if (el?.open) {
+      el.open = false;
+      el.querySelector("summary")?.focus();
+    }
+  });
 </script>
