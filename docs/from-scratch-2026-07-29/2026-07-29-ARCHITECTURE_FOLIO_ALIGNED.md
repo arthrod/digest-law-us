@@ -14,6 +14,11 @@
 > `265a8610695067d825392751ffdb3e5932a0aefd`; site
 > `3e49d34387d2d5ce20930cc158d01dc5c725b071`; measurement cutoff
 > `2026-07-29T18:03:54Z`.
+>
+> **Verification:** re-verified against code on 2026-07-30 — see the
+> [verification addendum](../2026-07-30-verification-addendum.md) for
+> confirmations, corrections, and drift (the pinned site commit no longer
+> resolves after a history squash).
 
 ## Scope
 

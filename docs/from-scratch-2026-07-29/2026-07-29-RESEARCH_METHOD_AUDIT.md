@@ -14,6 +14,11 @@
 > `265a8610695067d825392751ffdb3e5932a0aefd`; site
 > `3e49d34387d2d5ce20930cc158d01dc5c725b071`; measurement cutoff
 > `2026-07-29T18:03:54Z`.
+>
+> **Verification:** re-verified against code on 2026-07-30 — see the
+> [verification addendum](../2026-07-30-verification-addendum.md) for
+> confirmations, corrections, and drift (the pinned site commit no longer
+> resolves after a history squash).
 
 ## Executive conclusion
 
@@ -118,7 +123,10 @@ language; only eight declare jurisdiction.
 `save_research_output()` skips a rejected source when it creates saved
 `SaveRecord`s. `classify_retained_sources()` later enumerates the original
 uncompacted `source_documents` and assigns the compacted saved filenames by
-position.
+position. A second latent misalignment compounds the first: the save loop
+iterates `output.source_markdown` while classification iterates
+`output.result.source_documents` — two different collections — so any length
+divergence between them misbinds filenames even when no source is rejected.
 
 **Cause.** Discovery records, fetched content, retained files, and
 classification records are parallel arrays joined by list index rather than by
@@ -237,7 +245,12 @@ out lawyer-adjudicated set; no threshold is selected using the test set.
 sampled historical bundles, long specific digests with zero or few retained
 sources, unsupported case/statute claims, fabricated-looking recent
 developments, doctrinal errors, and citation-support averages that remained
-weak even when presentation improved.
+weak even when presentation improved. The same report shows the current stage
+is a measured regression: the prior sustained stage scored higher on every
+axis (5.3 citation support, 5.8 legal quality, 5.1 usefulness, 5.2 overall,
+versus 3.4/5.2/4.4/4.1), and the runner changelog attributes the regression
+to prioritizing source acquisition (proxy pools) over honesty and consistency
+infrastructure.
 
 **Cause.** The system generated an essay from a research result rather than
 requiring atomic claims with verified evidence spans.
@@ -429,9 +442,15 @@ without breaking provenance.
 **Finding status: DONE**  
 **Compliant acquisition status: PENDING**
 
-**Evidence.** Current documentation describes a 100-proxy pool and deliberately
-withholding a CourtListener token so anonymous per-IP limits can be spread
-across proxies.
+**Evidence.** Current documentation and code describe a 100-proxy pool
+(`proxies.txt`, Webshare, git-ignored) used for rotation. The configured
+CourtListener token is deliberately **not sent** on proxied clients — the
+free token is capped per token, while anonymous requests are throttled per
+IP, "which is exactly what the 100-proxy pool defeats"
+(`runner/legal_probe.py:55-88`); the token is spent only as a last-resort
+429 fallback. The mechanism is therefore token suppression on proxied
+requests, not the absence of a token, and its stated purpose is spreading
+per-IP anonymous limits across proxies.
 
 **Cause.** Synchronous production demand exceeded free service limits, and
 source availability was treated as a throughput problem.
@@ -693,13 +712,18 @@ Minimum pilot-promotion thresholds:
 | Retained-source topical precision                          |      ≥98% |
 | Primary-authority recall on registered benchmark questions |      ≥95% |
 | Claim-support precision                                    |      ≥99% |
-| Reviewer agreement on categorical decisions                |     ≥0.80 |
+| Reviewer agreement on categorical decisions (chance-corrected: Cohen's κ for two raters, Krippendorff's α otherwise — not raw percent agreement) | ≥0.80 |
 
 Before sampling, specify confidence level, target interval width, expected
-prevalence, and minimum subgroup sizes. A passing aggregate cannot override a
-failed high-risk jurisdiction, source type, practice area, language, or concept
-kind. Any critical error triggers remediation and a new independent release
-sample.
+prevalence, and minimum subgroup sizes. Each percentage threshold is met only
+when the **lower bound** of its pre-registered confidence interval clears the
+threshold, not when the point estimate does. Observing zero critical errors in
+a sample of *n* bounds the true critical-error rate only to roughly 3/*n* at
+95% confidence (the rule of three), so the release-sample size must be chosen
+from the critical-error rate the program is willing to tolerate, not from
+reviewer availability. A passing aggregate cannot override a failed high-risk
+jurisdiction, source type, practice area, language, or concept kind. Any
+critical error triggers remediation and a new independent release sample.
 
 ## Required research workflow
 

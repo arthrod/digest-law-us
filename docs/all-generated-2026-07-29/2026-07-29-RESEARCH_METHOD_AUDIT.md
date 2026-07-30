@@ -10,6 +10,11 @@
 > `265a8610695067d825392751ffdb3e5932a0aefd`; site
 > `3e49d34387d2d5ce20930cc158d01dc5c725b071`; measurement cutoff
 > `2026-07-29T18:03:54Z`.
+>
+> **Verification:** re-verified against code on 2026-07-30 — see the
+> [verification addendum](../2026-07-30-verification-addendum.md) for
+> confirmations, corrections, and drift (the pinned site commit no longer
+> resolves after a history squash).
 
 ## Executive verdict
 
@@ -114,10 +119,12 @@ diagnostic, not a random sample and not an accuracy estimate.
 | Links exactly matching a retained source URL |                          63 (84%) |
 | Bundles with at least one Markdown HTTP link |                                 8 |
 
-For those eight linked bundles, every Markdown URL exactly matched a retained
-source URL. One 10-source bundle had no inline Markdown link. This URL match is
-a grounding proxy only: it does not show that a source supports a proposition,
-that the proposition is legally correct, or that omitted authority was found.
+Across those eight linked bundles, 63 of the 75 distinct Markdown URLs (84%)
+exactly matched a retained source URL; the other 12 links resolve to nothing in
+the retained store. One 10-source bundle had no inline Markdown link. This URL
+match is a grounding proxy only: it does not show that a source supports a
+proposition, that the proposition is legally correct, or that omitted authority
+was found.
 
 ### Current source-store profile
 
@@ -182,6 +189,10 @@ validity, or source support.
 - The existing evaluation is an LLM judge over 40 bundles.
 - Its current-stage scores were 3.4/10 citation support, 5.2 legal quality,
   4.4 usefulness, and 4.1 overall.
+- The prior sustained stage scored higher on every axis (5.3/5.8/5.1/5.2):
+  the current stage is a measured regression, which the runner changelog
+  attributes to prioritizing source acquisition (proxy pools) over honesty
+  and consistency infrastructure.
 - Model confidence in generation records is not external accuracy.
 
 **Cause.** Funding and engineering prioritized corpus generation, provenance,
@@ -733,11 +744,18 @@ Required minimums for the `validated` channel:
 | Primary-authority recall on benchmark questions    |                ≥95% |
 | Authority normalization accuracy                   |                ≥99% |
 | Hierarchy/mapping accuracy                         |                ≥95% |
-| Reviewer agreement on categorical decisions        |               ≥0.80 |
+| Reviewer agreement on categorical decisions (chance-corrected: Cohen's κ for two raters, Krippendorff's α otherwise — not raw percent agreement) | ≥0.80 |
 | Structural/provenance/release-integrity failures   |                   0 |
 
 Concepts failing a threshold remain `candidate` or `reviewed`; they are not
 silently counted as validated.
+
+Each percentage threshold is met only when the lower bound of its
+pre-registered confidence interval clears the threshold, not when the point
+estimate does. Observing zero critical errors in a sample of *n* bounds the
+true critical-error rate only to roughly 3/*n* at 95% confidence (the rule of
+three); size the release sample from the tolerable critical-error rate, not
+from reviewer availability.
 
 ## Competitive evaluation
 

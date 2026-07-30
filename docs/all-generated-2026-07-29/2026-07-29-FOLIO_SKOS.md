@@ -10,6 +10,11 @@
 > `265a8610695067d825392751ffdb3e5932a0aefd`; site
 > `3e49d34387d2d5ce20930cc158d01dc5c725b071`; measurement cutoff
 > `2026-07-29T18:03:54Z`.
+>
+> **Verification:** re-verified against code on 2026-07-30 — see the
+> [verification addendum](../2026-07-30-verification-addendum.md) for
+> confirmations, corrections, and drift (the pinned site commit no longer
+> resolves after a history squash).
 
 ## Scenario and claim boundary
 
@@ -233,6 +238,9 @@ editorially scoped concept definition.
 - 668 have scope notes.
 - `langLit()` always emits `@language: "en"`:
   `digest-law-us/src/lib/skos.ts:30-32`.
+- The exporter emits `historical_labels` as `skos:hiddenLabel`
+  (`digest-law-us/src/lib/skos.ts`), conflating historical labels with
+  search-only hidden labels.
 
 **Cause.** Semantic documentation was model-authored when available and empty
 scaffolding was accepted. Language was treated as a site constant.
@@ -328,7 +336,8 @@ mapping properties without a separate editorial mapping decision.
   as a `skos:Concept`.
 - Every mapping names the FOLIO commit and ontology hash.
 - A test set of broad-versus-close mappings reaches at least 0.85
-  inter-reviewer agreement before scale-up.
+  chance-corrected inter-reviewer agreement (Cohen's κ or Krippendorff's α)
+  before scale-up.
 
 ### S-06A — Complete mapping-predicate export
 
@@ -411,8 +420,11 @@ the Astro schema is deliberately loose and passthrough.
 
 **Evidence.**
 
-- `verify_legal_issue_frontmatter()` parses simple top-level scalars:
-  `key_digest/skos_okf.py:249-290`.
+- `verify_legal_issue_frontmatter()` (`key_digest/skos_okf.py:289-319`)
+  parses simple top-level scalars only, because it delegates to the naive
+  `parse_frontmatter_block()` helper (`key_digest/skos_okf.py:249-286`),
+  which skips indented lines — nested maps and block lists are invisible to
+  verification.
 - `digest-law-us/src/content.config.ts:11-49` makes key identity fields optional
   and accepts arbitrary extra fields.
 

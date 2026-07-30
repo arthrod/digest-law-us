@@ -14,6 +14,11 @@
 > `265a8610695067d825392751ffdb3e5932a0aefd`; site
 > `3e49d34387d2d5ce20930cc158d01dc5c725b071`; measurement cutoff
 > `2026-07-29T18:03:54Z`.
+>
+> **Verification:** re-verified against code on 2026-07-30 — see the
+> [verification addendum](../2026-07-30-verification-addendum.md) for
+> confirmations, corrections, and drift (the pinned site commit no longer
+> resolves after a history squash).
 
 ## Scenario and status convention
 
@@ -305,7 +310,9 @@ uncompacted source list.
 **Evidence.** In `save_research_output`, rejected `source_markdown` entries are
 skipped when `SaveRecord`s are built. `classify_retained_sources` separately
 enumerates all original `source_documents` and applies the compacted
-`saved_names[index]`.
+`saved_names[index]`. The two functions also iterate different collections
+(`output.source_markdown` versus `output.result.source_documents`), so a
+length divergence misbinds filenames even with zero rejections.
 
 **Cause.** A source has no immutable identity carried through discovery,
 fetching, retention, saving, classification, citation, and manifest assembly.

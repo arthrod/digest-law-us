@@ -16,8 +16,9 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 (usually aborting inside a `node:fs` read / `StringDecoder` frame while loading
 corpus sources — the crash site is a symptom, not the cause).
 
-The fix is baked into `package.json`: both the `build` and `deploy` scripts
-start with `NODE_OPTIONS=--max-old-space-size=12288`. Rules:
+The fix is baked into `package.json`: the `build` script starts with
+`NODE_OPTIONS=--max-old-space-size=24576` (dev/preview/sync likewise) and the
+`deploy` script with `NODE_OPTIONS=--max-old-space-size=12288`. Rules:
 
 1. **Always build via `npm run build` / `npm run deploy`** — never invoke a raw
    `astro build`, and never remove or "simplify away" the `NODE_OPTIONS` prefix

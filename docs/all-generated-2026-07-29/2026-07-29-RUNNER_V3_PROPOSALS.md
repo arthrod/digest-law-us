@@ -10,6 +10,11 @@
 > `265a8610695067d825392751ffdb3e5932a0aefd`; site
 > `3e49d34387d2d5ce20930cc158d01dc5c725b071`; measurement cutoff
 > `2026-07-29T18:03:54Z`.
+>
+> **Verification:** re-verified against code on 2026-07-30 — see the
+> [verification addendum](../2026-07-30-verification-addendum.md) for
+> confirmations, corrections, and drift (the pinned site commit no longer
+> resolves after a history squash).
 
 ## Decision context
 
@@ -131,6 +136,10 @@ records.
 - `classify_retained_sources()` iterates the original, unfiltered
   `source_documents` list but assigns the compacted list of saved filenames by
   numeric position: `runner/run_key_digest_research_workers.py:1152-1182`.
+- The two paths also iterate different collections (`output.source_markdown`
+  in the save loop versus `output.result.source_documents` in
+  classification), so any length divergence misbinds filenames even when no
+  source is refused.
 
 **Cause.** Identity is represented by parallel array position rather than by a
 single retained-source record carrying source document, text, output path,
