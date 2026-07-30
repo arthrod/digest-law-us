@@ -202,9 +202,11 @@ const chipGroups: [string, RailRef[]][] = [
         bySlug.set(slug, link);
       }
     }
+    // The null check narrows on its own — TypeScript infers the predicate, so
+    // this needs no hand-written `el is HTMLElement`.
     const headings = [...bySlug.keys()]
-      .map((slug) => document.querySelector(`#${slug}`))
-      .filter((el): el is HTMLElement => Boolean(el));
+      .map((slug) => document.querySelector<HTMLElement>(`#${slug}`))
+      .filter((el) => el !== null);
     if (!headings.length) {
       return;
     }

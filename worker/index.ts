@@ -1,0 +1,263 @@
+/**
+ * digest.law Worker — static assets, plus the one endpoint that is not static.
+ *
+ * The site is a fully pre-rendered Astro build served from the assets
+ * binding. This Worker exists solely so /contact/ has somewhere to POST:
+ * it validates a submission and hands it to Cloudflare Email Sending via the
+ * `send_email` binding. Everything else falls through to the assets.
+ *
+ * Recipients are NOT taken from the request. The topic id selects a
+ * recipient list from src/lib/committee.ts, and `allowed_destination_addresses`
+ * in wrangler.jsonc closes the set again at the platform level — so a bug
+ * here still cannot turn the endpoint into an open relay.
+ */
+
+import { LIMITS, topicById } from "../src/lib/committee";
+
+interface SendEmailMessage {
+  from: { email: string; name?: string };
+  html?: string;
+  replyTo?: string;
+  subject: string;
+  text?: string;
+  to: string[] | string;
+}
+
+interface SendEmailBinding {
+  send: (message: SendEmailMessage) => Promise<{ messageId?: string }>;
+}
+
+interface Env {
+  ASSETS: { fetch: (request: Request) => Promise<Response> };
+  CONTACT_EMAIL: SendEmailBinding;
+}
+
+/** Envelope sender. Must be on a domain onboarded to Email Sending. */
+const FROM = { email: "forms@digest.law", name: "digest.law contact form" };
+
+/** Only these origins may post the form. */
+const ALLOWED_ORIGINS = new Set([
+  "https://digest.law",
+  "https://www.digest.law",
+]);
+
+const MAX_BODY_BYTES = 32_000;
+
+/**
+ * Collapse control characters to spaces. The send binding takes structured
+ * fields rather than raw MIME, so this is belt-and-braces against header
+ * injection via `subject` / `replyTo`, and it keeps stray terminal escapes
+ * out of somebody's mail client.
+ */
+// oxlint-disable-next-line no-control-regex -- matching them is the point
+const CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu;
+
+function clean(value: unknown, max: number): string {
+  if (typeof value !== "string") {
+    return "";
+  }
+  return value.replaceAll(CONTROL_CHARS, " ").trim().slice(0, max);
+}
+
+/** Same, but keeps the paragraph breaks — for the message body only. */
+function cleanMultiline(value: unknown, max: number): string {
+  if (typeof value !== "string") {
+    return "";
+  }
+  return value
+    .replaceAll(/\r\n?/gu, "\n")
+    .replaceAll(CONTROL_CHARS, (c) => (c === "\n" ? c : " "))
+    .trim()
+    .slice(0, max);
+}
+
+/** Deliberately permissive — the real check is whether a reply arrives. */
+function isEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/u.test(value);
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+interface Submission {
+  consent: boolean;
+  email: string;
+  message: string;
+  name: string;
+  organization: string;
+  topic: string;
+  website: string;
+}
+
+async function readSubmission(request: Request): Promise<Submission | null> {
+  const type = request.headers.get("content-type") ?? "";
+  let raw: Record<string, unknown>;
+
+  if (type.includes("application/json")) {
+    const text = await request.text();
+    if (text.length > MAX_BODY_BYTES) {
+      return null;
+    }
+    try {
+      raw = JSON.parse(text) as Record<string, unknown>;
+    } catch {
+      return null;
+    }
+  } else if (
+    type.includes("form-data") ||
+    type.includes("application/x-www-form-urlencoded")
+  ) {
+    const form = await request.formData();
+    raw = Object.fromEntries(form.entries());
+  } else {
+    return null;
+  }
+
+  return {
+    consent:
+      raw.consent === "on" || raw.consent === true || raw.consent === "true",
+    email: clean(raw.email, LIMITS.email),
+    message: cleanMultiline(raw.message, LIMITS.message),
+    name: clean(raw.name, LIMITS.name),
+    organization: clean(raw.organization, LIMITS.organization),
+    topic: clean(raw.topic, 40),
+    website: clean(raw.website, 200),
+  };
+}
+
+function wantsJson(request: Request): boolean {
+  return (request.headers.get("accept") ?? "").includes("application/json");
+}
+
+/** Minimal styled confirmation for the no-JavaScript path. */
+function htmlPage(heading: string, body: string, status: number): Response {
+  return new Response(
+    `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${escapeHtml(heading)} — American Legal Digest</title>
+<style>
+  :root { color-scheme: light dark }
+  body { margin:0; min-height:100svh; display:flex; align-items:center;
+         justify-content:center; padding:2rem;
+         font:16px/1.6 ui-sans-serif,system-ui,sans-serif }
+  main { max-width:44ch }
+  h1 { font-size:1.6rem; font-weight:500; letter-spacing:-.03em; margin:0 0 .75rem }
+  p { margin:0 0 1.25rem; opacity:.8 }
+  a { color:inherit }
+</style></head><body><main>
+<h1>${escapeHtml(heading)}</h1><p>${body}</p>
+<p><a href="/contact/">← Back to contact</a> · <a href="/">digest.law</a></p>
+</main></body></html>`,
+    {
+      headers: { "content-type": "text/html; charset=utf-8" },
+      status,
+    }
+  );
+}
+
+function fail(request: Request, message: string, status: number): Response {
+  if (wantsJson(request)) {
+    return Response.json({ error: message }, { status });
+  }
+  return htmlPage("That did not send", escapeHtml(message), status);
+}
+
+async function handleContact(request: Request, env: Env): Promise<Response> {
+  if (request.method !== "POST") {
+    return fail(request, "Use POST.", 405);
+  }
+
+  // Same-origin only. Not a real defence against a determined sender, but it
+  // stops the drive-by form spam that finds every public POST endpoint.
+  const origin = request.headers.get("origin");
+  if (origin && !ALLOWED_ORIGINS.has(origin)) {
+    return fail(request, "Cross-origin submissions are not accepted.", 403);
+  }
+
+  // Cheap guard before touching the body at all — the JSON path re-checks
+  // after reading, since Content-Length is a claim, not a promise.
+  const declared = Number(request.headers.get("content-length") ?? "0");
+  if (declared > MAX_BODY_BYTES) {
+    return fail(request, "That message is too long.", 413);
+  }
+
+  const submission = await readSubmission(request);
+  if (!submission) {
+    return fail(request, "Could not read that submission.", 400);
+  }
+
+  // Bot trap: accept and discard, so the sender learns nothing from the reply.
+  if (submission.website !== "") {
+    return wantsJson(request)
+      ? Response.json({ ok: true, routedTo: [] })
+      : htmlPage("Received", "Thank you — your message is in.", 200);
+  }
+
+  const topic = topicById(submission.topic);
+  if (!topic) {
+    return fail(request, "Pick a topic from the list.", 400);
+  }
+  if (!submission.consent) {
+    return fail(request, "The acknowledgement is required.", 400);
+  }
+  if (submission.name === "" || submission.message === "") {
+    return fail(request, "Name and message are required.", 400);
+  }
+  if (!isEmail(submission.email)) {
+    return fail(request, "That email address does not look valid.", 400);
+  }
+
+  const lines = [
+    `Topic:        ${topic.label}`,
+    `Name:         ${submission.name}`,
+    `Email:        ${submission.email}`,
+    `Organization: ${submission.organization || "—"}`,
+    "",
+    submission.message,
+    "",
+    "— sent from the digest.law contact form",
+  ];
+
+  try {
+    await env.CONTACT_EMAIL.send({
+      from: FROM,
+      html: `<pre style="font:14px/1.6 ui-monospace,monospace;white-space:pre-wrap">${escapeHtml(lines.join("\n"))}</pre>`,
+      replyTo: submission.email,
+      subject: `[digest.law] ${topic.label} — ${submission.name}`,
+      text: lines.join("\n"),
+      to: topic.to,
+    });
+  } catch (error) {
+    const code = (error as { code?: string }).code ?? "unknown";
+    console.error(`[contact] send failed: ${code} ${String(error)}`);
+    return fail(
+      request,
+      "The message could not be delivered. Please write to arthur@digest.law directly.",
+      502
+    );
+  }
+
+  if (wantsJson(request)) {
+    return Response.json({ ok: true, routedTo: topic.to });
+  }
+  return htmlPage(
+    "Received",
+    `Your message is with ${topic.to.map(escapeHtml).join(" and ")}. If it is a correction and it holds up, it ships as a commit you will be able to read.`,
+    200
+  );
+}
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const { pathname } = new URL(request.url);
+    if (pathname === "/api/contact") {
+      return await handleContact(request, env);
+    }
+    return await env.ASSETS.fetch(request);
+  },
+};

@@ -1,0 +1,187 @@
+---
+/**
+ * Review committee — the humans behind step 04 of the pipeline.
+ *
+ * The site claims digests are "review-gated" on every page; this is where
+ * that claim names names. Membership and one-liners come from
+ * src/lib/committee.ts, which the contact router shares.
+ */
+
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
+import { REVIEWERS } from "@/lib/committee";
+import { getCorpus } from "@/lib/corpus";
+
+const corpus = await getCorpus();
+const { stats } = corpus;
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+/** What a reviewer is asked to do — the gate, stated as work. */
+const duties = [
+  "Check that every authority cited in a digest is actually retained on the page, and that the retained text says what the digest says it says.",
+  "Read the audit before the prose. A digest whose audit is thin should not merge on the strength of a well-written summary.",
+  "Block the merge when the evidence floor does not hold, and prefer deletion to padding. The purge exists because this call gets made.",
+  "Flag doctrine that is stated too confidently for the sources behind it — jurisdictional splits, superseded rules, and holdings read past their facts.",
+];
+
+/** What we are short of. Stated plainly, because it is a recruitment ask. */
+const openings = [
+  {
+    body: "Reviewers admitted in a United States jurisdiction who can tell us where a digest is wrong for their state — the areas below the federal layer are exactly where machine research is weakest.",
+    n: "01",
+    name: "Local reviewers, by jurisdiction",
+  },
+  {
+    body: "Reviewers trained outside the United States who read this corpus comparatively. The digest is US doctrine, but its readers are not only American, and a comparative eye catches what a domestic one stops seeing.",
+    n: "02",
+    name: "Global reviewers, comparative",
+  },
+  {
+    body: "Subject-matter reviewers for areas that are small because the evidence floor held — not because the doctrine is small. Thin areas need the most scrutiny, and get the least.",
+    n: "03",
+    name: "Subject-matter reviewers",
+  },
+];
+
+const title = "Review committee — American Legal Digest";
+const description =
+  "The people who gate the merge at American Legal Digest, what review actually requires, and an open call for local and global reviewers.";
+---
+
+<Layout {description} {title}>
+  <SiteHeader />
+  <main class="mx-auto w-full max-w-250 flex-1 px-5 sm:px-9" id="main">
+    <div class="pt-9 pb-11">
+      <div class="ald-meta text-ink-muted mb-4 text-[0.6875rem]">
+        Who gates the merge
+      </div>
+      <h1
+        class="font-display max-w-[22ch] text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
+      >
+        The review committee
+      </h1>
+      <p
+        class="font-prose text-ink/78 mt-3.5 max-w-[58ch] text-[1.09375rem] leading-[1.55] sm:text-[1.1875rem]"
+      >
+        Every page on this site says the digests are review-gated. That claim is
+        worth exactly as much as the names behind it, so here they are. Review
+        does not make the prose authoritative — it decides what is allowed to
+        merge, and what gets deleted instead.
+      </p>
+
+      <!-- Members -->
+      <div class="mt-11">
+        <div class="ald-meta text-[0.6875rem]">01 | Members</div>
+        <div class="border-ink mt-3 border-t">
+          {REVIEWERS.map(person => (
+              <div class="border-hairline border-b py-5">
+                <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <span class="font-display text-[1.375rem] leading-tight tracking-[-0.02em]">
+                    {person.name}
+                  </span>
+                  <span class="ald-meta text-ink-muted text-[0.59375rem]">
+                    {person.role} · {person.based}
+                  </span>
+                </div>
+                <p class="font-ui text-ink/75 mt-2.5 mb-0 max-w-[70ch] text-[0.875rem] leading-relaxed">
+                  {person.oneLiner}
+                </p>
+                <div class="ald-meta text-ink-muted mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[0.59375rem]">
+                  {person.credentials.map(c => <span>{c}</span>)}
+                  <a
+                    class="decoration-cite-ext underline underline-offset-2"
+                    href={`mailto:${person.email}`}
+                  >
+                    {person.email}
+                  </a>
+                </div>
+              </div>
+            ))}
+        </div>
+        <p class="ald-meta text-ink-muted mt-4 max-w-[70ch] text-[0.59375rem] leading-[1.7]">
+          Reviewers are named because an anonymous gate is not a gate. Where a
+          reviewer has a conflict on a topic, the review passes to the other
+          member and the digest records it.
+        </p>
+      </div>
+
+      <!-- What review requires -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">02 | What review requires</div>
+        <div class="border-ink mt-3 border-t">
+          {duties.map(text => (
+              <div class="border-hairline flex gap-4 border-b py-3.5">
+                <span class="text-ink-muted mt-[0.4em] leading-none">—</span>
+                <p class="font-ui text-ink/75 m-0 max-w-[70ch] text-[0.875rem] leading-relaxed">
+                  {text}
+                </p>
+              </div>
+            ))}
+        </div>
+        <p class="ald-meta text-ink-muted mt-4 max-w-[70ch] text-[0.59375rem] leading-[1.7]">
+          The gate is described end-to-end on
+          <a
+            class="decoration-cite-ext underline underline-offset-2"
+            href="/methodology/#the-floor">the methodology page</a
+          >. Two people cannot read {fmt(stats.digests)} digests closely, which is
+          the honest reason this page ends in a recruitment ask rather than a boast.
+        </p>
+      </div>
+
+      <div class="border-l-accent mt-9 border-l-2 py-1.5 pl-6">
+        <div
+          class="font-display max-w-[30ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]"
+        >
+          We are looking for reviewers — local and global.
+        </div>
+        <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
+          Open call · unpaid, credited, and free to disagree in public
+        </div>
+      </div>
+
+      <!-- Open call -->
+      <div class="mt-9">
+        <div class="ald-meta text-[0.6875rem]">03 | Who we are looking for</div>
+        <div class="border-ink mt-3 border-t">
+          {openings.map(item => (
+              <div class="border-hairline grid grid-cols-[40px_1fr] gap-x-6 border-b py-4 sm:grid-cols-[52px_230px_1fr]">
+                <span class="ald-meta text-[0.6875rem]">{item.n}</span>
+                <span class="font-display text-[1.25rem] leading-tight tracking-[-0.02em]">
+                  {item.name}
+                </span>
+                <div class="col-span-2 mt-2 sm:col-span-1 sm:mt-0">
+                  <p class="font-ui text-ink/75 m-0 text-[0.875rem] leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+        <div class="ald-meta mt-5 flex flex-wrap gap-2 text-[0.59375rem]">
+          <a
+            class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+            href="/contact/?topic=reviewer">Apply to review ↗</a
+          >
+          <a
+            class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+            href="/contact/?topic=correction">Report a correction ↗</a
+          >
+          <a
+            class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+            href="/methodology/">How digests are made ↗</a
+          >
+        </div>
+        <p class="ald-meta text-ink-muted mt-5 max-w-[74ch] text-[0.59375rem] leading-[1.8]">
+          No firm, seniority, or jurisdiction requirement beyond being able to
+          read the authorities and say plainly where the digest is wrong. Tell
+          us the area you would review and one digest you already disagree with
+          — that is the whole application. Reviewers are credited by name unless
+          they ask not to be, and nothing here creates an attorney–client
+          relationship or constitutes legal advice.
+        </p>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

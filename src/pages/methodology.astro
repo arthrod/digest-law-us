@@ -9,10 +9,12 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
-import { formatBytes } from "@/lib/labels";
+import { formatBytes, formatDate } from "@/lib/labels";
+import { getPurge } from "@/lib/purge";
 
 const corpus = await getCorpus();
 const { stats } = corpus;
+const purge = await getPurge();
 const fmt = (n: number) => n.toLocaleString("en-US");
 
 const steps = [
@@ -44,9 +46,38 @@ const steps = [
   },
 ];
 
+/**
+ * Headline grid, built as data so the purge tile disappears with its
+ * manifest rather than showing a number nothing backs. Borders track
+ * position (see the same pattern on /about/).
+ */
+const tiles = [
+  { label: "Digests published", value: fmt(stats.digests) },
+  ...(purge.latest
+    ? [{ label: "Deleted at the floor", value: fmt(purge.total) }]
+    : []),
+  { label: "Pre-provenance — disclosed", value: String(stats.preProvenance) },
+  {
+    label: `Source texts held — ${formatBytes(stats.sourceBytes)}`,
+    value: fmt(stats.sources),
+  },
+];
+
+const tileClass = (i: number) => {
+  if (i === 0) {
+    return "pt-4.5 pr-5";
+  }
+  return i % 2 === 1
+    ? "border-hairline border-l px-5 pt-4.5"
+    : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
+};
+
+const purgeTail = purge.latest
+  ? ` — and ${fmt(purge.total)} thin digests deleted rather than shipped.`
+  : ".";
+
 const title = "Methodology — American Legal Digest";
-const description =
-  "How digests are made: free public sources only, a two-source evidence floor, published audits — and 993 thin digests deleted rather than shipped.";
+const description = `How digests are made: free public sources only, a two-source evidence floor, published audits${purgeTail}`;
 ---
 
 <Layout {description} {title}>
@@ -90,52 +121,58 @@ const description =
           ))}
       </div>
 
+      <p class="ald-meta text-ink-muted mt-4 max-w-[74ch] text-[0.59375rem] leading-[1.7]">
+        Step 04 is people, not a script. The
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/committee/">review committee</a
+        > is named, and it is
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/contact/?topic=reviewer">looking for local and global reviewers</a
+        >.
+      </p>
+
       <div class="border-l-accent mt-9 border-l-2 py-1.5 pl-6" id="the-floor">
-        <div
-          class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]"
-        >
-          We deleted 993 digests rather than publish them thin.
-        </div>
-        <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
-          Purge of 28 Jul 2026 — the evidence floor, enforced
-        </div>
+        {purge.latest ? (
+          <>
+            <div class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]">
+              We deleted {fmt(purge.total)} digest{purge.total === 1 ? "" : "s"}
+              {" "}rather than publish them thin.
+            </div>
+            <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
+              {purge.events.length === 1
+                ? `Purge of ${formatDate(purge.latest.date)}`
+                : `${purge.events.length} purges, latest ${formatDate(purge.latest.date)}`}
+              {" "}— the evidence floor, enforced
+            </div>
+          </>
+        ) : (
+          <>
+            <div class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]">
+              A digest that cannot clear the floor is deleted, not padded.
+            </div>
+            <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
+              The evidence floor, enforced — deletion manifest not available at
+              build time
+            </div>
+          </>
+        )}
       </div>
 
       <div
         class="border-hairline mt-8 grid grid-cols-2 border-t sm:grid-cols-4"
       >
-        <div class="pt-4.5 pr-5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            {fmt(stats.digests)}
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Digests published
-          </div>
-        </div>
-        <div class="border-hairline border-l px-5 pt-4.5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            993
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Deleted at the floor
-          </div>
-        </div>
-        <div class="sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            {stats.preProvenance}
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Pre-provenance — disclosed
-          </div>
-        </div>
-        <div class="border-hairline border-l px-5 pt-4.5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            {fmt(stats.sources)}
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Source texts held — {formatBytes(stats.sourceBytes)}
-          </div>
-        </div>
+        {tiles.map((tile, i) => (
+            <div class={tileClass(i)}>
+              <div class="font-display text-[1.625rem] leading-none tabular-nums">
+                {tile.value}
+              </div>
+              <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+                {tile.label}
+              </div>
+            </div>
+          ))}
       </div>
 
       <div class="ald-meta text-ink-muted mt-9 max-w-[74ch] leading-[1.8]">

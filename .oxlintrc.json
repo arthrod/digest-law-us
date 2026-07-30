@@ -1,0 +1,42 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "./.oxlintrc.ultracite-core.json",
+    "./.oxlintrc.ultracite-astro.json"
+  ],
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import",
+    "jsdoc",
+    "node",
+    "promise"
+  ],
+  "ignorePatterns": [
+    "dist/**",
+    "public/pagefind/**",
+    ".astro/**",
+    ".wrangler/**",
+    "node_modules/**"
+  ],
+  "rules": {
+    "jest/require-hook": "off",
+    "vitest/require-hook": "off",
+    "node/no-top-level-await": "off",
+    "import/no-nodejs-modules": "off",
+    "import/no-relative-parent-imports": "off",
+    "unicorn/filename-case": "off",
+    "eslint/func-style": "off",
+    "eslint/no-implicit-globals": "off",
+    "eslint/no-inline-comments": "off",
+    "eslint/no-underscore-dangle": "off",
+    "eslint/max-statements": "warn",
+    "eslint/complexity": "warn",
+    "unicorn/max-nested-calls": "warn",
+    "promise/prefer-await-to-then": "warn",
+    "promise/prefer-await-to-callbacks": "warn",
+    "promise/no-nesting": "warn"
+  }
+}

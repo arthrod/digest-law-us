@@ -1,0 +1,312 @@
+---
+/**
+ * Contact — one form, routed by topic to the review committee.
+ *
+ * The page is static; the POST is handled by worker/index.ts, which turns a
+ * submission into mail via the Cloudflare send_email binding. It degrades:
+ * with JavaScript off the form does a native POST and the Worker answers
+ * with an HTML confirmation, so the page is usable without hydration.
+ */
+
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
+import { LIMITS, REVIEWERS, TOPICS } from "@/lib/committee";
+
+const facts = [
+  { label: "Corrections", value: "Ship as new commits, never silent edits" },
+  { label: "Reviewers", value: "Open call — local and global" },
+  { label: "Reply", value: "When we can. Two people, no support desk" },
+  { label: "Not", value: "Legal advice, and not a lawyer referral" },
+];
+
+/** Same border rule as the stat grids on /about/ and /methodology/. */
+const cellClass = (i: number) => {
+  if (i === 0) {
+    return "pt-4.5 pr-5";
+  }
+  return i % 2 === 1
+    ? "border-hairline border-l px-5 pt-4.5"
+    : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
+};
+
+const title = "Contact — American Legal Digest";
+const description =
+  "Report a correction to a digest, apply to review, or raise a source or licensing question with the American Legal Digest review committee.";
+---
+
+<Layout {description} {title}>
+  <SiteHeader />
+  <main class="mx-auto w-full max-w-250 flex-1 px-5 sm:px-9" id="main">
+    <div class="pt-9 pb-11">
+      <div class="ald-meta text-ink-muted mb-4 text-[0.6875rem]">Contact</div>
+      <h1
+        class="font-display max-w-[22ch] text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
+      >
+        Tell us where this is wrong
+      </h1>
+      <p
+        class="font-prose text-ink/78 mt-3.5 max-w-[58ch] text-[1.09375rem] leading-[1.55] sm:text-[1.1875rem]"
+      >
+        The most useful message you can send is a specific one: a digest, the
+        line you disagree with, and the authority you would read instead. That
+        goes straight to the
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/committee/">review committee</a
+        >. So does an application to review — we are looking for both local and
+        global reviewers.
+      </p>
+
+      <dl
+        class="border-hairline mt-8 grid grid-cols-2 border-t sm:grid-cols-4"
+      >
+        {facts.map((fact, i) => (
+            <div class={cellClass(i)}>
+              <dt class="ald-meta text-ink-muted text-[0.53125rem]">
+                {fact.label}
+              </dt>
+              <dd class="font-ui text-ink/80 mt-1.5 ml-0 text-[0.8125rem] leading-snug">
+                {fact.value}
+              </dd>
+            </div>
+          ))}
+      </dl>
+
+      <div class="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1fr)_260px]">
+        <!-- ── Form ── -->
+        <div>
+          <div class="ald-meta text-[0.6875rem]">01 | Send a message</div>
+          <form
+            action="/api/contact"
+            class="border-ink mt-3 border-t pt-6"
+            data-contact-form
+            method="POST"
+          >
+            <!-- Bot trap: hidden from people and from screen readers alike.
+                 A filled value is discarded by the Worker without a bounce. -->
+            <div aria-hidden="true" class="hidden">
+              <label for="f-website">Website</label>
+              <input
+                autocomplete="off"
+                id="f-website"
+                name="website"
+                tabindex="-1"
+                type="text"
+              >
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label class="ald-meta block text-[0.59375rem]" for="f-name">
+                  Name <span class="text-ink-muted">(required)</span>
+                </label>
+                <input
+                  class="border-hairline bg-field font-ui text-ink focus:border-ink mt-2 h-[42px] w-full rounded-[2px] border px-3 text-[0.875rem] outline-none"
+                  id="f-name"
+                  maxlength={LIMITS.name}
+                  name="name"
+                  required
+                  type="text"
+                >
+              </div>
+              <div>
+                <label class="ald-meta block text-[0.59375rem]" for="f-email">
+                  Email <span class="text-ink-muted">(required)</span>
+                </label>
+                <input
+                  class="border-hairline bg-field font-ui text-ink focus:border-ink mt-2 h-[42px] w-full rounded-[2px] border px-3 text-[0.875rem] outline-none"
+                  id="f-email"
+                  maxlength={LIMITS.email}
+                  name="email"
+                  required
+                  type="email"
+                >
+              </div>
+              <div>
+                <label class="ald-meta block text-[0.59375rem]" for="f-org">
+                  Organization or jurisdiction
+                </label>
+                <input
+                  class="border-hairline bg-field font-ui text-ink focus:border-ink mt-2 h-[42px] w-full rounded-[2px] border px-3 text-[0.875rem] outline-none"
+                  id="f-org"
+                  maxlength={LIMITS.organization}
+                  name="organization"
+                  type="text"
+                >
+              </div>
+              <div>
+                <label class="ald-meta block text-[0.59375rem]" for="f-topic">
+                  Topic <span class="text-ink-muted">(required)</span>
+                </label>
+                <select
+                  class="border-hairline bg-field font-ui text-ink focus:border-ink mt-2 h-[42px] w-full rounded-[2px] border px-3 text-[0.875rem] outline-none"
+                  id="f-topic"
+                  name="topic"
+                  required
+                >
+                  <option disabled selected value="">Select…</option>
+                  {TOPICS.map(t => <option value={t.id}>{t.label}</option>)}
+                </select>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <label class="ald-meta block text-[0.59375rem]" for="f-message">
+                Message <span class="text-ink-muted">(required)</span>
+              </label>
+              <textarea
+                class="border-hairline bg-field font-ui text-ink focus:border-ink mt-2 min-h-[160px] w-full rounded-[2px] border px-3 py-2.5 text-[0.875rem] leading-relaxed outline-none"
+                id="f-message"
+                maxlength={LIMITS.message}
+                name="message"
+                placeholder="Which digest, which line, and the authority you would read instead."
+                required></textarea>
+            </div>
+
+            <label class="mt-5 flex gap-3">
+              <input
+                class="mt-0.5 shrink-0"
+                id="f-consent"
+                name="consent"
+                required
+                type="checkbox"
+              >
+              <span class="font-ui text-ink/70 text-[0.78125rem] leading-relaxed">
+                I understand this message does not create an attorney–client
+                relationship, that nothing on this site is legal advice, and
+                that a correction I report may be published with the commit
+                that fixes it.
+              </span>
+            </label>
+
+            <button
+              class="ald-meta border-ink bg-ink text-surface mt-6 h-[44px] rounded-[2px] border px-6 text-[0.625rem] disabled:opacity-45"
+              data-contact-submit
+              type="submit"
+            >
+              Send to the committee →
+            </button>
+            <p
+              aria-live="polite"
+              class="ald-meta text-ink-muted mt-4 text-[0.59375rem] leading-[1.7]"
+              data-contact-status
+            >
+              Delivered by Cloudflare from digest.law. Your address is used to
+              reply and nothing else.
+            </p>
+          </form>
+        </div>
+
+        <!-- ── Direct addresses ── -->
+        <aside>
+          <div class="ald-meta text-[0.6875rem]">02 | Or write directly</div>
+          <div class="border-ink mt-3 border-t">
+            {REVIEWERS.map(person => (
+                <div class="border-hairline border-b py-3.5">
+                  <div class="font-ui text-ink text-[0.84375rem] leading-snug">
+                    {person.name}
+                  </div>
+                  <a
+                    class="ald-meta decoration-cite-ext mt-1.5 block text-[0.59375rem] underline underline-offset-2"
+                    href={`mailto:${person.email}`}
+                  >
+                    {person.email}
+                  </a>
+                </div>
+              ))}
+          </div>
+          <p class="ald-meta text-ink-muted mt-4 text-[0.59375rem] leading-[1.7]">
+            Security or licensing issues that should not be public: write to
+            the addresses above rather than using the form.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>
+
+<script>
+  /**
+   * Enhancement only. Without this the form still posts natively to
+   * /api/contact and the Worker replies with an HTML confirmation page.
+   */
+  const NOTE =
+    "Delivered by Cloudflare from digest.law. Your address is used to reply and nothing else.";
+
+  function enhance() {
+    const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+    if (!form || form.dataset.bound === "1") {
+      return;
+    }
+    form.dataset.bound = "1";
+
+    const submit = form.querySelector<HTMLButtonElement>(
+      "[data-contact-submit]"
+    );
+    const status = form.querySelector<HTMLElement>("[data-contact-status]");
+
+    // Deep links from /committee/ preselect the topic: /contact/?topic=reviewer
+    const wanted = new URLSearchParams(window.location.search).get("topic");
+    const topic = form.querySelector<HTMLSelectElement>("#f-topic");
+    if (wanted && topic?.querySelector(`option[value="${CSS.escape(wanted)}"]`)) {
+      topic.value = wanted;
+    }
+
+    form.addEventListener("submit", async event => {
+      if (!(submit && status)) {
+        return;
+      }
+      if (!form.reportValidity()) {
+        return;
+      }
+      event.preventDefault();
+      submit.disabled = true;
+      status.textContent = "Sending…";
+
+      try {
+        const response = await fetch(form.action, {
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
+          method: "POST",
+        });
+        const data = (await response.json().catch(() => ({}))) as {
+          error?: string;
+          routedTo?: string[];
+        };
+        if (!response.ok) {
+          throw new Error(data.error ?? `Request failed (${response.status}).`);
+        }
+
+        const sent = document.createElement("div");
+        sent.className = "border-ink mt-3 border-t pt-6";
+        sent.setAttribute("role", "status");
+        const to = data.routedTo?.join(" and ") ?? "the committee";
+        sent.innerHTML = `
+          <div class="ald-meta text-[0.6875rem]">Received</div>
+          <p class="font-prose text-ink/80 mt-3 max-w-[52ch] text-[1.0625rem] leading-[1.62]">
+            Your message is with ${to}. If it is a correction and it holds up,
+            it ships as a commit you will be able to read.
+          </p>`;
+        form.replaceWith(sent);
+      } catch (error) {
+        submit.disabled = false;
+        status.textContent =
+          error instanceof Error
+            ? `${error.message} You can also write to arthur@digest.law directly.`
+            : "Network error. Please write to arthur@digest.law directly.";
+      }
+    });
+
+    form.addEventListener("input", () => {
+      if (status && status.textContent !== NOTE && !submit?.disabled) {
+        status.textContent = NOTE;
+      }
+    });
+  }
+
+  enhance();
+  // The site uses <ClientRouter>, so re-bind after every client-side swap.
+  document.addEventListener("astro:page-load", enhance);
+</script>

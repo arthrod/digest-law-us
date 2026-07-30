@@ -9,11 +9,18 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
-import { formatBytes } from "@/lib/labels";
+import { formatBytes, formatDate } from "@/lib/labels";
+import { getPurge } from "@/lib/purge";
 
 const corpus = await getCorpus();
 const { doctrinalAreas, compositeAreas, stats } = corpus;
+const purge = await getPurge();
 const fmt = (n: number) => n.toLocaleString("en-US");
+
+// The purge sentence is only written when a deletion manifest backs it.
+const purgeClause = purge.latest
+  ? ` — ${fmt(purge.total)} of them, most recently on ${formatDate(purge.latest.date)}.`
+  : ".";
 
 const commitments = [
   {
@@ -27,7 +34,7 @@ const commitments = [
     name: "The rejections are public",
   },
   {
-    body: "A digest ships only with at least two retained authorities. When the floor did not hold, the digest was deleted rather than padded — 993 of them on 28 July 2026. Thin coverage is reported as absence, never dressed up as brevity.",
+    body: `A digest ships only with at least two retained authorities. When the floor did not hold, the digest was deleted rather than padded${purgeClause} Thin coverage is reported as absence, never dressed up as brevity.`,
     n: "03",
     name: "The floor is enforced by deletion",
   },
@@ -45,11 +52,46 @@ const limits = [
   "Coverage is uneven on purpose. An area with two topics is an area where two topics cleared the floor — not a promise of more.",
 ];
 
+/**
+ * The headline grid. Built as data so a tile whose number has no evidence
+ * behind it (the purge, when no manifest is readable) is simply absent —
+ * the borders track position, not a fixed count of four.
+ */
+const tiles = [
+  { label: "Topics digested", value: fmt(stats.digests) },
+  {
+    label: "Doctrinal areas + cross-cutting roots",
+    value: `${doctrinalAreas.length} + ${compositeAreas.length}`,
+  },
+  {
+    label: `Source texts held — ${formatBytes(stats.sourceBytes)}`,
+    value: fmt(stats.sources),
+  },
+  ...(purge.latest
+    ? [
+        {
+          label: "Deleted at the evidence floor",
+          value: fmt(purge.total),
+        },
+      ]
+    : []),
+];
+
+const tileClass = (i: number) => {
+  if (i === 0) {
+    return "pt-4.5 pr-5";
+  }
+  return i % 2 === 1
+    ? "border-hairline border-l px-5 pt-4.5"
+    : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
+};
+
+const purgeTail = purge.latest
+  ? `, and ${fmt(purge.total)} digests deleted rather than shipped thin.`
+  : ".";
+
 const title = "About — American Legal Digest";
-const description =
-  "What American Legal Digest is, why it exists, and what it refuses to do: " +
-  "free public sources only, a two-source evidence floor, published audits, " +
-  "and 993 digests deleted rather than shipped thin.";
+const description = `What American Legal Digest is, why it exists, and what it refuses to do: free public sources only, a two-source evidence floor, published audits${purgeTail}`;
 ---
 
 <Layout {description} {title}>
@@ -78,39 +120,16 @@ const description =
       <div
         class="border-hairline mt-9 grid grid-cols-2 border-t sm:grid-cols-4"
       >
-        <div class="pt-4.5 pr-5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            {fmt(stats.digests)}
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Topics digested
-          </div>
-        </div>
-        <div class="border-hairline border-l px-5 pt-4.5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            {doctrinalAreas.length}
-            + {compositeAreas.length}
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Doctrinal areas + cross-cutting roots
-          </div>
-        </div>
-        <div class="sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            {fmt(stats.sources)}
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Source texts held — {formatBytes(stats.sourceBytes)}
-          </div>
-        </div>
-        <div class="border-hairline border-l px-5 pt-4.5">
-          <div class="font-display text-[1.625rem] leading-none tabular-nums">
-            993
-          </div>
-          <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
-            Deleted at the evidence floor
-          </div>
-        </div>
+        {tiles.map((tile, i) => (
+            <div class={tileClass(i)}>
+              <div class="font-display text-[1.625rem] leading-none tabular-nums">
+                {tile.value}
+              </div>
+              <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+                {tile.label}
+              </div>
+            </div>
+          ))}
       </div>
 
       <!-- Why it exists -->
@@ -218,6 +237,16 @@ const description =
               class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
               href="/sitemap/"
               >Full area map ↗</a
+            >
+            <a
+              class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+              href="/committee/"
+              >Review committee ↗</a
+            >
+            <a
+              class="border-hairline hover:border-ink rounded-[2px] border px-3 py-2 no-underline"
+              href="/contact/?topic=correction"
+              >Report a correction ↗</a
             >
           </div>
         </div>

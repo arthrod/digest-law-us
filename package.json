@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@biomejs/biome": "2.5.3",
     "@bruits/satteri-wasm32-wasi": "^0.9.5",
     "@emnapi/core": "^1.11.3",
     "@emnapi/runtime": "1.11.3",
@@ -31,11 +30,12 @@
     "lint-staged": "^17.2.0",
     "pagefind": "^1.5.2",
     "typescript": "^7.0.2",
-    "ultracite": "7.9.4"
+    "ultracite": "7.9.4",
+    "wrangler": "^4.115.0"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx}": [
-      "pnpm dlx ultracite fix"
+    "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx,astro}": [
+      "ultracite fix"
     ]
   },
   "name": "digest-law",
@@ -45,8 +45,8 @@
     "preview": "NODE_OPTIONS=--max-old-space-size=24576 astro preview",
     "sync": "NODE_OPTIONS=--max-old-space-size=24576 astro sync",
     "astro": "astro",
-    "format:check": "prettier --check .",
-    "format": "prettier --write .",
+    "format:check": "oxfmt --check .",
+    "format": "oxfmt .",
     "lint": "oxlint .",
     "check": "ultracite check",
     "deploy": "rm -rf public/pagefind && NODE_OPTIONS=--max-old-space-size=12288 astro build && pagefind --site dist && cp -r dist/pagefind public/ && wrangler deploy",

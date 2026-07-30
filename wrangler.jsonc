@@ -1,12 +1,37 @@
 // Cloudflare Workers — static assets deployment for digest.law
+//
+// The site is a fully pre-rendered Astro build; the Worker exists only for
+// /api/contact (see worker/index.ts). `run_worker_first` is what makes that
+// possible: without it, `not_found_handling: "404-page"` would answer the
+// POST with the 404 page and the Worker would never run.
+//
+// Before the first deploy, onboard the sending domain once:
+//   npx wrangler email sending enable digest.law
+//   npx wrangler email sending dns get digest.law   # confirm SPF + DKIM
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "digest-law",
+  "main": "worker/index.ts",
   "compatibility_date": "2026-07-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
   },
+  // Contact form mail. The allow-lists are the platform-level backstop on
+  // worker/index.ts's own routing: even a bug there cannot address mail to
+  // anyone outside this set, nor forge a sender.
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "allowed_sender_addresses": ["forms@digest.law"],
+      "allowed_destination_addresses": [
+        "arthur@digest.law",
+        "carolina@digest.law"
+      ]
+    }
+  ],
   // workers.dev stays on as the preview origin.
   "workers_dev": true,
   "preview_urls": true,

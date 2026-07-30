@@ -38,7 +38,9 @@ compose.override.yaml
 .dist
 .node_modules
 dist/
-.wrangler/tmp/
+# `wrangler dev` writes local miniflare state under .wrangler/state/ now that
+# the deploy has a Worker entry, not just static assets.
+.wrangler/
 .pnpm-store/v11/
 .astro/
 node_modules/
