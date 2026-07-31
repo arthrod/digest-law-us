@@ -19,7 +19,11 @@ import path from "node:path";
 
 import { CORPUS_DIR } from "../src/corpus.config";
 import type { ConceptRecord, ConceptRegistry } from "../src/lib/concept-ids";
-import { mintConceptId, validateRegistry } from "../src/lib/concept-ids";
+import {
+  dashedUuid,
+  mintConceptId,
+  validateRegistry,
+} from "../src/lib/concept-ids";
 import { humanize, slugPathOf } from "../src/lib/labels";
 
 const REGISTRY_PATH = path.resolve(
@@ -30,11 +34,15 @@ const corpusRoot = path.resolve(CORPUS_DIR);
 const checkOnly = process.argv.includes("--check");
 
 interface CorpusConcept {
+  /** Identity the runner allocated at generation time, when it did. */
+  conceptId?: string;
   corpusIssueId?: string;
   label: string;
   pathNotation?: string;
   slugPath: string;
 }
+
+const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u;
 
 const FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u;
 
@@ -77,6 +85,7 @@ async function collect(dir: string, out: CorpusConcept[]): Promise<void> {
       // A bundle's digest is the .md named after its own directory (corpus.ts).
       const fm = await frontmatterOf(path.join(full, `${entry.name}.md`));
       out.push({
+        conceptId: fm.concept_id,
         corpusIssueId: fm.issue_id,
         label: fm.pref_label ?? fm.title ?? humanize(entry.name),
         pathNotation: fm.notation,
@@ -147,8 +156,30 @@ if (checkOnly) {
 }
 
 const minted = today();
+const takenIds = new Set(registry.concepts.map((record) => record.id));
+let adopted = 0;
 for (const concept of unminted) {
-  const { id, uuid } = mintConceptId();
+  // The runner allocates identity at generation time (skos_okf.py). When a
+  // digest arrives carrying its own concept_id, adopt it instead of minting a
+  // second id for the same concept — two ids for one concept is precisely the
+  // ambiguity this registry exists to prevent. A malformed or already-taken
+  // value is refused, not silently trusted.
+  const supplied = concept.conceptId?.toLowerCase();
+  const adoptable =
+    supplied && CONCEPT_ID_FORM.test(supplied) && !takenIds.has(supplied);
+  if (supplied && !adoptable) {
+    process.stderr.write(
+      `refused concept_id "${supplied}" on ${concept.slugPath}: ` +
+        `${CONCEPT_ID_FORM.test(supplied) ? "already in the registry" : "malformed"}\n`
+    );
+  }
+  const { id, uuid } = adoptable
+    ? { id: supplied, uuid: dashedUuid(supplied) }
+    : mintConceptId();
+  takenIds.add(id);
+  if (adoptable) {
+    adopted += 1;
+  }
   registry.concepts.push({
     id,
     keys: [concept.slugPath],
@@ -177,5 +208,7 @@ await writeFile(
   "utf8"
 );
 process.stdout.write(
-  `minted ${unminted.length} new id(s); registry now holds ${registry.concepts.length}\n`
+  `added ${unminted.length} record(s) — ${adopted} adopted from runner ` +
+    `concept_id, ${unminted.length - adopted} minted here; registry now holds ` +
+    `${registry.concepts.length}\n`
 );

@@ -48,6 +48,40 @@ concept, because guessing would fabricate identity continuity.
 State on 2026-07-31: 4,569 concepts minted, 1,638 carrying a corpus `issue_id`,
 0 unminted, 0 integrity violations.
 
+## Born fixed: the runner side
+
+Retrofitting identity onto generated output only works until the next run, so
+`key-digest-runner` now allocates it at generation time:
+
+- `skos_okf.mint_concept_id()` allocates a 32-hex id; the rendered
+  `legal_issue` frontmatter carries `concept_id` and `language: "en"` as
+  required fields, and `verify_legal_issue_frontmatter` rejects a malformed
+  id, a malformed BCP 47 tag, or overlapping label sets.
+- `stamp_concept_identity()` writes identity onto frontmatter the researcher
+  authored, **additively**. This matters: the existing repair path replaces the
+  whole SKOS block with a skeleton, so letting a missing `concept_id` fail
+  verification would have silently discarded the definition, scope note and
+  labels the model actually wrote.
+- Regeneration reads the `concept_id` already on disk and carries it forward
+  (`run_key_digest_research_workers.py`, `repair_okf_bundle.py`). Re-running a
+  topic does not re-mint its identity.
+- Label sets are made pairwise disjoint at write time, both lists resolved
+  together — deduplicating each field alone leaves a term that appears in both
+  sitting in both.
+- `PY_AI_RESEARCHER_PROMPT.md` documents `concept_id` as permanent public
+  identity to be reproduced byte for byte and never invented, `language` as a
+  BCP 47 tag, `issue_id` as placement-derived provenance rather than identity,
+  the pairwise label-disjointness rule, the meaning of a historical label, and
+  a bar on circular definitions.
+
+The loop closes here: `bun run ids:mint` **adopts** a `concept_id` the runner
+supplied instead of allocating a competing one, and refuses (loudly) a value
+that is malformed or already bound to another concept.
+
+State on 2026-07-31: 17 runner tests cover this, including reparenting under a
+new notation, idempotent stamping, and a drift check between the two duplicated
+`skos_okf.py` copies.
+
 ## Label and language profile
 
 - **Historical labels are not `skos:hiddenLabel`.** Hidden labels are search
@@ -58,11 +92,10 @@ State on 2026-07-31: 4,569 concepts minted, 1,638 carrying a corpus `issue_id`,
   historicalLabel are pairwise disjoint after NFC + whitespace + case folding.
   Duplicates are dropped and reported rather than published (P1-014B).
 - **Language tags are data-driven**: a record's own BCP 47 `language` wins;
-  otherwise the scheme's principal language constant (`en`) applies. As of
-  2026-07-31 **no digest carries a language field** (0 of 1,811), so every
-  literal still resolves to `en` — the exporter no longer hard-codes it, but
-  the corpus has nothing better to say yet. That gap is the open half of
-  P1-014I and belongs to the runner.
+  otherwise the scheme's principal language constant (`en`) applies. Digests
+  generated from now on carry the field (the runner writes it); the **1,811
+  already on disk do not**, so their literals still resolve through the
+  fallback. Backfilling the existing corpus is unfinished P1-014I work.
 - **Only natural language is tagged.** Identifiers, notations, dates and the
   publisher name are typed or bare (P1-014I).
 

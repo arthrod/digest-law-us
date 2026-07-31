@@ -89,10 +89,10 @@ and cannot reach `reviewed`/`validated` without the Stage 4 gates.
 R0-001…R0-010 (governance, stop rules, claims vocabulary) and R1-001…R1-020
 (schemas, identity, rights, ledger). See the inventory. Two rows moved today:
 
-| ID              | Work                                               | Owner | Status                                                                                                  |
-| --------------- | -------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------------- |
-| R1-016 / P1-001 | Opaque-ID algorithm and minted public concept IRIs | site  | **DONE (site)** — [design note](2026-07-31-concept-identity.md); runner minting still placement-derived |
-| R1-018 / P1-002 | Route registry with append-only key history        | site  | **PARTIAL** — keys and legacy IRIs published; w3id redirects (P1-014G) pending                          |
+| ID              | Work                                               | Owner       | Status                                                                                                                                        |
+| --------------- | -------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| R1-016 / P1-001 | Opaque-ID algorithm and minted public concept IRIs | site+runner | **DONE** — allocated at generation, carried across regeneration, adopted by the site registry ([design note](2026-07-31-concept-identity.md)) |
+| R1-018 / P1-002 | Route registry with append-only key history        | site        | **PARTIAL** — keys and legacy IRIs published; w3id redirects (P1-014G) pending                                                                |
 
 ### Stage 4 — Triage harness and founder-labelled audit stream (D3)
 
@@ -117,26 +117,26 @@ P1-033); the rest PENDING.
 
 ## Site track — runs alongside, in this repo
 
-| ID                         | Work                                                                                                                         | Status                                             |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| P1-001 / R7-003            | Registry-minted opaque concept IRIs                                                                                          | **DONE**                                           |
-| P1-002                     | Legacy route IRIs published per concept (`digest:legacyIri`)                                                                 | **PARTIAL** — redirects pending                    |
-| P1-006 / R7-004            | Folder parent no longer injected into `skos:broader`; placement published separately                                         | **DONE**                                           |
-| P1-014B / R7-018           | One prefLabel per language; pref/alt/historical pairwise disjoint                                                            | **DONE**                                           |
-| P1-014C / R7-019           | Typed canonical `skos:notation`; corpus notation demoted to `digest:pathNotation`                                            | **PARTIAL** — datatype not published               |
-| P1-014H / R7-025           | Append-only registry, ids never reused                                                                                       | **PARTIAL** — split/merge/deprecate events pending |
-| P1-014I / P1-033 / R7-008  | Language tags data-driven; only natural language tagged                                                                      | **PARTIAL** — corpus has no language data          |
-| P1-024                     | Site unit tests                                                                                                              | **IN PROGRESS** — 28 tests                         |
-| P1-014E / R7-021           | `skos:topConceptOf` still inferred from folder roots                                                                         | PENDING                                            |
-| P1-014A / R7-017           | Scheme IRI still the legacy route base                                                                                       | PENDING                                            |
-| P1-014D / P1-014F / R7-002 | SHACL: hierarchy inverse/closure, mapping direction                                                                          | PENDING                                            |
-| P1-014G / R7-024           | w3id redirects for concept/vocab/datatype namespaces                                                                         | PENDING                                            |
-| P0-015                     | Public methodology page promises a two-source merge floor the merge gate does not enforce (`src/pages/methodology.astro:38`) | PENDING — honesty defect, live                     |
-| P1-027                     | `format:check` matches zero files, exits 2                                                                                   | **BROKEN** — CI red                                |
-| P1-026                     | Lint green after toolchain change; `console.warn` still present                                                              | **REGRESSED**                                      |
-| P1-025                     | `check` is style lint, not `astro check`; no type check runs                                                                 | **UNEXERCISED**                                    |
-| P1-028                     | CI builds without the corpus in a 3-minute job                                                                               | PENDING                                            |
-| P1-029                     | Site depends on a private sibling checkout (`src/corpus.config.ts`)                                                          | PENDING                                            |
+| ID                         | Work                                                                                                                         | Status                                                                                  |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| P1-001 / R7-003            | Registry-minted opaque concept IRIs                                                                                          | **DONE**                                                                                |
+| P1-002                     | Legacy route IRIs published per concept (`digest:legacyIri`)                                                                 | **PARTIAL** — redirects pending                                                         |
+| P1-006 / R7-004            | Folder parent no longer injected into `skos:broader`; placement published separately                                         | **DONE**                                                                                |
+| P1-014B / R7-018           | One prefLabel per language; pref/alt/historical pairwise disjoint                                                            | **DONE**                                                                                |
+| P1-014C / R7-019           | Typed canonical `skos:notation`; corpus notation demoted to `digest:pathNotation`                                            | **PARTIAL** — datatype not published                                                    |
+| P1-014H / R7-025           | Append-only registry, ids never reused                                                                                       | **PARTIAL** — split/merge/deprecate events pending                                      |
+| P1-014I / P1-033 / R7-008  | Language tags data-driven; only natural language tagged                                                                      | **PARTIAL** — runner now writes `language`; the 1,811 existing digests are unbackfilled |
+| P1-024                     | Site unit tests                                                                                                              | **IN PROGRESS** — 28 tests                                                              |
+| P1-014E / R7-021           | `skos:topConceptOf` still inferred from folder roots                                                                         | PENDING                                                                                 |
+| P1-014A / R7-017           | Scheme IRI still the legacy route base                                                                                       | PENDING                                                                                 |
+| P1-014D / P1-014F / R7-002 | SHACL: hierarchy inverse/closure, mapping direction                                                                          | PENDING                                                                                 |
+| P1-014G / R7-024           | w3id redirects for concept/vocab/datatype namespaces                                                                         | PENDING                                                                                 |
+| P0-015                     | Public methodology page promises a two-source merge floor the merge gate does not enforce (`src/pages/methodology.astro:38`) | PENDING — honesty defect, live                                                          |
+| P1-027                     | `format:check` matches zero files, exits 2                                                                                   | **BROKEN** — CI red                                                                     |
+| P1-026                     | Lint green after toolchain change; `console.warn` still present                                                              | **REGRESSED**                                                                           |
+| P1-025                     | `check` is style lint, not `astro check`; no type check runs                                                                 | **UNEXERCISED**                                                                         |
+| P1-028                     | CI builds without the corpus in a 3-minute job                                                                               | PENDING                                                                                 |
+| P1-029                     | Site depends on a private sibling checkout (`src/corpus.config.ts`)                                                          | PENDING                                                                                 |
 
 ## Standing risks and blocks
 
@@ -194,55 +194,55 @@ else was measured or changed on the date in the change log.
 
 ### Brownfield P1 — taxonomy, editorial, tests, publishing (all-generated plan)
 
-| ID      | Task                                                    | Owner     | Status                                                                       |
-| ------- | ------------------------------------------------------- | --------- | ---------------------------------------------------------------------------- |
-| P1-001  | Mint UUID-based public concept IRIs                     | site      | **DONE** (site)                                                              |
-| P1-002  | Preserve all legacy path aliases                        | site      | **PARTIAL** — legacy IRIs published; w3id redirects pending (P1-014G)        |
-| P1-003  | Type all concepts                                       | editorial | PENDING                                                                      |
-| P1-004  | Remove scaffolds from the validated issue channel       | editorial | PENDING                                                                      |
-| P1-005  | Build the approximately 600-topic entry layer           | editorial | PENDING                                                                      |
-| P1-005A | Reconcile physical and v3 root systems                  | editorial | PENDING                                                                      |
-| P1-006  | Add polyhierarchy                                       | runner    | **PARTIAL** — structural injection removed; polyhierarchy curation pending   |
-| P1-007  | Add associative relationships                           | editorial | PENDING                                                                      |
-| P1-008  | Complete dedicated definitions                          | editorial | PENDING                                                                      |
-| P1-009  | Complete scope notes                                    | editorial | PENDING                                                                      |
-| P1-010  | Review FOLIO mappings                                   | editorial | PENDING                                                                      |
-| P1-011  | Produce the real FOLIO build manifest                   | runner    | PENDING                                                                      |
-| P1-012  | Archive the full item-level concordance                 | runner    | PENDING                                                                      |
-| P1-013  | Add strict authoring schema                             | runner    | PENDING                                                                      |
-| P1-014  | Add SHACL and SKOS integrity validation                 | runner    | PENDING                                                                      |
-| P1-014A | Separate stable scheme and immutable release identity   | site      | PENDING                                                                      |
-| P1-014B | Enforce label integrity                                 | site      | **DONE** (site)                                                              |
-| P1-014C | Govern notation                                         | site      | **PARTIAL** — typed notation emitted; datatype not published                 |
-| P1-014D | Validate hierarchy and association semantics            | site      | PENDING                                                                      |
-| P1-014E | Review top concepts                                     | site      | PENDING                                                                      |
-| P1-014F | Validate mapping-property semantics                     | site      | PENDING                                                                      |
-| P1-014G | Qualify W3ID persistence behavior                       | site      | PENDING                                                                      |
-| P1-014H | Implement concept lifecycle without IRI reuse           | site      | **PARTIAL** — non-reuse + registry policy; split/merge events pending        |
-| P1-014I | Tag only natural-language literals                      | site      | **PARTIAL** (site) — exporter data-driven; corpus carries no language field  |
-| P1-015  | Create explicit editorial statuses                      | editorial | PENDING                                                                      |
-| P1-016  | Record reviewer competence and decisions                | editorial | PENDING                                                                      |
-| P1-017  | Establish two-reviewer adjudication                     | editorial | PENDING                                                                      |
-| P1-018  | Publish an error taxonomy                               | editorial | PENDING                                                                      |
-| P1-019  | Benchmark lawyer task performance                       | editorial | PENDING                                                                      |
-| P1-020  | Define release stop rules                               | editorial | PENDING                                                                      |
-| P1-021  | Replace obsolete per-PR path tests                      | runner    | PENDING                                                                      |
-| P1-022  | Make the runner suite green                             | runner    | PENDING                                                                      |
-| P1-023  | Raise runner coverage                                   | runner    | PENDING                                                                      |
-| P1-024  | Add site unit and integration tests                     | site      | **IN PROGRESS** — 29 unit tests; integration/coverage pending                |
-| P1-025  | Fix the site check heap                                 | site      | **UNEXERCISED** — `check` is now style lint, not `astro check`               |
-| P1-026  | Fix site lint                                           | site      | **REGRESSED** — exits 0 after toolchain change, `console.warn` still present |
-| P1-027  | Fix site formatting                                     | site      | **BROKEN** — `oxfmt --check .` matches 0 files, exits 2; CI red              |
-| P1-028  | Replace three-minute/full-corpus CI mismatch            | site      | PENDING                                                                      |
-| P1-029  | Decouple the site from a private sibling checkout       | site      | PENDING                                                                      |
-| P1-030  | Replace monolithic static generation                    | site      | PENDING                                                                      |
-| P1-031  | Add production observability and error budgets          | site      | PENDING                                                                      |
-| P1-032  | Define the jurisdiction package schema                  | runner    | PENDING                                                                      |
-| P1-033  | Remove hardcoded English from RDF export                | site      | **DONE** (site)                                                              |
-| P1-034  | Build local professional vocabulary from local evidence | runner    | PENDING                                                                      |
-| P1-035  | Appoint local specialist review                         | editorial | PENDING                                                                      |
-| P1-036  | Map, do not force equivalence                           | editorial | PENDING                                                                      |
-| P1-037  | Validate native-language search                         | site      | PENDING                                                                      |
+| ID      | Task                                                    | Owner       | Status                                                                                            |
+| ------- | ------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| P1-001  | Mint UUID-based public concept IRIs                     | site        | **DONE** (site)                                                                                   |
+| P1-002  | Preserve all legacy path aliases                        | site        | **PARTIAL** — legacy IRIs published; w3id redirects pending (P1-014G)                             |
+| P1-003  | Type all concepts                                       | editorial   | PENDING                                                                                           |
+| P1-004  | Remove scaffolds from the validated issue channel       | editorial   | PENDING                                                                                           |
+| P1-005  | Build the approximately 600-topic entry layer           | editorial   | PENDING                                                                                           |
+| P1-005A | Reconcile physical and v3 root systems                  | editorial   | PENDING                                                                                           |
+| P1-006  | Add polyhierarchy                                       | runner      | **PARTIAL** — structural injection removed; polyhierarchy curation pending                        |
+| P1-007  | Add associative relationships                           | editorial   | PENDING                                                                                           |
+| P1-008  | Complete dedicated definitions                          | editorial   | PENDING                                                                                           |
+| P1-009  | Complete scope notes                                    | editorial   | PENDING                                                                                           |
+| P1-010  | Review FOLIO mappings                                   | editorial   | PENDING                                                                                           |
+| P1-011  | Produce the real FOLIO build manifest                   | runner      | PENDING                                                                                           |
+| P1-012  | Archive the full item-level concordance                 | runner      | PENDING                                                                                           |
+| P1-013  | Add strict authoring schema                             | runner      | PENDING                                                                                           |
+| P1-014  | Add SHACL and SKOS integrity validation                 | runner      | PENDING                                                                                           |
+| P1-014A | Separate stable scheme and immutable release identity   | site        | PENDING                                                                                           |
+| P1-014B | Enforce label integrity                                 | site        | **DONE** (site)                                                                                   |
+| P1-014C | Govern notation                                         | site        | **PARTIAL** — typed notation emitted; datatype not published                                      |
+| P1-014D | Validate hierarchy and association semantics            | site        | PENDING                                                                                           |
+| P1-014E | Review top concepts                                     | site        | PENDING                                                                                           |
+| P1-014F | Validate mapping-property semantics                     | site        | PENDING                                                                                           |
+| P1-014G | Qualify W3ID persistence behavior                       | site        | PENDING                                                                                           |
+| P1-014H | Implement concept lifecycle without IRI reuse           | site        | **PARTIAL** — non-reuse + registry policy; split/merge events pending                             |
+| P1-014I | Tag only natural-language literals                      | site+runner | **PARTIAL** — exporter data-driven and the runner emits `language`; existing digests unbackfilled |
+| P1-015  | Create explicit editorial statuses                      | editorial   | PENDING                                                                                           |
+| P1-016  | Record reviewer competence and decisions                | editorial   | PENDING                                                                                           |
+| P1-017  | Establish two-reviewer adjudication                     | editorial   | PENDING                                                                                           |
+| P1-018  | Publish an error taxonomy                               | editorial   | PENDING                                                                                           |
+| P1-019  | Benchmark lawyer task performance                       | editorial   | PENDING                                                                                           |
+| P1-020  | Define release stop rules                               | editorial   | PENDING                                                                                           |
+| P1-021  | Replace obsolete per-PR path tests                      | runner      | PENDING                                                                                           |
+| P1-022  | Make the runner suite green                             | runner      | PENDING                                                                                           |
+| P1-023  | Raise runner coverage                                   | runner      | PENDING                                                                                           |
+| P1-024  | Add site unit and integration tests                     | site        | **IN PROGRESS** — 29 unit tests; integration/coverage pending                                     |
+| P1-025  | Fix the site check heap                                 | site        | **UNEXERCISED** — `check` is now style lint, not `astro check`                                    |
+| P1-026  | Fix site lint                                           | site        | **REGRESSED** — exits 0 after toolchain change, `console.warn` still present                      |
+| P1-027  | Fix site formatting                                     | site        | **BROKEN** — `oxfmt --check .` matches 0 files, exits 2; CI red                                   |
+| P1-028  | Replace three-minute/full-corpus CI mismatch            | site        | PENDING                                                                                           |
+| P1-029  | Decouple the site from a private sibling checkout       | site        | PENDING                                                                                           |
+| P1-030  | Replace monolithic static generation                    | site        | PENDING                                                                                           |
+| P1-031  | Add production observability and error budgets          | site        | PENDING                                                                                           |
+| P1-032  | Define the jurisdiction package schema                  | runner      | PENDING                                                                                           |
+| P1-033  | Remove hardcoded English from RDF export                | site        | **DONE** (site)                                                                                   |
+| P1-034  | Build local professional vocabulary from local evidence | runner      | PENDING                                                                                           |
+| P1-035  | Appoint local specialist review                         | editorial   | PENDING                                                                                           |
+| P1-036  | Map, do not force equivalence                           | editorial   | PENDING                                                                                           |
+| P1-037  | Validate native-language search                         | site        | PENDING                                                                                           |
 
 ### Phase 0 — governance, scope, stop rules (from-scratch plan)
 
@@ -261,28 +261,28 @@ else was measured or changed on the date in the change log.
 
 ### Phase 1 — canonical contracts and identity (from-scratch plan)
 
-| ID     | Task                                     | Owner  | Status                                                            |
-| ------ | ---------------------------------------- | ------ | ----------------------------------------------------------------- |
-| R1-001 | Define the `Concept` schema              | runner | PENDING                                                           |
-| R1-002 | Define the concept-kind enumeration      | runner | PENDING                                                           |
-| R1-003 | Define the `Label` schema                | runner | PENDING                                                           |
-| R1-004 | Define the `Note` schema                 | runner | PENDING                                                           |
-| R1-005 | Define `ConceptRelation`                 | runner | PENDING                                                           |
-| R1-006 | Define `Placement`                       | runner | PENDING                                                           |
-| R1-007 | Define `SourceRecord`                    | runner | PENDING                                                           |
-| R1-008 | Define `SourceSnapshot`                  | runner | PENDING                                                           |
-| R1-009 | Define `Authority`                       | runner | PENDING                                                           |
-| R1-010 | Define `EvidenceSpan`                    | runner | PENDING                                                           |
-| R1-011 | Define `DigestClaim`                     | runner | PENDING                                                           |
-| R1-012 | Define `DigestRevision`                  | runner | PENDING                                                           |
-| R1-013 | Define `EditorialDecision`               | runner | PENDING                                                           |
-| R1-014 | Define `RunAttempt`                      | runner | PENDING                                                           |
-| R1-015 | Define `ReleaseManifest`                 | runner | PENDING                                                           |
-| R1-016 | Choose the opaque-ID algorithm           | runner | **DONE** (site registry) — runner minting still placement-derived |
-| R1-017 | Reserve the persistent concept namespace | site   | PENDING                                                           |
-| R1-018 | Implement a route registry               | site   | **PARTIAL** — registry keys are route history; redirects pending  |
-| R1-019 | Implement schema migrations              | runner | PENDING                                                           |
-| R1-020 | Prove canonical/export round-trip parity | runner | PENDING                                                           |
+| ID     | Task                                     | Owner       | Status                                                                                        |
+| ------ | ---------------------------------------- | ----------- | --------------------------------------------------------------------------------------------- |
+| R1-001 | Define the `Concept` schema              | runner      | PENDING                                                                                       |
+| R1-002 | Define the concept-kind enumeration      | runner      | PENDING                                                                                       |
+| R1-003 | Define the `Label` schema                | runner      | PENDING                                                                                       |
+| R1-004 | Define the `Note` schema                 | runner      | PENDING                                                                                       |
+| R1-005 | Define `ConceptRelation`                 | runner      | PENDING                                                                                       |
+| R1-006 | Define `Placement`                       | runner      | PENDING                                                                                       |
+| R1-007 | Define `SourceRecord`                    | runner      | PENDING                                                                                       |
+| R1-008 | Define `SourceSnapshot`                  | runner      | PENDING                                                                                       |
+| R1-009 | Define `Authority`                       | runner      | PENDING                                                                                       |
+| R1-010 | Define `EvidenceSpan`                    | runner      | PENDING                                                                                       |
+| R1-011 | Define `DigestClaim`                     | runner      | PENDING                                                                                       |
+| R1-012 | Define `DigestRevision`                  | runner      | PENDING                                                                                       |
+| R1-013 | Define `EditorialDecision`               | runner      | PENDING                                                                                       |
+| R1-014 | Define `RunAttempt`                      | runner      | PENDING                                                                                       |
+| R1-015 | Define `ReleaseManifest`                 | runner      | PENDING                                                                                       |
+| R1-016 | Choose the opaque-ID algorithm           | site+runner | **DONE** — allocated in the runner (`skos_okf.mint_concept_id`), adopted by the site registry |
+| R1-017 | Reserve the persistent concept namespace | site        | PENDING                                                                                       |
+| R1-018 | Implement a route registry               | site        | **PARTIAL** — registry keys are route history; redirects pending                              |
+| R1-019 | Implement schema migrations              | runner      | PENDING                                                                                       |
+| R1-020 | Prove canonical/export round-trip parity | runner      | PENDING                                                                                       |
 
 ### Phase 2 — issue registry and topic entry (from-scratch plan)
 
@@ -501,3 +501,5 @@ else was measured or changed on the date in the change log.
 | Date       | Change                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2026-07-31 | Ledger created, consolidating both 2026-07-29 plan sets under D1–D4. Site-side concept identity and label profile implemented (P1-001, P1-002 partial, P1-006, P1-014B, P1-014C partial, P1-014H partial, P1-014I partial, P1-033, R1-016, R1-018 partial, R7-003, R7-004, R7-008 partial, R7-018, R7-019 partial, R7-025 partial); see [the design note](2026-07-31-concept-identity.md). Measured and recorded: `format:check` broken, `lint` regressed, `check` unexercised. |
+| 2026-07-31 | Format gate repaired — `oxfmt --check .` had been matching zero files, failing CI and every commit hook.                                                                                                                                                                                                                                                                                                                                                                        |
+| 2026-07-31 | Runner: digests are now generated with `concept_id` and `language`, identity carried across regeneration and repair, label sets made disjoint at write time, and the researcher prompt updated (R1-016, part of P1-014B/I). The site registry adopts runner-allocated ids.                                                                                                                                                                                                      |

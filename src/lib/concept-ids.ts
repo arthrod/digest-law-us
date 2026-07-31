@@ -104,6 +104,23 @@ export function mintConceptId(): { id: string; uuid: string } {
   return { id: uuid.replaceAll("-", ""), uuid };
 }
 
+/**
+ * 8-4-4-4-12 form of a 32-hex id, for `dct:identifier`.
+ *
+ * Used when adopting a `concept_id` the runner allocated at generation time
+ * (`skos_okf.mint_concept_id`), which arrives as bare hex.
+ */
+export function dashedUuid(id: string): string {
+  const hex = id.toLowerCase();
+  return [
+    hex.slice(0, 8),
+    hex.slice(8, 12),
+    hex.slice(12, 16),
+    hex.slice(16, 20),
+    hex.slice(20, 32),
+  ].join("-");
+}
+
 const ID_FORM = /^[0-9a-f]{32}$/u;
 
 /**

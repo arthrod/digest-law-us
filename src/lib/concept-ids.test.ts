@@ -8,6 +8,7 @@ import type { ConceptRegistry } from "./concept-ids";
 import {
   allConcepts,
   conceptIriFor,
+  dashedUuid,
   legacyIriFor,
   mintConceptId,
   validateRegistry,
@@ -41,6 +42,33 @@ describe("minting", () => {
     const a = mintConceptId();
     const b = mintConceptId();
     expect(a.id).not.toBe(b.id);
+  });
+});
+
+describe("adopting a runner-allocated id", () => {
+  test("bare hex from skos_okf.py converts to the dashed identifier form", () => {
+    const { id, uuid } = mintConceptId();
+    expect(dashedUuid(id)).toBe(uuid);
+  });
+
+  test("adoption keeps the id the digest was born with", () => {
+    // The runner writes concept_id into frontmatter at generation time; the
+    // registry must record that value, not allocate a competing one.
+    const born = "9460d81470154e458335365e3b4c5014";
+    const record = {
+      id: born,
+      keys: ["evidence-law/proof-of-writings"],
+      label: "Proof of Writings",
+      minted: "2026-07-31",
+      uuid: dashedUuid(born),
+    };
+    const reg: ConceptRegistry = {
+      concepts: [record],
+      policy: "test",
+      version: 1,
+    };
+    expect(validateRegistry(reg)).toEqual([]);
+    expect(lookup(reg, "evidence-law/proof-of-writings")?.id).toBe(born);
   });
 });
 
