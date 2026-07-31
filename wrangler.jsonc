@@ -17,7 +17,7 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*"]
+    "run_worker_first": ["/api/*"],
   },
   // Contact form mail. The allow-lists are the platform-level backstop on
   // worker/index.ts's own routing: even a bug there cannot address mail to
@@ -28,13 +28,13 @@
       "allowed_sender_addresses": ["forms@digest.law"],
       "allowed_destination_addresses": [
         "arthur@digest.law",
-        "carolina@digest.law"
-      ]
-    }
+        "carolina@digest.law",
+      ],
+    },
   ],
   // workers.dev stays on as the preview origin.
   "workers_dev": true,
   "preview_urls": true,
   "observability": { "enabled": true },
-  "routes": [{ "pattern": "digest.law", "custom_domain": true }]
+  "routes": [{ "pattern": "digest.law", "custom_domain": true }],
 }
