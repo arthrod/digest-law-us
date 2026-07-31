@@ -11,6 +11,8 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
+import type { ResolvedRef } from "./iri";
+import { resolveRefIn } from "./iri";
 import { humanize, slugSegment } from "./labels";
 
 export type Digest = CollectionEntry<"digests">;
@@ -245,38 +247,15 @@ export function getCorpus(): Promise<Corpus> {
 }
 
 // ---- SKOS URN resolution ----
+// The namespaces and the pure resolver live in iri.ts so tests and scripts
+// can use them without loading astro:content; re-exported here because every
+// existing caller imports them from the corpus.
 
-export const W3ID_BASE = "https://w3id.org/digest-law/us/";
-export const SITE_BASE = "https://digest.law/";
-
-export interface ResolvedRef {
-  label: string;
-  /** true when a page exists on this site for the ref */
-  published: boolean;
-  /** lowercase-kebab path derived from the URN — always defined */
-  slugPath: string;
-  urn: string;
-}
-
-export function urnToSlugPath(urn: string): string {
-  const notation = urn.replace(/^urn:legal-taxonomy:issue:/u, "");
-  return notation.split(".").map(slugSegment).join("/");
-}
+export type { ResolvedRef } from "./iri";
+export { SITE_BASE, urnToSlugPath, W3ID_BASE } from "./iri";
 
 export function resolveRef(corpus: Corpus, urn: string): ResolvedRef {
-  const slugPath = urnToSlugPath(urn);
-  const node = corpus.nodeBySlugPath.get(slugPath);
-  const lastSeg =
-    urn
-      .replace(/^urn:legal-taxonomy:issue:/u, "")
-      .split(".")
-      .pop() ?? urn;
-  return {
-    label: node?.label ?? humanize(lastSeg),
-    published: Boolean(node),
-    slugPath,
-    urn,
-  };
+  return resolveRefIn(corpus.nodeBySlugPath, urn);
 }
 
 /** Breadcrumb trail for a node: area → … → node (labels + urls). */

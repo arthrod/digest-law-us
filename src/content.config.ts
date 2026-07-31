@@ -1,6 +1,6 @@
-import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
+import { defineCollection } from "astro:content";
 
 import { CORPUS_DIR } from "@/corpus.config";
 import { sourcesLoader } from "@/loaders/sources";
@@ -22,6 +22,9 @@ const digestSchema = z
     historical_labels: z.array(z.string()).default([]),
     id: z.string().optional(),
     issue_id: z.string().optional(),
+    /** BCP 47 tag for this record's literals; absent on every 2026 digest,
+     *  so the exporter falls back to the scheme language (P1-014I). */
+    language: z.string().optional(),
     legal_relations: z
       .object({
         defenseTo: z.array(z.string()).default([]),

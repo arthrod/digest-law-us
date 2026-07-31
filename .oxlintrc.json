@@ -38,5 +38,13 @@
     "promise/prefer-await-to-then": "warn",
     "promise/prefer-await-to-callbacks": "warn",
     "promise/no-nesting": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts"],
+      "rules": {
+        "vitest/prefer-importing-vitest-globals": "off"
+      }
+    }
+  ]
 }
