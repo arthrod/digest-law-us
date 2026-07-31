@@ -17,7 +17,9 @@
     "directory": "./dist",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": ["/api/*"],
+    // /id/* is the concept-identity resolver (w3id.org/digest-law/concept/…
+    // lands there); it must reach the Worker rather than the 404 page.
+    "run_worker_first": ["/api/*", "/id/*"],
   },
   // Contact form mail. The allow-lists are the platform-level backstop on
   // worker/index.ts's own routing: even a bug there cannot address mail to

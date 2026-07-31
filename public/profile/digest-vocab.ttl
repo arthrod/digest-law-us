@@ -1,0 +1,98 @@
+# American Legal Digest — project vocabulary
+#
+# Terms this project defines because SKOS has none for them. Everything here
+# exists to keep an assertion OUT of a SKOS property that would overstate it:
+# a folder is not a broader concept, a corpus id is not identity, a historical
+# label is not a search alias.
+#
+# Published at https://w3id.org/digest-law/vocab/ (redirect configuration:
+# w3id/digest-law/.htaccess in the site repository).
+
+@prefix digest: <https://w3id.org/digest-law/vocab/> .
+@prefix idtype: <https://w3id.org/digest-law/datatype/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/digest-law/vocab/>
+    a owl:Ontology ;
+    dct:title "American Legal Digest project vocabulary"@en ;
+    dct:description """Terms used alongside SKOS by the American Legal Digest.
+Each exists to record something the corpus actually knows without asserting a
+SKOS relation the evidence does not support."""@en ;
+    dct:publisher "American Legal Digest" ;
+    dct:created "2026-07-31"^^xsd:date .
+
+digest:placementParent
+    a rdf:Property ;
+    rdfs:label "placement parent"@en ;
+    rdfs:comment """The concept one level up in the browse tree. Placement is
+navigation, not semantics: the drafter's directory layout is evidence of how
+the corpus is arranged, not an editorial claim that the parent is a broader
+concept. Use skos:broader only for a reviewed hierarchical assertion."""@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept .
+
+digest:placementChild
+    a rdf:Property ;
+    rdfs:label "placement child"@en ;
+    rdfs:comment """Inverse of digest:placementParent. Not skos:narrower, for
+the same reason."""@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range skos:Concept ;
+    owl:inverseOf digest:placementParent .
+
+digest:historicalLabel
+    a rdf:Property ;
+    rdfs:label "historical label"@en ;
+    rdfs:comment """A term this concept was known by in earlier sources, now
+superseded or archaic. Deliberately NOT skos:hiddenLabel: a hidden label is a
+search aid a publisher chooses not to display, while a historical label is a
+fact about the term's past. Conflating them makes obsolete terminology
+indistinguishable from spelling variants and typo catches. Values are
+language-tagged literals, disjoint from skos:prefLabel and skos:altLabel for
+the same concept and language."""@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range rdfs:Literal .
+
+digest:legacyIri
+    a rdf:Property ;
+    rdfs:label "legacy IRI"@en ;
+    rdfs:comment """A route-derived IRI this concept was published under
+before identity moved to the concept namespace. Published so that anything
+citing the old form can still be resolved to the concept. It is not asserted
+as owl:sameAs: the legacy IRI is a retired name, and this project does not
+invite OWL reasoning over it."""@en ;
+    rdfs:domain skos:Concept .
+
+digest:pathNotation
+    a rdf:Property ;
+    rdfs:label "path notation"@en ;
+    rdfs:comment """The dotted UPPER_SNAKE notation derived from the concept's
+position in the corpus tree (for example EVIDENCE_LAW.PROOF_OF_WRITINGS). A
+route artifact, kept for traceability. The canonical skos:notation is the
+concept id, typed idtype:concept-id."""@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:string .
+
+digest:corpusIssueId
+    a rdf:Property ;
+    rdfs:label "corpus issue id"@en ;
+    rdfs:comment """The generating pipeline's issue_id (a UUIDv5). Provenance
+only, never identity: it is derived from the issue's placement, so the same
+label under a different area path yields a different value and a reparent
+changes it. Public identity is the allocated concept id."""@en ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:string .
+
+idtype:concept-id
+    a rdfs:Datatype ;
+    rdfs:label "concept id"@en ;
+    rdfs:comment """32 lowercase hexadecimal characters: an allocated, opaque
+public identifier. Not derived from path, label, or any corpus id, and never
+reused or reassigned. The lexical space is [0-9a-f]{32}; the value space is
+the 128-bit integers it denotes."""@en ;
+    owl:onDatatype xsd:string .

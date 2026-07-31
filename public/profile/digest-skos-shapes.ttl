@@ -1,0 +1,181 @@
+# American Legal Digest — SHACL shapes for the published SKOS graph
+#
+# Normative statement of the constraints the release graph must satisfy
+# (P1-014B label integrity, P1-014C notation, P1-014D hierarchy and
+# association semantics, P1-014F mapping semantics).
+#
+# Status, stated plainly: these shapes are published as the specification and
+# are enforced today by an equivalent deterministic implementation —
+# `src/lib/skos-validate.ts`, run over the built graph by `bun run skos:check`
+# and by the unit tests. A SHACL engine is NOT yet run over releases; wiring
+# one in is tracked as R7-002 in docs/LEDGER.md. Where the two ever disagree,
+# these shapes are the specification and the implementation is the defect.
+#
+# Some constraints below are marked NON-SHACL: they are graph-wide properties
+# (cycle freedom, notation uniqueness) that plain SHACL core cannot express
+# without SPARQL-based constraints. They are stated here for completeness and
+# implemented in the validator.
+
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix digest: <https://w3id.org/digest-law/vocab/> .
+@prefix idtype: <https://w3id.org/digest-law/datatype/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix shape:  <https://w3id.org/digest-law/shapes/> .
+
+shape:ConceptShape
+    a sh:NodeShape ;
+    sh:targetClass skos:Concept ;
+    sh:name "Digest concept" ;
+
+    # ---- Identity and notation (P1-014C) ----
+
+    sh:property [
+        sh:path skos:notation ;
+        sh:maxCount 1 ;
+        sh:datatype idtype:concept-id ;
+        sh:pattern "^[0-9a-f]{32}$" ;
+        sh:description """Exactly one canonical typed notation: the allocated
+concept id. The corpus path notation is not a notation for this purpose and
+belongs in digest:pathNotation. NON-SHACL companion: the notation must also be
+unique across the scheme.""" ;
+    ] ;
+    sh:property [
+        sh:path dct:identifier ;
+        sh:maxCount 1 ;
+        sh:pattern "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" ;
+        sh:description "Dashed form of the same 128 bits as skos:notation." ;
+    ] ;
+    sh:property [
+        sh:path digest:corpusIssueId ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:Literal ;
+        sh:description """Provenance only. A validator must never treat this
+as identity, and it must never be language-tagged.""" ;
+    ] ;
+    sh:property [
+        sh:path skos:inScheme ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+
+    # ---- Labels (P1-014B, SKOS S13/S14) ----
+
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:Literal ;
+        sh:uniqueLang true ;
+        sh:description "At most one preferred label per language tag." ;
+    ] ;
+    sh:property [
+        sh:path skos:altLabel ;
+        sh:nodeKind sh:Literal ;
+        sh:description """Language-tagged. Disjoint from skos:prefLabel and
+digest:historicalLabel for the same language after Unicode NFC, whitespace
+collapse and case folding (NON-SHACL: the normalized comparison is done in the
+validator).""" ;
+    ] ;
+    sh:property [
+        sh:path digest:historicalLabel ;
+        sh:nodeKind sh:Literal ;
+        sh:description """Superseded terminology. Never skos:hiddenLabel, and
+disjoint from the other label sets for the same language.""" ;
+    ] ;
+    sh:property [
+        sh:path skos:hiddenLabel ;
+        sh:maxCount 0 ;
+        sh:description """This project publishes no hidden labels. The
+constraint exists to stop historical labels from being smuggled back into a
+search-alias property.""" ;
+    ] ;
+
+    # ---- Documentation ----
+
+    sh:property [
+        sh:path skos:definition ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:Literal ;
+    ] ;
+
+    # ---- Hierarchy and association (P1-014D) ----
+
+    sh:property [
+        sh:path skos:broader ;
+        sh:nodeKind sh:IRI ;
+        sh:disjoint skos:related ;
+        sh:description """Reviewed hierarchical assertions only. Placement is
+digest:placementParent. NON-SHACL companions: the broader graph must be
+acyclic, no concept may be its own broader, and skos:related must be disjoint
+from skos:broaderTransitive (SKOS S27), not merely from direct broader.""" ;
+    ] ;
+    sh:property [
+        sh:path skos:narrower ;
+        sh:nodeKind sh:IRI ;
+        sh:disjoint skos:related ;
+    ] ;
+    sh:property [
+        sh:path skos:related ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+    sh:property [
+        sh:path digest:placementParent ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+    ] ;
+
+    # ---- Mapping properties (P1-014F, SKOS S46) ----
+
+    sh:property [
+        sh:path skos:exactMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:disjoint skos:broadMatch ;
+        sh:description """exactMatch is symmetric and transitive; it is
+disjoint from broadMatch and narrowMatch (SKOS S46). An explicit
+exactMatch+closeMatch pair on the same target is redundant, not contradictory,
+and is reported rather than failed.""" ;
+    ] ;
+    sh:property [
+        sh:path skos:closeMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^https?://" ;
+        sh:description """Absolute HTTP(S) IRIs only. Local placeholder refs
+(x-digest:…) are candidates, not mappings, and must not be published as
+SKOS mapping properties.""" ;
+    ] ;
+    sh:property [
+        sh:path skos:broadMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^https?://" ;
+        sh:disjoint skos:narrowMatch ;
+    ] ;
+    sh:property [
+        sh:path skos:narrowMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^https?://" ;
+    ] ;
+    sh:property [
+        sh:path skos:relatedMatch ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^https?://" ;
+        sh:disjoint skos:exactMatch ;
+    ] .
+
+shape:ConceptSchemeShape
+    a sh:NodeShape ;
+    sh:targetClass skos:ConceptScheme ;
+    sh:name "Digest concept scheme" ;
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+    ] ;
+    sh:property [
+        sh:path skos:hasTopConcept ;
+        sh:nodeKind sh:IRI ;
+        sh:description """NON-SHACL companion: every skos:hasTopConcept must
+be matched by skos:topConceptOf in the other direction, and each top concept
+requires a recorded editorial decision (P1-014E — currently inferred from
+folder roots, which this profile does not accept as evidence).""" ;
+    ] .

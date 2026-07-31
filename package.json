@@ -16,7 +16,8 @@
     "fix": "ultracite fix",
     "ids:check": "bun scripts/mint-concept-ids.ts --check",
     "ids:mint": "bun scripts/mint-concept-ids.ts",
-    "test": "bun test src",
+    "skos:check": "bun scripts/check-skos.ts",
+    "test": "bun test src worker",
     "prepare": "lefthook install"
   },
   "dependencies": {

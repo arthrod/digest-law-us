@@ -112,6 +112,41 @@ frontmatter `broader`, 24 carry none, and only **3** differ from the folder
 parent. The published hierarchy is therefore substantially preserved, and what
 remains is asserted rather than inferred.
 
+## Resolution and validation
+
+**Shapes.** `public/profile/digest-skos-shapes.ttl` is the normative statement
+of the release constraints (P1-014B/C/D/E/F). It is enforced today by an
+equivalent deterministic implementation, `src/lib/skos-validate.ts`, run by
+`bun run skos:check` over the built `/skos.jsonld` — including the graph-wide
+properties SHACL core cannot express: notation uniqueness, broader-cycle
+freedom, and `skos:related` disjointness from `skos:broaderTransitive`
+(SKOS S27, which a per-node check misses for a grandparent). **No SHACL engine
+runs over releases yet** (R7-002); if the shapes and the validator ever
+disagree, the shapes are the specification and the validator is the defect.
+
+**Vocabulary.** `public/profile/digest-vocab.ttl` defines every `digest:` term
+and the `concept-id` datatype, so the properties this project invented are
+dereferenceable rather than folklore. The validator fails a graph that uses a
+`digest:` term the vocabulary does not define.
+
+**Resolution.** `/id/{concept-id}` on digest.law resolves an id to its current
+route at request time (`worker/index.ts`): 301 to the route, **410 Gone** for a
+retired concept — a 404 would imply the identifier never existed — and 404 for
+an unknown id. The route comes from `/id-map.json`, generated at build from the
+registry's last route key.
+
+**w3id.** `w3id/digest-law/.htaccess` is the redirect configuration for the
+permanent namespace, with `w3id/README.md` covering the upstream PR to
+perma-id/w3id.org, the per-rule prerequisites, and post-merge verification.
+302 throughout, deliberately: the w3id URI is the identifier, and a permanent
+redirect invites clients to record `digest.law` and drop it. Until that PR
+merges, **every `w3id.org/digest-law/…` IRI is a stable name that does not
+dereference** — a legitimate state for an identifier, but not one to describe
+as if resolution already worked.
+
+Content negotiation is not implemented: there is no per-concept JSON-LD
+endpoint, so an `Accept` branch would have nothing honest to point at.
+
 ## Still open, and visible in the export
 
 - **P1-014E** — `skos:topConceptOf` is still inferred from folder roots. The
@@ -120,17 +155,22 @@ remains is asserted rather than inferred.
 - **P1-014A / R7-017** — the concept-scheme IRI is still the legacy route base
   `https://w3id.org/digest-law/us/`; stable scheme identity and immutable
   release identity are not yet separated.
-- **P1-014G / R7-024** — none of the `w3id.org/digest-law/{concept,vocab,
-datatype}/` namespaces redirect yet. The w3id configuration PR is unwritten,
-  so these IRIs are stable names that do not yet dereference.
-- **P1-014D / P1-014F** — hierarchy inverse/closure and mapping-direction
-  validation (SHACL) are not implemented.
+- **P1-014G / R7-024** — the redirect configuration is written and the
+  resolver it points at is implemented and verified against a local Workers
+  runtime, but the PR to perma-id/w3id.org is unsubmitted, so the namespaces
+  still do not dereference. Content negotiation and release resolution remain
+  unimplemented.
+- **P1-014D / P1-014F** — the constraints are specified in the shapes and
+  enforced by `skos:check`; running an actual SHACL engine over releases
+  (R7-002) is not done, and `skos:check` is not yet wired into CI.
 
 ## Checks
 
 ```
-bun test src        # 28 tests: rename/reparent identity, registry integrity,
-                    # label disjointness, language fallback, placement split
+bun run test        # 68 tests: identity across rename/reparent, registry
+                    # integrity, label disjointness, language fallback,
+                    # placement split, shape constraints, id resolution
 bun run ids:check   # unminted concepts + registry integrity; non-zero on fail
-bun run ids:mint    # allocate ids for new corpus concepts
+bun run ids:mint    # allocate ids for new corpus concepts (adopts runner ids)
+bun run skos:check  # validate dist/skos.jsonld against the shapes
 ```

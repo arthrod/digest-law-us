@@ -252,11 +252,112 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
   );
 }
 
+/**
+ * Identity resolution — `/id/{concept-id}` (P1-001, P1-002, P1-014G).
+ *
+ * This is where `https://w3id.org/digest-law/concept/{id}` lands. Concept ids
+ * are permanent; routes are not, so the redirect is resolved at request time
+ * from the id map rather than baked into a redirect list.
+ *
+ * Status codes carry meaning here:
+ *   301  the concept lives at this route today
+ *   410  the concept is retired — it existed, it is gone, and its id is never
+ *        reused. A 404 would wrongly suggest it never existed.
+ *   404  no such id
+ *
+ * Content negotiation is deliberately NOT implemented: there is no per-concept
+ * JSON-LD endpoint yet, so an Accept-driven branch would have nothing honest
+ * to point at. The whole graph is at /skos.jsonld. Tracked with P1-014G.
+ */
+const CONCEPT_ID = /^[0-9a-f]{32}$/u;
+
+interface IdMap {
+  retired: Record<string, string>;
+  routes: Record<string, string>;
+}
+
+let idMapPromise: Promise<IdMap | null> | null = null;
+
+async function loadIdMap(request: Request, env: Env): Promise<IdMap | null> {
+  const response = await env.ASSETS.fetch(
+    new Request(new URL("/id-map.json", request.url), { method: "GET" })
+  );
+  if (!response.ok) {
+    return null;
+  }
+  return (await response.json()) as IdMap;
+}
+
+/** Test seam: the map is cached for the isolate's life, not per request. */
+export function resetIdMapCache(): void {
+  idMapPromise = null;
+}
+
+export async function handleConceptId(
+  request: Request,
+  env: Env,
+  id: string
+): Promise<Response> {
+  if (!(request.method === "GET" || request.method === "HEAD")) {
+    return new Response("Method not allowed", {
+      headers: { Allow: "GET, HEAD" },
+      status: 405,
+    });
+  }
+  if (!CONCEPT_ID.test(id)) {
+    return new Response("A concept id is 32 lowercase hex characters.\n", {
+      headers: { "Content-Type": "text/plain; charset=utf-8" },
+      status: 404,
+    });
+  }
+  // Cached for the life of the isolate; the map only changes on deploy.
+  idMapPromise ??= loadIdMap(request, env);
+  const map = await idMapPromise;
+  if (!map) {
+    idMapPromise = null;
+    return new Response("Identity map unavailable.\n", {
+      headers: { "Content-Type": "text/plain; charset=utf-8" },
+      status: 503,
+    });
+  }
+
+  const route = map.routes[id];
+  if (route) {
+    return Response.redirect(
+      new URL(`/${route}/`, request.url).toString(),
+      301
+    );
+  }
+  const gone = map.retired[id];
+  if (gone) {
+    return new Response(
+      `Concept ${id} has been retired. Its last route was /${gone}/.\n` +
+        "The identifier is never reused and never reassigned.\n",
+      {
+        headers: { "Content-Type": "text/plain; charset=utf-8" },
+        status: 410,
+      }
+    );
+  }
+  return new Response(`No concept with id ${id}.\n`, {
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+    status: 404,
+  });
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(request.url);
     if (pathname === "/api/contact") {
       return await handleContact(request, env);
+    }
+    const conceptId = /^\/id\/(?<id>[^/]+)\/?$/u.exec(pathname);
+    if (conceptId) {
+      return await handleConceptId(
+        request,
+        env,
+        (conceptId.groups?.id ?? "").toLowerCase()
+      );
     }
     return await env.ASSETS.fetch(request);
   },
