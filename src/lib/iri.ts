@@ -43,11 +43,22 @@ export const SITE_BASE = "https://digest.law/";
  */
 export const SCHEME_LANGUAGE = "en";
 
-/** Well-formed BCP 47 tag, syntactically (not registry-validated). */
+/**
+ * Well-formed BCP 47 tag, syntactically (not registry-validated).
+ *
+ * Language, then script/region/variant subtags of 2-8 characters, then the two
+ * sections a naive `{2,8}` pattern gets wrong because they are introduced by a
+ * SINGLE character: extensions (`en-u-nu-latn`) and private use (`en-x-test`).
+ * Rejecting those is not a harmless strictness — `languageOf` falls back to
+ * SCHEME_LANGUAGE, so a valid tag would be silently replaced by "en" and the
+ * published literal would assert the wrong language. Saying nothing is better
+ * than saying something false, and saying the truth is better than both.
+ */
+const BCP47 =
+  /^[a-z]{2,3}(?:-[a-zA-Z0-9]{2,8})*(?:-[0-9a-wyzA-WYZ](?:-[a-zA-Z0-9]{2,8})+)*(?:-[xX](?:-[a-zA-Z0-9]{1,8})+)?$/u;
+
 export function isBcp47(tag: unknown): tag is string {
-  return (
-    typeof tag === "string" && /^[a-z]{2,3}(?:-[a-zA-Z0-9]{2,8})*$/u.test(tag)
-  );
+  return typeof tag === "string" && BCP47.test(tag);
 }
 
 export interface ResolvedRef {

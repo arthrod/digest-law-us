@@ -120,6 +120,28 @@ describe("language tagging (P1-014I)", () => {
     expect(concept["skos:prefLabel"]).toMatchObject({ "@language": "en" });
   });
 
+  test("extension and private-use tags survive instead of falling back", () => {
+    // These are introduced by a SINGLE character, so a pattern demanding 2-8
+    // per subtag rejects them. The fallback is not a safe default here: it
+    // replaces a valid tag with "en" and publishes a false claim about the
+    // literal's language.
+    for (const tag of ["en-u-nu-latn", "en-x-test", "ar-u-nu-arab-x-priv"]) {
+      const concept = conceptFor(
+        corpusOf(),
+        node("evidence-law/x", { language: tag, pref_label: "X" })
+      );
+      expect(concept["skos:prefLabel"]).toMatchObject({ "@language": tag });
+    }
+  });
+
+  test("a lone singleton with nothing after it is still malformed", () => {
+    const concept = conceptFor(
+      corpusOf(),
+      node("evidence-law/x", { language: "en-u", pref_label: "X" })
+    );
+    expect(concept["skos:prefLabel"]).toMatchObject({ "@language": "en" });
+  });
+
   test("identifiers, notations and dates are never language-tagged", () => {
     const concept = conceptFor(
       corpusOf(),

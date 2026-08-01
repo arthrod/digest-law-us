@@ -22,6 +22,7 @@
 @prefix idtype: <https://w3id.org/digest-law/datatype/> .
 @prefix dct:    <http://purl.org/dc/terms/> .
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix shape:  <https://w3id.org/digest-law/shapes/> .
 
 shape:ConceptShape
@@ -51,8 +52,12 @@ unique across the scheme.""" ;
         sh:path digest:corpusIssueId ;
         sh:maxCount 1 ;
         sh:nodeKind sh:Literal ;
+        sh:datatype xsd:string ;
         sh:description """Provenance only. A validator must never treat this
-as identity, and it must never be language-tagged.""" ;
+as identity, and it must never be language-tagged. xsd:string is how the
+prohibition is enforced: a language-tagged literal is rdf:langString, so
+sh:nodeKind sh:Literal alone would have permitted exactly what this
+description forbids.""" ;
     ] ;
     sh:property [
         sh:path skos:inScheme ;
@@ -66,8 +71,12 @@ as identity, and it must never be language-tagged.""" ;
         sh:path skos:prefLabel ;
         sh:minCount 1 ;
         sh:nodeKind sh:Literal ;
+        sh:datatype rdf:langString ;
         sh:uniqueLang true ;
-        sh:description "At most one preferred label per language tag." ;
+        sh:description """At most one preferred label per language tag, and the
+tag is required: sh:uniqueLang constrains duplicates among tagged literals and
+says nothing about an untagged one, so rdf:langString is what makes the tag
+mandatory.""" ;
     ] ;
     sh:property [
         sh:path skos:altLabel ;
@@ -131,6 +140,7 @@ from skos:broaderTransitive (SKOS S27), not merely from direct broader.""" ;
         sh:path skos:exactMatch ;
         sh:nodeKind sh:IRI ;
         sh:disjoint skos:broadMatch ;
+        sh:disjoint skos:narrowMatch ;
         sh:description """exactMatch is symmetric and transitive; it is
 disjoint from broadMatch and narrowMatch (SKOS S46). An explicit
 exactMatch+closeMatch pair on the same target is redundant, not contradictory,
