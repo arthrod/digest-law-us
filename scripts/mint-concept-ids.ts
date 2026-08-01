@@ -1,9 +1,16 @@
 #!/usr/bin/env bun
 /**
- * Allocate public concept ids for corpus concepts that do not have one yet.
+ * Reconcile the concept-identity registry with the corpus.
  *
- *   bun run ids:mint    append records for new concepts, rewrite the registry
- *   bun run ids:check   report only; non-zero exit if anything is unminted
+ *   bun run ids:mint    mint ids for new concepts, tombstone what a purge
+ *                       removed, lift the tombstone off anything regenerated
+ *   bun run ids:check   report only; non-zero exit if the registry and the
+ *                       corpus disagree in either direction
+ *
+ * Both halves matter. A purge that deletes bundles without retiring their ids
+ * leaves `/id-map.json` advertising routes that 404, so `/id/{id}` answers
+ * "moved here" about a page that is gone. `ids:check` fails on that, which is
+ * what stops a purge from being merged half-done.
  *
  * What it will not do: rebind a key. If a concept is renamed or reparented,
  * its old route key goes orphaned and a new path shows up unminted — the two
@@ -22,6 +29,8 @@ import type { ConceptRecord, ConceptRegistry } from "../src/lib/concept-ids";
 import {
   dashedUuid,
   mintConceptId,
+  orphansOf,
+  reconcileRegistry,
   validateRegistry,
 } from "../src/lib/concept-ids";
 import { humanize, slugPathOf } from "../src/lib/labels";
@@ -135,15 +144,17 @@ if (concepts.length === 0) {
 
 const unminted = concepts.filter((c) => !existingKeys.has(c.slugPath));
 const liveKeys = new Set(concepts.map((c) => c.slugPath));
-const orphans = registry.concepts.filter(
-  (record) => !(record.retired || record.keys.some((k) => liveKeys.has(k)))
+const orphans = orphansOf(registry, liveKeys);
+const buried = registry.concepts.filter(
+  (record) => record.retired && record.keys.some((k) => liveKeys.has(k))
 );
 
 process.stdout.write(
   `corpus concepts: ${concepts.length}\n` +
     `registry records: ${registry.concepts.length}\n` +
     `unminted: ${unminted.length}\n` +
-    `orphaned records (key no longer in corpus): ${orphans.length}\n`
+    `orphaned records (key no longer in corpus): ${orphans.length}\n` +
+    `retired records whose route is live again: ${buried.length}\n`
 );
 reportOrphans(orphans);
 
@@ -152,7 +163,19 @@ if (checkOnly) {
   for (const problem of found) {
     process.stderr.write(`integrity: ${problem}\n`);
   }
-  process.exit(unminted.length === 0 && found.length === 0 ? 0 : 1);
+  // An orphan is a purge that was never finished: the id still resolves to a
+  // route that is gone. Reporting it and passing would let that ship.
+  if (orphans.length > 0 || buried.length > 0) {
+    process.stderr.write("run `bun run ids:mint` to reconcile\n");
+  }
+  process.exit(
+    unminted.length === 0 &&
+      orphans.length === 0 &&
+      buried.length === 0 &&
+      found.length === 0
+      ? 0
+      : 1
+  );
 }
 
 const minted = today();
@@ -191,6 +214,10 @@ for (const concept of unminted) {
   });
 }
 
+// Tombstone what a purge took, and lift the tombstone off anything that came
+// back. Neither deletes a record or frees an id (P1-014H).
+const { restored, retired } = reconcileRegistry(registry, liveKeys, minted);
+
 registry.concepts.sort((a, b) => a.keys[0].localeCompare(b.keys[0]));
 
 const problems = validateRegistry(registry);
@@ -210,5 +237,7 @@ await writeFile(
 process.stdout.write(
   `added ${unminted.length} record(s) — ${adopted} adopted from runner ` +
     `concept_id, ${unminted.length - adopted} minted here; registry now holds ` +
-    `${registry.concepts.length}\n`
+    `${registry.concepts.length}\n` +
+    `retired ${retired.length} (tombstoned, 410 Gone), ` +
+    `restored ${restored.length} (route regenerated)\n`
 );

@@ -11,6 +11,8 @@ import {
   dashedUuid,
   legacyIriFor,
   mintConceptId,
+  orphansOf,
+  reconcileRegistry,
   validateRegistry,
 } from "./concept-ids";
 import { CONCEPT_BASE } from "./iri";
@@ -194,5 +196,75 @@ describe("IRI shape", () => {
     expect(`${CONCEPT_BASE}${record?.id}`).toMatch(
       /^https:\/\/w3id\.org\/digest-law\/concept\/[0-9a-f]{32}$/u
     );
+  });
+});
+
+describe("retiring what a purge removed", () => {
+  const LIVE = "evidence-law/proof-of-writings";
+  const GONE = "evidence-law/purged-topic";
+
+  test("a concept whose route left the corpus is an orphan", () => {
+    const reg = registryWith([GONE]);
+    expect(orphansOf(reg, new Set([LIVE]))).toHaveLength(1);
+  });
+
+  test("a reparented concept is not an orphan — an old key is still a key", () => {
+    // keys are append-only, so the newest key being absent proves nothing;
+    // mistaking a move for a deletion would tombstone a live concept.
+    const reg = registryWith(["evidence-law/old-home", LIVE]);
+    expect(orphansOf(reg, new Set([LIVE]))).toEqual([]);
+    const moved = registryWith([LIVE, "evidence-law/new-home"]);
+    expect(orphansOf(moved, new Set([LIVE]))).toEqual([]);
+  });
+
+  test("retiring stamps the date and the record survives", () => {
+    const reg = registryWith([GONE]);
+    const [{ id }] = reg.concepts;
+    const { retired } = reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    expect(retired).toHaveLength(1);
+    expect(reg.concepts).toHaveLength(1);
+    expect(reg.concepts[0].id).toBe(id);
+    expect(reg.concepts[0].retired).toBe("2026-08-01");
+    expect(reg.concepts[0].keys).toEqual([GONE]);
+  });
+
+  test("retiring twice is a no-op and does not restamp the date", () => {
+    const reg = registryWith([GONE]);
+    reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    const second = reconcileRegistry(reg, new Set([LIVE]), "2026-09-09");
+    expect(second.retired).toEqual([]);
+    expect(reg.concepts[0].retired).toBe("2026-08-01");
+  });
+
+  test("a retired id is never freed for reuse", () => {
+    const reg = registryWith([GONE]);
+    reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    expect(validateRegistry(reg)).toEqual([]);
+    expect(reg.concepts[0].keys).toContain(GONE);
+  });
+
+  test("a concept that comes back is resurrected, not re-minted", () => {
+    // The registry is append-only: if the route returns, the SAME record
+    // claims it again. The tombstone has to lift, or a live concept would
+    // answer 410 Gone forever.
+    const reg = registryWith([GONE]);
+    const [{ id }] = reg.concepts;
+    reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    const back = reconcileRegistry(reg, new Set([LIVE, GONE]), "2026-09-09");
+    expect(back.restored).toHaveLength(1);
+    expect(reg.concepts[0].retired).toBeUndefined();
+    expect(reg.concepts.find((r) => r.keys.includes(GONE))?.id).toBe(id);
+  });
+
+  test("a live concept is never touched by a reconcile", () => {
+    const reg = registryWith([LIVE]);
+    const { restored, retired } = reconcileRegistry(
+      reg,
+      new Set([LIVE]),
+      "2026-08-01"
+    );
+    expect(retired).toEqual([]);
+    expect(restored).toEqual([]);
+    expect(reg.concepts[0].retired).toBeUndefined();
   });
 });

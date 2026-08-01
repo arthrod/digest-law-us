@@ -121,6 +121,66 @@ export function dashedUuid(id: string): string {
   ].join("-");
 }
 
+/**
+ * Records whose every route key has left the corpus and that are not already
+ * tombstoned — i.e. concepts a purge removed.
+ *
+ * A record keeps its keys forever, so "gone" means *no* key is live, not that
+ * the newest one is missing: a concept that was reparented still has its old
+ * keys in the list and must not be mistaken for a casualty.
+ */
+export function orphansOf(
+  reg: ConceptRegistry,
+  liveKeys: ReadonlySet<string>
+): ConceptRecord[] {
+  return reg.concepts.filter(
+    (record) =>
+      !(record.retired || record.keys.some((key) => liveKeys.has(key)))
+  );
+}
+
+export interface Reconciliation {
+  /** Orphans tombstoned by this run. */
+  retired: ConceptRecord[];
+  /** Tombstoned records whose route is live again. */
+  restored: ConceptRecord[];
+}
+
+/**
+ * Bring the registry back into agreement with the corpus, in place.
+ *
+ * This is the other half of a purge. Deleting a bundle without retiring its id
+ * leaves `/id-map.json` advertising a route that 404s, so the resolver answers
+ * "moved here" about a page that is gone — worse than either honest answer.
+ * A tombstoned id resolves to 410 Gone forever (worker/index.ts).
+ *
+ * The reverse matters just as much: a purged path can be regenerated later,
+ * and because keys are append-only the old record is what claims it again. If
+ * the tombstone stayed, that live concept would answer 410 forever. So a
+ * returning route clears the retirement and keeps the id it always had —
+ * resurrected, never re-minted.
+ *
+ * No record is deleted and no id is freed; retirement is one dated field.
+ * Running it twice changes nothing.
+ */
+export function reconcileRegistry(
+  reg: ConceptRegistry,
+  liveKeys: ReadonlySet<string>,
+  on: string
+): Reconciliation {
+  const retired = orphansOf(reg, liveKeys);
+  for (const record of retired) {
+    record.retired = on;
+  }
+  const restored = reg.concepts.filter(
+    (record) => record.retired && record.keys.some((key) => liveKeys.has(key))
+  );
+  for (const record of restored) {
+    delete record.retired;
+  }
+  return { restored, retired };
+}
+
 const ID_FORM = /^[0-9a-f]{32}$/u;
 
 /**
