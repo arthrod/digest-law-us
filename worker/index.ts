@@ -278,14 +278,29 @@ interface IdMap {
 
 let idMapPromise: Promise<IdMap | null> | null = null;
 
+/**
+ * Never throws. A rejected fetch or a body that will not parse has to come
+ * back as null, because the caller caches this promise for the life of the
+ * isolate: a cached *rejection* would turn one transient blip into a permanent
+ * 500 on every later /id/ request, with no path back short of a redeploy.
+ *
+ * A map missing either half is treated as no map at all. Half a map answers
+ * wrongly rather than not at all — without `retired`, a tombstoned id 404s,
+ * which claims the concept never existed.
+ */
 async function loadIdMap(request: Request, env: Env): Promise<IdMap | null> {
-  const response = await env.ASSETS.fetch(
-    new Request(new URL("/id-map.json", request.url), { method: "GET" })
-  );
-  if (!response.ok) {
+  try {
+    const response = await env.ASSETS.fetch(
+      new Request(new URL("/id-map.json", request.url), { method: "GET" })
+    );
+    if (!response.ok) {
+      return null;
+    }
+    const map = (await response.json()) as IdMap | null;
+    return map?.routes && map.retired ? map : null;
+  } catch {
     return null;
   }
-  return (await response.json()) as IdMap;
 }
 
 /** Test seam: the map is cached for the isolate's life, not per request. */

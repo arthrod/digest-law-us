@@ -26,6 +26,23 @@ function envWith(map: unknown, ok = true) {
   } as unknown as Parameters<typeof handleConceptId>[1];
 }
 
+/** ASSETS whose fetch rejects outright, rather than answering non-ok. */
+function throwingEnv() {
+  return {
+    ASSETS: { fetch: () => Promise.reject(new Error("network")) },
+  } as unknown as Parameters<typeof handleConceptId>[1];
+}
+
+/** ASSETS that answers 200 with a body that is not JSON. */
+function brokenJsonEnv() {
+  return {
+    ASSETS: {
+      fetch: () =>
+        Promise.resolve(new Response("{ truncated", { status: 200 })),
+    },
+  } as unknown as Parameters<typeof handleConceptId>[1];
+}
+
 const get = (id: string, method = "GET") =>
   new Request(`https://digest.law/id/${id}`, { method });
 
@@ -87,6 +104,22 @@ describe("resolving a concept id", () => {
     await handleConceptId(get(LIVE), envWith(MAP, false), LIVE);
     const retry = await handleConceptId(get(LIVE), envWith(MAP), LIVE);
     expect(retry.status).toBe(301);
+  });
+
+  test("a load that throws is 503, and is not cached either", async () => {
+    // A non-ok response is only one way to fail: the fetch itself can reject.
+    // Caching the rejected promise would 500 every later /id/ request for the
+    // life of the isolate — one blip, permanent outage, no recovery.
+    const first = await handleConceptId(get(LIVE), throwingEnv(), LIVE);
+    expect(first.status).toBe(503);
+    const retry = await handleConceptId(get(LIVE), envWith(MAP), LIVE);
+    expect(retry.status).toBe(301);
+  });
+
+  test("a truncated id map is 503, not an unhandled parse error", async () => {
+    // A 200 that is not JSON: the asset was cut off or half-deployed.
+    const response = await handleConceptId(get(LIVE), brokenJsonEnv(), LIVE);
+    expect(response.status).toBe(503);
   });
 });
 
