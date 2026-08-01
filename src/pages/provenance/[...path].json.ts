@@ -4,6 +4,7 @@
  * provenance strip links to.
  */
 import type { APIRoute, GetStaticPaths } from "astro";
+
 import { getCorpus } from "@/lib/corpus";
 
 export const getStaticPaths: GetStaticPaths = async () => {

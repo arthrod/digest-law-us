@@ -36,7 +36,7 @@ if you need the log) and verify success from the output, not the exit code alone
 
 ## Grepping build logs: "error" is a legal topic name
 
-Corpus URLs legitimately contain the word *error* (`appeal-and-error`,
+Corpus URLs legitimately contain the word _error_ (`appeal-and-error`,
 `diagnostic-error`, …). To check a build log, match
 `\[build\] Complete!|Stack trace|\[ERROR\]` — never bare `error`.
 
@@ -47,10 +47,10 @@ page is a bug even when it is currently correct — it survives the corpus
 changing underneath it. There are two derivation paths, and everything
 published goes through one of them:
 
-| Figure | Source | Read via |
-| --- | --- | --- |
-| digests, areas, sources, bytes, pre-provenance, latest timestamp | the content collections (`CORPUS_DIR`) | `getCorpus()` → `corpus.stats`, `src/lib/corpus.ts` |
-| bundles deleted at the evidence floor, purge dates | `PURGE_DIR/YYYY-MM-DD-purge-*.tsv`, one row per deleted bundle | `getPurge()`, `src/lib/purge.ts` |
+| Figure                                                           | Source                                                         | Read via                                            |
+| ---------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------------------------------- |
+| digests, areas, sources, bytes, pre-provenance, latest timestamp | the content collections (`CORPUS_DIR`)                         | `getCorpus()` → `corpus.stats`, `src/lib/corpus.ts` |
+| bundles deleted at the evidence floor, purge dates               | `PURGE_DIR/YYYY-MM-DD-purge-*.tsv`, one row per deleted bundle | `getPurge()`, `src/lib/purge.ts`                    |
 
 `PURGE_DIR` defaults to `../key-digest-runner/docs` — the same repo as the
 corpus, one level above `key_digest/`. A new purge needs no code change:
@@ -130,8 +130,8 @@ was previously stuck half-migrated — a leftover `biome.jsonc` extending
 `ultracite/biome/core`, which asks for Biome rules (`useSortedEnumMembers`,
 `useSortedTypeFields`, `useSortedPackageJson`, …) that the pinned
 `@biomejs/biome@2.5.3` does not know. Result: `ultracite check` and
-`ultracite fix` aborted on **every** file with *"Biome exited because the
-configuration resulted in errors."*
+`ultracite fix` aborted on **every** file with _"Biome exited because the
+configuration resulted in errors."_
 
 Resolved by finishing the migration, not by pinning a newer Biome — Biome was
 the component holding the toolchain back from TypeScript 7:
@@ -151,15 +151,15 @@ the component holding the toolchain back from TypeScript 7:
 Ultracite's core preset assumes a plain app. Several of its rules are
 structurally wrong here and were turned **off** with cause:
 
-| Rule | Why off |
-| --- | --- |
-| `node/no-top-level-await` | Astro frontmatter *is* top-level await (`await getCorpus()`). |
-| `import/no-nodejs-modules` | The corpus loaders read the filesystem at build time. That is the architecture. |
-| `unicorn/filename-case` | Astro components are PascalCase by framework convention. |
-| `jest/require-hook`, `vitest/require-hook` | Fire on `.astro` files; there is no test suite. |
-| `eslint/no-implicit-globals` | Fires on `<script>` blocks, which Astro scopes as modules. |
-| `eslint/func-style` | 57 hits; the repo consistently uses function declarations. |
-| `import/no-relative-parent-imports` | The Worker deliberately imports `../src/lib/committee`. |
+| Rule                                       | Why off                                                                         |
+| ------------------------------------------ | ------------------------------------------------------------------------------- |
+| `node/no-top-level-await`                  | Astro frontmatter _is_ top-level await (`await getCorpus()`).                   |
+| `import/no-nodejs-modules`                 | The corpus loaders read the filesystem at build time. That is the architecture. |
+| `unicorn/filename-case`                    | Astro components are PascalCase by framework convention.                        |
+| `jest/require-hook`, `vitest/require-hook` | Fire on `.astro` files; there is no test suite.                                 |
+| `eslint/no-implicit-globals`               | Fires on `<script>` blocks, which Astro scopes as modules.                      |
+| `eslint/func-style`                        | 57 hits; the repo consistently uses function declarations.                      |
+| `import/no-relative-parent-imports`        | The Worker deliberately imports `../src/lib/committee`.                         |
 
 `max-statements`, `complexity`, `max-nested-calls` and the `promise/*`
 preferences are **warnings**, not off — they are real signal on
@@ -273,14 +273,17 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 ### Framework-Specific Guidance
 
 **Next.js:**
+
 - Use Next.js `<Image>` component for images
 - Use `next/head` or App Router metadata API for head elements
 - Use Server Components for async data fetching instead of async Client Components
 
 **React 19+:**
+
 - Use ref as a prop instead of `React.forwardRef`
 
 **Solid/Svelte/Vue/Qwik:**
+
 - Use `class` and `for` attributes (not `className` or `htmlFor`)
 
 ---
@@ -306,7 +309,6 @@ Oxlint + Oxfmt's linter will catch most issues automatically. Focus your attenti
 ---
 
 Most formatting and common issues are automatically fixed by Oxlint + Oxfmt. Run `pnpm dlx ultracite fix` before committing to ensure compliance.
-
 
 # Ultracite Code Standards
 
@@ -398,14 +400,17 @@ Write code that is **accessible, performant, type-safe, and maintainable**. Focu
 ### Framework-Specific Guidance
 
 **Next.js:**
+
 - Use Next.js `<Image>` component for images
 - Use `next/head` or App Router metadata API for head elements
 - Use Server Components for async data fetching instead of async Client Components
 
 **React 19+:**
+
 - Use ref as a prop instead of `React.forwardRef`
 
 **Solid/Svelte/Vue/Qwik:**
+
 - Use `class` and `for` attributes (not `className` or `htmlFor`)
 
 ---

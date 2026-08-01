@@ -1,4 +1,8 @@
-
 allowBuilds:
   esbuild: true
+  # lefthook installs the git hooks; workerd is wrangler's runtime binary.
+  # pnpm blocks unlisted install scripts outright, so CI fails at install —
+  # before lint, format, or build ever run — until they are named here.
+  lefthook: true
   sharp: true
+  workerd: true

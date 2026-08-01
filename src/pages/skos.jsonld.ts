@@ -5,6 +5,7 @@
  * just the pages.
  */
 import type { APIRoute } from "astro";
+
 import { getCorpus } from "@/lib/corpus";
 import { schemeJsonLd } from "@/lib/skos";
 

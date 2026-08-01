@@ -1,18 +1,35 @@
-# Ignore everything
-/*
+# Read by oxfmt (together with .gitignore), which is what `format:check`,
+# `format`, and the ultracite pre-commit hook all run.
+#
+# Exclusion-only by necessity: the previous "ignore /* then negate" form
+# matched ZERO files, so oxfmt exited 2 with "Expected at least one target
+# file". CI's format step and every commit hook failed on that, and no file
+# was ever actually format-checked. Add ignores here; never allow-list.
+#
+# dist, node_modules, .astro, .wrangler and public/pagefind are already
+# covered by .gitignore, which oxfmt also reads.
 
-# Except these files & folders
-!/src
-!/worker
-!/public
-!/.github
-!tsconfig.json
-!astro.config.ts
-!package.json
-!.prettierrc
-!eslint.config.js
-!README.md
-!.vscode
+# Machine-generated: 4,569 identity records written by `bun run ids:mint`.
+# Reformatting a 1.7 MB generated file buys no readability.
+src/data/concept-ids.json
 
-# Ignore MDX files
+# Dated evidence snapshots. These are measurements, not living documents —
+# reformatting them rewrites a frozen record (verification-addendum protocol
+# rule 2). The live tracker, docs/LEDGER.md, is deliberately NOT listed here.
+docs/all-generated-2026-07-29/
+docs/from-scratch-2026-07-29/
+docs/2026-07-30-bottleneck-decisions.md
+docs/2026-07-30-verification-addendum.md
+
+# Tool-generated release history.
+CHANGELOG.md
+
+# Lockfiles are tool-owned.
+bun.lock
+pnpm-lock.yaml
+
+# oxfmt does not format MDX.
 *.mdx
+
+# Design handoff archive.
+*.zip
