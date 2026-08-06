@@ -11,9 +11,12 @@
 import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 
+import { CORPUS_DIR, PREVIEW_MODE } from "@/corpus.config";
+
 import type { ResolvedRef } from "./iri";
 import { resolveRefIn } from "./iri";
 import { humanize, slugSegment } from "./labels";
+import { previewBundles } from "./preview";
 
 export type Digest = CollectionEntry<"digests">;
 export type SourceMeta = CollectionEntry<"sources">;
@@ -81,7 +84,7 @@ async function build(): Promise<Corpus> {
 
   // A digest is the .md named after its own bundle directory. Anything else
   // that slipped through the glob is logged and dropped, never silently.
-  const digests: Digest[] = [];
+  let digests: Digest[] = [];
   for (const entry of rawDigests) {
     const segs = entry.id.split("/");
     if (segs.length >= 2 && segs.at(-1) === segs.at(-2)) {
@@ -121,6 +124,36 @@ async function build(): Promise<Corpus> {
   }
   for (const list of sourcesByBundle.values()) {
     list.sort((a, b) => a.data.slug.localeCompare(b.data.slug));
+  }
+
+  // The content collections were already narrowed to these bundles (see
+  // content.config.ts), so this is a consistency net rather than the cut:
+  // it drops anything a stale content-layer cache still holds.
+  if (PREVIEW_MODE) {
+    const kept = await previewBundles(CORPUS_DIR);
+    const maps = [
+      auditsByDir,
+      caselawByDir,
+      statutoryByDir,
+      runsByDir,
+      sourcesByBundle,
+    ];
+    for (const map of maps) {
+      for (const dir of map.keys()) {
+        if (!kept.has(dir)) {
+          map.delete(dir);
+        }
+      }
+    }
+    for (const dir of byDir.keys()) {
+      if (!kept.has(dir)) {
+        byDir.delete(dir);
+      }
+    }
+    digests = digests.filter((d) => kept.has(parentDir(d.id)));
+    console.warn(
+      `[corpus] PREVIEW MODE — ${kept.size} bundles, ${digests.length} digests; a partial corpus, never deploy this output`
+    );
   }
 
   // ---- Tree ----

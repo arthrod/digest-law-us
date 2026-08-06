@@ -2,12 +2,33 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
-import { CORPUS_DIR } from "@/corpus.config";
+import { CORPUS_DIR, PREVIEW_MODE } from "@/corpus.config";
+import { previewBundles } from "@/lib/preview";
 import { sourcesLoader } from "@/loaders/sources";
 
 /** Keep raw corpus paths as ids — the URL scheme derives from them. */
 const rawId = ({ entry }: { entry: string }) =>
   entry.replace(/\.(?<ext>md|mdx|json)$/u, "");
+
+/**
+ * Preview builds narrow every glob to the selected bundle directories, so
+ * the content layer never reads the rest of the corpus. This is the whole
+ * point of preview mode: filtering after the load would still pay for it.
+ * Off in a normal build, where the set is empty and patterns are unchanged.
+ */
+const previewDirs = PREVIEW_MODE ? [...(await previewBundles(CORPUS_DIR))] : [];
+
+const scoped = (patterns: string[]): string[] => {
+  if (!PREVIEW_MODE) {
+    return patterns;
+  }
+  const includes = patterns.filter((p) => !p.startsWith("!"));
+  const excludes = patterns.filter((p) => p.startsWith("!"));
+  return [
+    ...previewDirs.flatMap((dir) => includes.map((p) => `${dir}/${p}`)),
+    ...excludes,
+  ];
+};
 
 /** SKOS `legal_issue` frontmatter carried by every digest. Deliberately
  *  loose: 69 pre-provenance bundles (June 2026) predate some fields. */
@@ -56,7 +77,7 @@ const digests = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
-    pattern: [
+    pattern: scoped([
       "**/*.md",
       "!**/index.md",
       "!**/timestamp.md",
@@ -64,7 +85,7 @@ const digests = defineCollection({
       "!**/statutory_index.md",
       "!**/_source_snippet_audit.md",
       "!**/sources/**",
-    ],
+    ]),
   }),
   schema: digestSchema,
 });
@@ -94,7 +115,7 @@ const caselaw = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
-    pattern: "**/caselaw_index.md",
+    pattern: scoped(["**/caselaw_index.md"]),
   }),
   schema: indexSchema,
 });
@@ -103,7 +124,7 @@ const statutory = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
-    pattern: "**/statutory_index.md",
+    pattern: scoped(["**/statutory_index.md"]),
   }),
   schema: indexSchema,
 });
@@ -112,7 +133,7 @@ const audits = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
-    pattern: "**/_source_snippet_audit.md",
+    pattern: scoped(["**/_source_snippet_audit.md"]),
   }),
   schema: z
     .object({
@@ -130,7 +151,7 @@ const runs = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
-    pattern: "**/run.json",
+    pattern: scoped(["**/run.json"]),
   }),
   schema: z
     .object({

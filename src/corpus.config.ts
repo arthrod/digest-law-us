@@ -20,3 +20,28 @@ export const PURGE_DIR = process.env.PURGE_DIR ?? "../key-digest-runner/docs";
 
 /** Markdown bytes rendered inline per source page (hard constraint 3). */
 export const SOURCE_CHUNK_BYTES = 200_000;
+
+/**
+ * Preview mode — a deliberately tiny build for style and content iteration.
+ *
+ * Astro rebuilds every route on every `astro build`; at ~57k pages that is
+ * the whole cost of the build, and there is no incremental static build to
+ * reach for. Instead, preview mode caps the corpus at a handful of digest
+ * bundles (chosen to exercise every view: audit, caselaw, statutory,
+ * multi-chunk sources) so `build:preview` finishes in seconds. Output goes
+ * to `dist-preview/` (see astro.config.ts) so a full `dist/` is never
+ * clobbered. Preview builds are for local iteration only — `deploy` never
+ * sets these variables.
+ *
+ * - PREVIEW_BUNDLES=10   keep at most N digest bundles (area round-robin)
+ * - PREVIEW_PATHS=a,b/c  keep bundles under these corpus or slug paths
+ */
+export const PREVIEW_BUNDLES =
+  Math.trunc(Number(process.env.PREVIEW_BUNDLES ?? "")) || 0;
+
+export const PREVIEW_PATHS = (process.env.PREVIEW_PATHS ?? "")
+  .split(",")
+  .map((p) => p.trim().replaceAll(/^\/|\/$/gu, ""))
+  .filter(Boolean);
+
+export const PREVIEW_MODE = PREVIEW_BUNDLES > 0 || PREVIEW_PATHS.length > 0;

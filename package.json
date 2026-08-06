@@ -4,7 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=24576 astro dev",
+    "dev:preview": "NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro dev",
     "build": "rm -rf public/pagefind && NODE_OPTIONS=--max-old-space-size=24576 astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build:preview": "rm -rf dist-preview && NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro build && pagefind --site dist-preview",
+    "preview:preview": "NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro preview",
     "preview": "NODE_OPTIONS=--max-old-space-size=24576 astro preview",
     "sync": "NODE_OPTIONS=--max-old-space-size=24576 astro sync",
     "astro": "astro",

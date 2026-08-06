@@ -16,6 +16,7 @@
   ],
   "ignorePatterns": [
     "dist/**",
+    "dist-preview/**",
     "public/pagefind/**",
     ".astro/**",
     ".wrangler/**",

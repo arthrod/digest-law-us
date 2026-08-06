@@ -1,8 +1,9 @@
 ---
 /**
- * Methodology — how digests are made: pipeline, evidence floor, and the
- * purge as brand. The pipeline is honest by construction — it publishes
- * what it can prove and deletes what it cannot.
+ * Methodology — the complete method, stated so it can be reproduced:
+ * sources, gates, models, thresholds, manifests, and the failures that set
+ * the rules. Corpus counts are read from the corpus and the deletion
+ * manifests at build time.
  */
 
 import SiteFooter from "@/components/SiteFooter.astro";
@@ -17,46 +18,165 @@ const { stats } = corpus;
 const purge = await getPurge();
 const fmt = (n: number) => n.toLocaleString("en-US");
 
-const steps = [
+/** Counts are composed into sentences here, not inline in the template —
+ *  JSX strips whitespace across newlines (see the note in index.astro). */
+
+const funnel = [
+  { label: "Section headings classified", value: "351,115" },
+  { label: "Selected at confidence > 0.90", value: "156,802" },
+  { label: "Canonical issues after dedup", value: "137,139" },
+  { label: "Digests published here", value: fmt(stats.digests) },
+];
+
+const purgeClause = purge.latest
+  ? `${fmt(purge.total)} digests with fewer than two retained sources were deleted under ${purge.events.length} dated manifests, the latest on ${formatDate(purge.latest.date)}; the counts on this page are read from those manifests at build time.`
+  : "Digests with fewer than two retained sources are deleted under dated manifests; no manifest was readable at build time.";
+
+const stages = [
   {
-    body: "Free public channels only. Every query and hit count is logged to the audit.",
-    chips: ["CourtListener", "GovInfo", "eCFR", "Cornell LII", "Direct fetch"],
+    body: "Thirteen top-level domains were fixed before any classification, seeded from the public-domain 1914 West topic outline (Brief Making and the Use of Law Books, 3d ed.) used as an archival reference. The classifier hard-validates Level 1: a path whose first segment is not verbatim from the spine is rejected. Everything below Level 1 is emergent from classification, not designed.",
     n: "01",
-    name: "Search",
+    name: "Fix the spine",
   },
   {
-    body: "Accepted texts are preserved in full and hashed. Rejections are recorded with their technical reason — paywalled, duplicate, non-authoritative, conversion failed.",
+    body: "Sources were acquired under clean-IP gates: Internet Archive treatise scans, roughly 1820–1930, admitted only on a section-density floor of 200 §-marks, a title whitelist, and a foreign-jurisdiction rejector; plus Harvard H2O casebooks, CALI eLangdell titles, and pre-1931 ALI drafts — 287 treatise titles across 579 scans, 739 works in all. Every source carries a manifest: identifier, URL, sha256, edition, year, volume, retrieval time, and a stated legal basis (89.8% public domain, the rest openly licensed). No content from any proprietary legal database was used at any stage; the exclusion is enforced in the pipeline. Acquisition stopped when the archive was exhausted under the gates, at 88.5% of its 400,000-entry target — the gates were not loosened to reach the number.",
     n: "02",
-    name: "Retain",
+    name: "Acquire, with the basis recorded",
   },
   {
-    body: "The digest is written from retained texts alone, in a fixed section structure. The model chain is recorded in run.json — the disclosure every page carries.",
+    body: "Body section headings are the unit — the doctrinal structure of each work, not any back-of-book index. Extraction assigns stable item identifiers with character offsets; front tables of contents are the fallback for damaged scans. At this stage only exact identity is deduplicated: same identifier, byte-identical file, or the same section appearing twice in one file. Near-duplicate headings across works are kept deliberately; they record how a century of authors organized the same doctrine.",
     n: "03",
-    name: "Draft",
+    name: "Extract structure",
   },
   {
-    body: `Merge is blocked unless the floor holds: at least two retained sources, both indexes generated (or their absence documented), audit complete. The ${stats.preProvenance} June-2026 bundles that predate provenance capture are disclosed as such — never backfilled.`,
+    body: "One heading per model request, under a fixed contract: normalize OCR and archaic spelling without inventing content; emit a path of three to seven segments, general to specific, Level 1 verbatim from the spine; report confidence in [0,1]. A ten-model fallback chain answered 351,115 headings at mean self-reported confidence 0.842 — no single model's judgment shapes the taxonomy, and the answering model is recorded per row. Every row is append-only and carries the provider and model that answered, the prompt's sha256 and version, token usage, latency, and UTC time, so each classification replays to an exact prompt, model, and moment.",
     n: "04",
-    name: "Review gate",
+    name: "Classify",
   },
   {
-    body: "Digest, full source texts, audit, and run.json ship together at a stable URL — the permanent identifier lives at w3id.org/digest-law/us/. Corrections are new commits, not silent edits.",
+    body: "Rows above 0.90 confidence became the working set: 156,802, with roughly 197,000 lower-confidence classifications set aside — retained, not destroyed, and recoverable. The union of their path prefixes was minted as the Open Legal Issue Taxonomy — 287,715 SKOS concepts with opaque sequential notations and permanent URIs. Near-duplicate sibling concepts were merged by a six-model ensemble, merging only at three-of-six agreement or unanimity of three designated models; 84,000 single-model suggestions were discarded. The 39,786 merged concepts are deprecated with a pointer to their replacement and stay resolvable. A label under a different parent is a different concept: DAMAGES survives under 186 parents, untouched.",
     n: "05",
-    name: "Publish",
+    name: "Mint the vocabulary",
+  },
+  {
+    body: "Items were then normalized into issues — the recurring legal question at the tip of each path, the unit a key number marks — and anchored to the FOLIO ontology under two roots: areas of law, and objectives. Every placement records the rule that made it (areas: 16.4% exact label match, 81.8% curated keyword rule, 1.8% default), and six extension areas carry no FOLIO IRI because FOLIO has no home for that material. A calibrated embedding pass merged sibling issues at cosine 0.93 or above, guarded by negation, antonym-prefix, and preposition-swap lexicons — calibration showed embedders score legal opposites as near-synonyms (MARINE against NON-MARINE insurance: 0.903). 137,139 issues survived. FOLIO links are anchors, deliberately not subclass assertions.",
+    n: "06",
+    name: "Anchor and deduplicate",
+  },
+  {
+    body: "A research runner takes one issue at a time. It probes primary law on free public channels — CourtListener, GovInfo, eCFR, Cornell LII, direct fetch — and researches under a fixed contract: at least ten distinct searches, each logged; a digest of twelve mandatory sections in fixed order, from Overview to Citations; and a nineteen-section audit that separately records accepted sources, rejected sources, lead-only sources, the snippets used in the digest, the snippets used nowhere, and the branch failures and conversion errors. Sources are retained byte-faithfully with exactly three permitted modifications — HTML-to-Markdown conversion, PDF text extraction, and identification frontmatter. Proprietary legal databases are banned by name. Citations must be inline links, because the caselaw and statutory indexes are parsed from them; author-date citations would yield empty indexes and make a productive run look like one that found nothing. A retained secondary source is not the authority it discusses: a case read about but not read is recorded as a lead, and its holdings are not presented as if read from the opinion. Retention floors are explicit — 200 characters after conversion, 1,500 for probe documents, truncation at 60,000.",
+    n: "07",
+    name: "Research each issue",
+  },
+  {
+    body: `Four gates check every bundle: a fail-closed lint on every file write, a corpus-wide lint over every file, a deterministic pull-request gate, and a reviewing agent working through a 21-item merge instruction whose evidence floor — at least two retained sources — is counted from the files on disk, never from the bundle's own metadata. Every run ends merged or closed; no third state exists. run.json pins the issue ledger and the researcher prompt by sha256 and records the provider chain, retriever, scraper, search depth and breadth, and runner version. ${purgeClause}`,
+    n: "08",
+    name: "Gate every bundle",
+  },
+  {
+    body: "This site mirrors the corpus into stable lowercase routes and mints its own concept identifiers, because the runner's issue identifiers proved to be placement hashes: the label INTENT carried four different UUIDs, and 13,347 labels map to more than one identifier. Site identifiers are opaque, held in an append-only registry with every historical route, exported as SKOS JSON-LD, and checked against the published shapes on every build. Corrections are new commits; pages are not silently edited.",
+    n: "09",
+    name: "Publish with identity",
   },
 ];
 
-/**
- * Headline grid, built as data so the purge tile disappears with its
- * manifest rather than showing a number nothing backs. Borders track
- * position (see the same pattern on /about/).
- */
+const rules = [
+  {
+    body: "The selection that cut 351,115 classifications to 156,802 ran as an unversioned script. Its rule — keep confidence above 0.90 — had to be reverse-engineered afterward from the data. Every assembler now ships versioned, with a manifest of input hashes, rule, and counts.",
+    n: "01",
+    name: "Assemblers are versioned and manifested",
+  },
+  {
+    body: "The classification file drifted after one taxonomy build; the exact input no longer exists on disk, so that build is not reproducible. The verification gates now re-hash the source against the build manifest and fail red on any difference.",
+    n: "02",
+    name: "A build re-hashes its inputs",
+  },
+  {
+    body: "The taxonomy went live with no license and no notice — nothing a reuser could rely on. Corrected on 27 Jul 2026; the rule since is that rights ship with the first deploy, not after it.",
+    n: "03",
+    name: "License and notice ship at first deploy",
+  },
+  {
+    body: "A script bulk-merged 23 pull requests without review, against a design record that promised human gates. The rule: a human gate is sampled and recorded, or it is not claimed.",
+    n: "04",
+    name: "Human gates are recorded, or not claimed",
+  },
+  {
+    body: "A README documented a superseded deduplication run (threshold 0.94) while the shipped run used 0.93. Documentation is now generated from run manifests, so prose cannot drift from what actually ran.",
+    n: "05",
+    name: "Docs are generated from run manifests",
+  },
+  {
+    body: "An earlier version of this page said merge is blocked unless the two-source floor holds. At the time, the deterministic gate did not check the floor; reviewer instructions and the retroactive audit did, and deletion enforced it. The floor is now part of the reviewing agent's merge instruction, counted from files on disk; a deterministic check remains open work in the public ledger, and this page says which is which.",
+    n: "06",
+    name: "This page overstated a gate",
+  },
+  {
+    body: "Retained sources were associated with digest text by list position, so one upstream rejection could shift every association after it. Rebinding sources to immutable identities is on the blocking-patch list; until it lands, new generation stays quarantined from the published channel.",
+    n: "07",
+    name: "Sources were joined by position",
+  },
+  {
+    body: "GovInfo detail pages render client-side: one fetch yielded seven characters — the word GovInfo — retained as a statutory source containing no statute, until retrieval moved to the download links (seven characters became thousands). eCFR serves a CAPTCHA interstitial, and one runner version retained three identical CAPTCHA pages as statutory authority; they are now refused, which leaves eCFR contributing no retained text — an open gap, stated as one.",
+    n: "08",
+    name: "A fetched page is not a source",
+  },
+  {
+    body: "The retention gate refuses non-legal hosts and sub-200-character bodies; it does not yet judge topical relevance, so an off-topic regulation can still be retained for the wrong issue. Both cheap relevance signals were measured and failed — lexical overlap scored a dictionary page 0.88 on the issue it polluted, and a legal-vocabulary filter that catches all nineteen known junk sources also drops 557 legitimate ones. An embedding threshold was rejected on that arithmetic. Topical gating is open work, and it is listed here rather than assumed away.",
+    n: "09",
+    name: "Relevance is not yet gated",
+  },
+  {
+    body: "A corpus sweep found 5,606 defective files out of 23,208 — echoed frontmatter, container paths, raw model scratchpads, code-fence wrappers — because nothing between the model's output and the commit had an opinion about the body of a file. Repair rewrote 12,459 files at 0.13% corpus-wide byte loss; a fail-closed lint now runs on every write.",
+    n: "10",
+    name: "Nothing had an opinion about file bodies",
+  },
+  {
+    body: "Citation-support scores on a judged 40-bundle, four-stage sample (one model as judge, fixed seed) fell from 5.3 at the strongest stage to 3.4 while attention was on source acquisition. The regression was caught by measurement, recorded, and made a blocking patch before generation resumed. Two companion measurement rules came out of the same episode: read bundles by hand as well as counting them, and never average a rate across a period in which the thing generating it changed.",
+    n: "11",
+    name: "Quality regressed while attention was elsewhere",
+  },
+  {
+    body: "Hand review of shipped digests found fabrications that counting had missed: a federal-authority section resting on CAPTCHA shells, an overturned confrontation-clause framework applied as if current, recent-developments sections with no source support. Each produced a shipped correction and a recorded test. Regeneration overwriting already-reviewed bundles is a further open defect, tracked by failing tests that report real loss.",
+    n: "12",
+    name: "Fabrication is found by reading",
+  },
+];
+
+/** The per-bundle receipts, as URL suffixes a reader can actually type. */
+const checks = [
+  {
+    body: "The digest, and its SKOS concept as JSON-LD in the page head.",
+    path: "/{area}/…/{topic}/",
+  },
+  {
+    body: "Every query with its hit count, every source retained, and every candidate rejected with its technical reason.",
+    path: "…/audit/",
+  },
+  {
+    body: "The retained source, in full. Long texts continue at /2/, /3/ — real pages, not one file nobody can open.",
+    path: "…/sources/{slug}/",
+  },
+  {
+    body: "Tables of authorities, parsed from the digest's own citations. Empty results are published as documented absence with the queries that produced them.",
+    path: "…/caselaw/ · …/statutory/",
+  },
+  {
+    body: "The generation manifest: prompt and issue-ledger hashes, provider chain, retriever, scraper, depth, breadth, timings, runner version.",
+    path: "/provenance/{area}/…/{topic}.json",
+  },
+  {
+    body: "Any concept identifier resolves to its current route; a retired identifier reports gone rather than pretending it never existed.",
+    path: "/id/{concept-id}",
+  },
+];
+
 const tiles = [
   { label: "Digests published", value: fmt(stats.digests) },
   ...(purge.latest
-    ? [{ label: "Deleted at the floor", value: fmt(purge.total) }]
+    ? [{ label: "Deleted below the floor", value: fmt(purge.total) }]
     : []),
-  { label: "Pre-provenance — disclosed", value: String(stats.preProvenance) },
+  { label: "Pre-provenance, disclosed", value: String(stats.preProvenance) },
   {
     label: `Source texts held — ${formatBytes(stats.sourceBytes)}`,
     value: fmt(stats.sources),
@@ -72,12 +192,9 @@ const tileClass = (i: number) => {
     : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
 };
 
-const purgeTail = purge.latest
-  ? ` — and ${fmt(purge.total)} thin digests deleted rather than shipped.`
-  : ".";
-
 const title = "Methodology — American Legal Digest";
-const description = `How digests are made: free public sources only, a two-source evidence floor, published audits${purgeTail}`;
+const description =
+  "The complete method, stated so it can be reproduced: sources and their legal basis, extraction and classification contracts, dedup thresholds and guards, research manifests, and the failures that set the rules.";
 ---
 
 <Layout {description} {title}>
@@ -87,81 +204,232 @@ const description = `How digests are made: free public sources only, a two-sourc
       <h1
         class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
       >
-        How digests are made
+        Methodology
       </h1>
       <p
         class="font-prose text-ink/78 mt-3.5 max-w-[58ch] text-[1.09375rem] leading-[1.55] sm:text-[1.1875rem]"
       >
-        The pipeline is honest by construction — it publishes what it can prove
-        and deletes what it cannot.
+        The complete method, stated so it can be reproduced: sources, gates,
+        models, thresholds, manifests, and the failures that set the rules.
       </p>
 
-      <div class="border-ink mt-8 border-t">
-        {steps.map(step => (
-            <div class="border-hairline grid grid-cols-[40px_1fr] gap-x-6 border-b py-4 sm:grid-cols-[52px_210px_1fr]">
-              <span class="ald-meta text-[0.6875rem]">{step.n}</span>
-              <span class="font-display text-[1.25rem] leading-tight tracking-[-0.02em]">
-                {step.name}
-              </span>
-              <div class="col-span-2 mt-2 sm:col-span-1 sm:mt-0">
-                <p class="font-ui text-ink/75 m-0 text-[0.875rem] leading-relaxed">
-                  {step.body}
-                </p>
-                {step.chips && (
-                  <div class="ald-meta text-ink/65 mt-2 flex flex-wrap gap-1.5 text-[0.53125rem]">
-                    {step.chips.map(chip => (
-                      <span class="border-hairline rounded-[2px] border px-2 py-1">
-                        {chip}
-                      </span>
-                    ))}
-                  </div>
-                )}
+      <!-- The funnel -->
+      <div
+        class="border-hairline mt-9 grid grid-cols-2 border-t sm:grid-cols-4"
+      >
+        {funnel.map((tile, i) => (
+            <div class={tileClass(i)}>
+              <div class="font-display text-[1.625rem] leading-none tabular-nums">
+                {tile.value}
+              </div>
+              <div class="ald-meta text-ink-muted mt-2 text-[0.53125rem]">
+                {tile.label}
               </div>
             </div>
           ))}
       </div>
 
-      <p class="ald-meta text-ink-muted mt-4 max-w-[74ch] text-[0.59375rem] leading-[1.7]">
-        Step 04 is people, not a script. The
-        <a
-          class="decoration-cite-ext underline underline-offset-2"
-          href="/committee/">review committee</a
-        > is named, and it is
-        <a
-          class="decoration-cite-ext underline underline-offset-2"
-          href="/contact/?topic=reviewer">looking for local and global reviewers</a
-        >.
-      </p>
-
-      <div class="border-l-accent mt-9 border-l-2 py-1.5 pl-6" id="the-floor">
-        {purge.latest ? (
-          <>
-            <div class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]">
-              We deleted {fmt(purge.total)} digest{purge.total === 1 ? "" : "s"}
-              {" "}rather than publish them thin.
-            </div>
-            <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
-              {purge.events.length === 1
-                ? `Purge of ${formatDate(purge.latest.date)}`
-                : `${purge.events.length} purges, latest ${formatDate(purge.latest.date)}`}
-              {" "}— the evidence floor, enforced
-            </div>
-          </>
-        ) : (
-          <>
-            <div class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]">
-              A digest that cannot clear the floor is deleted, not padded.
-            </div>
-            <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
-              The evidence floor, enforced — deletion manifest not available at
-              build time
-            </div>
-          </>
-        )}
+      <!-- Stages -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">01 | The pipeline, stage by stage</div>
+        <div class="border-ink mt-3 border-t">
+          {stages.map(item => (
+              <div class="border-hairline grid grid-cols-[40px_1fr] gap-x-6 border-b py-4 sm:grid-cols-[52px_230px_1fr]">
+                <span class="ald-meta text-[0.6875rem]">{item.n}</span>
+                <span class="font-display text-[1.25rem] leading-tight tracking-[-0.02em]">
+                  {item.name}
+                </span>
+                <div class="col-span-2 mt-2 sm:col-span-1 sm:mt-0">
+                  <p class="font-ui text-ink/75 m-0 text-[0.875rem] leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+        <p class="ald-meta text-ink-muted mt-4 max-w-[74ch] text-[0.59375rem] leading-[1.7]">
+          The same pipeline stated jurisdiction-neutrally — ten stages, each
+          with the contract that must hold and the parameters a different legal
+          system changes — is published as the
+          <a
+            class="decoration-cite-ext underline underline-offset-2"
+            href="/protocol/">replication protocol</a
+          >.
+        </p>
       </div>
 
+      <div class="border-l-accent mt-9 border-l-2 py-1.5 pl-6" id="the-floor">
+        <div
+          class="font-display max-w-[26ch] text-[1.5rem] leading-[1.2] tracking-[-0.03em] sm:text-[1.875rem]"
+        >
+          {purge.latest
+            ? `${fmt(purge.total)} digests were deleted rather than published below the evidence floor.`
+            : "Digests below the evidence floor are deleted, not padded."}
+        </div>
+        <div class="ald-meta text-ink-muted mt-3 text-[0.59375rem]">
+          {purge.latest
+            ? purge.events.length === 1
+              ? `Deletion manifest of ${formatDate(purge.latest.date)}`
+              : `${purge.events.length} dated deletion manifests, latest ${formatDate(purge.latest.date)}`
+            : "No deletion manifest was readable at build time"}
+        </div>
+      </div>
+
+      <!-- Failures that set the rules -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">
+          02 | Failures that set the rules
+        </div>
+        <p
+          class="font-ui text-ink/75 mt-3 max-w-[70ch] text-[0.875rem] leading-relaxed"
+        >
+          Each rule below exists because the incident next to it happened.
+          The incidents are recorded in dated audit documents; none was
+          discovered by an outsider, and none is repeated here in a softened
+          form.
+        </p>
+        <div class="border-ink mt-3 border-t">
+          {rules.map(item => (
+              <div class="border-hairline grid grid-cols-[40px_1fr] gap-x-6 border-b py-4 sm:grid-cols-[52px_230px_1fr]">
+                <span class="ald-meta text-[0.6875rem]">{item.n}</span>
+                <span class="font-display text-[1.25rem] leading-tight tracking-[-0.02em]">
+                  {item.name}
+                </span>
+                <div class="col-span-2 mt-2 sm:col-span-1 sm:mt-0">
+                  <p class="font-ui text-ink/75 m-0 text-[0.875rem] leading-relaxed">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+        </div>
+        <p class="ald-meta text-ink-muted mt-4 max-w-[74ch] text-[0.59375rem] leading-[1.7]">
+          The live record — measured state, open work, risk acceptances — is
+          the
+          <a
+            class="decoration-cite-ext underline underline-offset-2"
+            href="https://github.com/arthrod/digest-law-us/blob/main/docs/LEDGER.md"
+            >project ledger</a
+          >.
+        </p>
+      </div>
+
+      <!-- Validation -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">03 | What is not claimed</div>
+        <div class="border-ink mt-3 border-t pt-5">
+          <p
+            class="font-prose text-ink/80 m-0 max-w-[64ch] text-[1.0625rem] leading-[1.62]"
+          >
+            No semantic validation exists yet. Every automated gate checks
+            integrity — hierarchy, identity, reproduction — never whether a
+            placement or a proposition is legally correct. The validation
+            stage is pre-registered: dual review with chance-corrected
+            agreement at κ ≥ 0.80, thresholds met at the lower bound of the
+            confidence interval, and zero-critical-error release samples read
+            under the rule of three. It is blocked until at least one
+            independent qualified reviewer exists; review by the pipeline's
+            author does not count. Until it runs, the corpus is internally
+            verified, and the word validated does not appear on this site.
+          </p>
+        </div>
+      </div>
+
+      <!-- Legal basis -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">04 | Legal basis</div>
+        <div class="border-ink mt-3 border-t pt-5">
+          <p
+            class="font-prose text-ink/80 m-0 max-w-[64ch] text-[1.0625rem] leading-[1.62]"
+          >
+            The taxonomy rests on the public domain and open licenses, not on
+            fair use. It classifies the doctrinal structure of works —
+            tables of contents and section headings — and copies no work's
+            index selection or arrangement. Retained sources are republished
+            under 17 U.S.C. § 105 and <em>Georgia v. Public.Resource.Org</em>,
+            590 U.S. 255 (2020), while per-source rights records are built —
+            a dated risk acceptance with named revisit triggers in the ledger.
+            <em>Thomson Reuters v. Ross Intelligence</em> (D. Del. 2025, on
+            appeal) held West's headnotes and Key Number System copyrightable
+            and rejected a fair-use defense; nothing of West's apparatus
+            enters this pipeline beyond the 1914 outline, which is public
+            domain.
+          </p>
+        </div>
+      </div>
+
+      <!-- Reproduce it -->
+      <div class="mt-12">
+        <div class="ald-meta text-[0.6875rem]">05 | Check it, or repeat it</div>
+        <p
+          class="font-ui text-ink/75 mt-3 max-w-[70ch] text-[0.875rem] leading-relaxed"
+        >
+          Every digest is addressable, and so is everything behind it. Append
+          these to any topic URL:
+        </p>
+        <div class="border-ink mt-3 border-t">
+          {checks.map(item => (
+              <div class="border-hairline grid grid-cols-[1fr] gap-x-6 border-b py-3.5 sm:grid-cols-[230px_1fr]">
+                <code class="font-ui text-ink text-[0.8125rem]">{item.path}</code>
+                <p class="font-ui text-ink/75 m-0 mt-1.5 max-w-[70ch] text-[0.875rem] leading-relaxed sm:mt-0">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+        </div>
+        <div class="border-ink mt-8 border-t pt-5">
+          <p
+            class="font-ui text-ink/75 m-0 max-w-[70ch] text-[0.875rem] leading-relaxed"
+          >
+            Corpus-wide: the
+            <a
+              class="decoration-cite-ext underline underline-offset-2"
+              href="/skos.jsonld">SKOS concept scheme</a
+            >, the
+            <a
+              class="decoration-cite-ext underline underline-offset-2"
+              href="/profile/digest-skos-shapes.ttl"
+              >shapes it is validated against</a
+            >, the
+            <a
+              class="decoration-cite-ext underline underline-offset-2"
+              href="/profile/digest-vocab.ttl">project vocabulary</a
+            >, and the
+            <a
+              class="decoration-cite-ext underline underline-offset-2"
+              href="https://w3id.org/legal-taxonomy/"
+              >Open Legal Issue Taxonomy</a
+            > with its complete Turtle, JSON-LD, and SQLite dumps. Site code is
+            open at
+            <a
+              class="decoration-cite-ext underline underline-offset-2"
+              href="https://github.com/arthrod/digest-law-us"
+              >github.com/arthrod/digest-law-us</a
+            >, and every figure on this page is computed from the corpus at
+            build time rather than typed into the template.
+          </p>
+          <p
+            class="font-ui text-ink/75 mt-4 max-w-[70ch] text-[0.875rem] leading-relaxed"
+          >
+            To repeat the method rather than check the output, the parameters
+            that matter are stated above and fixed: the thirteen-domain spine,
+            the acquisition gates, the classification contract, the 0.90
+            selection cut, the three-of-six ensemble rule, the 0.93 embedding
+            threshold with its guard lexicons, and the retention floors. All of
+            it is set out stage by stage — with the contract each stage must
+            satisfy and a parameter sheet naming exactly what a different legal
+            system changes — in the
+            <a
+              class="decoration-cite-ext underline underline-offset-2"
+              href="/protocol/">replication protocol</a
+            >.
+          </p>
+        </div>
+      </div>
+
+      <!-- Corpus at build time -->
       <div
-        class="border-hairline mt-8 grid grid-cols-2 border-t sm:grid-cols-4"
+        class="border-hairline mt-10 grid grid-cols-2 border-t sm:grid-cols-4"
       >
         {tiles.map((tile, i) => (
             <div class={tileClass(i)}>
@@ -175,24 +443,26 @@ const description = `How digests are made: free public sources only, a two-sourc
           ))}
       </div>
 
+      <p class="ald-meta text-ink-muted mt-4 max-w-[74ch] text-[0.59375rem] leading-[1.7]">
+        Review is performed by people. The
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/committee/">review committee</a
+        > is named, and it
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/contact/?topic=reviewer">accepts qualified reviewers</a
+        >.
+      </p>
+
       <div class="ald-meta text-ink-muted mt-9 max-w-[74ch] leading-[1.8]">
-        Digests are machine-generated and machine-reviewed; they are a map of
-        doctrine pointing at authorities, not a treatise, and not legal advice.
-        Permanent identifiers:
+        Digests are machine-generated and machine-reviewed. They map doctrine
+        and point at authorities; they are not a treatise and not legal
+        advice. Permanent identifiers:
         <a
           class="decoration-cite-ext underline underline-offset-2"
           href="https://w3id.org/digest-law/us/"
           >w3id.org/digest-law/us/</a
-        >. Machine-readable scheme:
-        <a
-          class="decoration-cite-ext underline underline-offset-2"
-          href="/skos.jsonld"
-          >SKOS JSON-LD</a
-        >. Companion vocabulary:
-        <a
-          class="decoration-cite-ext underline underline-offset-2"
-          href="https://w3id.org/legal-taxonomy/"
-          >Open Legal Issue Taxonomy</a
         >.
       </div>
     </div>

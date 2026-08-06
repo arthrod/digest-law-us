@@ -14,8 +14,9 @@ import { fileURLToPath } from "node:url";
 import type { Loader } from "astro/loaders";
 import matter from "gray-matter";
 
-import { SOURCE_CHUNK_BYTES } from "@/corpus.config";
+import { PREVIEW_MODE, SOURCE_CHUNK_BYTES } from "@/corpus.config";
 import { slugSegment } from "@/lib/labels";
+import { previewBundles } from "@/lib/preview";
 
 export interface ChunkSpan {
   end: number;
@@ -77,8 +78,17 @@ export function sourcesLoader(corpusDir: string): Loader {
       const listing = await fs.readdir(root, {
         recursive: true,
       });
+      // In preview mode the bundle set is decided before any file is read;
+      // skipping here is what keeps a preview build from paying for the
+      // whole ~372 MB of retained sources (see src/lib/preview.ts).
+      const preview = PREVIEW_MODE ? await previewBundles(root) : null;
       const files = listing
         .filter((rel) => /(?:^|\/)sources\/[^/]+\.md$/u.test(rel))
+        .filter(
+          (rel) =>
+            preview === null ||
+            preview.has(rel.slice(0, rel.lastIndexOf("/sources/")))
+        )
         .toSorted();
 
       store.clear();
