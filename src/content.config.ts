@@ -86,6 +86,19 @@ const digests = defineCollection({
       "!**/_source_snippet_audit.md",
       "!**/sources/**",
     ]),
+    /**
+     * The glob loader stores the raw markdown *and* the rendered HTML for
+     * every entry. Nothing reads `entry.body` for digests — the views call
+     * `render()`, which uses the rendered copy — so the raw copy is dead
+     * weight in the content store, and at corpus scale it is not a small
+     * amount: the whole store is serialized to one string by `devalue`, and
+     * a build that crosses V8's maximum string length dies with an
+     * "Invalid string length" filesystem error rather than anything that
+     * names the real cause. Digests and audits are the two largest
+     * collections; caselaw/statutory keep their bodies because
+     * `IndexView` reads them directly.
+     */
+    retainBody: false,
   }),
   schema: digestSchema,
 });
@@ -134,6 +147,8 @@ const audits = defineCollection({
     base: CORPUS_DIR,
     generateId: rawId,
     pattern: scoped(["**/_source_snippet_audit.md"]),
+    /** Rendered by `AuditView` via `render()`; see the note on `digests`. */
+    retainBody: false,
   }),
   schema: z
     .object({

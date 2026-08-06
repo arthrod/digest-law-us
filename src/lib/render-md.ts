@@ -50,6 +50,23 @@ export interface RenderedChunk {
   html: string;
 }
 
+/**
+ * Render a whole corpus markdown file that is held out of the content store
+ * (see src/loaders/audits.ts). Frontmatter is stripped before rendering, the
+ * same way the content layer would have done it.
+ *
+ * Deliberately not cached: each file is rendered once, for its own page, and
+ * holding them would reintroduce exactly the memory pressure that keeping
+ * them out of the store is meant to avoid.
+ */
+export async function renderCorpusFile(relFile: string): Promise<string> {
+  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8");
+  const { content } = matter(raw);
+  const processor = await getProcessor();
+  const result = await processor.render(content);
+  return result.code;
+}
+
 export async function renderSourceChunk(
   relFile: string,
   span: { start: number; end: number }

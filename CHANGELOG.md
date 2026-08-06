@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## Unreleased
+
+### Feat
+
+- **methodology**: rewrite as a reproducible specification — the pipeline stage by stage with every threshold named (13-domain spine, 200 §-mark density gate, the 0.90 selection cut, three-of-six ensemble agreement, the 0.93 embedding threshold and its negation/antonym/swap guards, the 200/1,500/60,000 retention floors, the four bundle gates), a decisions section, a failures section pairing each rule with the incident that produced it, and a receipts section listing the per-bundle URLs a reader can check
+- **protocol**: add `/protocol/` — the method stated jurisdiction-neutrally as ten stages, each with the contract that must hold and its adaptation points, plus the parameter sheet naming what a different legal system changes. The methodology page had cited this protocol without publishing it, which is the failure mode the project exists to refuse
+- **about**: rewrite around provenance — the build lineage (treatise structure → Open Legal Issue Taxonomy → FOLIO dual-root issues → research runner) as layers over one classification run, what ships with every digest, and an explicit statement of what is claimed and what is not, including the coverage skew and the absence of any validation claim
+- **build**: add preview mode for style and content iteration. `PREVIEW_BUNDLES=N` / `PREVIEW_PATHS=a,b` cut the corpus to a handful of bundles chosen to exercise every view; selection happens from one directory listing before any file is read (`src/lib/preview.ts`), so the content globs and the sources loader are both narrowed rather than filtered after the fact. Output goes to `dist-preview/`, and every preview build prints a do-not-deploy warning. Content phase drops from over two minutes to ~6s; full run ~34s against 57k pages
+- **scripts**: add `dev:preview`, `build:preview`, `preview:preview`
+
+### Fix
+
+- **build**: production builds died with `[UnknownFilesystemError] Invalid string length`. The content store is serialized to a single string by `devalue`, and the glob loader stores the raw markdown *and* the rendered HTML for every entry; at current corpus size the duplicate raw copy pushed the store past V8's maximum string length. Digests and audits — ~172 MB of markdown — now set `retainBody: false`, since both are rendered through `render()` and neither reads `entry.body`. caselaw/statutory keep their bodies, which `IndexView` reads directly
+- **methodology**: the page claimed merge is blocked unless the two-source evidence floor holds; the deterministic gate did not check the floor. Corrected to state what enforces it today (the reviewing agent's merge instruction, counted from files on disk, plus deletion) and to record the prospective gate as open work — the live honesty defect tracked as P0-015
+- **methodology**: correct the audit structure to its actual 19 sections, and drop a source-count decomposition the primary records disagree on
+- **lint**: ignore `dist-preview/` in oxlint and git
+
+### Docs
+
+- add `docs/2026-08-06-personas.md` — the four readers the public pages are written for, and the reproducibility standard they impose
+
 ## v6.1.0 (2026-06-06)
 
 ### Feat
