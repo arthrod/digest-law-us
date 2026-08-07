@@ -94,7 +94,7 @@ doctrine pointing at authorities — not a treatise, and **not legal advice**.
 
 ## Cite as
 
-> Rodrigues, Arthur S. _American Legal Digest — United States._ 2026.
+> Digest, LLC. _American Legal Digest — United States._ 2026.
 > https://w3id.org/digest-law/us/ — CC BY 4.0.
 
 **Maintainer:** Arthur S. Rodrigues — arthursrodrigues@gmail.com — GitHub: [@arthrod](https://github.com/arthrod)
