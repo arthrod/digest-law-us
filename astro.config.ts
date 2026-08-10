@@ -16,6 +16,21 @@ const previewMode =
 
 // https://astro.build/config
 export default defineConfig({
+  experimental: {
+    /**
+     * The content store is written as one file by default, which means the
+     * whole store is serialized into a single string. At this corpus size
+     * that string exceeds what V8 can hold: builds died first as
+     * `Invalid string length`, then — once the store shrank — as an
+     * out-of-memory abort inside `JSON.stringify`, neither of which names
+     * the store as the cause. `chunked` serializes one collection at a time
+     * and writes it in 20 MB pieces, so peak string size is bounded by the
+     * largest single collection rather than by the entire corpus.
+     */
+    collectionStorage: "chunked",
+    incrementalBuild: true,
+  },
+
   integrations: [sitemap()],
   markdown: {
     // Astro 7 defaults to the Sätteri processor and takes remark/rehype
