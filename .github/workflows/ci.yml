@@ -36,6 +36,21 @@ jobs:
       - name: "📦 Install dependencies"
         run: pnpm install --frozen-lockfile
 
+      # Incremental builds (experimental.incrementalBuild) can only skip
+      # pages when the previous build's cache survives in node_modules/.astro
+      # — Astro empties dist/ every build and restores skipped pages from
+      # there. The key is per-run so the freshest cache is always saved;
+      # restore-keys falls back to the newest previous run. Restored after
+      # install so pnpm cannot disturb it. Any deploy workflow that builds
+      # the real corpus needs this same step to benefit.
+      - name: "♻️ Restore Astro build cache"
+        uses: actions/cache@v4
+        with:
+          path: node_modules/.astro
+          key: astro-build-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            astro-build-${{ runner.os }}-
+
       - name: "🔎 Lint code"
         run: pnpm run lint
 

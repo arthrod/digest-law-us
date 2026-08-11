@@ -16,6 +16,18 @@ const previewMode =
 
 // https://astro.build/config
 export default defineConfig({
+  /**
+   * Preview builds get their own cache next to their own outDir, for two
+   * reasons. The content store lives in cacheDir, and a preview build
+   * narrows every glob — sharing the store would let a ten-page preview
+   * evict the full corpus from it. The incremental-build manifest lives
+   * there too, and it is invalidated whole on any config-hash change —
+   * which flipping outDir between builds would otherwise cause on every
+   * preview/full alternation.
+   */
+  cacheDir: previewMode
+    ? "./node_modules/.astro-preview"
+    : "./node_modules/.astro",
   experimental: {
     /**
      * The content store is written as one file by default, which means the

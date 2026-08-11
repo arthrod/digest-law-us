@@ -1,12 +1,13 @@
 /**
  * Metadata loader for retained source documents.
  *
- * Sources total ~372 MB of markdown (single files up to 12.5 MB), so their
+ * Sources total ~5.6 GB of markdown (single files up to 12.5 MB), so their
  * text deliberately never enters the content-layer data store — only
  * metadata and chunk offsets do. Source pages read + render their own slice
  * at build time (see src/lib/render-md.ts), which keeps the store small and
  * makes hard constraint 3 (≤200 KB of source markdown per page) structural.
  */
+import { createHash } from "node:crypto";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -130,6 +131,16 @@ export function sourcesLoader(corpusDir: string): Loader {
             bundle,
             bytes: Buffer.byteLength(content),
             chars: content.length,
+            /**
+             * The retained text never enters the store, so without this the
+             * entry digest only sees metadata — and an edit that preserves
+             * length and chunk boundaries would leave `spans`/`bytes`
+             * unchanged, letting an incremental build skip a source page
+             * whose on-disk text differs (see cacheKey in
+             * src/pages/[...path].astro). The file is already in memory
+             * here; hashing it closes that hole.
+             */
+            contentSha: createHash("sha256").update(content).digest("hex"),
             description:
               typeof fm.description === "string" ? fm.description : "",
             parts: spans.length,

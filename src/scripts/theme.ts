@@ -14,11 +14,11 @@ let themeValue: string =
   getPreferredTheme();
 
 function reflect(): void {
-  const root = document.firstElementChild;
-  if (root) {
-    root.dataset.theme = themeValue;
-  }
-  root?.classList.toggle("dark", themeValue === DARK);
+  // documentElement is the same node as firstElementChild on an HTML
+  // document, but typed HTMLElement (dataset exists) and never null.
+  const root = document.documentElement;
+  root.dataset.theme = themeValue;
+  root.classList.toggle("dark", themeValue === DARK);
   document.querySelector("#theme-btn")?.setAttribute("aria-label", themeValue);
 
   // Fill <meta name="theme-color"> with the computed background colour so

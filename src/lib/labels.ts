@@ -87,8 +87,11 @@ export function formatDate(value: string | Date | undefined): string {
   return `${String(d.getUTCDate()).padStart(2, "0")} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
-/** Human file size: "12.5 MB", "188 KB". */
+/** Human file size: "5.6 GB", "12.5 MB", "188 KB". */
 export function formatBytes(bytes: number): string {
+  if (bytes >= 1_000_000_000) {
+    return `${(bytes / 1_000_000_000).toFixed(1)} GB`;
+  }
   if (bytes >= 1_000_000) {
     return `${(bytes / 1_000_000).toFixed(1)} MB`;
   }

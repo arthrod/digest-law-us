@@ -24,14 +24,16 @@ export const SOURCE_CHUNK_BYTES = 200_000;
 /**
  * Preview mode — a deliberately tiny build for style and content iteration.
  *
- * Astro rebuilds every route on every `astro build`; at ~57k pages that is
- * the whole cost of the build, and there is no incremental static build to
- * reach for. Instead, preview mode caps the corpus at a handful of digest
- * bundles (chosen to exercise every view: audit, caselaw, statutory,
- * multi-chunk sources) so `build:preview` finishes in seconds. Output goes
- * to `dist-preview/` (see astro.config.ts) so a full `dist/` is never
- * clobbered. Preview builds are for local iteration only — `deploy` never
- * sets these variables.
+ * Full builds skip unchanged pages via `experimental.incrementalBuild`
+ * (see astro.config.ts and src/lib/cache-keys.ts), but that only helps
+ * when code is untouched — any edit to a shared component re-renders all
+ * ~57k pages. Preview mode is for exactly that loop: it caps the corpus at
+ * a handful of digest bundles (chosen to exercise every view: audit,
+ * caselaw, statutory, multi-chunk sources) so `build:preview` finishes in
+ * seconds regardless of what changed. Output goes to `dist-preview/` with
+ * its own cacheDir (see astro.config.ts) so a full `dist/` and its
+ * incremental cache are never clobbered. Preview builds are for local
+ * iteration only — `deploy` never sets these variables.
  *
  * - PREVIEW_BUNDLES=10   keep at most N digest bundles (area round-robin)
  * - PREVIEW_PATHS=a,b/c  keep bundles under these corpus or slug paths

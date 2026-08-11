@@ -22,6 +22,7 @@ function node(slugPath: string, data?: Frontmatter): TreeNode {
     label: segment,
     latest: "",
     maxDepth: 0,
+    ownSourceCount: 0,
     segment,
     slugPath,
     sourceCount: 0,

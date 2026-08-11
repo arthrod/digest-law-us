@@ -200,6 +200,9 @@ const sources = defineCollection({
     bundle: z.string(),
     bytes: z.number(),
     chars: z.number(),
+    /** sha256 of the retained text — the entry digest's view of content
+     *  that never enters the store (see loaders/sources.ts). */
+    contentSha: z.string(),
     description: z.string().default(""),
     parts: z.number(),
     relFile: z.string(),

@@ -35,6 +35,8 @@ export interface TreeNode {
   latest: string;
   /** deepest nesting below this node (0 = leaf) */
   maxDepth: number;
+  /** retained sources in this node's own bundle only (never descendants) */
+  ownSourceCount: number;
   segment: string;
   slugPath: string;
   /** retained sources held at or below */
@@ -166,13 +168,16 @@ async function build(): Promise<Corpus> {
       return existing;
     }
     const segs = dir.split("/");
-    const segment = segs.at(-1);
+    // split() never yields an empty array, so the fallback never fires — it
+    // exists to keep `segment` a string without an assertion.
+    const segment = segs.at(-1) ?? dir;
     const node: TreeNode = {
       children: [],
       dir,
       label: humanize(segment),
       latest: "",
       maxDepth: 0,
+      ownSourceCount: 0,
       segment,
       slugPath: segs.map(slugSegment).join("/"),
       sourceCount: 0,
@@ -195,9 +200,8 @@ async function build(): Promise<Corpus> {
     node.children.sort((a, b) => a.label.localeCompare(b.label));
     let topics = node.digest ? 1 : 0;
     let depth = 0;
-    let sources = node.digest
-      ? (sourcesByBundle.get(node.dir)?.length ?? 0)
-      : 0;
+    node.ownSourceCount = sourcesByBundle.get(node.dir)?.length ?? 0;
+    let sources = node.ownSourceCount;
     let latest = node.digest?.data.timestamp ?? "";
     for (const child of node.children) {
       aggregate(child);

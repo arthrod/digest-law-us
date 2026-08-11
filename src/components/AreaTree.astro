@@ -25,7 +25,10 @@ function glance(child: TreeNode): string {
   const bits: string[] = [];
   const direct = child.digest;
   if (direct) {
-    const n = child.sourceCount;
+    // The digest's own bundle only: on a node that also has children,
+    // `sourceCount` is the subtree aggregate and would overstate the row
+    // ("69 src" on an overview digest holding 2).
+    const n = child.ownSourceCount;
     if (n) {
       bits.push(`${n} src`);
     }

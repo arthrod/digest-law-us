@@ -2,11 +2,12 @@
  * Preview-build bundle selection — computed once, from one directory
  * listing, before anything reads a file.
  *
- * Astro has no incremental static build: `astro build` re-renders every
- * route and the content layer re-reads every corpus file, so a one-line
- * style change costs a full build. Preview mode cuts the corpus to a handful
- * of bundles instead — but the cut only pays off if it happens *before* the
- * loaders read 372 MB of retained sources. That is what this module is for:
+ * Incremental builds (astro.config.ts) skip re-rendering unchanged pages,
+ * but only when the code is untouched — any edit to a shared component
+ * re-renders every route, and the content layer re-reads every corpus file
+ * regardless. Preview mode cuts the corpus to a handful of bundles instead
+ * — but the cut only pays off if it happens *before* the loaders read
+ * ~5.6 GB of retained sources. That is what this module is for:
  * `content.config.ts` narrows its globs to these directories, the sources
  * loader skips everything else, and `corpus.ts` filters against the same
  * set, so all three agree by construction.

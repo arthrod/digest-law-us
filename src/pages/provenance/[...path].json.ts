@@ -5,6 +5,7 @@
  */
 import type { APIRoute, GetStaticPaths } from "astro";
 
+import { cacheKeyFrom, stampEntry } from "@/lib/cache-keys";
 import { getCorpus } from "@/lib/corpus";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -19,6 +20,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
       continue;
     }
     paths.push({
+      // The response is the run entry verbatim, so its digest is the whole
+      // data side of this path's incremental-build key.
+      cacheKey: cacheKeyFrom("provenance", [stampEntry(run)]),
       params: { path: node.slugPath },
       props: { runData: run.data },
     });
