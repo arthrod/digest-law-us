@@ -27,9 +27,21 @@ interface SendEmailBinding {
   send: (message: SendEmailMessage) => Promise<{ messageId?: string }>;
 }
 
+interface AssetFetcher {
+  fetch: (request: Request) => Promise<Response>;
+}
+
 interface Env {
-  ASSETS: { fetch: (request: Request) => Promise<Response> };
+  ASSETS: AssetFetcher;
   CONTACT_EMAIL: SendEmailBinding;
+  /**
+   * dist/ is split across several Workers to stay under the 100k
+   * files-per-Worker cap: top-level folder → service-binding name, alongside
+   * one SHARD_* binding per shard Worker. Both are generated into the deploy
+   * config by scripts/deploy-shards.ts; absent under `wrangler dev`, where
+   * ASSETS still holds all of dist.
+   */
+  SHARD_MAP?: Record<string, string>;
 }
 
 /** Envelope sender. Must be on a domain onboarded to Email Sending. */
@@ -373,6 +385,19 @@ export default {
         env,
         (conceptId.groups?.id ?? "").toLowerCase()
       );
+    }
+    // The shard rules in run_worker_first are prefix globs, so a root file
+    // like /sitemap-index.xml can land here via the /sitemap* rule — only an
+    // exact first-segment match forwards; everything else is a root asset.
+    const segment = pathname.split("/")[1] ?? "";
+    const bindingName = env.SHARD_MAP?.[segment];
+    if (bindingName) {
+      const shard = (
+        env as unknown as Record<string, AssetFetcher | undefined>
+      )[bindingName];
+      if (shard) {
+        return await shard.fetch(request);
+      }
     }
     return await env.ASSETS.fetch(request);
   },

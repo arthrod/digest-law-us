@@ -5,6 +5,14 @@
 // possible: without it, `not_found_handling: "404-page"` would answer the
 // POST with the 404 page and the Worker would never run.
 //
+// DEPLOYS GO THROUGH `pnpm run deploy` (scripts/deploy-shards.ts), never
+// plain `wrangler deploy`: dist/ holds more than the 100,000 assets one
+// Worker version may carry, so the script splits it by top-level folder
+// across digest-law-shard-* Workers and derives every deployed config —
+// including the root one — from this file. A direct `wrangler deploy` fails
+// on the asset cap. `wrangler dev` with this config still works and serves
+// all of dist.
+//
 // Before the first deploy, onboard the sending domain once:
 //   npx wrangler email sending enable digest.law
 //   npx wrangler email sending dns get digest.law   # confirm SPF + DKIM
