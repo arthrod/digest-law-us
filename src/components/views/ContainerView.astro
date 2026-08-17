@@ -18,27 +18,27 @@ import { conceptJsonLd } from "@/lib/skos";
 interface Props {
   slugPath: string;
 }
-const { slugPath } = Astro.props;
+const { slugPath } = Astro.props,
 
-const corpus = await getCorpus();
-const node = corpus.nodeBySlugPath.get(slugPath);
+ corpus = await getCorpus(),
+ node = corpus.nodeBySlugPath.get(slugPath);
 if (!node) {
   throw new Error(`No container at ${slugPath}`);
 }
 
-const crumbTrail = crumbsFor(corpus, slugPath);
-const crumbs: CrumbItem[] = [
+const crumbTrail = crumbsFor(corpus, slugPath),
+ crumbs: CrumbItem[] = [
   { href: "/", label: "Digest" },
   ...crumbTrail.slice(0, -1).map((c) => ({
     href: c.published ? `/${c.slugPath}/` : undefined,
     label: c.label,
   })),
   { label: node.label },
-];
+],
 
-const updated = formatDate(node.latest);
-const title = `${node.label} — ${crumbTrail[0]?.label ?? ""} — American Legal Digest`;
-const description = `${node.topicCount} published digest topics under ${node.label}.`;
+ updated = formatDate(node.latest),
+ title = `${node.label} — ${crumbTrail[0]?.label ?? ""} — American Legal Digest`,
+ description = `${node.topicCount} published digest topics under ${node.label}.`;
 ---
 
 <Layout {description} {title}>

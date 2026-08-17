@@ -18,20 +18,20 @@ const facts = [
   { label: "Reviewers", value: "Open call — local and global" },
   { label: "Reply", value: "When we can. Two people, no support desk" },
   { label: "Not", value: "Legal advice, and not a lawyer referral" },
-];
+],
 
 /** Same border rule as the stat grids on /about/ and /methodology/. */
-const cellClass = (i: number) => {
+ cellClass = (i: number) => {
   if (i === 0) {
     return "pt-4.5 pr-5";
   }
   return i % 2 === 1
     ? "border-hairline border-l px-5 pt-4.5"
     : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
-};
+},
 
-const title = "Contact — American Legal Digest";
-const description =
+ title = "Contact — American Legal Digest",
+ description =
   "Report a correction to a digest, apply to review, or raise a source or licensing question with the American Legal Digest review committee.";
 ---
 
@@ -244,12 +244,12 @@ const description =
 
     const submit = form.querySelector<HTMLButtonElement>(
       "[data-contact-submit]"
-    );
-    const status = form.querySelector<HTMLElement>("[data-contact-status]");
+    ),
+     status = form.querySelector<HTMLElement>("[data-contact-status]"),
 
     // Deep links from /committee/ preselect the topic: /contact/?topic=reviewer
-    const wanted = new URLSearchParams(window.location.search).get("topic");
-    const topic = form.querySelector<HTMLSelectElement>("#f-topic");
+     wanted = new URLSearchParams(window.location.search).get("topic"),
+     topic = form.querySelector<HTMLSelectElement>("#f-topic");
     if (wanted && topic?.querySelector(`option[value="${CSS.escape(wanted)}"]`)) {
       topic.value = wanted;
     }
@@ -270,8 +270,8 @@ const description =
           body: new FormData(form),
           headers: { Accept: "application/json" },
           method: "POST",
-        });
-        const data = (await response.json().catch(() => ({}))) as {
+        }),
+         data = (await response.json().catch(() => ({}))) as {
           error?: string;
           routedTo?: string[];
         };

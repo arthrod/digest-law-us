@@ -41,8 +41,8 @@ describe("minting", () => {
   });
 
   test("ids are allocated, not derived from anything about the concept", () => {
-    const a = mintConceptId();
-    const b = mintConceptId();
+    const a = mintConceptId(),
+     b = mintConceptId();
     expect(a.id).not.toBe(b.id);
   });
 });
@@ -56,15 +56,15 @@ describe("adopting a runner-allocated id", () => {
   test("adoption keeps the id the digest was born with", () => {
     // The runner writes concept_id into frontmatter at generation time; the
     // registry must record that value, not allocate a competing one.
-    const born = "9460d81470154e458335365e3b4c5014";
-    const record = {
+    const born = "9460d81470154e458335365e3b4c5014",
+     record = {
       id: born,
       keys: ["evidence-law/proof-of-writings"],
       label: "Proof of Writings",
       minted: "2026-07-31",
       uuid: dashedUuid(born),
-    };
-    const reg: ConceptRegistry = {
+    },
+     reg: ConceptRegistry = {
       concepts: [record],
       policy: "test",
       version: 1,
@@ -76,8 +76,8 @@ describe("adopting a runner-allocated id", () => {
 
 describe("rename and reparent preserve identity", () => {
   test("a renamed concept keeps its id when the new key is appended", () => {
-    const reg = registryWith(["evidence-law/log-books-as-evidence"]);
-    const before = lookup(reg, "evidence-law/log-books-as-evidence");
+    const reg = registryWith(["evidence-law/log-books-as-evidence"]),
+     before = lookup(reg, "evidence-law/log-books-as-evidence");
     expect(before).toBeDefined();
 
     // Rename: same concept, new route key appended (never replaced).
@@ -95,8 +95,8 @@ describe("rename and reparent preserve identity", () => {
   test("a reparented concept keeps its id across a different branch", () => {
     const reg = registryWith([
       "evidence-law/documentary-evidence/log-books-as-evidence",
-    ]);
-    const [{ id }] = reg.concepts;
+    ]),
+     [{ id }] = reg.concepts;
 
     reg.concepts[0].keys.push(
       "evidence-law/business-records/log-books-as-evidence"
@@ -127,8 +127,8 @@ describe("registry integrity", () => {
   });
 
   test("one route key cannot belong to two concepts", () => {
-    const reg = registryWith(["a/b"]);
-    const { id, uuid } = mintConceptId();
+    const reg = registryWith(["a/b"]),
+     { id, uuid } = mintConceptId();
     reg.concepts.push({
       id,
       keys: ["a/b"],
@@ -191,8 +191,8 @@ describe("IRI shape", () => {
   });
 
   test("registered routes resolve into the concept namespace", () => {
-    const reg = registryWith(["evidence-law/proof-of-writings"]);
-    const record = lookup(reg, "evidence-law/proof-of-writings");
+    const reg = registryWith(["evidence-law/proof-of-writings"]),
+     record = lookup(reg, "evidence-law/proof-of-writings");
     expect(`${CONCEPT_BASE}${record?.id}`).toMatch(
       /^https:\/\/w3id\.org\/digest-law\/concept\/[0-9a-f]{32}$/u
     );
@@ -200,8 +200,8 @@ describe("IRI shape", () => {
 });
 
 describe("retiring what a purge removed", () => {
-  const LIVE = "evidence-law/proof-of-writings";
-  const GONE = "evidence-law/purged-topic";
+  const LIVE = "evidence-law/proof-of-writings",
+   GONE = "evidence-law/purged-topic";
 
   test("a concept whose route left the corpus is an orphan", () => {
     const reg = registryWith([GONE]);
@@ -218,9 +218,9 @@ describe("retiring what a purge removed", () => {
   });
 
   test("retiring stamps the date and the record survives", () => {
-    const reg = registryWith([GONE]);
-    const [{ id }] = reg.concepts;
-    const { retired } = reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    const reg = registryWith([GONE]),
+     [{ id }] = reg.concepts,
+     { retired } = reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
     expect(retired).toHaveLength(1);
     expect(reg.concepts).toHaveLength(1);
     expect(reg.concepts[0].id).toBe(id);
@@ -247,8 +247,8 @@ describe("retiring what a purge removed", () => {
     // The registry is append-only: if the route returns, the SAME record
     // claims it again. The tombstone has to lift, or a live concept would
     // answer 410 Gone forever.
-    const reg = registryWith([GONE]);
-    const [{ id }] = reg.concepts;
+    const reg = registryWith([GONE]),
+     [{ id }] = reg.concepts;
     reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
     const back = reconcileRegistry(reg, new Set([LIVE, GONE]), "2026-09-09");
     expect(back.restored).toHaveLength(1);
@@ -257,8 +257,8 @@ describe("retiring what a purge removed", () => {
   });
 
   test("a live concept is never touched by a reconcile", () => {
-    const reg = registryWith([LIVE]);
-    const { restored, retired } = reconcileRegistry(
+    const reg = registryWith([LIVE]),
+     { restored, retired } = reconcileRegistry(
       reg,
       new Set([LIVE]),
       "2026-08-01"

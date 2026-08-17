@@ -10,8 +10,8 @@ interface Props {
   probes: { channel: string; query: string; note: string }[];
   recorded?: string;
 }
-const { kind, probes, recorded, auditHref } = Astro.props;
-const noun = kind === "caselaw" ? "caselaw" : "statutory";
+const { kind, probes, recorded, auditHref } = Astro.props,
+ noun = kind === "caselaw" ? "caselaw" : "statutory";
 ---
 
 <div class="border-hairline bg-panel rounded-[2px] border px-7 py-6">

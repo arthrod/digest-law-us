@@ -10,11 +10,11 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
 
-const corpus = await getCorpus();
-const fmt = (n: number) => n.toLocaleString("en-US");
+const corpus = await getCorpus(),
+ fmt = (n: number) => n.toLocaleString("en-US"),
 
-const title = "Sitemap — American Legal Digest";
-const description = `The full topic tree: ${fmt(corpus.stats.digests)} digests across ${corpus.stats.areas} areas of United States law.`;
+ title = "Sitemap — American Legal Digest",
+ description = `The full topic tree: ${fmt(corpus.stats.digests)} digests across ${corpus.stats.areas} areas of United States law.`;
 ---
 
 <Layout {description} {title}>

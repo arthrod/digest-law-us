@@ -49,16 +49,16 @@ function roundRobin(
 ): string[] {
   const byArea = new Map<string, string[]>();
   for (const dir of dirs) {
-    const [area] = dir.split("/");
-    const list = byArea.get(area) ?? [];
+    const [area] = dir.split("/"),
+     list = byArea.get(area) ?? [];
     list.push(dir);
     byArea.set(area, list);
   }
   for (const list of byArea.values()) {
     list.sort((a, b) => score(b) - score(a) || a.localeCompare(b));
   }
-  const areas = [...byArea.keys()].toSorted();
-  const kept: string[] = [];
+  const areas = [...byArea.keys()].toSorted(),
+   kept: string[] = [];
   for (let round = 0; kept.length < limit; round += 1) {
     let advanced = false;
     for (const area of areas) {
@@ -80,11 +80,11 @@ function roundRobin(
 }
 
 async function select(corpusDir: string): Promise<Set<string>> {
-  const listing = await fs.readdir(corpusDir, { recursive: true });
-  const files = new Set(listing.map((p) => p.replaceAll("\\", "/")));
+  const listing = await fs.readdir(corpusDir, { recursive: true }),
+   files = new Set(listing.map((p) => p.replaceAll("\\", "/"))),
 
-  const sourcesPerBundle = new Map<string, number>();
-  const bundles: string[] = [];
+   sourcesPerBundle = new Map<string, number>(),
+   bundles: string[] = [];
   for (const rel of files) {
     if (SOURCE_FILE.test(rel)) {
       const bundle = rel.slice(0, rel.lastIndexOf("/sources/"));
@@ -94,8 +94,8 @@ async function select(corpusDir: string): Promise<Set<string>> {
     if (!rel.endsWith(".md")) {
       continue;
     }
-    const dir = rel.slice(0, rel.lastIndexOf("/"));
-    const base = rel.slice(dir.length + 1, -".md".length);
+    const dir = rel.slice(0, rel.lastIndexOf("/")),
+     base = rel.slice(dir.length + 1, -".md".length);
     if (dir && base === dir.split("/").at(-1)) {
       bundles.push(dir);
     }

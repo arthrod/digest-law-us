@@ -11,11 +11,11 @@ import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
 import { schemeSummaryJsonLd } from "@/lib/skos";
 
-const corpus = await getCorpus();
-const { doctrinalAreas, compositeAreas, stats } = corpus;
-const doctrinalTopics = doctrinalAreas.reduce((n, a) => n + a.topicCount, 0);
-const compositeTopics = compositeAreas.reduce((n, a) => n + a.topicCount, 0);
-const fmt = (n: number) => n.toLocaleString("en-US");
+const corpus = await getCorpus(),
+ { doctrinalAreas, compositeAreas, stats } = corpus,
+ doctrinalTopics = doctrinalAreas.reduce((n, a) => n + a.topicCount, 0),
+ compositeTopics = compositeAreas.reduce((n, a) => n + a.topicCount, 0),
+ fmt = (n: number) => n.toLocaleString("en-US"),
 
 /**
  * Sentences that interleave counts with prose are composed here, not in the
@@ -24,14 +24,14 @@ const fmt = (n: number) => n.toLocaleString("en-US");
  * is free to introduce that break on any run. Building the string up front
  * makes the spacing independent of how the markup is wrapped.
  */
-const lede =
+ lede =
   `${fmt(stats.digests)} topics across ${doctrinalAreas.length} doctrinal areas ` +
   `and ${compositeAreas.length} cross-cutting roots of United States law, ` +
   "researched from free public sources and gated by review. Every digest holds " +
   "the full text of at least two authorities, and publishes the log of every " +
-  "search and rejection behind it.";
-const doctrinalCounts = `${doctrinalAreas.length} areas · ${fmt(doctrinalTopics)} topics`;
-const compositeCounts = `${compositeAreas.length} roots · ${fmt(compositeTopics)} cross-cutting topics`;
+  "search and rejection behind it.",
+ doctrinalCounts = `${doctrinalAreas.length} areas · ${fmt(doctrinalTopics)} topics`,
+ compositeCounts = `${compositeAreas.length} roots · ${fmt(compositeTopics)} cross-cutting topics`;
 ---
 
 <Layout>

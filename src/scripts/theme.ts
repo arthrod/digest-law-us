@@ -1,6 +1,6 @@
-const THEME_KEY = "theme";
-const LIGHT = "light";
-const DARK = "dark";
+const THEME_KEY = "theme",
+ LIGHT = "light",
+ DARK = "dark";
 
 // Light is the default. The OS preference is not consulted — dark is opt-in
 // through the toggle, and once chosen it is the reader's until they change it.

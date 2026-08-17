@@ -26,9 +26,9 @@ interface Props {
 }
 
 const { toc, broader, narrower, related, relations, mappings, record } =
-  Astro.props;
+  Astro.props,
 
-const chipGroups: [string, RailRef[]][] = [
+ chipGroups: [string, RailRef[]][] = [
   ["Broader", broader],
   ["Narrower", narrower],
   ["Related", related],

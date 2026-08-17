@@ -13,20 +13,20 @@ import Layout from "@/layouts/Layout.astro";
 import { REVIEWERS } from "@/lib/committee";
 import { getCorpus } from "@/lib/corpus";
 
-const corpus = await getCorpus();
-const { stats } = corpus;
-const fmt = (n: number) => n.toLocaleString("en-US");
+const corpus = await getCorpus(),
+ { stats } = corpus,
+ fmt = (n: number) => n.toLocaleString("en-US"),
 
 /** What a reviewer is asked to do — the gate, stated as work. */
-const duties = [
+ duties = [
   "Check that every authority cited in a digest is actually retained on the page, and that the retained text says what the digest says it says.",
   "Read the audit before the prose. A digest whose audit is thin should not merge on the strength of a well-written summary.",
   "Block the merge when the evidence floor does not hold, and prefer deletion to padding. The purge exists because this call gets made.",
   "Flag doctrine that is stated too confidently for the sources behind it — jurisdictional splits, superseded rules, and holdings read past their facts.",
-];
+],
 
 /** What we are short of. Stated plainly, because it is a recruitment ask. */
-const openings = [
+ openings = [
   {
     body: "Reviewers admitted in a United States jurisdiction who can tell us where a digest is wrong for their state — the areas below the federal layer are exactly where machine research is weakest.",
     n: "01",
@@ -42,10 +42,10 @@ const openings = [
     n: "03",
     name: "Subject-matter reviewers",
   },
-];
+],
 
-const title = "Review committee — American Legal Digest";
-const description =
+ title = "Review committee — American Legal Digest",
+ description =
   "The people who gate the merge at American Legal Digest, what review actually requires, and an open call for local and global reviewers.";
 ---
 

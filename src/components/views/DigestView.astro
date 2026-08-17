@@ -21,80 +21,80 @@ import { articleJsonLd, conceptJsonLd } from "@/lib/skos";
 interface Props {
   slugPath: string;
 }
-const { slugPath } = Astro.props;
+const { slugPath } = Astro.props,
 
-const corpus = await getCorpus();
-const node = corpus.nodeBySlugPath.get(slugPath);
+ corpus = await getCorpus(),
+ node = corpus.nodeBySlugPath.get(slugPath);
 if (!node?.digest) {
   throw new Error(`No digest at ${slugPath}`);
 }
-const { digest } = node;
-const { dir } = node;
-const fm = digest.data;
+const { digest } = node,
+ { dir } = node,
+ fm = digest.data,
 
-const { Content, headings } = await render(digest);
-const toc = headings
+ { Content, headings } = await render(digest),
+ toc = headings
   .filter((h) => h.depth === 1)
   .map((h, i) => ({
     n: String(i + 1).padStart(2, "0"),
     slug: h.slug,
     text: h.text,
-  }));
+  })),
 
-const sources = corpus.sourcesByBundle.get(dir) ?? [];
-const audit = corpus.auditsByDir.get(dir);
-const caselawIdx = corpus.caselawByDir.get(dir);
-const statutoryIdx = corpus.statutoryByDir.get(dir);
-const run = corpus.runsByDir.get(dir);
+ sources = corpus.sourcesByBundle.get(dir) ?? [],
+ audit = corpus.auditsByDir.get(dir),
+ caselawIdx = corpus.caselawByDir.get(dir),
+ statutoryIdx = corpus.statutoryByDir.get(dir),
+ run = corpus.runsByDir.get(dir),
 
-const crumbTrail = crumbsFor(corpus, slugPath);
-const crumbs: CrumbItem[] = [
+ crumbTrail = crumbsFor(corpus, slugPath),
+ crumbs: CrumbItem[] = [
   { href: "/", label: "Digest" },
   ...crumbTrail.slice(0, -1).map((c) => ({
     href: c.published ? `/${c.slugPath}/` : undefined,
     label: c.label,
   })),
   { label: node.label },
-];
+],
 
-const generated = formatDate(run?.data.run?.finished_at ?? fm.timestamp);
-const profile = cleanProfile(fm.source_profile);
+ generated = formatDate(run?.data.run?.finished_at ?? fm.timestamp),
+ profile = cleanProfile(fm.source_profile),
 
-const toRail = (urns: string[]): RailRef[] =>
-  urns.map((urn) => resolveRef(corpus, urn));
-const broader = toRail(fm.broader);
-const childRefs: RailRef[] = node.children.map((c) => ({
+ toRail = (urns: string[]): RailRef[] =>
+  urns.map((urn) => resolveRef(corpus, urn)),
+ broader = toRail(fm.broader),
+ childRefs: RailRef[] = node.children.map((c) => ({
   label: c.label,
   published: true,
   slugPath: c.slugPath,
-}));
-const narrowerSet = new Map<string, RailRef>();
+})),
+ narrowerSet = new Map<string, RailRef>();
 for (const r of [...toRail(fm.narrower), ...childRefs]) {
   narrowerSet.set(r.slugPath, r);
 }
-const narrower = [...narrowerSet.values()];
-const related = toRail(fm.related);
+const narrower = [...narrowerSet.values()],
+ related = toRail(fm.related),
 
-const relationLabels: Record<string, string> = {
+ relationLabels: Record<string, string> = {
   defenseTo: "defense to",
   procedureFor: "procedure for",
   remedyFor: "remedy for",
-};
-const relations = Object.entries(fm.legal_relations ?? {})
+},
+ relations = Object.entries(fm.legal_relations ?? {})
   .filter(([, urns]) => Array.isArray(urns) && urns.length > 0)
   .map(([key, urns]) => ({
     label: relationLabels[key] ?? key,
     refs: toRail(urns as string[]),
-  }));
+  })),
 
-const mappingLabels: Record<string, string> = {
+ mappingLabels: Record<string, string> = {
   eurovoc: "EuroVoc",
   folio: "FOLIO",
   list: "LIST",
   sali_lmss: "SALI/LMSS",
   west_1914: "West 1914",
-};
-const mappings: { label: string; url?: string; text?: string }[] = [];
+},
+ mappings: { label: string; url?: string; text?: string }[] = [];
 for (const [key, group] of Object.entries(fm.mappings ?? {})) {
   if (!group || typeof group !== "object") {
     continue;
@@ -116,8 +116,8 @@ for (const [key, group] of Object.entries(fm.mappings ?? {})) {
 /** The full SKOS record, for the rail's disclosure — identity and lifecycle
  *  fields as key/value rows, semantic fields as prose. Relations and
  *  mappings already render above it as navigation. */
-const itemIds = (fm as Record<string, unknown>)["item_ids"];
-const recordRows = [
+const itemIds = (fm as Record<string, unknown>)["item_ids"],
+ recordRows = [
   { label: "URN", mono: true, value: fm.id ?? "" },
   { label: "Notation", mono: true, value: fm.notation ?? "" },
   { label: "Scheme", value: fm.scheme ?? "" },
@@ -134,24 +134,24 @@ const recordRows = [
   },
   { label: "Objectives path", value: fm.objectives_path.join(" → ") },
   { label: "Source profile", value: profile ?? "" },
-].filter((r) => r.value);
-const recordProse = [
+].filter((r) => r.value),
+ recordProse = [
   { label: "Definition", text: fm.definition },
   { label: "Scope", text: fm.scope_note },
   { label: "Not to be used for", text: fm.do_not_use_for.join("; ") },
-].filter((r) => r.text);
+].filter((r) => r.text),
 
-const areaLabel = crumbTrail[0]?.label ?? "";
-const title = `${node.label} — ${areaLabel} — American Legal Digest`;
-const description =
+ areaLabel = crumbTrail[0]?.label ?? "",
+ title = `${node.label} — ${areaLabel} — American Legal Digest`,
+ description =
   fm.description ||
   fm.definition ||
-  `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`;
+  `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`,
 
-const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label);
-const historicalLine = fm.historical_labels;
+ altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
+ historicalLine = fm.historical_labels,
 
-const sourceUrls = sources
+ sourceUrls = sources
   .map((s) => s.data.resource)
   .filter((u) => /^https?:\/\//u.test(u));
 ---

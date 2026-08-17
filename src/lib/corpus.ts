@@ -132,8 +132,8 @@ async function build(): Promise<Corpus> {
   // content.config.ts), so this is a consistency net rather than the cut:
   // it drops anything a stale content-layer cache still holds.
   if (PREVIEW_MODE) {
-    const kept = await previewBundles(CORPUS_DIR);
-    const maps = [
+    const kept = await previewBundles(CORPUS_DIR),
+     maps = [
       auditsByDir,
       caselawByDir,
       statutoryByDir,
@@ -159,19 +159,19 @@ async function build(): Promise<Corpus> {
   }
 
   // ---- Tree ----
-  const nodeByDir = new Map<string, TreeNode>();
-  const roots: TreeNode[] = [];
+  const nodeByDir = new Map<string, TreeNode>(),
+   roots: TreeNode[] = [];
 
   function ensureNode(dir: string): TreeNode {
     const existing = nodeByDir.get(dir);
     if (existing) {
       return existing;
     }
-    const segs = dir.split("/");
+    const segs = dir.split("/"),
     // split() never yields an empty array, so the fallback never fires — it
     // exists to keep `segment` a string without an assertion.
-    const segment = segs.at(-1) ?? dir;
-    const node: TreeNode = {
+     segment = segs.at(-1) ?? dir,
+     node: TreeNode = {
       children: [],
       dir,
       label: humanize(segment),
@@ -198,11 +198,11 @@ async function build(): Promise<Corpus> {
 
   function aggregate(node: TreeNode): void {
     node.children.sort((a, b) => a.label.localeCompare(b.label));
-    let topics = node.digest ? 1 : 0;
-    let depth = 0;
+    let topics = node.digest ? 1 : 0,
+     depth = 0;
     node.ownSourceCount = sourcesByBundle.get(node.dir)?.length ?? 0;
-    let sources = node.ownSourceCount;
-    let latest = node.digest?.data.timestamp ?? "";
+    let sources = node.ownSourceCount,
+     latest = node.digest?.data.timestamp ?? "";
     for (const child of node.children) {
       aggregate(child);
       topics += child.topicCount;
@@ -229,13 +229,13 @@ async function build(): Promise<Corpus> {
 
   const doctrinalAreas = roots.filter(
     (r) => r.segment !== r.segment.toUpperCase()
-  );
-  const compositeAreas = roots.filter(
+  ),
+   compositeAreas = roots.filter(
     (r) => r.segment === r.segment.toUpperCase()
   );
 
-  let sourceBytes = 0;
-  let sourceCount = 0;
+  let sourceBytes = 0,
+   sourceCount = 0;
   for (const list of sourcesByBundle.values()) {
     for (const s of list) {
       sourceBytes += s.data.bytes;
@@ -300,11 +300,11 @@ export function crumbsFor(
   corpus: Corpus,
   slugPath: string
 ): { label: string; slugPath: string; published: boolean }[] {
-  const segs = slugPath.split("/");
-  const crumbs = [];
+  const segs = slugPath.split("/"),
+   crumbs = [];
   for (let i = 1; i <= segs.length; i += 1) {
-    const partial = segs.slice(0, i).join("/");
-    const node = corpus.nodeBySlugPath.get(partial);
+    const partial = segs.slice(0, i).join("/"),
+     node = corpus.nodeBySlugPath.get(partial);
     crumbs.push({
       label: node?.label ?? humanize(segs[i - 1]),
       published: Boolean(node),

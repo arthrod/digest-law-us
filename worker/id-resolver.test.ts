@@ -6,10 +6,10 @@ import { beforeEach, describe, expect, test } from "bun:test";
 
 import worker, { handleConceptId, resetIdMapCache } from "./index";
 
-const LIVE = "9460d81470154e458335365e3b4c5014";
-const GONE = "00000000000000000000000000000009";
+const LIVE = "9460d81470154e458335365e3b4c5014",
+ GONE = "00000000000000000000000000000009",
 
-const MAP = {
+ MAP = {
   retired: { [GONE]: "evidence-law/withdrawn-topic" },
   routes: { [LIVE]: "evidence-law/proof-of-writings" },
   version: 1,
@@ -68,8 +68,8 @@ describe("resolving a concept id", () => {
   });
 
   test("an unknown but well-formed id is 404", async () => {
-    const missing = "f".repeat(32);
-    const response = await handleConceptId(get(missing), envWith(MAP), missing);
+    const missing = "f".repeat(32),
+     response = await handleConceptId(get(missing), envWith(MAP), missing);
     expect(response.status).toBe(404);
   });
 

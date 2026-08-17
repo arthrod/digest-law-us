@@ -9,8 +9,8 @@ import { cacheKeyFrom, stampEntry } from "@/lib/cache-keys";
 import { getCorpus } from "@/lib/corpus";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const corpus = await getCorpus();
-  const paths = [];
+  const corpus = await getCorpus(),
+   paths = [];
   for (const node of corpus.nodeBySlugPath.values()) {
     if (!node.digest) {
       continue;

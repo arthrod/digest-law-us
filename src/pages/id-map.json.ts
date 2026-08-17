@@ -14,8 +14,8 @@ import type { APIRoute } from "astro";
 import { allConcepts } from "@/lib/concept-ids";
 
 export const GET: APIRoute = () => {
-  const routes: Record<string, string> = {};
-  const retired: Record<string, string> = {};
+  const routes: Record<string, string> = {},
+   retired: Record<string, string> = {};
   for (const record of allConcepts()) {
     const current = record.keys.at(-1);
     if (!current) {

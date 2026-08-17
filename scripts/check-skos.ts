@@ -29,11 +29,11 @@ try {
   process.exit(1);
 }
 
-const findings = validateSkosGraph(JSON.parse(raw));
-const violations = findings.filter((f) => f.severity === "violation");
-const warnings = findings.filter((f) => f.severity === "warning");
+const findings = validateSkosGraph(JSON.parse(raw)),
+ violations = findings.filter((f) => f.severity === "violation"),
+ warnings = findings.filter((f) => f.severity === "warning"),
 
-const show = (label: string, list: typeof findings, limit: number) => {
+ show = (label: string, list: typeof findings, limit: number) => {
   for (const finding of list.slice(0, limit)) {
     process.stdout.write(
       `${label} ${finding.constraint}\n  ${finding.node}\n  ${finding.message}\n`

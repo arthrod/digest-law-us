@@ -17,10 +17,10 @@ import { formatDate } from "@/lib/labels";
 interface Props {
   slugPath: string;
 }
-const { slugPath } = Astro.props;
+const { slugPath } = Astro.props,
 
-const corpus = await getCorpus();
-const node = corpus.nodeBySlugPath.get(slugPath);
+ corpus = await getCorpus(),
+ node = corpus.nodeBySlugPath.get(slugPath);
 if (!node?.digest) {
   throw new Error(`No bundle at ${slugPath}`);
 }
@@ -28,12 +28,12 @@ const audit = corpus.auditsByDir.get(node.dir);
 if (!audit) {
   throw new Error(`No audit at ${slugPath}`);
 }
-const run = corpus.runsByDir.get(node.dir);
+const run = corpus.runsByDir.get(node.dir),
 
-const { Content } = await render(audit);
+ { Content } = await render(audit),
 
-const crumbTrail = crumbsFor(corpus, slugPath);
-const crumbs: CrumbItem[] = [
+ crumbTrail = crumbsFor(corpus, slugPath),
+ crumbs: CrumbItem[] = [
   { href: "/", label: "Digest" },
   ...crumbTrail.slice(0, -1).map((c) => ({
     href: c.published ? `/${c.slugPath}/` : undefined,
@@ -41,16 +41,16 @@ const crumbs: CrumbItem[] = [
   })),
   { href: `/${slugPath}/`, label: node.label },
   { label: "Audit" },
-];
+],
 
-const areaLabel = crumbTrail[0]?.label ?? "";
-const runInfo = run?.data.run;
-const started = formatDate(runInfo?.started_at);
-const retained = (corpus.sourcesByBundle.get(node.dir) ?? []).length;
-const visited = runInfo?.visited_urls;
+ areaLabel = crumbTrail[0]?.label ?? "",
+ runInfo = run?.data.run,
+ started = formatDate(runInfo?.started_at),
+ retained = (corpus.sourcesByBundle.get(node.dir) ?? []).length,
+ visited = runInfo?.visited_urls,
 
-const title = `Build log — ${node.label} — American Legal Digest`;
-const description = `Search log, source verdicts and failures behind the ${node.label} digest — published as evidence, kept verbatim.`;
+ title = `Build log — ${node.label} — American Legal Digest`,
+ description = `Search log, source verdicts and failures behind the ${node.label} digest — published as evidence, kept verbatim.`;
 ---
 
 <Layout {description} {title}>

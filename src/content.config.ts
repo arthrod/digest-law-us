@@ -8,7 +8,7 @@ import { sourcesLoader } from "@/loaders/sources";
 
 /** Keep raw corpus paths as ids — the URL scheme derives from them. */
 const rawId = ({ entry }: { entry: string }) =>
-  entry.replace(/\.(?<ext>md|mdx|json)$/u, "");
+  entry.replace(/\.(?<ext>md|mdx|json)$/u, ""),
 
 /**
  * Preview builds narrow every glob to the selected bundle directories, so
@@ -16,23 +16,23 @@ const rawId = ({ entry }: { entry: string }) =>
  * point of preview mode: filtering after the load would still pay for it.
  * Off in a normal build, where the set is empty and patterns are unchanged.
  */
-const previewDirs = PREVIEW_MODE ? [...(await previewBundles(CORPUS_DIR))] : [];
+ previewDirs = PREVIEW_MODE ? [...(await previewBundles(CORPUS_DIR))] : [],
 
-const scoped = (patterns: string[]): string[] => {
+ scoped = (patterns: string[]): string[] => {
   if (!PREVIEW_MODE) {
     return patterns;
   }
-  const includes = patterns.filter((p) => !p.startsWith("!"));
-  const excludes = patterns.filter((p) => p.startsWith("!"));
+  const includes = patterns.filter((p) => !p.startsWith("!")),
+   excludes = patterns.filter((p) => p.startsWith("!"));
   return [
     ...previewDirs.flatMap((dir) => includes.map((p) => `${dir}/${p}`)),
     ...excludes,
   ];
-};
+},
 
 /** SKOS `legal_issue` frontmatter carried by every digest. Deliberately
  *  loose: 69 pre-provenance bundles (June 2026) predate some fields. */
-const digestSchema = z
+ digestSchema = z
   .object({
     alt_labels: z.array(z.string()).default([]),
     broader: z.array(z.string()).default([]),
@@ -71,9 +71,9 @@ const digestSchema = z
     type: z.string().optional(),
     version: z.string().optional(),
   })
-  .passthrough();
+  .passthrough(),
 
-const digests = defineCollection({
+ digests = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
@@ -101,9 +101,9 @@ const digests = defineCollection({
     retainBody: false,
   }),
   schema: digestSchema,
-});
+}),
 
-const indexSchema = z
+ indexSchema = z
   .object({
     description: z.string().default(""),
     folio_area: z.string().optional(),
@@ -122,27 +122,27 @@ const indexSchema = z
     title: z.string().optional(),
     type: z.string().optional(),
   })
-  .passthrough();
+  .passthrough(),
 
-const caselaw = defineCollection({
+ caselaw = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
     pattern: scoped(["**/caselaw_index.md"]),
   }),
   schema: indexSchema,
-});
+}),
 
-const statutory = defineCollection({
+ statutory = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
     pattern: scoped(["**/statutory_index.md"]),
   }),
   schema: indexSchema,
-});
+}),
 
-const audits = defineCollection({
+ audits = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
@@ -159,10 +159,10 @@ const audits = defineCollection({
       type: z.string().optional(),
     })
     .passthrough(),
-});
+}),
 
 /** run.json provenance manifests (1,552+ bundles; absent = pre-provenance) */
-const runs = defineCollection({
+ runs = defineCollection({
   loader: glob({
     base: CORPUS_DIR,
     generateId: rawId,
@@ -191,10 +191,10 @@ const runs = defineCollection({
         .optional(),
     })
     .passthrough(),
-});
+}),
 
 /** Retained source documents — metadata + chunk spans only (see loader). */
-const sources = defineCollection({
+ sources = defineCollection({
   loader: sourcesLoader(CORPUS_DIR),
   schema: z.object({
     bundle: z.string(),

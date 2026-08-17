@@ -99,19 +99,19 @@ export function labelSetFor(input: {
   altLabels?: string[];
   historicalLabels?: string[];
 }): LabelSet {
-  const violations: string[] = [];
-  const prefLabel = input.prefLabel.normalize("NFC").trim();
-  const taken = new Map<string, string>([[foldLabel(prefLabel), "prefLabel"]]);
+  const violations: string[] = [],
+   prefLabel = input.prefLabel.normalize("NFC").trim(),
+   taken = new Map<string, string>([[foldLabel(prefLabel), "prefLabel"]]),
 
-  const keep = (values: string[] | undefined, role: string): string[] => {
+   keep = (values: string[] | undefined, role: string): string[] => {
     const out: string[] = [];
     for (const raw of values ?? []) {
       const value = raw.normalize("NFC").trim();
       if (!value) {
         continue;
       }
-      const folded = foldLabel(value);
-      const owner = taken.get(folded);
+      const folded = foldLabel(value),
+       owner = taken.get(folded);
       if (owner) {
         violations.push(`${role} "${value}" duplicates ${owner}`);
         continue;
@@ -158,8 +158,8 @@ function dateLit(value: string | undefined) {
 
 /** Identity block: the minted id, its provenance, and the legacy route IRI. */
 function identityOf(node: TreeNode, fm: Record<string, unknown> | undefined) {
-  const resolved = conceptIriFor(node.slugPath);
-  const block: Record<string, unknown> = {
+  const resolved = conceptIriFor(node.slugPath),
+   block: Record<string, unknown> = {
     "@id": resolved.iri,
     "digest:legacyIri": { "@id": legacyIriFor(node.slugPath) },
   };
@@ -190,21 +190,21 @@ export function conceptFor(
   node: TreeNode,
   opts: { compact?: boolean } = {}
 ): Record<string, unknown> {
-  const { digest } = node;
-  const fm = digest?.data as Record<string, unknown> | undefined;
-  const isArea = !node.slugPath.includes("/");
-  const lang = languageOf(fm);
-  const prefSource = fm?.pref_label;
-  const labels = labelSetFor({
+  const { digest } = node,
+   fm = digest?.data as Record<string, unknown> | undefined,
+   isArea = !node.slugPath.includes("/"),
+   lang = languageOf(fm),
+   prefSource = fm?.pref_label,
+   labels = labelSetFor({
     altLabels: fm?.alt_labels as string[] | undefined,
     historicalLabels: fm?.historical_labels as string[] | undefined,
     prefLabel:
       typeof prefSource === "string" && prefSource
         ? humanize(prefSource)
         : node.label,
-  });
+  }),
 
-  const concept: Record<string, unknown> = {
+   concept: Record<string, unknown> = {
     ...identityOf(node, fm),
     "@type": "skos:Concept",
     "skos:inScheme": { "@id": W3ID_BASE },
@@ -283,10 +283,10 @@ export function conceptFor(
   const mappings = (fm?.mappings ?? {}) as Record<
     string,
     Record<string, unknown>
-  >;
-  const close: string[] = [];
-  const relatedMatch: string[] = [];
-  const broad: string[] = [];
+  >,
+   close: string[] = [],
+   relatedMatch: string[] = [],
+   broad: string[] = [];
   for (const group of Object.values(mappings)) {
     if (!group || typeof group !== "object") {
       continue;
@@ -431,8 +431,8 @@ export function schemeJsonLd(corpus: Corpus): string {
         "@id": conceptIri(a.slugPath),
       })),
     },
-  ];
-  const visit = (node: TreeNode) => {
+  ],
+   visit = (node: TreeNode) => {
     graph.push(conceptFor(corpus, node, { compact: !node.digest }));
     for (const child of node.children) {
       visit(child);

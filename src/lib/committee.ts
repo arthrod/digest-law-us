@@ -57,8 +57,8 @@ export interface ContactTopic {
   to: string[];
 }
 
-const ARTHUR = "arthur@digest.law";
-const CAROLINA = "carolina@digest.law";
+const ARTHUR = "arthur@digest.law",
+ CAROLINA = "carolina@digest.law";
 
 /**
  * Topic router. Anything that touches the corpus itself reaches both

@@ -35,23 +35,23 @@ export function splitSpans(content: string, target: number): ChunkSpan[] {
     return [{ end: content.length, start: 0 }];
   }
   const spans: ChunkSpan[] = [];
-  let start = 0;
-  let size = 0;
-  let inFence = false;
-  let cursor = 0;
+  let start = 0,
+   size = 0,
+   inFence = false,
+   cursor = 0;
   while (cursor < content.length) {
     let nl = content.indexOf("\n", cursor);
     if (nl === -1) {
       nl = content.length;
     }
-    const line = content.slice(cursor, nl);
-    const trimmed = line.trimStart();
+    const line = content.slice(cursor, nl),
+     trimmed = line.trimStart();
     if (trimmed.startsWith("```") || trimmed.startsWith("~~~")) {
       inFence = !inFence;
     }
     size += nl - cursor + 1;
-    const atBlank = trimmed === "";
-    const flush =
+    const atBlank = trimmed === "",
+     flush =
       (!inFence && size >= target && atBlank) ||
       (!inFence && size >= target * 1.5) ||
       size >= target * 3;
@@ -75,15 +75,15 @@ export function splitSpans(content: string, target: number): ChunkSpan[] {
 export function sourcesLoader(corpusDir: string): Loader {
   return {
     async load({ store, logger, config, parseData, generateDigest }) {
-      const root = path.resolve(fileURLToPath(config.root), corpusDir);
-      const listing = await fs.readdir(root, {
+      const root = path.resolve(fileURLToPath(config.root), corpusDir),
+       listing = await fs.readdir(root, {
         recursive: true,
-      });
+      }),
       // In preview mode the bundle set is decided before any file is read;
       // skipping here is what keeps a preview build from paying for the
       // whole ~372 MB of retained sources (see src/lib/preview.ts).
-      const preview = PREVIEW_MODE ? await previewBundles(root) : null;
-      const files = listing
+       preview = PREVIEW_MODE ? await previewBundles(root) : null,
+       files = listing
         .filter((rel) => /(?:^|\/)sources\/[^/]+\.md$/u.test(rel))
         .filter(
           (rel) =>
@@ -98,8 +98,8 @@ export function sourcesLoader(corpusDir: string): Loader {
 
       for (const rel of files) {
         const raw = await fs.readFile(path.join(root, rel), "utf8");
-        let fm: Record<string, unknown>;
-        let content: string;
+        let fm: Record<string, unknown>,
+         content: string;
         try {
           ({ data: fm, content } = matter(raw));
         } catch (error) {
@@ -109,8 +109,8 @@ export function sourcesLoader(corpusDir: string): Loader {
           fm = {};
           content = raw;
         }
-        const bundle = rel.slice(0, rel.lastIndexOf("/sources/"));
-        const fileName = path.basename(rel, ".md");
+        const bundle = rel.slice(0, rel.lastIndexOf("/sources/")),
+         fileName = path.basename(rel, ".md");
 
         let slug = slugSegment(fileName) || "source";
         const taken = usedSlugs.get(bundle) ?? new Set<string>();
@@ -124,9 +124,9 @@ export function sourcesLoader(corpusDir: string): Loader {
         taken.add(slug);
         usedSlugs.set(bundle, taken);
 
-        const spans = splitSpans(content, SOURCE_CHUNK_BYTES);
-        const id = `${bundle}/sources/${slug}`;
-        const data = await parseData({
+        const spans = splitSpans(content, SOURCE_CHUNK_BYTES),
+         id = `${bundle}/sources/${slug}`,
+         data = await parseData({
           data: {
             bundle,
             bytes: Buffer.byteLength(content),

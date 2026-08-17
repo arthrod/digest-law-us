@@ -38,9 +38,9 @@ import { humanize, slugPathOf } from "../src/lib/labels";
 const REGISTRY_PATH = path.resolve(
   import.meta.dirname,
   "../src/data/concept-ids.json"
-);
-const corpusRoot = path.resolve(CORPUS_DIR);
-const checkOnly = process.argv.includes("--check");
+),
+ corpusRoot = path.resolve(CORPUS_DIR),
+ checkOnly = process.argv.includes("--check");
 
 interface CorpusConcept {
   /** Identity the runner allocated at generation time, when it did. */
@@ -51,9 +51,9 @@ interface CorpusConcept {
   slugPath: string;
 }
 
-const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u;
+const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u,
 
-const FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u;
+ FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u;
 
 async function frontmatterOf(file: string): Promise<Record<string, string>> {
   let head: string;
@@ -66,9 +66,9 @@ async function frontmatterOf(file: string): Promise<Record<string, string>> {
   if (!head.startsWith("---")) {
     return {};
   }
-  const end = head.indexOf("\n---", 3);
-  const block = head.slice(3, end === -1 ? undefined : end);
-  const fields: Record<string, string> = {};
+  const end = head.indexOf("\n---", 3),
+   block = head.slice(3, end === -1 ? undefined : end),
+   fields: Record<string, string> = {};
   for (const line of block.split("\n")) {
     const match = FIELD.exec(line);
     if (match?.groups?.key && match.groups.value) {
@@ -90,9 +90,9 @@ async function collect(dir: string, out: CorpusConcept[]): Promise<void> {
   );
   await Promise.all(
     dirs.map(async (entry) => {
-      const full = path.join(dir, entry.name);
+      const full = path.join(dir, entry.name),
       // A bundle's digest is the .md named after its own directory (corpus.ts).
-      const fm = await frontmatterOf(path.join(full, `${entry.name}.md`));
+       fm = await frontmatterOf(path.join(full, `${entry.name}.md`));
       out.push({
         conceptId: fm.concept_id,
         corpusIssueId: fm.issue_id,
@@ -122,9 +122,9 @@ function reportOrphans(orphans: ConceptRecord[]): void {
 
 const registry = JSON.parse(
   await readFile(REGISTRY_PATH, "utf8")
-) as ConceptRegistry;
+) as ConceptRegistry,
 
-const existingKeys = new Set<string>();
+ existingKeys = new Set<string>();
 for (const record of registry.concepts) {
   for (const key of record.keys) {
     existingKeys.add(key);
@@ -142,10 +142,10 @@ if (concepts.length === 0) {
   process.exit(1);
 }
 
-const unminted = concepts.filter((c) => !existingKeys.has(c.slugPath));
-const liveKeys = new Set(concepts.map((c) => c.slugPath));
-const orphans = orphansOf(registry, liveKeys);
-const buried = registry.concepts.filter(
+const unminted = concepts.filter((c) => !existingKeys.has(c.slugPath)),
+ liveKeys = new Set(concepts.map((c) => c.slugPath)),
+ orphans = orphansOf(registry, liveKeys),
+ buried = registry.concepts.filter(
   (record) => record.retired && record.keys.some((k) => liveKeys.has(k))
 );
 
@@ -178,8 +178,8 @@ if (checkOnly) {
   );
 }
 
-const minted = today();
-const takenIds = new Set(registry.concepts.map((record) => record.id));
+const minted = today(),
+ takenIds = new Set(registry.concepts.map((record) => record.id));
 let adopted = 0;
 for (const concept of unminted) {
   // The runner allocates identity at generation time (skos_okf.py). When a
@@ -187,8 +187,8 @@ for (const concept of unminted) {
   // second id for the same concept — two ids for one concept is precisely the
   // ambiguity this registry exists to prevent. A malformed or already-taken
   // value is refused, not silently trusted.
-  const supplied = concept.conceptId?.toLowerCase();
-  const adoptable =
+  const supplied = concept.conceptId?.toLowerCase(),
+   adoptable =
     supplied && CONCEPT_ID_FORM.test(supplied) && !takenIds.has(supplied);
   if (supplied && !adoptable) {
     process.stderr.write(

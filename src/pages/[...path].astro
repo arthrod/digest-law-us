@@ -34,7 +34,7 @@ export async function getStaticPaths() {
       part?: number;
     };
   }
-  const paths: PathSpec[] = [];
+  const paths: PathSpec[] = [],
 
   /**
    * Incremental-build cache keys (see lib/cache-keys.ts for the contract).
@@ -47,25 +47,25 @@ export async function getStaticPaths() {
   // AreaView's adjacency chips read other areas' labels and topic counts,
   // so every area page keys on the full root list. 43 roots — re-rendering
   // them all when one count moves is noise; missing the change is not.
-  const areaRollCall = corpus.areas.map(
+   areaRollCall = corpus.areas.map(
     (a) => `a:${a.slugPath}#${a.topicCount}#${a.label}`
   );
 
   for (const node of corpus.nodeBySlugPath.values()) {
-    const isArea = !node.slugPath.includes("/");
-    const { dir } = node;
-    const sources = corpus.sourcesByBundle.get(dir) ?? [];
-    const audit = corpus.auditsByDir.get(dir);
-    const caselawIdx = corpus.caselawByDir.get(dir);
-    const statutoryIdx = corpus.statutoryByDir.get(dir);
-    const run = corpus.runsByDir.get(dir);
+    const isArea = !node.slugPath.includes("/"),
+     { dir } = node,
+     sources = corpus.sourcesByBundle.get(dir) ?? [],
+     audit = corpus.auditsByDir.get(dir),
+     caselawIdx = corpus.caselawByDir.get(dir),
+     statutoryIdx = corpus.statutoryByDir.get(dir),
+     run = corpus.runsByDir.get(dir);
 
     if (node.digest) {
       // The SKOS rail resolves refs against the whole corpus: a target
       // digest appearing elsewhere flips its link to published, so the
       // resolution state of every ref is an input of this page.
-      const fm = node.digest.data;
-      const refUrns = [
+      const fm = node.digest.data,
+       refUrns = [
         ...fm.broader,
         ...fm.narrower,
         ...fm.related,

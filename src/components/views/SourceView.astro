@@ -20,10 +20,10 @@ interface Props {
   slugPath: string;
   sourceId: string;
 }
-const { slugPath, sourceId, part } = Astro.props;
+const { slugPath, sourceId, part } = Astro.props,
 
-const corpus = await getCorpus();
-const node = corpus.nodeBySlugPath.get(slugPath);
+ corpus = await getCorpus(),
+ node = corpus.nodeBySlugPath.get(slugPath);
 if (!node?.digest) {
   throw new Error(`No bundle at ${slugPath}`);
 }
@@ -31,36 +31,36 @@ const source = await getEntry("sources", sourceId);
 if (!source) {
   throw new Error(`No source ${sourceId}`);
 }
-const meta = source.data;
+const meta = source.data,
 
-const span = meta.spans[part - 1];
+ span = meta.spans[part - 1];
 if (!span) {
   throw new Error(`No part ${part} of ${sourceId}`);
 }
-const { html } = await renderSourceChunk(meta.relFile, span);
+const { html } = await renderSourceChunk(meta.relFile, span),
 
-const siblings = corpus.sourcesByBundle.get(node.dir) ?? [];
-const position = siblings.findIndex((s) => s.id === sourceId) + 1;
+ siblings = corpus.sourcesByBundle.get(node.dir) ?? [],
+ position = siblings.findIndex((s) => s.id === sourceId) + 1,
 
-const baseHref = `/${slugPath}/sources/${meta.slug}`;
-const hrefFor = (p: number) => (p === 1 ? `${baseHref}/` : `${baseHref}/${p}/`);
-const canonicalURL = new URL(hrefFor(part), Astro.site).href;
+ baseHref = `/${slugPath}/sources/${meta.slug}`,
+ hrefFor = (p: number) => (p === 1 ? `${baseHref}/` : `${baseHref}/${p}/`),
+ canonicalURL = new URL(hrefFor(part), Astro.site).href,
 
-const run = corpus.runsByDir.get(node.dir);
-const filesRaw = run?.data.files;
-const sha = (Array.isArray(filesRaw) ? filesRaw : []).find(
+ run = corpus.runsByDir.get(node.dir),
+ filesRaw = run?.data.files,
+ sha = (Array.isArray(filesRaw) ? filesRaw : []).find(
   (f: Record<string, unknown>) =>
     typeof f.path === "string" && f.path.endsWith(`/${meta.relFile}`)
-)?.sha256 as string | undefined;
+)?.sha256 as string | undefined,
 
-const channel = channelFor(meta.resource);
-const sourceTitle = meta.description || meta.title;
-const title = `${sourceTitle} — retained source — American Legal Digest`;
-const description = `Retained source for ${node.label}: ${sourceTitle}, preserved in full as fetched.`;
+ channel = channelFor(meta.resource),
+ sourceTitle = meta.description || meta.title,
+ title = `${sourceTitle} — retained source — American Legal Digest`,
+ description = `Retained source for ${node.label}: ${sourceTitle}, preserved in full as fetched.`,
 
-const shownStart = span.start;
-const shownEnd = span.end;
-const percent =
+ shownStart = span.start,
+ shownEnd = span.end,
+ percent =
   meta.parts > 1
     ? Math.round(((shownEnd - shownStart) / meta.chars) * 100)
     : 100;

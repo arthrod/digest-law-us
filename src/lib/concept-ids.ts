@@ -50,9 +50,9 @@ export interface ConceptRegistry {
   concepts: ConceptRecord[];
 }
 
-const registry = registryFile as ConceptRegistry;
+const registry = registryFile as ConceptRegistry,
 
-const byKey = new Map<string, ConceptRecord>();
+ byKey = new Map<string, ConceptRecord>();
 for (const record of registry.concepts) {
   for (const key of record.keys) {
     byKey.set(key, record);
@@ -188,10 +188,10 @@ const ID_FORM = /^[0-9a-f]{32}$/u;
  * Returns one message per violation; empty means the registry is sound.
  */
 export function validateRegistry(reg: ConceptRegistry): string[] {
-  const problems: string[] = [];
-  const seenIds = new Map<string, number>();
-  const seenUuids = new Set<string>();
-  const seenKeys = new Map<string, string>();
+  const problems: string[] = [],
+   seenIds = new Map<string, number>(),
+   seenUuids = new Set<string>(),
+   seenKeys = new Map<string, string>();
 
   for (const [index, record] of reg.concepts.entries()) {
     if (!ID_FORM.test(record.id)) {

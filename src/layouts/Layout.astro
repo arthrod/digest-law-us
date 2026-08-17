@@ -15,9 +15,9 @@ const {
   description = SITE.description,
   ogImage = `/${SITE.ogImage}`,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
-} = Astro.props;
+} = Astro.props,
 
-const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
+ socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
 ---
 
 <!doctype html>
@@ -90,9 +90,9 @@ const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
     -->
     <script is:inline>
       (() => {
-        const stored = localStorage.getItem("theme");
-        const theme = stored ?? "light";
-        const root = document.firstElementChild;
+        const stored = localStorage.getItem("theme"),
+         theme = stored ?? "light",
+         root = document.firstElementChild;
         if (root) {
           root.dataset.theme = theme;
         }

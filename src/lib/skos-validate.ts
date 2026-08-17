@@ -26,11 +26,11 @@ export interface Violation {
 
 type Node = Record<string, unknown>;
 
-const CONCEPT_ID_DATATYPE_SUFFIX = "datatype/concept-id";
-const HEX32 = /^[0-9a-f]{32}$/u;
-const DASHED_UUID =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/u;
-const ABSOLUTE_HTTP = /^https?:\/\//u;
+const CONCEPT_ID_DATATYPE_SUFFIX = "datatype/concept-id",
+ HEX32 = /^[0-9a-f]{32}$/u,
+ DASHED_UUID =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/u,
+ ABSOLUTE_HTTP = /^https?:\/\//u;
 
 function asArray(value: unknown): unknown[] {
   if (value === undefined || value === null) {
@@ -97,8 +97,8 @@ function idOf(node: Node): string {
 
 /** Labels: one prefLabel per language, sets pairwise disjoint (P1-014B). */
 function checkLabels(node: Node, out: Violation[]): void {
-  const id = idOf(node);
-  const prefs = literals(node, "skos:prefLabel");
+  const id = idOf(node),
+   prefs = literals(node, "skos:prefLabel");
   if (prefs.length === 0) {
     out.push({
       constraint: "ConceptShape/skos:prefLabel minCount",
@@ -142,10 +142,10 @@ function checkLabels(node: Node, out: Violation[]): void {
   }
 
   // Disjointness is per language, on normalized values.
-  const owner = new Map<string, string>();
-  const claim = (label: Literal, role: string) => {
-    const key = `${label.language ?? ""}\u0000${foldLabel(label.value)}`;
-    const held = owner.get(key);
+  const owner = new Map<string, string>(),
+   claim = (label: Literal, role: string) => {
+    const key = `${label.language ?? ""}\u0000${foldLabel(label.value)}`,
+     held = owner.get(key);
     if (held && held !== role) {
       out.push({
         constraint: "ConceptShape label disjointness",
@@ -270,10 +270,10 @@ function checkIdentity(node: Node, out: Violation[]): void {
 
 /** Per-node hierarchy and mapping constraints (P1-014D, P1-014F). */
 function checkRelations(node: Node, out: Violation[]): void {
-  const id = idOf(node);
-  const broader = new Set(refs(node, "skos:broader"));
-  const narrower = new Set(refs(node, "skos:narrower"));
-  const related = new Set(refs(node, "skos:related"));
+  const id = idOf(node),
+   broader = new Set(refs(node, "skos:broader")),
+   narrower = new Set(refs(node, "skos:narrower")),
+   related = new Set(refs(node, "skos:related"));
 
   for (const [key, set] of [
     ["skos:broader", broader],
@@ -337,9 +337,9 @@ function checkRelations(node: Node, out: Violation[]): void {
       }
     }
   }
-  const exact = new Set(mappings["skos:exactMatch"]);
-  const broad = new Set(mappings["skos:broadMatch"]);
-  const narrow = new Set(mappings["skos:narrowMatch"]);
+  const exact = new Set(mappings["skos:exactMatch"]),
+   broad = new Set(mappings["skos:broadMatch"]),
+   narrow = new Set(mappings["skos:narrowMatch"]);
   for (const target of exact) {
     if (broad.has(target) || narrow.has(target)) {
       out.push({
@@ -402,9 +402,9 @@ function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
   }
 
   // Cycle detection over the asserted broader graph.
-  const state = new Map<string, 0 | 1 | 2>();
-  const reported = new Set<string>();
-  const walk = (id: string, trail: string[]): void => {
+  const state = new Map<string, 0 | 1 | 2>(),
+   reported = new Set<string>(),
+   walk = (id: string, trail: string[]): void => {
     if (state.get(id) === 2) {
       return;
     }
@@ -443,13 +443,13 @@ function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
     return seen;
   };
   for (const node of concepts) {
-    const id = idOf(node);
-    const related = refs(node, "skos:related");
+    const id = idOf(node),
+     related = refs(node, "skos:related");
     if (related.length === 0) {
       continue;
     }
-    const ancestors = ancestorsOf(id);
-    const descendants = new Set<string>();
+    const ancestors = ancestorsOf(id),
+     descendants = new Set<string>();
     for (const [child, parents] of broaderOf) {
       if (ancestorsOf(child).has(id) || parents.includes(id)) {
         descendants.add(child);
@@ -469,9 +469,9 @@ function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
 
   // hasTopConcept ↔ topConceptOf must agree in both directions (P1-014E).
   for (const scheme of schemes) {
-    const schemeId = idOf(scheme);
-    const declared = new Set(refs(scheme, "skos:hasTopConcept"));
-    const claiming = new Set(
+    const schemeId = idOf(scheme),
+     declared = new Set(refs(scheme, "skos:hasTopConcept")),
+     claiming = new Set(
       concepts
         .filter((node) => refs(node, "skos:topConceptOf").includes(schemeId))
         .map(idOf)
@@ -505,8 +505,8 @@ function checkVocabulary(node: Node, out: Violation[]): void {
     if (!key.startsWith("digest:")) {
       continue;
     }
-    const term = key.slice("digest:".length);
-    const known = [
+    const term = key.slice("digest:".length),
+     known = [
       "corpusIssueId",
       "historicalLabel",
       "legacyIri",
@@ -535,14 +535,14 @@ function checkVocabulary(node: Node, out: Violation[]): void {
 export function validateSkosGraph(document: unknown): Violation[] {
   const graph = Array.isArray(document)
     ? document
-    : asArray((document as Node | null)?.["@graph"]);
-  const nodes = graph.filter(
+    : asArray((document as Node | null)?.["@graph"]),
+   nodes = graph.filter(
     (node): node is Node => Boolean(node) && typeof node === "object"
-  );
-  const concepts = nodes.filter(isConcept);
-  const schemes = nodes.filter(isScheme);
+  ),
+   concepts = nodes.filter(isConcept),
+   schemes = nodes.filter(isScheme),
 
-  const out: Violation[] = [];
+   out: Violation[] = [];
   if (concepts.length === 0) {
     out.push({
       constraint: "graph",

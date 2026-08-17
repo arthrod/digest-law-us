@@ -17,28 +17,28 @@ import { conceptJsonLd } from "@/lib/skos";
 interface Props {
   slugPath: string;
 }
-const { slugPath } = Astro.props;
+const { slugPath } = Astro.props,
 
-const corpus = await getCorpus();
-const node = corpus.nodeBySlugPath.get(slugPath);
+ corpus = await getCorpus(),
+ node = corpus.nodeBySlugPath.get(slugPath);
 if (!node) {
   throw new Error(`No area at ${slugPath}`);
 }
 
-const groupCount = node.children.filter((c) => c.children.length > 0).length;
-const updated = formatDate(node.latest);
+const groupCount = node.children.filter((c) => c.children.length > 0).length,
+ updated = formatDate(node.latest),
 
-const isSmallArea = node.topicCount <= 4;
+ isSmallArea = node.topicCount <= 4,
 
-const siblings = corpus.areas.filter((a) => a.slugPath !== slugPath);
-const index = corpus.areas.findIndex((a) => a.slugPath === slugPath);
-const adjacent = [
+ siblings = corpus.areas.filter((a) => a.slugPath !== slugPath),
+ index = corpus.areas.findIndex((a) => a.slugPath === slugPath),
+ adjacent = [
   ...siblings.slice(Math.max(0, index - 2), index),
   ...siblings.slice(index, index + 2),
-].slice(0, 3);
+].slice(0, 3),
 
-const title = `${node.label} — American Legal Digest`;
-const description = `${node.topicCount} published digest topics in ${node.label}, each with retained public sources and a machine-readable audit trail.`;
+ title = `${node.label} — American Legal Digest`,
+ description = `${node.topicCount} published digest topics in ${node.label}, each with retained public sources and a machine-readable audit trail.`;
 ---
 
 <Layout {description} {title}>

@@ -8,16 +8,16 @@ import { describe, expect, test } from "bun:test";
 import { validateSkosGraph } from "./skos-validate";
 
 /** Repo root: this file is src/lib/. */
-const ROOT = new URL("../..", import.meta.url).pathname.replace(/\/$/u, "");
+const ROOT = new URL("../..", import.meta.url).pathname.replace(/\/$/u, ""),
 
-const A =
-  "https://w3id.org/digest-law/concept/00000000000000000000000000000001";
-const B =
-  "https://w3id.org/digest-law/concept/00000000000000000000000000000002";
-const C =
-  "https://w3id.org/digest-law/concept/00000000000000000000000000000003";
-const SCHEME = "https://w3id.org/digest-law/us/";
-const DATATYPE = "https://w3id.org/digest-law/datatype/concept-id";
+ A =
+  "https://w3id.org/digest-law/concept/00000000000000000000000000000001",
+ B =
+  "https://w3id.org/digest-law/concept/00000000000000000000000000000002",
+ C =
+  "https://w3id.org/digest-law/concept/00000000000000000000000000000003",
+ SCHEME = "https://w3id.org/digest-law/us/",
+ DATATYPE = "https://w3id.org/digest-law/datatype/concept-id";
 
 function concept(id: string, extra: Record<string, unknown> = {}) {
   const hex = id.split("/").at(-1) as string;
@@ -45,9 +45,9 @@ function graph(...nodes: Record<string, unknown>[]) {
 const messages = (nodes: Record<string, unknown>[]) =>
   validateSkosGraph(graph(...nodes))
     .map((v) => `${v.severity}: ${v.message}`)
-    .join(" | ");
+    .join(" | "),
 
-const violations = (nodes: Record<string, unknown>[]) =>
+ violations = (nodes: Record<string, unknown>[]) =>
   validateSkosGraph(graph(...nodes)).filter((v) => v.severity === "violation");
 
 describe("a well-formed graph", () => {
@@ -135,8 +135,8 @@ describe("identity and notation (P1-014C)", () => {
   });
 
   test("two concepts sharing a notation fail", () => {
-    const hex = A.split("/").at(-1) as string;
-    const clash = concept(B, {
+    const hex = A.split("/").at(-1) as string,
+     clash = concept(B, {
       "skos:notation": { "@type": DATATYPE, "@value": hex },
     });
     expect(messages([concept(A), clash])).toContain("is also used by");
@@ -145,8 +145,8 @@ describe("identity and notation (P1-014C)", () => {
   test("a language-tagged identifier fails", () => {
     const node = concept(A, {
       "dct:identifier": { "@language": "en", "@value": "not-an-identifier" },
-    });
-    const text = messages([node]);
+    }),
+     text = messages([node]);
     expect(text).toContain("must not carry a language tag");
   });
 
@@ -165,8 +165,8 @@ describe("identity and notation (P1-014C)", () => {
       "@type": "skos:Concept",
       "skos:inScheme": { "@id": SCHEME },
       "skos:prefLabel": { "@language": "en", "@value": "X" },
-    };
-    const found = validateSkosGraph(graph(legacy));
+    },
+     found = validateSkosGraph(graph(legacy));
     expect(found.filter((v) => v.severity === "violation")).toEqual([]);
     expect(found[0].message).toContain("no minted id");
   });
@@ -286,8 +286,8 @@ describe("scheme and vocabulary", () => {
   });
 
   test("topConceptOf without hasTopConcept fails", () => {
-    const scheme = { "@id": SCHEME, "@type": "skos:ConceptScheme" };
-    const node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } });
+    const scheme = { "@id": SCHEME, "@type": "skos:ConceptScheme" },
+     node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } });
     expect(messages([scheme, node])).toContain("the scheme does not list it");
   });
 
@@ -296,8 +296,8 @@ describe("scheme and vocabulary", () => {
       "@id": SCHEME,
       "@type": "skos:ConceptScheme",
       "skos:hasTopConcept": { "@id": A },
-    };
-    const node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } });
+    },
+     node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } });
     expect(violations([scheme, node])).toEqual([]);
   });
 
@@ -313,8 +313,8 @@ describe("the sources stay reviewable", () => {
     // makes git classify the whole file as binary: no line diff, no blame, no
     // review. This module used one as a label-key separator and went
     // unreviewable for it. The character is fine; writing it raw is not.
-    const glob = new Bun.Glob("**/*.{ts,tsx,astro,json,md}");
-    const paths: string[] = [];
+    const glob = new Bun.Glob("**/*.{ts,tsx,astro,json,md}"),
+     paths: string[] = [];
     // Our own trees only: a vendored dependency's bytes are not our defect.
     for (const dir of ["src", "worker", "scripts", "public", "w3id"]) {
       for await (const path of glob.scan({

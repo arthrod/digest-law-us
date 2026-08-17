@@ -19,10 +19,10 @@ interface Props {
   kind: "caselaw" | "statutory";
   slugPath: string;
 }
-const { slugPath, kind } = Astro.props;
+const { slugPath, kind } = Astro.props,
 
-const corpus = await getCorpus();
-const node = corpus.nodeBySlugPath.get(slugPath);
+ corpus = await getCorpus(),
+ node = corpus.nodeBySlugPath.get(slugPath);
 if (!node?.digest) {
   throw new Error(`No bundle at ${slugPath}`);
 }
@@ -32,24 +32,24 @@ const entry = (
 if (!entry) {
   throw new Error(`No ${kind} index at ${slugPath}`);
 }
-const run = corpus.runsByDir.get(node.dir);
-const audit = corpus.auditsByDir.get(node.dir);
+const run = corpus.runsByDir.get(node.dir),
+ audit = corpus.auditsByDir.get(node.dir),
 
 // Documented absence: nothing left once headings and blank lines go.
-const bodyText = (entry.body ?? "")
+ bodyText = (entry.body ?? "")
   .replaceAll(/^#.*$/gmu, "")
   .replace(/^Derived deterministically.*$/mu, "")
-  .trim();
-const isAbsent = bodyText.length === 0;
+  .trim(),
+ isAbsent = bodyText.length === 0,
 
-const { Content } = await render(entry);
+ { Content } = await render(entry),
 
-const probeChannels = (run?.data.probe?.channels ?? []) as Record<
+ probeChannels = (run?.data.probe?.channels ?? []) as Record<
   string,
   unknown
->[];
-const wantKind = kind === "caselaw" ? "caselaw" : "statutory";
-const probes = probeChannels
+>[],
+ wantKind = kind === "caselaw" ? "caselaw" : "statutory",
+ probes = probeChannels
   .filter((c) => c.kind === wantKind)
   .flatMap((c) =>
     (Array.isArray(c.queries) ? (c.queries as string[]) : []).map((q) => ({
@@ -60,21 +60,21 @@ const probes = probeChannels
   )
   .slice(0, 6)
   .map((p, i, arr) => {
-    const c = probeChannels.find((ch) => ch.channel === p.channel);
-    const isLast = i === arr.length - 1 || arr[i + 1]?.channel !== p.channel;
+    const c = probeChannels.find((ch) => ch.channel === p.channel),
+     isLast = i === arr.length - 1 || arr[i + 1]?.channel !== p.channel;
     return isLast && c
       ? {
           ...p,
           note: `${c.hits_total ?? 0} hits — ${c.hits_relevant ?? 0} relevant`,
         }
       : p;
-  });
+  }),
 
-const counts = entry.data.source_counts;
-const count = kind === "caselaw" ? counts?.caselaw : counts?.statutory;
+ counts = entry.data.source_counts,
+ count = kind === "caselaw" ? counts?.caselaw : counts?.statutory,
 
-const crumbTrail = crumbsFor(corpus, slugPath);
-const crumbs: CrumbItem[] = [
+ crumbTrail = crumbsFor(corpus, slugPath),
+ crumbs: CrumbItem[] = [
   { href: "/", label: "Digest" },
   ...crumbTrail.slice(0, -1).map((c) => ({
     href: c.published ? `/${c.slugPath}/` : undefined,
@@ -82,12 +82,12 @@ const crumbs: CrumbItem[] = [
   })),
   { href: `/${slugPath}/`, label: node.label },
   { label: kind === "caselaw" ? "Caselaw index" : "Statutory index" },
-];
+],
 
-const areaLabel = crumbTrail[0]?.label ?? "";
-const noun = kind === "caselaw" ? "caselaw" : "statutory";
-const title = `Table of authorities (${noun}) — ${node.label} — American Legal Digest`;
-const description = isAbsent
+ areaLabel = crumbTrail[0]?.label ?? "",
+ noun = kind === "caselaw" ? "caselaw" : "statutory",
+ title = `Table of authorities (${noun}) — ${node.label} — American Legal Digest`,
+ description = isAbsent
   ? `No ${noun} authorities were retained for ${node.label} — a documented absence, with the searches that ran.`
   : `Table of ${noun} authorities for ${node.label}, derived from the retained sources.`;
 ---

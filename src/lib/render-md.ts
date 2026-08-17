@@ -21,11 +21,11 @@ function getProcessor(): Promise<MarkdownRenderer> {
   return processorPromise;
 }
 
-const corpusRoot = path.resolve(process.cwd(), CORPUS_DIR);
+const corpusRoot = path.resolve(process.cwd(), CORPUS_DIR),
 
 /** Tiny LRU for frontmatter-stripped source contents (12.5 MB max each). */
-const contentCache = new Map<string, string>();
-const CACHE_MAX = 8;
+ contentCache = new Map<string, string>(),
+ CACHE_MAX = 8;
 
 async function readSourceContent(relFile: string): Promise<string> {
   const hit = contentCache.get(relFile);
@@ -34,8 +34,8 @@ async function readSourceContent(relFile: string): Promise<string> {
     contentCache.set(relFile, hit);
     return hit;
   }
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8");
-  const { content } = matter(raw);
+  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
+   { content } = matter(raw);
   contentCache.set(relFile, content);
   if (contentCache.size > CACHE_MAX) {
     const oldest = contentCache.keys().next().value;
@@ -60,10 +60,10 @@ export interface RenderedChunk {
  * them out of the store is meant to avoid.
  */
 export async function renderCorpusFile(relFile: string): Promise<string> {
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8");
-  const { content } = matter(raw);
-  const processor = await getProcessor();
-  const result = await processor.render(content);
+  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
+   { content } = matter(raw),
+   processor = await getProcessor(),
+   result = await processor.render(content);
   return result.code;
 }
 
@@ -71,9 +71,9 @@ export async function renderSourceChunk(
   relFile: string,
   span: { start: number; end: number }
 ): Promise<RenderedChunk> {
-  const content = await readSourceContent(relFile);
-  const slice = content.slice(span.start, span.end);
-  const processor = await getProcessor();
-  const result = await processor.render(slice);
+  const content = await readSourceContent(relFile),
+   slice = content.slice(span.start, span.end),
+   processor = await getProcessor(),
+   result = await processor.render(slice);
   return { html: result.code };
 }

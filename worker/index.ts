@@ -45,15 +45,15 @@ interface Env {
 }
 
 /** Envelope sender. Must be on a domain onboarded to Email Sending. */
-const FROM = { email: "forms@digest.law", name: "digest.law contact form" };
+const FROM = { email: "forms@digest.law", name: "digest.law contact form" },
 
 /** Only these origins may post the form. */
-const ALLOWED_ORIGINS = new Set([
+ ALLOWED_ORIGINS = new Set([
   "https://digest.law",
   "https://www.digest.law",
-]);
+]),
 
-const MAX_BODY_BYTES = 32_000;
+ MAX_BODY_BYTES = 32_000,
 
 /**
  * Collapse control characters to spaces. The send binding takes structured
@@ -62,7 +62,7 @@ const MAX_BODY_BYTES = 32_000;
  * out of somebody's mail client.
  */
 // oxlint-disable-next-line no-control-regex -- matching them is the point
-const CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu;
+ CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu;
 
 function clean(value: unknown, max: number): string {
   if (typeof value !== "string") {
@@ -389,8 +389,8 @@ export default {
     // The shard rules in run_worker_first are prefix globs, so a root file
     // like /sitemap-index.xml can land here via the /sitemap* rule — only an
     // exact first-segment match forwards; everything else is a root asset.
-    const segment = pathname.split("/")[1] ?? "";
-    const bindingName = env.SHARD_MAP?.[segment];
+    const segment = pathname.split("/")[1] ?? "",
+     bindingName = env.SHARD_MAP?.[segment];
     if (bindingName) {
       const shard = (
         env as unknown as Record<string, AssetFetcher | undefined>

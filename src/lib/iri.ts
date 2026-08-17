@@ -80,9 +80,9 @@ export function resolveRefIn(
   nodeBySlugPath: Map<string, { label: string }>,
   urn: string
 ): ResolvedRef {
-  const slugPath = urnToSlugPath(urn);
-  const node = nodeBySlugPath.get(slugPath);
-  const lastSeg =
+  const slugPath = urnToSlugPath(urn),
+   node = nodeBySlugPath.get(slugPath),
+   lastSeg =
     urn
       .replace(/^urn:legal-taxonomy:issue:/u, "")
       .split(".")

@@ -3,8 +3,8 @@ interface Props {
   /** "dark" renders the ink-band header used by the home hero */
   tone?: "light" | "dark";
 }
-const { tone = "light" } = Astro.props;
-const dark = tone === "dark";
+const { tone = "light" } = Astro.props,
+ dark = tone === "dark",
 
 /**
  * Nav lives behind a MENU disclosure rather than inline: the bar had grown to
@@ -12,15 +12,15 @@ const dark = tone === "dark";
  * <details>, so it opens without JavaScript — the script below only adds the
  * dismissal affordances (outside click, Escape) that <details> lacks.
  */
-const links = [
+ links = [
   { href: "/", label: "All areas" },
   { href: "/methodology/", label: "Methodology" },
   { href: "/committee/", label: "Committee" },
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
-];
+],
 
-const chip = [
+ chip = [
   "ald-meta inline-flex h-[30px] items-center gap-2 rounded-[2px] border px-2.5 no-underline",
   dark
     ? "border-white/30 text-white/80 hover:bg-white/10"
@@ -104,8 +104,8 @@ const chip = [
 <script>
   // Keyboard entry to search from anywhere: "/" or Cmd/Ctrl+K.
   function onKey(e: KeyboardEvent) {
-    const target = e.target as HTMLElement | null;
-    const typing =
+    const target = e.target as HTMLElement | null,
+     typing =
       target &&
       (target.tagName === "INPUT" ||
         target.tagName === "TEXTAREA" ||

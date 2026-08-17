@@ -13,26 +13,26 @@ import { getCorpus } from "@/lib/corpus";
 import { formatBytes, formatDate } from "@/lib/labels";
 import { getPurge } from "@/lib/purge";
 
-const corpus = await getCorpus();
-const { stats } = corpus;
-const purge = await getPurge();
-const fmt = (n: number) => n.toLocaleString("en-US");
+const corpus = await getCorpus(),
+ { stats } = corpus,
+ purge = await getPurge(),
+ fmt = (n: number) => n.toLocaleString("en-US"),
 
 /** Counts are composed into sentences here, not inline in the template —
  *  JSX strips whitespace across newlines (see the note in index.astro). */
 
-const funnel = [
+ funnel = [
   { label: "Section headings classified", value: "351,115" },
   { label: "Selected at confidence > 0.90", value: "156,802" },
   { label: "Canonical issues after dedup", value: "137,139" },
   { label: "Digests published here", value: fmt(stats.digests) },
-];
+],
 
-const purgeClause = purge.latest
+ purgeClause = purge.latest
   ? `${fmt(purge.total)} digests with fewer than two retained sources were deleted under ${purge.events.length} dated manifests, the latest on ${formatDate(purge.latest.date)}; the counts on this page are read from those manifests at build time.`
-  : "Digests with fewer than two retained sources are deleted under dated manifests; no manifest was readable at build time.";
+  : "Digests with fewer than two retained sources are deleted under dated manifests; no manifest was readable at build time.",
 
-const stages = [
+ stages = [
   {
     body: "Thirteen top-level domains were fixed before any classification, seeded from the public-domain 1914 West topic outline (Brief Making and the Use of Law Books, 3d ed.) used as an archival reference. The classifier hard-validates Level 1: a path whose first segment is not verbatim from the spine is rejected. Everything below Level 1 is emergent from classification, not designed.",
     n: "01",
@@ -78,9 +78,9 @@ const stages = [
     n: "09",
     name: "Publish with identity",
   },
-];
+],
 
-const rules = [
+ rules = [
   {
     body: "The selection that cut 351,115 classifications to 156,802 ran as an unversioned script. Its rule — keep confidence above 0.90 — had to be reverse-engineered afterward from the data. Every assembler now ships versioned, with a manifest of input hashes, rule, and counts.",
     n: "01",
@@ -141,10 +141,10 @@ const rules = [
     n: "12",
     name: "Fabrication is found by reading",
   },
-];
+],
 
 /** The per-bundle receipts, as URL suffixes a reader can actually type. */
-const checks = [
+ checks = [
   {
     body: "The digest, and its SKOS concept as JSON-LD in the page head.",
     path: "/{area}/…/{topic}/",
@@ -169,9 +169,9 @@ const checks = [
     body: "Any concept identifier resolves to its current route; a retired identifier reports gone rather than pretending it never existed.",
     path: "/id/{concept-id}",
   },
-];
+],
 
-const tiles = [
+ tiles = [
   { label: "Digests published", value: fmt(stats.digests) },
   ...(purge.latest
     ? [{ label: "Deleted below the floor", value: fmt(purge.total) }]
@@ -181,19 +181,19 @@ const tiles = [
     label: `Source texts held — ${formatBytes(stats.sourceBytes)}`,
     value: fmt(stats.sources),
   },
-];
+],
 
-const tileClass = (i: number) => {
+ tileClass = (i: number) => {
   if (i === 0) {
     return "pt-4.5 pr-5";
   }
   return i % 2 === 1
     ? "border-hairline border-l px-5 pt-4.5"
     : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
-};
+},
 
-const title = "Methodology — American Legal Digest";
-const description =
+ title = "Methodology — American Legal Digest",
+ description =
   "The complete method, stated so it can be reproduced: sources and their legal basis, extraction and classification contracts, dedup thresholds and guards, research manifests, and the failures that set the rules.";
 ---
 

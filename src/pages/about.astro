@@ -12,21 +12,21 @@ import { getCorpus } from "@/lib/corpus";
 import { formatBytes } from "@/lib/labels";
 import { getPurge } from "@/lib/purge";
 
-const corpus = await getCorpus();
-const { doctrinalAreas, compositeAreas, stats } = corpus;
-const purge = await getPurge();
-const fmt = (n: number) => n.toLocaleString("en-US");
+const corpus = await getCorpus(),
+ { doctrinalAreas, compositeAreas, stats } = corpus,
+ purge = await getPurge(),
+ fmt = (n: number) => n.toLocaleString("en-US"),
 
 /** Counts are composed into sentences here, not inline in the template —
  *  JSX strips whitespace across newlines (see the note in index.astro). */
-const lede =
+ lede =
   `${fmt(stats.digests)} topic digests of United States legal doctrine. ` +
   "Each is published with the full text of the authorities behind it, the " +
   "log of every search that produced it, and the manifest of the run that " +
   "wrote it. The digests are CC BY 4.0; the classification is SKOS with " +
-  "permanent identifiers; the method is written down so it can be repeated.";
+  "permanent identifiers; the method is written down so it can be repeated.",
 
-const bundle = [
+ bundle = [
   {
     body: "The digest itself: a fixed structure of twelve sections, drafted from the retained texts and from nothing else. Its frontmatter is a SKOS concept — labels, definition, scope note, hierarchy, and mappings.",
     name: "The digest",
@@ -47,22 +47,22 @@ const bundle = [
     body: "run.json: the generation manifest. It pins the issue ledger and the researcher prompt by sha256, and records the provider chain, retriever, scraper, search depth and breadth, timings, and runner version.",
     name: "The manifest",
   },
-];
+],
 
-const purgeClause = purge.latest
+ purgeClause = purge.latest
   ? ` ${fmt(purge.total)} digests that failed the floor were deleted, and those dated deletion manifests are where that number comes from.`
-  : "";
+  : "",
 
-const claims = [
+ claims = [
   `Every published digest holds at least two retained authorities, in full, at the same URL as the summary — counted from the files on disk, not from a bundle's own metadata.${purgeClause}`,
   "Digests are machine-drafted from retained texts and gated by review before merge. The models are named in each manifest. Nothing here was written by a lawyer, and the site never says otherwise.",
   "No claim of validated quality is made. Every automated gate checks integrity — hierarchy, identity, reproduction — never whether a placement or a proposition is legally correct. The validation stage is pre-registered and blocked on independent qualified reviewers.",
   "Coverage is uneven, and the shape of it is knowable: the source corpus is roughly 85% published between 1830 and 1930, so the common-law doctrinal core is dense and the modern regulatory state is thin. Procedure, property, and obligations dominate; administrative, health, environmental, technology, and civil-rights material is sparse.",
   "Only free public sources were used. Paywalled reporters and subscription databases are excluded by an enforced rule, which leaves real gaps rather than hidden ones.",
   "Nothing here is legal advice. A digest maps doctrine and points at authorities; judgment about a matter belongs to a lawyer engaged on it.",
-];
+],
 
-const tiles = [
+ tiles = [
   { label: "Topics digested", value: fmt(stats.digests) },
   {
     label: "Doctrinal areas + cross-cutting roots",
@@ -80,19 +80,19 @@ const tiles = [
         },
       ]
     : []),
-];
+],
 
-const tileClass = (i: number) => {
+ tileClass = (i: number) => {
   if (i === 0) {
     return "pt-4.5 pr-5";
   }
   return i % 2 === 1
     ? "border-hairline border-l px-5 pt-4.5"
     : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
-};
+},
 
-const title = "About — American Legal Digest";
-const description =
+ title = "About — American Legal Digest",
+ description =
   "An open digest of United States legal doctrine: a SKOS classification built from public-domain treatise structure, researched from free public sources, and published with full source texts, search logs, and generation manifests.";
 ---
 

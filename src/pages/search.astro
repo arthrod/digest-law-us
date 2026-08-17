@@ -11,8 +11,8 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 
-const title = "Search — American Legal Digest";
-const description =
+const title = "Search — American Legal Digest",
+ description =
   "Search digests and audits across every area of United States law.";
 ---
 
@@ -70,8 +70,8 @@ const description =
       return;
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    const params = new URLSearchParams(window.location.search),
+     onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
 
     onIdle(async () => {
       // Warm Pagefind's boot assets while the user types their first query —
@@ -125,9 +125,9 @@ const description =
         showEmptyFilters: false,
         showImages: false,
         showSubResults: true,
-      });
+      }),
 
-      const query = params.get("q");
+       query = params.get("q");
       if (query) {
         search.triggerSearch(query);
       }

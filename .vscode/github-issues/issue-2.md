@@ -1,15 +1,15 @@
 ---
 id: 5037581648
 number: 2
-title: 'CI cannot build: the corpus lives in a private sibling repo'
+title: "CI cannot build: the corpus lives in a private sibling repo"
 state: open
-created_at: '2026-08-01T15:05:22Z'
-updated_at: '2026-08-01T19:07:37Z'
+created_at: "2026-08-01T15:05:22Z"
+updated_at: "2026-08-01T19:07:37Z"
 author:
   login: arthrod
   id: 89408329
-  avatar_url: 'https://avatars.githubusercontent.com/u/89408329?v=4'
-  url: 'https://api.github.com/users/arthrod'
+  avatar_url: "https://avatars.githubusercontent.com/u/89408329?v=4"
+  url: "https://api.github.com/users/arthrod"
 assignees: []
 labels:
   - id: 11668727539
@@ -24,11 +24,12 @@ labels:
     name: tech-debt
     color: ededed
   - id: 11695299936
-    name: 'size:L'
+    name: "size:L"
     color: ededed
-url: 'https://api.github.com/repos/arthrod/digest-law-us/issues/2'
-html_url: 'https://github.com/arthrod/digest-law-us/issues/2'
+url: "https://api.github.com/repos/arthrod/digest-law-us/issues/2"
+html_url: "https://github.com/arthrod/digest-law-us/issues/2"
 ---
+
 # CI cannot build: the corpus lives in a private sibling repo
 
 CI has never passed on this repository — 6 runs, 6 failures as of PR #1, which was the first PR. Two of the three causes are now fixed; the third is structural and needs a decision.
@@ -63,7 +64,6 @@ This is also why both fixed failures above were invisible locally: the local gat
 
 `bun run skos:check` reports **64 violations, all SKOS S27** — concepts asserting `skos:related` to something that is also a hierarchical ancestor or descendant. These are corpus data conflicts, not code faults, and are unchanged by #1. Fixing them is editorial work on the corpus.
 
-
 ---
 
 **Author:** @arthrod
@@ -89,33 +89,35 @@ arthrod/key-digest-runner#5132 - researchers: Municipal Law > MUNICIPAL CORPORAT
 </details>
 
 ---
+
 <details>
 <summary>📝 Issue Planner</summary>
 
 <sub>Check the box below or use the `@coderabbitai plan` command to generate an implementation plan and prompts that you can use with your favorite coding assistant.</sub>
 
 - [ ] <!-- {"checkboxId": "8d4f2b9c-3e1a-4f7c-a9b2-d5e8f1c4a7b9"} --> Create Plan
+
 </details>
 
-
 ---
+
 <details>
 <summary> 🧪 Issue enrichment is currently in open beta.</summary>
-
 
 You can configure auto-planning by selecting labels in the issue_enrichment configuration.
 
 To disable automatic issue enrichment, add the following to your `.coderabbit.yaml`:
+
 ```yaml
 issue_enrichment:
   auto_enrich:
     enabled: false
 ```
+
 </details>
 
 💬 Have feedback or questions? Drop into our [discord](https://discord.gg/coderabbit)!
 
 ### @BabuBahir - 2026-08-01T19:07:37Z
 
-I can take this issue ,  I just wanted to know more details on where the build cannot run on CI @arthrod 
-
+I can take this issue , I just wanted to know more details on where the build cannot run on CI @arthrod

@@ -46,8 +46,8 @@ const MANIFEST_RE =
  * `wc -l` so a missing trailing newline cannot shift the published number.
  */
 function countRows(tsv: string): number {
-  let count = 0;
-  let isFirst = true;
+  let count = 0,
+   isFirst = true;
   for (const line of tsv.split("\n")) {
     const row = line.trim();
     if (row === "") {

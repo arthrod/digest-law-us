@@ -30,11 +30,11 @@ const AUDIT_FILE = "_source_snippet_audit.md";
 export function auditsLoader(corpusDir: string): Loader {
   return {
     async load({ store, logger, config, parseData, generateDigest }) {
-      const root = path.resolve(fileURLToPath(config.root), corpusDir);
-      const listing = await fs.readdir(root, { recursive: true });
-      const preview = PREVIEW_MODE ? await previewBundles(root) : null;
+      const root = path.resolve(fileURLToPath(config.root), corpusDir),
+       listing = await fs.readdir(root, { recursive: true }),
+       preview = PREVIEW_MODE ? await previewBundles(root) : null,
 
-      const files = listing
+       files = listing
         .map((rel) => rel.replaceAll("\\", "/"))
         .filter((rel) => rel.endsWith(`/${AUDIT_FILE}`))
         .filter(
@@ -59,8 +59,8 @@ export function auditsLoader(corpusDir: string): Loader {
           fm = {};
         }
 
-        const id = rel.replace(/\.md$/u, "");
-        const data = await parseData({
+        const id = rel.replace(/\.md$/u, ""),
+         data = await parseData({
           data: {
             description:
               typeof fm.description === "string" ? fm.description : "",

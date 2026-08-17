@@ -16,14 +16,14 @@ interface Props {
   node: TreeNode;
 }
 
-const { node, depth = 0 } = Astro.props;
+const { node, depth = 0 } = Astro.props,
 
-const groupSize = Math.max(21 - depth * 2, 15);
-const open = depth < 1;
+ groupSize = Math.max(21 - depth * 2, 15),
+ open = depth < 1;
 
 function glance(child: TreeNode): string {
-  const bits: string[] = [];
-  const direct = child.digest;
+  const bits: string[] = [],
+   direct = child.digest;
   if (direct) {
     // The digest's own bundle only: on a node that also has children,
     // `sourceCount` is the subtree aggregate and would overstate the row
