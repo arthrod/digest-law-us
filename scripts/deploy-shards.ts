@@ -35,25 +35,23 @@ import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = path.resolve(import.meta.dirname, ".."),
- DIST = path.join(ROOT, "dist"),
- OUT_DIR = path.join(ROOT, ".wrangler-shards"),
- ASSIGNMENTS_PATH = path.resolve(
-  import.meta.dirname,
-  "shard-assignments.json"
-),
- BASE_CONFIG_PATH = path.join(ROOT, "wrangler.jsonc"),
- WRANGLER_BIN = path.join(ROOT, "node_modules/.bin/wrangler"),
- IGNORE_PATH = path.join(DIST, ".assetsignore"),
-
- SHARD_SERVICE_PREFIX = "digest-law-shard-",
-/** Hard platform cap on assets per Worker version. */
- MAX_ASSETS = 100_000,
-/** Soft cap per shard, leaving growth room before anything must move. */
- BUDGET = Number(process.env.SHARD_BUDGET ?? 80_000),
-/** wrangler rejects run_worker_first arrays longer than this. */
- MAX_RUN_WORKER_FIRST_RULES = 100,
-
- planOnly = process.argv.includes("--plan");
+  DIST = path.join(ROOT, "dist"),
+  OUT_DIR = path.join(ROOT, ".wrangler-shards"),
+  ASSIGNMENTS_PATH = path.resolve(
+    import.meta.dirname,
+    "shard-assignments.json"
+  ),
+  BASE_CONFIG_PATH = path.join(ROOT, "wrangler.jsonc"),
+  WRANGLER_BIN = path.join(ROOT, "node_modules/.bin/wrangler"),
+  IGNORE_PATH = path.join(DIST, ".assetsignore"),
+  SHARD_SERVICE_PREFIX = "digest-law-shard-",
+  /** Hard platform cap on assets per Worker version. */
+  MAX_ASSETS = 100_000,
+  /** Soft cap per shard, leaving growth room before anything must move. */
+  BUDGET = Number(process.env.SHARD_BUDGET ?? 80_000),
+  /** wrangler rejects run_worker_first arrays longer than this. */
+  MAX_RUN_WORKER_FIRST_RULES = 100,
+  planOnly = process.argv.includes("--plan");
 
 // ---------------------------------------------------------------------------
 // JSONC — wrangler.jsonc is the single source of truth for the root Worker,
@@ -62,12 +60,12 @@ const ROOT = path.resolve(import.meta.dirname, ".."),
 
 /** Strip // and slash-star comments, then trailing commas — string-aware. */
 function parseJsonc(text: string): Record<string, unknown> {
-  let out = "",
-   inString = false,
-   i = 0;
+  let i = 0,
+    inString = false,
+    out = "";
   while (i < text.length) {
     const ch = text[i],
-     next = text[i + 1];
+      next = text[i + 1];
     if (inString) {
       out += ch;
       if (ch === "\\") {
@@ -177,7 +175,7 @@ type Assignments = Record<string, string>; // folder → shard letter
 function shardLetter(index: number): string {
   // a…z, then aa, ab, … — nobody should ever see three letters.
   let n = index,
-   name = "";
+    name = "";
   do {
     name = String.fromCodePoint(97 + (n % 26)) + name;
     n = Math.floor(n / 26) - 1;
@@ -201,18 +199,17 @@ interface Shard {
 
 function pack(folders: Folder[], previous: Assignments): Shard[] {
   const byName = new Map(folders.map((f) => [f.name, f])),
-   shards = new Map<string, Shard>(),
-   shardOf = (letter: string): Shard => {
-    let shard = shards.get(letter);
-    if (!shard) {
-      shard = { files: 0, folders: [], letter };
-      shards.set(letter, shard);
-    }
-    return shard;
-  },
-
-  // Keep prior placements for folders that still exist.
-   unplaced: Folder[] = [];
+    shards = new Map<string, Shard>(),
+    shardOf = (letter: string): Shard => {
+      let shard = shards.get(letter);
+      if (!shard) {
+        shard = { files: 0, folders: [], letter };
+        shards.set(letter, shard);
+      }
+      return shard;
+    },
+    // Keep prior placements for folders that still exist.
+    unplaced: Folder[] = [];
   for (const folder of folders) {
     const letter = previous[folder.name];
     if (letter) {
@@ -322,14 +319,14 @@ function rootIgnoreFile(shards: Shard[]): string {
  */
 function runWorkerFirstRules(base: string[], shards: Shard[]): string[] {
   const folderRules = shards
-    .flatMap((shard) => shard.folders.map((folder) => `/${folder.name}*`))
-    .toSorted(),
-   rules = [...base];
+      .flatMap((shard) => shard.folders.map((folder) => `/${folder.name}*`))
+      .toSorted(),
+    rules = [...base];
   for (const rule of folderRules) {
     const prefix = rule.slice(0, -1),
-     covered = rules.some(
-      (kept) => kept.endsWith("*") && prefix.startsWith(kept.slice(0, -1))
-    );
+      covered = rules.some(
+        (kept) => kept.endsWith("*") && prefix.startsWith(kept.slice(0, -1))
+      );
     if (!covered) {
       rules.push(rule);
     }
@@ -352,8 +349,8 @@ interface GeneratedConfigs {
 
 async function generateConfigs(shards: Shard[]): Promise<GeneratedConfigs> {
   const base = parseJsonc(await readFile(BASE_CONFIG_PATH, "utf8")),
-   baseAssets = base.assets as Record<string, unknown>,
-   baseRules = (baseAssets.run_worker_first as string[] | undefined) ?? [];
+    baseAssets = base.assets as Record<string, unknown>,
+    baseRules = (baseAssets.run_worker_first as string[] | undefined) ?? [];
 
   await rm(OUT_DIR, { force: true, recursive: true });
   await mkdir(OUT_DIR, { recursive: true });
@@ -383,24 +380,24 @@ async function generateConfigs(shards: Shard[]): Promise<GeneratedConfigs> {
     }
   }
   const rootConfig = {
-    ...base,
-    $schema: undefined,
-    assets: {
-      ...baseAssets,
-      directory: "../dist",
-      run_worker_first: runWorkerFirstRules(baseRules, shards),
+      ...base,
+      $schema: undefined,
+      assets: {
+        ...baseAssets,
+        directory: "../dist",
+        run_worker_first: runWorkerFirstRules(baseRules, shards),
+      },
+      main: "../worker/index.ts",
+      services: shards.map((shard) => ({
+        binding: bindingNameOf(shard.letter),
+        service: serviceNameOf(shard.letter),
+      })),
+      vars: {
+        ...(base.vars as Record<string, unknown> | undefined),
+        SHARD_MAP: shardMap,
+      },
     },
-    main: "../worker/index.ts",
-    services: shards.map((shard) => ({
-      binding: bindingNameOf(shard.letter),
-      service: serviceNameOf(shard.letter),
-    })),
-    vars: {
-      ...(base.vars as Record<string, unknown> | undefined),
-      SHARD_MAP: shardMap,
-    },
-  },
-   rootConfigPath = path.join(OUT_DIR, "root.json");
+    rootConfigPath = path.join(OUT_DIR, "root.json");
   await writeFile(rootConfigPath, `${JSON.stringify(rootConfig, null, 2)}\n`);
 
   return {
@@ -430,9 +427,8 @@ function deploy(configPath: string): void {
 }
 
 const { folders, rootFiles } = await inventory(),
- shards = pack(folders, await loadAssignments()),
-
- assignments: Assignments = {};
+  shards = pack(folders, await loadAssignments()),
+  assignments: Assignments = {};
 for (const shard of shards) {
   for (const folder of shard.folders) {
     assignments[folder.name] = shard.letter;

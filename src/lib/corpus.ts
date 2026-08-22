@@ -133,13 +133,13 @@ async function build(): Promise<Corpus> {
   // it drops anything a stale content-layer cache still holds.
   if (PREVIEW_MODE) {
     const kept = await previewBundles(CORPUS_DIR),
-     maps = [
-      auditsByDir,
-      caselawByDir,
-      statutoryByDir,
-      runsByDir,
-      sourcesByBundle,
-    ];
+      maps = [
+        auditsByDir,
+        caselawByDir,
+        statutoryByDir,
+        runsByDir,
+        sourcesByBundle,
+      ];
     for (const map of maps) {
       for (const dir of map.keys()) {
         if (!kept.has(dir)) {
@@ -160,7 +160,7 @@ async function build(): Promise<Corpus> {
 
   // ---- Tree ----
   const nodeByDir = new Map<string, TreeNode>(),
-   roots: TreeNode[] = [];
+    roots: TreeNode[] = [];
 
   function ensureNode(dir: string): TreeNode {
     const existing = nodeByDir.get(dir);
@@ -168,21 +168,21 @@ async function build(): Promise<Corpus> {
       return existing;
     }
     const segs = dir.split("/"),
-    // split() never yields an empty array, so the fallback never fires — it
-    // exists to keep `segment` a string without an assertion.
-     segment = segs.at(-1) ?? dir,
-     node: TreeNode = {
-      children: [],
-      dir,
-      label: humanize(segment),
-      latest: "",
-      maxDepth: 0,
-      ownSourceCount: 0,
-      segment,
-      slugPath: segs.map(slugSegment).join("/"),
-      sourceCount: 0,
-      topicCount: 0,
-    };
+      // split() never yields an empty array, so the fallback never fires — it
+      // exists to keep `segment` a string without an assertion.
+      segment = segs.at(-1) ?? dir,
+      node: TreeNode = {
+        children: [],
+        dir,
+        label: humanize(segment),
+        latest: "",
+        maxDepth: 0,
+        ownSourceCount: 0,
+        segment,
+        slugPath: segs.map(slugSegment).join("/"),
+        sourceCount: 0,
+        topicCount: 0,
+      };
     nodeByDir.set(dir, node);
     if (segs.length === 1) {
       roots.push(node);
@@ -199,10 +199,10 @@ async function build(): Promise<Corpus> {
   function aggregate(node: TreeNode): void {
     node.children.sort((a, b) => a.label.localeCompare(b.label));
     let topics = node.digest ? 1 : 0,
-     depth = 0;
+      depth = 0;
     node.ownSourceCount = sourcesByBundle.get(node.dir)?.length ?? 0;
     let sources = node.ownSourceCount,
-     latest = node.digest?.data.timestamp ?? "";
+      latest = node.digest?.data.timestamp ?? "";
     for (const child of node.children) {
       aggregate(child);
       topics += child.topicCount;
@@ -228,14 +228,12 @@ async function build(): Promise<Corpus> {
   }
 
   const doctrinalAreas = roots.filter(
-    (r) => r.segment !== r.segment.toUpperCase()
-  ),
-   compositeAreas = roots.filter(
-    (r) => r.segment === r.segment.toUpperCase()
-  );
+      (r) => r.segment !== r.segment.toUpperCase()
+    ),
+    compositeAreas = roots.filter((r) => r.segment === r.segment.toUpperCase());
 
   let sourceBytes = 0,
-   sourceCount = 0;
+    sourceCount = 0;
   for (const list of sourcesByBundle.values()) {
     for (const s of list) {
       sourceBytes += s.data.bytes;
@@ -301,10 +299,10 @@ export function crumbsFor(
   slugPath: string
 ): { label: string; slugPath: string; published: boolean }[] {
   const segs = slugPath.split("/"),
-   crumbs = [];
+    crumbs = [];
   for (let i = 1; i <= segs.length; i += 1) {
     const partial = segs.slice(0, i).join("/"),
-     node = corpus.nodeBySlugPath.get(partial);
+      node = corpus.nodeBySlugPath.get(partial);
     crumbs.push({
       label: node?.label ?? humanize(segs[i - 1]),
       published: Boolean(node),

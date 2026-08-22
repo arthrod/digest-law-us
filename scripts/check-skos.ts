@@ -30,19 +30,18 @@ try {
 }
 
 const findings = validateSkosGraph(JSON.parse(raw)),
- violations = findings.filter((f) => f.severity === "violation"),
- warnings = findings.filter((f) => f.severity === "warning"),
-
- show = (label: string, list: typeof findings, limit: number) => {
-  for (const finding of list.slice(0, limit)) {
-    process.stdout.write(
-      `${label} ${finding.constraint}\n  ${finding.node}\n  ${finding.message}\n`
-    );
-  }
-  if (list.length > limit) {
-    process.stdout.write(`… and ${list.length - limit} more ${label}\n`);
-  }
-};
+  violations = findings.filter((f) => f.severity === "violation"),
+  warnings = findings.filter((f) => f.severity === "warning"),
+  show = (label: string, list: typeof findings, limit: number) => {
+    for (const finding of list.slice(0, limit)) {
+      process.stdout.write(
+        `${label} ${finding.constraint}\n  ${finding.node}\n  ${finding.message}\n`
+      );
+    }
+    if (list.length > limit) {
+      process.stdout.write(`… and ${list.length - limit} more ${label}\n`);
+    }
+  };
 
 show("WARN", warnings, 20);
 show("FAIL", violations, 50);

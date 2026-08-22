@@ -51,8 +51,7 @@ export interface ConceptRegistry {
 }
 
 const registry = registryFile as ConceptRegistry,
-
- byKey = new Map<string, ConceptRecord>();
+  byKey = new Map<string, ConceptRecord>();
 for (const record of registry.concepts) {
   for (const key of record.keys) {
     byKey.set(key, record);
@@ -189,9 +188,9 @@ const ID_FORM = /^[0-9a-f]{32}$/u;
  */
 export function validateRegistry(reg: ConceptRegistry): string[] {
   const problems: string[] = [],
-   seenIds = new Map<string, number>(),
-   seenUuids = new Set<string>(),
-   seenKeys = new Map<string, string>();
+    seenIds = new Map<string, number>(),
+    seenUuids = new Set<string>(),
+    seenKeys = new Map<string, string>();
 
   for (const [index, record] of reg.concepts.entries()) {
     if (!ID_FORM.test(record.id)) {

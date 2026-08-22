@@ -1,7 +1,8 @@
 /**
  * Metadata loader for retained source documents.
  *
- * Sources total ~5.6 GB of markdown (single files up to 12.5 MB), so their
+ * Sources total ~13 GB of markdown across 80,310 files (single files up to
+ * 32.7 MB), so their
  * text deliberately never enters the content-layer data store — only
  * metadata and chunk offsets do. Source pages read + render their own slice
  * at build time (see src/lib/render-md.ts), which keeps the store small and
@@ -13,9 +14,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import type { Loader } from "astro/loaders";
-import matter from "gray-matter";
 
 import { PREVIEW_MODE, SOURCE_CHUNK_BYTES } from "@/corpus.config";
+import { parseFrontmatter } from "@/lib/frontmatter";
 import { slugSegment } from "@/lib/labels";
 import { previewBundles } from "@/lib/preview";
 
@@ -35,26 +36,26 @@ export function splitSpans(content: string, target: number): ChunkSpan[] {
     return [{ end: content.length, start: 0 }];
   }
   const spans: ChunkSpan[] = [];
-  let start = 0,
-   size = 0,
-   inFence = false,
-   cursor = 0;
+  let cursor = 0,
+    inFence = false,
+    size = 0,
+    start = 0;
   while (cursor < content.length) {
     let nl = content.indexOf("\n", cursor);
     if (nl === -1) {
       nl = content.length;
     }
     const line = content.slice(cursor, nl),
-     trimmed = line.trimStart();
+      trimmed = line.trimStart();
     if (trimmed.startsWith("```") || trimmed.startsWith("~~~")) {
       inFence = !inFence;
     }
     size += nl - cursor + 1;
     const atBlank = trimmed === "",
-     flush =
-      (!inFence && size >= target && atBlank) ||
-      (!inFence && size >= target * 1.5) ||
-      size >= target * 3;
+      flush =
+        (!inFence && size >= target && atBlank) ||
+        (!inFence && size >= target * 1.5) ||
+        size >= target * 3;
     if (flush) {
       spans.push({
         end: nl + 1 > content.length ? content.length : nl + 1,
@@ -76,21 +77,21 @@ export function sourcesLoader(corpusDir: string): Loader {
   return {
     async load({ store, logger, config, parseData, generateDigest }) {
       const root = path.resolve(fileURLToPath(config.root), corpusDir),
-       listing = await fs.readdir(root, {
-        recursive: true,
-      }),
-      // In preview mode the bundle set is decided before any file is read;
-      // skipping here is what keeps a preview build from paying for the
-      // whole ~372 MB of retained sources (see src/lib/preview.ts).
-       preview = PREVIEW_MODE ? await previewBundles(root) : null,
-       files = listing
-        .filter((rel) => /(?:^|\/)sources\/[^/]+\.md$/u.test(rel))
-        .filter(
-          (rel) =>
-            preview === null ||
-            preview.has(rel.slice(0, rel.lastIndexOf("/sources/")))
-        )
-        .toSorted();
+        listing = await fs.readdir(root, {
+          recursive: true,
+        }),
+        // In preview mode the bundle set is decided before any file is read;
+        // skipping here is what keeps a preview build from paying for the
+        // whole ~13 GB of retained sources (see src/lib/preview.ts).
+        preview = PREVIEW_MODE ? await previewBundles(root) : null,
+        files = listing
+          .filter((rel) => /(?:^|\/)sources\/[^/]+\.md$/u.test(rel))
+          .filter(
+            (rel) =>
+              preview === null ||
+              preview.has(rel.slice(0, rel.lastIndexOf("/sources/")))
+          )
+          .toSorted();
 
       store.clear();
       const usedSlugs = new Map<string, Set<string>>();
@@ -98,10 +99,9 @@ export function sourcesLoader(corpusDir: string): Loader {
 
       for (const rel of files) {
         const raw = await fs.readFile(path.join(root, rel), "utf8");
-        let fm: Record<string, unknown>,
-         content: string;
+        let content: string, fm: Record<string, unknown>;
         try {
-          ({ data: fm, content } = matter(raw));
+          ({ data: fm, content } = parseFrontmatter(raw));
         } catch (error) {
           // A malformed frontmatter block must not kill a multi-hour build:
           // keep the document (body = whole file), log loudly, never drop.
@@ -110,7 +110,7 @@ export function sourcesLoader(corpusDir: string): Loader {
           content = raw;
         }
         const bundle = rel.slice(0, rel.lastIndexOf("/sources/")),
-         fileName = path.basename(rel, ".md");
+          fileName = path.basename(rel, ".md");
 
         let slug = slugSegment(fileName) || "source";
         const taken = usedSlugs.get(bundle) ?? new Set<string>();
@@ -125,35 +125,35 @@ export function sourcesLoader(corpusDir: string): Loader {
         usedSlugs.set(bundle, taken);
 
         const spans = splitSpans(content, SOURCE_CHUNK_BYTES),
-         id = `${bundle}/sources/${slug}`,
-         data = await parseData({
-          data: {
-            bundle,
-            bytes: Buffer.byteLength(content),
-            chars: content.length,
-            /**
-             * The retained text never enters the store, so without this the
-             * entry digest only sees metadata — and an edit that preserves
-             * length and chunk boundaries would leave `spans`/`bytes`
-             * unchanged, letting an incremental build skip a source page
-             * whose on-disk text differs (see cacheKey in
-             * src/pages/[...path].astro). The file is already in memory
-             * here; hashing it closes that hole.
-             */
-            contentSha: createHash("sha256").update(content).digest("hex"),
-            description:
-              typeof fm.description === "string" ? fm.description : "",
-            parts: spans.length,
-            relFile: rel,
-            resource: typeof fm.resource === "string" ? fm.resource : "",
-            retained: fm.timestamp ? String(fm.timestamp) : "",
-            slug,
-            spans,
-            tags: Array.isArray(fm.tags) ? fm.tags.map(String) : [],
-            title: typeof fm.title === "string" ? fm.title : fileName,
-          },
-          id,
-        });
+          id = `${bundle}/sources/${slug}`,
+          data = await parseData({
+            data: {
+              bundle,
+              bytes: Buffer.byteLength(content),
+              chars: content.length,
+              /**
+               * The retained text never enters the store, so without this the
+               * entry digest only sees metadata — and an edit that preserves
+               * length and chunk boundaries would leave `spans`/`bytes`
+               * unchanged, letting an incremental build skip a source page
+               * whose on-disk text differs (see cacheKey in
+               * src/pages/[...path].astro). The file is already in memory
+               * here; hashing it closes that hole.
+               */
+              contentSha: createHash("sha256").update(content).digest("hex"),
+              description:
+                typeof fm.description === "string" ? fm.description : "",
+              parts: spans.length,
+              relFile: rel,
+              resource: typeof fm.resource === "string" ? fm.resource : "",
+              retained: fm.timestamp ? String(fm.timestamp) : "",
+              slug,
+              spans,
+              tags: Array.isArray(fm.tags) ? fm.tags.map(String) : [],
+              title: typeof fm.title === "string" ? fm.title : fileName,
+            },
+            id,
+          });
         store.set({ data, digest: generateDigest(data), id });
         count += 1;
       }

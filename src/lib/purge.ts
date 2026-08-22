@@ -47,7 +47,7 @@ const MANIFEST_RE =
  */
 function countRows(tsv: string): number {
   let count = 0,
-   isFirst = true;
+    isFirst = true;
   for (const line of tsv.split("\n")) {
     const row = line.trim();
     if (row === "") {

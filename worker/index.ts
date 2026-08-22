@@ -46,23 +46,17 @@ interface Env {
 
 /** Envelope sender. Must be on a domain onboarded to Email Sending. */
 const FROM = { email: "forms@digest.law", name: "digest.law contact form" },
-
-/** Only these origins may post the form. */
- ALLOWED_ORIGINS = new Set([
-  "https://digest.law",
-  "https://www.digest.law",
-]),
-
- MAX_BODY_BYTES = 32_000,
-
-/**
- * Collapse control characters to spaces. The send binding takes structured
- * fields rather than raw MIME, so this is belt-and-braces against header
- * injection via `subject` / `replyTo`, and it keeps stray terminal escapes
- * out of somebody's mail client.
- */
-// oxlint-disable-next-line no-control-regex -- matching them is the point
- CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu;
+  /** Only these origins may post the form. */
+  ALLOWED_ORIGINS = new Set(["https://digest.law", "https://www.digest.law"]),
+  MAX_BODY_BYTES = 32_000,
+  /**
+   * Collapse control characters to spaces. The send binding takes structured
+   * fields rather than raw MIME, so this is belt-and-braces against header
+   * injection via `subject` / `replyTo`, and it keeps stray terminal escapes
+   * out of somebody's mail client.
+   */
+  // oxlint-disable-next-line no-control-regex -- matching them is the point
+  CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu;
 
 function clean(value: unknown, max: number): string {
   if (typeof value !== "string") {
@@ -390,7 +384,7 @@ export default {
     // like /sitemap-index.xml can land here via the /sitemap* rule — only an
     // exact first-segment match forwards; everything else is a root asset.
     const segment = pathname.split("/")[1] ?? "",
-     bindingName = env.SHARD_MAP?.[segment];
+      bindingName = env.SHARD_MAP?.[segment];
     if (bindingName) {
       const shard = (
         env as unknown as Record<string, AssetFetcher | undefined>

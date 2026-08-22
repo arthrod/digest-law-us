@@ -81,12 +81,12 @@ export function resolveRefIn(
   urn: string
 ): ResolvedRef {
   const slugPath = urnToSlugPath(urn),
-   node = nodeBySlugPath.get(slugPath),
-   lastSeg =
-    urn
-      .replace(/^urn:legal-taxonomy:issue:/u, "")
-      .split(".")
-      .pop() ?? urn;
+    node = nodeBySlugPath.get(slugPath),
+    lastSeg =
+      urn
+        .replace(/^urn:legal-taxonomy:issue:/u, "")
+        .split(".")
+        .pop() ?? urn;
   return {
     label: node?.label ?? humanize(lastSeg),
     published: Boolean(node),

@@ -58,7 +58,7 @@ export interface ContactTopic {
 }
 
 const ARTHUR = "arthur@digest.law",
- CAROLINA = "carolina@digest.law";
+  CAROLINA = "carolina@digest.law";
 
 /**
  * Topic router. Anything that touches the corpus itself reaches both

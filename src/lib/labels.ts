@@ -33,7 +33,7 @@ const SMALL_WORDS = new Set([
 /** "JUDICIAL_PRECEDENTS_AND_CASE_LAW" → "Judicial Precedents and Case Law" */
 export function humanize(segment: string): string {
   const words = segment.replaceAll("_", " ").trim().split(/\s+/u),
-   isScreaming = segment === segment.toUpperCase();
+    isScreaming = segment === segment.toUpperCase();
   if (!isScreaming) {
     return words.join(" ");
   }

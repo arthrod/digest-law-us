@@ -9,9 +9,10 @@ import path from "node:path";
 
 import type { MarkdownRenderer } from "@astrojs/markdown-remark";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
-import matter from "gray-matter";
 
 import { CORPUS_DIR } from "@/corpus.config";
+
+import { parseFrontmatter } from "./frontmatter";
 
 let processorPromise: Promise<MarkdownRenderer> | null = null;
 
@@ -22,10 +23,9 @@ function getProcessor(): Promise<MarkdownRenderer> {
 }
 
 const corpusRoot = path.resolve(process.cwd(), CORPUS_DIR),
-
-/** Tiny LRU for frontmatter-stripped source contents (12.5 MB max each). */
- contentCache = new Map<string, string>(),
- CACHE_MAX = 8;
+  /** Tiny LRU for frontmatter-stripped source contents (32.7 MB max each). */
+  contentCache = new Map<string, string>(),
+  CACHE_MAX = 8;
 
 async function readSourceContent(relFile: string): Promise<string> {
   const hit = contentCache.get(relFile);
@@ -35,7 +35,7 @@ async function readSourceContent(relFile: string): Promise<string> {
     return hit;
   }
   const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
-   { content } = matter(raw);
+    { content } = parseFrontmatter(raw);
   contentCache.set(relFile, content);
   if (contentCache.size > CACHE_MAX) {
     const oldest = contentCache.keys().next().value;
@@ -61,9 +61,9 @@ export interface RenderedChunk {
  */
 export async function renderCorpusFile(relFile: string): Promise<string> {
   const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
-   { content } = matter(raw),
-   processor = await getProcessor(),
-   result = await processor.render(content);
+    { content } = parseFrontmatter(raw),
+    processor = await getProcessor(),
+    result = await processor.render(content);
   return result.code;
 }
 
@@ -72,8 +72,8 @@ export async function renderSourceChunk(
   span: { start: number; end: number }
 ): Promise<RenderedChunk> {
   const content = await readSourceContent(relFile),
-   slice = content.slice(span.start, span.end),
-   processor = await getProcessor(),
-   result = await processor.render(slice);
+    slice = content.slice(span.start, span.end),
+    processor = await getProcessor(),
+    result = await processor.render(slice);
   return { html: result.code };
 }

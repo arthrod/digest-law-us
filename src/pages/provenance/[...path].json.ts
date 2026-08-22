@@ -10,7 +10,7 @@ import { getCorpus } from "@/lib/corpus";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const corpus = await getCorpus(),
-   paths = [];
+    paths = [];
   for (const node of corpus.nodeBySlugPath.values()) {
     if (!node.digest) {
       continue;

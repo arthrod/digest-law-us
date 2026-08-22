@@ -7,7 +7,7 @@
  * re-renders every route, and the content layer re-reads every corpus file
  * regardless. Preview mode cuts the corpus to a handful of bundles instead
  * — but the cut only pays off if it happens *before* the loaders read
- * ~5.6 GB of retained sources. That is what this module is for:
+ * ~13 GB of retained sources. That is what this module is for:
  * `content.config.ts` narrows its globs to these directories, the sources
  * loader skips everything else, and `corpus.ts` filters against the same
  * set, so all three agree by construction.
@@ -50,7 +50,7 @@ function roundRobin(
   const byArea = new Map<string, string[]>();
   for (const dir of dirs) {
     const [area] = dir.split("/"),
-     list = byArea.get(area) ?? [];
+      list = byArea.get(area) ?? [];
     list.push(dir);
     byArea.set(area, list);
   }
@@ -58,7 +58,7 @@ function roundRobin(
     list.sort((a, b) => score(b) - score(a) || a.localeCompare(b));
   }
   const areas = [...byArea.keys()].toSorted(),
-   kept: string[] = [];
+    kept: string[] = [];
   for (let round = 0; kept.length < limit; round += 1) {
     let advanced = false;
     for (const area of areas) {
@@ -81,10 +81,9 @@ function roundRobin(
 
 async function select(corpusDir: string): Promise<Set<string>> {
   const listing = await fs.readdir(corpusDir, { recursive: true }),
-   files = new Set(listing.map((p) => p.replaceAll("\\", "/"))),
-
-   sourcesPerBundle = new Map<string, number>(),
-   bundles: string[] = [];
+    files = new Set(listing.map((p) => p.replaceAll("\\", "/"))),
+    sourcesPerBundle = new Map<string, number>(),
+    bundles: string[] = [];
   for (const rel of files) {
     if (SOURCE_FILE.test(rel)) {
       const bundle = rel.slice(0, rel.lastIndexOf("/sources/"));
@@ -95,7 +94,7 @@ async function select(corpusDir: string): Promise<Set<string>> {
       continue;
     }
     const dir = rel.slice(0, rel.lastIndexOf("/")),
-     base = rel.slice(dir.length + 1, -".md".length);
+      base = rel.slice(dir.length + 1, -".md".length);
     if (dir && base === dir.split("/").at(-1)) {
       bundles.push(dir);
     }

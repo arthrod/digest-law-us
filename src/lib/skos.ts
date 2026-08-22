@@ -100,27 +100,26 @@ export function labelSetFor(input: {
   historicalLabels?: string[];
 }): LabelSet {
   const violations: string[] = [],
-   prefLabel = input.prefLabel.normalize("NFC").trim(),
-   taken = new Map<string, string>([[foldLabel(prefLabel), "prefLabel"]]),
-
-   keep = (values: string[] | undefined, role: string): string[] => {
-    const out: string[] = [];
-    for (const raw of values ?? []) {
-      const value = raw.normalize("NFC").trim();
-      if (!value) {
-        continue;
+    prefLabel = input.prefLabel.normalize("NFC").trim(),
+    taken = new Map<string, string>([[foldLabel(prefLabel), "prefLabel"]]),
+    keep = (values: string[] | undefined, role: string): string[] => {
+      const out: string[] = [];
+      for (const raw of values ?? []) {
+        const value = raw.normalize("NFC").trim();
+        if (!value) {
+          continue;
+        }
+        const folded = foldLabel(value),
+          owner = taken.get(folded);
+        if (owner) {
+          violations.push(`${role} "${value}" duplicates ${owner}`);
+          continue;
+        }
+        taken.set(folded, role);
+        out.push(value);
       }
-      const folded = foldLabel(value),
-       owner = taken.get(folded);
-      if (owner) {
-        violations.push(`${role} "${value}" duplicates ${owner}`);
-        continue;
-      }
-      taken.set(folded, role);
-      out.push(value);
-    }
-    return out;
-  };
+      return out;
+    };
 
   return {
     altLabels: keep(input.altLabels, "altLabel"),
@@ -159,10 +158,10 @@ function dateLit(value: string | undefined) {
 /** Identity block: the minted id, its provenance, and the legacy route IRI. */
 function identityOf(node: TreeNode, fm: Record<string, unknown> | undefined) {
   const resolved = conceptIriFor(node.slugPath),
-   block: Record<string, unknown> = {
-    "@id": resolved.iri,
-    "digest:legacyIri": { "@id": legacyIriFor(node.slugPath) },
-  };
+    block: Record<string, unknown> = {
+      "@id": resolved.iri,
+      "digest:legacyIri": { "@id": legacyIriFor(node.slugPath) },
+    };
   if (resolved.record) {
     // Canonical typed notation is the minted id; the corpus dotted notation
     // is a route artifact and is published as such (P1-014C).
@@ -191,25 +190,24 @@ export function conceptFor(
   opts: { compact?: boolean } = {}
 ): Record<string, unknown> {
   const { digest } = node,
-   fm = digest?.data as Record<string, unknown> | undefined,
-   isArea = !node.slugPath.includes("/"),
-   lang = languageOf(fm),
-   prefSource = fm?.pref_label,
-   labels = labelSetFor({
-    altLabels: fm?.alt_labels as string[] | undefined,
-    historicalLabels: fm?.historical_labels as string[] | undefined,
-    prefLabel:
-      typeof prefSource === "string" && prefSource
-        ? humanize(prefSource)
-        : node.label,
-  }),
-
-   concept: Record<string, unknown> = {
-    ...identityOf(node, fm),
-    "@type": "skos:Concept",
-    "skos:inScheme": { "@id": W3ID_BASE },
-    "skos:prefLabel": langLit(labels.prefLabel, lang),
-  };
+    fm = digest?.data as Record<string, unknown> | undefined,
+    isArea = !node.slugPath.includes("/"),
+    lang = languageOf(fm),
+    prefSource = fm?.pref_label,
+    labels = labelSetFor({
+      altLabels: fm?.alt_labels as string[] | undefined,
+      historicalLabels: fm?.historical_labels as string[] | undefined,
+      prefLabel:
+        typeof prefSource === "string" && prefSource
+          ? humanize(prefSource)
+          : node.label,
+    }),
+    concept: Record<string, unknown> = {
+      ...identityOf(node, fm),
+      "@type": "skos:Concept",
+      "skos:inScheme": { "@id": W3ID_BASE },
+      "skos:prefLabel": langLit(labels.prefLabel, lang),
+    };
   if (isArea) {
     // PENDING P1-014E: still inferred from the folder root, not reviewed.
     concept["skos:topConceptOf"] = { "@id": W3ID_BASE };
@@ -281,12 +279,12 @@ export function conceptFor(
 
   // External mappings (FOLIO, EuroVoc, SALI/LMSS…) — IRIs only.
   const mappings = (fm?.mappings ?? {}) as Record<
-    string,
-    Record<string, unknown>
-  >,
-   close: string[] = [],
-   relatedMatch: string[] = [],
-   broad: string[] = [];
+      string,
+      Record<string, unknown>
+    >,
+    close: string[] = [],
+    relatedMatch: string[] = [],
+    broad: string[] = [];
   for (const group of Object.values(mappings)) {
     if (!group || typeof group !== "object") {
       continue;
@@ -410,34 +408,34 @@ export function schemeSummaryJsonLd(corpus: Corpus): string {
 /** The whole scheme: ConceptScheme + every concept, for /skos.jsonld. */
 export function schemeJsonLd(corpus: Corpus): string {
   const graph: Record<string, unknown>[] = [
-    {
-      "@id": W3ID_BASE,
-      "@type": "skos:ConceptScheme",
-      "dct:description": langLit(
-        "Open, source-grounded digests of United States legal doctrine; " +
-          "topic concepts organised jurisdiction-first under w3id.org/digest-law.",
-        SCHEME_LANGUAGE
-      ),
-      "dct:language": SCHEME_LANGUAGE,
-      // A publisher name is a name, not natural-language prose: no tag
-      // (P1-014I).
-      "dct:publisher": "American Legal Digest",
-      "dct:title": langLit(
-        "American Legal Digest — United States",
-        SCHEME_LANGUAGE
-      ),
-      "foaf:homepage": { "@id": SITE_BASE },
-      "skos:hasTopConcept": corpus.areas.map((a) => ({
-        "@id": conceptIri(a.slugPath),
-      })),
-    },
-  ],
-   visit = (node: TreeNode) => {
-    graph.push(conceptFor(corpus, node, { compact: !node.digest }));
-    for (const child of node.children) {
-      visit(child);
-    }
-  };
+      {
+        "@id": W3ID_BASE,
+        "@type": "skos:ConceptScheme",
+        "dct:description": langLit(
+          "Open, source-grounded digests of United States legal doctrine; " +
+            "topic concepts organised jurisdiction-first under w3id.org/digest-law.",
+          SCHEME_LANGUAGE
+        ),
+        "dct:language": SCHEME_LANGUAGE,
+        // A publisher name is a name, not natural-language prose: no tag
+        // (P1-014I).
+        "dct:publisher": "American Legal Digest",
+        "dct:title": langLit(
+          "American Legal Digest — United States",
+          SCHEME_LANGUAGE
+        ),
+        "foaf:homepage": { "@id": SITE_BASE },
+        "skos:hasTopConcept": corpus.areas.map((a) => ({
+          "@id": conceptIri(a.slugPath),
+        })),
+      },
+    ],
+    visit = (node: TreeNode) => {
+      graph.push(conceptFor(corpus, node, { compact: !node.digest }));
+      for (const child of node.children) {
+        visit(child);
+      }
+    };
   for (const area of corpus.areas) {
     visit(area);
   }

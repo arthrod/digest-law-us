@@ -176,26 +176,26 @@ describe("language tagging (P1-014I)", () => {
 describe("placement is not hierarchy (S-02 / P1-006)", () => {
   test("the folder parent does not become skos:broader", () => {
     const child = node("evidence-law/documentary-evidence/log-books", {
-      pref_label: "LOG BOOKS",
-    }),
-     concept = conceptFor(corpusOf(child), child);
+        pref_label: "LOG BOOKS",
+      }),
+      concept = conceptFor(corpusOf(child), child);
     expect(concept["skos:broader"]).toBeUndefined();
     expect(concept["digest:placementParent"]).toBeDefined();
   });
 
   test("only the drafter's asserted broader is published", () => {
     const parent = node("evidence-law/documentary-evidence"),
-     child = node("evidence-law/documentary-evidence/log-books", {
-      broader: [URN],
-      pref_label: "LOG BOOKS",
-    }),
-     concept = conceptFor(corpusOf(parent, child), child);
+      child = node("evidence-law/documentary-evidence/log-books", {
+        broader: [URN],
+        pref_label: "LOG BOOKS",
+      }),
+      concept = conceptFor(corpusOf(parent, child), child);
     expect(concept["skos:broader"]).toHaveLength(1);
   });
 
   test("structural children are placement, not skos:narrower", () => {
     const parent = node("evidence-law/documentary-evidence"),
-     child = node("evidence-law/documentary-evidence/log-books");
+      child = node("evidence-law/documentary-evidence/log-books");
     parent.children = [child];
     const concept = conceptFor(corpusOf(parent, child), parent);
     expect(concept["skos:narrower"]).toBeUndefined();

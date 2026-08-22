@@ -29,7 +29,7 @@ function leadingText(node: MdNode | undefined): string {
 export function remarkStripFmEcho() {
   return (tree: MdNode) => {
     const children = tree.children ?? [],
-     [first] = children;
+      [first] = children;
     if (first?.type !== "paragraph") {
       return;
     }
