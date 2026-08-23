@@ -16,7 +16,7 @@ import { fileURLToPath } from "node:url";
 import type { Loader } from "astro/loaders";
 
 import { PREVIEW_MODE, SOURCE_CHUNK_BYTES } from "@/corpus.config";
-import { parseFrontmatter } from "@/lib/frontmatter";
+import { parseFrontmatterLoose } from "@/lib/frontmatter";
 import { slugSegment } from "@/lib/labels";
 import { previewBundles } from "@/lib/preview";
 
@@ -98,16 +98,14 @@ export function sourcesLoader(corpusDir: string): Loader {
       let count = 0;
 
       for (const rel of files) {
-        const raw = await fs.readFile(path.join(root, rel), "utf8");
-        let content: string, fm: Record<string, unknown>;
-        try {
-          ({ data: fm, content } = parseFrontmatter(raw));
-        } catch (error) {
+        const raw = await fs.readFile(path.join(root, rel), "utf8"),
           // A malformed frontmatter block must not kill a multi-hour build:
-          // keep the document (body = whole file), log loudly, never drop.
+          // keep the document (body = everything past the delimiters), log
+          // loudly, never drop. The page renderer recovers the identical body
+          // for the same file, so the spans below still index the right text.
+          { content, data: fm, error } = parseFrontmatterLoose(raw);
+        if (error) {
           logger.warn(`Broken frontmatter in ${rel}: ${error}`);
-          fm = {};
-          content = raw;
         }
         const bundle = rel.slice(0, rel.lastIndexOf("/sources/")),
           fileName = path.basename(rel, ".md");

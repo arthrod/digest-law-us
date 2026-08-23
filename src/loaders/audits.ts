@@ -22,7 +22,7 @@ import { fileURLToPath } from "node:url";
 import type { Loader } from "astro/loaders";
 
 import { PREVIEW_MODE } from "@/corpus.config";
-import { parseFrontmatter } from "@/lib/frontmatter";
+import { parseFrontmatterLoose } from "@/lib/frontmatter";
 import { previewBundles } from "@/lib/preview";
 
 const AUDIT_FILE = "_source_snippet_audit.md";
@@ -47,15 +47,12 @@ export function auditsLoader(corpusDir: string): Loader {
       let count = 0;
 
       for (const rel of files) {
-        const raw = await fs.readFile(path.join(root, rel), "utf8");
-        let fm: Record<string, unknown>;
-        try {
-          ({ data: fm } = parseFrontmatter(raw));
-        } catch (error) {
+        const raw = await fs.readFile(path.join(root, rel), "utf8"),
           // A malformed frontmatter block must not kill a multi-hour build:
           // keep the entry, log loudly, never drop it (same rule as sources).
+          { data: fm, error } = parseFrontmatterLoose(raw);
+        if (error) {
           logger.warn(`Broken frontmatter in ${rel}: ${error}`);
-          fm = {};
         }
 
         const id = rel.replace(/\.md$/u, ""),

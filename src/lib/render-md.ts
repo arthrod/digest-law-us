@@ -12,7 +12,7 @@ import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 
 import { CORPUS_DIR } from "@/corpus.config";
 
-import { parseFrontmatter } from "./frontmatter";
+import { parseFrontmatterLoose } from "./frontmatter";
 
 let processorPromise: Promise<MarkdownRenderer> | null = null;
 
@@ -35,7 +35,11 @@ async function readSourceContent(relFile: string): Promise<string> {
     return hit;
   }
   const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
-    { content } = parseFrontmatter(raw);
+    // Loose, because a few machine-written corpus files carry frontmatter
+    // that is not loadable YAML. The loader already logged the warning and
+    // recorded spans over the body this recovers; throwing here instead would
+    // take the whole build down over one unparseable `tags:` line.
+    { content } = parseFrontmatterLoose(raw);
   contentCache.set(relFile, content);
   if (contentCache.size > CACHE_MAX) {
     const oldest = contentCache.keys().next().value;
@@ -61,7 +65,7 @@ export interface RenderedChunk {
  */
 export async function renderCorpusFile(relFile: string): Promise<string> {
   const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
-    { content } = parseFrontmatter(raw),
+    { content } = parseFrontmatterLoose(raw),
     processor = await getProcessor(),
     result = await processor.render(content);
   return result.code;
