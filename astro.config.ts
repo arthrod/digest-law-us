@@ -35,6 +35,9 @@ export default defineConfig({
    * manager. Not `./.astro` either — that is Astro's generated-types
    * directory (content.d.ts, collections/).
    */
+  build: {
+    concurrency: Number(process.env.BUILD_CONCURRENCY ?? 1),
+  },
   cacheDir: previewMode
     ? "./.astro-cache-preview"
     : "./.astro-cache",
@@ -50,7 +53,10 @@ export default defineConfig({
      * largest single collection rather than by the entire corpus.
      */
     collectionStorage: "chunked",
-    incrementalBuild: true,
+    // Env-switchable for A/B measurement. Neither this flag nor
+    // build.concurrency appears in core/build/config-hash/input.js, so
+    // toggling them cannot invalidate an incremental manifest.
+    incrementalBuild: process.env.ASTRO_INCREMENTAL !== "0",
   },
 
   integrations: [sitemap()],
