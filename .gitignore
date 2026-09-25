@@ -14,6 +14,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+# build/deploy transcripts: build.log alone is ~34 MB
+build.log
+deploy.log
+build-deploy-*.log
 
 # environment variables
 .env
