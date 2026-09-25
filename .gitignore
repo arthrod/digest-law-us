@@ -48,3 +48,8 @@ dist/
 .astro/
 node_modules/
 .dirac-cache/
+
+# Astro build cache (incremental manifest + cached dist + content store).
+# Deliberately outside node_modules - see the cacheDir note in astro.config.ts.
+.astro-cache/
+.astro-cache-preview/

@@ -24,10 +24,20 @@ export default defineConfig({
    * there too, and it is invalidated whole on any config-hash change —
    * which flipping outDir between builds would otherwise cause on every
    * preview/full alternation.
+   *
+   * Both paths sit OUTSIDE node_modules, which is the whole point. Astro's
+   * default cacheDir is ./node_modules/.astro, and at this corpus size that
+   * cache is ~24.5 GB (a 79 MB incremental manifest, a 23 GB cached copy of
+   * dist/, and a 1.5 GB content store) representing a ~25-hour build. Any
+   * `rm -rf node_modules`, or a clean reinstall during a dependency bump,
+   * silently destroys all of it and the next build starts cold. Nothing about
+   * a cache of build OUTPUT belongs in a directory owned by the package
+   * manager. Not `./.astro` either — that is Astro's generated-types
+   * directory (content.d.ts, collections/).
    */
   cacheDir: previewMode
-    ? "./node_modules/.astro-preview"
-    : "./node_modules/.astro",
+    ? "./.astro-cache-preview"
+    : "./.astro-cache",
   experimental: {
     /**
      * The content store is written as one file by default, which means the
