@@ -51,5 +51,6 @@ node_modules/
 
 # Astro build cache (incremental manifest + cached dist + content store).
 # Deliberately outside node_modules - see the cacheDir note in astro.config.ts.
-.astro-cache/
-.astro-cache-preview/
+# Slash-less so these also cover a symlink bridge, not just a real directory.
+.astro-cache
+.astro-cache-preview
