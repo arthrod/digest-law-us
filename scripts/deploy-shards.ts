@@ -254,7 +254,7 @@ async function splitOversize(
   }
   const map: Record<string, OversizeAsset> = {};
   for (const { name, size } of oversize) {
-    const bytes = new Uint8Array(await readFile(path.join(DIST, name))),
+    const bytes = await readFile(path.join(DIST, name)),
       parts: string[] = [];
     for (let offset = 0; offset < bytes.length; offset += PART_BYTES) {
       const part = `${name}${PART_SUFFIX}${String(parts.length).padStart(3, "0")}`;
