@@ -34,6 +34,8 @@ interface AssetFetcher {
 /** One root file over the 25 MiB asset cap, shipped as ordered parts. */
 interface OversizeAsset {
   contentType: string;
+  /** Quoted sha256 of the whole file; absent from pre-ETag deploy configs. */
+  etag?: string;
   parts: string[];
   size: number;
 }
@@ -399,11 +401,27 @@ function serveOversize(
   ctx: WaitUntil | undefined,
   asset: OversizeAsset
 ): Response {
+  // Same policy as the assets binding's own responses: always revalidate,
+  // so a redeploy is visible at once, and the ETag keeps that revalidation
+  // a 304 instead of another 29 MiB.
   const headers = new Headers({
-    "Cache-Control": "public, max-age=3600",
+    "Cache-Control": "public, max-age=0, must-revalidate",
     "Content-Type": asset.contentType,
     "X-Content-Type-Options": "nosniff",
   });
+  if (asset.etag) {
+    headers.set("ETag", asset.etag);
+    const ifNoneMatch = request.headers.get("If-None-Match") ?? "";
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      ifNoneMatch.split(",").some((tag) => {
+        const t = tag.trim();
+        return t === "*" || t.replace(/^W\//u, "") === asset.etag;
+      })
+    ) {
+      return new Response(null, { headers, status: 304 });
+    }
+  }
   if (request.method === "HEAD") {
     headers.set("Content-Length", String(asset.size));
     return new Response(null, { headers });

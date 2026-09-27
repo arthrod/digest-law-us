@@ -229,6 +229,8 @@ async function inventory(): Promise<Inventory> {
 /** Mirrors worker/index.ts's OversizeAsset. */
 interface OversizeAsset {
   contentType: string;
+  /** Strong validator: sha256 of the whole file. */
+  etag: string;
   parts: string[];
   size: number;
 }
@@ -264,9 +266,12 @@ async function splitOversize(
       );
       parts.push(`/${part}`);
     }
+    const hasher = new Bun.CryptoHasher("sha256");
+    hasher.update(bytes);
     map[`/${name}`] = {
       contentType:
         CONTENT_TYPES[path.extname(name)] ?? "application/octet-stream",
+      etag: `"${hasher.digest("hex")}"`,
       parts,
       size,
     };
@@ -693,11 +698,31 @@ function deploy(configPath: string): void {
 }
 
 const { folders, oversizeRoot, rootFiles } = await inventory(),
-  shards = pack(folders, await loadAssignments()),
+  previous = await loadAssignments(),
+  shards = pack(folders, previous),
   assignments: Assignments = {};
 for (const shard of shards) {
   for (const folder of shard.folders) {
     assignments[folder.name] = shard.letter;
+  }
+}
+// A partial deploy is only safe when no folder changed shard: root's
+// SHARD_MAP would otherwise route a folder to a shard that does not hold it
+// yet. Checked before the new assignments are written, so a refused run
+// leaves the file as it was. (It trusts the file to match what is live — a
+// full run that failed midway has already moved it; follow that with a full
+// deploy, not --only.)
+if (only) {
+  const moved = Object.entries(assignments)
+    .filter(([folder, letter]) => previous[folder] !== letter)
+    .map(
+      ([folder, letter]) =>
+        `${folder} (${previous[folder] ?? "new"} → ${letter})`
+    );
+  if (moved.length > 0) {
+    throw new Error(
+      `--only refused: folders changed shard, so every Worker must redeploy: ${moved.join(", ")}`
+    );
   }
 }
 const sorted = Object.fromEntries(
