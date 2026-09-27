@@ -18,9 +18,6 @@ echo "=== $(date -Is) build done ==="
 du -sh dist
 find dist -type f | wc -l | xargs echo "dist files:"
 
-echo "=== $(date -Is) DEPLOY PLAN ==="
-bun scripts/deploy-shards.ts --plan
-
 echo "=== $(date -Is) DEPLOY ==="
 bun scripts/deploy-shards.ts
 

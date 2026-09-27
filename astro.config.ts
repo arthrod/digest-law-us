@@ -36,11 +36,12 @@ export default defineConfig({
    * directory (content.d.ts, collections/).
    */
   build: {
-    concurrency: Number(process.env.BUILD_CONCURRENCY ?? 1),
+    // Anything but a positive integer (unset, "", "abc", 0, 1.5) means 1.
+    concurrency: /^[1-9]\d*$/u.test(process.env.BUILD_CONCURRENCY ?? "")
+      ? Number(process.env.BUILD_CONCURRENCY)
+      : 1,
   },
-  cacheDir: previewMode
-    ? "./.astro-cache-preview"
-    : "./.astro-cache",
+  cacheDir: previewMode ? "./.astro-cache-preview" : "./.astro-cache",
   experimental: {
     /**
      * The content store is written as one file by default, which means the

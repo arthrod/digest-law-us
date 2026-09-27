@@ -62,7 +62,10 @@ if (!source.includes(BUGGY)) {
   say("WARNING: astro's getChunkEnd no longer matches the known-slow shape.");
   say("Either upstream fixed it (good, drop this script) or the code moved.");
   say("Verify content-sync duration before trusting a long build.");
-  process.exit(0);
+  // As a postinstall hook this must not break installs; as the build gate
+  // (--check) it must stop a multi-day build that may have lost the fix.
+  // Once upstream is verified fixed, drop the --check from package.json.
+  process.exit(checkOnly ? 1 : 0);
 }
 
 if (checkOnly) {

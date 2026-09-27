@@ -705,58 +705,70 @@ const sorted = Object.fromEntries(
 );
 await writeFile(ASSIGNMENTS_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
 
-const oversize = await splitOversize(oversizeRoot),
-  configs = await generateConfigs(shards, oversize);
-
-console.log(`dist/: ${rootFiles} root files + ${folders.length} folders\n`);
-for (const shard of shards) {
-  console.log(
-    `  ${serviceNameOf(shard.letter)}  ${String(shard.files).padStart(6)} files  ${shard.folders.length} folders  (budget ${BUDGET}, cap ${MAX_ASSETS})`
-  );
-}
-console.log(
-  `  digest-law (root)   ${String(rootFiles).padStart(6)} files  + worker, /api/*, /id/*`
+const unknown = (only ?? []).filter(
+  (key) => key !== "root" && !shards.some((shard) => shard.letter === key)
 );
-for (const [urlPath, asset] of Object.entries(oversize)) {
-  console.log(
-    `    ${urlPath} (${(asset.size / 1024 / 1024).toFixed(1)} MiB) → ${asset.parts.length} parts, reassembled by the root Worker`
-  );
+if (only?.length === 0) {
+  throw new Error("--only= needs at least one shard letter or root.");
 }
-console.log("");
-
-await preflight(shards, oversize, configs);
-
-if (planOnly) {
-  console.log("--plan: configs written to .wrangler-shards/, not deploying.");
-  process.exit(0);
-}
-
-const wanted = (key: string) => !only || only.includes(key),
-  unknown = (only ?? []).filter(
-    (key) => key !== "root" && !shards.some((shard) => shard.letter === key)
-  );
 if (unknown.length > 0) {
   throw new Error(`--only names unknown shards: ${unknown.join(", ")}`);
 }
+const wanted = (key: string) => !only || only.includes(key);
 
-try {
-  for (const shard of shards.filter((s) => wanted(s.letter))) {
-    console.log(`\n=== deploying ${serviceNameOf(shard.letter)} ===`);
-    await writeFile(IGNORE_PATH, configs.shardIgnoreOf(shard));
-    deploy(configs.shardConfigPathOf(shard));
-  }
-  if (wanted("root")) {
-    console.log("\n=== deploying digest-law (root) ===");
-    await writeFile(IGNORE_PATH, configs.rootIgnore);
-    deploy(configs.rootConfigPath);
-  }
-} finally {
+/** Part files and the ignore file are deploy-time scratch, never left in dist/. */
+async function cleanDist(): Promise<void> {
   // A stale .assetsignore would silently shrink a later plain `wrangler
   // deploy` or `wrangler dev` to one shard's view of dist.
   await rm(IGNORE_PATH, { force: true });
+  for (const name of await readdir(DIST)) {
+    if (isPart(name)) {
+      await rm(path.join(DIST, name), { force: true });
+    }
+  }
 }
-console.log(
-  only
-    ? `\nDeployed: ${only.join(", ")}.`
-    : `\nAll ${shards.length + 1} Workers deployed.`
-);
+
+try {
+  const oversize = await splitOversize(oversizeRoot),
+    configs = await generateConfigs(shards, oversize);
+
+  console.log(`dist/: ${rootFiles} root files + ${folders.length} folders\n`);
+  for (const shard of shards) {
+    console.log(
+      `  ${serviceNameOf(shard.letter)}  ${String(shard.files).padStart(6)} files  ${shard.folders.length} folders  (budget ${BUDGET}, cap ${MAX_ASSETS})`
+    );
+  }
+  console.log(
+    `  digest-law (root)   ${String(rootFiles).padStart(6)} files  + worker, /api/*, /id/*`
+  );
+  for (const [urlPath, asset] of Object.entries(oversize)) {
+    console.log(
+      `    ${urlPath} (${(asset.size / 1024 / 1024).toFixed(1)} MiB) → ${asset.parts.length} parts, reassembled by the root Worker`
+    );
+  }
+  console.log("");
+
+  await preflight(shards, oversize, configs);
+
+  if (planOnly) {
+    console.log("--plan: configs written to .wrangler-shards/, not deploying.");
+  } else {
+    for (const shard of shards.filter((s) => wanted(s.letter))) {
+      console.log(`\n=== deploying ${serviceNameOf(shard.letter)} ===`);
+      await writeFile(IGNORE_PATH, configs.shardIgnoreOf(shard));
+      deploy(configs.shardConfigPathOf(shard));
+    }
+    if (wanted("root")) {
+      console.log("\n=== deploying digest-law (root) ===");
+      await writeFile(IGNORE_PATH, configs.rootIgnore);
+      deploy(configs.rootConfigPath);
+    }
+    console.log(
+      only
+        ? `\nDeployed: ${only.join(", ")}.`
+        : `\nAll ${shards.length + 1} Workers deployed.`
+    );
+  }
+} finally {
+  await cleanDist();
+}

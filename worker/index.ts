@@ -379,6 +379,15 @@ export async function handleConceptId(
   });
 }
 
+/**
+ * Workers-runtime global: a pass-through stream that sets Content-Length and
+ * errors if the bytes written differ from it, so a short or stale part can
+ * never be served as a silently truncated file. Absent outside workerd.
+ */
+declare const FixedLengthStream:
+  | (new (length: number) => TransformStream<Uint8Array, Uint8Array>)
+  | undefined;
+
 interface WaitUntil {
   waitUntil: (promise: Promise<unknown>) => void;
 }
@@ -406,7 +415,10 @@ function serveOversize(
     });
   }
   const { origin } = new URL(request.url),
-    { readable, writable } = new TransformStream<Uint8Array, Uint8Array>(),
+    { readable, writable } =
+      typeof FixedLengthStream === "function"
+        ? new FixedLengthStream(asset.size)
+        : new TransformStream<Uint8Array, Uint8Array>(),
     pump = (async () => {
       for (const part of asset.parts) {
         const response = await env.ASSETS.fetch(new Request(origin + part));
