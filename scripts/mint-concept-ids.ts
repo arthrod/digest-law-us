@@ -114,9 +114,11 @@ function git(repo: string, args: string[], input?: string): Buffer {
  * frontmatter of its own `<dir>/<dir>.md` when that file exists.
  */
 function collectFromGit(repo: string, ref: string): CorpusConcept[] {
-  const files = git(repo, ["ls-tree", "-r", "--name-only", ref, "--", OKF_IN_REPO])
+  // -z: without it git C-quotes any path with a non-ASCII byte ("§"), and
+  // the quoted form would become a wrong route key.
+  const files = git(repo, ["ls-tree", "-r", "-z", "--name-only", ref, "--", OKF_IN_REPO])
       .toString()
-      .split("\n")
+      .split("\0")
       .filter(Boolean)
       .map((f) => f.slice(OKF_IN_REPO.length + 1)),
     dirs = new Set<string>(),
