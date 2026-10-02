@@ -42,6 +42,13 @@ export interface ConceptRecord {
   pathNotation?: string;
   /** ISO date of retirement; the id and keys stay resolvable forever. */
   retired?: string;
+  /**
+   * Id of the concept that absorbed this one when it was merged away as a
+   * duplicate (`dct:isReplacedBy`). Only on retired records. The resolver
+   * answers 301 to the survivor instead of 410: the content was not lost, it
+   * lives on under the other id. Set by an editorial merge, never inferred.
+   */
+  replacedBy?: string;
 }
 
 export interface ConceptRegistry {
@@ -61,6 +68,11 @@ for (const record of registry.concepts) {
 /** The registry as loaded (read-only view for scripts and reports). */
 export function allConcepts(): readonly ConceptRecord[] {
   return registry.concepts;
+}
+
+/** The whole registry as loaded, for helpers that take a registry. */
+export function registryView(): ConceptRegistry {
+  return registry;
 }
 
 /** Registry record for a route key, current or historical. */
@@ -176,11 +188,60 @@ export function reconcileRegistry(
   );
   for (const record of restored) {
     delete record.retired;
+    // The id names the live route again (e.g. a merged bundle's directory
+    // survives as the parent of child bundles), so it no longer redirects.
+    delete record.replacedBy;
   }
   return { restored, retired };
 }
 
 const ID_FORM = /^[0-9a-f]{32}$/u;
+
+/**
+ * The live concept a merged-away id now resolves to, following `replacedBy`
+ * through earlier merges. Undefined when the chain ends at a retired record
+ * without a successor, or loops.
+ */
+export function successorOf(
+  reg: ConceptRegistry,
+  id: string
+): ConceptRecord | undefined {
+  const byId = new Map(reg.concepts.map((record) => [record.id, record])),
+    seen = new Set<string>();
+  let record = byId.get(id);
+  while (record?.replacedBy !== undefined) {
+    if (seen.has(record.id)) {
+      return undefined;
+    }
+    seen.add(record.id);
+    record = byId.get(record.replacedBy);
+  }
+  return record && !record.retired && record.id !== id ? record : undefined;
+}
+
+/** `replacedBy` invariants: only on retired records, ending at a live one. */
+function mergeProblems(reg: ConceptRegistry): string[] {
+  const byId = new Map(reg.concepts.map((record) => [record.id, record])),
+    problems: string[] = [];
+  for (const [index, record] of reg.concepts.entries()) {
+    if (record.replacedBy === undefined) {
+      continue;
+    }
+    if (!record.retired) {
+      problems.push(`#${index} (${record.id}): replacedBy on a live record`);
+    }
+    if (!byId.has(record.replacedBy)) {
+      problems.push(
+        `#${index} (${record.id}): replacedBy ${record.replacedBy} is not in the registry`
+      );
+    } else if (successorOf(reg, record.id) === undefined) {
+      problems.push(
+        `#${index} (${record.id}): replacedBy chain does not end at a live concept`
+      );
+    }
+  }
+  return problems;
+}
 
 /**
  * Registry integrity: the invariants that make the ids trustworthy.
@@ -224,5 +285,6 @@ export function validateRegistry(reg: ConceptRegistry): string[] {
     }
   }
 
+  problems.push(...mergeProblems(reg));
   return problems;
 }

@@ -4,7 +4,7 @@
  */
 import { describe, expect, test } from "bun:test";
 
-import type { ConceptRegistry } from "./concept-ids";
+import type { ConceptRecord, ConceptRegistry } from "./concept-ids";
 import {
   allConcepts,
   conceptIriFor,
@@ -13,6 +13,7 @@ import {
   mintConceptId,
   orphansOf,
   reconcileRegistry,
+  successorOf,
   validateRegistry,
 } from "./concept-ids";
 import { CONCEPT_BASE } from "./iri";
@@ -266,5 +267,96 @@ describe("retiring what a purge removed", () => {
     expect(retired).toEqual([]);
     expect(restored).toEqual([]);
     expect(reg.concepts[0].retired).toBeUndefined();
+  });
+});
+
+/** Two live concepts, for the merge tests. */
+function mergePair(): ConceptRegistry {
+  const a = mintConceptId(),
+    b = mintConceptId();
+  return {
+    concepts: [
+      {
+        ...a,
+        keys: ["contract-law/breach/buyers-remedies"],
+        label: "A",
+        minted: "2026-07-31",
+      },
+      {
+        ...b,
+        keys: ["contract-law/seller-breach/buyers-remedies"],
+        label: "B",
+        minted: "2026-07-31",
+      },
+    ],
+    policy: "",
+    version: 1,
+  };
+}
+
+describe("merging a duplicate into another concept", () => {
+  test("a merged id resolves to the survivor, through earlier merges", () => {
+    const reg = mergePair(),
+      [a, b] = reg.concepts as [ConceptRecord, ConceptRecord],
+      c: ConceptRecord = {
+        ...mintConceptId(),
+        keys: ["x/y"],
+        label: "C",
+        minted: "2026-07-31",
+        replacedBy: b.id,
+        retired: "2026-10-02",
+      };
+    b.retired = "2026-10-02";
+    b.replacedBy = a.id;
+    reg.concepts.push(c);
+    expect(successorOf(reg, b.id)?.id).toBe(a.id);
+    expect(successorOf(reg, c.id)?.id).toBe(a.id);
+    expect(successorOf(reg, a.id)).toBeUndefined();
+    expect(validateRegistry(reg)).toEqual([]);
+  });
+
+  test("replacedBy must be on a retired record and end at a live concept", () => {
+    const reg = mergePair(),
+      [a, b] = reg.concepts as [ConceptRecord, ConceptRecord];
+    b.replacedBy = a.id;
+    expect(validateRegistry(reg)).toContainEqual(
+      expect.stringContaining("replacedBy on a live record")
+    );
+    b.retired = "2026-10-02";
+    a.retired = "2026-10-02";
+    expect(validateRegistry(reg)).toContainEqual(
+      expect.stringContaining("does not end at a live concept")
+    );
+    b.replacedBy = "f".repeat(32);
+    expect(validateRegistry(reg)).toContainEqual(
+      expect.stringContaining("not in the registry")
+    );
+  });
+
+  test("a replacedBy loop resolves to nothing", () => {
+    const reg = mergePair(),
+      [a, b] = reg.concepts as [ConceptRecord, ConceptRecord];
+    a.retired = "2026-10-02";
+    b.retired = "2026-10-02";
+    a.replacedBy = b.id;
+    b.replacedBy = a.id;
+    expect(successorOf(reg, a.id)).toBeUndefined();
+  });
+});
+
+describe("restoring a merged concept whose route came back", () => {
+  test("drops replacedBy so the live record validates", () => {
+    const reg = mergePair(),
+      [a, b] = reg.concepts as [ConceptRecord, ConceptRecord];
+    b.retired = "2026-10-02";
+    b.replacedBy = a.id;
+    const { restored } = reconcileRegistry(
+      reg,
+      new Set([...a.keys, ...b.keys]),
+      "2026-10-03"
+    );
+    expect(restored.map((r) => r.id)).toEqual([b.id]);
+    expect(b.replacedBy).toBeUndefined();
+    expect(validateRegistry(reg)).toEqual([]);
   });
 });
