@@ -188,6 +188,9 @@ export function reconcileRegistry(
   );
   for (const record of restored) {
     delete record.retired;
+    // The id names the live route again (e.g. a merged bundle's directory
+    // survives as the parent of child bundles), so it no longer redirects.
+    delete record.replacedBy;
   }
   return { restored, retired };
 }

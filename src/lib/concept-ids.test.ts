@@ -343,3 +343,20 @@ describe("merging a duplicate into another concept", () => {
     expect(successorOf(reg, a.id)).toBeUndefined();
   });
 });
+
+describe("restoring a merged concept whose route came back", () => {
+  test("drops replacedBy so the live record validates", () => {
+    const reg = mergePair(),
+      [a, b] = reg.concepts as [ConceptRecord, ConceptRecord];
+    b.retired = "2026-10-02";
+    b.replacedBy = a.id;
+    const { restored } = reconcileRegistry(
+      reg,
+      new Set([...a.keys, ...b.keys]),
+      "2026-10-03"
+    );
+    expect(restored.map((r) => r.id)).toEqual([b.id]);
+    expect(b.replacedBy).toBeUndefined();
+    expect(validateRegistry(reg)).toEqual([]);
+  });
+});

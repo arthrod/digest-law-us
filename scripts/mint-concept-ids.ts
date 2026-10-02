@@ -7,6 +7,11 @@
  *   bun run ids:check   report only; non-zero exit if the registry and the
  *                       corpus disagree in either direction
  *
+ *   --from-git <repo> [ref]   read the corpus from a git ref of the runner
+ *                       repo (default origin/main) instead of CORPUS_DIR —
+ *                       the local checkout is often behind, and minting
+ *                       against a stale tree tombstones live concepts.
+ *
  * Both halves matter. A purge that deletes bundles without retiring their ids
  * leaves `/id-map.json` advertising routes that 404, so `/id/{id}` answers
  * "moved here" about a page that is gone. `ids:check` fails on that, which is
@@ -21,6 +26,7 @@
  */
 
 import type { Dirent } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -40,7 +46,14 @@ const REGISTRY_PATH = path.resolve(
     "../src/data/concept-ids.json"
   ),
   corpusRoot = path.resolve(CORPUS_DIR),
-  checkOnly = process.argv.includes("--check");
+  checkOnly = process.argv.includes("--check"),
+  gitAt = process.argv.indexOf("--from-git"),
+  gitRepo = gitAt === -1 ? undefined : process.argv[gitAt + 1],
+  gitRef =
+    gitAt === -1 || process.argv[gitAt + 2]?.startsWith("--")
+      ? "origin/main"
+      : (process.argv[gitAt + 2] ?? "origin/main"),
+  OKF_IN_REPO = "key_digest/american_legal_digest/okf";
 
 interface CorpusConcept {
   /** Identity the runner allocated at generation time, when it did. */
@@ -52,16 +65,15 @@ interface CorpusConcept {
 }
 
 const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u,
+  /** The runner mints random UUIDv4 ids (skos_okf.mint_concept_id): version
+   *  nibble 4, RFC 4122 variant. Anything else in a digest's `concept_id` was
+   *  written by the model — a copied placement-derived issue_id (UUIDv5) or a
+   *  placeholder such as a1b2c3d4… — and is not identity. */
+  RANDOM_V4 = /^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$/u,
+  PLACEHOLDER = /^(?:a1b2c3d4|0{8}|1{8}|f{8}|12345678|01234567|deadbeef|abcdef01)/u,
   FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u;
 
-async function frontmatterOf(file: string): Promise<Record<string, string>> {
-  let head: string;
-  try {
-    const text = await readFile(file, "utf8");
-    head = text.slice(0, 8192);
-  } catch {
-    return {};
-  }
+function parseFrontmatter(head: string): Record<string, string> {
   if (!head.startsWith("---")) {
     return {};
   }
@@ -75,6 +87,77 @@ async function frontmatterOf(file: string): Promise<Record<string, string>> {
     }
   }
   return fields;
+}
+
+async function frontmatterOf(file: string): Promise<Record<string, string>> {
+  try {
+    return parseFrontmatter((await readFile(file, "utf8")).slice(0, 8192));
+  } catch {
+    return {};
+  }
+}
+
+function git(repo: string, args: string[], input?: string): Buffer {
+  const result = spawnSync("git", ["-C", repo, ...args], {
+    input,
+    maxBuffer: 2 ** 31,
+  });
+  if (result.status !== 0) {
+    throw new Error(`git ${args.join(" ")}: ${result.stderr.toString()}`);
+  }
+  return result.stdout;
+}
+
+/**
+ * The same concepts `collect` finds, read from a git tree: every directory
+ * under the okf root except `sources/` subtrees and dot-directories, with the
+ * frontmatter of its own `<dir>/<dir>.md` when that file exists.
+ */
+function collectFromGit(repo: string, ref: string): CorpusConcept[] {
+  const files = git(repo, ["ls-tree", "-r", "--name-only", ref, "--", OKF_IN_REPO])
+      .toString()
+      .split("\n")
+      .filter(Boolean)
+      .map((f) => f.slice(OKF_IN_REPO.length + 1)),
+    dirs = new Set<string>(),
+    fileSet = new Set(files);
+  for (const file of files) {
+    const parts = file.split("/");
+    for (let i = 1; i < parts.length; i += 1) {
+      const segment = parts[i - 1];
+      if (segment === "sources" || segment.startsWith(".")) {
+        break;
+      }
+      dirs.add(parts.slice(0, i).join("/"));
+    }
+  }
+  const digests = [...dirs]
+      .map((dir) => `${dir}/${dir.split("/").at(-1)}.md`)
+      .filter((file) => fileSet.has(file)),
+    heads = new Map<string, Record<string, string>>(),
+    batch = git(
+      repo,
+      ["cat-file", "--batch"],
+      digests.map((d) => `${ref}:${OKF_IN_REPO}/${d}\n`).join("")
+    );
+  let at = 0;
+  for (const digest of digests) {
+    const nl = batch.indexOf(10, at),
+      size = Number(batch.subarray(at, nl).toString().split(" ")[2]),
+      body = batch.subarray(nl + 1, nl + 1 + Math.min(size, 8192)).toString();
+    heads.set(digest.slice(0, digest.lastIndexOf("/")), parseFrontmatter(body));
+    at = nl + 1 + size + 1;
+  }
+  return [...dirs].map((dir) => {
+    const fm = heads.get(dir) ?? {};
+    return {
+      conceptId: fm.concept_id,
+      corpusIssueId: fm.issue_id,
+      label: fm.pref_label ?? fm.title ?? humanize(dir.split("/").at(-1) ?? dir),
+      pathNotation: fm.notation,
+      slugPath: slugPathOf(dir),
+    };
+  });
 }
 
 async function collect(dir: string, out: CorpusConcept[]): Promise<void> {
@@ -130,7 +213,11 @@ for (const record of registry.concepts) {
 }
 
 const concepts: CorpusConcept[] = [];
-await collect(corpusRoot, concepts);
+if (gitRepo) {
+  concepts.push(...collectFromGit(gitRepo, gitRef));
+} else {
+  await collect(corpusRoot, concepts);
+}
 
 if (concepts.length === 0) {
   process.stderr.write(
@@ -178,7 +265,13 @@ if (checkOnly) {
 
 const minted = today(),
   takenIds = new Set(registry.concepts.map((record) => record.id));
-let adopted = 0;
+let adopted = 0,
+  refused = 0;
+const issueIds = new Set(
+  concepts
+    .map((c) => c.corpusIssueId?.replaceAll("-", "").toLowerCase())
+    .filter((id): id is string => Boolean(id))
+);
 for (const concept of unminted) {
   // The runner allocates identity at generation time (skos_okf.py). When a
   // digest arrives carrying its own concept_id, adopt it instead of minting a
@@ -186,12 +279,22 @@ for (const concept of unminted) {
   // ambiguity this registry exists to prevent. A malformed or already-taken
   // value is refused, not silently trusted.
   const supplied = concept.conceptId?.toLowerCase(),
-    adoptable =
-      supplied && CONCEPT_ID_FORM.test(supplied) && !takenIds.has(supplied);
+    why = !supplied
+      ? ""
+      : !CONCEPT_ID_FORM.test(supplied)
+        ? "malformed"
+        : takenIds.has(supplied)
+          ? "already in the registry"
+          : issueIds.has(supplied)
+            ? "is a corpus issue_id (placement-derived), not identity"
+            : PLACEHOLDER.test(supplied) || !RANDOM_V4.test(supplied)
+              ? "not a runner-minted random id"
+              : "",
+    adoptable = Boolean(supplied) && why === "";
   if (supplied && !adoptable) {
+    refused += 1;
     process.stderr.write(
-      `refused concept_id "${supplied}" on ${concept.slugPath}: ` +
-        `${CONCEPT_ID_FORM.test(supplied) ? "already in the registry" : "malformed"}\n`
+      `refused concept_id "${supplied}" on ${concept.slugPath}: ${why}\n`
     );
   }
   const { id, uuid } = adoptable
@@ -234,7 +337,7 @@ await writeFile(
 );
 process.stdout.write(
   `added ${unminted.length} record(s) — ${adopted} adopted from runner ` +
-    `concept_id, ${unminted.length - adopted} minted here; registry now holds ` +
+    `concept_id (${refused} refused), ${unminted.length - adopted} minted here; registry now holds ` +
     `${registry.concepts.length}\n` +
     `retired ${retired.length} (tombstoned, 410 Gone), ` +
     `restored ${restored.length} (route regenerated)\n`
