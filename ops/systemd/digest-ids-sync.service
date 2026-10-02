@@ -1,0 +1,10 @@
+[Unit]
+Description=digest.law concept-id registry sync (mint against key-digest-runner origin/main)
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/workspace/digest-law-us/scripts/ids-sync.sh
+Environment=PATH=%h/.bun/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Nice=10
+IOSchedulingClass=idle

@@ -82,6 +82,12 @@ change whenever a route does.
 - `deploy` now starts with `ids:check` against the corpus it builds from, so
   it refuses to publish unminted concepts. Pull the runner checkout and mint
   first.
+- `scripts/ids-sync.sh` does the mint unattended: hourly
+  (`ops/systemd/digest-ids-sync.timer`), in its own worktree
+  (`~/workspace/.digest-law-ids-sync`), landing any registry change as a
+  merged PR. Install: `cp ops/systemd/digest-ids-sync.* ~/.config/systemd/user/
+  && systemctl --user daemon-reload && systemctl --user enable --now
+  digest-ids-sync.timer`. Logs: `journalctl --user -u digest-ids-sync`.
 
 ## The Worker is load-bearing now — `assets`-only deploys are gone
 
