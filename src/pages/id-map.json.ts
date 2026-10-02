@@ -11,14 +11,24 @@
  */
 import type { APIRoute } from "astro";
 
-import { allConcepts } from "@/lib/concept-ids";
+import { allConcepts, registryView, successorOf } from "@/lib/concept-ids";
 
 export const GET: APIRoute = () => {
-  const routes: Record<string, string> = {},
-    retired: Record<string, string> = {};
+  // Merged-away duplicates: the content lives on under the survivor, so the
+  // id redirects there (301) instead of reporting gone.
+  const replaced: Record<string, string> = {},
+    retired: Record<string, string> = {},
+    routes: Record<string, string> = {};
   for (const record of allConcepts()) {
-    const current = record.keys.at(-1);
+    const current = record.keys.at(-1),
+      successor = record.replacedBy
+        ? successorOf(registryView(), record.id)?.keys.at(-1)
+        : undefined;
     if (!current) {
+      continue;
+    }
+    if (successor) {
+      replaced[record.id] = successor;
       continue;
     }
     if (record.retired) {
@@ -30,5 +40,5 @@ export const GET: APIRoute = () => {
     }
     routes[record.id] = current;
   }
-  return Response.json({ retired, routes, version: 1 });
+  return Response.json({ replaced, retired, routes, version: 1 });
 };

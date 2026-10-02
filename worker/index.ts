@@ -281,7 +281,8 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
  * from the id map rather than baked into a redirect list.
  *
  * Status codes carry meaning here:
- *   301  the concept lives at this route today
+ *   301  the concept lives at this route today — or it was merged away as
+ *        a duplicate and the concept that absorbed it lives there
  *   410  the concept is retired — it existed, it is gone, and its id is never
  *        reused. A 404 would wrongly suggest it never existed.
  *   404  no such id
@@ -293,6 +294,9 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
 const CONCEPT_ID = /^[0-9a-f]{32}$/u;
 
 interface IdMap {
+  /** Merged-away duplicates → the survivor's current route. Optional: maps
+   *  built before merges existed do not carry it. */
+  replaced?: Record<string, string>;
   retired: Record<string, string>;
   routes: Record<string, string>;
 }
@@ -357,10 +361,19 @@ export async function handleConceptId(
     });
   }
 
-  const route = map.routes[id];
+  // A duplicate merged into another concept: its content lives on at the
+  // survivor, so that is a permanent move, not a disappearance.
+  const route = map.routes[id],
+    survivor = map.replaced?.[id];
   if (route) {
     return Response.redirect(
       new URL(`/${route}/`, request.url).toString(),
+      301
+    );
+  }
+  if (survivor) {
+    return Response.redirect(
+      new URL(`/${survivor}/`, request.url).toString(),
       301
     );
   }
