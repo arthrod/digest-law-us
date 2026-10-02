@@ -65,6 +65,24 @@ makes no count. This is deliberate. Both stat grids are built from a `tiles`
 array with a `tileClass(i)` helper precisely so a tile can vanish without the
 borders going wrong — add tiles there, not as fresh markup.
 
+## Concept ids must be minted before a deploy publishes a concept
+
+Every corpus directory (bundles *and* the grouping nodes above them) is a
+concept, and its public IRI comes from `src/data/concept-ids.json`. Nothing in
+the runner mints: the fleet merges new bundles all day, so the registry falls
+behind unless someone runs the mint. It went unrun from 2026-07-31 to
+2026-10-02 and 20,554 concepts were published on fallback route IRIs, which
+change whenever a route does.
+
+- `bun run ids:mint:main` mints against the runner's `origin/main` tree (via
+  git, so a stale local checkout cannot tombstone live concepts), adopting a
+  digest's runner-minted `concept_id` only when it is a random UUIDv4 — copied
+  `issue_id`s and placeholder ids like `a1b2c3d4…` are refused. Commit the
+  registry.
+- `deploy` now starts with `ids:check` against the corpus it builds from, so
+  it refuses to publish unminted concepts. Pull the runner checkout and mint
+  first.
+
 ## The Worker is load-bearing now — `assets`-only deploys are gone
 
 `wrangler.jsonc` used to be an assets-only config. It now has `main:
