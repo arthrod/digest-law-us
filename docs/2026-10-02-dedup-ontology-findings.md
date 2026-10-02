@@ -188,3 +188,20 @@ expired id are retired; the other 124 removed bundles were never minted.
 Not done: the remaining 336 duplicate clusters and the 73 legacy bundles (no
 verdicts); semantic heading synonyms and misplaced headings (need an
 editor); proposing the six areas upstream to FOLIO.
+
+## 8. Rate-limit (HTTP 429) noise
+
+The earlier scan hung because `rg` was given no path and read stdin; rerun
+with an explicit path it took minutes. Over every corpus markdown file:
+3,076 files match a rate-limit or block-page signature. 2,392 are audits
+carrying raw httpx lines (`HTTPStatusError: Client error '429 Too Many
+Requests' for url …` and the MDN link); digests and the companion indexes
+carry "(HTTP 429)" asides; 26 retained "sources" are captured block pages
+(browser checks, captchas, "Access Denied", one 429 page). Large sources
+that merely contain "access denied" in legal text are evidence and stay.
+
+Fixed in runner #21764: a `scrub_rate_limit_noise` normalizer rewrites the
+noise into plain words that keep the fact (a channel was rate-limited),
+lint now rejects HTTP 429 in prose, 2,879 files were rewritten and the 26
+block pages deleted (`docs/2026-10-02-429-captures.tsv`; every affected
+bundle keeps 4+ sources).
