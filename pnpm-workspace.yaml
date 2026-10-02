@@ -6,3 +6,17 @@ allowBuilds:
   lefthook: true
   sharp: true
   workerd: true
+
+# Security floors for transitive dependencies flagged by Dependabot
+# (2026-10-02). Their parents pin ranges that never resolve past the
+# vulnerable versions on their own. Remove an entry once every parent
+# depends on a patched release.
+overrides:
+  "undici@7": "^7.29.1"
+  "undici@8": "^8.10.2"
+  "fast-uri": "^3.1.7"
+  "devalue": "^5.9.3"
+  "js-yaml@3": "^3.15.2"
+  "js-yaml@4": "^4.3.2"
+  "fflate": "^0.7.5"
+  "sharp": "^0.35.4"
