@@ -3,7 +3,7 @@ export const SITE = {
   author: "American Legal Digest",
   description:
     "A digest of American legal doctrine, with the evidence attached — " +
-    "machine-researched from free public sources, review-gated, every " +
+    "machine-researched from free public sources, machine-reviewed, every " +
     "retained source and every search published.",
   lang: "en",
   ogImage: "default-og.jpg",

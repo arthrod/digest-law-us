@@ -1,6 +1,6 @@
 ---
 /**
- * Contact — one form, routed by topic to the review committee.
+ * Contact — one form, routed by topic to the editors.
  *
  * The page is static; the POST is handled by worker/index.ts, which turns a
  * submission into mail via the Cloudflare send_email binding. It degrades:
@@ -31,7 +31,7 @@ const facts = [
 },
 
  description =
-  "Report a correction to a digest, apply to review, or raise a source or licensing question with the American Legal Digest review committee.",
+  "Report a correction to a digest, apply to review, or raise a source or licensing question with the editors of the American Legal Digest.",
  title = "Contact — American Legal Digest";
 ---
 
@@ -53,7 +53,7 @@ const facts = [
         goes straight to the
         <a
           class="decoration-cite-ext underline underline-offset-2"
-          href="/committee/">review committee</a
+          href="/committee/">editors</a
         >. So does an application to review — we are looking for both local and
         global reviewers.
       </p>
@@ -185,7 +185,7 @@ const facts = [
               data-contact-submit
               type="submit"
             >
-              Send to the committee →
+              Send to the editors →
             </button>
             <p
               aria-live="polite"
@@ -282,7 +282,7 @@ const facts = [
         const sent = document.createElement("div");
         sent.className = "border-ink mt-3 border-t pt-6";
         sent.setAttribute("role", "status");
-        const to = data.routedTo?.join(" and ") ?? "the committee";
+        const to = data.routedTo?.join(" and ") ?? "the editors";
         sent.innerHTML = `
           <div class="ald-meta text-[0.6875rem]">Received</div>
           <p class="font-prose text-ink/80 mt-3 max-w-[52ch] text-[1.0625rem] leading-[1.62]">

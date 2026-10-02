@@ -1,10 +1,10 @@
 ---
 /**
- * Review committee — the humans behind step 04 of the pipeline.
- *
- * The site claims digests are "review-gated" on every page; this is where
- * that claim names names. Membership and one-liners come from
- * src/lib/committee.ts, which the contact router shares.
+ * Editors — the people who answer for the digest and are recruiting
+ * reviewers. Review of individual digests by a person has not started; the
+ * merge gate is an automated reviewing agent (see /methodology/). Membership
+ * and one-liners come from src/lib/committee.ts, which the contact router
+ * shares.
  */
 
 import SiteFooter from "@/components/SiteFooter.astro";
@@ -17,7 +17,7 @@ const corpus = await getCorpus(),
  { stats } = corpus,
  fmt = (n: number) => n.toLocaleString("en-US"),
 
-/** What a reviewer is asked to do — the gate, stated as work. */
+/** What a reviewer will be asked to do once human review starts. */
  duties = [
   "Check that every authority cited in a digest is actually retained on the page, and that the retained text says what the digest says it says.",
   "Read the audit before the prose. A digest whose audit is thin should not merge on the strength of a well-written summary.",
@@ -54,20 +54,21 @@ const corpus = await getCorpus(),
   <main class="mx-auto w-full max-w-250 flex-1 px-5 sm:px-9" id="main">
     <div class="pt-9 pb-11">
       <div class="ald-meta text-ink-muted mb-4 text-[0.6875rem]">
-        Who gates the merge
+        Who answers for it
       </div>
       <h1
         class="font-display max-w-[22ch] text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
       >
-        The review committee
+        Editors
       </h1>
       <p
         class="font-prose text-ink/78 mt-3.5 max-w-[58ch] text-[1.09375rem] leading-[1.55] sm:text-[1.1875rem]"
       >
-        Every page on this site says the digests are review-gated. That claim is
-        worth exactly as much as the names behind it, so here they are. Review
-        does not make the prose authoritative — it decides what is allowed to
-        merge, and what gets deleted instead.
+        These two people answer corrections and are recruiting reviewers. No
+        digest has yet been reviewed by a person: the merge gate today is an
+        automated reviewing agent. When human review starts, it will decide what
+        is allowed to merge and what gets deleted instead; it will not make the
+        prose authoritative.
       </p>
 
       <!-- Members -->
@@ -100,15 +101,15 @@ const corpus = await getCorpus(),
             ))}
         </div>
         <p class="ald-meta text-ink-muted mt-4 max-w-[70ch] text-[0.59375rem] leading-[1.7]">
-          Reviewers are named because an anonymous gate is not a gate. Where a
-          reviewer has a conflict on a topic, the review passes to the other
-          member and the digest records it.
+          Reviewers will be named because an anonymous gate is not a gate. Once
+          review starts, a reviewer with a conflict on a topic will pass it to
+          the other member, and the digest will say so.
         </p>
       </div>
 
       <!-- What review requires -->
       <div class="mt-12">
-        <div class="ald-meta text-[0.6875rem]">02 | What review requires</div>
+        <div class="ald-meta text-[0.6875rem]">02 | What review will require</div>
         <div class="border-ink mt-3 border-t">
           {duties.map(text => (
               <div class="border-hairline flex gap-4 border-b py-3.5">

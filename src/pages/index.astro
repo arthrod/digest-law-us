@@ -27,9 +27,9 @@ const corpus = await getCorpus(),
  lede =
   `${fmt(stats.digests)} topics across ${doctrinalAreas.length} doctrinal areas ` +
   `and ${compositeAreas.length} cross-cutting roots of United States law, ` +
-  "researched from free public sources and gated by review. Every digest holds " +
-  "the full text of at least two authorities, and publishes the log of every " +
-  "search and rejection behind it.",
+  "researched from free public sources and merged only after an automated " +
+  "review. Every digest is published with the sources its run retained and the " +
+  "log of every search and rejection behind it.",
  doctrinalCounts = `${doctrinalAreas.length} areas · ${fmt(doctrinalTopics)} topics`,
  compositeCounts = `${compositeAreas.length} roots · ${fmt(compositeTopics)} cross-cutting topics`;
 ---
