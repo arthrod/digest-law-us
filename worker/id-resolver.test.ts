@@ -8,7 +8,9 @@ import worker, { handleConceptId, resetIdMapCache } from "./index";
 
 const GONE = "00000000000000000000000000000009",
   LIVE = "9460d81470154e458335365e3b4c5014",
+  MERGED = "0000000000000000000000000000000a",
   MAP = {
+    replaced: { [MERGED]: "evidence-law/proof-of-writings" },
     retired: { [GONE]: "evidence-law/withdrawn-topic" },
     routes: { [LIVE]: "evidence-law/proof-of-writings" },
     version: 1,
@@ -64,6 +66,24 @@ describe("resolving a concept id", () => {
     const response = await handleConceptId(get(GONE), envWith(MAP), GONE);
     expect(response.status).toBe(410);
     expect(await response.text()).toContain("evidence-law/withdrawn-topic");
+  });
+
+  test("a merged-away duplicate redirects to the concept that absorbed it", async () => {
+    const response = await handleConceptId(get(MERGED), envWith(MAP), MERGED);
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(
+      "https://digest.law/evidence-law/proof-of-writings/"
+    );
+  });
+
+  test("a map built before merges existed still resolves", async () => {
+    const { replaced: _replaced, ...old } = MAP,
+      live = await handleConceptId(get(LIVE), envWith(old), LIVE);
+    expect(live.status).toBe(301);
+    resetIdMapCache();
+    expect(
+      (await handleConceptId(get(MERGED), envWith(old), MERGED)).status
+    ).toBe(404);
   });
 
   test("an unknown but well-formed id is 404", async () => {
