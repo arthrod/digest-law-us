@@ -2,7 +2,7 @@
 
 The public documentation site for the **American Legal Digest**: open,
 source-grounded digests of United States legal doctrine, machine-researched
-from free public sources, review-gated, and published with every retained
+from free public sources, machine-reviewed, and published with every retained
 source and every search log attached.
 
 - **Site:** https://digest.law

@@ -55,7 +55,7 @@ const corpus = await getCorpus(),
 
  claims = [
   `Every published digest holds at least two retained authorities, in full, at the same URL as the summary — counted from the files on disk, not from a bundle's own metadata.${purgeClause}`,
-  "Digests are machine-drafted from retained texts and gated by review before merge. The models are named in each manifest. Nothing here was written by a lawyer, and the site never says otherwise.",
+  "Digests are machine-drafted from retained texts and merged after review by an automated agent; no person has reviewed them systematically. The models are named in each manifest. Nothing here was written by a lawyer, and the site never says otherwise.",
   "No claim of validated quality is made. Every automated gate checks integrity — hierarchy, identity, reproduction — never whether a placement or a proposition is legally correct. The validation stage is pre-registered and blocked on independent qualified reviewers.",
   "Coverage is uneven, and the shape of it is knowable: the source corpus is roughly 85% published between 1830 and 1930, so the common-law doctrinal core is dense and the modern regulatory state is thin. Procedure, property, and obligations dominate; administrative, health, environmental, technology, and civil-rights material is sparse.",
   "Only free public sources were used. Paywalled reporters and subscription databases are excluded by an enforced rule, which leaves real gaps rather than hidden ones.",
@@ -260,11 +260,12 @@ const corpus = await getCorpus(),
           <p
             class="font-prose text-ink/80 m-0 max-w-[64ch] text-[1.0625rem] leading-[1.62]"
           >
-            The editor and reviewers are named on the
+            The editors are named on the
             <a
               class="decoration-cite-ext underline underline-offset-2"
-              href="/committee/">committee page</a
-            >. Corrections ship as new commits carrying the record of what
+              href="/committee/">editors page</a
+            >; they answer corrections and are recruiting reviewers. Review of
+            individual digests by a person has not started. Corrections ship as new commits carrying the record of what
             changed. The work that remains — topical relevance gating,
             deterministic floor enforcement, and above all the validation
             stage — is listed publicly with its status, blocked on people

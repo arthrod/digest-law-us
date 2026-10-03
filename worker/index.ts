@@ -13,6 +13,7 @@
  */
 
 import { LIMITS, topicById } from "../src/lib/committee";
+import { applyPagePolicy } from "./source-policy";
 
 interface SendEmailMessage {
   from: { email: string; name?: string };
@@ -498,9 +499,9 @@ export default {
         env as unknown as Record<string, AssetFetcher | undefined>
       )[bindingName];
       if (shard) {
-        return await shard.fetch(request);
+        return await applyPagePolicy(pathname, await shard.fetch(request));
       }
     }
-    return await env.ASSETS.fetch(request);
+    return await applyPagePolicy(pathname, await env.ASSETS.fetch(request));
   },
 };
