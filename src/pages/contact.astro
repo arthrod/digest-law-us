@@ -282,7 +282,7 @@ const facts = [
         const sent = document.createElement("div");
         sent.className = "border-ink mt-3 border-t pt-6";
         sent.setAttribute("role", "status");
-        const to = data.routedTo?.join(" and ") ?? "the editors";
+        const to = data.routedTo?.join(" and ") || "the editors";
         sent.innerHTML = `
           <div class="ald-meta text-[0.6875rem]">Received</div>
           <p class="font-prose text-ink/80 mt-3 max-w-[52ch] text-[1.0625rem] leading-[1.62]">
