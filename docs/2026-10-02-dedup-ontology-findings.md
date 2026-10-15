@@ -11,7 +11,7 @@ Measured against `runner` `main` at `26ef1f2fb5` and `site` `main` at `7c10988`.
 - The corpus is not in this repo. It is `runner/key_digest/american_legal_digest/okf`
   (`CORPUS_DIR` in `src/corpus.config.ts`).
 - Every bundle directory is created by `runner/key_digest/get_topic.py
---materialize`, which turns one row of `key_digest/issues_v3.jsonl` into a
+  --materialize`, which turns one row of `key_digest/issues_v3.jsonl` into a
   folder: `areas_of_law_path` minus the `AREAS OF LAW` marker, each segment
   passed through `normalize()`. **`issues_v3.jsonl` is the source that creates
   the directories.**

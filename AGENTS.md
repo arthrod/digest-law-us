@@ -86,8 +86,8 @@ change whenever a route does.
   (`ops/systemd/digest-ids-sync.timer`), in its own worktree
   (`~/workspace/.digest-law-ids-sync`), landing any registry change as a
   merged PR. Install: `cp ops/systemd/digest-ids-sync.* ~/.config/systemd/user/
-&& systemctl --user daemon-reload && systemctl --user enable --now
-digest-ids-sync.timer`. Logs: `journalctl --user -u digest-ids-sync`.
+  && systemctl --user daemon-reload && systemctl --user enable --now
+  digest-ids-sync.timer`. Logs: `journalctl --user -u digest-ids-sync`.
 
 ## The Worker is load-bearing now — `assets`-only deploys are gone
 

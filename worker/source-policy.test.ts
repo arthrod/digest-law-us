@@ -145,14 +145,14 @@ describe("entity-encoded Origin hrefs", () => {
   });
 });
 
-describe("wired into the Worker", () => {
-  const shardEnv = (body: string) =>
-    ({
-      ASSETS: { fetch: () => Promise.resolve(html("<p>root</p>")) },
-      SHARD_JURIS: { fetch: () => Promise.resolve(html(body)) },
-      SHARD_MAP: { "jurisprudence-and-legal-method": "SHARD_JURIS" },
-    }) as unknown as Parameters<typeof worker.fetch>[1];
+const shardEnv = (body: string) =>
+  ({
+    ASSETS: { fetch: () => Promise.resolve(html("<p>root</p>")) },
+    SHARD_JURIS: { fetch: () => Promise.resolve(html(body)) },
+    SHARD_MAP: { "jurisprudence-and-legal-method": "SHARD_JURIS" },
+  }) as unknown as Parameters<typeof worker.fetch>[1];
 
+describe("wired into the Worker", () => {
   test("a source page served by a shard is noindex", async () => {
     const res = await worker.fetch(
       new Request(`https://digest.law${SRC.replace("textualism", "cfr")}`),
