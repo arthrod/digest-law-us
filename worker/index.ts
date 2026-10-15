@@ -471,6 +471,63 @@ function serveOversize(
   return new Response(readable, { headers });
 }
 
+/**
+ * Conditional request headers the asset bindings would answer with a 304
+ * before the page policy ever sees the body. They are stripped from the
+ * upstream fetch — a cached copy of a withheld source must not be
+ * revalidated back into service — and honored again against the final
+ * response in `revalidated`.
+ */
+const CONDITIONAL_HEADERS = new Set([
+  "if-match",
+  "if-modified-since",
+  "if-none-match",
+  "if-range",
+  "if-unmodified-since",
+]);
+
+function unconditional(request: Request): Request {
+  // Non-GET/HEAD requests are not revalidation paths; forward them as-is.
+  if (!(request.method === "GET" || request.method === "HEAD")) {
+    return request;
+  }
+  // Rebuilt from the URL rather than `new Request(request, init)`: runtimes
+  // differ on whether init.headers overrides a Request input's headers.
+  const headers = [...request.headers].filter(
+    ([name]) => !CONDITIONAL_HEADERS.has(name)
+  );
+  return new Request(request.url, { headers, method: request.method });
+}
+
+/** An ETag's opaque tag — weak validators compare equal to strong ones. */
+const opaqueTag = (tag: string) => tag.trim().replace(/^W\//u, "");
+
+/**
+ * Answer the client's own If-None-Match against the post-policy response.
+ * A withheld or claim-rewritten page carries no ETag, so it can never 304 —
+ * the client gets the corrected body and re-caches that.
+ */
+function revalidated(request: Request, response: Response): Response {
+  const etag = response.headers.get("etag"),
+    wanted = request.headers.get("if-none-match");
+  if (
+    !(etag && wanted) ||
+    !(request.method === "GET" || request.method === "HEAD")
+  ) {
+    return response;
+  }
+  if (
+    !wanted
+      .split(",")
+      .some((tag) => tag.trim() === "*" || opaqueTag(tag) === opaqueTag(etag))
+  ) {
+    return response;
+  }
+  const headers = new Headers(response.headers);
+  headers.delete("content-length");
+  return new Response(null, { headers, status: 304 });
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx?: WaitUntil): Promise<Response> {
     const { pathname } = new URL(request.url);
@@ -489,19 +546,26 @@ export default {
     if (oversize) {
       return serveOversize(request, env, ctx, oversize);
     }
-    // The shard rules in run_worker_first are prefix globs, so a root file
-    // like /sitemap-index.xml can land here via the /sitemap* rule — only an
-    // exact first-segment match forwards; everything else is a root asset.
-    const segment = pathname.split("/")[1] ?? "",
+    const upstream = unconditional(request),
+      // The shard rules in run_worker_first are prefix globs, so a root file
+      // like /sitemap-index.xml can land here via the /sitemap* rule — only an
+      // exact first-segment match forwards; everything else is a root asset.
+      segment = pathname.split("/")[1] ?? "",
       bindingName = env.SHARD_MAP?.[segment];
     if (bindingName) {
       const shard = (
         env as unknown as Record<string, AssetFetcher | undefined>
       )[bindingName];
       if (shard) {
-        return await applyPagePolicy(pathname, await shard.fetch(request));
+        return revalidated(
+          request,
+          await applyPagePolicy(pathname, await shard.fetch(upstream))
+        );
       }
     }
-    return await applyPagePolicy(pathname, await env.ASSETS.fetch(request));
+    return revalidated(
+      request,
+      await applyPagePolicy(pathname, await env.ASSETS.fetch(upstream))
+    );
   },
 };

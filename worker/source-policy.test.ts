@@ -101,6 +101,50 @@ describe("applySourcePolicy", () => {
   });
 });
 
+describe("chunked source routes", () => {
+  // A source over ~200 KB continues at /sources/{slug}/2/…/n/ — the same
+  // retained text, so the same rules.
+  test("a chunk of a retained source is noindex like part 1", async () => {
+    const res = await applySourcePolicy(
+      `${SRC.replace("textualism", "cfr")}2/`,
+      html(page("https://www.govinfo.gov/x"))
+    );
+    expect(res.headers.get("x-robots-tag")).toBe("noindex, noarchive");
+    expect(await res.text()).toContain("full text");
+  });
+
+  test("a chunk of a blocked source is withheld like part 1", async () => {
+    const res = await applySourcePolicy(
+      `${SRC}3/`,
+      html(page("https://harvardlawreview.org/print/vol-135/x/"))
+    );
+    expect(res.status).toBe(451);
+    expect(await res.text()).not.toContain("full text");
+  });
+});
+
+describe("entity-encoded Origin hrefs", () => {
+  // The renderer escapes & as &amp; in attributes, so an origin URL with
+  // several query parameters arrives encoded; it is decoded once on the way
+  // in and escaped once on the way out.
+  const ENCODED =
+      "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1&amp;download=yes",
+    DECODED =
+      "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1&download=yes";
+
+  test("originOf returns the parsed URL", () => {
+    expect(originOf(page(ENCODED))).toBe(DECODED);
+  });
+
+  test("the 451 page links the decoded origin, escaped once", async () => {
+    const res = await applySourcePolicy(SRC, html(page(ENCODED)));
+    expect(res.status).toBe(451);
+    const body = await res.text();
+    expect(body).toContain(`href="${ENCODED}"`);
+    expect(body).not.toContain("abstract_id=1&amp;amp;download=yes");
+  });
+});
+
 describe("wired into the Worker", () => {
   const shardEnv = (body: string) =>
     ({
@@ -131,6 +175,75 @@ describe("wired into the Worker", () => {
       shardEnv("<p>digest</p>")
     );
     expect(res.headers.get("x-robots-tag")).toBeNull();
+  });
+});
+
+describe("conditional requests", () => {
+  // A client revalidating a cached page must not skip the policy: the
+  // conditional headers are stripped before the shard fetch and answered
+  // against the post-policy response instead.
+  const ETAG = '"asset-v1"',
+    revalidatingEnv = (body: string) =>
+      ({
+        ASSETS: { fetch: () => Promise.resolve(html("<p>root</p>")) },
+        SHARD_JURIS: {
+          fetch: (request: Request) =>
+            Promise.resolve(
+              request.headers.get("if-none-match") === ETAG
+                ? new Response(null, {
+                    headers: { etag: ETAG },
+                    status: 304,
+                  })
+                : new Response(body, {
+                    headers: {
+                      "content-type": "text/html; charset=utf-8",
+                      etag: ETAG,
+                    },
+                    status: 200,
+                  })
+            ),
+        },
+        SHARD_MAP: { "jurisprudence-and-legal-method": "SHARD_JURIS" },
+      }) as unknown as Parameters<typeof worker.fetch>[1],
+    revalidate = (path: string) =>
+      new Request(`https://digest.law${path}`, {
+        headers: { "if-none-match": ETAG },
+      });
+
+  test("a revalidated blocked source still answers 451, not 304", async () => {
+    const res = await worker.fetch(
+      revalidate(SRC),
+      revalidatingEnv(page("https://harvardlawreview.org/print/vol-135/x/"))
+    );
+    expect(res.status).toBe(451);
+  });
+
+  test("a revalidated retained source 304s with the robots header", async () => {
+    const res = await worker.fetch(
+      revalidate(SRC.replace("textualism", "cfr")),
+      revalidatingEnv(page("https://www.govinfo.gov/x"))
+    );
+    expect(res.status).toBe(304);
+    expect(res.headers.get("x-robots-tag")).toBe("noindex, noarchive");
+  });
+
+  test("a revalidated claim page returns the rewritten body, not 304", async () => {
+    const res = await worker.fetch(
+      revalidate(TOPIC),
+      revalidatingEnv(
+        '<span class="text-ink-muted">Machine-researched · review-gated</span>'
+      )
+    );
+    expect(res.status).toBe(200);
+    expect(await res.text()).toContain("machine-reviewed");
+  });
+
+  test("an unchanged page still revalidates to 304", async () => {
+    const res = await worker.fetch(
+      revalidate(TOPIC),
+      revalidatingEnv("<p>digest</p>")
+    );
+    expect(res.status).toBe(304);
   });
 });
 
@@ -170,6 +283,19 @@ describe("review claim on rendered pages", () => {
       } as unknown as Parameters<typeof worker.fetch>[1],
       res = await worker.fetch(new Request(`https://digest.law${TOPIC}`), env);
     expect(await res.text()).not.toContain("review-gated");
+  });
+
+  test("the rewrite touches the strip only, never the retained text", async () => {
+    const stray = `${page("https://www.govinfo.gov/x")}<p>the source text itself says review-gated</p>`,
+      res = await applyPagePolicy(
+        `${SRC.replace("textualism", "cfr")}`,
+        html(
+          `${stray.replace("</body></html>", "")}<span class="text-ink-muted">Machine-researched · review-gated</span></body></html>`
+        )
+      ),
+      body = await res.text();
+    expect(body).toContain("the source text itself says review-gated");
+    expect(body).not.toContain("Machine-researched · review-gated");
   });
 
   test("pages without the claim and non-HTML pass through untouched", async () => {

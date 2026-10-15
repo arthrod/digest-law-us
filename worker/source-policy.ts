@@ -16,8 +16,16 @@
 const BLOCKED_HOST = /(?:^|\.)ssrn\.com$|law-?review|lawjournal|law-journal/u,
   ORIGIN_LINK = /<a\s[^>]*href="(?<href>https?:\/\/[^"]+)"[^>]*>\s*Origin:/u,
   ROBOTS = "noindex, noarchive",
-  SOURCE_PATH = /\/sources\/[^/]+\/?$/u,
+  /** Source pages are …/sources/{slug}/ plus the /2/…/n/ chunk continuations
+   *  SourceView emits for texts over ~200 KB — same retained text, same rules. */
+  SOURCE_PATH = /\/sources\/[^/]+(?:\/\d+)?\/?$/u,
   STRIP_CLAIM = "Machine-researched · review-gated",
+  /**
+   * The claim lives in exactly one element — the provenance strip's muted
+   * span. Matching the element, not the phrase, keeps the rewrite from
+   * touching retained source text, URLs, or citations that quote the words.
+   */
+  STRIP_SPAN = /<span\b[^>]*>Machine-researched · review-gated<\/span>/gu,
   STRIP_TRUE =
     "Machine-researched · machine-reviewed · not reviewed by a lawyer";
 
@@ -36,9 +44,35 @@ function escapeHtml(s: string): string {
     .replaceAll('"', "&quot;");
 }
 
-/** The origin URL a source page links to, if any. */
+/**
+ * The reverse of escapeHtml. `&amp;` decodes last, so `&amp;amp;` lands as
+ * the literal text `&amp;` rather than double-decoding to `&`.
+ */
+function unescapeHtml(s: string): string {
+  return s
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">")
+    .replaceAll("&quot;", '"')
+    .replaceAll("&#39;", "'")
+    .replaceAll("&#x27;", "'")
+    .replaceAll("&apos;", "'")
+    .replaceAll(/&#x(?<hex>[0-9a-f]+);/giu, (_, hex: string) =>
+      String.fromCodePoint(Number.parseInt(hex, 16))
+    )
+    .replaceAll(/&#(?<dec>\d+);/gu, (_, dec: string) =>
+      String.fromCodePoint(Number(dec))
+    )
+    .replaceAll("&amp;", "&");
+}
+
+/**
+ * The origin URL a source page links to, if any. The renderer escapes `&`
+ * as `&amp;` inside attributes, so the captured href is decoded once here —
+ * `withheld` escapes it again for the 451 page, never twice.
+ */
 export function originOf(html: string): string | undefined {
-  return ORIGIN_LINK.exec(html)?.groups?.href;
+  const href = ORIGIN_LINK.exec(html)?.groups?.href;
+  return href === undefined ? undefined : unescapeHtml(href);
 }
 
 export function isBlockedOrigin(url: string): boolean {
@@ -95,27 +129,25 @@ export async function applySourcePolicy(
 
 async function rewriteReviewClaim(res: Response): Promise<Response> {
   const body = await res.text(),
-    headers = new Headers(res.headers);
-  if (!body.includes("review-gated")) {
+    out = body.replaceAll(STRIP_SPAN, (span) =>
+      span.replace(STRIP_CLAIM, STRIP_TRUE)
+    );
+  if (out === body) {
     return new Response(body, {
       headers: res.headers,
       status: res.status,
       statusText: res.statusText,
     });
   }
+  const headers = new Headers(res.headers);
   headers.delete("content-length");
   // The body differs from the asset the ETag describes.
   headers.delete("etag");
-  return new Response(
-    body
-      .replaceAll(STRIP_CLAIM, STRIP_TRUE)
-      .replaceAll("review-gated", "machine-reviewed"),
-    {
-      headers,
-      status: res.status,
-      statusText: res.statusText,
-    }
-  );
+  return new Response(out, {
+    headers,
+    status: res.status,
+    statusText: res.statusText,
+  });
 }
 
 /**
