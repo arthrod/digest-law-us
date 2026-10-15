@@ -29,19 +29,21 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const TARGET = path.join(ROOT, "node_modules/astro/dist/content/data-store-writer.js");
-const MARKER = "PATCHED (local): derive the UTF-8 byte length";
-const BUGGY = "const charBytes = ENCODER.encode(str.slice(index, index + charLength)).length;";
-const FIXED = `// ${MARKER} from the code
+const ROOT = path.resolve(import.meta.dirname, ".."),
+  TARGET = path.join(
+    ROOT,
+    "node_modules/astro/dist/content/data-store-writer.js"
+  ),
+  BUGGY =
+    "const charBytes = ENCODER.encode(str.slice(index, index + charLength)).length;",
+  MARKER = "PATCHED (local): derive the UTF-8 byte length",
+  FIXED = `// ${MARKER} from the code
     // point instead of allocating a TextEncoder result per character. See
     // scripts/patch-astro-store-writer.mjs for the measurements.
-    const charBytes = codePoint < 128 ? 1 : codePoint < 2048 ? 2 : codePoint < 65536 ? 3 : 4;`;
-
-const checkOnly = process.argv.includes("--check");
-const say = (msg) => console.log(`[patch-astro-store-writer] ${msg}`);
+    const charBytes = codePoint < 128 ? 1 : codePoint < 2048 ? 2 : codePoint < 65536 ? 3 : 4;`,
+  checkOnly = process.argv.includes("--check"),
+  say = (msg) => console.log(`[patch-astro-store-writer] ${msg}`);
 
 let real;
 try {
@@ -69,7 +71,9 @@ if (!source.includes(BUGGY)) {
 }
 
 if (checkOnly) {
-  say("UNPATCHED. Content sync will be roughly 25x slower than it needs to be.");
+  say(
+    "UNPATCHED. Content sync will be roughly 25x slower than it needs to be."
+  );
   say("Run: node scripts/patch-astro-store-writer.mjs");
   process.exit(1);
 }
@@ -77,8 +81,8 @@ if (checkOnly) {
 // Rename a fresh file over the target rather than writing in place: pnpm
 // hardlinks package files into its global content-addressable store, so an
 // in-place write corrupts astro for every project on the machine.
-const patched = source.replace(BUGGY, FIXED);
-const tmp = `${real}.patch-tmp-${process.pid}`;
+const patched = source.replace(BUGGY, FIXED),
+  tmp = `${real}.patch-tmp-${process.pid}`;
 fs.writeFileSync(tmp, patched);
 fs.renameSync(tmp, real);
 say(`patched ${path.relative(ROOT, TARGET)}`);

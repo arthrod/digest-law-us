@@ -25,8 +25,8 @@
  * registry exists to prevent.
  */
 
-import type { Dirent } from "node:fs";
 import { spawnSync } from "node:child_process";
+import type { Dirent } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -70,7 +70,8 @@ const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u,
    *  written by the model — a copied placement-derived issue_id (UUIDv5) or a
    *  placeholder such as a1b2c3d4… — and is not identity. */
   RANDOM_V4 = /^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$/u,
-  PLACEHOLDER = /^(?:a1b2c3d4|0{8}|1{8}|f{8}|12345678|01234567|deadbeef|abcdef01)/u,
+  PLACEHOLDER =
+    /^(?:a1b2c3d4|0{8}|1{8}|f{8}|12345678|01234567|deadbeef|abcdef01)/u,
   FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u;
 
 function parseFrontmatter(head: string): Record<string, string> {
@@ -91,7 +92,8 @@ function parseFrontmatter(head: string): Record<string, string> {
 
 async function frontmatterOf(file: string): Promise<Record<string, string>> {
   try {
-    return parseFrontmatter((await readFile(file, "utf8")).slice(0, 8192));
+    const head = await readFile(file, "utf8");
+    return parseFrontmatter(head.slice(0, 8192));
   } catch {
     return {};
   }
@@ -116,7 +118,15 @@ function git(repo: string, args: string[], input?: string): Buffer {
 function collectFromGit(repo: string, ref: string): CorpusConcept[] {
   // -z: without it git C-quotes any path with a non-ASCII byte ("§"), and
   // the quoted form would become a wrong route key.
-  const files = git(repo, ["ls-tree", "-r", "-z", "--name-only", ref, "--", OKF_IN_REPO])
+  const files = git(repo, [
+      "ls-tree",
+      "-r",
+      "-z",
+      "--name-only",
+      ref,
+      "--",
+      OKF_IN_REPO,
+    ])
       .toString()
       .split("\0")
       .filter(Boolean)
@@ -155,7 +165,8 @@ function collectFromGit(repo: string, ref: string): CorpusConcept[] {
     return {
       conceptId: fm.concept_id,
       corpusIssueId: fm.issue_id,
-      label: fm.pref_label ?? fm.title ?? humanize(dir.split("/").at(-1) ?? dir),
+      label:
+        fm.pref_label ?? fm.title ?? humanize(dir.split("/").at(-1) ?? dir),
       pathNotation: fm.notation,
       slugPath: slugPathOf(dir),
     };
@@ -280,19 +291,20 @@ for (const concept of unminted) {
   // second id for the same concept — two ids for one concept is precisely the
   // ambiguity this registry exists to prevent. A malformed or already-taken
   // value is refused, not silently trusted.
-  const supplied = concept.conceptId?.toLowerCase(),
-    why = !supplied
-      ? ""
-      : !CONCEPT_ID_FORM.test(supplied)
-        ? "malformed"
-        : takenIds.has(supplied)
-          ? "already in the registry"
-          : issueIds.has(supplied)
-            ? "is a corpus issue_id (placement-derived), not identity"
-            : PLACEHOLDER.test(supplied) || !RANDOM_V4.test(supplied)
-              ? "not a runner-minted random id"
-              : "",
-    adoptable = Boolean(supplied) && why === "";
+  const supplied = concept.conceptId?.toLowerCase();
+  let why = "";
+  if (supplied) {
+    if (!CONCEPT_ID_FORM.test(supplied)) {
+      why = "malformed";
+    } else if (takenIds.has(supplied)) {
+      why = "already in the registry";
+    } else if (issueIds.has(supplied)) {
+      why = "is a corpus issue_id (placement-derived), not identity";
+    } else if (PLACEHOLDER.test(supplied) || !RANDOM_V4.test(supplied)) {
+      why = "not a runner-minted random id";
+    }
+  }
+  const adoptable = Boolean(supplied) && why === "";
   if (supplied && !adoptable) {
     refused += 1;
     process.stderr.write(

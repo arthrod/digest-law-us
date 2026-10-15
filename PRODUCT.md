@@ -18,7 +18,7 @@ sustained stretches, verify before they rely, and they print.
 
 digest.law publishes the American Legal Digest: open, source-grounded digests
 of United States legal doctrine, machine-researched from free public sources,
-review-gated, and shipped with every retained source and every search log
+machine-reviewed, and shipped with every retained source and every search log
 attached. Success is being trusted and cited — practitioners and scholars treat
 digests as a credible starting point and link to them.
 
