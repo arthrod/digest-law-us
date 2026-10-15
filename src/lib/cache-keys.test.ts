@@ -35,6 +35,25 @@ function treeNode(over: Partial<KeyNode> = {}): KeyNode {
 const sources = (bundle: string, entries: EntryLike[]) =>
   new Map([[bundle, entries]]);
 
+const grandchild = (digest: string): KeyNode =>
+  treeNode({
+    children: [
+      treeNode({
+        children: [
+          treeNode({
+            digest: { digest, id: "a/b/c/c" },
+            dir: "A/B/C",
+            slugPath: "a/b/c",
+          }),
+        ],
+        dir: "A/B",
+        slugPath: "a/b",
+      }),
+    ],
+    dir: "A",
+    slugPath: "a",
+  });
+
 describe("cacheKeyFrom", () => {
   test("deterministic for identical input", () => {
     expect(cacheKeyFrom("digest", ["a", "b"])).toBe(
@@ -98,25 +117,7 @@ describe("stampRef", () => {
 
 describe("subtreeStamps", () => {
   test("a deep descendant's entry digest moves the stamps", () => {
-    const grandchild = (digest: string): KeyNode =>
-        treeNode({
-          children: [
-            treeNode({
-              children: [
-                treeNode({
-                  digest: { digest, id: "a/b/c/c" },
-                  dir: "A/B/C",
-                  slugPath: "a/b/c",
-                }),
-              ],
-              dir: "A/B",
-              slugPath: "a/b",
-            }),
-          ],
-          dir: "A",
-          slugPath: "a",
-        }),
-      empty = new Map<string, EntryLike[]>();
+    const empty = new Map<string, EntryLike[]>();
     expect(subtreeStamps(grandchild("v1"), empty)).not.toEqual(
       subtreeStamps(grandchild("v2"), empty)
     );

@@ -20,7 +20,7 @@ The fix is baked into `package.json`: the `build` script starts with
 `NODE_OPTIONS=--max-old-space-size=24576` (dev/preview/sync likewise) and the
 `deploy` script with `NODE_OPTIONS=--max-old-space-size=12288`. Rules:
 
-1. **Always build via `npm run build` / `npm run deploy`** — never invoke a raw
+1. **Always build via `pnpm run build` / `pnpm run deploy`** — never invoke a raw
    `astro build`, and never remove or "simplify away" the `NODE_OPTIONS` prefix
    from those scripts. If you add a new script that runs `astro build`, it needs
    the same prefix.
@@ -30,7 +30,7 @@ The fix is baked into `package.json`: the `build` script starts with
 ## Don't let a pipe eat the build's exit code
 
 The OOM above once went unnoticed because the build was launched as
-`npm run deploy 2>&1 | tail -40` — the pipeline reports **tail's** exit 0, so
+`pnpm run deploy 2>&1 | tail -40` — the pipeline reports **tail's** exit 0, so
 the fatal abort looked like success. Run builds with no pipe (redirect to a file
 if you need the log) and verify success from the output, not the exit code alone.
 
@@ -67,7 +67,7 @@ borders going wrong — add tiles there, not as fresh markup.
 
 ## Concept ids must be minted before a deploy publishes a concept
 
-Every corpus directory (bundles *and* the grouping nodes above them) is a
+Every corpus directory (bundles _and_ the grouping nodes above them) is a
 concept, and its public IRI comes from `src/data/concept-ids.json`. Nothing in
 the runner mints: the fleet merges new bundles all day, so the registry falls
 behind unless someone runs the mint. It went unrun from 2026-07-31 to
@@ -86,8 +86,8 @@ change whenever a route does.
   (`ops/systemd/digest-ids-sync.timer`), in its own worktree
   (`~/workspace/.digest-law-ids-sync`), landing any registry change as a
   merged PR. Install: `cp ops/systemd/digest-ids-sync.* ~/.config/systemd/user/
-  && systemctl --user daemon-reload && systemctl --user enable --now
-  digest-ids-sync.timer`. Logs: `journalctl --user -u digest-ids-sync`.
+&& systemctl --user daemon-reload && systemctl --user enable --now
+digest-ids-sync.timer`. Logs: `journalctl --user -u digest-ids-sync`.
 
 ## The Worker is load-bearing now — `assets`-only deploys are gone
 
@@ -168,22 +168,28 @@ the component holding the toolchain back from TypeScript 7:
 - `format` / `format:check` called `prettier`, which is not a direct
   dependency. They call `oxfmt` now.
 
-`ultracite check` is green (0 errors, ~28 warnings, 437 rules).
+`ultracite check` is green (0 errors, ~81 warnings, 549 rules on oxlint
+1.88). Note the preset enables every oxlint **category** at `error`, so a
+newer oxlint release silently adds rules — the 1.79→1.88 jump added ~110
+and produced ~330 errors overnight. Expect a small triage after every
+oxlint bump.
 
 ### The override layer is not laziness — read before deleting a line from it
 
 Ultracite's core preset assumes a plain app. Several of its rules are
 structurally wrong here and were turned **off** with cause:
 
-| Rule                                       | Why off                                                                         |
-| ------------------------------------------ | ------------------------------------------------------------------------------- |
-| `node/no-top-level-await`                  | Astro frontmatter _is_ top-level await (`await getCorpus()`).                   |
-| `import/no-nodejs-modules`                 | The corpus loaders read the filesystem at build time. That is the architecture. |
-| `unicorn/filename-case`                    | Astro components are PascalCase by framework convention.                        |
-| `jest/require-hook`, `vitest/require-hook` | Fire on `.astro` files; there is no test suite.                                 |
-| `eslint/no-implicit-globals`               | Fires on `<script>` blocks, which Astro scopes as modules.                      |
-| `eslint/func-style`                        | 57 hits; the repo consistently uses function declarations.                      |
-| `import/no-relative-parent-imports`        | The Worker deliberately imports `../src/lib/committee`.                         |
+| Rule                                       | Why off                                                                                                                                                      |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `node/no-top-level-await`                  | Astro frontmatter _is_ top-level await (`await getCorpus()`).                                                                                                |
+| `import/no-nodejs-modules`                 | The corpus loaders read the filesystem at build time. That is the architecture.                                                                              |
+| `unicorn/filename-case`                    | Astro components are PascalCase by framework convention.                                                                                                     |
+| `jest/require-hook`, `vitest/require-hook` | Fire on `.astro` files; there is no test suite.                                                                                                              |
+| `eslint/no-implicit-globals`               | Fires on `<script>` blocks, which Astro scopes as modules.                                                                                                   |
+| `eslint/func-style`                        | 57 hits; the repo consistently uses function declarations.                                                                                                   |
+| `import/no-relative-parent-imports`        | The Worker deliberately imports `../src/lib/committee`.                                                                                                      |
+| `eslint/one-var`, `eslint/sort-vars`       | ~310 hits on oxlint 1.88; grouped const declarations are the repo idiom, and sorted declarations can't be auto-fixed without risking initializer-order bugs. |
+| `node/no-sync` (scripts/** only)           | The deploy/mint/postinstall CLIs use `spawnSync`/`readFileSync` deliberately — sequential build tooling, not a server.                                       |
 
 `max-statements`, `complexity`, `max-nested-calls` and the `promise/*`
 preferences are **warnings**, not off — they are real signal on

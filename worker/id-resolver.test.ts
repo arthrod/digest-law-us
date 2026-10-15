@@ -44,6 +44,20 @@ function brokenJsonEnv() {
   } as unknown as Parameters<typeof handleConceptId>[1];
 }
 
+/** ASSETS answers the id map for /id-map.json and a page for anything else. */
+function routedEnv() {
+  return {
+    ASSETS: {
+      fetch: (request: Request) =>
+        Promise.resolve(
+          new URL(request.url).pathname === "/id-map.json"
+            ? Response.json(MAP)
+            : new Response("<html>page</html>", { status: 200 })
+        ),
+    },
+  } as unknown as Parameters<typeof worker.fetch>[1];
+}
+
 const get = (id: string, method = "GET") =>
   new Request(`https://digest.law/id/${id}`, { method });
 
@@ -81,9 +95,8 @@ describe("resolving a concept id", () => {
       live = await handleConceptId(get(LIVE), envWith(old), LIVE);
     expect(live.status).toBe(301);
     resetIdMapCache();
-    expect(
-      (await handleConceptId(get(MERGED), envWith(old), MERGED)).status
-    ).toBe(404);
+    const merged = await handleConceptId(get(MERGED), envWith(old), MERGED);
+    expect(merged.status).toBe(404);
   });
 
   test("an unknown but well-formed id is 404", async () => {
@@ -143,20 +156,6 @@ describe("resolving a concept id", () => {
 });
 
 describe("routing", () => {
-  /** ASSETS answers the id map for /id-map.json and a page for anything else. */
-  function routedEnv() {
-    return {
-      ASSETS: {
-        fetch: (request: Request) =>
-          Promise.resolve(
-            new URL(request.url).pathname === "/id-map.json"
-              ? Response.json(MAP)
-              : new Response("<html>page</html>", { status: 200 })
-          ),
-      },
-    } as unknown as Parameters<typeof worker.fetch>[1];
-  }
-
   test("/id/{id} reaches the resolver, with or without a trailing slash", async () => {
     for (const url of [
       `https://digest.law/id/${LIVE}`,
