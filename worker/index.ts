@@ -462,7 +462,7 @@ function serveOversize(
     })().catch(async (error: unknown) => {
       // pipeTo already cancels the failed part's body; abort can itself
       // reject once the stream has errored, and must not escape waitUntil.
-      await writable.abort(error).catch(() => {});
+      await writable.abort(error).catch(() => null);
     });
   // The client reading the body keeps the request alive anyway; waitUntil
   // just covers a slow final flush.

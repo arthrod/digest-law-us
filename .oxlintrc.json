@@ -33,6 +33,8 @@
     "eslint/no-implicit-globals": "off",
     "eslint/no-inline-comments": "off",
     "eslint/no-underscore-dangle": "off",
+    "eslint/one-var": "off",
+    "eslint/sort-vars": "off",
     "eslint/max-statements": "warn",
     "eslint/complexity": "warn",
     "unicorn/max-nested-calls": "warn",
@@ -45,6 +47,12 @@
       "files": ["**/*.test.ts"],
       "rules": {
         "vitest/prefer-importing-vitest-globals": "off"
+      }
+    },
+    {
+      "files": ["scripts/**"],
+      "rules": {
+        "node/no-sync": "off"
       }
     }
   ]
