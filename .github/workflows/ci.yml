@@ -44,7 +44,7 @@ jobs:
       # install so pnpm cannot disturb it. Any deploy workflow that builds
       # the real corpus needs this same step to benefit.
       - name: "♻️ Restore Astro build cache"
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules/.astro
           key: astro-build-${{ runner.os }}-${{ github.run_id }}
