@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/pnpm/pnpm:11.3.0
+    image: ghcr.io/pnpm/pnpm:11.28.6
     ports:
       - 4321:4321
     working_dir: /app
