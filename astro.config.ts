@@ -82,6 +82,16 @@ export default defineConfig({
      * machine whose main thread is already sized at a 24 GB heap. If a
      * build dies out of memory, cap the pool with ASTRO_PRERENDER_WORKERS=N
      * rather than turning the feature off; 0 disables it entirely.
+     *
+     * Measured on the full corpus (2026-10-21, 31 GB RAM, scope cap 27 GB
+     * RAM + 96 GB swap): 11 workers rendered ~1,350 pages/min for ten
+     * minutes, then memory grew past the swap cap and the build was
+     * OOM-killed; 4 workers held at ~48-54 GB swap for 16 hours and built
+     * all 323,362 pages at ~280-450 pages/min. `pnpm run build` therefore
+     * passes ASTRO_PRERENDER_WORKERS=4 unless the caller sets it. In
+     * practice, changing the worker count DID print "Astro config changed"
+     * and clear the content store (a cold multi-hour sync), despite the
+     * config-hash note above, so keep the count fixed between builds.
      */
     parallelPrerender:
       prerenderWorkers === undefined

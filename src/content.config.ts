@@ -4,6 +4,7 @@ import { defineCollection } from "astro:content";
 
 import { CORPUS_DIR, PREVIEW_MODE } from "@/corpus.config";
 import { digestSchema } from "@/lib/digest-schema";
+import { readFrontmatterExcludes } from "@/lib/frontmatter-excludes";
 import { previewBundles } from "@/lib/preview";
 import { sourcesLoader } from "@/loaders/sources";
 
@@ -18,6 +19,14 @@ const rawId = ({ entry }: { entry: string }) =>
    */
   // oxlint-disable-next-line eslint/sort-vars -- declared in dependency order (rawId, previewDirs, scoped are used below); sorting would hit the TDZ
   previewDirs = PREVIEW_MODE ? [...(await previewBundles(CORPUS_DIR))] : [],
+  /**
+   * Digests whose frontmatter fails digestSchema, as recorded by
+   * scripts/check-digest-frontmatter.ts at the start of `pnpm run build`.
+   * Left out of the glob so one malformed digest drops one page instead of
+   * aborting the build after hours of content sync.
+   */
+  // oxlint-disable-next-line eslint/sort-vars -- kept beside the other glob inputs; no sorted order exists for this declaration (TDZ)
+  frontmatterExcludes = await readFrontmatterExcludes(),
   scoped = (patterns: string[]): string[] => {
     if (!PREVIEW_MODE) {
       return patterns;
@@ -42,6 +51,7 @@ const rawId = ({ entry }: { entry: string }) =>
         "!**/statutory_index.md",
         "!**/_source_snippet_audit.md",
         "!**/sources/**",
+        ...frontmatterExcludes,
       ]),
       /**
        * The glob loader stores the raw markdown *and* the rendered HTML for
