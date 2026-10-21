@@ -1,4 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended"]
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "pnpm-workspace.yaml overrides are security floors for transitive deps; a major bump forces that major onto parents built for the old one (e.g. gray-matter needs js-yaml 3's safeLoad). Raise or remove those by hand.",
+      "matchFileNames": ["pnpm-workspace.yaml"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
 }
