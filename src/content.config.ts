@@ -59,6 +59,7 @@ const rawId = ({ entry }: { entry: string }) =>
     }),
     schema: digestSchema,
   }),
+  // oxlint-disable-next-line eslint/sort-vars -- indexSchema must precede caselaw/statutory, which use it (TDZ)
   indexSchema = z
     .object({
       description: z.string().default(""),
@@ -116,6 +117,7 @@ const rawId = ({ entry }: { entry: string }) =>
       .passthrough(),
   }),
   /** run.json provenance manifests (1,552+ bundles; absent = pre-provenance) */
+  // oxlint-disable-next-line eslint/sort-vars -- no sorted order exists (caselaw/statutory need indexSchema first); keep original order
   runs = defineCollection({
     loader: glob({
       base: CORPUS_DIR,
@@ -147,6 +149,7 @@ const rawId = ({ entry }: { entry: string }) =>
       .passthrough(),
   }),
   /** Retained source documents — metadata + chunk spans only (see loader). */
+  // oxlint-disable-next-line eslint/sort-vars -- no sorted order exists (caselaw/statutory need indexSchema first); keep original order
   sources = defineCollection({
     loader: sourcesLoader(CORPUS_DIR),
     schema: z.object({

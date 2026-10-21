@@ -81,6 +81,7 @@ export async function renderSourceChunk(
     slice = content.slice(span.start, span.end),
     // oxlint-disable-next-line eslint/sort-vars -- result depends on slice, so no sorted order exists
     processor = await getProcessor(),
+    // oxlint-disable-next-line eslint/sort-vars -- result depends on slice, so no sorted order exists
     result = await processor.render(slice);
   return { html: result.code };
 }

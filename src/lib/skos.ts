@@ -165,7 +165,9 @@ function identityOf(node: TreeNode, fm: Record<string, unknown> | undefined) {
       "@id": resolved.iri,
       "digest:legacyIri": { "@id": legacyIriFor(node.slugPath) },
     },
+    // oxlint-disable-next-line eslint/sort-vars -- block is built from resolved
     corpusIssueId = resolved.record?.corpusIssueId ?? fm?.issue_id,
+    // oxlint-disable-next-line eslint/sort-vars -- block is built from resolved
     pathNotation = fm?.notation ?? resolved.record?.pathNotation;
   if (resolved.record) {
     // Canonical typed notation is the minted id; the corpus dotted notation

@@ -647,6 +647,7 @@ async function preflight(
     },
     // oxlint-disable-next-line eslint/sort-vars -- bindings depends on rootConfig (TDZ)
     bindings = new Set(rootConfig.services.map((s) => s.binding)),
+    // oxlint-disable-next-line eslint/sort-vars -- bindings depends on rootConfig (TDZ)
     dangling = Object.entries(rootConfig.vars.SHARD_MAP).filter(
       ([, binding]) => !bindings.has(binding)
     );

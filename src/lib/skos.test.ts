@@ -190,6 +190,7 @@ describe("placement is not hierarchy (S-02 / P1-006)", () => {
         broader: [URN],
         pref_label: "LOG BOOKS",
       }),
+      // oxlint-disable-next-line eslint/sort-vars -- concept below depends on both; no sorted order avoids the TDZ
       concept = conceptFor(corpusOf(parent, child), child);
     expect(concept["skos:broader"]).toHaveLength(1);
   });

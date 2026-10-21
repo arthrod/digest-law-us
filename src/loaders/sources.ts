@@ -85,6 +85,7 @@ export function sourcesLoader(corpusDir: string): Loader {
         // In preview mode the bundle set is decided before any file is read;
         // skipping here is what keeps a preview build from paying for the
         // whole ~13 GB of retained sources (see src/lib/preview.ts).
+        // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
         preview = PREVIEW_MODE ? await previewBundles(root) : null,
         // oxlint-disable-next-line eslint/sort-vars -- files depends on listing and preview
         files = listing

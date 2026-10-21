@@ -33,6 +33,7 @@ export function auditsLoader(corpusDir: string): Loader {
       const root = path.resolve(fileURLToPath(config.root), corpusDir),
         // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
         listing = await fs.readdir(root, { recursive: true }),
+        // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
         preview = PREVIEW_MODE ? await previewBundles(root) : null,
         // oxlint-disable-next-line eslint/sort-vars -- files depends on listing and preview
         files = listing
