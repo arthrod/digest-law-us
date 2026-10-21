@@ -25,8 +25,8 @@
  * registry exists to prevent.
  */
 
-import type { Dirent } from "node:fs";
 import { spawnSync } from "node:child_process";
+import type { Dirent } from "node:fs";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -41,19 +41,28 @@ import {
 } from "../src/lib/concept-ids";
 import { humanize, slugPathOf } from "../src/lib/labels";
 
-const REGISTRY_PATH = path.resolve(
+const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u,
+  FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u,
+  OKF_IN_REPO = "key_digest/american_legal_digest/okf",
+  PLACEHOLDER =
+    /^(?:a1b2c3d4|0{8}|1{8}|f{8}|12345678|01234567|deadbeef|abcdef01)/u,
+  /** The runner mints random UUIDv4 ids (skos_okf.mint_concept_id): version
+   *  nibble 4, RFC 4122 variant. Anything else in a digest's `concept_id` was
+   *  written by the model — a copied placement-derived issue_id (UUIDv5) or a
+   *  placeholder such as a1b2c3d4… — and is not identity. */
+  RANDOM_V4 = /^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$/u,
+  REGISTRY_PATH = path.resolve(
     import.meta.dirname,
     "../src/data/concept-ids.json"
   ),
-  corpusRoot = path.resolve(CORPUS_DIR),
   checkOnly = process.argv.includes("--check"),
+  corpusRoot = path.resolve(CORPUS_DIR),
   gitAt = process.argv.indexOf("--from-git"),
-  gitRepo = gitAt === -1 ? undefined : process.argv[gitAt + 1],
   gitRef =
     gitAt === -1 || process.argv[gitAt + 2]?.startsWith("--")
       ? "origin/main"
       : (process.argv[gitAt + 2] ?? "origin/main"),
-  OKF_IN_REPO = "key_digest/american_legal_digest/okf";
+  gitRepo = gitAt === -1 ? undefined : process.argv[gitAt + 1];
 
 interface CorpusConcept {
   /** Identity the runner allocated at generation time, when it did. */
@@ -64,20 +73,12 @@ interface CorpusConcept {
   slugPath: string;
 }
 
-const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u,
-  /** The runner mints random UUIDv4 ids (skos_okf.mint_concept_id): version
-   *  nibble 4, RFC 4122 variant. Anything else in a digest's `concept_id` was
-   *  written by the model — a copied placement-derived issue_id (UUIDv5) or a
-   *  placeholder such as a1b2c3d4… — and is not identity. */
-  RANDOM_V4 = /^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$/u,
-  PLACEHOLDER = /^(?:a1b2c3d4|0{8}|1{8}|f{8}|12345678|01234567|deadbeef|abcdef01)/u,
-  FIELD = /^(?<key>[a-z_]+):\s*"?(?<value>[^"\n]*?)"?\s*$/u;
-
 function parseFrontmatter(head: string): Record<string, string> {
   if (!head.startsWith("---")) {
     return {};
   }
   const end = head.indexOf("\n---", 3),
+    // oxlint-disable-next-line eslint/sort-vars -- block depends on end (TDZ)
     block = head.slice(3, end === -1 ? undefined : end),
     fields: Record<string, string> = {};
   for (const line of block.split("\n")) {
@@ -91,13 +92,15 @@ function parseFrontmatter(head: string): Record<string, string> {
 
 async function frontmatterOf(file: string): Promise<Record<string, string>> {
   try {
-    return parseFrontmatter((await readFile(file, "utf8")).slice(0, 8192));
+    const text = await readFile(file, "utf8");
+    return parseFrontmatter(text.slice(0, 8192));
   } catch {
     return {};
   }
 }
 
 function git(repo: string, args: string[], input?: string): Buffer {
+  // oxlint-disable-next-line node/no-sync -- CLI; git output is consumed synchronously
   const result = spawnSync("git", ["-C", repo, ...args], {
     input,
     maxBuffer: 2 ** 31,
@@ -116,11 +119,20 @@ function git(repo: string, args: string[], input?: string): Buffer {
 function collectFromGit(repo: string, ref: string): CorpusConcept[] {
   // -z: without it git C-quotes any path with a non-ASCII byte ("§"), and
   // the quoted form would become a wrong route key.
-  const files = git(repo, ["ls-tree", "-r", "-z", "--name-only", ref, "--", OKF_IN_REPO])
+  const files = git(repo, [
+      "ls-tree",
+      "-r",
+      "-z",
+      "--name-only",
+      ref,
+      "--",
+      OKF_IN_REPO,
+    ])
       .toString()
       .split("\0")
       .filter(Boolean)
       .map((f) => f.slice(OKF_IN_REPO.length + 1)),
+    // oxlint-disable-next-line eslint/sort-vars -- fileSet depends on files (TDZ)
     dirs = new Set<string>(),
     fileSet = new Set(files);
   for (const file of files) {
@@ -133,10 +145,12 @@ function collectFromGit(repo: string, ref: string): CorpusConcept[] {
       dirs.add(parts.slice(0, i).join("/"));
     }
   }
+  // oxlint-disable-next-line eslint/one-var -- needs dirs filled by the loop above
   const digests = [...dirs]
       .map((dir) => `${dir}/${dir.split("/").at(-1)}.md`)
       .filter((file) => fileSet.has(file)),
     heads = new Map<string, Record<string, string>>(),
+    // oxlint-disable-next-line eslint/sort-vars -- batch depends on digests (TDZ)
     batch = git(
       repo,
       ["cat-file", "--batch"],
@@ -146,6 +160,7 @@ function collectFromGit(repo: string, ref: string): CorpusConcept[] {
   for (const digest of digests) {
     const nl = batch.indexOf(10, at),
       size = Number(batch.subarray(at, nl).toString().split(" ")[2]),
+      // oxlint-disable-next-line eslint/sort-vars -- body depends on nl and size (TDZ)
       body = batch.subarray(nl + 1, nl + 1 + Math.min(size, 8192)).toString();
     heads.set(digest.slice(0, digest.lastIndexOf("/")), parseFrontmatter(body));
     at = nl + 1 + size + 1;
@@ -155,7 +170,8 @@ function collectFromGit(repo: string, ref: string): CorpusConcept[] {
     return {
       conceptId: fm.concept_id,
       corpusIssueId: fm.issue_id,
-      label: fm.pref_label ?? fm.title ?? humanize(dir.split("/").at(-1) ?? dir),
+      label:
+        fm.pref_label ?? fm.title ?? humanize(dir.split("/").at(-1) ?? dir),
       pathNotation: fm.notation,
       slugPath: slugPathOf(dir),
     };
@@ -176,6 +192,7 @@ async function collect(dir: string, out: CorpusConcept[]): Promise<void> {
     dirs.map(async (entry) => {
       const full = path.join(dir, entry.name),
         // A bundle's digest is the .md named after its own directory (corpus.ts).
+        // oxlint-disable-next-line eslint/sort-vars -- fm depends on full (TDZ)
         fm = await frontmatterOf(path.join(full, `${entry.name}.md`));
       out.push({
         conceptId: fm.concept_id,
@@ -187,6 +204,30 @@ async function collect(dir: string, out: CorpusConcept[]): Promise<void> {
       await collect(full, out);
     })
   );
+}
+
+/** Why a digest's own concept_id cannot be adopted, or "" when it can. */
+function refusalOf(
+  supplied: string | undefined,
+  takenIds: Set<string>,
+  issueIds: Set<string>
+): string {
+  if (!supplied) {
+    return "";
+  }
+  if (!CONCEPT_ID_FORM.test(supplied)) {
+    return "malformed";
+  }
+  if (takenIds.has(supplied)) {
+    return "already in the registry";
+  }
+  if (issueIds.has(supplied)) {
+    return "is a corpus issue_id (placement-derived), not identity";
+  }
+  if (PLACEHOLDER.test(supplied) || !RANDOM_V4.test(supplied)) {
+    return "not a runner-minted random id";
+  }
+  return "";
 }
 
 function today(): string {
@@ -204,17 +245,18 @@ function reportOrphans(orphans: ConceptRecord[]): void {
   }
 }
 
-const registry = JSON.parse(
+// oxlint-disable-next-line eslint/one-var -- the registry read stays with the main program, not the config block
+const concepts: CorpusConcept[] = [],
+  existingKeys = new Set<string>(),
+  registry = JSON.parse(
     await readFile(REGISTRY_PATH, "utf8")
-  ) as ConceptRegistry,
-  existingKeys = new Set<string>();
+  ) as ConceptRegistry;
 for (const record of registry.concepts) {
   for (const key of record.keys) {
     existingKeys.add(key);
   }
 }
 
-const concepts: CorpusConcept[] = [];
 if (gitRepo) {
   concepts.push(...collectFromGit(gitRepo, gitRef));
 } else {
@@ -229,9 +271,11 @@ if (concepts.length === 0) {
   process.exit(1);
 }
 
-const unminted = concepts.filter((c) => !existingKeys.has(c.slugPath)),
-  liveKeys = new Set(concepts.map((c) => c.slugPath)),
+// oxlint-disable-next-line eslint/one-var -- needs concepts collected above
+const liveKeys = new Set(concepts.map((c) => c.slugPath)),
   orphans = orphansOf(registry, liveKeys),
+  unminted = concepts.filter((c) => !existingKeys.has(c.slugPath)),
+  // oxlint-disable-next-line eslint/sort-vars -- buried depends on liveKeys (TDZ)
   buried = registry.concepts.filter(
     (record) => record.retired && record.keys.some((k) => liveKeys.has(k))
   );
@@ -265,15 +309,16 @@ if (checkOnly) {
   );
 }
 
-const minted = today(),
+// oxlint-disable-next-line eslint/one-var -- runs only after the --check exit above
+const issueIds = new Set(
+    concepts
+      .map((c) => c.corpusIssueId?.replaceAll("-", "").toLowerCase())
+      .filter((id): id is string => Boolean(id))
+  ),
+  minted = today(),
   takenIds = new Set(registry.concepts.map((record) => record.id));
 let adopted = 0,
   refused = 0;
-const issueIds = new Set(
-  concepts
-    .map((c) => c.corpusIssueId?.replaceAll("-", "").toLowerCase())
-    .filter((id): id is string => Boolean(id))
-);
 for (const concept of unminted) {
   // The runner allocates identity at generation time (skos_okf.py). When a
   // digest arrives carrying its own concept_id, adopt it instead of minting a
@@ -281,17 +326,8 @@ for (const concept of unminted) {
   // ambiguity this registry exists to prevent. A malformed or already-taken
   // value is refused, not silently trusted.
   const supplied = concept.conceptId?.toLowerCase(),
-    why = !supplied
-      ? ""
-      : !CONCEPT_ID_FORM.test(supplied)
-        ? "malformed"
-        : takenIds.has(supplied)
-          ? "already in the registry"
-          : issueIds.has(supplied)
-            ? "is a corpus issue_id (placement-derived), not identity"
-            : PLACEHOLDER.test(supplied) || !RANDOM_V4.test(supplied)
-              ? "not a runner-minted random id"
-              : "",
+    why = refusalOf(supplied, takenIds, issueIds),
+    // oxlint-disable-next-line eslint/sort-vars -- adoptable depends on supplied and why (TDZ)
     adoptable = Boolean(supplied) && why === "";
   if (supplied && !adoptable) {
     refused += 1;
@@ -299,6 +335,7 @@ for (const concept of unminted) {
       `refused concept_id "${supplied}" on ${concept.slugPath}: ${why}\n`
     );
   }
+  // oxlint-disable-next-line eslint/one-var -- mint only after the refusal report above
   const { id, uuid } = adoptable
     ? { id: supplied, uuid: dashedUuid(supplied) }
     : mintConceptId();
@@ -319,10 +356,12 @@ for (const concept of unminted) {
 
 // Tombstone what a purge took, and lift the tombstone off anything that came
 // back. Neither deletes a record or frees an id (P1-014H).
+// oxlint-disable-next-line eslint/one-var -- mutates registry; must run after the minting loop
 const { restored, retired } = reconcileRegistry(registry, liveKeys, minted);
 
 registry.concepts.sort((a, b) => a.keys[0].localeCompare(b.keys[0]));
 
+// oxlint-disable-next-line eslint/one-var -- validates the sorted registry
 const problems = validateRegistry(registry);
 if (problems.length > 0) {
   for (const problem of problems) {

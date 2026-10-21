@@ -28,7 +28,10 @@ import { PREVIEW_BUNDLES, PREVIEW_MODE, PREVIEW_PATHS } from "@/corpus.config";
 import { slugSegment } from "./labels";
 
 /** Digest bundles hold `<dir>/<dir-basename>.md`; that is what marks one. */
-const SOURCE_FILE = /(?:^|\/)sources\/[^/]+\.md$/u;
+const SOURCE_FILE = /(?:^|\/)sources\/[^/]+\.md$/u,
+  /** Keyed by resolved path: callers reach the corpus by both a relative
+   *  config value and an absolute loader root, and both must hit one listing. */
+  cache = new Map<string, Promise<Set<string>>>();
 
 function matchesPreviewPath(dir: string): boolean {
   const slug = dir.split("/").map(slugSegment).join("/");
@@ -57,6 +60,7 @@ function roundRobin(
   for (const list of byArea.values()) {
     list.sort((a, b) => score(b) - score(a) || a.localeCompare(b));
   }
+  // oxlint-disable-next-line eslint/one-var -- areas must be read after the loop above fills byArea
   const areas = [...byArea.keys()].toSorted(),
     kept: string[] = [];
   for (let round = 0; kept.length < limit; round += 1) {
@@ -80,10 +84,11 @@ function roundRobin(
 }
 
 async function select(corpusDir: string): Promise<Set<string>> {
-  const listing = await fs.readdir(corpusDir, { recursive: true }),
+  const bundles: string[] = [],
+    listing = await fs.readdir(corpusDir, { recursive: true }),
+    // oxlint-disable-next-line eslint/sort-vars -- files is derived from listing
     files = new Set(listing.map((p) => p.replaceAll("\\", "/"))),
-    sourcesPerBundle = new Map<string, number>(),
-    bundles: string[] = [];
+    sourcesPerBundle = new Map<string, number>();
   for (const rel of files) {
     if (SOURCE_FILE.test(rel)) {
       const bundle = rel.slice(0, rel.lastIndexOf("/sources/"));
@@ -94,6 +99,7 @@ async function select(corpusDir: string): Promise<Set<string>> {
       continue;
     }
     const dir = rel.slice(0, rel.lastIndexOf("/")),
+      // oxlint-disable-next-line eslint/sort-vars -- base is derived from dir
       base = rel.slice(dir.length + 1, -".md".length);
     if (dir && base === dir.split("/").at(-1)) {
       bundles.push(dir);
@@ -108,6 +114,7 @@ async function select(corpusDir: string): Promise<Set<string>> {
     );
   }
 
+  // oxlint-disable-next-line eslint/one-var -- hoisting score above sourcesPerBundle trips no-use-before-define
   const score = (dir: string) =>
     (files.has(`${dir}/_source_snippet_audit.md`) ? 1 : 0) +
     (files.has(`${dir}/caselaw_index.md`) ? 1 : 0) +
@@ -116,10 +123,6 @@ async function select(corpusDir: string): Promise<Set<string>> {
 
   return new Set(roundRobin(bundles, score, PREVIEW_BUNDLES));
 }
-
-/** Keyed by resolved path: callers reach the corpus by both a relative
- *  config value and an absolute loader root, and both must hit one listing. */
-const cache = new Map<string, Promise<Set<string>>>();
 
 /**
  * The bundle directories a preview build is limited to, relative to the

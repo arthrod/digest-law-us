@@ -25,6 +25,8 @@ if (!node) {
   throw new Error(`No area at ${slugPath}`);
 }
 
+/* oxlint-disable eslint/sort-vars -- adjacent reads siblings and index; sorting would hit the TDZ */
+// oxlint-disable-next-line eslint/one-var -- declared after the !node guard; hoisting would read node.children before the throw
 const groupCount = node.children.filter((c) => c.children.length > 0).length,
  updated = formatDate(node.latest),
 
@@ -39,6 +41,7 @@ const groupCount = node.children.filter((c) => c.children.length > 0).length,
 
  title = `${node.label} — American Legal Digest`,
  description = `${node.topicCount} published digest topics in ${node.label}, each with retained public sources and a machine-readable audit trail.`;
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <Layout {description} {title}>

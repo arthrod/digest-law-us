@@ -22,10 +22,10 @@ function getProcessor(): Promise<MarkdownRenderer> {
   return processorPromise;
 }
 
-const corpusRoot = path.resolve(process.cwd(), CORPUS_DIR),
+const CACHE_MAX = 8,
   /** Tiny LRU for frontmatter-stripped source contents (32.7 MB max each). */
   contentCache = new Map<string, string>(),
-  CACHE_MAX = 8;
+  corpusRoot = path.resolve(process.cwd(), CORPUS_DIR);
 
 async function readSourceContent(relFile: string): Promise<string> {
   const hit = contentCache.get(relFile);
@@ -34,6 +34,7 @@ async function readSourceContent(relFile: string): Promise<string> {
     contentCache.set(relFile, hit);
     return hit;
   }
+  // oxlint-disable-next-line eslint/one-var -- the read must stay behind the cache-hit early return
   const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
     // Loose, because a few machine-written corpus files carry frontmatter
     // that is not loadable YAML. The loader already logged the warning and
@@ -66,6 +67,7 @@ export interface RenderedChunk {
 export async function renderCorpusFile(relFile: string): Promise<string> {
   const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
     { content } = parseFrontmatterLoose(raw),
+    // oxlint-disable-next-line eslint/sort-vars -- keep the awaited read before processor init
     processor = await getProcessor(),
     result = await processor.render(content);
   return result.code;
@@ -77,6 +79,7 @@ export async function renderSourceChunk(
 ): Promise<RenderedChunk> {
   const content = await readSourceContent(relFile),
     slice = content.slice(span.start, span.end),
+    // oxlint-disable-next-line eslint/sort-vars -- result depends on slice, so no sorted order exists
     processor = await getProcessor(),
     result = await processor.render(slice);
   return { html: result.code };

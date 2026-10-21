@@ -7,12 +7,13 @@ import { describe, expect, test } from "bun:test";
 
 import { validateSkosGraph } from "./skos-validate";
 
-/** Repo root: this file is src/lib/. */
-const ROOT = new URL("../..", import.meta.url).pathname.replace(/\/$/u, ""),
-  A = "https://w3id.org/digest-law/concept/00000000000000000000000000000001",
+const A =
+    "https://w3id.org/digest-law/concept/00000000000000000000000000000001",
   B = "https://w3id.org/digest-law/concept/00000000000000000000000000000002",
   C = "https://w3id.org/digest-law/concept/00000000000000000000000000000003",
   DATATYPE = "https://w3id.org/digest-law/datatype/concept-id",
+  /** Repo root: this file is src/lib/. */
+  ROOT = new URL("../..", import.meta.url).pathname.replace(/\/$/u, ""),
   SCHEME = "https://w3id.org/digest-law/us/";
 
 function concept(id: string, extra: Record<string, unknown> = {}) {
@@ -38,6 +39,7 @@ function graph(...nodes: Record<string, unknown>[]) {
   return { "@graph": nodes };
 }
 
+// oxlint-disable-next-line eslint/one-var -- uses graph(), declared above; merging into the constants would trip no-use-before-define
 const messages = (nodes: Record<string, unknown>[]) =>
     validateSkosGraph(graph(...nodes))
       .map((v) => `${v.severity}: ${v.message}`)
@@ -132,9 +134,9 @@ describe("identity and notation (P1-014C)", () => {
   });
 
   test("two concepts sharing a notation fail", () => {
-    const hex = A.split("/").at(-1) as string,
+    const aHex = A.split("/").at(-1) as string,
       clash = concept(B, {
-        "skos:notation": { "@type": DATATYPE, "@value": hex },
+        "skos:notation": { "@type": DATATYPE, "@value": aHex },
       });
     expect(messages([concept(A), clash])).toContain("is also used by");
   });
@@ -163,9 +165,9 @@ describe("identity and notation (P1-014C)", () => {
         "skos:inScheme": { "@id": SCHEME },
         "skos:prefLabel": { "@language": "en", "@value": "X" },
       },
-      found = validateSkosGraph(graph(legacy));
-    expect(found.filter((v) => v.severity === "violation")).toEqual([]);
-    expect(found[0].message).toContain("no minted id");
+      results = validateSkosGraph(graph(legacy));
+    expect(results.filter((v) => v.severity === "violation")).toEqual([]);
+    expect(results[0].message).toContain("no minted id");
   });
 
   test("an id outside the project namespaces fails", () => {
@@ -283,18 +285,18 @@ describe("scheme and vocabulary", () => {
   });
 
   test("topConceptOf without hasTopConcept fails", () => {
-    const scheme = { "@id": SCHEME, "@type": "skos:ConceptScheme" },
-      node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } });
+    const node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } }),
+      scheme = { "@id": SCHEME, "@type": "skos:ConceptScheme" };
     expect(messages([scheme, node])).toContain("the scheme does not list it");
   });
 
   test("agreement in both directions passes", () => {
-    const scheme = {
+    const node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } }),
+      scheme = {
         "@id": SCHEME,
         "@type": "skos:ConceptScheme",
         "skos:hasTopConcept": { "@id": A },
-      },
-      node = concept(A, { "skos:topConceptOf": { "@id": SCHEME } });
+      };
     expect(violations([scheme, node])).toEqual([]);
   });
 
@@ -321,6 +323,7 @@ describe("the sources stay reviewable", () => {
         paths.push(path);
       }
     }
+    // oxlint-disable-next-line eslint/one-var -- needs paths filled by the scan loop above
     const scanned = await Promise.all(
       paths.map(async (path) => {
         const bytes = await Bun.file(path).bytes();

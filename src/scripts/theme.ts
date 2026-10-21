@@ -23,6 +23,7 @@ function reflect(): void {
 
   // Fill <meta name="theme-color"> with the computed background colour so
   // Android's browser chrome matches the page background.
+  // oxlint-disable-next-line eslint/one-var -- must read the style after dataset.theme/class are set above
   const bg = window.getComputedStyle(document.body).backgroundColor;
   document
     .querySelector("meta[name='theme-color']")

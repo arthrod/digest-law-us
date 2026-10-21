@@ -9,12 +9,15 @@ import worker, { handleConceptId, resetIdMapCache } from "./index";
 const GONE = "00000000000000000000000000000009",
   LIVE = "9460d81470154e458335365e3b4c5014",
   MERGED = "0000000000000000000000000000000a",
+  // oxlint-disable-next-line eslint/sort-vars -- MAP uses MERGED as a key; sorting would hit the TDZ
   MAP = {
     replaced: { [MERGED]: "evidence-law/proof-of-writings" },
     retired: { [GONE]: "evidence-law/withdrawn-topic" },
     routes: { [LIVE]: "evidence-law/proof-of-writings" },
     version: 1,
-  };
+  },
+  get = (id: string, method = "GET") =>
+    new Request(`https://digest.law/id/${id}`, { method });
 
 function envWith(map: unknown, ok = true) {
   return {
@@ -44,8 +47,19 @@ function brokenJsonEnv() {
   } as unknown as Parameters<typeof handleConceptId>[1];
 }
 
-const get = (id: string, method = "GET") =>
-  new Request(`https://digest.law/id/${id}`, { method });
+/** ASSETS answers the id map for /id-map.json and a page for anything else. */
+function routedEnv() {
+  return {
+    ASSETS: {
+      fetch: (request: Request) =>
+        Promise.resolve(
+          new URL(request.url).pathname === "/id-map.json"
+            ? Response.json(MAP)
+            : new Response("<html>page</html>", { status: 200 })
+        ),
+    },
+  } as unknown as Parameters<typeof worker.fetch>[1];
+}
 
 beforeEach(() => {
   resetIdMapCache();
@@ -82,6 +96,7 @@ describe("resolving a concept id", () => {
     expect(live.status).toBe(301);
     resetIdMapCache();
     expect(
+      // oxlint-disable-next-line unicorn/no-await-expression-member -- must run after resetIdMapCache(); a named const would need a one-var disable instead
       (await handleConceptId(get(MERGED), envWith(old), MERGED)).status
     ).toBe(404);
   });
@@ -103,9 +118,9 @@ describe("resolving a concept id", () => {
   });
 
   test("HEAD is allowed; POST is not", async () => {
-    const head = await handleConceptId(get(LIVE, "HEAD"), envWith(MAP), LIVE);
+    const head = await handleConceptId(get(LIVE, "HEAD"), envWith(MAP), LIVE),
+      post = await handleConceptId(get(LIVE, "POST"), envWith(MAP), LIVE);
     expect(head.status).toBe(301);
-    const post = await handleConceptId(get(LIVE, "POST"), envWith(MAP), LIVE);
     expect(post.status).toBe(405);
     expect(post.headers.get("allow")).toBe("GET, HEAD");
   });
@@ -129,9 +144,9 @@ describe("resolving a concept id", () => {
     // A non-ok response is only one way to fail: the fetch itself can reject.
     // Caching the rejected promise would 500 every later /id/ request for the
     // life of the isolate — one blip, permanent outage, no recovery.
-    const first = await handleConceptId(get(LIVE), throwingEnv(), LIVE);
+    const first = await handleConceptId(get(LIVE), throwingEnv(), LIVE),
+      retry = await handleConceptId(get(LIVE), envWith(MAP), LIVE);
     expect(first.status).toBe(503);
-    const retry = await handleConceptId(get(LIVE), envWith(MAP), LIVE);
     expect(retry.status).toBe(301);
   });
 
@@ -143,20 +158,6 @@ describe("resolving a concept id", () => {
 });
 
 describe("routing", () => {
-  /** ASSETS answers the id map for /id-map.json and a page for anything else. */
-  function routedEnv() {
-    return {
-      ASSETS: {
-        fetch: (request: Request) =>
-          Promise.resolve(
-            new URL(request.url).pathname === "/id-map.json"
-              ? Response.json(MAP)
-              : new Response("<html>page</html>", { status: 200 })
-          ),
-      },
-    } as unknown as Parameters<typeof worker.fetch>[1];
-  }
-
   test("/id/{id} reaches the resolver, with or without a trailing slash", async () => {
     for (const url of [
       `https://digest.law/id/${LIVE}`,

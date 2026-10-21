@@ -15,34 +15,6 @@
 
 import { humanize, slugSegment } from "./labels";
 
-/** Concept scheme IRI, and the prefix of legacy route-derived concept IRIs. */
-export const W3ID_BASE = "https://w3id.org/digest-law/us/";
-
-/** Permanent, route-independent concept namespace. */
-export const CONCEPT_BASE = "https://w3id.org/digest-law/concept/";
-
-/** Project vocabulary: terms this project defines because SKOS has none. */
-export const VOCAB_BASE = "https://w3id.org/digest-law/vocab/";
-
-/** Datatype namespace; `concept-id` types the canonical `skos:notation`. */
-export const DATATYPE_BASE = "https://w3id.org/digest-law/datatype/";
-
-export const CONCEPT_ID_DATATYPE = `${DATATYPE_BASE}concept-id`;
-
-/** Where the human-readable pages live. */
-export const SITE_BASE = "https://digest.law/";
-
-/**
- * BCP 47 tag for the principal language of this jurisdiction package.
- *
- * This is the *fallback* only. Per-record `language` is honoured when the
- * corpus carries it; as of 2026-07-31 no digest does (measured: 0 of 1,811),
- * so every literal currently falls back to this constant. That absence is the
- * open half of P1-014I — the exporter no longer hard-codes a tag, but the data
- * still has nothing better to say.
- */
-export const SCHEME_LANGUAGE = "en";
-
 /**
  * Well-formed BCP 47 tag, syntactically (not registry-validated).
  *
@@ -55,7 +27,39 @@ export const SCHEME_LANGUAGE = "en";
  * than saying something false, and saying the truth is better than both.
  */
 const BCP47 =
-  /^[a-z]{2,3}(?:-[a-zA-Z0-9]{2,8})*(?:-[0-9a-wyzA-WYZ](?:-[a-zA-Z0-9]{2,8})+)*(?:-[xX](?:-[a-zA-Z0-9]{1,8})+)?$/u;
+    /^[a-z]{2,3}(?:-[a-zA-Z0-9]{2,8})*(?:-[0-9a-wyzA-WYZ](?:-[a-zA-Z0-9]{2,8})+)*(?:-[xX](?:-[a-zA-Z0-9]{1,8})+)?$/u,
+  /** Permanent, route-independent concept namespace. */
+  CONCEPT_BASE = "https://w3id.org/digest-law/concept/",
+  /** Datatype namespace; `concept-id` types the canonical `skos:notation`. */
+  DATATYPE_BASE = "https://w3id.org/digest-law/datatype/",
+  // oxlint-disable-next-line eslint/sort-vars -- derived from DATATYPE_BASE, so it must follow it
+  CONCEPT_ID_DATATYPE = `${DATATYPE_BASE}concept-id`,
+  /**
+   * BCP 47 tag for the principal language of this jurisdiction package.
+   *
+   * This is the *fallback* only. Per-record `language` is honoured when the
+   * corpus carries it; as of 2026-07-31 no digest does (measured: 0 of 1,811),
+   * so every literal currently falls back to this constant. That absence is the
+   * open half of P1-014I — the exporter no longer hard-codes a tag, but the data
+   * still has nothing better to say.
+   */
+  SCHEME_LANGUAGE = "en",
+  /** Where the human-readable pages live. */
+  SITE_BASE = "https://digest.law/",
+  /** Project vocabulary: terms this project defines because SKOS has none. */
+  VOCAB_BASE = "https://w3id.org/digest-law/vocab/",
+  /** Concept scheme IRI, and the prefix of legacy route-derived concept IRIs. */
+  W3ID_BASE = "https://w3id.org/digest-law/us/";
+
+export {
+  CONCEPT_BASE,
+  CONCEPT_ID_DATATYPE,
+  DATATYPE_BASE,
+  SCHEME_LANGUAGE,
+  SITE_BASE,
+  VOCAB_BASE,
+  W3ID_BASE,
+};
 
 export function isBcp47(tag: unknown): tag is string {
   return typeof tag === "string" && BCP47.test(tag);
@@ -80,13 +84,14 @@ export function resolveRefIn(
   nodeBySlugPath: Map<string, { label: string }>,
   urn: string
 ): ResolvedRef {
-  const slugPath = urnToSlugPath(urn),
-    node = nodeBySlugPath.get(slugPath),
-    lastSeg =
+  const lastSeg =
       urn
         .replace(/^urn:legal-taxonomy:issue:/u, "")
         .split(".")
-        .pop() ?? urn;
+        .pop() ?? urn,
+    slugPath = urnToSlugPath(urn),
+    // oxlint-disable-next-line eslint/sort-vars -- node is looked up by slugPath
+    node = nodeBySlugPath.get(slugPath);
   return {
     label: node?.label ?? humanize(lastSeg),
     published: Boolean(node),

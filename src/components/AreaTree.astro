@@ -25,18 +25,18 @@ function glance(child: TreeNode): string {
   const bits: string[] = [],
    direct = child.digest;
   if (direct) {
-    // The digest's own bundle only: on a node that also has children,
-    // `sourceCount` is the subtree aggregate and would overstate the row
-    // ("69 src" on an overview digest holding 2).
-    const n = child.ownSourceCount;
+    const date = formatDate(direct.data.timestamp),
+     // The digest's own bundle only: on a node that also has children,
+     // `sourceCount` is the subtree aggregate and would overstate the row
+     // ("69 src" on an overview digest holding 2).
+     n = child.ownSourceCount,
+     profile = cleanProfile(direct.data.source_profile);
     if (n) {
       bits.push(`${n} src`);
     }
-    const profile = cleanProfile(direct.data.source_profile);
     if (profile) {
       bits.push(profile);
     }
-    const date = formatDate(direct.data.timestamp);
     if (date) {
       bits.push(date);
     }

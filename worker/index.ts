@@ -59,11 +59,13 @@ interface Env {
   SHARD_MAP?: Record<string, string>;
 }
 
-/** Envelope sender. Must be on a domain onboarded to Email Sending. */
-const FROM = { email: "forms@digest.law", name: "digest.law contact form" },
-  /** Only these origins may post the form. */
-  ALLOWED_ORIGINS = new Set(["https://digest.law", "https://www.digest.law"]),
-  MAX_BODY_BYTES = 32_000,
+/** Only these origins may post the form. */
+const ALLOWED_ORIGINS = new Set([
+    "https://digest.law",
+    "https://www.digest.law",
+  ]),
+  /** A concept id: 32 lowercase hex (see the /id/ resolver, handleConceptId). */
+  CONCEPT_ID = /^[0-9a-f]{32}$/u,
   /**
    * Collapse control characters to spaces. The send binding takes structured
    * fields rather than raw MIME, so this is belt-and-braces against header
@@ -71,7 +73,10 @@ const FROM = { email: "forms@digest.law", name: "digest.law contact form" },
    * out of somebody's mail client.
    */
   // oxlint-disable-next-line no-control-regex -- matching them is the point
-  CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu;
+  CONTROL_CHARS = /[\u0000-\u001F\u007F]/gu,
+  /** Envelope sender. Must be on a domain onboarded to Email Sending. */
+  FROM = { email: "forms@digest.law", name: "digest.law contact form" },
+  MAX_BODY_BYTES = 32_000;
 
 function clean(value: unknown, max: number): string {
   if (typeof value !== "string") {
@@ -193,20 +198,21 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     return fail(request, "Use POST.", 405);
   }
 
+  const declared = Number(request.headers.get("content-length") ?? "0"),
+    origin = request.headers.get("origin");
   // Same-origin only. Not a real defence against a determined sender, but it
   // stops the drive-by form spam that finds every public POST endpoint.
-  const origin = request.headers.get("origin");
   if (origin && !ALLOWED_ORIGINS.has(origin)) {
     return fail(request, "Cross-origin submissions are not accepted.", 403);
   }
 
   // Cheap guard before touching the body at all — the JSON path re-checks
   // after reading, since Content-Length is a claim, not a promise.
-  const declared = Number(request.headers.get("content-length") ?? "0");
   if (declared > MAX_BODY_BYTES) {
     return fail(request, "That message is too long.", 413);
   }
 
+  // oxlint-disable-next-line eslint/one-var -- reads the body; must stay after the origin and size guards
   const submission = await readSubmission(request);
   if (!submission) {
     return fail(request, "Could not read that submission.", 400);
@@ -219,6 +225,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
       : htmlPage("Received", "Thank you — your message is in.", 200);
   }
 
+  // oxlint-disable-next-line eslint/one-var -- needs the null/bot-trap checks on submission first
   const topic = topicById(submission.topic);
   if (!topic) {
     return fail(request, "Pick a topic from the list.", 400);
@@ -233,6 +240,7 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
     return fail(request, "That email address does not look valid.", 400);
   }
 
+  // oxlint-disable-next-line eslint/one-var -- built only after topic and fields are validated
   const lines = [
     `Topic:        ${topic.label}`,
     `Name:         ${submission.name}`,
@@ -291,8 +299,6 @@ async function handleContact(request: Request, env: Env): Promise<Response> {
  * JSON-LD endpoint yet, so an Accept-driven branch would have nothing honest
  * to point at. The whole graph is at /skos.jsonld. Tracked with P1-014G.
  */
-const CONCEPT_ID = /^[0-9a-f]{32}$/u;
-
 interface IdMap {
   /** Merged-away duplicates → the survivor's current route. Optional: maps
    *  built before merges existed do not carry it. */
@@ -321,6 +327,7 @@ async function loadIdMap(request: Request, env: Env): Promise<IdMap | null> {
     if (!response.ok) {
       return null;
     }
+    // oxlint-disable-next-line eslint/one-var -- must not parse the body before the response.ok check
     const map = (await response.json()) as IdMap | null;
     return map?.routes && map.retired ? map : null;
   } catch {
@@ -363,7 +370,9 @@ export async function handleConceptId(
 
   // A duplicate merged into another concept: its content lives on at the
   // survivor, so that is a permanent move, not a disappearance.
-  const route = map.routes[id],
+  // oxlint-disable-next-line eslint/one-var -- map is only safe to index after the null check above
+  const gone = map.retired[id],
+    route = map.routes[id],
     survivor = map.replaced?.[id];
   if (route) {
     return Response.redirect(
@@ -377,7 +386,6 @@ export async function handleConceptId(
       301
     );
   }
-  const gone = map.retired[id];
   if (gone) {
     return new Response(
       `Concept ${id} has been retired. Its last route was /${gone}/.\n` +
@@ -399,6 +407,7 @@ export async function handleConceptId(
  * errors if the bytes written differ from it, so a short or stale part can
  * never be served as a silently truncated file. Absent outside workerd.
  */
+// oxlint-disable-next-line eslint/one-var -- an ambient declaration cannot join an initialized const list
 declare const FixedLengthStream:
   | (new (length: number) => TransformStream<Uint8Array, Uint8Array>)
   | undefined;
@@ -445,6 +454,7 @@ function serveOversize(
       status: 405,
     });
   }
+  // oxlint-disable-next-line eslint/one-var -- pump starts fetching; must stay after the method/ETag early returns
   const { origin } = new URL(request.url),
     { readable, writable } =
       typeof FixedLengthStream === "function"
@@ -462,7 +472,9 @@ function serveOversize(
     })().catch(async (error: unknown) => {
       // pipeTo already cancels the failed part's body; abort can itself
       // reject once the stream has errored, and must not escape waitUntil.
-      await writable.abort(error).catch(() => {});
+      await writable.abort(error).catch(() => {
+        // Already errored: nothing left to abort.
+      });
     });
   // The client reading the body keeps the request alive anyway; waitUntil
   // just covers a slow final flush.
@@ -472,11 +484,16 @@ function serveOversize(
 
 export default {
   async fetch(request: Request, env: Env, ctx?: WaitUntil): Promise<Response> {
-    const { pathname } = new URL(request.url);
+    const { pathname } = new URL(request.url),
+      // The shard rules in run_worker_first are prefix globs, so a root file
+      // like /sitemap-index.xml can land here via the /sitemap* rule — only an
+      // exact first-segment match forwards; everything else is a root asset.
+      bindingName = env.SHARD_MAP?.[pathname.split("/")[1] ?? ""],
+      conceptId = /^\/id\/(?<id>[^/]+)\/?$/u.exec(pathname),
+      oversize = env.OVERSIZE_ASSETS?.[pathname];
     if (pathname === "/api/contact") {
       return await handleContact(request, env);
     }
-    const conceptId = /^\/id\/(?<id>[^/]+)\/?$/u.exec(pathname);
     if (conceptId) {
       return await handleConceptId(
         request,
@@ -484,15 +501,9 @@ export default {
         (conceptId.groups?.id ?? "").toLowerCase()
       );
     }
-    const oversize = env.OVERSIZE_ASSETS?.[pathname];
     if (oversize) {
       return serveOversize(request, env, ctx, oversize);
     }
-    // The shard rules in run_worker_first are prefix globs, so a root file
-    // like /sitemap-index.xml can land here via the /sitemap* rule — only an
-    // exact first-segment match forwards; everything else is a root asset.
-    const segment = pathname.split("/")[1] ?? "",
-      bindingName = env.SHARD_MAP?.[segment];
     if (bindingName) {
       const shard = (
         env as unknown as Record<string, AssetFetcher | undefined>

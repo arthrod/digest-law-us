@@ -6,13 +6,23 @@ import { defineConfig } from "astro/config";
 import { remarkStripFmEcho } from "./src/lib/remark-strip-fm-echo";
 
 /**
- * Preview builds (PREVIEW_BUNDLES / PREVIEW_PATHS — see src/corpus.config.ts)
+ * previewMode: preview builds (PREVIEW_BUNDLES / PREVIEW_PATHS — see
+ * src/corpus.config.ts)
  * write to dist-preview/ so a full 57k-page dist/ is never clobbered by a
  * ten-page style-iteration build.
  */
-const previewMode =
-  Boolean(Math.trunc(Number(process.env.PREVIEW_BUNDLES ?? ""))) ||
-  Boolean(process.env.PREVIEW_PATHS?.trim());
+// prerenderWorkers: unset means all cores but one (Astro's default); a
+// non-negative integer caps the pool, and 0 disables parallel prerendering.
+// Anything else ("", "abc", 1.5) is treated as unset. See
+// experimental.parallelPrerender below.
+const prerenderWorkers = /^(?:0|[1-9]\d*)$/u.test(
+    process.env.ASTRO_PRERENDER_WORKERS ?? ""
+  )
+    ? Number(process.env.ASTRO_PRERENDER_WORKERS)
+    : undefined,
+  previewMode =
+    Boolean(Math.trunc(Number(process.env.PREVIEW_BUNDLES ?? ""))) ||
+    Boolean(process.env.PREVIEW_PATHS?.trim());
 
 // https://astro.build/config
 export default defineConfig({
@@ -58,6 +68,25 @@ export default defineConfig({
     // build.concurrency appears in core/build/config-hash/input.js, so
     // toggling them cannot invalidate an incremental manifest.
     incrementalBuild: process.env.ASTRO_INCREMENTAL !== "0",
+    /**
+     * Astro 7.4: render static routes on worker threads, by default one per
+     * CPU core but one (11 here). Generation concurrency becomes
+     * workers x build.concurrency, and the incremental cache still applies —
+     * canSkip() runs on the main thread before a path is handed to a worker
+     * (core/build/generate.js), and the flag is not in
+     * core/build/config-hash/input.js, so toggling it keeps the manifest.
+     *
+     * The ceiling is RAM, not cores: each worker imports the built app,
+     * which loads the chunked content store and runs its own getCorpus()
+     * (module-level memo, so nothing is shared across workers), on a 31 GB
+     * machine whose main thread is already sized at a 24 GB heap. If a
+     * build dies out of memory, cap the pool with ASTRO_PRERENDER_WORKERS=N
+     * rather than turning the feature off; 0 disables it entirely.
+     */
+    parallelPrerender:
+      prerenderWorkers === undefined
+        ? true
+        : prerenderWorkers > 0 && { workers: prerenderWorkers },
   },
 
   integrations: [sitemap()],

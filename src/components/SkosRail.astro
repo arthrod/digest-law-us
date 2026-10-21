@@ -190,12 +190,12 @@ const { toc, broader, narrower, related, relations, mappings, record } =
 <script>
   // Island № 2 — TOC scroll-highlight (~1 KB). Plain anchors without JS.
   function initTocHighlight() {
-    const links =
+    const bySlug = new Map<string, HTMLAnchorElement>(),
+     links =
       document.querySelectorAll<HTMLAnchorElement>("[data-toc-link]");
     if (!links.length) {
       return;
     }
-    const bySlug = new Map<string, HTMLAnchorElement>();
     for (const link of links) {
       const slug = link.dataset.tocLink;
       if (slug) {
@@ -204,12 +204,14 @@ const { toc, broader, narrower, related, relations, mappings, record } =
     }
     // The null check narrows on its own — TypeScript infers the predicate, so
     // this needs no hand-written `el is HTMLElement`.
+    // oxlint-disable-next-line eslint/one-var -- reads bySlug after the loop above fills it
     const headings = [...bySlug.keys()]
       .map((slug) => document.querySelector<HTMLElement>(`#${slug}`))
       .filter((el) => el !== null);
     if (!headings.length) {
       return;
     }
+    // oxlint-disable-next-line eslint/one-var -- only observe once the headings guard has passed
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

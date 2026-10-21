@@ -97,7 +97,9 @@ function idOf(node: Node): string {
 
 /** Labels: one prefLabel per language, sets pairwise disjoint (P1-014B). */
 function checkLabels(node: Node, out: Violation[]): void {
-  const id = idOf(node),
+  const byLang = new Map<string, number>(),
+    id = idOf(node),
+    owner = new Map<string, string>(),
     prefs = literals(node, "skos:prefLabel");
   if (prefs.length === 0) {
     out.push({
@@ -107,7 +109,6 @@ function checkLabels(node: Node, out: Violation[]): void {
       severity: "violation",
     });
   }
-  const byLang = new Map<string, number>();
   for (const label of prefs) {
     const lang = label.language ?? "";
     if (!lang) {
@@ -142,30 +143,31 @@ function checkLabels(node: Node, out: Violation[]): void {
   }
 
   // Disjointness is per language, on normalized values.
-  const owner = new Map<string, string>(),
-    claim = (label: Literal, role: string) => {
-      const key = `${label.language ?? ""}\u0000${foldLabel(label.value)}`,
-        held = owner.get(key);
-      if (held && held !== role) {
-        out.push({
-          constraint: "ConceptShape label disjointness",
-          message: `"${label.value}" appears as both ${held} and ${role}`,
-          node: id,
-          severity: "violation",
-        });
-        return;
-      }
-      if (held === role) {
-        out.push({
-          constraint: "ConceptShape label disjointness",
-          message: `"${label.value}" is repeated within ${role}`,
-          node: id,
-          severity: "violation",
-        });
-        return;
-      }
-      owner.set(key, role);
-    };
+  // oxlint-disable-next-line eslint/one-var -- claim closes over owner and id; hoisting it above them trips no-use-before-define
+  const claim = (label: Literal, role: string) => {
+    const key = `${label.language ?? ""}\u0000${foldLabel(label.value)}`,
+      // oxlint-disable-next-line eslint/sort-vars -- held is looked up by key
+      held = owner.get(key);
+    if (held && held !== role) {
+      out.push({
+        constraint: "ConceptShape label disjointness",
+        message: `"${label.value}" appears as both ${held} and ${role}`,
+        node: id,
+        severity: "violation",
+      });
+      return;
+    }
+    if (held === role) {
+      out.push({
+        constraint: "ConceptShape label disjointness",
+        message: `"${label.value}" is repeated within ${role}`,
+        node: id,
+        severity: "violation",
+      });
+      return;
+    }
+    owner.set(key, role);
+  };
   for (const label of prefs) {
     claim(label, "prefLabel");
   }
@@ -199,6 +201,7 @@ function checkIdentity(node: Node, out: Violation[]): void {
     return; // unminted concepts carry no notation by design
   }
 
+  // oxlint-disable-next-line eslint/one-var -- notations are read only past the unminted early return
   const notations = literals(node, "skos:notation");
   if (notations.length !== 1) {
     out.push({
@@ -270,8 +273,15 @@ function checkIdentity(node: Node, out: Violation[]): void {
 
 /** Per-node hierarchy and mapping constraints (P1-014D, P1-014F). */
 function checkRelations(node: Node, out: Violation[]): void {
-  const id = idOf(node),
-    broader = new Set(refs(node, "skos:broader")),
+  const broader = new Set(refs(node, "skos:broader")),
+    id = idOf(node),
+    mappings = {
+      "skos:broadMatch": refs(node, "skos:broadMatch"),
+      "skos:closeMatch": refs(node, "skos:closeMatch"),
+      "skos:exactMatch": refs(node, "skos:exactMatch"),
+      "skos:narrowMatch": refs(node, "skos:narrowMatch"),
+      "skos:relatedMatch": refs(node, "skos:relatedMatch"),
+    },
     narrower = new Set(refs(node, "skos:narrower")),
     related = new Set(refs(node, "skos:related"));
 
@@ -310,13 +320,6 @@ function checkRelations(node: Node, out: Violation[]): void {
     }
   }
 
-  const mappings = {
-    "skos:broadMatch": refs(node, "skos:broadMatch"),
-    "skos:closeMatch": refs(node, "skos:closeMatch"),
-    "skos:exactMatch": refs(node, "skos:exactMatch"),
-    "skos:narrowMatch": refs(node, "skos:narrowMatch"),
-    "skos:relatedMatch": refs(node, "skos:relatedMatch"),
-  };
   for (const [key, targets] of Object.entries(mappings)) {
     for (const target of targets) {
       if (!ABSOLUTE_HTTP.test(target)) {
@@ -337,8 +340,9 @@ function checkRelations(node: Node, out: Violation[]): void {
       }
     }
   }
-  const exact = new Set(mappings["skos:exactMatch"]),
-    broad = new Set(mappings["skos:broadMatch"]),
+  // oxlint-disable-next-line eslint/one-var -- derived from mappings; no sorted position exists in the head
+  const broad = new Set(mappings["skos:broadMatch"]),
+    exact = new Set(mappings["skos:exactMatch"]),
     narrow = new Set(mappings["skos:narrowMatch"]);
   for (const target of exact) {
     if (broad.has(target) || narrow.has(target)) {
@@ -380,30 +384,11 @@ function checkRelations(node: Node, out: Violation[]): void {
 
 /** Graph-wide: notation uniqueness, cycles, transitive related, top concepts. */
 function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
-  const notationOwner = new Map<string, string>();
-  for (const node of concepts) {
-    for (const notation of literals(node, "skos:notation")) {
-      const held = notationOwner.get(notation.value);
-      if (held) {
-        out.push({
-          constraint: "ConceptShape notation uniqueness",
-          message: `notation "${notation.value}" is also used by ${held}`,
-          node: idOf(node),
-          severity: "violation",
-        });
-      }
-      notationOwner.set(notation.value, idOf(node));
-    }
-  }
-
-  const broaderOf = new Map<string, string[]>();
-  for (const node of concepts) {
-    broaderOf.set(idOf(node), refs(node, "skos:broader"));
-  }
-
-  // Cycle detection over the asserted broader graph.
-  const state = new Map<string, 0 | 1 | 2>(),
+  const broaderOf = new Map<string, string[]>(),
+    notationOwner = new Map<string, string>(),
     reported = new Set<string>(),
+    state = new Map<string, 0 | 1 | 2>(),
+    // Cycle detection over the asserted broader graph.
     walk = (id: string, trail: string[]): void => {
       if (state.get(id) === 2) {
         return;
@@ -427,12 +412,32 @@ function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
       }
       state.set(id, 2);
     };
+  for (const node of concepts) {
+    for (const notation of literals(node, "skos:notation")) {
+      const held = notationOwner.get(notation.value);
+      if (held) {
+        out.push({
+          constraint: "ConceptShape notation uniqueness",
+          message: `notation "${notation.value}" is also used by ${held}`,
+          node: idOf(node),
+          severity: "violation",
+        });
+      }
+      notationOwner.set(notation.value, idOf(node));
+    }
+  }
+
+  for (const node of concepts) {
+    broaderOf.set(idOf(node), refs(node, "skos:broader"));
+  }
+
   for (const id of broaderOf.keys()) {
     walk(id, []);
   }
 
   // skos:related must be disjoint from skos:broaderTransitive (SKOS S27),
   // not merely from the direct broader assertions checked per node.
+  // oxlint-disable-next-line eslint/one-var -- ancestorsOf closes over broaderOf, so it cannot sort ahead of it
   const ancestorsOf = (id: string, seen = new Set<string>()): Set<string> => {
     for (const parent of broaderOf.get(id) ?? []) {
       if (!seen.has(parent)) {
@@ -448,6 +453,7 @@ function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
     if (related.length === 0) {
       continue;
     }
+    // oxlint-disable-next-line eslint/one-var -- the ancestor walk stays behind the no-related early continue
     const ancestors = ancestorsOf(id),
       descendants = new Set<string>();
     for (const [child, parents] of broaderOf) {
@@ -469,8 +475,9 @@ function checkGraph(concepts: Node[], schemes: Node[], out: Violation[]): void {
 
   // hasTopConcept ↔ topConceptOf must agree in both directions (P1-014E).
   for (const scheme of schemes) {
-    const schemeId = idOf(scheme),
-      declared = new Set(refs(scheme, "skos:hasTopConcept")),
+    const declared = new Set(refs(scheme, "skos:hasTopConcept")),
+      schemeId = idOf(scheme),
+      // oxlint-disable-next-line eslint/sort-vars -- claiming filters on schemeId
       claiming = new Set(
         concepts
           .filter((node) => refs(node, "skos:topConceptOf").includes(schemeId))
@@ -505,15 +512,15 @@ function checkVocabulary(node: Node, out: Violation[]): void {
     if (!key.startsWith("digest:")) {
       continue;
     }
-    const term = key.slice("digest:".length),
-      known = [
+    const known = [
         "corpusIssueId",
         "historicalLabel",
         "legacyIri",
         "pathNotation",
         "placementChild",
         "placementParent",
-      ];
+      ],
+      term = key.slice("digest:".length);
     if (!known.includes(term)) {
       out.push({
         constraint: "project vocabulary",
@@ -539,9 +546,10 @@ export function validateSkosGraph(document: unknown): Violation[] {
     nodes = graph.filter(
       (node): node is Node => Boolean(node) && typeof node === "object"
     ),
+    // oxlint-disable-next-line eslint/sort-vars -- concepts is filtered from nodes
     concepts = nodes.filter(isConcept),
-    schemes = nodes.filter(isScheme),
-    out: Violation[] = [];
+    out: Violation[] = [],
+    schemes = nodes.filter(isScheme);
   if (concepts.length === 0) {
     out.push({
       constraint: "graph",

@@ -28,6 +28,8 @@ const { slugPath } = Astro.props,
 if (!node?.digest) {
   throw new Error(`No digest at ${slugPath}`);
 }
+/* oxlint-disable eslint/sort-vars -- toc/fm/crumbs/broader/childRefs read earlier declarators and render(digest) is awaited mid-list; sorting would hit the TDZ */
+// oxlint-disable-next-line eslint/one-var -- declared after the !node?.digest guard; render(digest) must not run before the throw
 const { digest } = node,
  { dir } = node,
  fm = digest.data,
@@ -69,10 +71,21 @@ const { digest } = node,
   slugPath: c.slugPath,
 })),
  narrowerSet = new Map<string, RailRef>();
+/* oxlint-enable eslint/sort-vars */
 for (const r of [...toRail(fm.narrower), ...childRefs]) {
   narrowerSet.set(r.slugPath, r);
 }
-const narrower = [...narrowerSet.values()],
+// oxlint-disable-next-line eslint/one-var -- narrower reads narrowerSet after the loop above fills it
+const mappingLabels: Record<string, string> = {
+  eurovoc: "EuroVoc",
+  folio: "FOLIO",
+  list: "LIST",
+  sali_lmss: "SALI/LMSS",
+  west_1914: "West 1914",
+},
+ mappings: { label: string; url?: string; text?: string }[] = [],
+
+ narrower = [...narrowerSet.values()],
  related = toRail(fm.related),
 
  relationLabels: Record<string, string> = {
@@ -85,16 +98,7 @@ const narrower = [...narrowerSet.values()],
   .map(([key, urns]) => ({
     label: relationLabels[key] ?? key,
     refs: toRail(urns as string[]),
-  })),
-
- mappingLabels: Record<string, string> = {
-  eurovoc: "EuroVoc",
-  folio: "FOLIO",
-  list: "LIST",
-  sali_lmss: "SALI/LMSS",
-  west_1914: "West 1914",
-},
- mappings: { label: string; url?: string; text?: string }[] = [];
+  }));
 for (const [key, group] of Object.entries(fm.mappings ?? {})) {
   if (!group || typeof group !== "object") {
     continue;
@@ -105,6 +109,7 @@ for (const [key, group] of Object.entries(fm.mappings ?? {})) {
   if (!values.length) {
     continue;
   }
+  // oxlint-disable-next-line eslint/one-var -- url reads values (sort-vars would put it first: TDZ) and follows the empty-values guard
   const url = values.find((v) => /^https?:\/\//u.test(v));
   mappings.push({
     label: mappingLabels[key] ?? humanize(key),
@@ -113,10 +118,24 @@ for (const [key, group] of Object.entries(fm.mappings ?? {})) {
   });
 }
 
+// oxlint-disable-next-line eslint/one-var -- kept after the mappings loop; merging would hoist these above it and re-sort dependent declarators (TDZ)
+const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
+ areaLabel = crumbTrail[0]?.label ?? "",
+ description =
+  fm.description ||
+  fm.definition ||
+  `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`,
+ historicalLine = fm.historical_labels,
+ itemIds = (fm as Record<string, unknown>)["item_ids"],
+
 /** The full SKOS record, for the rail's disclosure — identity and lifecycle
  *  fields as key/value rows, semantic fields as prose. Relations and
  *  mappings already render above it as navigation. */
-const itemIds = (fm as Record<string, unknown>)["item_ids"],
+ recordProse = [
+  { label: "Definition", text: fm.definition },
+  { label: "Scope", text: fm.scope_note },
+  { label: "Not to be used for", text: fm.do_not_use_for.join("; ") },
+].filter((r) => r.text),
  recordRows = [
   { label: "URN", mono: true, value: fm.id ?? "" },
   { label: "Notation", mono: true, value: fm.notation ?? "" },
@@ -135,25 +154,10 @@ const itemIds = (fm as Record<string, unknown>)["item_ids"],
   { label: "Objectives path", value: fm.objectives_path.join(" → ") },
   { label: "Source profile", value: profile ?? "" },
 ].filter((r) => r.value),
- recordProse = [
-  { label: "Definition", text: fm.definition },
-  { label: "Scope", text: fm.scope_note },
-  { label: "Not to be used for", text: fm.do_not_use_for.join("; ") },
-].filter((r) => r.text),
-
- areaLabel = crumbTrail[0]?.label ?? "",
- title = `${node.label} — ${areaLabel} — American Legal Digest`,
- description =
-  fm.description ||
-  fm.definition ||
-  `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`,
-
- altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
- historicalLine = fm.historical_labels,
-
  sourceUrls = sources
   .map((s) => s.data.resource)
-  .filter((u) => /^https?:\/\//u.test(u));
+  .filter((u) => /^https?:\/\//u.test(u)),
+ title = `${node.label} — ${areaLabel} — American Legal Digest`;
 ---
 
 <Layout {description} {title}>

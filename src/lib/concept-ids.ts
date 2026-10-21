@@ -57,8 +57,9 @@ export interface ConceptRegistry {
   concepts: ConceptRecord[];
 }
 
-const registry = registryFile as ConceptRegistry,
-  byKey = new Map<string, ConceptRecord>();
+const ID_FORM = /^[0-9a-f]{32}$/u,
+  byKey = new Map<string, ConceptRecord>(),
+  registry = registryFile as ConceptRegistry;
 for (const record of registry.concepts) {
   for (const key of record.keys) {
     byKey.set(key, record);
@@ -183,6 +184,7 @@ export function reconcileRegistry(
   for (const record of retired) {
     record.retired = on;
   }
+  // oxlint-disable-next-line eslint/one-var -- restored must be computed after the retire loop above
   const restored = reg.concepts.filter(
     (record) => record.retired && record.keys.some((key) => liveKeys.has(key))
   );
@@ -194,8 +196,6 @@ export function reconcileRegistry(
   }
   return { restored, retired };
 }
-
-const ID_FORM = /^[0-9a-f]{32}$/u;
 
 /**
  * The live concept a merged-away id now resolves to, following `replacedBy`
@@ -250,8 +250,8 @@ function mergeProblems(reg: ConceptRegistry): string[] {
 export function validateRegistry(reg: ConceptRegistry): string[] {
   const problems: string[] = [],
     seenIds = new Map<string, number>(),
-    seenUuids = new Set<string>(),
-    seenKeys = new Map<string, string>();
+    seenKeys = new Map<string, string>(),
+    seenUuids = new Set<string>();
 
   for (const [index, record] of reg.concepts.entries()) {
     if (!ID_FORM.test(record.id)) {

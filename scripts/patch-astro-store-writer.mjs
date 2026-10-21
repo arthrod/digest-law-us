@@ -29,28 +29,32 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const TARGET = path.join(ROOT, "node_modules/astro/dist/content/data-store-writer.js");
-const MARKER = "PATCHED (local): derive the UTF-8 byte length";
-const BUGGY = "const charBytes = ENCODER.encode(str.slice(index, index + charLength)).length;";
-const FIXED = `// ${MARKER} from the code
+const BUGGY =
+    "const charBytes = ENCODER.encode(str.slice(index, index + charLength)).length;",
+  MARKER = "PATCHED (local): derive the UTF-8 byte length",
+  PATCHED = `// ${MARKER} from the code
     // point instead of allocating a TextEncoder result per character. See
     // scripts/patch-astro-store-writer.mjs for the measurements.
-    const charBytes = codePoint < 128 ? 1 : codePoint < 2048 ? 2 : codePoint < 65536 ? 3 : 4;`;
-
-const checkOnly = process.argv.includes("--check");
-const say = (msg) => console.log(`[patch-astro-store-writer] ${msg}`);
+    const charBytes = codePoint < 128 ? 1 : codePoint < 2048 ? 2 : codePoint < 65536 ? 3 : 4;`,
+  ROOT = path.resolve(import.meta.dirname, ".."),
+  TARGET = path.join(
+    ROOT,
+    "node_modules/astro/dist/content/data-store-writer.js"
+  ),
+  checkOnly = process.argv.includes("--check"),
+  say = (msg) => console.log(`[patch-astro-store-writer] ${msg}`);
 
 let real;
 try {
+  // oxlint-disable-next-line node/no-sync -- one-shot CLI; sync keeps the early exits simple
   real = fs.realpathSync(TARGET);
 } catch {
   say("astro not installed yet; nothing to do");
   process.exit(0);
 }
 
+// oxlint-disable-next-line eslint/one-var, node/no-sync -- needs `real` from the try above; one-shot CLI
 const source = fs.readFileSync(real, "utf8");
 
 if (source.includes(MARKER)) {
@@ -69,7 +73,9 @@ if (!source.includes(BUGGY)) {
 }
 
 if (checkOnly) {
-  say("UNPATCHED. Content sync will be roughly 25x slower than it needs to be.");
+  say(
+    "UNPATCHED. Content sync will be roughly 25x slower than it needs to be."
+  );
   say("Run: node scripts/patch-astro-store-writer.mjs");
   process.exit(1);
 }
@@ -77,8 +83,11 @@ if (checkOnly) {
 // Rename a fresh file over the target rather than writing in place: pnpm
 // hardlinks package files into its global content-addressable store, so an
 // in-place write corrupts astro for every project on the machine.
-const patched = source.replace(BUGGY, FIXED);
-const tmp = `${real}.patch-tmp-${process.pid}`;
+// oxlint-disable-next-line eslint/one-var -- must run after the early exits above
+const patched = source.replace(BUGGY, PATCHED),
+  tmp = `${real}.patch-tmp-${process.pid}`;
+// oxlint-disable-next-line node/no-sync -- one-shot postinstall CLI
 fs.writeFileSync(tmp, patched);
+// oxlint-disable-next-line node/no-sync -- one-shot postinstall CLI
 fs.renameSync(tmp, real);
 say(`patched ${path.relative(ROOT, TARGET)}`);

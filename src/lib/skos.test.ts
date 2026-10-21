@@ -185,6 +185,7 @@ describe("placement is not hierarchy (S-02 / P1-006)", () => {
 
   test("only the drafter's asserted broader is published", () => {
     const parent = node("evidence-law/documentary-evidence"),
+      // oxlint-disable-next-line eslint/sort-vars -- concept below depends on both; no sorted order avoids the TDZ
       child = node("evidence-law/documentary-evidence/log-books", {
         broader: [URN],
         pref_label: "LOG BOOKS",
@@ -194,9 +195,10 @@ describe("placement is not hierarchy (S-02 / P1-006)", () => {
   });
 
   test("structural children are placement, not skos:narrower", () => {
-    const parent = node("evidence-law/documentary-evidence"),
-      child = node("evidence-law/documentary-evidence/log-books");
+    const child = node("evidence-law/documentary-evidence/log-books"),
+      parent = node("evidence-law/documentary-evidence");
     parent.children = [child];
+    // oxlint-disable-next-line eslint/one-var -- must see parent.children set above
     const concept = conceptFor(corpusOf(parent, child), parent);
     expect(concept["skos:narrower"]).toBeUndefined();
     expect(concept["digest:placementChild"]).toHaveLength(1);

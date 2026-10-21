@@ -13,9 +13,38 @@ import { getCorpus } from "@/lib/corpus";
 import { formatBytes, formatDate } from "@/lib/labels";
 import { getPurge } from "@/lib/purge";
 
-const corpus = await getCorpus(),
+/** The per-bundle receipts, as URL suffixes a reader can actually type. */
+const checks = [
+  {
+    body: "The digest, and its SKOS concept as JSON-LD in the page head.",
+    path: "/{area}/…/{topic}/",
+  },
+  {
+    body: "Every query with its hit count, every source retained, and every candidate rejected with its technical reason.",
+    path: "…/audit/",
+  },
+  {
+    body: "The retained source, in full. Long texts continue at /2/, /3/ — real pages, not one file nobody can open.",
+    path: "…/sources/{slug}/",
+  },
+  {
+    body: "Tables of authorities, parsed from the digest's own citations. Empty results are published as documented absence with the queries that produced them.",
+    path: "…/caselaw/ · …/statutory/",
+  },
+  {
+    body: "The generation manifest: prompt and issue-ledger hashes, provider chain, retriever, scraper, depth, breadth, timings, runner version.",
+    path: "/provenance/{area}/…/{topic}.json",
+  },
+  {
+    body: "Any concept identifier resolves to its current route; a retired identifier reports gone rather than pretending it never existed.",
+    path: "/id/{concept-id}",
+  },
+],
+ corpus = await getCorpus(),
  { stats } = corpus,
- purge = await getPurge(),
+ description =
+  "The complete method, stated so it can be reproduced: sources and their legal basis, extraction and classification contracts, dedup thresholds and guards, research manifests, and the failures that set the rules.",
+
  fmt = (n: number) => n.toLocaleString("en-US"),
 
 /** Counts are composed into sentences here, not inline in the template —
@@ -28,57 +57,11 @@ const corpus = await getCorpus(),
   { label: "Digests published here", value: fmt(stats.digests) },
 ],
 
+ purge = await getPurge(),
+
  purgeClause = purge.latest
   ? `${fmt(purge.total)} digests with fewer than two retained sources were deleted under ${purge.events.length} dated manifests, the latest on ${formatDate(purge.latest.date)}; the counts on this page are read from those manifests at build time.`
   : "Digests with fewer than two retained sources are deleted under dated manifests; no manifest was readable at build time.",
-
- stages = [
-  {
-    body: "Thirteen top-level domains were fixed before any classification, seeded from the public-domain 1914 West topic outline (Brief Making and the Use of Law Books, 3d ed.) used as an archival reference. The classifier hard-validates Level 1: a path whose first segment is not verbatim from the spine is rejected. Everything below Level 1 is emergent from classification, not designed.",
-    n: "01",
-    name: "Fix the spine",
-  },
-  {
-    body: "Sources were acquired under clean-IP gates: Internet Archive treatise scans, roughly 1820–1930, admitted only on a section-density floor of 200 §-marks, a title whitelist, and a foreign-jurisdiction rejector; plus Harvard H2O casebooks, CALI eLangdell titles, and pre-1931 ALI drafts. Every source carries a manifest: identifier, URL, sha256, edition, year, volume, retrieval time, and a stated legal basis (89.8% public domain, the rest openly licensed). No content from any proprietary legal database was used at any stage; the exclusion is enforced in the pipeline. Acquisition stopped when the archive was exhausted under the gates, at 88.5% of its 400,000-entry target — the gates were not loosened to reach the number.",
-    n: "02",
-    name: "Acquire, with the basis recorded",
-  },
-  {
-    body: "Body section headings are the unit — the doctrinal structure of each work, not any back-of-book index. Extraction assigns stable item identifiers with character offsets; front tables of contents are the fallback for damaged scans. At this stage only exact identity is deduplicated: same identifier, byte-identical file, or the same section appearing twice in one file. Near-duplicate headings across works are kept deliberately; they record how a century of authors organized the same doctrine.",
-    n: "03",
-    name: "Extract structure",
-  },
-  {
-    body: "One heading per model request, under a fixed contract: normalize OCR and archaic spelling without inventing content; emit a path of three to seven segments, general to specific, Level 1 verbatim from the spine; report confidence in [0,1]. A ten-model fallback chain answered 351,115 headings at mean self-reported confidence 0.842 — no single model's judgment shapes the taxonomy, and the answering model is recorded per row. Every row is append-only and carries the provider and model that answered, the prompt's sha256 and version, token usage, latency, and UTC time, so each classification replays to an exact prompt, model, and moment.",
-    n: "04",
-    name: "Classify",
-  },
-  {
-    body: "Rows above 0.90 confidence became the working set: 156,802, with roughly 197,000 lower-confidence classifications set aside — retained, not destroyed, and recoverable. The union of their path prefixes was minted as the Open Legal Issue Taxonomy — 287,715 SKOS concepts with opaque sequential notations and permanent URIs. Near-duplicate sibling concepts were merged by a six-model ensemble, merging only at three-of-six agreement or unanimity of three designated models; 84,000 single-model suggestions were discarded. The 39,786 merged concepts are deprecated with a pointer to their replacement and stay resolvable. A label under a different parent is a different concept: DAMAGES survives under 186 parents, untouched.",
-    n: "05",
-    name: "Mint the vocabulary",
-  },
-  {
-    body: "Items were then normalized into issues — the recurring legal question at the tip of each path, the unit a key number marks — and anchored to the FOLIO ontology under two roots: areas of law, and objectives. Every placement records the rule that made it (areas: 16.4% exact label match, 81.8% curated keyword rule, 1.8% default), and six extension areas carry no FOLIO IRI because FOLIO has no home for that material. A calibrated embedding pass merged sibling issues at cosine 0.93 or above, guarded by negation, antonym-prefix, and preposition-swap lexicons — calibration showed embedders score legal opposites as near-synonyms (MARINE against NON-MARINE insurance: 0.903). 137,139 issues survived. FOLIO links are anchors, deliberately not subclass assertions.",
-    n: "06",
-    name: "Anchor and deduplicate",
-  },
-  {
-    body: "A research runner takes one issue at a time. It probes primary law on free public channels — CourtListener, GovInfo, eCFR, Cornell LII, direct fetch — and researches under a fixed contract: at least ten distinct searches, each logged; a digest of twelve mandatory sections in fixed order, from Overview to Citations; and a nineteen-section audit that separately records accepted sources, rejected sources, lead-only sources, the snippets used in the digest, the snippets used nowhere, and the branch failures and conversion errors. Sources are retained byte-faithfully with exactly three permitted modifications — HTML-to-Markdown conversion, PDF text extraction, and identification frontmatter. Proprietary legal databases are banned by name. Citations must be inline links, because the caselaw and statutory indexes are parsed from them; author-date citations would yield empty indexes and make a productive run look like one that found nothing. A retained secondary source is not the authority it discusses: a case read about but not read is recorded as a lead, and its holdings are not presented as if read from the opinion. Retention floors are explicit — 200 characters after conversion, 1,500 for probe documents, truncation at 60,000.",
-    n: "07",
-    name: "Research each issue",
-  },
-  {
-    body: `Four gates check every bundle: a fail-closed lint on every file write, a corpus-wide lint over every file, a deterministic pull-request gate, and a reviewing agent working through a 21-item merge instruction whose evidence floor — at least two retained sources — is counted from the files on disk, never from the bundle's own metadata. Every run ends merged or closed; no third state exists. run.json pins the issue ledger and the researcher prompt by sha256 and records the provider chain, retriever, scraper, search depth and breadth, and runner version. ${purgeClause}`,
-    n: "08",
-    name: "Gate every bundle",
-  },
-  {
-    body: "This site mirrors the corpus into stable lowercase routes and mints its own concept identifiers, because the runner's issue identifiers proved to be placement hashes: the label INTENT carried four different UUIDs, and 13,347 labels map to more than one identifier. Site identifiers are opaque, held in an append-only registry with every historical route, exported as SKOS JSON-LD, and checked against the published shapes on every build. Corrections are new commits; pages are not silently edited.",
-    n: "09",
-    name: "Publish with identity",
-  },
-],
 
  rules = [
   {
@@ -143,43 +126,51 @@ const corpus = await getCorpus(),
   },
 ],
 
-/** The per-bundle receipts, as URL suffixes a reader can actually type. */
- checks = [
+ stages = [
   {
-    body: "The digest, and its SKOS concept as JSON-LD in the page head.",
-    path: "/{area}/…/{topic}/",
+    body: "Thirteen top-level domains were fixed before any classification, seeded from the public-domain 1914 West topic outline (Brief Making and the Use of Law Books, 3d ed.) used as an archival reference. The classifier hard-validates Level 1: a path whose first segment is not verbatim from the spine is rejected. Everything below Level 1 is emergent from classification, not designed.",
+    n: "01",
+    name: "Fix the spine",
   },
   {
-    body: "Every query with its hit count, every source retained, and every candidate rejected with its technical reason.",
-    path: "…/audit/",
+    body: "Sources were acquired under clean-IP gates: Internet Archive treatise scans, roughly 1820–1930, admitted only on a section-density floor of 200 §-marks, a title whitelist, and a foreign-jurisdiction rejector; plus Harvard H2O casebooks, CALI eLangdell titles, and pre-1931 ALI drafts. Every source carries a manifest: identifier, URL, sha256, edition, year, volume, retrieval time, and a stated legal basis (89.8% public domain, the rest openly licensed). No content from any proprietary legal database was used at any stage; the exclusion is enforced in the pipeline. Acquisition stopped when the archive was exhausted under the gates, at 88.5% of its 400,000-entry target — the gates were not loosened to reach the number.",
+    n: "02",
+    name: "Acquire, with the basis recorded",
   },
   {
-    body: "The retained source, in full. Long texts continue at /2/, /3/ — real pages, not one file nobody can open.",
-    path: "…/sources/{slug}/",
+    body: "Body section headings are the unit — the doctrinal structure of each work, not any back-of-book index. Extraction assigns stable item identifiers with character offsets; front tables of contents are the fallback for damaged scans. At this stage only exact identity is deduplicated: same identifier, byte-identical file, or the same section appearing twice in one file. Near-duplicate headings across works are kept deliberately; they record how a century of authors organized the same doctrine.",
+    n: "03",
+    name: "Extract structure",
   },
   {
-    body: "Tables of authorities, parsed from the digest's own citations. Empty results are published as documented absence with the queries that produced them.",
-    path: "…/caselaw/ · …/statutory/",
+    body: "One heading per model request, under a fixed contract: normalize OCR and archaic spelling without inventing content; emit a path of three to seven segments, general to specific, Level 1 verbatim from the spine; report confidence in [0,1]. A ten-model fallback chain answered 351,115 headings at mean self-reported confidence 0.842 — no single model's judgment shapes the taxonomy, and the answering model is recorded per row. Every row is append-only and carries the provider and model that answered, the prompt's sha256 and version, token usage, latency, and UTC time, so each classification replays to an exact prompt, model, and moment.",
+    n: "04",
+    name: "Classify",
   },
   {
-    body: "The generation manifest: prompt and issue-ledger hashes, provider chain, retriever, scraper, depth, breadth, timings, runner version.",
-    path: "/provenance/{area}/…/{topic}.json",
+    body: "Rows above 0.90 confidence became the working set: 156,802, with roughly 197,000 lower-confidence classifications set aside — retained, not destroyed, and recoverable. The union of their path prefixes was minted as the Open Legal Issue Taxonomy — 287,715 SKOS concepts with opaque sequential notations and permanent URIs. Near-duplicate sibling concepts were merged by a six-model ensemble, merging only at three-of-six agreement or unanimity of three designated models; 84,000 single-model suggestions were discarded. The 39,786 merged concepts are deprecated with a pointer to their replacement and stay resolvable. A label under a different parent is a different concept: DAMAGES survives under 186 parents, untouched.",
+    n: "05",
+    name: "Mint the vocabulary",
   },
   {
-    body: "Any concept identifier resolves to its current route; a retired identifier reports gone rather than pretending it never existed.",
-    path: "/id/{concept-id}",
+    body: "Items were then normalized into issues — the recurring legal question at the tip of each path, the unit a key number marks — and anchored to the FOLIO ontology under two roots: areas of law, and objectives. Every placement records the rule that made it (areas: 16.4% exact label match, 81.8% curated keyword rule, 1.8% default), and six extension areas carry no FOLIO IRI because FOLIO has no home for that material. A calibrated embedding pass merged sibling issues at cosine 0.93 or above, guarded by negation, antonym-prefix, and preposition-swap lexicons — calibration showed embedders score legal opposites as near-synonyms (MARINE against NON-MARINE insurance: 0.903). 137,139 issues survived. FOLIO links are anchors, deliberately not subclass assertions.",
+    n: "06",
+    name: "Anchor and deduplicate",
   },
-],
-
- tiles = [
-  { label: "Digests published", value: fmt(stats.digests) },
-  ...(purge.latest
-    ? [{ label: "Deleted below the floor", value: fmt(purge.total) }]
-    : []),
-  { label: "Pre-provenance, disclosed", value: String(stats.preProvenance) },
   {
-    label: `Source texts held — ${formatBytes(stats.sourceBytes)}`,
-    value: fmt(stats.sources),
+    body: "A research runner takes one issue at a time. It probes primary law on free public channels — CourtListener, GovInfo, eCFR, Cornell LII, direct fetch — and researches under a fixed contract: at least ten distinct searches, each logged; a digest of twelve mandatory sections in fixed order, from Overview to Citations; and a nineteen-section audit that separately records accepted sources, rejected sources, lead-only sources, the snippets used in the digest, the snippets used nowhere, and the branch failures and conversion errors. Sources are retained byte-faithfully with exactly three permitted modifications — HTML-to-Markdown conversion, PDF text extraction, and identification frontmatter. Proprietary legal databases are banned by name. Citations must be inline links, because the caselaw and statutory indexes are parsed from them; author-date citations would yield empty indexes and make a productive run look like one that found nothing. A retained secondary source is not the authority it discusses: a case read about but not read is recorded as a lead, and its holdings are not presented as if read from the opinion. Retention floors are explicit — 200 characters after conversion, 1,500 for probe documents, truncation at 60,000.",
+    n: "07",
+    name: "Research each issue",
+  },
+  {
+    body: `Four gates check every bundle: a fail-closed lint on every file write, a corpus-wide lint over every file, a deterministic pull-request gate, and a reviewing agent working through a 21-item merge instruction whose evidence floor — at least two retained sources — is counted from the files on disk, never from the bundle's own metadata. Every run ends merged or closed; no third state exists. run.json pins the issue ledger and the researcher prompt by sha256 and records the provider chain, retriever, scraper, search depth and breadth, and runner version. ${purgeClause}`,
+    n: "08",
+    name: "Gate every bundle",
+  },
+  {
+    body: "This site mirrors the corpus into stable lowercase routes and mints its own concept identifiers, because the runner's issue identifiers proved to be placement hashes: the label INTENT carried four different UUIDs, and 13,347 labels map to more than one identifier. Site identifiers are opaque, held in an append-only registry with every historical route, exported as SKOS JSON-LD, and checked against the published shapes on every build. Corrections are new commits; pages are not silently edited.",
+    n: "09",
+    name: "Publish with identity",
   },
 ],
 
@@ -192,8 +183,17 @@ const corpus = await getCorpus(),
     : "sm:border-hairline pt-4.5 pr-5 sm:border-l sm:px-5";
 },
 
- description =
-  "The complete method, stated so it can be reproduced: sources and their legal basis, extraction and classification contracts, dedup thresholds and guards, research manifests, and the failures that set the rules.",
+ tiles = [
+  { label: "Digests published", value: fmt(stats.digests) },
+  ...(purge.latest
+    ? [{ label: "Deleted below the floor", value: fmt(purge.total) }]
+    : []),
+  { label: "Pre-provenance, disclosed", value: String(stats.preProvenance) },
+  {
+    label: `Source texts held — ${formatBytes(stats.sourceBytes)}`,
+    value: fmt(stats.sources),
+  },
+],
  title = "Methodology — American Legal Digest";
 ---
 

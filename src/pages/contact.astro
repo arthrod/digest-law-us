@@ -13,15 +13,8 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { LIMITS, REVIEWERS, TOPICS } from "@/lib/committee";
 
-const facts = [
-  { label: "Corrections", value: "Ship as new commits, never silent edits" },
-  { label: "Reviewers", value: "Open call — local and global" },
-  { label: "Reply", value: "When we can. Two people, no support desk" },
-  { label: "Not", value: "Legal advice, and not a lawyer referral" },
-],
-
 /** Same border rule as the stat grids on /about/ and /methodology/. */
- cellClass = (i: number) => {
+const cellClass = (i: number) => {
   if (i === 0) {
     return "pt-4.5 pr-5";
   }
@@ -32,6 +25,13 @@ const facts = [
 
  description =
   "Report a correction to a digest, apply to review, or raise a source or licensing question with the American Legal Digest review committee.",
+
+ facts = [
+  { label: "Corrections", value: "Ship as new commits, never silent edits" },
+  { label: "Reviewers", value: "Open call — local and global" },
+  { label: "Reply", value: "When we can. Two people, no support desk" },
+  { label: "Not", value: "Legal advice, and not a lawyer referral" },
+],
  title = "Contact — American Legal Digest";
 ---
 
@@ -242,14 +242,15 @@ const facts = [
     }
     form.dataset.bound = "1";
 
-    const submit = form.querySelector<HTMLButtonElement>(
+    // oxlint-disable-next-line eslint/one-var -- must follow the null-form guard above; hoisting would call querySelector on null
+    const status = form.querySelector<HTMLElement>("[data-contact-status]"),
+     submit = form.querySelector<HTMLButtonElement>(
       "[data-contact-submit]"
     ),
-     status = form.querySelector<HTMLElement>("[data-contact-status]"),
+     topic = form.querySelector<HTMLSelectElement>("#f-topic"),
 
     // Deep links from /committee/ preselect the topic: /contact/?topic=reviewer
-     wanted = new URLSearchParams(window.location.search).get("topic"),
-     topic = form.querySelector<HTMLSelectElement>("#f-topic");
+     wanted = new URLSearchParams(window.location.search).get("topic");
     if (wanted && topic?.querySelector(`option[value="${CSS.escape(wanted)}"]`)) {
       topic.value = wanted;
     }
@@ -271,6 +272,7 @@ const facts = [
           headers: { Accept: "application/json" },
           method: "POST",
         }),
+         // oxlint-disable-next-line eslint/sort-vars -- data awaits response.json(); sorting would hit the TDZ
          data = (await response.json().catch(() => ({}))) as {
           error?: string;
           routedTo?: string[];
@@ -279,9 +281,11 @@ const facts = [
           throw new Error(data.error ?? `Request failed (${response.status}).`);
         }
 
+        // oxlint-disable-next-line eslint/one-var -- declared after the response.ok guard; hoisting would run before the throw
         const sent = document.createElement("div");
         sent.className = "border-ink mt-3 border-t pt-6";
         sent.setAttribute("role", "status");
+        // oxlint-disable-next-line eslint/one-var -- declared after the response.ok guard; hoisting would run before the throw
         const to = data.routedTo?.join(" and ") ?? "the committee";
         sent.innerHTML = `
           <div class="ald-meta text-[0.6875rem]">Received</div>

@@ -31,8 +31,10 @@ export function auditsLoader(corpusDir: string): Loader {
   return {
     async load({ store, logger, config, parseData, generateDigest }) {
       const root = path.resolve(fileURLToPath(config.root), corpusDir),
+        // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
         listing = await fs.readdir(root, { recursive: true }),
         preview = PREVIEW_MODE ? await previewBundles(root) : null,
+        // oxlint-disable-next-line eslint/sort-vars -- files depends on listing and preview
         files = listing
           .map((rel) => rel.replaceAll("\\", "/"))
           .filter((rel) => rel.endsWith(`/${AUDIT_FILE}`))
@@ -55,7 +57,9 @@ export function auditsLoader(corpusDir: string): Loader {
           logger.warn(`Broken frontmatter in ${rel}: ${error}`);
         }
 
+        // oxlint-disable-next-line eslint/one-var -- parseData must run after the frontmatter warning is logged
         const id = rel.replace(/\.md$/u, ""),
+          // oxlint-disable-next-line eslint/sort-vars -- data depends on id
           data = await parseData({
             data: {
               description:

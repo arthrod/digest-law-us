@@ -11,6 +11,7 @@ import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
 import { schemeSummaryJsonLd } from "@/lib/skos";
 
+/* oxlint-disable eslint/sort-vars -- counts call fmt and read the corpus destructure; sorting would hit the TDZ */
 const corpus = await getCorpus(),
  { doctrinalAreas, compositeAreas, stats } = corpus,
  doctrinalTopics = doctrinalAreas.reduce((n, a) => n + a.topicCount, 0),
@@ -32,6 +33,7 @@ const corpus = await getCorpus(),
   "search and rejection behind it.",
  doctrinalCounts = `${doctrinalAreas.length} areas · ${fmt(doctrinalTopics)} topics`,
  compositeCounts = `${compositeAreas.length} roots · ${fmt(compositeTopics)} cross-cutting topics`;
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <Layout>

@@ -3,6 +3,7 @@ import { z } from "astro/zod";
 import { defineCollection } from "astro:content";
 
 import { CORPUS_DIR, PREVIEW_MODE } from "@/corpus.config";
+import { digestSchema } from "@/lib/digest-schema";
 import { previewBundles } from "@/lib/preview";
 import { sourcesLoader } from "@/loaders/sources";
 
@@ -15,60 +16,20 @@ const rawId = ({ entry }: { entry: string }) =>
    * point of preview mode: filtering after the load would still pay for it.
    * Off in a normal build, where the set is empty and patterns are unchanged.
    */
+  // oxlint-disable-next-line eslint/sort-vars -- declared in dependency order (rawId, previewDirs, scoped are used below); sorting would hit the TDZ
   previewDirs = PREVIEW_MODE ? [...(await previewBundles(CORPUS_DIR))] : [],
   scoped = (patterns: string[]): string[] => {
     if (!PREVIEW_MODE) {
       return patterns;
     }
-    const includes = patterns.filter((p) => !p.startsWith("!")),
-      excludes = patterns.filter((p) => p.startsWith("!"));
+    const excludes = patterns.filter((p) => p.startsWith("!")),
+      includes = patterns.filter((p) => !p.startsWith("!"));
     return [
       ...previewDirs.flatMap((dir) => includes.map((p) => `${dir}/${p}`)),
       ...excludes,
     ];
   },
-  /** SKOS `legal_issue` frontmatter carried by every digest. Deliberately
-   *  loose: 69 pre-provenance bundles (June 2026) predate some fields. */
-  digestSchema = z
-    .object({
-      alt_labels: z.array(z.string()).default([]),
-      broader: z.array(z.string()).default([]),
-      created: z.coerce.string().optional(),
-      definition: z.string().default(""),
-      description: z.string().default(""),
-      do_not_use_for: z.array(z.string()).default([]),
-      historical_labels: z.array(z.string()).default([]),
-      id: z.string().optional(),
-      issue_id: z.string().optional(),
-      /** BCP 47 tag for this record's literals; absent on every 2026 digest,
-       *  so the exporter falls back to the scheme language (P1-014I). */
-      language: z.string().optional(),
-      legal_relations: z
-        .object({
-          defenseTo: z.array(z.string()).default([]),
-          procedureFor: z.array(z.string()).default([]),
-          remedyFor: z.array(z.string()).default([]),
-        })
-        .partial()
-        .optional(),
-      mappings: z.record(z.string(), z.any()).optional(),
-      modified: z.coerce.string().optional(),
-      narrower: z.array(z.string()).default([]),
-      notation: z.string().optional(),
-      objectives_path: z.array(z.string()).default([]),
-      okf_version: z.string().optional(),
-      pref_label: z.string().optional(),
-      related: z.array(z.string()).default([]),
-      scheme: z.string().optional(),
-      scope_note: z.string().default(""),
-      source_profile: z.string().optional(),
-      status: z.string().optional(),
-      timestamp: z.coerce.string().optional(),
-      title: z.string().optional(),
-      type: z.string().optional(),
-      version: z.string().optional(),
-    })
-    .passthrough(),
+  // oxlint-disable-next-line eslint/sort-vars -- digests uses scoped/rawId above; sorting would hit the TDZ
   digests = defineCollection({
     loader: glob({
       base: CORPUS_DIR,
@@ -118,6 +79,7 @@ const rawId = ({ entry }: { entry: string }) =>
       type: z.string().optional(),
     })
     .passthrough(),
+  // oxlint-disable-next-line eslint/sort-vars -- caselaw uses indexSchema above; sorting would hit the TDZ
   caselaw = defineCollection({
     loader: glob({
       base: CORPUS_DIR,
@@ -134,6 +96,7 @@ const rawId = ({ entry }: { entry: string }) =>
     }),
     schema: indexSchema,
   }),
+  // oxlint-disable-next-line eslint/sort-vars -- audits uses scoped/rawId above; sorting would hit the TDZ
   audits = defineCollection({
     loader: glob({
       base: CORPUS_DIR,
@@ -205,6 +168,7 @@ const rawId = ({ entry }: { entry: string }) =>
     }),
   });
 
+// oxlint-disable-next-line eslint/one-var -- Astro requires the exported `collections`; the helpers above stay module-private
 export const collections = {
   audits,
   caselaw,

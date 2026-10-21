@@ -18,9 +18,12 @@ corpus sources — the crash site is a symptom, not the cause).
 
 The fix is baked into `package.json`: the `build` script starts with
 `NODE_OPTIONS=--max-old-space-size=24576` (dev/preview/sync likewise) and the
-`deploy` script with `NODE_OPTIONS=--max-old-space-size=12288`. Rules:
+`deploy:full` script with `NODE_OPTIONS=--max-old-space-size=12288`. `deploy`
+itself no longer builds: it runs `ids:check` and uploads the existing `dist/`,
+so run it after a successful `build` (or use `deploy:full` to build and deploy
+in one go). Rules:
 
-1. **Always build via `npm run build` / `npm run deploy`** — never invoke a raw
+1. **Always build via `pnpm run build` / `pnpm run deploy:full`** — never invoke a raw
    `astro build`, and never remove or "simplify away" the `NODE_OPTIONS` prefix
    from those scripts. If you add a new script that runs `astro build`, it needs
    the same prefix.
@@ -67,14 +70,14 @@ borders going wrong — add tiles there, not as fresh markup.
 
 ## Concept ids must be minted before a deploy publishes a concept
 
-Every corpus directory (bundles *and* the grouping nodes above them) is a
+Every corpus directory (bundles _and_ the grouping nodes above them) is a
 concept, and its public IRI comes from `src/data/concept-ids.json`. Nothing in
 the runner mints: the fleet merges new bundles all day, so the registry falls
 behind unless someone runs the mint. It went unrun from 2026-07-31 to
 2026-10-02 and 20,554 concepts were published on fallback route IRIs, which
 change whenever a route does.
 
-- `bun run ids:mint:main` mints against the runner's `origin/main` tree (via
+- `pnpm run ids:mint:main` mints against the runner's `origin/main` tree (via
   git, so a stale local checkout cannot tombstone live concepts), adopting a
   digest's runner-minted `concept_id` only when it is a random UUIDv4 — copied
   `issue_id`s and placeholder ids like `a1b2c3d4…` are refused. Commit the

@@ -8,29 +8,28 @@ import type { APIRoute, GetStaticPaths } from "astro";
 import { cacheKeyFrom, stampEntry } from "@/lib/cache-keys";
 import { getCorpus } from "@/lib/corpus";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const corpus = await getCorpus(),
-    paths = [];
-  for (const node of corpus.nodeBySlugPath.values()) {
-    if (!node.digest) {
-      continue;
-    }
-    const run = corpus.runsByDir.get(node.dir);
-    if (!run) {
-      continue;
-    }
-    paths.push({
-      // The response is the run entry verbatim, so its digest is the whole
-      // data side of this path's incremental-build key.
-      cacheKey: cacheKeyFrom("provenance", [stampEntry(run)]),
-      params: { path: node.slugPath },
-      props: { runData: run.data },
-    });
-  }
-  return paths;
-};
-
 export const GET: APIRoute = ({ props }) =>
-  new Response(JSON.stringify(props.runData, null, 1), {
-    headers: { "Content-Type": "application/json; charset=utf-8" },
-  });
+    new Response(JSON.stringify(props.runData, null, 1), {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+    }),
+  getStaticPaths: GetStaticPaths = async () => {
+    const corpus = await getCorpus(),
+      paths = [];
+    for (const node of corpus.nodeBySlugPath.values()) {
+      if (!node.digest) {
+        continue;
+      }
+      const run = corpus.runsByDir.get(node.dir);
+      if (!run) {
+        continue;
+      }
+      paths.push({
+        // The response is the run entry verbatim, so its digest is the whole
+        // data side of this path's incremental-build key.
+        cacheKey: cacheKeyFrom("provenance", [stampEntry(run)]),
+        params: { path: node.slugPath },
+        props: { runData: run.data },
+      });
+    }
+    return paths;
+  };

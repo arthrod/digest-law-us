@@ -78,6 +78,7 @@ describe("adopting a runner-allocated id", () => {
 describe("rename and reparent preserve identity", () => {
   test("a renamed concept keeps its id when the new key is appended", () => {
     const reg = registryWith(["evidence-law/log-books-as-evidence"]),
+      // oxlint-disable-next-line eslint/sort-vars -- before depends on reg
       before = lookup(reg, "evidence-law/log-books-as-evidence");
     expect(before).toBeDefined();
 
@@ -193,6 +194,7 @@ describe("IRI shape", () => {
 
   test("registered routes resolve into the concept namespace", () => {
     const reg = registryWith(["evidence-law/proof-of-writings"]),
+      // oxlint-disable-next-line eslint/sort-vars -- record depends on reg
       record = lookup(reg, "evidence-law/proof-of-writings");
     expect(`${CONCEPT_BASE}${record?.id}`).toMatch(
       /^https:\/\/w3id\.org\/digest-law\/concept\/[0-9a-f]{32}$/u
@@ -214,6 +216,7 @@ describe("retiring what a purge removed", () => {
     // mistaking a move for a deletion would tombstone a live concept.
     const reg = registryWith(["evidence-law/old-home", LIVE]);
     expect(orphansOf(reg, new Set([LIVE]))).toEqual([]);
+    // oxlint-disable-next-line eslint/one-var -- keep mint order (reg first); sorting would swap it
     const moved = registryWith([LIVE, "evidence-law/new-home"]);
     expect(orphansOf(moved, new Set([LIVE]))).toEqual([]);
   });
@@ -232,6 +235,7 @@ describe("retiring what a purge removed", () => {
   test("retiring twice is a no-op and does not restamp the date", () => {
     const reg = registryWith([GONE]);
     reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    // oxlint-disable-next-line eslint/one-var -- second reconcile must follow the first
     const second = reconcileRegistry(reg, new Set([LIVE]), "2026-09-09");
     expect(second.retired).toEqual([]);
     expect(reg.concepts[0].retired).toBe("2026-08-01");
@@ -251,6 +255,7 @@ describe("retiring what a purge removed", () => {
     const reg = registryWith([GONE]),
       [{ id }] = reg.concepts;
     reconcileRegistry(reg, new Set([LIVE]), "2026-08-01");
+    // oxlint-disable-next-line eslint/one-var -- must follow the retiring reconcile above
     const back = reconcileRegistry(reg, new Set([LIVE, GONE]), "2026-09-09");
     expect(back.restored).toHaveLength(1);
     expect(reg.concepts[0].retired).toBeUndefined();
@@ -298,6 +303,7 @@ describe("merging a duplicate into another concept", () => {
   test("a merged id resolves to the survivor, through earlier merges", () => {
     const reg = mergePair(),
       [a, b] = reg.concepts as [ConceptRecord, ConceptRecord],
+      // oxlint-disable-next-line eslint/sort-vars -- c depends on b from reg
       c: ConceptRecord = {
         ...mintConceptId(),
         keys: ["x/y"],
@@ -350,6 +356,7 @@ describe("restoring a merged concept whose route came back", () => {
       [a, b] = reg.concepts as [ConceptRecord, ConceptRecord];
     b.retired = "2026-10-02";
     b.replacedBy = a.id;
+    // oxlint-disable-next-line eslint/one-var -- must see the retired/replacedBy mutations above
     const { restored } = reconcileRegistry(
       reg,
       new Set([...a.keys, ...b.keys]),

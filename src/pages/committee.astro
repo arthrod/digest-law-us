@@ -15,7 +15,8 @@ import { getCorpus } from "@/lib/corpus";
 
 const corpus = await getCorpus(),
  { stats } = corpus,
- fmt = (n: number) => n.toLocaleString("en-US"),
+ description =
+  "The people who gate the merge at American Legal Digest, what review actually requires, and an open call for local and global reviewers.",
 
 /** What a reviewer is asked to do — the gate, stated as work. */
  duties = [
@@ -24,6 +25,8 @@ const corpus = await getCorpus(),
   "Block the merge when the evidence floor does not hold, and prefer deletion to padding. The purge exists because this call gets made.",
   "Flag doctrine that is stated too confidently for the sources behind it — jurisdictional splits, superseded rules, and holdings read past their facts.",
 ],
+
+ fmt = (n: number) => n.toLocaleString("en-US"),
 
 /** What we are short of. Stated plainly, because it is a recruitment ask. */
  openings = [
@@ -43,9 +46,6 @@ const corpus = await getCorpus(),
     name: "Subject-matter reviewers",
   },
 ],
-
- description =
-  "The people who gate the merge at American Legal Digest, what review actually requires, and an open call for local and global reviewers.",
  title = "Review committee — American Legal Digest";
 ---
 

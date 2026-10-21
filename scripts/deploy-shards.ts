@@ -53,35 +53,41 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 
-const ROOT = path.resolve(import.meta.dirname, ".."),
-  DIST = path.join(ROOT, "dist"),
-  OUT_DIR = path.join(ROOT, ".wrangler-shards"),
+const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   ASSIGNMENTS_PATH = path.resolve(
     import.meta.dirname,
     "shard-assignments.json"
   ),
-  BASE_CONFIG_PATH = path.join(ROOT, "wrangler.jsonc"),
-  WRANGLER_BIN = path.join(ROOT, "node_modules/.bin/wrangler"),
-  IGNORE_PATH = path.join(DIST, ".assetsignore"),
-  SHARD_SERVICE_PREFIX = "digest-law-shard-",
-  /** Hard platform cap on assets per Worker version. */
-  MAX_ASSETS = 100_000,
+  BASE_CONFIG_PATH = path.join(APP_ROOT, "wrangler.jsonc"),
   /** Soft cap per shard, leaving growth room before anything must move. */
   BUDGET = Number(process.env.SHARD_BUDGET ?? 80_000),
+  CONTENT_TYPES: Record<string, string> = {
+    ".json": "application/json; charset=utf-8",
+    ".jsonld": "application/ld+json; charset=utf-8",
+    ".xml": "application/xml; charset=utf-8",
+  },
+  DIST = path.join(APP_ROOT, "dist"),
+  IGNORE_PATH = path.join(DIST, ".assetsignore"),
+  /** Hard platform cap on assets per Worker version. */
+  MAX_ASSETS = 100_000,
   /** Hard platform cap on a single asset's size. */
   MAX_ASSET_BYTES = 25 * 1024 * 1024,
+  /** wrangler rejects run_worker_first arrays longer than this. */
+  MAX_RUN_WORKER_FIRST_RULES = 100,
+  OUT_DIR = path.join(APP_ROOT, ".wrangler-shards"),
   /** Part size for splitting oversized root files, safely under the cap. */
   PART_BYTES = 20 * 1024 * 1024,
   PART_SUFFIX = ".part-",
-  /** wrangler rejects run_worker_first arrays longer than this. */
-  MAX_RUN_WORKER_FIRST_RULES = 100,
-  planOnly = process.argv.includes("--plan"),
+  SHARD_SERVICE_PREFIX = "digest-law-shard-",
+  WRANGLER_BIN = path.join(APP_ROOT, "node_modules/.bin/wrangler"),
+  isPart = (name: string) => /\.part-\d{3}$/u.test(name),
   /** `--only=root` or `--only=a,c,root`: deploy just these; absent = all. */
   only = process.argv
     .find((arg) => arg.startsWith("--only="))
     ?.slice("--only=".length)
     .split(",")
-    .filter(Boolean);
+    .filter(Boolean),
+  planOnly = process.argv.includes("--plan");
 
 // ---------------------------------------------------------------------------
 // JSONC — wrangler.jsonc is the single source of truth for the root Worker,
@@ -90,7 +96,8 @@ const ROOT = path.resolve(import.meta.dirname, ".."),
 
 /** Strip // and slash-star comments, then trailing commas — string-aware. */
 function parseJsonc(text: string): Record<string, unknown> {
-  let i = 0,
+  let clean = "",
+    i = 0,
     inString = false,
     out = "";
   while (i < text.length) {
@@ -127,7 +134,6 @@ function parseJsonc(text: string): Record<string, unknown> {
     }
   }
   // Trailing commas: a `,` whose next meaningful character closes a scope.
-  let clean = "";
   inString = false;
   for (let j = 0; j < out.length; j += 1) {
     const ch = out[j];
@@ -176,19 +182,17 @@ interface Inventory {
   rootFiles: number;
 }
 
-const isPart = (name: string) => /\.part-\d{3}$/u.test(name);
-
 async function inventory(): Promise<Inventory> {
-  let entries: Dirent[];
+  let entries: Dirent[],
+    rootFiles = 0;
   try {
     entries = await readdir(DIST, { withFileTypes: true });
   } catch {
     throw new Error(`No ${DIST} — run the build first.`);
   }
   const folders: Folder[] = [],
-    oversizeRoot: Inventory["oversizeRoot"] = [],
-    oversizeNested: string[] = [];
-  let rootFiles = 0;
+    oversizeNested: string[] = [],
+    oversizeRoot: Inventory["oversizeRoot"] = [];
   for (const entry of entries) {
     if (entry.isDirectory()) {
       const all = await readdir(path.join(DIST, entry.name), {
@@ -235,12 +239,6 @@ interface OversizeAsset {
   size: number;
 }
 
-const CONTENT_TYPES: Record<string, string> = {
-  ".json": "application/json; charset=utf-8",
-  ".jsonld": "application/ld+json; charset=utf-8",
-  ".xml": "application/xml; charset=utf-8",
-};
-
 /**
  * Rewrite every `<name>.part-NNN` at the dist root from scratch: stale parts
  * of a file that shrank or vanished are removed, oversized files re-split.
@@ -257,6 +255,7 @@ async function splitOversize(
   const map: Record<string, OversizeAsset> = {};
   for (const { name, size } of oversize) {
     const bytes = await readFile(path.join(DIST, name)),
+      hasher = new Bun.CryptoHasher("sha256"),
       parts: string[] = [];
     for (let offset = 0; offset < bytes.length; offset += PART_BYTES) {
       const part = `${name}${PART_SUFFIX}${String(parts.length).padStart(3, "0")}`;
@@ -266,7 +265,6 @@ async function splitOversize(
       );
       parts.push(`/${part}`);
     }
-    const hasher = new Bun.CryptoHasher("sha256");
     hasher.update(bytes);
     map[`/${name}`] = {
       contentType:
@@ -313,6 +311,7 @@ interface Shard {
 function pack(folders: Folder[], previous: Assignments): Shard[] {
   const byName = new Map(folders.map((f) => [f.name, f])),
     shards = new Map<string, Shard>(),
+    // oxlint-disable-next-line eslint/sort-vars -- shardOf closes over shards (no-use-before-define)
     shardOf = (letter: string): Shard => {
       let shard = shards.get(letter);
       if (!shard) {
@@ -351,6 +350,7 @@ function pack(folders: Folder[], previous: Assignments): Shard[] {
 
   // First-fit-decreasing into existing shards, new shards as needed.
   unplaced.sort((a, b) => b.files - a.files || a.name.localeCompare(b.name));
+  // oxlint-disable-next-line eslint/one-var -- kept beside its only use, after packing setup
   const letters = () => [...shards.keys()].toSorted();
   for (const folder of unplaced) {
     const home = letters()
@@ -365,11 +365,13 @@ function pack(folders: Folder[], previous: Assignments): Shard[] {
     while (shards.has(shardLetter(index))) {
       index += 1;
     }
+    // oxlint-disable-next-line eslint/one-var -- index is only known after the loop above
     const fresh = shardOf(shardLetter(index));
     fresh.folders.push(folder);
     fresh.files += folder.files;
   }
 
+  // oxlint-disable-next-line eslint/one-var -- reads shards after packing/eviction above
   const packed = [...shards.values()]
     .filter((shard) => shard.folders.length > 0)
     .toSorted((a, b) => a.letter.localeCompare(b.letter));
@@ -385,6 +387,7 @@ function pack(folders: Folder[], previous: Assignments): Shard[] {
     }
   }
   // Sanity: every folder placed exactly once.
+  // oxlint-disable-next-line eslint/one-var -- must run after the cap check above
   const placed = packed.flatMap((s) => s.folders.map((f) => f.name));
   if (placed.length !== byName.size) {
     throw new Error(
@@ -450,6 +453,7 @@ function runWorkerFirstRules(
     rules = [...base, ...oversizePaths.toSorted()];
   for (const rule of folderRules) {
     const prefix = rule.slice(0, -1),
+      // oxlint-disable-next-line eslint/sort-vars -- covered depends on prefix (TDZ)
       covered = rules.some(
         (kept) => kept.endsWith("*") && prefix.startsWith(kept.slice(0, -1))
       );
@@ -479,7 +483,8 @@ async function generateConfigs(
 ): Promise<GeneratedConfigs> {
   const base = parseJsonc(await readFile(BASE_CONFIG_PATH, "utf8")),
     baseAssets = base.assets as Record<string, unknown>,
-    baseRules = (baseAssets.run_worker_first as string[] | undefined) ?? [];
+    baseRules = (baseAssets.run_worker_first as string[] | undefined) ?? [],
+    shardMap: Record<string, string> = {};
 
   await rm(OUT_DIR, { force: true, recursive: true });
   await mkdir(OUT_DIR, { recursive: true });
@@ -502,12 +507,12 @@ async function generateConfigs(
     );
   }
 
-  const shardMap: Record<string, string> = {};
   for (const shard of shards) {
     for (const folder of shard.folders) {
       shardMap[folder.name] = bindingNameOf(shard.letter);
     }
   }
+  // oxlint-disable-next-line eslint/one-var -- runWorkerFirstRules may throw; keep it after the shard configs are written
   const rootConfig = {
       ...base,
       $schema: undefined,
@@ -548,8 +553,9 @@ async function generateConfigs(
 // ---------------------------------------------------------------------------
 
 function wrangler(args: string[]): { ok: boolean; output: string } {
+  // oxlint-disable-next-line node/no-sync -- CLI; preflight checks run one at a time
   const result = Bun.spawnSync([WRANGLER_BIN, ...args], {
-    cwd: ROOT,
+    cwd: APP_ROOT,
     stderr: "pipe",
     stdout: "pipe",
   });
@@ -577,6 +583,7 @@ async function preflight(
   configs: GeneratedConfigs
 ): Promise<void> {
   const problems: string[] = [],
+    // oxlint-disable-next-line eslint/sort-vars -- check closes over problems (no-use-before-define)
     check = (label: string, ok: boolean, detail = "") => {
       console.log(
         `  ${ok ? "ok  " : "FAIL"}  ${label}${detail ? ` — ${detail}` : ""}`
@@ -587,6 +594,7 @@ async function preflight(
     };
   console.log("preflight:");
 
+  // oxlint-disable-next-line eslint/one-var -- spawns wrangler; must follow the "preflight:" log
   const whoami = wrangler(["whoami"]);
   check(
     "wrangler is authenticated",
@@ -594,6 +602,7 @@ async function preflight(
   );
 
   // Root manifest: every root-level file that ships, parts included.
+  // oxlint-disable-next-line eslint/one-var -- reads dist after the whoami check
   const excluded = new Set(Object.keys(oversize).map((p) => p.slice(1))),
     rootEntries = await readdir(DIST, { withFileTypes: true }),
     shipped = rootEntries.filter(
@@ -629,12 +638,14 @@ async function preflight(
   }
 
   // Root config and the shards it binds to must agree.
+  // oxlint-disable-next-line eslint/one-var -- file read must follow the checks above
   const rootConfig = JSON.parse(
       await readFile(configs.rootConfigPath, "utf8")
     ) as {
       services: { binding: string }[];
       vars: { SHARD_MAP: Record<string, string> };
     },
+    // oxlint-disable-next-line eslint/sort-vars -- bindings depends on rootConfig (TDZ)
     bindings = new Set(rootConfig.services.map((s) => s.binding)),
     dangling = Object.entries(rootConfig.vars.SHARD_MAP).filter(
       ([, binding]) => !bindings.has(binding)
@@ -649,6 +660,7 @@ async function preflight(
   // hashes the assets directory (15 min over the full dist/), so each config
   // is copied pointing at an empty one — the asset checks above cover dist.
   // Shard configs are identical in shape; one stands in for all of them.
+  // oxlint-disable-next-line eslint/one-var -- sequenced after the checks above
   const emptyAssets = path.join(OUT_DIR, "preflight-empty-assets"),
     targets = [configs.rootConfigPath];
   await mkdir(emptyAssets, { recursive: true });
@@ -662,6 +674,7 @@ async function preflight(
       probe = path.join(OUT_DIR, `preflight-${path.basename(target)}`);
     config.assets.directory = "./preflight-empty-assets";
     await writeFile(probe, JSON.stringify(config));
+    // oxlint-disable-next-line eslint/one-var -- must run after the probe config is written
     const dry = wrangler(["deploy", "--dry-run", "-c", probe]);
     await rm(probe, { force: true });
     check(
@@ -685,22 +698,24 @@ async function preflight(
 // ---------------------------------------------------------------------------
 
 function deploy(configPath: string): void {
+  // oxlint-disable-next-line node/no-sync -- deploys are deliberately sequential, output inherited
   const result = Bun.spawnSync([WRANGLER_BIN, "deploy", "-c", configPath], {
-    cwd: ROOT,
+    cwd: APP_ROOT,
     stderr: "inherit",
     stdout: "inherit",
   });
   if (result.exitCode !== 0) {
     throw new Error(
-      `wrangler deploy failed for ${path.relative(ROOT, configPath)} — nothing after it was deployed; rerun once fixed.`
+      `wrangler deploy failed for ${path.relative(APP_ROOT, configPath)} — nothing after it was deployed; rerun once fixed.`
     );
   }
 }
 
-const { folders, oversizeRoot, rootFiles } = await inventory(),
+// oxlint-disable-next-line eslint/one-var -- main program; inventory() reads the config constants above
+const assignments: Assignments = {},
+  { folders, oversizeRoot, rootFiles } = await inventory(),
   previous = await loadAssignments(),
-  shards = pack(folders, previous),
-  assignments: Assignments = {};
+  shards = pack(folders, previous);
 for (const shard of shards) {
   for (const folder of shard.folders) {
     assignments[folder.name] = shard.letter;
@@ -725,21 +740,22 @@ if (only) {
     );
   }
 }
+// oxlint-disable-next-line eslint/one-var -- must follow the --only moved-folder refusal above
 const sorted = Object.fromEntries(
-  Object.entries(assignments).toSorted(([a], [b]) => a.localeCompare(b))
-);
+    Object.entries(assignments).toSorted(([a], [b]) => a.localeCompare(b))
+  ),
+  unknown = (only ?? []).filter(
+    (key) => key !== "root" && !shards.some((shard) => shard.letter === key)
+  ),
+  wanted = (key: string) => !only || only.includes(key);
 await writeFile(ASSIGNMENTS_PATH, `${JSON.stringify(sorted, null, 2)}\n`);
 
-const unknown = (only ?? []).filter(
-  (key) => key !== "root" && !shards.some((shard) => shard.letter === key)
-);
 if (only?.length === 0) {
   throw new Error("--only= needs at least one shard letter or root.");
 }
 if (unknown.length > 0) {
   throw new Error(`--only names unknown shards: ${unknown.join(", ")}`);
 }
-const wanted = (key: string) => !only || only.includes(key);
 
 /** Part files and the ignore file are deploy-time scratch, never left in dist/. */
 async function cleanDist(): Promise<void> {
@@ -755,6 +771,7 @@ async function cleanDist(): Promise<void> {
 
 try {
   const oversize = await splitOversize(oversizeRoot),
+    // oxlint-disable-next-line eslint/sort-vars -- configs depends on oversize (TDZ)
     configs = await generateConfigs(shards, oversize);
 
   console.log(`dist/: ${rootFiles} root files + ${folders.length} folders\n`);

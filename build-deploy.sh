@@ -12,7 +12,7 @@ echo "corpus: $(find ../key-digest-runner/key_digest/american_legal_digest/okf -
 free -h | sed -n 2p
 
 echo "=== $(date -Is) BUILD ==="
-bun run build
+pnpm run build
 
 echo "=== $(date -Is) build done ==="
 du -sh dist
