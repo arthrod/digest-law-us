@@ -10,11 +10,13 @@ import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
 
+/* oxlint-disable eslint/sort-vars -- description calls fmt at init; sorting would hit the TDZ */
 const corpus = await getCorpus(),
  fmt = (n: number) => n.toLocaleString("en-US"),
 
  title = "Sitemap — American Legal Digest",
  description = `The full topic tree: ${fmt(corpus.stats.digests)} digests across ${corpus.stats.areas} areas of United States law.`;
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <Layout {description} {title}>

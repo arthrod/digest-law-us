@@ -26,6 +26,7 @@ if (!node) {
   throw new Error(`No container at ${slugPath}`);
 }
 
+// oxlint-disable-next-line eslint/one-var -- declared after the !node guard; hoisting would evaluate node.label before the throw
 const crumbTrail = crumbsFor(corpus, slugPath),
  crumbs: CrumbItem[] = [
   { href: "/", label: "Digest" },
@@ -36,9 +37,9 @@ const crumbTrail = crumbsFor(corpus, slugPath),
   { label: node.label },
 ],
 
- updated = formatDate(node.latest),
+ description = `${node.topicCount} published digest topics under ${node.label}.`,
  title = `${node.label} — ${crumbTrail[0]?.label ?? ""} — American Legal Digest`,
- description = `${node.topicCount} published digest topics under ${node.label}.`;
+ updated = formatDate(node.latest);
 ---
 
 <Layout {description} {title}>

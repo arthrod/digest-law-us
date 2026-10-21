@@ -13,7 +13,23 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 
-const stages = [
+const description =
+  "The method stated jurisdiction-neutrally so it can be run again: ten stages with their contracts and adaptation points, and the parameter sheet naming exactly what a different legal system must change.",
+
+ parameters = [
+  { set: "Statute-specific; often measured from the author's death rather than publication", us: "Published in or before 1930; 17 U.S.C. § 105", what: "Public-domain rule" },
+  { set: "Local equivalent — some systems also exclude judicial decisions and official texts outright", us: "Federal government works", what: "Official-acts exclusion" },
+  { set: "Designed, or an official scheme where one exists", us: "Thirteen designed domains", what: "Level-one spine" },
+  { set: "An official taxonomy if the jurisdiction has one", us: "FOLIO areas, plus six extension areas", what: "Area anchor" },
+  { set: "FOLIO, with translated labels", us: "FOLIO objectives", what: "Objectives anchor" },
+  { set: "Local orthography, diacritics, and period spelling", us: "English, with an archaic-spelling rule", what: "Language and normalization" },
+  { set: "A multilingual embedder and guard lexicons in the target language", us: "Legal-domain embedder at 0.93 with English negation, antonym, and swap guards", what: "Embedder and guards" },
+  { set: "National open legal APIs, or curated source lists where none exist", us: "CourtListener, GovInfo, eCFR", what: "Primary-law probes" },
+  { set: "Whatever the corpus can actually support — declared before starting", us: "Roughly 137,000 issues", what: "Scale target" },
+  { set: "Mandatory and pre-registered", us: "Not yet run", what: "Validation" },
+],
+
+ stages = [
   {
     adapt: "The domain list; the seed outlines; the ontology used for the second root.",
     body: "Fix a closed list of top-level domains before any classification. Seed it from a copyright-free historical outline of the jurisdiction's law, the structure of its codes or official taxonomies, and a modern open ontology for the second root. Everything below level one is emergent from classification, never designed.",
@@ -92,22 +108,6 @@ const stages = [
     name: "Operate",
   },
 ],
-
- parameters = [
-  { set: "Statute-specific; often measured from the author's death rather than publication", us: "Published in or before 1930; 17 U.S.C. § 105", what: "Public-domain rule" },
-  { set: "Local equivalent — some systems also exclude judicial decisions and official texts outright", us: "Federal government works", what: "Official-acts exclusion" },
-  { set: "Designed, or an official scheme where one exists", us: "Thirteen designed domains", what: "Level-one spine" },
-  { set: "An official taxonomy if the jurisdiction has one", us: "FOLIO areas, plus six extension areas", what: "Area anchor" },
-  { set: "FOLIO, with translated labels", us: "FOLIO objectives", what: "Objectives anchor" },
-  { set: "Local orthography, diacritics, and period spelling", us: "English, with an archaic-spelling rule", what: "Language and normalization" },
-  { set: "A multilingual embedder and guard lexicons in the target language", us: "Legal-domain embedder at 0.93 with English negation, antonym, and swap guards", what: "Embedder and guards" },
-  { set: "National open legal APIs, or curated source lists where none exist", us: "CourtListener, GovInfo, eCFR", what: "Primary-law probes" },
-  { set: "Whatever the corpus can actually support — declared before starting", us: "Roughly 137,000 issues", what: "Scale target" },
-  { set: "Mandatory and pre-registered", us: "Not yet run", what: "Validation" },
-],
-
- description =
-  "The method stated jurisdiction-neutrally so it can be run again: ten stages with their contracts and adaptation points, and the parameter sheet naming exactly what a different legal system must change.",
  title = "Replication protocol — American Legal Digest";
 ---
 

@@ -75,18 +75,30 @@ let corpusPromise: Promise<Corpus> | null = null;
 
 async function build(): Promise<Corpus> {
   const [rawDigests, auditsCol, caselawCol, statutoryCol, runsCol, sourcesCol] =
-    await Promise.all([
-      getCollection("digests"),
-      getCollection("audits"),
-      getCollection("caselaw"),
-      getCollection("statutory"),
-      getCollection("runs"),
-      getCollection("sources"),
-    ]);
+      await Promise.all([
+        getCollection("digests"),
+        getCollection("audits"),
+        getCollection("caselaw"),
+        getCollection("statutory"),
+        getCollection("runs"),
+        getCollection("sources"),
+      ]),
+    auditsByDir = new Map<string, AuditEntry>(),
+    byDir = new Map<string, Digest>(),
+    caselawByDir = new Map<string, IndexEntry>(),
+    nodeByDir = new Map<string, TreeNode>(),
+    nodeBySlugPath = new Map<string, TreeNode>(),
+    roots: TreeNode[] = [],
+    runsByDir = new Map<string, RunEntry>(),
+    sourcesByBundle = new Map<string, SourceMeta[]>(),
+    statutoryByDir = new Map<string, IndexEntry>();
 
   // A digest is the .md named after its own bundle directory. Anything else
   // that slipped through the glob is logged and dropped, never silently.
-  let digests: Digest[] = [];
+  let digests: Digest[] = [],
+    preProvenance = 0,
+    sourceBytes = 0,
+    sourceCount = 0;
   for (const entry of rawDigests) {
     const segs = entry.id.split("/");
     if (segs.length >= 2 && segs.at(-1) === segs.at(-2)) {
@@ -96,29 +108,23 @@ async function build(): Promise<Corpus> {
     }
   }
 
-  const byDir = new Map<string, Digest>();
   for (const d of digests) {
     byDir.set(parentDir(d.id), d);
   }
 
-  const auditsByDir = new Map<string, AuditEntry>();
   for (const a of auditsCol) {
     auditsByDir.set(parentDir(a.id), a);
   }
-  const caselawByDir = new Map<string, IndexEntry>();
   for (const c of caselawCol) {
     caselawByDir.set(parentDir(c.id), c);
   }
-  const statutoryByDir = new Map<string, IndexEntry>();
   for (const s of statutoryCol) {
     statutoryByDir.set(parentDir(s.id), s);
   }
-  const runsByDir = new Map<string, RunEntry>();
   for (const r of runsCol) {
     runsByDir.set(parentDir(r.id), r);
   }
 
-  const sourcesByBundle = new Map<string, SourceMeta[]>();
   for (const s of sourcesCol) {
     const list = sourcesByBundle.get(s.data.bundle) ?? [];
     list.push(s);
@@ -159,18 +165,18 @@ async function build(): Promise<Corpus> {
   }
 
   // ---- Tree ----
-  const nodeByDir = new Map<string, TreeNode>(),
-    roots: TreeNode[] = [];
-
   function ensureNode(dir: string): TreeNode {
     const existing = nodeByDir.get(dir);
     if (existing) {
       return existing;
     }
+    // oxlint-disable-next-line eslint/one-var -- keep construction behind the cache-hit early return
     const segs = dir.split("/"),
       // split() never yields an empty array, so the fallback never fires — it
       // exists to keep `segment` a string without an assertion.
+      // oxlint-disable-next-line eslint/sort-vars -- segment is derived from segs
       segment = segs.at(-1) ?? dir,
+      // oxlint-disable-next-line eslint/sort-vars -- node is built from segs and segment
       node: TreeNode = {
         children: [],
         dir,
@@ -198,11 +204,12 @@ async function build(): Promise<Corpus> {
 
   function aggregate(node: TreeNode): void {
     node.children.sort((a, b) => a.label.localeCompare(b.label));
-    let topics = node.digest ? 1 : 0,
-      depth = 0;
+    let depth = 0,
+      topics = node.digest ? 1 : 0;
     node.ownSourceCount = sourcesByBundle.get(node.dir)?.length ?? 0;
-    let sources = node.ownSourceCount,
-      latest = node.digest?.data.timestamp ?? "";
+    // oxlint-disable-next-line eslint/one-var -- sources reads ownSourceCount, assigned just above
+    let latest = node.digest?.data.timestamp ?? "",
+      sources = node.ownSourceCount;
     for (const child of node.children) {
       aggregate(child);
       topics += child.topicCount;
@@ -222,30 +229,28 @@ async function build(): Promise<Corpus> {
   }
   roots.sort((a, b) => a.label.localeCompare(b.label));
 
-  const nodeBySlugPath = new Map<string, TreeNode>();
   for (const node of nodeByDir.values()) {
     nodeBySlugPath.set(node.slugPath, node);
   }
 
-  const doctrinalAreas = roots.filter(
-      (r) => r.segment !== r.segment.toUpperCase()
+  // oxlint-disable-next-line eslint/one-var -- the area split must follow the tree build and sort above
+  const compositeAreas = roots.filter(
+      (r) => r.segment === r.segment.toUpperCase()
     ),
-    compositeAreas = roots.filter((r) => r.segment === r.segment.toUpperCase());
+    doctrinalAreas = roots.filter((r) => r.segment !== r.segment.toUpperCase());
 
-  let sourceBytes = 0,
-    sourceCount = 0;
   for (const list of sourcesByBundle.values()) {
     for (const s of list) {
       sourceBytes += s.data.bytes;
       sourceCount += 1;
     }
   }
-  let preProvenance = 0;
   for (const dir of byDir.keys()) {
     if (!runsByDir.has(dir)) {
       preProvenance += 1;
     }
   }
+  // oxlint-disable-next-line eslint/one-var -- hoisting latest above aggregate() would make its local latest trip no-shadow
   let latest = "";
   for (const root of roots) {
     if (root.latest > latest) {
@@ -298,10 +303,11 @@ export function crumbsFor(
   corpus: Corpus,
   slugPath: string
 ): { label: string; slugPath: string; published: boolean }[] {
-  const segs = slugPath.split("/"),
-    crumbs = [];
+  const crumbs = [],
+    segs = slugPath.split("/");
   for (let i = 1; i <= segs.length; i += 1) {
     const partial = segs.slice(0, i).join("/"),
+      // oxlint-disable-next-line eslint/sort-vars -- node is looked up by partial
       node = corpus.nodeBySlugPath.get(partial);
     crumbs.push({
       label: node?.label ?? humanize(segs[i - 1]),

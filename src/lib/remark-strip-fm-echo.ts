@@ -29,15 +29,14 @@ function leadingText(node: MdNode | undefined): string {
 export function remarkStripFmEcho() {
   return (tree: MdNode) => {
     const children = tree.children ?? [],
-      [first] = children;
+      [first] = children,
+      h1 = children.findIndex((n) => n.type === "heading" && n.depth === 1);
     if (first?.type !== "paragraph") {
       return;
     }
     if (!/^\s*okf_version\s*:/u.test(leadingText(first))) {
       return;
     }
-
-    const h1 = children.findIndex((n) => n.type === "heading" && n.depth === 1);
 
     if (h1 > 0) {
       tree.children = children.slice(h1);

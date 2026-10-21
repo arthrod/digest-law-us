@@ -51,6 +51,7 @@ export function splitSpans(content: string, target: number): ChunkSpan[] {
       inFence = !inFence;
     }
     size += nl - cursor + 1;
+    // oxlint-disable-next-line eslint/one-var -- reads size/inFence after they are updated above
     const atBlank = trimmed === "",
       flush =
         (!inFence && size >= target && atBlank) ||
@@ -77,6 +78,7 @@ export function sourcesLoader(corpusDir: string): Loader {
   return {
     async load({ store, logger, config, parseData, generateDigest }) {
       const root = path.resolve(fileURLToPath(config.root), corpusDir),
+        // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
         listing = await fs.readdir(root, {
           recursive: true,
         }),
@@ -84,6 +86,7 @@ export function sourcesLoader(corpusDir: string): Loader {
         // skipping here is what keeps a preview build from paying for the
         // whole ~13 GB of retained sources (see src/lib/preview.ts).
         preview = PREVIEW_MODE ? await previewBundles(root) : null,
+        // oxlint-disable-next-line eslint/sort-vars -- files depends on listing and preview
         files = listing
           .filter((rel) => /(?:^|\/)sources\/[^/]+\.md$/u.test(rel))
           .filter(
@@ -91,27 +94,27 @@ export function sourcesLoader(corpusDir: string): Loader {
               preview === null ||
               preview.has(rel.slice(0, rel.lastIndexOf("/sources/")))
           )
-          .toSorted();
+          .toSorted(),
+        usedSlugs = new Map<string, Set<string>>();
 
       store.clear();
-      const usedSlugs = new Map<string, Set<string>>();
       let count = 0;
 
       for (const rel of files) {
-        const raw = await fs.readFile(path.join(root, rel), "utf8"),
+        const bundle = rel.slice(0, rel.lastIndexOf("/sources/")),
+          fileName = path.basename(rel, ".md"),
+          raw = await fs.readFile(path.join(root, rel), "utf8"),
           // A malformed frontmatter block must not kill a multi-hour build:
           // keep the document (body = everything past the delimiters), log
           // loudly, never drop. The page renderer recovers the identical body
           // for the same file, so the spans below still index the right text.
-          { content, data: fm, error } = parseFrontmatterLoose(raw);
+          { content, data: fm, error } = parseFrontmatterLoose(raw),
+          taken = usedSlugs.get(bundle) ?? new Set<string>();
         if (error) {
           logger.warn(`Broken frontmatter in ${rel}: ${error}`);
         }
-        const bundle = rel.slice(0, rel.lastIndexOf("/sources/")),
-          fileName = path.basename(rel, ".md");
 
         let slug = slugSegment(fileName) || "source";
-        const taken = usedSlugs.get(bundle) ?? new Set<string>();
         if (taken.has(slug)) {
           let n = 2;
           while (taken.has(`${slug}-${n}`)) {
@@ -122,8 +125,10 @@ export function sourcesLoader(corpusDir: string): Loader {
         taken.add(slug);
         usedSlugs.set(bundle, taken);
 
-        const spans = splitSpans(content, SOURCE_CHUNK_BYTES),
-          id = `${bundle}/sources/${slug}`,
+        // oxlint-disable-next-line eslint/one-var -- id needs the de-duplicated slug computed above
+        const id = `${bundle}/sources/${slug}`,
+          spans = splitSpans(content, SOURCE_CHUNK_BYTES),
+          // oxlint-disable-next-line eslint/sort-vars -- data depends on id and spans
           data = await parseData({
             data: {
               bundle,

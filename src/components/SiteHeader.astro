@@ -3,6 +3,7 @@ interface Props {
   /** "dark" renders the ink-band header used by the home hero */
   tone?: "light" | "dark";
 }
+/* oxlint-disable eslint/sort-vars -- chip reads dark; sorting would hit the TDZ */
 const { tone = "light" } = Astro.props,
  dark = tone === "dark",
 
@@ -26,6 +27,7 @@ const { tone = "light" } = Astro.props,
     ? "border-white/30 text-white/80 hover:bg-white/10"
     : "border-hairline text-ink-muted hover:border-ink",
 ];
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <header

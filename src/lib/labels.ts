@@ -32,8 +32,8 @@ const SMALL_WORDS = new Set([
 
 /** "JUDICIAL_PRECEDENTS_AND_CASE_LAW" → "Judicial Precedents and Case Law" */
 export function humanize(segment: string): string {
-  const words = segment.replaceAll("_", " ").trim().split(/\s+/u),
-    isScreaming = segment === segment.toUpperCase();
+  const isScreaming = segment === segment.toUpperCase(),
+    words = segment.replaceAll("_", " ").trim().split(/\s+/u);
   if (!isScreaming) {
     return words.join(" ");
   }
@@ -66,24 +66,24 @@ export function formatDate(value: string | Date | undefined): string {
   if (!value) {
     return "";
   }
-  const d = value instanceof Date ? value : new Date(value);
+  const d = value instanceof Date ? value : new Date(value),
+    months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
   if (Number.isNaN(d.getTime())) {
     return String(value);
   }
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   return `${String(d.getUTCDate()).padStart(2, "0")} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 

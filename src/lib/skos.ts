@@ -99,9 +99,10 @@ export function labelSetFor(input: {
   altLabels?: string[];
   historicalLabels?: string[];
 }): LabelSet {
-  const violations: string[] = [],
-    prefLabel = input.prefLabel.normalize("NFC").trim(),
+  const prefLabel = input.prefLabel.normalize("NFC").trim(),
     taken = new Map<string, string>([[foldLabel(prefLabel), "prefLabel"]]),
+    violations: string[] = [],
+    // oxlint-disable-next-line eslint/sort-vars -- keep closes over taken and violations, so it comes last
     keep = (values: string[] | undefined, role: string): string[] => {
       const out: string[] = [];
       for (const raw of values ?? []) {
@@ -109,6 +110,7 @@ export function labelSetFor(input: {
         if (!value) {
           continue;
         }
+        // oxlint-disable-next-line eslint/one-var -- folded is only meaningful past the empty-value guard
         const folded = foldLabel(value),
           owner = taken.get(folded);
         if (owner) {
@@ -158,10 +160,13 @@ function dateLit(value: string | undefined) {
 /** Identity block: the minted id, its provenance, and the legacy route IRI. */
 function identityOf(node: TreeNode, fm: Record<string, unknown> | undefined) {
   const resolved = conceptIriFor(node.slugPath),
+    // oxlint-disable-next-line eslint/sort-vars -- block is built from resolved
     block: Record<string, unknown> = {
       "@id": resolved.iri,
       "digest:legacyIri": { "@id": legacyIriFor(node.slugPath) },
-    };
+    },
+    corpusIssueId = resolved.record?.corpusIssueId ?? fm?.issue_id,
+    pathNotation = fm?.notation ?? resolved.record?.pathNotation;
   if (resolved.record) {
     // Canonical typed notation is the minted id; the corpus dotted notation
     // is a route artifact and is published as such (P1-014C).
@@ -171,12 +176,10 @@ function identityOf(node: TreeNode, fm: Record<string, unknown> | undefined) {
     };
     block["dct:identifier"] = resolved.record.uuid;
   }
-  const corpusIssueId = resolved.record?.corpusIssueId ?? fm?.issue_id;
   if (typeof corpusIssueId === "string" && corpusIssueId) {
     // Placement-derived UUIDv5 from the runner: provenance, never identity.
     block["digest:corpusIssueId"] = corpusIssueId;
   }
-  const pathNotation = fm?.notation ?? resolved.record?.pathNotation;
   if (typeof pathNotation === "string" && pathNotation) {
     block["digest:pathNotation"] = pathNotation;
   }
@@ -190,10 +193,13 @@ export function conceptFor(
   opts: { compact?: boolean } = {}
 ): Record<string, unknown> {
   const { digest } = node,
+    broaderIds = new Map<string, { "@id": string }>(),
     fm = digest?.data as Record<string, unknown> | undefined,
     isArea = !node.slugPath.includes("/"),
     lang = languageOf(fm),
+    narrowerIds = new Map<string, { "@id": string }>(),
     prefSource = fm?.pref_label,
+    // oxlint-disable-next-line eslint/sort-vars -- labels is built from prefSource
     labels = labelSetFor({
       altLabels: fm?.alt_labels as string[] | undefined,
       historicalLabels: fm?.historical_labels as string[] | undefined,
@@ -202,6 +208,7 @@ export function conceptFor(
           ? humanize(prefSource)
           : node.label,
     }),
+    // oxlint-disable-next-line eslint/sort-vars -- concept is built from fm, labels and lang
     concept: Record<string, unknown> = {
       ...identityOf(node, fm),
       "@type": "skos:Concept",
@@ -215,7 +222,6 @@ export function conceptFor(
 
   // Hierarchy: only relations the drafter asserted. The folder parent is
   // placement, published separately, and never promoted to skos:broader.
-  const broaderIds = new Map<string, { "@id": string }>();
   for (const ref of iriRefs((fm?.broader as string[]) ?? [], corpus)) {
     broaderIds.set(ref["@id"], ref);
   }
@@ -223,7 +229,6 @@ export function conceptFor(
     concept["skos:broader"] = [...broaderIds.values()];
   }
 
-  const narrowerIds = new Map<string, { "@id": string }>();
   for (const ref of iriRefs((fm?.narrower as string[]) ?? [], corpus)) {
     narrowerIds.set(ref["@id"], ref);
   }
@@ -254,15 +259,26 @@ export function conceptFor(
       langLit(v, lang)
     );
   }
-  const definition = (fm?.definition as string) || (fm?.description as string);
+  // oxlint-disable-next-line eslint/one-var -- full-mode fields stay past the compact early return
+  const broad: string[] = [],
+    close: string[] = [],
+    created = dateLit(fm?.created as string | undefined),
+    definition = (fm?.definition as string) || (fm?.description as string),
+    doNotUseFor = (fm?.do_not_use_for as string[]) ?? [],
+    mappings = (fm?.mappings ?? {}) as Record<string, Record<string, unknown>>,
+    modified = dateLit(
+      (fm?.modified as string | undefined) ??
+        (fm?.timestamp as string | undefined)
+    ),
+    related = (fm?.related as string[]) ?? [],
+    relatedMatch: string[] = [],
+    scopeNotes: { "@language": string; "@value": string }[] = [];
   if (definition) {
     concept["skos:definition"] = langLit(definition, lang);
   }
-  const scopeNotes: { "@language": string; "@value": string }[] = [];
   if (fm?.scope_note) {
     scopeNotes.push(langLit(fm.scope_note as string, lang));
   }
-  const doNotUseFor = (fm?.do_not_use_for as string[]) ?? [];
   if (doNotUseFor.length) {
     scopeNotes.push(
       langLit(`Not to be used for: ${doNotUseFor.join("; ")}`, lang)
@@ -272,19 +288,11 @@ export function conceptFor(
     concept["skos:scopeNote"] = scopeNotes;
   }
 
-  const related = (fm?.related as string[]) ?? [];
   if (related.length) {
     concept["skos:related"] = iriRefs(related, corpus);
   }
 
   // External mappings (FOLIO, EuroVoc, SALI/LMSS…) — IRIs only.
-  const mappings = (fm?.mappings ?? {}) as Record<
-      string,
-      Record<string, unknown>
-    >,
-    close: string[] = [],
-    relatedMatch: string[] = [],
-    broad: string[] = [];
   for (const group of Object.values(mappings)) {
     if (!group || typeof group !== "object") {
       continue;
@@ -303,14 +311,9 @@ export function conceptFor(
     concept["skos:broadMatch"] = broad.map((id) => ({ "@id": id }));
   }
 
-  const created = dateLit(fm?.created as string | undefined);
   if (created) {
     concept["dct:created"] = created;
   }
-  const modified = dateLit(
-    (fm?.modified as string | undefined) ??
-      (fm?.timestamp as string | undefined)
-  );
   if (modified) {
     concept["dct:modified"] = modified;
   }

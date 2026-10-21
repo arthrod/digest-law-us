@@ -16,12 +16,14 @@ import {
 } from "./cache-keys";
 
 const ref = (over: Partial<Parameters<typeof stampRef>[0]> = {}) => ({
-  label: "Sale of Assets",
-  published: true,
-  slugPath: "bankruptcy/sale-of-assets",
-  urn: "urn:legal-taxonomy:issue:bankruptcy.sale_of_assets",
-  ...over,
-});
+    label: "Sale of Assets",
+    published: true,
+    slugPath: "bankruptcy/sale-of-assets",
+    urn: "urn:legal-taxonomy:issue:bankruptcy.sale_of_assets",
+    ...over,
+  }),
+  sources = (bundle: string, entries: EntryLike[]) =>
+    new Map([[bundle, entries]]);
 
 function treeNode(over: Partial<KeyNode> = {}): KeyNode {
   return {
@@ -32,8 +34,25 @@ function treeNode(over: Partial<KeyNode> = {}): KeyNode {
   };
 }
 
-const sources = (bundle: string, entries: EntryLike[]) =>
-  new Map([[bundle, entries]]);
+function grandchild(digest: string): KeyNode {
+  return treeNode({
+    children: [
+      treeNode({
+        children: [
+          treeNode({
+            digest: { digest, id: "a/b/c/c" },
+            dir: "A/B/C",
+            slugPath: "a/b/c",
+          }),
+        ],
+        dir: "A/B",
+        slugPath: "a/b",
+      }),
+    ],
+    dir: "A",
+    slugPath: "a",
+  });
+}
 
 describe("cacheKeyFrom", () => {
   test("deterministic for identical input", () => {
@@ -98,25 +117,7 @@ describe("stampRef", () => {
 
 describe("subtreeStamps", () => {
   test("a deep descendant's entry digest moves the stamps", () => {
-    const grandchild = (digest: string): KeyNode =>
-        treeNode({
-          children: [
-            treeNode({
-              children: [
-                treeNode({
-                  digest: { digest, id: "a/b/c/c" },
-                  dir: "A/B/C",
-                  slugPath: "a/b/c",
-                }),
-              ],
-              dir: "A/B",
-              slugPath: "a/b",
-            }),
-          ],
-          dir: "A",
-          slugPath: "a",
-        }),
-      empty = new Map<string, EntryLike[]>();
+    const empty = new Map<string, EntryLike[]>();
     expect(subtreeStamps(grandchild("v1"), empty)).not.toEqual(
       subtreeStamps(grandchild("v2"), empty)
     );
@@ -128,18 +129,18 @@ describe("subtreeStamps", () => {
         dir: "A",
         slugPath: "a",
       }),
-      before = subtreeStamps(
-        node,
-        sources("A/B", [{ digest: "s1", id: "A/B/sources/one" }])
-      ),
-      after = subtreeStamps(
+      stampsAfter = subtreeStamps(
         node,
         sources("A/B", [
           { digest: "s1", id: "A/B/sources/one" },
           { digest: "s2", id: "A/B/sources/two" },
         ])
+      ),
+      stampsBefore = subtreeStamps(
+        node,
+        sources("A/B", [{ digest: "s1", id: "A/B/sources/one" }])
       );
-    expect(before).not.toEqual(after);
+    expect(stampsBefore).not.toEqual(stampsAfter);
   });
 
   test("stamps only read the node's own bundle key", () => {
@@ -152,12 +153,12 @@ describe("subtreeStamps", () => {
   });
 
   test("deterministic", () => {
-    const node = treeNode({
+    const map = sources("A", [{ digest: "s1", id: "A/sources/one" }]),
+      node = treeNode({
         children: [treeNode({ dir: "A/B", slugPath: "a/b" })],
         dir: "A",
         slugPath: "a",
-      }),
-      map = sources("A", [{ digest: "s1", id: "A/sources/one" }]);
+      });
     expect(subtreeStamps(node, map)).toEqual(subtreeStamps(node, map));
   });
 });

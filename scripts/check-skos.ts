@@ -29,9 +29,8 @@ try {
   process.exit(1);
 }
 
+// oxlint-disable-next-line eslint/one-var -- depends on `raw`, read inside the try above
 const findings = validateSkosGraph(JSON.parse(raw)),
-  violations = findings.filter((f) => f.severity === "violation"),
-  warnings = findings.filter((f) => f.severity === "warning"),
   show = (label: string, list: typeof findings, limit: number) => {
     for (const finding of list.slice(0, limit)) {
       process.stdout.write(
@@ -41,7 +40,9 @@ const findings = validateSkosGraph(JSON.parse(raw)),
     if (list.length > limit) {
       process.stdout.write(`… and ${list.length - limit} more ${label}\n`);
     }
-  };
+  },
+  violations = findings.filter((f) => f.severity === "violation"),
+  warnings = findings.filter((f) => f.severity === "warning");
 
 show("WARN", warnings, 20);
 show("FAIL", violations, 50);

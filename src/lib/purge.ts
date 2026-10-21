@@ -68,7 +68,8 @@ function countRows(tsv: string): number {
 let summaryPromise: Promise<PurgeSummary> | null = null;
 
 async function build(): Promise<PurgeSummary> {
-  const empty: PurgeSummary = { events: [], latest: null, total: 0 };
+  const empty: PurgeSummary = { events: [], latest: null, total: 0 },
+    events: PurgeEvent[] = [];
 
   let names: string[];
   try {
@@ -80,7 +81,6 @@ async function build(): Promise<PurgeSummary> {
     return empty;
   }
 
-  const events: PurgeEvent[] = [];
   for (const name of names) {
     const match = MANIFEST_RE.exec(name);
     if (!match?.groups) {
@@ -93,6 +93,7 @@ async function build(): Promise<PurgeSummary> {
       console.warn(`[purge] unreadable manifest ${name}: ${String(error)}`);
       continue;
     }
+    // oxlint-disable-next-line eslint/one-var -- count needs tsv, read after the early-continue guards
     const count = countRows(tsv);
     if (count === 0) {
       console.warn(`[purge] manifest ${name} has no rows — skipped`);

@@ -90,9 +90,9 @@ const {
     -->
     <script is:inline>
       (() => {
-        const stored = localStorage.getItem("theme"),
-         theme = stored ?? "light",
-         root = document.firstElementChild;
+        const root = document.firstElementChild,
+         stored = localStorage.getItem("theme"),
+         theme = stored ?? "light";
         if (root) {
           root.dataset.theme = theme;
         }

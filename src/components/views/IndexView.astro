@@ -26,12 +26,15 @@ const { slugPath, kind } = Astro.props,
 if (!node?.digest) {
   throw new Error(`No bundle at ${slugPath}`);
 }
+// oxlint-disable-next-line eslint/one-var -- declared after the !node?.digest guard; hoisting would read node.dir before the throw
 const entry = (
   kind === "caselaw" ? corpus.caselawByDir : corpus.statutoryByDir
 ).get(node.dir);
 if (!entry) {
   throw new Error(`No ${kind} index at ${slugPath}`);
 }
+/* oxlint-disable eslint/sort-vars -- isAbsent/probes/count/areaLabel/description read earlier declarators; sorting would hit the TDZ and reorder the render() await */
+// oxlint-disable-next-line eslint/one-var -- declared after the !entry guard; render(entry) must not run before the throw
 const run = corpus.runsByDir.get(node.dir),
  audit = corpus.auditsByDir.get(node.dir),
 
@@ -90,6 +93,7 @@ const run = corpus.runsByDir.get(node.dir),
  description = isAbsent
   ? `No ${noun} authorities were retained for ${node.label} — a documented absence, with the searches that ran.`
   : `Table of ${noun} authorities for ${node.label}, derived from the retained sources.`;
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <Layout {description} {title}>

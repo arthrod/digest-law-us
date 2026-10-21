@@ -25,30 +25,6 @@ export interface Reviewer {
   role: string;
 }
 
-export const REVIEWERS: Reviewer[] = [
-  {
-    based: "New York",
-    credentials: [
-      "J.D., University of Michigan Law School, 2019",
-      "LL.M., University of Michigan Law School, 2012",
-    ],
-    email: "arthur@digest.law",
-    name: "Arthur Souza Rodrigues",
-    oneLiner:
-      "Corporate lawyer working where legal advice meets execution — contracts, governance, privacy and AI adoption, plus the software layer that makes the work repeatable.",
-    role: "Editor and reviewer",
-  },
-  {
-    based: "Brazil",
-    credentials: ["LL.M., Cornell Law School, 2023"],
-    email: "carolina@digest.law",
-    name: "Carolina Machado Brigagão",
-    oneLiner:
-      "Over a decade of Brazilian and cross-border practice, now in-house at the global energy and commodities trader Vitol.",
-    role: "Reviewer",
-  },
-];
-
 export interface ContactTopic {
   /** submitted value — also the Worker's routing key */
   id: string;
@@ -58,50 +34,73 @@ export interface ContactTopic {
 }
 
 const ARTHUR = "arthur@digest.law",
-  CAROLINA = "carolina@digest.law";
+  CAROLINA = "carolina@digest.law",
+  /** Field limits, enforced on both sides of the wire. */
+  LIMITS = {
+    email: 200,
+    message: 5000,
+    name: 120,
+    organization: 160,
+  } as const,
+  REVIEWERS: Reviewer[] = [
+    {
+      based: "New York",
+      credentials: [
+        "J.D., University of Michigan Law School, 2019",
+        "LL.M., University of Michigan Law School, 2012",
+      ],
+      email: "arthur@digest.law",
+      name: "Arthur Souza Rodrigues",
+      oneLiner:
+        "Corporate lawyer working where legal advice meets execution — contracts, governance, privacy and AI adoption, plus the software layer that makes the work repeatable.",
+      role: "Editor and reviewer",
+    },
+    {
+      based: "Brazil",
+      credentials: ["LL.M., Cornell Law School, 2023"],
+      email: "carolina@digest.law",
+      name: "Carolina Machado Brigagão",
+      oneLiner:
+        "Over a decade of Brazilian and cross-border practice, now in-house at the global energy and commodities trader Vitol.",
+      role: "Reviewer",
+    },
+  ],
+  /**
+   * Topic router. Anything that touches the corpus itself reaches both
+   * reviewers; everything else reaches the editor. The Worker rejects any
+   * topic id absent from this list, so the recipient set is closed by
+   * construction — a submitted address can never become a recipient.
+   */
+  TOPICS: ContactTopic[] = [
+    {
+      id: "correction",
+      label: "Correction to a digest",
+      to: [ARTHUR, CAROLINA],
+    },
+    {
+      id: "reviewer",
+      label: "Apply to review (local or global)",
+      to: [ARTHUR, CAROLINA],
+    },
+    {
+      id: "source",
+      label: "Source, licensing or takedown",
+      to: [ARTHUR],
+    },
+    {
+      id: "research",
+      label: "Research, press or data access",
+      to: [ARTHUR],
+    },
+    {
+      id: "other",
+      label: "Something else",
+      to: [ARTHUR],
+    },
+  ];
 
-/**
- * Topic router. Anything that touches the corpus itself reaches both
- * reviewers; everything else reaches the editor. The Worker rejects any
- * topic id absent from this list, so the recipient set is closed by
- * construction — a submitted address can never become a recipient.
- */
-export const TOPICS: ContactTopic[] = [
-  {
-    id: "correction",
-    label: "Correction to a digest",
-    to: [ARTHUR, CAROLINA],
-  },
-  {
-    id: "reviewer",
-    label: "Apply to review (local or global)",
-    to: [ARTHUR, CAROLINA],
-  },
-  {
-    id: "source",
-    label: "Source, licensing or takedown",
-    to: [ARTHUR],
-  },
-  {
-    id: "research",
-    label: "Research, press or data access",
-    to: [ARTHUR],
-  },
-  {
-    id: "other",
-    label: "Something else",
-    to: [ARTHUR],
-  },
-];
+export { LIMITS, REVIEWERS, TOPICS };
 
 export function topicById(id: string): ContactTopic | undefined {
   return TOPICS.find((t) => t.id === id);
 }
-
-/** Field limits, enforced on both sides of the wire. */
-export const LIMITS = {
-  email: 200,
-  message: 5000,
-  name: 120,
-  organization: 160,
-} as const;

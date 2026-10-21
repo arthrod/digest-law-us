@@ -12,6 +12,7 @@ import { getCorpus } from "@/lib/corpus";
 import { formatBytes } from "@/lib/labels";
 import { getPurge } from "@/lib/purge";
 
+/* oxlint-disable eslint/sort-vars -- purge/corpus awaits must stay ordered and later declarators depend on earlier ones (TDZ) */
 const corpus = await getCorpus(),
  { doctrinalAreas, compositeAreas, stats } = corpus,
  purge = await getPurge(),
@@ -94,6 +95,7 @@ const corpus = await getCorpus(),
  description =
   "An open digest of United States legal doctrine: a SKOS classification built from public-domain treatise structure, researched from free public sources, and published with full source texts, search logs, and generation manifests.",
  title = "About — American Legal Digest";
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <Layout {description} {title}>

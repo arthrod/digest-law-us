@@ -64,14 +64,13 @@ const description =
   };
 
   function initSearch() {
-    const pageFindSearch: HTMLElement | null =
-      document.querySelector("#pagefind-search");
+    const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1)),
+     pageFindSearch: HTMLElement | null =
+      document.querySelector("#pagefind-search"),
+     params = new URLSearchParams(window.location.search);
     if (!pageFindSearch) {
       return;
     }
-
-    const params = new URLSearchParams(window.location.search),
-     onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
 
     onIdle(async () => {
       // Warm Pagefind's boot assets while the user types their first query —
@@ -114,6 +113,7 @@ const description =
               `;
       }
 
+      // oxlint-disable-next-line eslint/one-var -- must be constructed after the dev-mode innerHTML write above
       const search = new PagefindUI({
         bundlePath: "/pagefind/",
         element: "#pagefind-search",
@@ -127,15 +127,18 @@ const description =
         showSubResults: true,
       }),
 
+       // oxlint-disable-next-line eslint/sort-vars -- read q only after PagefindUI is constructed (processTerm mutates params)
        query = params.get("q");
       if (query) {
         search.triggerSearch(query);
       }
 
+      // oxlint-disable-next-line eslint/one-var -- queries the UI after triggerSearch/focus; hoisting would reorder DOM reads
       const searchInput = document.querySelector(
         ".pagefind-ui__search-input"
       ) as HTMLInputElement | null;
       searchInput?.focus();
+      // oxlint-disable-next-line eslint/one-var -- queries the UI after triggerSearch/focus; hoisting would reorder DOM reads
       const clearButton = document.querySelector(".pagefind-ui__search-clear");
       searchInput?.addEventListener("input", resetSearchParam);
       clearButton?.addEventListener("click", resetSearchParam);

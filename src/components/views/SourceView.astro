@@ -27,16 +27,20 @@ const { slugPath, sourceId, part } = Astro.props,
 if (!node?.digest) {
   throw new Error(`No bundle at ${slugPath}`);
 }
+// oxlint-disable-next-line eslint/one-var -- declared after the !node?.digest guard; getEntry must not run before the throw
 const source = await getEntry("sources", sourceId);
 if (!source) {
   throw new Error(`No source ${sourceId}`);
 }
+// oxlint-disable-next-line eslint/one-var -- declared after the !source guard; hoisting would read source.data before the throw
 const meta = source.data,
 
  span = meta.spans[part - 1];
 if (!span) {
   throw new Error(`No part ${part} of ${sourceId}`);
 }
+/* oxlint-disable eslint/sort-vars -- position/hrefFor/canonicalURL/sha/title/percent read earlier declarators; sorting would hit the TDZ */
+// oxlint-disable-next-line eslint/one-var -- declared after the !span guard; renderSourceChunk must not run before the throw
 const { html } = await renderSourceChunk(meta.relFile, span),
 
  siblings = corpus.sourcesByBundle.get(node.dir) ?? [],
@@ -64,6 +68,7 @@ const { html } = await renderSourceChunk(meta.relFile, span),
   meta.parts > 1
     ? Math.round(((shownEnd - shownStart) / meta.chars) * 100)
     : 100;
+/* oxlint-enable eslint/sort-vars */
 ---
 
 <Layout canonicalURL={canonicalURL} {description} {title}>
