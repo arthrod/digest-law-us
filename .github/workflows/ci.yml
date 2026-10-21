@@ -20,12 +20,12 @@ jobs:
 
     steps:
       - name: "☁️ Checkout repository"
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: "📦 Install pnpm"
         uses: pnpm/action-setup@v4
         with:
-          version: "11.3.0"
+          version: "12.9.1"
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -44,7 +44,7 @@ jobs:
       # install so pnpm cannot disturb it. Any deploy workflow that builds
       # the real corpus needs this same step to benefit.
       - name: "♻️ Restore Astro build cache"
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: node_modules/.astro
           key: astro-build-${{ runner.os }}-${{ github.run_id }}

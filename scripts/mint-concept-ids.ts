@@ -134,6 +134,7 @@ function collectFromGit(repo: string, ref: string): CorpusConcept[] {
       .map((f) => f.slice(OKF_IN_REPO.length + 1)),
     // oxlint-disable-next-line eslint/sort-vars -- fileSet depends on files (TDZ)
     dirs = new Set<string>(),
+    // oxlint-disable-next-line eslint/sort-vars -- fileSet depends on files (TDZ)
     fileSet = new Set(files);
   for (const file of files) {
     const parts = file.split("/");
