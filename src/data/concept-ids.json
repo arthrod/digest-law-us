@@ -29876,6 +29876,35 @@
       "pathNotation": "CONTRACT_LAW.EFFECT_OF_BANKRUPTCY_ON_CONTRACTS.NON_DISSOLUTION_OF_CONTRACTUAL_OBLIGATIONS"
     },
     {
+      "id": "e523cf4f23734ca58a71273689847941",
+      "keys": [
+        "contract-law/effect-of-contracts"
+      ],
+      "label": "Effect of Contracts",
+      "minted": "2026-10-29",
+      "uuid": "e523cf4f-2373-4ca5-8a71-273689847941"
+    },
+    {
+      "id": "6ce4e3f5c7d24ff392d7e133d838d2db",
+      "keys": [
+        "contract-law/effect-of-contracts/debts-and-obligations"
+      ],
+      "label": "Debts and Obligations",
+      "minted": "2026-10-29",
+      "uuid": "6ce4e3f5-c7d2-4ff3-92d7-e133d838d2db"
+    },
+    {
+      "id": "64702688dec8432ea310c948a52fcd93",
+      "keys": [
+        "contract-law/effect-of-contracts/debts-and-obligations/antenuptial-debts"
+      ],
+      "label": "ANTENUPTIAL DEBTS",
+      "minted": "2026-10-29",
+      "uuid": "64702688-dec8-432e-a310-c948a52fcd93",
+      "corpusIssueId": "a60d5a4d-4cac-52f2-8b08-5b23ecea31ae",
+      "pathNotation": "CONTRACT_LAW.EFFECT_OF_CONTRACTS.DEBTS_AND_OBLIGATIONS.ANTENUPTIAL_DEBTS"
+    },
+    {
       "id": "c81aab3c3a524b4fb568dadeb6c5c987",
       "keys": [
         "contract-law/effect-of-statutory-repeal"
@@ -183352,6 +183381,17 @@
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.RIGHTS_AND_DUTIES_OF_PARTIES.INDEMNITY_AND_ASSIGNMENT_IN_DELIVERY"
     },
     {
+      "id": "5a9dafb2ff884bdeb2b262b9af7ba0e1",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/rights-and-duties-of-parties/lien-rights-of-bailee"
+      ],
+      "label": "LIEN RIGHTS OF BAILEE",
+      "minted": "2026-10-29",
+      "uuid": "5a9dafb2-ff88-4bde-b2b2-62b9af7ba0e1",
+      "corpusIssueId": "d5282a88-9b8c-5a78-928a-5af8b69477fb",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.RIGHTS_AND_DUTIES_OF_PARTIES.LIEN_RIGHTS_OF_BAILEE"
+    },
+    {
       "id": "7006dbbff52f4072af08e8030d10ec4c",
       "keys": [
         "law-of-wrongdoing/personal-property-law/rights-and-duties-of-parties/modification-by-special-contract"
@@ -188250,6 +188290,17 @@
       "uuid": "3f6594aa-8af0-4a32-bcbc-c9a81ba9de08",
       "corpusIssueId": "5d90a542-198c-538e-aae7-d396c9e70e06",
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.FINANCIAL_MANAGEMENT_AND_ASSETS.DEPRECIATION_OF_ASSETS"
+    },
+    {
+      "id": "8c8e1473e8f443fa9cf2fa7a78340083",
+      "keys": [
+        "municipal-law/municipal-corporations/financial-powers-of-municipal-corporations"
+      ],
+      "label": "FINANCIAL POWERS OF MUNICIPAL CORPORATIONS",
+      "minted": "2026-10-29",
+      "uuid": "8c8e1473-e8f4-43fa-9cf2-fa7a78340083",
+      "corpusIssueId": "3787e1c4-bddc-5e10-9913-25e86b27078b",
+      "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.FINANCIAL_POWERS_OF_MUNICIPAL_CORPORATIONS"
     },
     {
       "id": "47961a5716db4cdda881fc1629c1f978",
@@ -248880,6 +248931,35 @@
       "pathNotation": "REAL_ESTATE_LAW.LAND_DESCRIPTIONS_AND_SURVEYS.METES_AND_BOUNDS_DESCRIPTIONS_IN_DEEDS"
     },
     {
+      "id": "ddd8586dcda0420a9cc7113b4d6117b3",
+      "keys": [
+        "real-estate-law/land-sale-contracts"
+      ],
+      "label": "Land Sale Contracts",
+      "minted": "2026-10-29",
+      "uuid": "ddd8586d-cda0-420a-9cc7-113b4d6117b3"
+    },
+    {
+      "id": "59722943225440eabaca3170f5944b31",
+      "keys": [
+        "real-estate-law/land-sale-contracts/title-and-conveyancing-obligations"
+      ],
+      "label": "Title and Conveyancing Obligations",
+      "minted": "2026-10-29",
+      "uuid": "59722943-2254-40ea-baca-3170f5944b31"
+    },
+    {
+      "id": "44c6c8b6511d440ea111018fe542fb64",
+      "keys": [
+        "real-estate-law/land-sale-contracts/title-and-conveyancing-obligations/abstract-of-title-agreements"
+      ],
+      "label": "ABSTRACT OF TITLE AGREEMENTS",
+      "minted": "2026-10-29",
+      "uuid": "44c6c8b6-511d-440e-a111-018fe542fb64",
+      "corpusIssueId": "7b2e3e90-a564-5c33-8e6f-bbbacfa11a36",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_SALE_CONTRACTS.TITLE_AND_CONVEYANCING_OBLIGATIONS.ABSTRACT_OF_TITLE_AGREEMENTS"
+    },
+    {
       "id": "980ca479de0f48da9aa0408e3d794e80",
       "keys": [
         "real-estate-law/land-sale-transactions"
@@ -261364,6 +261444,26 @@
       "uuid": "b02ef188-de45-4ae1-8335-f47fb4e1d97d",
       "corpusIssueId": "cf7b304b-7274-5153-a4f6-a2ab2939c26a",
       "pathNotation": "REAL_ESTATE_LAW.RULE_AGAINST_PERPETUITIES.EXCEPTIONS_AND_SPECIAL_CIRCUMSTANCES.PAYMENT_OF_DEBTS_OF_GRANTOR"
+    },
+    {
+      "id": "15edabc406c7472aabbce4d8afc67029",
+      "keys": [
+        "real-estate-law/rule-against-perpetuities/judicial-authorities-and-case-analysis"
+      ],
+      "label": "Judicial Authorities and Case Analysis",
+      "minted": "2026-10-29",
+      "uuid": "15edabc4-06c7-472a-abbc-e4d8afc67029"
+    },
+    {
+      "id": "01e850cf88364d5fa661eeac8cf5852c",
+      "keys": [
+        "real-estate-law/rule-against-perpetuities/judicial-authorities-and-case-analysis/attenborough-v-attenborough"
+      ],
+      "label": "ATTENBOROUGH V. ATTENBOROUGH",
+      "minted": "2026-10-29",
+      "uuid": "01e850cf-8836-4d5f-a661-eeac8cf5852c",
+      "corpusIssueId": "eb3e6f2b-f0ea-5000-8fa9-637e58f24580",
+      "pathNotation": "REAL_ESTATE_LAW.RULE_AGAINST_PERPETUITIES.JUDICIAL_AUTHORITIES_AND_CASE_ANALYSIS.ATTENBOROUGH_V._ATTENBOROUGH"
     },
     {
       "id": "43a4dec7327742bd87c273382efe5415",
