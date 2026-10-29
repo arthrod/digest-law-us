@@ -97749,6 +97749,35 @@
       "pathNotation": "EVIDENCE_LAW.ATTENDANCE_AND_COMPELLING_TESTIMONY.SUBPOENA_AS_MODE_OF_ENFORCING_ATTENDANCE"
     },
     {
+      "id": "25dbf2087d204236be800c2a186258bf",
+      "keys": [
+        "evidence-law/authentication-and-documentary-evidence"
+      ],
+      "label": "Authentication and Documentary Evidence",
+      "minted": "2026-10-29",
+      "uuid": "25dbf208-7d20-4236-be80-0c2a186258bf"
+    },
+    {
+      "id": "110873818aa541fc9b09cc26a24b17b1",
+      "keys": [
+        "evidence-law/authentication-and-documentary-evidence/judicial-records-and-proceedings"
+      ],
+      "label": "Judicial Records and Proceedings",
+      "minted": "2026-10-29",
+      "uuid": "11087381-8aa5-41fc-9b09-cc26a24b17b1"
+    },
+    {
+      "id": "25ccc00df09c4b84a719ed6ed9136ca6",
+      "keys": [
+        "evidence-law/authentication-and-documentary-evidence/judicial-records-and-proceedings/authentication-by-seal-of-court-of-record"
+      ],
+      "label": "AUTHENTICATION BY SEAL OF COURT OF RECORD",
+      "minted": "2026-10-29",
+      "uuid": "25ccc00d-f09c-4b84-a719-ed6ed9136ca6",
+      "corpusIssueId": "1319462c-bdfa-57f2-9153-bac50628ffb8",
+      "pathNotation": "EVIDENCE_LAW.AUTHENTICATION_AND_DOCUMENTARY_EVIDENCE.JUDICIAL_RECORDS_AND_PROCEEDINGS.AUTHENTICATION_BY_SEAL_OF_COURT_OF_RECORD"
+    },
+    {
       "id": "20ca41a5c6ed45049e381ca3e461bc1b",
       "keys": [
         "evidence-law/authentication-and-genuineness"
@@ -148893,6 +148922,17 @@
       "uuid": "920a2ddc-2467-45d1-9736-ae2d7248463a",
       "corpusIssueId": "30df4520-ca64-522e-a7db-a46b15a85e80",
       "pathNotation": "IP_LAW.PATENT_LAW.PATENT_GRANT_AND_ISSUANCE.DISTINCTION_BETWEEN_GRANT_AND_ASSIGNMENT"
+    },
+    {
+      "id": "d8c99f1b45794c7a87586c7517bf2ac9",
+      "keys": [
+        "ip-law/patent-law/patent-grant-and-issuance/term-of-patent-and-its-calculation"
+      ],
+      "label": "TERM OF PATENT AND ITS CALCULATION",
+      "minted": "2026-10-29",
+      "uuid": "d8c99f1b-4579-4c7a-8758-6c7517bf2ac9",
+      "corpusIssueId": "da271ac3-d291-513d-a9be-14eff2036aad",
+      "pathNotation": "IP_LAW.PATENT_LAW.PATENT_GRANT_AND_ISSUANCE.TERM_OF_PATENT_AND_ITS_CALCULATION"
     },
     {
       "id": "fe278d318a1e4486aea5e58d163a43e8",
@@ -201192,6 +201232,35 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.INTESTATE_SUCCESSION.ADVANCEMENTS_AND_HOTCHPOT.CREATION_OF_HOTCHPOT"
     },
     {
+      "id": "c0127f6f4f1049169264cd38cdbff639",
+      "keys": [
+        "personal-and-family-law/probate-law/intestate-succession/determination-of-heirs"
+      ],
+      "label": "Determination of Heirs",
+      "minted": "2026-10-29",
+      "uuid": "c0127f6f-4f10-4916-9264-cd38cdbff639"
+    },
+    {
+      "id": "4e13c214a8e74f28aab4787e35faaa37",
+      "keys": [
+        "personal-and-family-law/probate-law/intestate-succession/determination-of-heirs/siblings-and-their-issue"
+      ],
+      "label": "Siblings and Their Issue",
+      "minted": "2026-10-29",
+      "uuid": "4e13c214-a8e7-4f28-aab4-787e35faaa37"
+    },
+    {
+      "id": "570b0682375346cda13d75d6087dbdf4",
+      "keys": [
+        "personal-and-family-law/probate-law/intestate-succession/determination-of-heirs/siblings-and-their-issue/distribution-where-no-siblings-survive"
+      ],
+      "label": "DISTRIBUTION WHERE NO SIBLINGS SURVIVE",
+      "minted": "2026-10-29",
+      "uuid": "570b0682-3753-46cd-a13d-75d6087dbdf4",
+      "corpusIssueId": "36305352-94e3-5895-b1e7-cfff87d725e2",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.INTESTATE_SUCCESSION.DETERMINATION_OF_HEIRS.SIBLINGS_AND_THEIR_ISSUE.DISTRIBUTION_WHERE_NO_SIBLINGS_SURVIVE"
+    },
+    {
       "id": "8556121e53394d02a1ca39dae6a42fed",
       "uuid": "8556121e-5339-4d02-a1ca-39dae6a42fed",
       "keys": [
@@ -218182,6 +218251,35 @@
       "label": "Judicial Proceedings",
       "minted": "2026-10-02",
       "uuid": "41b4f90f-7aad-4e12-a3b5-19afb9b36297"
+    },
+    {
+      "id": "f5b0dfc83e5148f6ac8e9dc89aff9ee6",
+      "keys": [
+        "procedural-law/judicial-proceedings-and-doctrines"
+      ],
+      "label": "Judicial Proceedings and Doctrines",
+      "minted": "2026-10-29",
+      "uuid": "f5b0dfc8-3e51-48f6-ac8e-9dc89aff9ee6"
+    },
+    {
+      "id": "93798af08b7441f69e15e620bda93fd3",
+      "keys": [
+        "procedural-law/judicial-proceedings-and-doctrines/application-of-legal-doctrines"
+      ],
+      "label": "Application of Legal Doctrines",
+      "minted": "2026-10-29",
+      "uuid": "93798af0-8b74-41f6-9e15-e620bda93fd3"
+    },
+    {
+      "id": "50284eeb18c14d3b83b6520ccf00dad8",
+      "keys": [
+        "procedural-law/judicial-proceedings-and-doctrines/application-of-legal-doctrines/a-fortiori-reasoning"
+      ],
+      "label": "A FORTIORI REASONING",
+      "minted": "2026-10-29",
+      "uuid": "50284eeb-18c1-4d3b-83b6-520ccf00dad8",
+      "corpusIssueId": "55eb66a9-e534-5bef-8018-99dea9c920f4",
+      "pathNotation": "PROCEDURAL_LAW.JUDICIAL_PROCEEDINGS_AND_DOCTRINES.APPLICATION_OF_LEGAL_DOCTRINES.A_FORTIORI_REASONING"
     },
     {
       "id": "a08f7dee9668421ca263b20e26ed6027",
