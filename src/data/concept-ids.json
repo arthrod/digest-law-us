@@ -7622,6 +7622,26 @@
       "label": "Dismissal"
     },
     {
+      "id": "db455d95edf346519ab1792eb9e7649f",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/involuntary-bankruptcy-petition/dismissal-of-petition"
+      ],
+      "label": "Dismissal of Petition",
+      "minted": "2026-10-30",
+      "uuid": "db455d95-edf3-4651-9ab1-792eb9e7649f"
+    },
+    {
+      "id": "217b51805f914b2d998be5e92e23dcb5",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/involuntary-bankruptcy-petition/dismissal-of-petition/objection-by-petitioning-creditor"
+      ],
+      "label": "OBJECTION BY PETITIONING CREDITOR",
+      "minted": "2026-10-30",
+      "uuid": "217b5180-5f91-4b2d-998b-e5e92e23dcb5",
+      "corpusIssueId": "9a136848-f12a-55dd-af53-d7af6631698f",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.INVOLUNTARY_BANKRUPTCY_PETITION.DISMISSAL_OF_PETITION.OBJECTION_BY_PETITIONING_CREDITOR"
+    },
+    {
       "id": "4da318e4a1544c93a008bbf5d20076f3",
       "uuid": "4da318e4-a154-4c93-a008-bbf5d20076f3",
       "keys": [
@@ -22645,6 +22665,26 @@
       "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.INDIVIDUAL_RIGHTS_LAW.FREEDOM_OF_SPEECH_AND_EXPRESSION.COMPELLED_SPEECH_AND_ASSOCIATION.HURLEY_V_IRISH_AMERICAN_GAY_LESBIAN_BISEXUAL_GROUP_OF_BOSTON"
     },
     {
+      "id": "44f00ab237704b45ba8960b103897a50",
+      "keys": [
+        "constitutional-and-civil-rights-law/individual-rights-law/freedom-of-speech-and-expression/government-employee-and-institutional-speech"
+      ],
+      "label": "Government Employee and Institutional Speech",
+      "minted": "2026-10-30",
+      "uuid": "44f00ab2-3770-4b45-ba89-60b103897a50"
+    },
+    {
+      "id": "534359b36aee459e8468a09bc687062e",
+      "keys": [
+        "constitutional-and-civil-rights-law/individual-rights-law/freedom-of-speech-and-expression/government-employee-and-institutional-speech/academic-freedom-and-instructional-speech"
+      ],
+      "label": "ACADEMIC FREEDOM AND INSTRUCTIONAL SPEECH",
+      "minted": "2026-10-30",
+      "uuid": "534359b3-6aee-459e-8468-a09bc687062e",
+      "corpusIssueId": "f5f21de1-5708-5752-ba7e-cc26bd6e17ae",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.INDIVIDUAL_RIGHTS_LAW.FREEDOM_OF_SPEECH_AND_EXPRESSION.GOVERNMENT_EMPLOYEE_AND_INSTITUTIONAL_SPEECH.ACADEMIC_FREEDOM_AND_INSTRUCTIONAL_SPEECH"
+    },
+    {
       "id": "6e82325d4e184d5295ec01cd37acf3c1",
       "keys": [
         "constitutional-and-civil-rights-law/individual-rights-law/freedom-of-speech-and-expression/political-speech-and-campaign-finance"
@@ -33198,6 +33238,15 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.IMMORAL_CONSIDERATION.CONTRACTS_TO_ACT_AS_HOUSEKEEPER"
     },
     {
+      "id": "f3a620470ab243f88b0c1812b32b5c91",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/moral-consideration"
+      ],
+      "label": "Moral Consideration",
+      "minted": "2026-10-30",
+      "uuid": "f3a62047-0ab2-43f8-8b0c-1812b32b5c91"
+    },
+    {
       "id": "2d22e105709643dcb201c7e209205e4d",
       "keys": [
         "contract-law/formation-and-enforceability/consideration/moral-consideration-and-past-consideration"
@@ -33216,6 +33265,16 @@
       "uuid": "3aa9c375-9374-45f0-aa99-78271156a186",
       "corpusIssueId": "092bda32-5e18-5b8f-a3a0-633e838e2f8f",
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.MORAL_CONSIDERATION_AND_PAST_CONSIDERATION.STATUTORY_MODIFICATION_OF_CONSIDERATION_DOCTRINE"
+    },
+    {
+      "id": "1eee91a98d44430da0659397b3833482",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/moral-consideration/statutory-provisions"
+      ],
+      "label": "Statutory Provisions",
+      "minted": "2026-10-30",
+      "uuid": "1eee91a9-8d44-430d-a065-9397b3833482",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.MORAL_CONSIDERATION.STATUTORY_PROVISIONS"
     },
     {
       "id": "85e05de0906f4d8ab95256505101dc6e",
@@ -46820,6 +46879,17 @@
       "uuid": "c0956c82-99a7-4e50-b272-618c461ed458"
     },
     {
+      "id": "949916d3dff74e4097a9ae44bab21169",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/capital-structure-and-financing/paid-in-capital-requirements"
+      ],
+      "label": "PAID-IN CAPITAL REQUIREMENTS",
+      "minted": "2026-10-30",
+      "uuid": "949916d3-dff7-4e40-97a9-ae44bab21169",
+      "corpusIssueId": "dadb4680-2192-5197-a566-6922dec282fb",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CAPITAL_STRUCTURE_AND_FINANCING.PAID_IN_CAPITAL_REQUIREMENTS"
+    },
+    {
       "id": "79641f2762ee4feebb9bda4f127a6112",
       "keys": [
         "corporate-law/business-organizations-law/corporations/capital-structure-and-financing/subscriptions-to-corporate-stock"
@@ -58101,6 +58171,17 @@
       "label": "Partner Relations Inter Se",
       "minted": "2026-10-02",
       "uuid": "565e72bf-9ae7-4b17-94f5-577a6bb915e7"
+    },
+    {
+      "id": "fe02e48d7d724ef9a8260903d3af194c",
+      "keys": [
+        "corporate-law/business-organizations-law/partner-relations-inter-se/mutual-rights-duties-and-obligations-of-partners"
+      ],
+      "label": "MUTUAL RIGHTS, DUTIES, AND OBLIGATIONS OF PARTNERS",
+      "minted": "2026-10-30",
+      "uuid": "fe02e48d-7d72-4ef9-a826-0903d3af194c",
+      "corpusIssueId": "a513b7dd-62ec-5c2d-97ba-55b8f0336727",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNER_RELATIONS_INTER_SE.MUTUAL_RIGHTS_DUTIES_AND_OBLIGATIONS_OF_PARTNERS"
     },
     {
       "id": "fe63734c119545c5acbae086261d9666",
@@ -88415,6 +88496,17 @@
       "uuid": "601194ed-5877-4d2c-8773-2f48520b947a"
     },
     {
+      "id": "dd9f8ba2e2e84d2d913ebf0c8fffe834",
+      "keys": [
+        "criminal-law/post-conviction-relief/new-trial-motions"
+      ],
+      "label": "NEW TRIAL MOTIONS",
+      "minted": "2026-10-30",
+      "uuid": "dd9f8ba2-e2e8-4d2d-913e-bf0c8fffe834",
+      "corpusIssueId": "7ac78385-2545-51aa-a79b-4a347cefb1f1",
+      "pathNotation": "CRIMINAL_LAW.POST_CONVICTION_RELIEF.NEW_TRIAL_MOTIONS"
+    },
+    {
       "id": "6a71fdc89e3448d7be281d33a9dfa893",
       "keys": [
         "criminal-law/post-conviction-relief/new-trial/grounds-for-new-trial"
@@ -104371,6 +104463,26 @@
       "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.PRESUMPTIONS_APPLIED_TO_DOCUMENTS"
     },
     {
+      "id": "7a3b0ba7ddfe4dd3983d70252c4ae2a8",
+      "keys": [
+        "evidence-law/documentary-evidence/private-documents-and-writings"
+      ],
+      "label": "Private Documents and Writings",
+      "minted": "2026-10-30",
+      "uuid": "7a3b0ba7-ddfe-4dd3-983d-70252c4ae2a8"
+    },
+    {
+      "id": "a553d16c247e411197b2bdb40091fcb9",
+      "keys": [
+        "evidence-law/documentary-evidence/private-documents-and-writings/memoranda"
+      ],
+      "label": "MEMORANDA",
+      "minted": "2026-10-30",
+      "uuid": "a553d16c-247e-4111-97b2-bdb40091fcb9",
+      "corpusIssueId": "a4bc96c5-fa6b-5b2f-adde-882c5324d435",
+      "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.PRIVATE_DOCUMENTS_AND_WRITINGS.MEMORANDA"
+    },
+    {
       "id": "2967717c6e4345579dab75c281cd2a7c",
       "keys": [
         "evidence-law/documentary-evidence/production-and-non-production"
@@ -109345,6 +109457,26 @@
       "uuid": "c42828b2-de57-4738-a939-73ae105dbc9d",
       "corpusIssueId": "52ae3aab-f1e1-5329-a519-bd2fa54d473f",
       "pathNotation": "EVIDENCE_LAW.NATURE_AND_CLASSIFICATION_OF_EVIDENCE.JUDICIAL_EVIDENCE_DISTINGUISHED_FROM_EXTRAJUDICIAL_EVIDENCE"
+    },
+    {
+      "id": "7760cf3902e44cf8a847f1d417546707",
+      "keys": [
+        "evidence-law/notice-requirements"
+      ],
+      "label": "Notice Requirements",
+      "minted": "2026-10-30",
+      "uuid": "7760cf39-02e4-4cf8-a847-f1d417546707"
+    },
+    {
+      "id": "27132acf45314f32970045e73bd200fe",
+      "keys": [
+        "evidence-law/notice-requirements/place-of-notice"
+      ],
+      "label": "PLACE OF NOTICE",
+      "minted": "2026-10-30",
+      "uuid": "27132acf-4531-4f32-9700-45e73bd200fe",
+      "corpusIssueId": "15090b44-2951-5201-839e-9d5394d44606",
+      "pathNotation": "EVIDENCE_LAW.NOTICE_REQUIREMENTS.PLACE_OF_NOTICE"
     },
     {
       "id": "372a0ca8d7394a1a860761442d440f80",
@@ -144761,6 +144893,17 @@
       "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CHOICE_OF_LAW.REMEDIES_AND_PROCEDURAL_MATTERS"
     },
     {
+      "id": "2550dc6596ee4448b38e22764bf5d3a6",
+      "keys": [
+        "international-and-comparative-law/choice-of-law/remedies-and-procedural-matters/lex-fori-rule"
+      ],
+      "label": "LEX FORI RULE",
+      "minted": "2026-10-30",
+      "uuid": "2550dc65-96ee-4448-b38e-22764bf5d3a6",
+      "corpusIssueId": "0f173251-7db9-52a8-9787-1681706a7840",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CHOICE_OF_LAW.REMEDIES_AND_PROCEDURAL_MATTERS.LEX_FORI_RULE"
+    },
+    {
       "id": "cf8fe3409035495aa2395eb4210cfe14",
       "keys": [
         "international-and-comparative-law/choice-of-law/sovereignty-and-jurisdictional-rules"
@@ -147029,6 +147172,26 @@
       "uuid": "4298292a-fa70-4083-87e4-9ee9caa69728",
       "corpusIssueId": "0dc58037-5a78-51ae-a016-eb6d4e77de9d",
       "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.JUDGMENTS.ENFORCEMENT_AND_RECOGNITION_OF_FOREIGN_JUDGMENTS.MERGER_AND_BAR.MERGER_OF_CAUSE_OF_ACTION_IN_JUDGMENT"
+    },
+    {
+      "id": "6fe290a2ed7c483781d10eb470cf6d0b",
+      "keys": [
+        "international-and-comparative-law/judgments/enforcement-and-recognition-of-foreign-judgments/res-judicata"
+      ],
+      "label": "Res Judicata",
+      "minted": "2026-10-30",
+      "uuid": "6fe290a2-ed7c-4837-81d1-0eb470cf6d0b"
+    },
+    {
+      "id": "21aa806b46594bc1bbbadf110c08ee34",
+      "keys": [
+        "international-and-comparative-law/judgments/enforcement-and-recognition-of-foreign-judgments/res-judicata/persons-entitled-to-assert-res-judicata"
+      ],
+      "label": "PERSONS ENTITLED TO ASSERT RES JUDICATA",
+      "minted": "2026-10-30",
+      "uuid": "21aa806b-4659-4bc1-bbba-df110c08ee34",
+      "corpusIssueId": "ef1c87b8-408f-5730-9155-69e33d8a9f8f",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.JUDGMENTS.ENFORCEMENT_AND_RECOGNITION_OF_FOREIGN_JUDGMENTS.RES_JUDICATA.PERSONS_ENTITLED_TO_ASSERT_RES_JUDICATA"
     },
     {
       "id": "a12e52ea30a6461082b214a091590fec",
@@ -159751,6 +159914,17 @@
       "uuid": "b63d51c1-3b20-450f-b2b0-b27bd881a995",
       "corpusIssueId": "8d4caaa4-1440-5922-a798-ea4e19317649",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.EQUITY_JURISPRUDENCE_TREATISES.CROSS_REFERENCE_TO_UNDERHILL_ON_TRUSTS_AND_POMEROY_EQUITY_JURISPRUDENCE"
+    },
+    {
+      "id": "9cddbdff0315415b846754ee44a7fc3d",
+      "keys": [
+        "jurisprudence-and-legal-method/equity-jurisprudence/maxims-of-equity"
+      ],
+      "label": "MAXIMS OF EQUITY",
+      "minted": "2026-10-30",
+      "uuid": "9cddbdff-0315-415b-8467-54ee44a7fc3d",
+      "corpusIssueId": "331d6d4a-5f0d-5464-9b95-5e1b799ef3c7",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.EQUITY_JURISPRUDENCE.MAXIMS_OF_EQUITY"
     },
     {
       "id": "77e272d7e19b4d68899e6189c259d4b3",
@@ -189017,6 +189191,34 @@
       "minted": "2026-10-02",
       "uuid": "4006f5dd-f64d-4175-ad6c-9e1e6b483c0e",
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.GENERAL_PRINCIPLES_AND_OVERVIEW"
+    },
+    {
+      "id": "5911319abf0c4bc287dc49be199b4095",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/gifts"
+      ],
+      "label": "Gifts",
+      "minted": "2026-10-30",
+      "uuid": "5911319a-bf0c-4bc2-87dc-49be199b4095"
+    },
+    {
+      "id": "7ce8628392cd45709cd40d53fc9d290c",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/gifts/reservations-or-conditions-in-gifts"
+      ],
+      "label": "Reservations or Conditions in Gifts",
+      "minted": "2026-10-30",
+      "uuid": "7ce86283-92cd-4570-9cd4-0d53fc9d290c"
+    },
+    {
+      "id": "4ca680ee19f44049a24c91437d0f9938",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/gifts/reservations-or-conditions-in-gifts/scope-and-validity-of-reservations-by-donor"
+      ],
+      "label": "Scope and Validity of Reservations by Donor",
+      "minted": "2026-10-30",
+      "uuid": "4ca680ee-19f4-4049-a24c-91437d0f9938",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.GIFTS.RESERVATIONS_OR_CONDITIONS_IN_GIFTS.SCOPE_AND_VALIDITY_OF_RESERVATIONS_BY_DONOR"
     },
     {
       "id": "2226a4ce512e4c66bda49b579b9f6c61",
@@ -222637,6 +222839,17 @@
       "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.MERGER_OF_CAUSE_OF_ACTION.NON_MERGER_OF_ORIGINAL_CAUSE_OF_ACTION"
     },
     {
+      "id": "552ddef9c32d4299a0b3eed0db274a1e",
+      "keys": [
+        "procedural-law/effects-of-judgments/merger/joint-debtor-acts"
+      ],
+      "label": "JOINT DEBTOR ACTS",
+      "minted": "2026-10-30",
+      "uuid": "552ddef9-c32d-4299-a0b3-eed0db274a1e",
+      "corpusIssueId": "bf30f9c0-7daf-5c94-a622-6e2b441ececf",
+      "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.MERGER.JOINT_DEBTOR_ACTS"
+    },
+    {
       "id": "a1a82b992b344783ac735bce884ba978",
       "keys": [
         "procedural-law/effects-of-judgments/merger/judgments-on-demurrer"
@@ -230478,6 +230691,35 @@
       "pathNotation": "PROCEDURAL_LAW.PLEADINGS_AND_AMENDMENTS.SCOPE_AND_EFFECT_OF_AMENDMENTS"
     },
     {
+      "id": "58cba2d44d1f4796b24cad12d4ad1ea9",
+      "keys": [
+        "procedural-law/pleadings-and-complaints"
+      ],
+      "label": "Pleadings and Complaints",
+      "minted": "2026-10-30",
+      "uuid": "58cba2d4-4d1f-4796-b24c-ad12d4ad1ea9"
+    },
+    {
+      "id": "756c537c65d4400692a54081d5e6ce27",
+      "keys": [
+        "procedural-law/pleadings-and-complaints/requirements-for-pleadings"
+      ],
+      "label": "Requirements for Pleadings",
+      "minted": "2026-10-30",
+      "uuid": "756c537c-65d4-4006-92a5-4081d5e6ce27"
+    },
+    {
+      "id": "079f2979e8d64a43857227994451bb87",
+      "keys": [
+        "procedural-law/pleadings-and-complaints/requirements-for-pleadings/anticipation-of-defenses"
+      ],
+      "label": "Anticipation of Defenses",
+      "minted": "2026-10-30",
+      "uuid": "079f2979-e8d6-4a43-8572-27994451bb87",
+      "corpusIssueId": "a5413da6-62df-5d0c-ade2-d4c4eda06660",
+      "pathNotation": "PROCEDURAL_LAW.PLEADINGS_AND_COMPLAINTS.REQUIREMENTS_FOR_PLEADINGS.ANTICIPATION_OF_DEFENSES"
+    },
+    {
       "id": "b5e92b5b42e14de78701deb62af01cb3",
       "uuid": "b5e92b5b-42e1-4de7-8701-deb62af01cb3",
       "keys": [
@@ -233751,6 +233993,17 @@
       "label": "REVIEW OF COMMITMENT ORDERS FOR CONTEMPT",
       "corpusIssueId": "27e2d1a8-9d55-54c7-ad61-26aa20dfd349",
       "pathNotation": "PROCEDURAL_LAW.REVIEW_OF_CONTEMPT_ORDERS.REVIEW_OF_COMMITMENT_ORDERS_FOR_CONTEMPT"
+    },
+    {
+      "id": "1c3e6f11819f4f99b07497baeb2f658f",
+      "keys": [
+        "procedural-law/review-of-municipal-corporation-actions"
+      ],
+      "label": "REVIEW OF MUNICIPAL CORPORATION ACTIONS",
+      "minted": "2026-10-30",
+      "uuid": "1c3e6f11-819f-4f99-b074-97baeb2f658f",
+      "corpusIssueId": "6d382f3e-11eb-5941-872c-78a47c6b1a34",
+      "pathNotation": "PROCEDURAL_LAW.REVIEW_OF_MUNICIPAL_CORPORATION_ACTIONS"
     },
     {
       "id": "4b4d6bd1008d4bdc9575580e3d1ed6ca",
@@ -253246,6 +253499,17 @@
       "uuid": "1e861d71-02a0-48e2-9080-43ce257b9697",
       "corpusIssueId": "dd724d84-fb6b-5844-b2bf-77ed723bceaa",
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.FUTURE_INTERESTS.CONDITIONS_SUBSEQUENT"
+    },
+    {
+      "id": "0cc2f6c28dc04a6fbd1b838c00f83d4b",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/future-interests/estates-tail"
+      ],
+      "label": "ESTATES TAIL",
+      "minted": "2026-10-30",
+      "uuid": "0cc2f6c2-8dc0-4a6f-bd1b-838c00f83d4b",
+      "corpusIssueId": "1e50a4be-6122-564f-be50-9bc4a91d27ce",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.FUTURE_INTERESTS.ESTATES_TAIL"
     },
     {
       "id": "4cd745fa7994441fb42ccae9c1b1686e",
