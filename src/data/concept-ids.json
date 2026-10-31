@@ -4486,6 +4486,35 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_PROVISIONAL_REMEDIES.LIQUIDATION_BY_BANKRUPTCY_COURT"
     },
     {
+      "id": "f24323a5d9f5448d92c77fa0e9a69f65",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-provisional-remedies/notice-requirements"
+      ],
+      "label": "Notice Requirements",
+      "minted": "2026-10-31",
+      "uuid": "f24323a5-d9f5-448d-92c7-7fa0e9a69f65"
+    },
+    {
+      "id": "02d7d255210a49ca84eedb82ed1dc83e",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-provisional-remedies/notice-requirements/notice-by-mail"
+      ],
+      "label": "Notice by Mail",
+      "minted": "2026-10-31",
+      "uuid": "02d7d255-210a-49ca-84ee-db82ed1dc83e"
+    },
+    {
+      "id": "33547148ebac42aaa7ea925f368cd400",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-provisional-remedies/notice-requirements/notice-by-mail/ten-day-mail-notice"
+      ],
+      "label": "TEN-DAY MAIL NOTICE",
+      "minted": "2026-10-31",
+      "uuid": "33547148-ebac-42aa-a7ea-925f368cd400",
+      "corpusIssueId": "58ef1dd2-4905-5eea-a0b7-5e784cd1462f",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_PROVISIONAL_REMEDIES.NOTICE_REQUIREMENTS.NOTICE_BY_MAIL.TEN_DAY_MAIL_NOTICE"
+    },
+    {
       "id": "338bda7ea1334db984b526776b524811",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/bankruptcy-provisional-remedies/referee-s-certificate"
@@ -14971,6 +15000,17 @@
       "uuid": "8cfb7dc3-7e29-4c6f-a55a-863d94d7fff7",
       "corpusIssueId": "1b018234-cc53-583c-853d-58f8eb88ee8c",
       "pathNotation": "COMMERCIAL_AND_TRADE_LAW.ADMIRALTY_AND_MARITIME_LAW.PRIZE_PROCEEDINGS.SERVICE_AND_RETURN_OF_PROCESS.ALIAS_PROCESS"
+    },
+    {
+      "id": "8209cf30b8bc431aada7a6412366a259",
+      "keys": [
+        "commercial-and-trade-law/admiralty-and-maritime-law/prize-proceedings/service-and-return-of-process/service-of-monition"
+      ],
+      "label": "SERVICE OF MONITION",
+      "minted": "2026-10-31",
+      "uuid": "8209cf30-b8bc-431a-ada7-a6412366a259",
+      "corpusIssueId": "23d1a103-ca52-5296-9431-3df5a5f79420",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.ADMIRALTY_AND_MARITIME_LAW.PRIZE_PROCEEDINGS.SERVICE_AND_RETURN_OF_PROCESS.SERVICE_OF_MONITION"
     },
     {
       "id": "9706b3211d3b45d5b359ff2931117d15",
@@ -34107,6 +34147,26 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.RELEASE_OF_INCHOATE_DOWER_RIGHT"
     },
     {
+      "id": "d5b2b3bca781437e936ba343f258c4ed",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/requirement-of-exchange-and-types-of-exchange"
+      ],
+      "label": "Requirement of Exchange and Types of Exchange",
+      "minted": "2026-10-31",
+      "uuid": "d5b2b3bc-a781-437e-936b-a343f258c4ed"
+    },
+    {
+      "id": "d2310003357a4cd5b4395ee2320d4ad6",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/requirement-of-exchange-and-types-of-exchange/types-of-exchange"
+      ],
+      "label": "TYPES OF EXCHANGE",
+      "minted": "2026-10-31",
+      "uuid": "d2310003-357a-4cd5-b439-5ee2320d4ad6",
+      "corpusIssueId": "09fd7848-47c6-5a6c-8bb4-83721f281191",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.REQUIREMENT_OF_EXCHANGE_AND_TYPES_OF_EXCHANGE.TYPES_OF_EXCHANGE"
+    },
+    {
       "id": "ec72bb4f41f24482933e75eb1bfedf4b",
       "keys": [
         "contract-law/formation-and-enforceability/consideration/sealed-instruments-and-consideration"
@@ -43170,6 +43230,35 @@
       "uuid": "583284e6-1baf-41d9-8198-0952f2e5b185",
       "corpusIssueId": "3a32fa61-5fb5-5fe6-91ad-5254ef35044d",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE.TIME_AND_MANNER_OF_PERFORMANCE"
+    },
+    {
+      "id": "2128dabc6d4e459987916050ab76e608",
+      "keys": [
+        "contract-law/performance/warranties"
+      ],
+      "label": "Warranties",
+      "minted": "2026-10-31",
+      "uuid": "2128dabc-6d4e-4599-8791-6050ab76e608"
+    },
+    {
+      "id": "837306daa056428ab5b3cac56676eeab",
+      "keys": [
+        "contract-law/performance/warranties/implied-warranty-of-merchantability"
+      ],
+      "label": "Implied Warranty of Merchantability",
+      "minted": "2026-10-31",
+      "uuid": "837306da-a056-428a-b5b3-cac56676eeab"
+    },
+    {
+      "id": "669640671db94c4fbcf8272a7dc139dd",
+      "keys": [
+        "contract-law/performance/warranties/implied-warranty-of-merchantability/ucc-2-314"
+      ],
+      "label": "UCC § 2-314",
+      "minted": "2026-10-31",
+      "uuid": "66964067-1db9-4c4f-bcf8-272a7dc139dd",
+      "corpusIssueId": "5cf79f3d-5911-55fb-82bf-888b3885de32",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE.WARRANTIES.IMPLIED_WARRANTY_OF_MERCHANTABILITY.UCC_2_314"
     },
     {
       "id": "c1a87d5be9fc4b868b794c51743d7727",
@@ -59578,6 +59667,26 @@
       "uuid": "9e19d615-2575-4b01-8525-574ebda870eb"
     },
     {
+      "id": "1aebab150fcc498c958a91d4efb6916b",
+      "keys": [
+        "corporate-law/business-organizations-law/partnership-accounting-settlement-and-distribution/agreed-final-balance"
+      ],
+      "label": "Agreed Final Balance",
+      "minted": "2026-10-31",
+      "uuid": "1aebab15-0fcc-498c-958a-91d4efb6916b"
+    },
+    {
+      "id": "253bb6eb67414394a282f59af5491b62",
+      "keys": [
+        "corporate-law/business-organizations-law/partnership-accounting-settlement-and-distribution/agreed-final-balance/definition-and-requisites"
+      ],
+      "label": "AGREED FINAL BALANCE — DEFINITION AND REQUISITES",
+      "minted": "2026-10-31",
+      "uuid": "253bb6eb-6741-4394-a282-f59af5491b62",
+      "corpusIssueId": "60a83dd6-86ae-562d-934e-7284978ec0e5",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIP_ACCOUNTING_SETTLEMENT_AND_DISTRIBUTION.AGREED_FINAL_BALANCE.DEFINITION_AND_REQUISITES"
+    },
+    {
       "id": "dd71692e96104d6da3d061dc1985dab0",
       "keys": [
         "corporate-law/business-organizations-law/partnership-accounting-settlement-and-distribution/balance-of-account"
@@ -65087,6 +65196,26 @@
       "pathNotation": "CORPORATE_LAW.CAPITAL_STRUCTURE_AND_FINANCING.DEBT_INSTRUMENTS.CONVERTIBLE_NOTES"
     },
     {
+      "id": "dffdba50f1704ffe96dff74a33ba3f70",
+      "keys": [
+        "corporate-law/capital-structure-and-financing/equity-financing"
+      ],
+      "label": "Equity Financing",
+      "minted": "2026-10-31",
+      "uuid": "dffdba50-f170-4ffe-96df-f74a33ba3f70"
+    },
+    {
+      "id": "5225f1eeae0c4a74bcb6cadc9a2ad9ed",
+      "keys": [
+        "corporate-law/capital-structure-and-financing/equity-financing/preferred-stock"
+      ],
+      "label": "PREFERRED STOCK",
+      "minted": "2026-10-31",
+      "uuid": "5225f1ee-ae0c-4a74-bcb6-cadc9a2ad9ed",
+      "corpusIssueId": "748eabf2-523c-5222-8d49-a82fef98a892",
+      "pathNotation": "CORPORATE_LAW.CAPITAL_STRUCTURE_AND_FINANCING.EQUITY_FINANCING.PREFERRED_STOCK"
+    },
+    {
       "id": "b4dcc043d390480783a56a5374834eaf",
       "keys": [
         "corporate-law/capital-structure-and-securities"
@@ -68156,6 +68285,26 @@
       "uuid": "fcd31531-de49-4b3e-9378-0a62d4d695e8",
       "corpusIssueId": "e76562ac-1f00-54c6-bc99-2db4a58ddcab",
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.DIRECTORS_AND_OFFICERS.DUTY_OF_LOYALTY.CONFLICTS_OF_INTEREST"
+    },
+    {
+      "id": "4d7183f6181243d5bd08361221bce9aa",
+      "keys": [
+        "corporate-law/corporate-governance-law/directors-and-officers/election-of-directors"
+      ],
+      "label": "Election of Directors",
+      "minted": "2026-10-31",
+      "uuid": "4d7183f6-1812-43d5-bd08-361221bce9aa"
+    },
+    {
+      "id": "cda680e5cdea4c91b40d9b01c104b4e8",
+      "keys": [
+        "corporate-law/corporate-governance-law/directors-and-officers/election-of-directors/failure-to-hold-legally-required-elections"
+      ],
+      "label": "FAILURE TO HOLD LEGALLY REQUIRED ELECTIONS",
+      "minted": "2026-10-31",
+      "uuid": "cda680e5-cdea-4c91-b40d-9b01c104b4e8",
+      "corpusIssueId": "c11840e7-21fb-5122-b13e-bcc0e8cf9447",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.DIRECTORS_AND_OFFICERS.ELECTION_OF_DIRECTORS.FAILURE_TO_HOLD_LEGALLY_REQUIRED_ELECTIONS"
     },
     {
       "id": "9454be45f22f43ffb166613c8224493d",
@@ -93979,6 +94128,26 @@
       "uuid": "4f95f5df-e5b7-4fd4-8704-06d4a0b6234a",
       "corpusIssueId": "55f908ee-05be-5897-ad84-f9f24131bfcd",
       "pathNotation": "CRIMINAL_LAW.TRIAL_PROCEDURES.JURY_TRIAL"
+    },
+    {
+      "id": "a05312a609c74aca93a1a617ab3b79a8",
+      "keys": [
+        "criminal-law/trial-procedures/multiple-defendants"
+      ],
+      "label": "Multiple Defendants",
+      "minted": "2026-10-31",
+      "uuid": "a05312a6-09c7-4aca-93a1-a617ab3b79a8"
+    },
+    {
+      "id": "01d816c099634aeb992257e9902243a3",
+      "keys": [
+        "criminal-law/trial-procedures/multiple-defendants/accomplice-witnesses"
+      ],
+      "label": "ACCOMPLICE WITNESSES",
+      "minted": "2026-10-31",
+      "uuid": "01d816c0-9963-4aeb-9922-57e9902243a3",
+      "corpusIssueId": "789b363b-b3f9-58dd-b6f6-8bd7df9281f0",
+      "pathNotation": "CRIMINAL_LAW.TRIAL_PROCEDURES.MULTIPLE_DEFENDANTS.ACCOMPLICE_WITNESSES"
     },
     {
       "id": "72e95b42bb2b464da1b39e2572df431c",
@@ -185438,6 +185607,17 @@
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.AFFIRMATIVE_MISFEASANCE_VERSUS_NONFEASANCE.DISGUISED_AFFIRMATIVE_ACTS.RESCUERS"
     },
     {
+      "id": "d7021f0a8bfd41d59aeb5cbd31fc98a0",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/assurances-of-safety"
+      ],
+      "label": "ASSURANCES OF SAFETY",
+      "minted": "2026-10-31",
+      "uuid": "d7021f0a-8bfd-41d5-9aeb-5cbd31fc98a0",
+      "corpusIssueId": "590ad14a-0804-5612-acfd-7a0fefa3ad4f",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.ASSURANCES_OF_SAFETY"
+    },
+    {
       "id": "e5b42638f1474109a4241653d5190008",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/bridges"
@@ -216987,6 +217167,35 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.DEVISES_AND_BEQUESTS.VESTED_RIGHTS_UNDER_WILLS.LEGISLATIVE_MODIFICATION_OF_VESTED_RIGHTS"
     },
     {
+      "id": "9d48e3d76bc446c484f5b5e51ef6ac9d",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/directions-and-powers"
+      ],
+      "label": "Directions and Powers",
+      "minted": "2026-10-31",
+      "uuid": "9d48e3d7-6bc4-46c4-84f5-b5e51ef6ac9d"
+    },
+    {
+      "id": "b7c0c78f930747998f894068f9cf55a0",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/directions-and-powers/accumulation-of-income-or-corpus"
+      ],
+      "label": "Accumulation of Income or Corpus",
+      "minted": "2026-10-31",
+      "uuid": "b7c0c78f-9307-4799-8f89-4068f9cf55a0"
+    },
+    {
+      "id": "690a4cb3ab3d4ab3ab3d669f9856c853",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/directions-and-powers/accumulation-of-income-or-corpus/implied-directions-to-accumulate"
+      ],
+      "label": "IMPLIED DIRECTIONS TO ACCUMULATE",
+      "minted": "2026-10-31",
+      "uuid": "690a4cb3-ab3d-4ab3-ab3d-669f9856c853",
+      "corpusIssueId": "b374bcc6-859e-53f1-b47d-4d44d203dcdf",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.DIRECTIONS_AND_POWERS.ACCUMULATION_OF_INCOME_OR_CORPUS.IMPLIED_DIRECTIONS_TO_ACCUMULATE"
+    },
+    {
       "id": "546cf34d22f345caa8d4a0149b111174",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/distribution-of-trust-assets"
@@ -236405,6 +236614,26 @@
       "uuid": "82e3739c-371a-4adc-9961-b75b89afaf1a",
       "corpusIssueId": "6bb7252a-15d5-5143-947d-3a8b250872a0",
       "pathNotation": "PROCEDURAL_LAW.PLEADINGS_AND_MOTIONS.MOTIONS_TO_DISMISS.STATE_COURT_STANDARDS_FOR_FAILURE_TO_STATE_A_CLAIM"
+    },
+    {
+      "id": "d9f23980795c438380a6a5af68d2c41a",
+      "keys": [
+        "procedural-law/pleadings-and-motions/petitions"
+      ],
+      "label": "Petitions",
+      "minted": "2026-10-31",
+      "uuid": "d9f23980-795c-4383-80a6-a5af68d2c41a"
+    },
+    {
+      "id": "7b8b88a5b6104304883ab62f42de21bd",
+      "keys": [
+        "procedural-law/pleadings-and-motions/petitions/burden-of-anticipating-defenses"
+      ],
+      "label": "BURDEN OF ANTICIPATING DEFENSES",
+      "minted": "2026-10-31",
+      "uuid": "7b8b88a5-b610-4304-883a-b62f42de21bd",
+      "corpusIssueId": "a6fbebfb-1d61-5637-8930-a8a9b74ac916",
+      "pathNotation": "PROCEDURAL_LAW.PLEADINGS_AND_MOTIONS.PETITIONS.BURDEN_OF_ANTICIPATING_DEFENSES"
     },
     {
       "id": "15c118e9a0c24188b3cb52541afa3295",
@@ -266716,6 +266945,17 @@
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.PUBLIC_LANDS_AND_NATURAL_RESOURCES.MINERAL_RIGHTS_AND_MINING_CLAIMS.DRAINAGE_AND_WATER_RIGHTS_IN_MINING"
     },
     {
+      "id": "33aef93bdd6942d3b2c3b6864baf7d2c",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/public-lands-and-natural-resources/mineral-rights-and-mining-claims/inchoate-and-competing-claims"
+      ],
+      "label": "INCHOATE AND COMPETING CLAIMS",
+      "minted": "2026-10-31",
+      "uuid": "33aef93b-dd69-42d3-b2c3-b6864baf7d2c",
+      "corpusIssueId": "025a0e17-d445-56a5-aa7b-3624f5502874",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.PUBLIC_LANDS_AND_NATURAL_RESOURCES.MINERAL_RIGHTS_AND_MINING_CLAIMS.INCHOATE_AND_COMPETING_CLAIMS"
+    },
+    {
       "id": "ec305f70fa1f48ccb7f64d4ee9cdb53e",
       "keys": [
         "real-estate-law/land-use-and-zoning-law/public-lands-and-natural-resources/mineral-rights-and-mining-claims/locators-rights-and-obligations"
@@ -287526,6 +287766,17 @@
       "pathNotation": "REMEDIES_LAW.CREDITORS_BILLS.EQUITABLE_LIEN.ACCRUAL_OF_LIEN"
     },
     {
+      "id": "74b62b57597c4585b0d1d52fc473fe60",
+      "keys": [
+        "remedies-law/creditors-bills/reaching-equitable-assets-not-subject-to-execution"
+      ],
+      "label": "REACHING EQUITABLE ASSETS NOT SUBJECT TO_EXECUTION",
+      "minted": "2026-10-31",
+      "uuid": "74b62b57-597c-4585-b0d1-d52fc473fe60",
+      "corpusIssueId": "dd73db6c-5dc7-5dec-9757-de0b7fda6e38",
+      "pathNotation": "REMEDIES_LAW.CREDITORS_BILLS.REACHING_EQUITABLE_ASSETS_NOT_SUBJECT_TO_EXECUTION"
+    },
+    {
       "id": "c3b44810efc04a84924c94267821895d",
       "keys": [
         "remedies-law/creditors-rights-and-process-requirements"
@@ -294513,6 +294764,26 @@
       ],
       "minted": "2026-07-31",
       "label": "Scope and Limits of Injunctive Relief"
+    },
+    {
+      "id": "75deecd9e9bb4222ad8ec54e4a7aa5fa",
+      "keys": [
+        "remedies-law/injunctions/scope-and-limits-of-injunctive-relief/criminal-proceedings-not-enjoined"
+      ],
+      "label": "Criminal Proceedings Not Enjoined",
+      "minted": "2026-10-31",
+      "uuid": "75deecd9-e9bb-4222-ad8e-c54e4a7aa5fa"
+    },
+    {
+      "id": "beee67bd7061411b801e864205208742",
+      "keys": [
+        "remedies-law/injunctions/scope-and-limits-of-injunctive-relief/criminal-proceedings-not-enjoined/general-rule-against-enjoining-criminal-prosecutions"
+      ],
+      "label": "General Rule Against Enjoining Criminal Prosecutions",
+      "minted": "2026-10-31",
+      "uuid": "beee67bd-7061-411b-801e-864205208742",
+      "corpusIssueId": "546e7fae-d1ba-55ba-b071-40a50966214a",
+      "pathNotation": "REMEDIES_LAW.INJUNCTIONS.SCOPE_AND_LIMITS_OF_INJUNCTIVE_RELIEF.CRIMINAL_PROCEEDINGS_NOT_ENJOINED.GENERAL_RULE_AGAINST_ENJOINING_CRIMINAL_PROSECUTIONS"
     },
     {
       "id": "c192c2ceb7984ee385d20a1ec7de08b6",
