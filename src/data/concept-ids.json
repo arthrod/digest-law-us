@@ -327,6 +327,26 @@
       "pathNotation": "BANKING_LAW.NEGOTIATION_AND_COLLECTION_AGENTS.USURY_AND_INTEREST_REGULATION.NON_USURIOUS_TRANSACTION_DETERMINATION"
     },
     {
+      "id": "e8cdee4a6b9543ab94f800a80fa4e75f",
+      "keys": [
+        "banking-law/negotiation-and-collection-of-instruments-by-banks"
+      ],
+      "label": "Negotiation and Collection of Instruments by Banks",
+      "minted": "2026-10-31",
+      "uuid": "e8cdee4a-6b95-43ab-94f8-00a80fa4e75f"
+    },
+    {
+      "id": "4fbb8536a2a248ecafa892545a6d03f2",
+      "keys": [
+        "banking-law/negotiation-and-collection-of-instruments-by-banks/state-specific-practices-and-interpretations"
+      ],
+      "label": "STATE-SPECIFIC PRACTICES AND INTERPRETATIONS",
+      "minted": "2026-10-31",
+      "uuid": "4fbb8536-a2a2-48ec-afa8-92545a6d03f2",
+      "corpusIssueId": "5cb61dad-30f2-5bfc-a767-a6cef53e8f97",
+      "pathNotation": "BANKING_LAW.NEGOTIATION_AND_COLLECTION_OF_INSTRUMENTS_BY_BANKS.STATE_SPECIFIC_PRACTICES_AND_INTERPRETATIONS"
+    },
+    {
       "id": "dfc468e6732a495f80b4efb81d94b707",
       "keys": [
         "banking-law/oaths-and-affirmations"
@@ -51730,6 +51750,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.DIRECTORS_AND_OFFICERS.LIABILITIES_AND_DISABILITIES_OF_DIRECTORS.COMMENCEMENT_OF_RESPONSIBILITIES_AND_DISABILITIES"
     },
     {
+      "id": "3e6c7bb82a124f3a934b15c6656e62d7",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/directors-and-officers/liabilities-and-disabilities-of-directors/jurisdiction-over-claims-against-directors-or-their-assignees"
+      ],
+      "label": "JURISDICTION OVER CLAIMS AGAINST DIRECTORS OR THEIR ASSIGNEES",
+      "minted": "2026-10-31",
+      "uuid": "3e6c7bb8-2a12-4f3a-934b-15c6656e62d7",
+      "corpusIssueId": "c33650c0-7abd-5f85-bc2d-5c353b0843bc",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.DIRECTORS_AND_OFFICERS.LIABILITIES_AND_DISABILITIES_OF_DIRECTORS.JURISDICTION_OVER_CLAIMS_AGAINST_DIRECTORS_OR_THEIR_ASSIGNEES"
+    },
+    {
       "id": "70c3463175164be08ab7587b7c795f64",
       "uuid": "70c34631-7516-4be0-8ab7-587b7c795f64",
       "keys": [
@@ -53723,6 +53754,26 @@
       "label": "OWNERSHIP OF SHARES IN OTHER CORPORATIONS",
       "corpusIssueId": "22c672be-9a72-58fd-9529-2d052c15b09d",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.POWERS_AND_CAPACITY_OF_CORPORATIONS.OWNERSHIP_OF_SHARES_IN_OTHER_CORPORATIONS"
+    },
+    {
+      "id": "6719a6f817b34c818a936fbe7c380b44",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/powers-and-duties-of-corporations"
+      ],
+      "label": "Powers and Duties of Corporations",
+      "minted": "2026-10-31",
+      "uuid": "6719a6f8-17b3-4c81-8a93-6fbe7c380b44"
+    },
+    {
+      "id": "219845a3c9f1479cbfdb37c57c890806",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/powers-and-duties-of-corporations/implied-right-to-sue-and-be-sued"
+      ],
+      "label": "IMPLIED RIGHT TO SUE AND BE SUED",
+      "minted": "2026-10-31",
+      "uuid": "219845a3-c9f1-479c-bfdb-37c57c890806",
+      "corpusIssueId": "82a4f533-ef2d-5897-be1b-cb3b0b8f6b2e",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.POWERS_AND_DUTIES_OF_CORPORATIONS.IMPLIED_RIGHT_TO_SUE_AND_BE_SUED"
     },
     {
       "id": "98d05cc11c1945b9abc2207b9e7ebcd3",
@@ -91672,6 +91723,26 @@
       "pathNotation": "CRIMINAL_LAW.SEXUAL_OFFENSES.ABDUCTION_AND_ENTICEMENT_OF_WOMEN.PIMPING_AND_PANDERING"
     },
     {
+      "id": "6e6547ee9801407286af9786b49644cd",
+      "keys": [
+        "criminal-law/sexual-offenses/adultery"
+      ],
+      "label": "Adultery",
+      "minted": "2026-10-31",
+      "uuid": "6e6547ee-9801-4072-86af-9786b49644cd"
+    },
+    {
+      "id": "abbc5fbdf62c4392b8bc2e97780ab47d",
+      "keys": [
+        "criminal-law/sexual-offenses/adultery/definition-and-scope-of-adultery"
+      ],
+      "label": "DEFINITION AND SCOPE OF ADULTERY",
+      "minted": "2026-10-31",
+      "uuid": "abbc5fbd-f62c-4392-b8bc-2e97780ab47d",
+      "corpusIssueId": "bb2f3d19-4fc8-5340-b269-c310fee0985f",
+      "pathNotation": "CRIMINAL_LAW.SEXUAL_OFFENSES.ADULTERY.DEFINITION_AND_SCOPE_OF_ADULTERY"
+    },
+    {
       "id": "d210481890bf44e08b43fde5a2ea9f25",
       "keys": [
         "criminal-law/sexual-offenses/bestiality-and-buggery"
@@ -122262,6 +122333,17 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.CREATION_AND_PERFECTION_OF_LIENS.IMPERMISSIBILITY_OF_CREATION_BY_USAGE"
     },
     {
+      "id": "0daf66cda6e84be8ab283c409cdf6cc1",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/creation-and-perfection-of-liens/owner-s-inability-to-claim-lien-on-own-property"
+      ],
+      "label": "OWNER'S INABILITY TO CLAIM LIEN ON OWN PROPERTY",
+      "minted": "2026-10-31",
+      "uuid": "0daf66cd-a6e8-4be8-ab28-3c409cdf6cc1",
+      "corpusIssueId": "4255a20d-60d1-5faa-a2a5-801cb7bf8846",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.CREATION_AND_PERFECTION_OF_LIENS.OWNER_S_INABILITY_TO_CLAIM_LIEN_ON_OWN_PROPERTY"
+    },
+    {
       "id": "8140881d5344432284a730b14d34ba10",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/creation-and-validity"
@@ -140411,6 +140493,35 @@
       "uuid": "7bcff8dc-1c01-412a-90d6-8200faddd202",
       "corpusIssueId": "15299275-670f-51d9-8170-fbd102a04b55",
       "pathNotation": "INSURANCE_LAW.LIFE_INSURANCE.JUDICIAL_INTERPRETATION_AND_PRECEDENT"
+    },
+    {
+      "id": "d008a43adef34e8188603d74f0bdae36",
+      "keys": [
+        "insurance-law/life-insurance/multiple-coverage"
+      ],
+      "label": "Multiple Coverage",
+      "minted": "2026-10-31",
+      "uuid": "d008a43a-def3-4e81-8860-3d74f0bdae36"
+    },
+    {
+      "id": "e342abe94d7449cfa13749c0df87d872",
+      "keys": [
+        "insurance-law/life-insurance/multiple-coverage/double-insurance"
+      ],
+      "label": "Double Insurance",
+      "minted": "2026-10-31",
+      "uuid": "e342abe9-4d74-49cf-a137-49c0df87d872"
+    },
+    {
+      "id": "d362496f15394fad9826979efb570ae5",
+      "keys": [
+        "insurance-law/life-insurance/multiple-coverage/double-insurance/contribution"
+      ],
+      "label": "CONTRIBUTION",
+      "minted": "2026-10-31",
+      "uuid": "d362496f-1539-4fad-9826-979efb570ae5",
+      "corpusIssueId": "41a7e04b-2f64-5ed7-b524-2abebfabf217",
+      "pathNotation": "INSURANCE_LAW.LIFE_INSURANCE.MULTIPLE_COVERAGE.DOUBLE_INSURANCE.CONTRIBUTION"
     },
     {
       "id": "2c5211fd52c4465d99672a2499599c33",
@@ -172697,6 +172808,17 @@
       "uuid": "537ceac9-694b-4f17-a804-e37f1e18c827"
     },
     {
+      "id": "73e9c1ca09df47d29da42b15f4ed1309",
+      "keys": [
+        "law-of-obligations/factors-and-commission-merchants/del-credere-commissions"
+      ],
+      "label": "DEL CREDERE COMMISSIONS",
+      "minted": "2026-10-31",
+      "uuid": "73e9c1ca-09df-47d2-9da4-2b15f4ed1309",
+      "corpusIssueId": "3693283b-4d72-5541-9ba8-42305f69ca59",
+      "pathNotation": "LAW_OF_OBLIGATIONS.FACTORS_AND_COMMISSION_MERCHANTS.DEL_CREDERE_COMMISSIONS"
+    },
+    {
       "id": "646a1ce534ac489ea108e35746cd18b2",
       "keys": [
         "law-of-obligations/factors-and-commission-merchants/duties-of-factor"
@@ -203563,6 +203685,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE_PROCEEDINGS_AND_ANCILLARY_RELIEF.SPOUSAL_SUPPORT_AND_ALIMONY.PLEADINGS_AND_FORMS.PETITION_FOR_ALIMONY"
     },
     {
+      "id": "c54e647a95234850b8e87cb471256ca2",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce-proceedings/jurisdiction-and-venue"
+      ],
+      "label": "Jurisdiction and Venue",
+      "minted": "2026-10-31",
+      "uuid": "c54e647a-9523-4850-b8e8-7cb471256ca2"
+    },
+    {
+      "id": "d45e6c384558446eb3a671324734c798",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce-proceedings/jurisdiction-and-venue/jurisdiction-over-nonresident-or-out-of-state-parties"
+      ],
+      "label": "JURISDICTION OVER NONRESIDENT OR OUT-OF-STATE PARTIES",
+      "minted": "2026-10-31",
+      "uuid": "d45e6c38-4558-446e-b3a6-71324734c798",
+      "corpusIssueId": "68a40010-764d-582d-9664-d5223f770c59",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE_PROCEEDINGS.JURISDICTION_AND_VENUE.JURISDICTION_OVER_NONRESIDENT_OR_OUT_OF_STATE_PARTIES"
+    },
+    {
       "id": "800951f285964a8fa7242c6c00a979ca",
       "keys": [
         "personal-and-family-law/marriage-law/divorce-proceedings/jurisdictional-requirements"
@@ -205430,6 +205572,26 @@
       "label": "MARITAL UNITY OF PERSON",
       "corpusIssueId": "a58e5fb2-7fd5-5537-994a-b9604bccf061",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.LEGAL_STATUS_OF_SPOUSES.MARITAL_UNITY_OF_PERSON"
+    },
+    {
+      "id": "91fe9e6048664fb494561d227ab0895a",
+      "keys": [
+        "personal-and-family-law/marriage-law/legislative-marriages-and-divorces"
+      ],
+      "label": "Legislative Marriages and Divorces",
+      "minted": "2026-10-31",
+      "uuid": "91fe9e60-4866-4fb4-9456-1d227ab0895a"
+    },
+    {
+      "id": "01092e2c37cc4d639cd7235570ff8acd",
+      "keys": [
+        "personal-and-family-law/marriage-law/legislative-marriages-and-divorces/judicial-interpretation-and-precedent"
+      ],
+      "label": "JUDICIAL INTERPRETATION AND PRECEDENT",
+      "minted": "2026-10-31",
+      "uuid": "01092e2c-37cc-4d63-9cd7-235570ff8acd",
+      "corpusIssueId": "df45dfe3-1e08-5f53-ba9a-473458b8e4ec",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.LEGISLATIVE_MARRIAGES_AND_DIVORCES.JUDICIAL_INTERPRETATION_AND_PRECEDENT"
     },
     {
       "id": "81395d866dbb4e0ab5602347e10c2543",
@@ -241783,6 +241945,37 @@
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FACTORY_AND_WORKPLACE_REGULATION.STATUTORY_SAFETY_REQUIREMENTS"
     },
     {
+      "id": "db3e193d9c5843c282344a2786b003e3",
+      "keys": [
+        "public-and-administrative-law/federal-agencies"
+      ],
+      "label": "Federal Agencies",
+      "minted": "2026-10-31",
+      "uuid": "db3e193d-9c58-43c2-8234-4a2786b003e3"
+    },
+    {
+      "id": "fdd3f8d76f044385a34b935d08baf75e",
+      "keys": [
+        "public-and-administrative-law/federal-agencies/food-and-drug-administration"
+      ],
+      "label": "FOOD AND DRUG ADMINISTRATION",
+      "minted": "2026-10-31",
+      "uuid": "fdd3f8d7-6f04-4385-a34b-935d08baf75e",
+      "corpusIssueId": "c11e6c91-d924-52b9-959b-ac654eac5607",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FEDERAL_AGENCIES.FOOD_AND_DRUG_ADMINISTRATION"
+    },
+    {
+      "id": "2026deb751d74494b580733f5fd78620",
+      "keys": [
+        "public-and-administrative-law/federal-agencies/usda-food-safety-inspection-service"
+      ],
+      "label": "USDA FOOD SAFETY INSPECTION SERVICE",
+      "minted": "2026-10-31",
+      "uuid": "2026deb7-51d7-4494-b580-733f5fd78620",
+      "corpusIssueId": "f3815519-cf22-5fd1-9797-082df0565099",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FEDERAL_AGENCIES.USDA_FOOD_SAFETY_INSPECTION_SERVICE"
+    },
+    {
       "id": "19188894afda494d8a27b287fbf66b4d",
       "keys": [
         "public-and-administrative-law/federal-communications-commission"
@@ -245038,6 +245231,25 @@
       "label": "INITIATING RULEMAKING",
       "corpusIssueId": "64866e97-8644-5a32-8c73-cfafcee4253e",
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.RULEMAKING.APA_INFORMAL_RULEMAKING_SECTION_553.INITIATING_RULEMAKING"
+    },
+    {
+      "id": "a7cad5607eec487ebb3c3a8f05d02179",
+      "keys": [
+        "public-and-administrative-law/rulemaking/limits-on-procedural-requirements"
+      ],
+      "label": "Limits on Procedural Requirements",
+      "minted": "2026-10-31",
+      "uuid": "a7cad560-7eec-487e-bb3c-3a8f05d02179"
+    },
+    {
+      "id": "677bebcd83e74b049e7dfce1ae0f8b90",
+      "keys": [
+        "public-and-administrative-law/rulemaking/limits-on-procedural-requirements/statutory-floor-on-additional-procedures"
+      ],
+      "label": "Statutory Floor on Additional Procedures",
+      "minted": "2026-10-31",
+      "uuid": "677bebcd-83e7-4b04-9e7d-fce1ae0f8b90",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.RULEMAKING.LIMITS_ON_PROCEDURAL_REQUIREMENTS.STATUTORY_FLOOR_ON_ADDITIONAL_PROCEDURES"
     },
     {
       "id": "630d51c5bfaa40b082b2b9c9141bb8cc",
@@ -261088,6 +261300,17 @@
       "uuid": "fcc264d5-f4f4-475d-bba7-4d597f1a8920",
       "corpusIssueId": "e58489a0-cf34-521c-8601-39f2a32476e1",
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.GOVERNMENT_TAKING_OF_PROPERTY.EMINENT_DOMAIN.MEASURE_OF_DAMAGES.STATUTORY_FRAMEWORKS_FOR_DAMAGES"
+    },
+    {
+      "id": "76e070faa670454695ed910560430237",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/government-taking-of-property/eminent-domain/public-use-requirement"
+      ],
+      "label": "PUBLIC USE REQUIREMENT",
+      "minted": "2026-10-31",
+      "uuid": "76e070fa-a670-4546-95ed-910560430237",
+      "corpusIssueId": "a8588d3a-6fe8-5c2c-8b39-776edf29144d",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.GOVERNMENT_TAKING_OF_PROPERTY.EMINENT_DOMAIN.PUBLIC_USE_REQUIREMENT"
     },
     {
       "id": "67c0494ce37c45238de3a869fe9fa9be",
@@ -286443,6 +286666,26 @@
       "pathNotation": "REMEDIES_LAW.GENERAL_PRINCIPLES.RELATIONSHIP_BETWEEN_PROCEDURAL_AND_SUBSTANTIVE_RIGHTS.PROCEDURAL_REMEDIES_DO_NOT_ENLARGE_SUBSTANTIVE_RIGHTS"
     },
     {
+      "id": "7d9476675c2c4ae5af2e0b9499ba008b",
+      "keys": [
+        "remedies-law/grounds-for-equitable-relief"
+      ],
+      "label": "Grounds for Equitable Relief",
+      "minted": "2026-10-31",
+      "uuid": "7d947667-5c2c-4ae5-af2e-0b9499ba008b"
+    },
+    {
+      "id": "b93bc0bfbc7647e990d917f792af033b",
+      "keys": [
+        "remedies-law/grounds-for-equitable-relief/fraud"
+      ],
+      "label": "Fraud",
+      "minted": "2026-10-31",
+      "uuid": "b93bc0bf-bc76-47e9-90d9-17f792af033b",
+      "corpusIssueId": "0b2d418d-8c54-5bcb-9562-a71193e51fef",
+      "pathNotation": "REMEDIES_LAW.GROUNDS_FOR_EQUITABLE_RELIEF.FRAUD"
+    },
+    {
       "id": "89d65069d3c04a908498be523cf2bc31",
       "keys": [
         "remedies-law/habeas-corpus"
@@ -302037,6 +302280,17 @@
       "label": "Carriers of Passengers",
       "minted": "2026-10-02",
       "uuid": "d357f2e7-38d0-4a34-9d93-575bfcef7e12"
+    },
+    {
+      "id": "ad4904873e0945eab92a7a30146b4179",
+      "keys": [
+        "transportation-law/carriers/carriers-of-passengers/riding-in-baggage-or-mail-cars"
+      ],
+      "label": "RIDING IN BAGGAGE OR MAIL CARS",
+      "minted": "2026-10-31",
+      "uuid": "ad490487-3e09-45ea-b92a-7a30146b4179",
+      "corpusIssueId": "4fe7ac1c-8c5d-5ade-9212-818957ee5f46",
+      "pathNotation": "TRANSPORTATION_LAW.CARRIERS.CARRIERS_OF_PASSENGERS.RIDING_IN_BAGGAGE_OR_MAIL_CARS"
     },
     {
       "id": "243d9e5b372648d9828c2ebdc1ba1e05",
