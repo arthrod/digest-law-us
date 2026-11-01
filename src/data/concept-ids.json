@@ -119764,6 +119764,17 @@
       "label": "Competency of Witnesses"
     },
     {
+      "id": "e128388cd61b4ca0a2e26ebfee377cc1",
+      "keys": [
+        "evidence-law/witnesses/competency-of-witnesses/attorney-as-witness-in-same-case"
+      ],
+      "label": "ATTORNEY AS WITNESS IN SAME CASE",
+      "minted": "2026-11-01",
+      "uuid": "e128388c-d61b-4ca0-a2e2-6ebfee377cc1",
+      "corpusIssueId": "404a8334-09fd-5481-ba82-589444f5d267",
+      "pathNotation": "EVIDENCE_LAW.WITNESSES.COMPETENCY_OF_WITNESSES.ATTORNEY_AS_WITNESS_IN_SAME_CASE"
+    },
+    {
       "id": "bc1f97614b3a41e99346505c08ea33d9",
       "keys": [
         "evidence-law/witnesses/competency-of-witnesses/competency-of-marriage-celebrant-as-witness"
@@ -122280,6 +122291,35 @@
       "uuid": "88444d94-4327-4dbc-91b3-bd19fef118bb",
       "corpusIssueId": "eea070eb-3bfa-5516-bc53-98ff9c79e024",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE.HOLDER_RIGHTS_AND_DEFENSES.HOLDER_RIGHTS_ON_NON_ACCEPTANCE"
+    },
+    {
+      "id": "2f36aa4f96334c52a6876ea45e7bf6c9",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange/parties-to-bills"
+      ],
+      "label": "Parties to Bills",
+      "minted": "2026-11-01",
+      "uuid": "2f36aa4f-9633-4c52-a687-6ea45e7bf6c9"
+    },
+    {
+      "id": "d398389291a449b6a8ba839ef16443d6",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange/parties-to-bills/drawee"
+      ],
+      "label": "Drawee",
+      "minted": "2026-11-01",
+      "uuid": "d3983892-91a4-49b6-a8ba-839ef16443d6"
+    },
+    {
+      "id": "40c8543c4ad2401f9020fdc5b291daea",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange/parties-to-bills/drawee/multiple-drawees"
+      ],
+      "label": "Multiple Drawees",
+      "minted": "2026-11-01",
+      "uuid": "40c8543c-4ad2-401f-9020-fdc5b291daea",
+      "corpusIssueId": "d5c6ea5d-89fd-5469-9477-3d39485482de",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE.PARTIES_TO_BILLS.DRAWEE.MULTIPLE_DRAWEES"
     },
     {
       "id": "ee7dcd7b633149d2b5cfe61eee8bd9b9",
@@ -149761,6 +149801,44 @@
       "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CHOICE_OF_LAW.LEX_LOCI_CONTRACTUS"
     },
     {
+      "id": "5236fd074cfd446b907ebcfb3cc9fcda",
+      "keys": [
+        "international-and-comparative-law/choice-of-law/marital-property"
+      ],
+      "label": "Marital Property",
+      "minted": "2026-11-01",
+      "uuid": "5236fd07-4cfd-446b-907e-bcfb3cc9fcda"
+    },
+    {
+      "id": "a61f706050024cacb8cecea0d55ed850",
+      "keys": [
+        "international-and-comparative-law/choice-of-law/marital-property/community-property"
+      ],
+      "label": "Community Property",
+      "minted": "2026-11-01",
+      "uuid": "a61f7060-5002-4cac-b8ce-cea0d55ed850"
+    },
+    {
+      "id": "b3b782a2f99043c6bab0dcc6f408dcaa",
+      "keys": [
+        "international-and-comparative-law/choice-of-law/marital-property/community-property/movables-and-immovables-distinction"
+      ],
+      "label": "Movables and Immovables Distinction",
+      "minted": "2026-11-01",
+      "uuid": "b3b782a2-f990-43c6-bab0-dcc6f408dcaa"
+    },
+    {
+      "id": "9f72ab99bbb448c3b2a82df19be87282",
+      "keys": [
+        "international-and-comparative-law/choice-of-law/marital-property/community-property/movables-and-immovables-distinction/interstate-recognition-of-community-property"
+      ],
+      "label": "INTERSTATE RECOGNITION OF COMMUNITY PROPERTY",
+      "minted": "2026-11-01",
+      "uuid": "9f72ab99-bbb4-48c3-b2a8-2df19be87282",
+      "corpusIssueId": "511db647-59ce-5919-8dcc-4c779ed102d4",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CHOICE_OF_LAW.MARITAL_PROPERTY.COMMUNITY_PROPERTY.MOVABLES_AND_IMMOVABLES_DISTINCTION.INTERSTATE_RECOGNITION_OF_COMMUNITY_PROPERTY"
+    },
+    {
       "id": "cf9a3d6236094606b0178b81125a0d4a",
       "uuid": "cf9a3d62-3609-4606-b017-8b81125a0d4a",
       "keys": [
@@ -167098,6 +167176,17 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.LEGAL_DOCUMENTS_AND_INSTRUMENTS.AFFIDAVITS.JURAT"
     },
     {
+      "id": "b56faf12582344a4997d59b8c081766f",
+      "keys": [
+        "jurisprudence-and-legal-method/legal-documents-and-instruments/bills"
+      ],
+      "label": "BILLS",
+      "minted": "2026-11-01",
+      "uuid": "b56faf12-5823-44a4-997d-59b8c081766f",
+      "corpusIssueId": "e2223ea3-2f12-544a-b8c1-2d52c5dd9b65",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.LEGAL_DOCUMENTS_AND_INSTRUMENTS.BILLS"
+    },
+    {
       "id": "3aa590015f7a4849982797d4e3d0af64",
       "keys": [
         "jurisprudence-and-legal-method/legal-history"
@@ -172402,6 +172491,17 @@
       "uuid": "52df5274-ff9f-44d4-be35-775d5a4c6217",
       "corpusIssueId": "a7c7ff63-3d3d-5640-96f8-7e835ac025c1",
       "pathNotation": "LABOR_AND_EMPLOYMENT_LAW.FELLOW_SERVANT_RULE.DEFINITION_OF_FELLOW_SERVANT"
+    },
+    {
+      "id": "098518bdf9774daba68f1f6cc2501666",
+      "keys": [
+        "labor-and-employment-law/fellow-servant-rule/incompetency-of-fellow-servants"
+      ],
+      "label": "INCOMPETENCY OF FELLOW-SERVANTS",
+      "minted": "2026-11-01",
+      "uuid": "098518bd-f977-4dab-a68f-1f6cc2501666",
+      "corpusIssueId": "ee187843-bbf9-5fba-a245-508c80ec71d2",
+      "pathNotation": "LABOR_AND_EMPLOYMENT_LAW.FELLOW_SERVANT_RULE.INCOMPETENCY_OF_FELLOW_SERVANTS"
     },
     {
       "id": "bad0f29b4b154f459959f06dd9032ed0",
@@ -210309,6 +210409,26 @@
       "label": "IMPAIRMENT OF MARRIAGE OBLIGATIONS",
       "corpusIssueId": "4ecf1f48-7056-5c0d-a352-f2f9068d1c28",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMATION_AND_VALIDITY_OF_MARRIAGE.EXECUTED_MARRIAGE.LEGISLATIVE_POWER_OVER_EXECUTED_MARRIAGE.IMPAIRMENT_OF_MARRIAGE_OBLIGATIONS"
+    },
+    {
+      "id": "94fb83ed89d9419396ad350eb6e4e22a",
+      "keys": [
+        "personal-and-family-law/marriage-law/formation-and-validity-of-marriage/fraud-and-misrepresentation-in-marriage"
+      ],
+      "label": "Fraud and Misrepresentation in Marriage",
+      "minted": "2026-11-01",
+      "uuid": "94fb83ed-89d9-4193-96ad-350eb6e4e22a"
+    },
+    {
+      "id": "ef78bee91201459d97a892bd9b564281",
+      "keys": [
+        "personal-and-family-law/marriage-law/formation-and-validity-of-marriage/fraud-and-misrepresentation-in-marriage/false-personation-in-marriage"
+      ],
+      "label": "FALSE PERSONATION IN MARRIAGE",
+      "minted": "2026-11-01",
+      "uuid": "ef78bee9-1201-459d-97a8-92bd9b564281",
+      "corpusIssueId": "9bea084e-b77b-5bb6-bc19-1c7829046758",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMATION_AND_VALIDITY_OF_MARRIAGE.FRAUD_AND_MISREPRESENTATION_IN_MARRIAGE.FALSE_PERSONATION_IN_MARRIAGE"
     },
     {
       "id": "4268b23bba9940b3a77b32fb33f2205c",
@@ -290939,6 +291059,26 @@
       "label": "TIME OF VALUATION",
       "corpusIssueId": "77286717-1942-56da-ae18-40a1132e91b0",
       "pathNotation": "REMEDIES_LAW.DAMAGES.ASSESSMENT_AND_QUANTIFICATION_OF_DAMAGES.VALUATION_AND_TIME_OF_ESTIMATION.TIME_OF_VALUATION"
+    },
+    {
+      "id": "57c8877aceaa49d38e6055ddc5a987b8",
+      "keys": [
+        "remedies-law/damages/causation-and-scope-of-damages"
+      ],
+      "label": "Causation and Scope of Damages",
+      "minted": "2026-11-01",
+      "uuid": "57c8877a-ceaa-49d3-8e60-55ddc5a987b8"
+    },
+    {
+      "id": "62104c163bfd4eb9a9c7e41b04c4b2ad",
+      "keys": [
+        "remedies-law/damages/causation-and-scope-of-damages/proximate-cause-and-relation-to-injury"
+      ],
+      "label": "PROXIMATE CAUSE AND RELATION TO INJURY",
+      "minted": "2026-11-01",
+      "uuid": "62104c16-3bfd-4eb9-a9c7-e41b04c4b2ad",
+      "corpusIssueId": "72a1b271-3dfd-5c1c-8c62-efba0a346d09",
+      "pathNotation": "REMEDIES_LAW.DAMAGES.CAUSATION_AND_SCOPE_OF_DAMAGES.PROXIMATE_CAUSE_AND_RELATION_TO_INJURY"
     },
     {
       "id": "767ed0b4b3864c76b964384d27581067",
