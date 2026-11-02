@@ -22501,6 +22501,35 @@
       "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.FEDERAL_JUDICIAL_REVIEW_OF_STATE_ACTION.FEDERAL_QUESTION_JURISDICTION.FEDERAL_QUESTIONS_IN_TAXATION_MATTERS"
     },
     {
+      "id": "5a78fa06fc424b2b850e2111821209be",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-jurisdiction-over-navigable-waters"
+      ],
+      "label": "Federal Jurisdiction Over Navigable Waters",
+      "minted": "2026-11-02",
+      "uuid": "5a78fa06-fc42-4b2b-850e-2111821209be"
+    },
+    {
+      "id": "341d9c27913b47c09cb25d8d8bbadb44",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-jurisdiction-over-navigable-waters/navigable-rivers"
+      ],
+      "label": "Navigable Rivers",
+      "minted": "2026-11-02",
+      "uuid": "341d9c27-913b-47c0-9cb2-5d8d8bbadb44"
+    },
+    {
+      "id": "02f60c7080364433bad9cdb35edadcf2",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-jurisdiction-over-navigable-waters/navigable-rivers/federal-regulatory-jurisdiction"
+      ],
+      "label": "FEDERAL REGULATORY JURISDICTION",
+      "minted": "2026-11-02",
+      "uuid": "02f60c70-8036-4433-bad9-cdb35edadcf2",
+      "corpusIssueId": "d1ce68a6-fefe-568d-b9b4-00530f50b4a0",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.FEDERAL_JURISDICTION_OVER_NAVIGABLE_WATERS.NAVIGABLE_RIVERS.FEDERAL_REGULATORY_JURISDICTION"
+    },
+    {
       "id": "72f42be8ea14430ea073f6cba04f9e0f",
       "keys": [
         "constitutional-and-civil-rights-law/federal-legislative-and-fiscal-powers"
@@ -56513,6 +56542,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_GOVERNANCE.SHAREHOLDERS_MEETINGS.VOTE_COUNTING_AND_TABULATION.ENFORCING_COUNTING_OF_LEGAL_VOTES"
     },
     {
+      "id": "50e5f979e9a04f78b1b33f150561efe4",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholder-rights-and-equity"
+      ],
+      "label": "Shareholder Rights and Equity",
+      "minted": "2026-11-02",
+      "uuid": "50e5f979-e9a0-4f78-b1b3-3f150561efe4"
+    },
+    {
+      "id": "c4689475df7640d6b1a70741443711e8",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholder-rights-and-equity/equitable-claims-of-shareholders"
+      ],
+      "label": "EQUITABLE CLAIMS OF SHAREHOLDERS",
+      "minted": "2026-11-02",
+      "uuid": "c4689475-df76-40d6-b1a7-0741443711e8",
+      "corpusIssueId": "be17d376-e81c-55a3-a159-f04d051a2528",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_RIGHTS_AND_EQUITY.EQUITABLE_CLAIMS_OF_SHAREHOLDERS"
+    },
+    {
       "id": "61c35e6d0ea34b7293fd7b94233d4b2c",
       "uuid": "61c35e6d-0ea3-4b72-93fd-7b94233d4b2c",
       "keys": [
@@ -59769,6 +59818,17 @@
       "uuid": "8c7bb00c-ffc9-43bc-9745-c54102120e35",
       "corpusIssueId": "f20b71aa-3432-54b1-8fea-f1228e612adf",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.JOINT_STOCK_COMPANIES.LEGAL_ACTIONS_INVOLVING_JOINT_STOCK_COMPANIES"
+    },
+    {
+      "id": "ffaae7626e7745a38415289b7253e7a5",
+      "keys": [
+        "corporate-law/business-organizations-law/joint-stock-companies/liability-of-members"
+      ],
+      "label": "LIABILITY OF MEMBERS",
+      "minted": "2026-11-02",
+      "uuid": "ffaae762-6e77-45a3-8415-289b7253e7a5",
+      "corpusIssueId": "3ba466e9-de4b-5661-9b06-869593bcb892",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.JOINT_STOCK_COMPANIES.LIABILITY_OF_MEMBERS"
     },
     {
       "id": "6cc313cf1c2449349977d1786a1a2bda",
@@ -65638,6 +65698,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.TYPES_AND_CLASSIFICATIONS_OF_PARTNERSHIPS.NONTRADING_PARTNERSHIPS"
     },
     {
+      "id": "758d3c9fbba14f5eb0cbfb73de4e2576",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/types-of-partners"
+      ],
+      "label": "TYPES OF PARTNERS",
+      "minted": "2026-11-02",
+      "uuid": "758d3c9f-bba1-4f5e-b0cb-fb73de4e2576",
+      "corpusIssueId": "476118d6-f08a-54ca-8b8f-aba86cdd45a4",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.TYPES_OF_PARTNERS"
+    },
+    {
       "id": "2498a54aa8e44b8c80ae235612482c60",
       "keys": [
         "corporate-law/business-organizations-law/piercing-the-corporate-veil"
@@ -68269,6 +68340,44 @@
       "uuid": "a6c428f6-305a-44dd-b616-2e3b175a8a6e",
       "corpusIssueId": "67048c0b-9b32-5c7d-90a1-fdda82725e20",
       "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_AND_SECURITIES.SUBSCRIPTIONS_FOR_SHARES.INTERPRETATION_AND_CONSTRUCTION.DIVIDENDS_ACCRUING_AND_INTEREST_DIVIDENDS"
+    },
+    {
+      "id": "2410601212724da6b89f98306d03f722",
+      "keys": [
+        "corporate-law/corporate-finance-capital-structure-and-insolvency"
+      ],
+      "label": "Corporate Finance Capital Structure and Insolvency",
+      "minted": "2026-11-02",
+      "uuid": "24106012-1272-4da6-b89f-98306d03f722"
+    },
+    {
+      "id": "53d1177d2bb0475d98b34983ac028f47",
+      "keys": [
+        "corporate-law/corporate-finance-capital-structure-and-insolvency/insolvency-receivership-and-bankruptcy"
+      ],
+      "label": "Insolvency Receivership and Bankruptcy",
+      "minted": "2026-11-02",
+      "uuid": "53d1177d-2bb0-475d-98b3-4983ac028f47"
+    },
+    {
+      "id": "241f66ebcb704c0fb36f0d82d6a5d0f4",
+      "keys": [
+        "corporate-law/corporate-finance-capital-structure-and-insolvency/insolvency-receivership-and-bankruptcy/receivers-powers-and-authority"
+      ],
+      "label": "Receivers Powers and Authority",
+      "minted": "2026-11-02",
+      "uuid": "241f66eb-cb70-4c0f-b36f-0d82d6a5d0f4"
+    },
+    {
+      "id": "5aa13bd569a74724a783233a0c002adb",
+      "keys": [
+        "corporate-law/corporate-finance-capital-structure-and-insolvency/insolvency-receivership-and-bankruptcy/receivers-powers-and-authority/issuance-of-receivers-certificates"
+      ],
+      "label": "ISSUANCE OF RECEIVERS' CERTIFICATES",
+      "minted": "2026-11-02",
+      "uuid": "5aa13bd5-69a7-4724-a783-233a0c002adb",
+      "corpusIssueId": "d200d42b-fd16-56da-89f0-dc6ebca5ea6c",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_CAPITAL_STRUCTURE_AND_INSOLVENCY.INSOLVENCY_RECEIVERSHIP_AND_BANKRUPTCY.RECEIVERS_POWERS_AND_AUTHORITY.ISSUANCE_OF_RECEIVERS_CERTIFICATES"
     },
     {
       "id": "4ca4aeb75b1f4cd5847720c46030b0e4",
@@ -97324,6 +97433,17 @@
       "pathNotation": "CRIMINAL_LAW.WHITE_COLLAR_CRIMINAL_LAW.EXTORTION_BY_PUBLIC_OFFICER.OPPRESSION_UNDER_COLOR_OF_OFFICE"
     },
     {
+      "id": "431635217acf44c38878ec1ed862ac6a",
+      "keys": [
+        "criminal-law/white-collar-criminal-law/financial-crimes-without-violence"
+      ],
+      "label": "FINANCIAL CRIMES WITHOUT VIOLENCE",
+      "minted": "2026-11-02",
+      "uuid": "43163521-7acf-44c3-8878-ec1ed862ac6a",
+      "corpusIssueId": "bbe90d93-37fa-5559-8a30-c896bd064e55",
+      "pathNotation": "CRIMINAL_LAW.WHITE_COLLAR_CRIMINAL_LAW.FINANCIAL_CRIMES_WITHOUT_VIOLENCE"
+    },
+    {
       "id": "6951ec1d4c114f3daf084b0f9b73efaa",
       "keys": [
         "criminal-law/white-collar-criminal-law/fraudulent-acts"
@@ -109969,6 +110089,17 @@
       "uuid": "8cc3b832-f94b-4a47-8ca9-9a7af061ebbe"
     },
     {
+      "id": "07c058613d1d42cfa3269f36db0ec851",
+      "keys": [
+        "evidence-law/documentary-evidence/public-records-and-official-registers/admissibility-of-official-registers"
+      ],
+      "label": "ADMISSIBILITY OF OFFICIAL REGISTERS",
+      "minted": "2026-11-02",
+      "uuid": "07c05861-3d1d-42cf-a326-9f36db0ec851",
+      "corpusIssueId": "4a8c0ee9-f1d2-5075-9a42-afdbd84c16fe",
+      "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.PUBLIC_RECORDS_AND_OFFICIAL_REGISTERS.ADMISSIBILITY_OF_OFFICIAL_REGISTERS"
+    },
+    {
       "id": "1abd92c51fd64cccbaa267c7ab72cad6",
       "keys": [
         "evidence-law/documentary-evidence/public-records-and-official-registers/admissibility-of-official-registries"
@@ -116252,6 +116383,16 @@
       "uuid": "79e7cf3b-991a-431d-99e3-4d2623671bab",
       "corpusIssueId": "49d0d641-618a-5596-bbb6-e6c298861b13",
       "pathNotation": "EVIDENCE_LAW.PRIVILEGES_AND_IMMUNITIES_FROM_DISCLOSURE.PRIVILEGE_AGAINST_SELF_INCRIMINATION.FACTS_TENDING_TO_CRIMINATE"
+    },
+    {
+      "id": "0126e503f0e74d7396cc8cf1b1c2a960",
+      "keys": [
+        "evidence-law/privileges-and-immunities-from-disclosure/privilege-against-self-incrimination/real-and-present-danger-of-prosecution"
+      ],
+      "label": "REAL AND PRESENT DANGER OF PROSECUTION",
+      "minted": "2026-11-02",
+      "uuid": "0126e503-f0e7-4d73-96cc-8cf1b1c2a960",
+      "pathNotation": "EVIDENCE_LAW.PRIVILEGES_AND_IMMUNITIES_FROM_DISCLOSURE.PRIVILEGE_AGAINST_SELF_INCRIMINATION.REAL_AND_PRESENT_DANGER_OF_PROSECUTION"
     },
     {
       "id": "160078aa0639468697548746350822b6",
@@ -181617,6 +181758,26 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.PARTIES_TO_AGENCY.PRINCIPAL.CAPACITY_OF_PRINCIPAL.ALIENS_AS_PRINCIPALS"
     },
     {
+      "id": "796bd432910d4c08a48fedf504b44d23",
+      "keys": [
+        "law-of-obligations/payment-to-agent"
+      ],
+      "label": "Payment to Agent",
+      "minted": "2026-11-02",
+      "uuid": "796bd432-910d-4c08-a48f-edf504b44d23"
+    },
+    {
+      "id": "f9e881e173ed4dea97cce1244f53231a",
+      "keys": [
+        "law-of-obligations/payment-to-agent/what-constitutes-payment"
+      ],
+      "label": "WHAT CONSTITUTES PAYMENT",
+      "minted": "2026-11-02",
+      "uuid": "f9e881e1-73ed-4dea-97cc-e1244f53231a",
+      "corpusIssueId": "a664eb9e-cabe-5145-b2fd-4290b2e6e106",
+      "pathNotation": "LAW_OF_OBLIGATIONS.PAYMENT_TO_AGENT.WHAT_CONSTITUTES_PAYMENT"
+    },
+    {
       "id": "734f48902cbe4ab0923ad84dc9c6eccc",
       "keys": [
         "law-of-obligations/principal"
@@ -198019,6 +198180,26 @@
       "uuid": "081cdcca-fc32-4bbf-95fa-c5d7e436e358",
       "corpusIssueId": "b140c5c9-4eb2-556e-b3fd-e3df8c34ff09",
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.COMMON_CARRIERS.CARRIER_S_DUTIES_AND_LIABILITIES.EFFECT_OF_USAGE_AND_CUSTOM"
+    },
+    {
+      "id": "54ef84a065654aba80ec57f301850157",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/common-carriers/carrier-s-duties-and-liabilities/excuses-and-exceptions-to-carrier-liability"
+      ],
+      "label": "Excuses and Exceptions to Carrier Liability",
+      "minted": "2026-11-02",
+      "uuid": "54ef84a0-6565-4aba-80ec-57f301850157"
+    },
+    {
+      "id": "466c6c45495043479ca5d6cf9d420732",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/common-carriers/carrier-s-duties-and-liabilities/excuses-and-exceptions-to-carrier-liability/public-enemy-rebellion-and-revolution"
+      ],
+      "label": "PUBLIC ENEMY: REBELLION AND REVOLUTION",
+      "minted": "2026-11-02",
+      "uuid": "466c6c45-4950-4347-9ca5-d6cf9d420732",
+      "corpusIssueId": "4107e556-3133-57b3-9c28-a64608f30b23",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.COMMON_CARRIERS.CARRIER_S_DUTIES_AND_LIABILITIES.EXCUSES_AND_EXCEPTIONS_TO_CARRIER_LIABILITY.PUBLIC_ENEMY_REBELLION_AND_REVOLUTION"
     },
     {
       "id": "bc58cd1cb6b640a9b32620d367e0fa14",
@@ -217140,6 +217321,26 @@
       "uuid": "74ebf757-686d-4391-82b8-b76d90176019",
       "corpusIssueId": "633167a4-9b25-507b-938f-3e43a2af7132",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.PROPERTY_RIGHTS_BETWEEN_SPOUSES.STATUTORY_REFORM_UNDER_MARRIED_WOMEN_S_ACTS"
+    },
+    {
+      "id": "c3779c067a1d4e0397fa2ced7398c957",
+      "keys": [
+        "personal-and-family-law/marriage-law/property-rights-between-spouses/wife-s-property-rights"
+      ],
+      "label": "Wife S Property Rights",
+      "minted": "2026-11-02",
+      "uuid": "c3779c06-7a1d-4e03-97fa-2ced7398c957"
+    },
+    {
+      "id": "c4af2455f1454b588afed49a12aca8e3",
+      "keys": [
+        "personal-and-family-law/marriage-law/property-rights-between-spouses/wife-s-property-rights/loss-of-seisin"
+      ],
+      "label": "LOSS OF SEISIN",
+      "minted": "2026-11-02",
+      "uuid": "c4af2455-f145-4b58-8afe-d49a12aca8e3",
+      "corpusIssueId": "781e75de-d4f8-5794-bc78-0b57522aeb8a",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.PROPERTY_RIGHTS_BETWEEN_SPOUSES.WIFE_S_PROPERTY_RIGHTS.LOSS_OF_SEISIN"
     },
     {
       "id": "19af79304e554b069253a1429c2f8d59",
@@ -260938,6 +261139,35 @@
       "pathNotation": "REAL_ESTATE_LAW.DEEDS_AND_INSTRUMENTS_OF_CONVEYANCE.ESTOPPEL_BY_DEED.ESTOPPEL_OF_GRANTOR_IN_TRUST_DEED"
     },
     {
+      "id": "9ba0334b12204e3aa7315d0d03413abd",
+      "keys": [
+        "real-estate-law/deeds-and-instruments-of-conveyance/execution-and-acknowledgment"
+      ],
+      "label": "Execution and Acknowledgment",
+      "minted": "2026-11-02",
+      "uuid": "9ba0334b-1220-4e3a-a731-5d0d03413abd"
+    },
+    {
+      "id": "7e93168227c7491ca2bae77afb7389f5",
+      "keys": [
+        "real-estate-law/deeds-and-instruments-of-conveyance/execution-and-acknowledgment/attesting-witnesses"
+      ],
+      "label": "Attesting Witnesses",
+      "minted": "2026-11-02",
+      "uuid": "7e931682-27c7-491c-a2ba-e77afb7389f5"
+    },
+    {
+      "id": "14d2ae4d6bb94c03b635837e6d7ea245",
+      "keys": [
+        "real-estate-law/deeds-and-instruments-of-conveyance/execution-and-acknowledgment/attesting-witnesses/conditions-precedent-to-valid-attestation"
+      ],
+      "label": "CONDITIONS PRECEDENT TO VALID ATTESTATION",
+      "minted": "2026-11-02",
+      "uuid": "14d2ae4d-6bb9-4c03-b635-837e6d7ea245",
+      "corpusIssueId": "449b00ad-0f7b-523b-9e8a-13636a7dd5fc",
+      "pathNotation": "REAL_ESTATE_LAW.DEEDS_AND_INSTRUMENTS_OF_CONVEYANCE.EXECUTION_AND_ACKNOWLEDGMENT.ATTESTING_WITNESSES.CONDITIONS_PRECEDENT_TO_VALID_ATTESTATION"
+    },
+    {
       "id": "a2f5745123914895b2162103a6e5504f",
       "keys": [
         "real-estate-law/deeds-and-instruments-of-conveyance/formal-requisites-and-execution"
@@ -281397,6 +281627,35 @@
       "label": "IRREMOVABILITY OF FIXTURES",
       "corpusIssueId": "07053641-c6d0-5cf8-90e8-1432ccc3339e",
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURED_TRANSACTIONS.EQUITABLE_MORTGAGES.FIXTURES_AND_THEIR_IMPACT_ON_MORTGAGE_SECURITY.IRREMOVABILITY_OF_FIXTURES"
+    },
+    {
+      "id": "5b8a960524474d539f18d375fba7491b",
+      "keys": [
+        "real-estate-law/mortgages-and-secured-transactions/payment-and-discharge-of-mortgages"
+      ],
+      "label": "Payment and Discharge of Mortgages",
+      "minted": "2026-11-02",
+      "uuid": "5b8a9605-2447-4d53-9f18-d375fba7491b"
+    },
+    {
+      "id": "eeabf8e5101445c795cc4cf09b2b0d95",
+      "keys": [
+        "real-estate-law/mortgages-and-secured-transactions/payment-and-discharge-of-mortgages/release-form-and-formalities"
+      ],
+      "label": "Release Form and Formalities",
+      "minted": "2026-11-02",
+      "uuid": "eeabf8e5-1014-45c7-95cc-4cf09b2b0d95"
+    },
+    {
+      "id": "caa0e977948547149dd92920b69b4c11",
+      "keys": [
+        "real-estate-law/mortgages-and-secured-transactions/payment-and-discharge-of-mortgages/release-form-and-formalities/maryland-statutory-release-form"
+      ],
+      "label": "MARYLAND STATUTORY RELEASE FORM",
+      "minted": "2026-11-02",
+      "uuid": "caa0e977-9485-4714-9dd9-2920b69b4c11",
+      "corpusIssueId": "1ba0928f-31d8-575f-bee7-7363ed106979",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURED_TRANSACTIONS.PAYMENT_AND_DISCHARGE_OF_MORTGAGES.RELEASE_FORM_AND_FORMALITIES.MARYLAND_STATUTORY_RELEASE_FORM"
     },
     {
       "id": "848646f13fec4cc5967b46e10e4639dc",
@@ -312472,6 +312731,26 @@
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.FEDERAL_INCOME_TAX.GROSS_INCOME.INCLUSIONS_AND_EXCLUSIONS.CANCELLATION_OF_INDEBTEDNESS_INCOME.LOANS_AND_DISCHARGE_OF_DEBT"
     },
     {
+      "id": "8410eea1d7554d6199c3f7ff13620c0a",
+      "keys": [
+        "tax-and-revenue-law/tax-law/federal-income-tax/income-shifting-and-assignment-of-income"
+      ],
+      "label": "Income Shifting and Assignment of Income",
+      "minted": "2026-11-02",
+      "uuid": "8410eea1-d755-4d61-99c3-f7ff13620c0a"
+    },
+    {
+      "id": "091a8b37f9dc44a0bc0ccd1c5fe46bff",
+      "keys": [
+        "tax-and-revenue-law/tax-law/federal-income-tax/income-shifting-and-assignment-of-income/grantor-trust-rules"
+      ],
+      "label": "GRANTOR TRUST RULES",
+      "minted": "2026-11-02",
+      "uuid": "091a8b37-f9dc-44a0-bc0c-cd1c5fe46bff",
+      "corpusIssueId": "8f5b920f-faa2-50c4-b476-ce2a9e6ebb41",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.FEDERAL_INCOME_TAX.INCOME_SHIFTING_AND_ASSIGNMENT_OF_INCOME.GRANTOR_TRUST_RULES"
+    },
+    {
       "id": "245bc87433f24ee68b0eb6a8101bb8eb",
       "keys": [
         "tax-and-revenue-law/tax-law/federal-income-tax/individual-taxpayers"
@@ -314503,6 +314782,25 @@
       "uuid": "4a87d741-c691-49b7-9d54-4e759f790ce4",
       "corpusIssueId": "28255213-891a-5c0e-9fce-ecbe5ef19fdb",
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.TAX_ADMINISTRATION_AND_PROCEDURE.DUE_PROCESS_IN_TAXATION.EVIDENTIARY_RULES_IN_TAXATION_PROCEEDINGS.ADMISSIBILITY_OF_EVIDENCE_CHALLENGING_TAXATION_RULES"
+    },
+    {
+      "id": "93e8183a7f194e40a2a6bfe163fe0c49",
+      "keys": [
+        "tax-and-revenue-law/tax-law/tax-administration-and-procedure/due-process-in-taxation/notice-requirements"
+      ],
+      "label": "Notice Requirements",
+      "minted": "2026-11-02",
+      "uuid": "93e8183a-7f19-4e40-a2a6-bfe163fe0c49"
+    },
+    {
+      "id": "29b4fa4d59454e81b4449c697932d845",
+      "keys": [
+        "tax-and-revenue-law/tax-law/tax-administration-and-procedure/due-process-in-taxation/notice-requirements/personal-notice-of-fixed-public-review-sessions"
+      ],
+      "label": "PERSONAL NOTICE OF FIXED PUBLIC REVIEW SESSIONS",
+      "minted": "2026-11-02",
+      "uuid": "29b4fa4d-5945-4e81-b444-9c697932d845",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.TAX_ADMINISTRATION_AND_PROCEDURE.DUE_PROCESS_IN_TAXATION.NOTICE_REQUIREMENTS.PERSONAL_NOTICE_OF_FIXED_PUBLIC_REVIEW_SESSIONS"
     },
     {
       "id": "e06fefbb5dca43ef8038517bde288adf",
