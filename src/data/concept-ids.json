@@ -220232,6 +220232,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.INTESTATE_SUCCESSION.DISTRIBUTION_OF_RESIDUE"
     },
     {
+      "id": "f805a3f24fdf4933af99d113dbb69d2f",
+      "keys": [
+        "personal-and-family-law/probate-law/intestate-succession/distribution-under-the-intestacy-system"
+      ],
+      "label": "DISTRIBUTION UNDER THE INTESTACY SYSTEM",
+      "minted": "2026-11-02",
+      "uuid": "f805a3f2-4fdf-4933-af99-d113dbb69d2f",
+      "corpusIssueId": "0430ed79-2153-5c4f-9666-73ab544c966b",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.INTESTATE_SUCCESSION.DISTRIBUTION_UNDER_THE_INTESTACY_SYSTEM"
+    },
+    {
       "id": "4eb37e85979641aeae6f2bd70feaa92a",
       "keys": [
         "personal-and-family-law/probate-law/intestate-succession/spousal-share"
@@ -246924,6 +246935,35 @@
       "uuid": "a49139ee-f22b-4125-9f20-8f31b9d3b45f",
       "corpusIssueId": "71ae58d7-a026-57a5-89fb-7de432f322fa",
       "pathNotation": "PROCEDURAL_LAW.SPECIAL_PROCEEDINGS.MATRIMONIAL_ACTIONS.ANNULMENT_PROCEEDINGS"
+    },
+    {
+      "id": "db3cdd53c731434bb11f6cd9142f10e5",
+      "keys": [
+        "procedural-law/specific-actions-and-remedies"
+      ],
+      "label": "Specific Actions and Remedies",
+      "minted": "2026-11-02",
+      "uuid": "db3cdd53-c731-434b-b11f-6cd9142f10e5"
+    },
+    {
+      "id": "9f9aeb5e2aba4160895ef4db3597052f",
+      "keys": [
+        "procedural-law/specific-actions-and-remedies/ejectment"
+      ],
+      "label": "Ejectment",
+      "minted": "2026-11-02",
+      "uuid": "9f9aeb5e-2aba-4160-895e-f4db3597052f"
+    },
+    {
+      "id": "2b75c0b78356493795e56b395262b8cf",
+      "keys": [
+        "procedural-law/specific-actions-and-remedies/ejectment/pleadings-and-recitals-in-ejectment"
+      ],
+      "label": "PLEADINGS AND RECITALS IN EJECTMENT",
+      "minted": "2026-11-02",
+      "uuid": "2b75c0b7-8356-4937-95e5-6b395262b8cf",
+      "corpusIssueId": "7e355b02-461e-55cc-89ca-c5aed400aa37",
+      "pathNotation": "PROCEDURAL_LAW.SPECIFIC_ACTIONS_AND_REMEDIES.EJECTMENT.PLEADINGS_AND_RECITALS_IN_EJECTMENT"
     },
     {
       "id": "fed316191a4940c89acc9c5d94d87d35",
@@ -275804,6 +275844,15 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.CREATION_OF_TENANCY.FORMATION_AND_ENFORCEABILITY.IMPLIED_RATIFICATION_OF_TENANCY"
     },
     {
+      "id": "ec6936e285164214858210ac87f81b0b",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/creation-of-tenancy/implied-tenancy"
+      ],
+      "label": "Implied Tenancy",
+      "minted": "2026-11-02",
+      "uuid": "ec6936e2-8516-4214-8582-10ac87f81b0b"
+    },
+    {
       "id": "292b893cc5b2436682d5d6f6957515f6",
       "keys": [
         "real-estate-law/landlord-tenant-law/creation-of-tenancy/implied-tenancy-from-special-circumstances"
@@ -275822,6 +275871,17 @@
       "uuid": "d44bb3fd-4139-4400-b608-a150e279535b",
       "corpusIssueId": "a458f79e-acff-5ddd-9388-b93ec55d17a4",
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.CREATION_OF_TENANCY.IMPLIED_TENANCY_FROM_SPECIAL_CIRCUMSTANCES.INTENTION_OF_THE_PARTIES"
+    },
+    {
+      "id": "3ab548556aab48789044209f2e2ea436",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/creation-of-tenancy/implied-tenancy/general-principles-of-implied-landlord-tenant-relation"
+      ],
+      "label": "GENERAL PRINCIPLES OF IMPLIED LANDLORD-TENANT RELATION",
+      "minted": "2026-11-02",
+      "uuid": "3ab54855-6aab-4878-9044-209f2e2ea436",
+      "corpusIssueId": "17aa9bdf-9bc3-5b49-ae22-0da6e9c98ff6",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.CREATION_OF_TENANCY.IMPLIED_TENANCY.GENERAL_PRINCIPLES_OF_IMPLIED_LANDLORD_TENANT_RELATION"
     },
     {
       "id": "383b03f5fc504c8bbf427a8ebc370888",
@@ -308811,6 +308871,26 @@
       "uuid": "587db6f1-0251-4a52-9ba8-360192417722",
       "corpusIssueId": "6ee36da6-6424-57e4-9219-b3db2d178ba0",
       "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.RECEIVERS_OVER_RAILWAYS.ATTORNMENT_OF_TENANTS_TO_RECEIVER"
+    },
+    {
+      "id": "6379b2ead1b84cc59bbd819cf6d325e6",
+      "keys": [
+        "remedies-law/receivership/receivers-over-railways/compensation-of-receiver"
+      ],
+      "label": "Compensation of Receiver",
+      "minted": "2026-11-02",
+      "uuid": "6379b2ea-d1b8-4cc5-9bbd-819cf6d325e6"
+    },
+    {
+      "id": "f75936f0aaf74cd08c309f58bd5482cb",
+      "keys": [
+        "remedies-law/receivership/receivers-over-railways/compensation-of-receiver/judicial-determination-of-compensation-in-absence-of-statute"
+      ],
+      "label": "JUDICIAL DETERMINATION OF COMPENSATION IN ABSENCE OF STATUTE",
+      "minted": "2026-11-02",
+      "uuid": "f75936f0-aaf7-4cd0-8c30-9f58bd5482cb",
+      "corpusIssueId": "e8731d7b-03f2-56a6-b489-f6842b3aa14e",
+      "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.RECEIVERS_OVER_RAILWAYS.COMPENSATION_OF_RECEIVER.JUDICIAL_DETERMINATION_OF_COMPENSATION_IN_ABSENCE_OF_STATUTE"
     },
     {
       "id": "beef9f0a4c264b2c84b96168184aac3e",
