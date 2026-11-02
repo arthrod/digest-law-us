@@ -92447,6 +92447,26 @@
       "pathNotation": "CRIMINAL_LAW.PLEADING.ALLEGATIONS_AND_CHARGING_INSTRUMENTS.EXCUSABLE_OMISSIONS_OR_DEFECTS.NECESSITY_AS_EXCUSE_FOR_DEFECTIVE_ALLEGATION"
     },
     {
+      "id": "8ea55e63c83f40eda784298fc3622fc9",
+      "keys": [
+        "criminal-law/pleading/pleas"
+      ],
+      "label": "Pleas",
+      "minted": "2026-11-02",
+      "uuid": "8ea55e63-c83f-40ed-a784-298fc3622fc9"
+    },
+    {
+      "id": "95554a1b381b440f905ae595f2a28c6a",
+      "keys": [
+        "criminal-law/pleading/pleas/general-issue"
+      ],
+      "label": "GENERAL ISSUE",
+      "minted": "2026-11-02",
+      "uuid": "95554a1b-381b-440f-905a-e595f2a28c6a",
+      "corpusIssueId": "2eeff3e1-1a06-5011-8a6e-afc837586318",
+      "pathNotation": "CRIMINAL_LAW.PLEADING.PLEAS.GENERAL_ISSUE"
+    },
+    {
       "id": "db995a82eb1c4b6383f29066b38010a1",
       "keys": [
         "criminal-law/pleading/special-pleas"
@@ -95575,6 +95595,26 @@
       "uuid": "e61ca426-baaf-462e-848e-c62b92abe3cd",
       "corpusIssueId": "b4607425-f817-54e1-ba6a-882ded1552e9",
       "pathNotation": "CRIMINAL_LAW.SEARCH_AND_SEIZURE.SEARCH_WARRANTS.PARTICULARITY_REQUIREMENT.DESCRIPTION_OF_PLACE_TO_BE_SEARCHED"
+    },
+    {
+      "id": "08374eec097d4809a842474eed2ee832",
+      "keys": [
+        "criminal-law/search-and-seizure/stop-and-frisk"
+      ],
+      "label": "Stop and Frisk",
+      "minted": "2026-11-02",
+      "uuid": "08374eec-097d-4809-a842-474eed2ee832"
+    },
+    {
+      "id": "b005007daa25459cb1cbbb8737e88534",
+      "keys": [
+        "criminal-law/search-and-seizure/stop-and-frisk/terry-v-ohio"
+      ],
+      "label": "TERRY V. OHIO",
+      "minted": "2026-11-02",
+      "uuid": "b005007d-aa25-459c-b1cb-bb8737e88534",
+      "corpusIssueId": "c161bd8d-0cdf-5a67-beb6-e6816c291fb1",
+      "pathNotation": "CRIMINAL_LAW.SEARCH_AND_SEIZURE.STOP_AND_FRISK.TERRY_V_OHIO"
     },
     {
       "id": "6b0b04ce36de4ade96a2dd845998bab6",
@@ -172599,6 +172639,26 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.REFERENCE_TO_SPECIFIC_TREATISES_IN_CRIMINAL_LAW"
     },
     {
+      "id": "1cbf4371de324431be177f079a567974",
+      "keys": [
+        "jurisprudence-and-legal-method/remedial-statutes"
+      ],
+      "label": "Remedial Statutes",
+      "minted": "2026-11-02",
+      "uuid": "1cbf4371-de32-4431-be17-7f079a567974"
+    },
+    {
+      "id": "589660ce84db44d79a7f2a42e5ba107e",
+      "keys": [
+        "jurisprudence-and-legal-method/remedial-statutes/bankruptcy-act-interpretation"
+      ],
+      "label": "BANKRUPTCY ACT INTERPRETATION",
+      "minted": "2026-11-02",
+      "uuid": "589660ce-84db-44d7-9a7f-2a42e5ba107e",
+      "corpusIssueId": "9b6a670f-5471-5144-9a29-fbe29ffd2160",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.REMEDIAL_STATUTES.BANKRUPTCY_ACT_INTERPRETATION"
+    },
+    {
       "id": "8275857d63a24fa98c4bf9c91499b477",
       "keys": [
         "jurisprudence-and-legal-method/repeal"
@@ -209513,6 +209573,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.CUSTODY_LAW.ADOPTION.ADOPTION_OF_NATIVE_AMERICAN_CHILDREN"
     },
     {
+      "id": "f1a9751af20641aeb442bd765683fee3",
+      "keys": [
+        "personal-and-family-law/custody-law/custody-determinations-under-divorce-and-statutory-law"
+      ],
+      "label": "CUSTODY DETERMINATIONS UNDER DIVORCE AND STATUTORY LAW",
+      "minted": "2026-11-02",
+      "uuid": "f1a9751a-f206-41ae-b442-bd765683fee3",
+      "corpusIssueId": "e1e2a8d9-941e-5842-8d0f-40975f9c9a04",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.CUSTODY_LAW.CUSTODY_DETERMINATIONS_UNDER_DIVORCE_AND_STATUTORY_LAW"
+    },
+    {
       "id": "3e378cfdf8d04599a6d7a740dbfb6524",
       "keys": [
         "personal-and-family-law/custody-law/custody-disputes"
@@ -245596,6 +245667,17 @@
       "pathNotation": "PROCEDURAL_LAW.POLITICAL_QUESTION_DOCTRINE.INTRODUCTION_AND_OVERVIEW"
     },
     {
+      "id": "af87026c7da4497ebb1a2611dd809fe0",
+      "keys": [
+        "procedural-law/political-question-doctrine/political-question-and-foreign-affairs"
+      ],
+      "label": "POLITICAL QUESTION AND FOREIGN AFFAIRS",
+      "minted": "2026-11-02",
+      "uuid": "af87026c-7da4-497e-bb1a-2611dd809fe0",
+      "corpusIssueId": "cf3c9752-77df-5667-a4f9-e7b21f7d9788",
+      "pathNotation": "PROCEDURAL_LAW.POLITICAL_QUESTION_DOCTRINE.POLITICAL_QUESTION_AND_FOREIGN_AFFAIRS"
+    },
+    {
       "id": "d6cab68909d74a09b7b43e7b90932d98",
       "keys": [
         "procedural-law/possession-judgments"
@@ -260805,6 +260887,17 @@
       "minted": "2026-10-02",
       "uuid": "a23ed22d-d5b8-4833-b239-336a54cbffac",
       "pathNotation": "REAL_ESTATE_LAW.CONVEYANCING_AND_DEEDS.ACKNOWLEDGMENT.FORMAL_REQUIREMENTS.PLACE_OF_ACKNOWLEDGMENT"
+    },
+    {
+      "id": "c597f8301a0a4d8dbf244133f4c77d6c",
+      "keys": [
+        "real-estate-law/conveyancing-and-deeds/acknowledgment/presumption-of-valid-acknowledgment"
+      ],
+      "label": "PRESUMPTION OF VALID ACKNOWLEDGMENT",
+      "minted": "2026-11-02",
+      "uuid": "c597f830-1a0a-4d8d-bf24-4133f4c77d6c",
+      "corpusIssueId": "700c2b2b-405d-5bbb-aa4d-a215981c8ce4",
+      "pathNotation": "REAL_ESTATE_LAW.CONVEYANCING_AND_DEEDS.ACKNOWLEDGMENT.PRESUMPTION_OF_VALID_ACKNOWLEDGMENT"
     },
     {
       "id": "411e8731d94f4f0d95784d2c7f4ed28a",
@@ -291020,6 +291113,26 @@
       "label": "Title and Transfer"
     },
     {
+      "id": "0a5542d76d584a7696eebd655531326e",
+      "keys": [
+        "real-estate-law/title-and-transfer/adverse-possession"
+      ],
+      "label": "Adverse Possession",
+      "minted": "2026-11-02",
+      "uuid": "0a5542d7-6d58-4a76-96ee-bd655531326e"
+    },
+    {
+      "id": "fbb4c7a9193c41648581a9e3eed03660",
+      "keys": [
+        "real-estate-law/title-and-transfer/adverse-possession/ripening-of-title-and-perfection"
+      ],
+      "label": "RIPENING OF TITLE AND PERFECTION",
+      "minted": "2026-11-02",
+      "uuid": "fbb4c7a9-193c-4164-8581-a9e3eed03660",
+      "corpusIssueId": "7706429e-6e7e-559a-9d89-e3043d65a9b9",
+      "pathNotation": "REAL_ESTATE_LAW.TITLE_AND_TRANSFER.ADVERSE_POSSESSION.RIPENING_OF_TITLE_AND_PERFECTION"
+    },
+    {
       "id": "f00ae765a19245feaf101ed24a249764",
       "uuid": "f00ae765-a192-45fe-af10-1ed24a249764",
       "keys": [
@@ -312722,6 +312835,17 @@
       "uuid": "a3647a19-c795-4de1-9659-43bdfec5c2f3",
       "corpusIssueId": "aa20d673-454c-5b9a-8bb6-e6ec63324828",
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.CONSTITUTIONAL_LIMITATIONS_ON_TAXATION.DUE_PROCESS_IN_TAXATION.JURISDICTIONAL_REQUIREMENTS_FOR_TAXATION.VALUE_OF_THE_RIGHT_AS_AFFECTING_JURISDICTION"
+    },
+    {
+      "id": "74efd9dcceec47c689c39c6743cfe05e",
+      "keys": [
+        "tax-and-revenue-law/tax-law/constitutional-limitations-on-taxation/due-process-in-taxation/legislative-authority-requirement"
+      ],
+      "label": "LEGISLATIVE AUTHORITY REQUIREMENT",
+      "minted": "2026-11-02",
+      "uuid": "74efd9dc-ceec-47c6-89c3-9c6743cfe05e",
+      "corpusIssueId": "a702c5ea-41f0-5bf4-bfb7-638ee3961ee2",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.CONSTITUTIONAL_LIMITATIONS_ON_TAXATION.DUE_PROCESS_IN_TAXATION.LEGISLATIVE_AUTHORITY_REQUIREMENT"
     },
     {
       "id": "5c1523bb64f34ddf802c5810e2ee9ecd",
