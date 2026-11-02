@@ -3291,6 +3291,26 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_ESTATE_ADMINISTRATION.TRUSTEE_DUTIES_AND_POWERS.CLOSURE_AND_FINAL_ACCOUNTING_OF_ESTATE"
     },
     {
+      "id": "59d64c3b939a458ca69d8b3625ffff2e",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-estate-administration/trustee-s-discretion-over-encumbered-property"
+      ],
+      "label": "Trustee S Discretion Over Encumbered Property",
+      "minted": "2026-11-02",
+      "uuid": "59d64c3b-939a-458c-a69d-8b3625ffff2e"
+    },
+    {
+      "id": "f540b186e32647cba3d4ce670a565618",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-estate-administration/trustee-s-discretion-over-encumbered-property/election-not-to-take-encumbered-property"
+      ],
+      "label": "ELECTION NOT TO TAKE ENCUMBERED PROPERTY",
+      "minted": "2026-11-02",
+      "uuid": "f540b186-e326-47cb-a3d4-ce670a565618",
+      "corpusIssueId": "31563c01-37a6-5bd5-b54e-b88b27a08a65",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_ESTATE_ADMINISTRATION.TRUSTEE_S_DISCRETION_OVER_ENCUMBERED_PROPERTY.ELECTION_NOT_TO_TAKE_ENCUMBERED_PROPERTY"
+    },
+    {
       "id": "d096abeeabcf430b8fb682a2bd6bdff0",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/bankruptcy-estate-administration/trustees-and-professionals"
@@ -56575,6 +56595,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_RIGHTS_AND_OBLIGATIONS.FORFEITURE_OF_STOCK.FORFEITURE_FOR_NON_PAYMENT"
     },
     {
+      "id": "c30de163de03482b807d09483f8c01f4",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholder-rights-and-obligations/preferred-shares"
+      ],
+      "label": "Preferred Shares",
+      "minted": "2026-11-02",
+      "uuid": "c30de163-de03-482b-807d-09483f8c01f4"
+    },
+    {
+      "id": "3f6c5322cd4e4f6ea2716b45c5a21523",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholder-rights-and-obligations/preferred-shares/holder-status-and-implications"
+      ],
+      "label": "HOLDER STATUS AND IMPLICATIONS",
+      "minted": "2026-11-02",
+      "uuid": "3f6c5322-cd4e-4f6e-a271-6b45c5a21523",
+      "corpusIssueId": "ce8c45fe-c879-5f05-9809-2b18a373fbff",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_RIGHTS_AND_OBLIGATIONS.PREFERRED_SHARES.HOLDER_STATUS_AND_IMPLICATIONS"
+    },
+    {
       "id": "8293553983094649a20f66e43f878b30",
       "uuid": "82935539-8309-4649-a20f-66e43f878b30",
       "keys": [
@@ -74687,6 +74727,25 @@
       "pathNotation": "CORPORATE_LAW.CORPORATE_POWERS_AND_ULTRA_VIRES.POWER_TO_PROMOTE_OR_HOLD_STOCK_IN_OTHER_CORPORATIONS.PURCHASE_OF_STOCK_IN_OTHER_CORPORATION"
     },
     {
+      "id": "353587f12250473894feb0adba5be7dc",
+      "keys": [
+        "corporate-law/corporate-reporting-and-filing-requirements"
+      ],
+      "label": "Corporate Reporting and Filing Requirements",
+      "minted": "2026-11-02",
+      "uuid": "353587f1-2250-4738-94fe-b0adba5be7dc"
+    },
+    {
+      "id": "3509f82dec324d81851e4c5cf9d98332",
+      "keys": [
+        "corporate-law/corporate-reporting-and-filing-requirements/annual-certificate-of-condition"
+      ],
+      "label": "Annual Certificate of Condition",
+      "minted": "2026-11-02",
+      "uuid": "3509f82d-ec32-4d81-851e-4c5cf9d98332",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_REPORTING_AND_FILING_REQUIREMENTS.ANNUAL_CERTIFICATE_OF_CONDITION"
+    },
+    {
       "id": "e80ae53d8d464fbaa5f7a32a5a27c852",
       "keys": [
         "corporate-law/corporate-securities-and-capital-structure"
@@ -82690,6 +82749,17 @@
       "pathNotation": "CRIMINAL_LAW.CONSPIRACY.CONSPIRACY_TO_COMMIT_MISDEMEANORS"
     },
     {
+      "id": "5608f9e262824eed9af431b6703cf64b",
+      "keys": [
+        "criminal-law/conspiracy/conspirator-liability-for-foreseeable-co-conspirator-offenses-pinkerton-doctrine"
+      ],
+      "label": "CONSPIRATOR LIABILITY FOR FORESEEABLE CO-CONSPIRATOR OFFENSES (PINKERTON DOCTRINE)",
+      "minted": "2026-11-02",
+      "uuid": "5608f9e2-6282-4eed-9af4-31b6703cf64b",
+      "corpusIssueId": "2a7956c3-4c12-5221-93c5-96460ac0b383",
+      "pathNotation": "CRIMINAL_LAW.CONSPIRACY.CONSPIRATOR_LIABILITY_FOR_FORESEEABLE_CO_CONSPIRATOR_OFFENSES_PINKERTON_DOCTRINE"
+    },
+    {
       "id": "bebb31ba9fe4466fb17a7f8aa469b0a6",
       "keys": [
         "criminal-law/conspiracy/federal-conspiracy-statute"
@@ -89179,6 +89249,26 @@
       "uuid": "d08c7b9f-e480-4095-b337-033a7059535e",
       "corpusIssueId": "9ef11611-45ed-5436-976b-81bc49ed4341",
       "pathNotation": "CRIMINAL_LAW.MALICIOUS_MISCHIEF.DEFINITION_AND_NATURE"
+    },
+    {
+      "id": "116ad696dba74d51b1f6d16be514623b",
+      "keys": [
+        "criminal-law/malicious-mischief/destruction-or-injury-to-animals"
+      ],
+      "label": "Destruction or Injury to Animals",
+      "minted": "2026-11-02",
+      "uuid": "116ad696-dba7-4d51-b1f6-d16be514623b"
+    },
+    {
+      "id": "2dfd7e3a7a024b588125a80aec3720fe",
+      "keys": [
+        "criminal-law/malicious-mischief/destruction-or-injury-to-animals/killing-or-maiming-livestock"
+      ],
+      "label": "Killing or Maiming Livestock",
+      "minted": "2026-11-02",
+      "uuid": "2dfd7e3a-7a02-4b58-8125-a80aec3720fe",
+      "corpusIssueId": "403a0cd4-e851-5c26-a04e-3b55fad9ce3b",
+      "pathNotation": "CRIMINAL_LAW.MALICIOUS_MISCHIEF.DESTRUCTION_OR_INJURY_TO_ANIMALS.KILLING_OR_MAIMING_LIVESTOCK"
     },
     {
       "id": "596b5fa8ac874452b350ae08cb4df99a",
@@ -129015,6 +129105,15 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.FORMATION_AND_ENFORCEABILITY.SIGNATURES_AND_EXECUTION.SURETY_S_LIABILITY_WHEN_PRINCIPAL_DOES_NOT_SIGN"
     },
     {
+      "id": "4e950cc24e194734928135aecfc5e46f",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/formation-and-execution"
+      ],
+      "label": "Formation and Execution",
+      "minted": "2026-11-02",
+      "uuid": "4e950cc2-4e19-4734-9281-35aecfc5e46f"
+    },
+    {
       "id": "f8675c0dbce645818405a7869aeae7e3",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/formation-and-execution-of-surety-contracts"
@@ -129033,6 +129132,26 @@
       "uuid": "2b9b7a72-a1c7-4b78-90a9-f5c6c706a801",
       "corpusIssueId": "91052234-2e90-59eb-a8d1-f8068df9dcb9",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.FORMATION_AND_EXECUTION_OF_SURETY_CONTRACTS.EXECUTION_BY_AGENTS"
+    },
+    {
+      "id": "06c060e388b14caa8b55492fd1e76cbd",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/formation-and-execution/time-and-place-of-delivery"
+      ],
+      "label": "Time and Place of Delivery",
+      "minted": "2026-11-02",
+      "uuid": "06c060e3-88b1-4caa-8b55-492fd1e76cbd"
+    },
+    {
+      "id": "5308df5cb4874b67b8f2725ddab6679d",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/formation-and-execution/time-and-place-of-delivery/timely-delivery-during-business-hours"
+      ],
+      "label": "TIMELY DELIVERY DURING BUSINESS HOURS",
+      "minted": "2026-11-02",
+      "uuid": "5308df5c-b487-4b67-b8f2-725ddab6679d",
+      "corpusIssueId": "037f5207-3422-5e2d-b8e3-2f7ebc3b87ec",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.FORMATION_AND_EXECUTION.TIME_AND_PLACE_OF_DELIVERY.TIMELY_DELIVERY_DURING_BUSINESS_HOURS"
     },
     {
       "id": "41b2f667a8d242088206744c7853937b",
@@ -135682,6 +135801,26 @@
       "uuid": "6f6bf6fd-f0c0-44cd-b0c9-d20e70c69037",
       "corpusIssueId": "c64214db-1db3-59cd-8d3d-ae95360c9340",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.POSSESSORY_LIENS.ARTISAN_AND_REPAIR_LIENS.LIEN_FOR_REPAIR_OR_ALTERATION_OF_PERSONAL_PROPERTY"
+    },
+    {
+      "id": "4c3e9b17003f4872aac2cfb195b1ba75",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/possessory-liens/artisan-s-liens"
+      ],
+      "label": "Artisan S Liens",
+      "minted": "2026-11-02",
+      "uuid": "4c3e9b17-003f-4872-aac2-cfb195b1ba75"
+    },
+    {
+      "id": "208c8a25f6604b2a859b6c1acff0449c",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/possessory-liens/artisan-s-liens/statutory-artisan-lien"
+      ],
+      "label": "STATUTORY ARTISAN LIEN",
+      "minted": "2026-11-02",
+      "uuid": "208c8a25-f660-4b2a-859b-6c1acff0449c",
+      "corpusIssueId": "f6a4cc68-35ab-5620-984e-921742083684",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.POSSESSORY_LIENS.ARTISAN_S_LIENS.STATUTORY_ARTISAN_LIEN"
     },
     {
       "id": "a9cc8388e3904fe2b5762fbf49f722d1",
@@ -153262,6 +153401,26 @@
       "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CORPORATIONS.FOREIGN_CORPORATIONS.RECOGNITION_AND_EXERCISE_OF_CORPORATE_POWERS.LIMITATION_BY_LAW_OF_HOST_STATE"
     },
     {
+      "id": "a1e933ce960a4e1eafafb90003e4029d",
+      "keys": [
+        "international-and-comparative-law/corporations/internal-affairs-doctrine"
+      ],
+      "label": "Internal Affairs Doctrine",
+      "minted": "2026-11-02",
+      "uuid": "a1e933ce-960a-4e1e-afaf-b90003e4029d"
+    },
+    {
+      "id": "c72c5b5b08bd4bd2bcd060095c0ffda7",
+      "keys": [
+        "international-and-comparative-law/corporations/internal-affairs-doctrine/shareholder-derivative-suits-against-foreign-corporations"
+      ],
+      "label": "SHAREHOLDER DERIVATIVE SUITS AGAINST FOREIGN CORPORATIONS",
+      "minted": "2026-11-02",
+      "uuid": "c72c5b5b-08bd-4bd2-bcd0-60095c0ffda7",
+      "corpusIssueId": "2d77526f-91cb-5963-8f61-6779dcac00ce",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CORPORATIONS.INTERNAL_AFFAIRS_DOCTRINE.SHAREHOLDER_DERIVATIVE_SUITS_AGAINST_FOREIGN_CORPORATIONS"
+    },
+    {
       "id": "b72401d9dddc4468baad36cbc46668d8",
       "keys": [
         "international-and-comparative-law/corporations/shareholder-liability-for-corporate-debts"
@@ -156953,6 +157112,26 @@
       ],
       "minted": "2026-07-31",
       "label": "Chattels"
+    },
+    {
+      "id": "7457b28fb0194e50bf17f6c5b7eaf756",
+      "keys": [
+        "international-and-comparative-law/property/chattels/conditional-sales-and-security-interests"
+      ],
+      "label": "Conditional Sales and Security Interests",
+      "minted": "2026-11-02",
+      "uuid": "7457b28f-b019-4e50-bf17-f6c5b7eaf756"
+    },
+    {
+      "id": "34944138899e472eb6409854f2ced1c1",
+      "keys": [
+        "international-and-comparative-law/property/chattels/conditional-sales-and-security-interests/recognition-of-foreign-created-title-and-interests"
+      ],
+      "label": "RECOGNITION OF FOREIGN-CREATED TITLE AND INTERESTS",
+      "minted": "2026-11-02",
+      "uuid": "34944138-899e-472e-b640-9854f2ced1c1",
+      "corpusIssueId": "32df8df5-14c7-546a-91a1-c6f7b589361d",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.PROPERTY.CHATTELS.CONDITIONAL_SALES_AND_SECURITY_INTERESTS.RECOGNITION_OF_FOREIGN_CREATED_TITLE_AND_INTERESTS"
     },
     {
       "id": "6293cb8991b84a9e91772f6c9d9e3674",
@@ -167422,6 +167601,26 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.CONSTRUCTION_OF_PARTICULAR_CLASSES_OF_STATUTES.SCOPE_AND_OVERVIEW"
     },
     {
+      "id": "d1db07727ced41a39ed728dd2aadcf2e",
+      "keys": [
+        "jurisprudence-and-legal-method/construction-of-particular-words-and-phrases"
+      ],
+      "label": "Construction of Particular Words and Phrases",
+      "minted": "2026-11-02",
+      "uuid": "d1db0772-7ced-41a3-9ed7-28dd2aadcf2e"
+    },
+    {
+      "id": "74b128dd718a4da390b94a0424e0aaa1",
+      "keys": [
+        "jurisprudence-and-legal-method/construction-of-particular-words-and-phrases/interpretation-of-financial-or-commercial-terms"
+      ],
+      "label": "INTERPRETATION OF FINANCIAL OR COMMERCIAL TERMS",
+      "minted": "2026-11-02",
+      "uuid": "74b128dd-718a-4da3-90b9-4a0424e0aaa1",
+      "corpusIssueId": "cff4f5d8-70e5-5e19-88b8-e3d6f98d5c3c",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.CONSTRUCTION_OF_PARTICULAR_WORDS_AND_PHRASES.INTERPRETATION_OF_FINANCIAL_OR_COMMERCIAL_TERMS"
+    },
+    {
       "id": "8068f01df5ce4f78b32b6f78615da069",
       "uuid": "8068f01d-f5ce-4f78-b32b-6f78615da069",
       "keys": [
@@ -172777,6 +172976,17 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_STATUTORY_LAW.INSURANCE_STATUTES.VERMONT_REVISED_LAWS_1880_SECTION_3620"
     },
     {
+      "id": "b9e6d2d8078f414c87225c186d0358d3",
+      "keys": [
+        "jurisprudence-and-legal-method/statute-of-uses-1535"
+      ],
+      "label": "STATUTE OF USES (1535)",
+      "minted": "2026-11-02",
+      "uuid": "b9e6d2d8-078f-414c-8722-5c186d0358d3",
+      "corpusIssueId": "772a6959-4e69-5b79-a896-c9723fb25c0e",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATUTE_OF_USES_1535"
+    },
+    {
       "id": "afa1184aa5fd46de9423c95b1f3bff3b",
       "keys": [
         "jurisprudence-and-legal-method/statutes"
@@ -173674,6 +173884,17 @@
       "label": "State Statutes",
       "minted": "2026-10-02",
       "uuid": "3263697a-52bd-48b0-bb38-ca5575007742"
+    },
+    {
+      "id": "55f4a769f8f94877926fadb524f68d97",
+      "keys": [
+        "jurisprudence-and-legal-method/statutory-law/state-statutes/adoption-and-enactment-of-statutes"
+      ],
+      "label": "ADOPTION AND ENACTMENT OF STATUTES",
+      "minted": "2026-11-02",
+      "uuid": "55f4a769-f8f9-4877-926f-adb524f68d97",
+      "corpusIssueId": "9eee7147-c844-57b4-b373-b50597433d91",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATUTORY_LAW.STATE_STATUTES.ADOPTION_AND_ENACTMENT_OF_STATUTES"
     },
     {
       "id": "b5ff358f083340c5b7c6acd27eada1ef",
@@ -190408,6 +190629,26 @@
       "uuid": "1437c9ca-da1f-4dbc-81d6-16316b07374e",
       "corpusIssueId": "eb041e47-b3f2-5e5e-af13-9311de1f44cc",
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.CARRIERS_AND_PASSENGERS.ELEVATED_RAILWAY_PASSENGERS"
+    },
+    {
+      "id": "29b2a8bce06840bfa566478fe19d12c7",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/carriers-and-passengers/passenger-s-assumption-of-risk"
+      ],
+      "label": "Passenger S Assumption of Risk",
+      "minted": "2026-11-02",
+      "uuid": "29b2a8bc-e068-40bf-a566-478fe19d12c7"
+    },
+    {
+      "id": "7ab49cb4d28b47d08c053496ab568de5",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/carriers-and-passengers/passenger-s-assumption-of-risk/circumstances-supporting-inference-of-assumption"
+      ],
+      "label": "CIRCUMSTANCES SUPPORTING INFERENCE OF ASSUMPTION",
+      "minted": "2026-11-02",
+      "uuid": "7ab49cb4-d28b-47d0-8c05-3496ab568de5",
+      "corpusIssueId": "cc1d46f8-a66e-5a81-ade0-5ac4d3d41045",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.CARRIERS_AND_PASSENGERS.PASSENGER_S_ASSUMPTION_OF_RISK.CIRCUMSTANCES_SUPPORTING_INFERENCE_OF_ASSUMPTION"
     },
     {
       "id": "ddb88a40eab241be964b6fa28fbd9574",
@@ -217253,6 +217494,17 @@
       "label": "DOCTRINAL ANALYSIS AND SUMMARY",
       "corpusIssueId": "50d6a261-263a-55f9-b50b-706f6d3f707b",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.SEPARATION.SEPARATION_BY_MUTUAL_CONSENT.DOCTRINAL_ANALYSIS_AND_SUMMARY"
+    },
+    {
+      "id": "ca715ca7cebe4d3893192e309e26cb12",
+      "keys": [
+        "personal-and-family-law/marriage-law/separation/separation-by-mutual-consent/refusal-to-comply-with-separation-agreement"
+      ],
+      "label": "REFUSAL TO COMPLY WITH SEPARATION AGREEMENT",
+      "minted": "2026-11-02",
+      "uuid": "ca715ca7-cebe-4d38-9319-2e309e26cb12",
+      "corpusIssueId": "496e232d-47e5-5187-84db-74ad2b01c601",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.SEPARATION.SEPARATION_BY_MUTUAL_CONSENT.REFUSAL_TO_COMPLY_WITH_SEPARATION_AGREEMENT"
     },
     {
       "id": "64d101e0c88049f08d0246eb53c86b3f",
@@ -246149,6 +246401,26 @@
       "label": "NON-PARTIES AND STRANGERS",
       "corpusIssueId": "fbfcc7a2-bdbb-5387-af0b-d376d0287ae3",
       "pathNotation": "PROCEDURAL_LAW.RES_JUDICATA_AND_COLLATERAL_ESTOPPEL.PERSONS_BOUND_BY_JUDGMENT.NON_PARTIES_AND_STRANGERS"
+    },
+    {
+      "id": "86a686b15a0047a4b787321bbab3bedb",
+      "keys": [
+        "procedural-law/res-judicata-and-collateral-estoppel/privity"
+      ],
+      "label": "Privity",
+      "minted": "2026-11-02",
+      "uuid": "86a686b1-5a00-47a4-b787-321bbab3bedb"
+    },
+    {
+      "id": "8eb17b967a9949a6ace04496f24836c0",
+      "keys": [
+        "procedural-law/res-judicata-and-collateral-estoppel/privity/identity-of-privity-with-nominal-defendant"
+      ],
+      "label": "IDENTITY OF PRIVITY WITH NOMINAL DEFENDANT",
+      "minted": "2026-11-02",
+      "uuid": "8eb17b96-7a99-49a6-ace0-4496f24836c0",
+      "corpusIssueId": "3544f786-5bc9-57ea-871e-15d1d8c45517",
+      "pathNotation": "PROCEDURAL_LAW.RES_JUDICATA_AND_COLLATERAL_ESTOPPEL.PRIVITY.IDENTITY_OF_PRIVITY_WITH_NOMINAL_DEFENDANT"
     },
     {
       "id": "7c58e55035fb4ae2be812534f9bd31c2",
@@ -276130,6 +276402,25 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.CREATION_OF_TENANCY.LEASE_TERM_AND_DURATION.IMPOSSIBLE_OR_UNCERTAIN_DATES"
     },
     {
+      "id": "2f199b3aa8d0439c98f4d011e33a4b31",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/creation-of-tenancy/leases"
+      ],
+      "label": "Leases",
+      "minted": "2026-11-02",
+      "uuid": "2f199b3a-a8d0-439c-98f4-d011e33a4b31"
+    },
+    {
+      "id": "2496a27385da41788cda584df882b4be",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/creation-of-tenancy/leases/rights-and-liabilities-of-under-lessee"
+      ],
+      "label": "Rights and Liabilities of an Under-Lessee",
+      "minted": "2026-11-02",
+      "uuid": "2496a273-85da-4178-8cda-584df882b4be",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.CREATION_OF_TENANCY.LEASES.RIGHTS_AND_LIABILITIES_OF_UNDER_LESSEE"
+    },
+    {
       "id": "dcd7b3ed9add4eeba64db36d335dd0f5",
       "keys": [
         "real-estate-law/landlord-tenant-law/creation-of-tenancy/powers-and-reservations-in-leases"
@@ -277834,6 +278125,17 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LIABILITY_FOR_INJURIES_TO_STRANGERS"
     },
     {
+      "id": "07e5e4cac640488595e591fd42c7e48e",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/liability-for-rents-and-profits"
+      ],
+      "label": "LIABILITY FOR RENTS AND PROFITS",
+      "minted": "2026-11-02",
+      "uuid": "07e5e4ca-c640-4885-95e5-91fd42c7e48e",
+      "corpusIssueId": "5d191181-f40b-59c5-869b-f7fe074611b3",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LIABILITY_FOR_RENTS_AND_PROFITS"
+    },
+    {
       "id": "afdb582a7e1b4073887141a7cba32aad",
       "keys": [
         "real-estate-law/landlord-tenant-law/limitations-on-right-to-transfer"
@@ -278601,6 +278903,17 @@
       "label": "Tenant Duties",
       "minted": "2026-10-02",
       "uuid": "b600e580-cf2d-4762-8ffb-e0fe2a5bbe62"
+    },
+    {
+      "id": "2b61c5c904f7437fae57f6ca10b39199",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/tenant-duties/duty-to-attorn"
+      ],
+      "label": "DUTY TO ATTORN",
+      "minted": "2026-11-02",
+      "uuid": "2b61c5c9-04f7-437f-ae57-f6ca10b39199",
+      "corpusIssueId": "bbdc2e33-a37e-5831-ac93-1dc926f8cc19",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.TENANT_DUTIES.DUTY_TO_ATTORN"
     },
     {
       "id": "b9e9ba0e58e045c694faab6edca0e112",
