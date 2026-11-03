@@ -71972,6 +71972,35 @@
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.MAJORITY_SHAREHOLDERS.DISSOLUTION_AND_WINDING_UP"
     },
     {
+      "id": "241f1ec4b6f542eb8933a12627f0c7a0",
+      "keys": [
+        "corporate-law/corporate-governance-law/meetings-and-voting-rights"
+      ],
+      "label": "Meetings and Voting Rights",
+      "minted": "2026-11-03",
+      "uuid": "241f1ec4-b6f5-42eb-8933-a12627f0c7a0"
+    },
+    {
+      "id": "51b9b7a3474e45da9a1df303e2a0b520",
+      "keys": [
+        "corporate-law/corporate-governance-law/meetings-and-voting-rights/adjournment-of-meetings"
+      ],
+      "label": "Adjournment of Meetings",
+      "minted": "2026-11-03",
+      "uuid": "51b9b7a3-474e-45da-9a1d-f303e2a0b520"
+    },
+    {
+      "id": "04f3b7e4c49f4b94ba2fc2cb5bc339f3",
+      "keys": [
+        "corporate-law/corporate-governance-law/meetings-and-voting-rights/adjournment-of-meetings/power-to-adjourn-resides-in-meeting-not-directors"
+      ],
+      "label": "POWER TO ADJOURN RESIDES IN MEETING NOT DIRECTORS",
+      "minted": "2026-11-03",
+      "uuid": "04f3b7e4-c49f-4b94-ba2f-c2cb5bc339f3",
+      "corpusIssueId": "dfefbb92-117c-58f6-9d52-2de02fbcd0f3",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.MEETINGS_AND_VOTING_RIGHTS.ADJOURNMENT_OF_MEETINGS.POWER_TO_ADJOURN_RESIDES_IN_MEETING_NOT_DIRECTORS"
+    },
+    {
       "id": "078f2f8972eb4509a8d321c55dd33e52",
       "keys": [
         "corporate-law/corporate-governance-law/meetings-of-shareholders-members-and-directors"
@@ -112309,6 +112338,35 @@
       "uuid": "736b5cbc-949a-4d71-a701-bed95e69386a",
       "corpusIssueId": "e3ee59b1-b21f-58e2-a4ce-7f9d211e6ec0",
       "pathNotation": "EVIDENCE_LAW.EXPERT_TESTIMONY_AND_OPINION_EVIDENCE.SCOPE_AND_LIMITS_OF_EXPERT_TESTIMONY.INTERPRETATION_OF_OBSCURE_STATEMENTS"
+    },
+    {
+      "id": "b5e677aa68aa450abebdfe0288dd8bb2",
+      "keys": [
+        "evidence-law/expert-testimony-and-opinion-evidence/subject-matter-of-expert-testimony"
+      ],
+      "label": "Subject Matter of Expert Testimony",
+      "minted": "2026-11-03",
+      "uuid": "b5e677aa-68aa-450a-bebd-fe0288dd8bb2"
+    },
+    {
+      "id": "175565131ad44ba89832c2e6810ee110",
+      "keys": [
+        "evidence-law/expert-testimony-and-opinion-evidence/subject-matter-of-expert-testimony/technical-or-scientific-facts"
+      ],
+      "label": "Technical or Scientific Facts",
+      "minted": "2026-11-03",
+      "uuid": "17556513-1ad4-4ba8-9832-c2e6810ee110"
+    },
+    {
+      "id": "8944d4b316c2457097522e039b2d66e1",
+      "keys": [
+        "evidence-law/expert-testimony-and-opinion-evidence/subject-matter-of-expert-testimony/technical-or-scientific-facts/engineering-questions"
+      ],
+      "label": "ENGINEERING QUESTIONS",
+      "minted": "2026-11-03",
+      "uuid": "8944d4b3-16c2-4570-9752-2e039b2d66e1",
+      "corpusIssueId": "7523786c-d707-5abd-a28b-ce245f29a7d5",
+      "pathNotation": "EVIDENCE_LAW.EXPERT_TESTIMONY_AND_OPINION_EVIDENCE.SUBJECT_MATTER_OF_EXPERT_TESTIMONY.TECHNICAL_OR_SCIENTIFIC_FACTS.ENGINEERING_QUESTIONS"
     },
     {
       "id": "05093642ad2f4cf0a4b41120ec842a99",
@@ -174774,6 +174832,26 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATUTORY_REPEAL_AND_AMENDMENT.EXPRESS_REPEAL.ENUMERATION_OF_REPEALED_LAWS"
     },
     {
+      "id": "ee9e843571b846e1961830304f3409c8",
+      "keys": [
+        "jurisprudence-and-legal-method/statutory-repeal-and-amendment/implied-repeal"
+      ],
+      "label": "Implied Repeal",
+      "minted": "2026-11-03",
+      "uuid": "ee9e8435-71b8-46e1-9618-30304f3409c8"
+    },
+    {
+      "id": "529f0419caab4c9aaf70dbf6f0cf45df",
+      "keys": [
+        "jurisprudence-and-legal-method/statutory-repeal-and-amendment/implied-repeal/presumption-against-implied-repeal-and-later-enacted-statutes"
+      ],
+      "label": "PRESUMPTION AGAINST IMPLIED REPEAL AND LATER-ENACTED STATUTES",
+      "minted": "2026-11-03",
+      "uuid": "529f0419-caab-4c9a-af70-dbf6f0cf45df",
+      "corpusIssueId": "f88e4c4c-ee93-56db-9349-c0924704fd70",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATUTORY_REPEAL_AND_AMENDMENT.IMPLIED_REPEAL.PRESUMPTION_AGAINST_IMPLIED_REPEAL_AND_LATER_ENACTED_STATUTES"
+    },
+    {
       "id": "0c80cbbc9c894247962883e817e7dee2",
       "keys": [
         "jurisprudence-and-legal-method/statutory-text-and-structure"
@@ -178414,6 +178492,26 @@
       "uuid": "963f7c80-d1ae-4648-a2e5-70bc4934d8f2",
       "corpusIssueId": "af313331-c995-544e-a441-01a33e0e412f",
       "pathNotation": "LAW_OF_OBLIGATIONS.AUTHORITY_OF_AGENT.EXECUTION_OF_NEGOTIABLE_INSTRUMENTS"
+    },
+    {
+      "id": "52019690f62047c488215b24f88c2618",
+      "keys": [
+        "law-of-obligations/authority-of-agent/execution-of-sealed-instruments"
+      ],
+      "label": "Execution of Sealed Instruments",
+      "minted": "2026-11-03",
+      "uuid": "52019690-f620-47c4-8821-5b24f88c2618"
+    },
+    {
+      "id": "42308c8a723d453fa297edf68cbfcbbf",
+      "keys": [
+        "law-of-obligations/authority-of-agent/execution-of-sealed-instruments/deed-naming-principal-as-grantor-but-signed-by-agent"
+      ],
+      "label": "DEED NAMING PRINCIPAL AS GRANTOR BUT SIGNED BY AGENT",
+      "minted": "2026-11-03",
+      "uuid": "42308c8a-723d-453f-a297-edf68cbfcbbf",
+      "corpusIssueId": "9c00ae50-2ec3-577f-9601-f580e955340b",
+      "pathNotation": "LAW_OF_OBLIGATIONS.AUTHORITY_OF_AGENT.EXECUTION_OF_SEALED_INSTRUMENTS.DEED_NAMING_PRINCIPAL_AS_GRANTOR_BUT_SIGNED_BY_AGENT"
     },
     {
       "id": "78546d71dc0848d3a8b52f26b0b38952",
@@ -307801,6 +307899,17 @@
       "label": "PURPOSE OF THE BILL",
       "corpusIssueId": "3a49ab73-bed9-5937-994e-c9d6826f68e1",
       "pathNotation": "REMEDIES_LAW.PLEADING.BILLS_IN_EQUITY.PURPOSE_OF_THE_BILL"
+    },
+    {
+      "id": "4b275f2dce264541aac05b911435fdfe",
+      "keys": [
+        "remedies-law/pleading/bills-in-equity/signature-by-solicitor"
+      ],
+      "label": "SIGNATURE BY SOLICITOR",
+      "minted": "2026-11-03",
+      "uuid": "4b275f2d-ce26-4541-aac0-5b911435fdfe",
+      "corpusIssueId": "cb3714a7-021a-5441-8cb6-e8bf16828d4c",
+      "pathNotation": "REMEDIES_LAW.PLEADING.BILLS_IN_EQUITY.SIGNATURE_BY_SOLICITOR"
     },
     {
       "id": "3745959d1cf847779fbf35423c428150",
