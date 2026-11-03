@@ -200,6 +200,17 @@
       "pathNotation": "BANKING_LAW.BANKING_AND_DEPOSITORY_INSTITUTIONS.CAPITAL_ADEQUACY_REQUIREMENTS"
     },
     {
+      "id": "c3d94e374b8e4ef3b111c91cf6474bd0",
+      "keys": [
+        "banking-law/banking-and-depository-institutions/shadow-banking"
+      ],
+      "label": "SHADOW BANKING",
+      "minted": "2026-11-03",
+      "uuid": "c3d94e37-4b8e-4ef3-b111-c91cf6474bd0",
+      "corpusIssueId": "6be328d5-484b-54a3-b296-f6adfcddd0bf",
+      "pathNotation": "BANKING_LAW.BANKING_AND_DEPOSITORY_INSTITUTIONS.SHADOW_BANKING"
+    },
+    {
       "id": "12f3708b863641339c34de1bd5c51f6f",
       "keys": [
         "banking-law/banking-institutions-and-supervision"
@@ -4438,6 +4449,26 @@
       "minted": "2026-10-02",
       "uuid": "36ec2507-d541-4fe3-bb45-afd7eb71f96c",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_PROCEEDINGS.LIQUIDATION_AND_SALE_OF_ASSETS.APPLICABLE_LAW.STATE_DOMICILE_LAW_GOVERNING_EXEMPTIONS"
+    },
+    {
+      "id": "41d406d112a1478db7db23c2a5f5c240",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-proceedings/notice-requirements-in-bankruptcy"
+      ],
+      "label": "Notice Requirements in Bankruptcy",
+      "minted": "2026-11-03",
+      "uuid": "41d406d1-12a1-478d-b7db-23c2a5f5c240"
+    },
+    {
+      "id": "fe82f3253d0c46889dd3c3602dfe3069",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-proceedings/notice-requirements-in-bankruptcy/notice-to-creditors"
+      ],
+      "label": "NOTICE TO CREDITORS",
+      "minted": "2026-11-03",
+      "uuid": "fe82f325-3d0c-4688-9dd3-c3602dfe3069",
+      "corpusIssueId": "a4065257-5843-5190-8a74-4e8e1f28d3c1",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_PROCEEDINGS.NOTICE_REQUIREMENTS_IN_BANKRUPTCY.NOTICE_TO_CREDITORS"
     },
     {
       "id": "8059f56133804765983a0828b4fca1ea",
@@ -8764,6 +8795,17 @@
       "uuid": "7cb4a38c-ff46-4b66-a81e-c97d3c1d5e97",
       "corpusIssueId": "71ab2dae-709d-53fa-80c6-0a076b3763e6",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.OBJECTIONS_TO_CLAIMS_OR_DISCHARGES.SPECIFICATIONS_IN_OPPOSITION_TO_DISCHARGE.CAPACITY_OF_OBJECTING_CREDITOR"
+    },
+    {
+      "id": "0268f80915cc41ad8a79b8ecc74c6649",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/objections-to-claims-or-discharges/specifications-in-opposition-to-discharge/prohibition-on-dragnet-or-fishing-specifications"
+      ],
+      "label": "Prohibition on Dragnet or Fishing Specifications",
+      "minted": "2026-11-03",
+      "uuid": "0268f809-15cc-41ad-8a79-b8ecc74c6649",
+      "corpusIssueId": "da5c988f-49d8-53ed-8ce9-fbb262104571",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.OBJECTIONS_TO_CLAIMS_OR_DISCHARGES.SPECIFICATIONS_IN_OPPOSITION_TO_DISCHARGE.PROHIBITION_ON_DRAGNET_OR_FISHING_SPECIFICATIONS"
     },
     {
       "id": "42cd946e73924c84824b743f74e81ec7",
@@ -14597,6 +14639,35 @@
       "label": "Stock and Stockholders",
       "minted": "2026-10-02",
       "uuid": "5a00e624-5ae6-4618-96a6-b9e21c030f83"
+    },
+    {
+      "id": "dc4b7c58486847bb9e37aa2bbc26c5b7",
+      "keys": [
+        "capital-markets-law/stock-and-stockholders/classes-of-stock"
+      ],
+      "label": "Classes of Stock",
+      "minted": "2026-11-03",
+      "uuid": "dc4b7c58-4868-47bb-9e37-aa2bbc26c5b7"
+    },
+    {
+      "id": "dfd83bf2867f4599bfec6e09e2f39537",
+      "keys": [
+        "capital-markets-law/stock-and-stockholders/classes-of-stock/preferred-stock"
+      ],
+      "label": "Preferred Stock",
+      "minted": "2026-11-03",
+      "uuid": "dfd83bf2-867f-4599-bfec-6e09e2f39537"
+    },
+    {
+      "id": "fdadde1432e94253bec168bfaa8b7bf2",
+      "keys": [
+        "capital-markets-law/stock-and-stockholders/classes-of-stock/preferred-stock/definition-and-nature-of-preferred-stock"
+      ],
+      "label": "DEFINITION AND NATURE OF PREFERRED STOCK",
+      "minted": "2026-11-03",
+      "uuid": "fdadde14-32e9-4253-bec1-68bfaa8b7bf2",
+      "corpusIssueId": "4074df04-56c6-5492-9ebd-f08d6542053e",
+      "pathNotation": "CAPITAL_MARKETS_LAW.STOCK_AND_STOCKHOLDERS.CLASSES_OF_STOCK.PREFERRED_STOCK.DEFINITION_AND_NATURE_OF_PREFERRED_STOCK"
     },
     {
       "id": "f4661cf53d8a48a2a7c33a1885146c21",
@@ -33495,6 +33566,17 @@
       "uuid": "6d26ed65-d333-4841-861f-4bfb6c95794e"
     },
     {
+      "id": "5b9692f6619d4b98a0daaeb99e68f4d7",
+      "keys": [
+        "contract-law/formation-and-enforceability/acceptance/legal-effect-of-acceptance"
+      ],
+      "label": "LEGAL EFFECT OF ACCEPTANCE",
+      "minted": "2026-11-03",
+      "uuid": "5b9692f6-619d-4b98-a0da-aeb99e68f4d7",
+      "corpusIssueId": "0c9e2353-bfe7-5bd9-8d7b-8d94e8bfdc39",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.ACCEPTANCE.LEGAL_EFFECT_OF_ACCEPTANCE"
+    },
+    {
       "id": "4b52c0ba48764cea880b8f4d4c05defd",
       "keys": [
         "contract-law/formation-and-enforceability/acceptance/mailbox-rule"
@@ -35331,6 +35413,26 @@
       "uuid": "b161ca8b-59d1-4a33-99d8-0f57025ac744",
       "corpusIssueId": "2e11bb84-8c1d-580f-9285-751dce99cad1",
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONTRACTS_UNDER_SEAL.SPECIALTY_DEFINED"
+    },
+    {
+      "id": "28bebf3159bd47a0918c81d7ec24bfb7",
+      "keys": [
+        "contract-law/formation-and-enforceability/contractual-conditions"
+      ],
+      "label": "Contractual Conditions",
+      "minted": "2026-11-03",
+      "uuid": "28bebf31-59bd-47a0-918c-81d7ec24bfb7"
+    },
+    {
+      "id": "27b77e21c54548bda53883f350bacfbe",
+      "keys": [
+        "contract-law/formation-and-enforceability/contractual-conditions/validity-of-conditions-in-subscription-agreements"
+      ],
+      "label": "VALIDITY OF CONDITIONS IN SUBSCRIPTION AGREEMENTS",
+      "minted": "2026-11-03",
+      "uuid": "27b77e21-c545-48bd-a538-83f350bacfbe",
+      "corpusIssueId": "bb994f9d-8019-5a6d-9a82-96affac4ceda",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONTRACTUAL_CONDITIONS.VALIDITY_OF_CONDITIONS_IN_SUBSCRIPTION_AGREEMENTS"
     },
     {
       "id": "eaa7c9dd336e459483b0df147d76ce5b",
@@ -69348,6 +69450,17 @@
       "uuid": "08c8a816-dffc-4d29-ad78-037ddabd0dc3"
     },
     {
+      "id": "b49c256694eb41c3b4a1ebed91a7352a",
+      "keys": [
+        "corporate-law/corporate-governance-law/by-laws/effect-of-bylaws-limiting-corporate-powers"
+      ],
+      "label": "EFFECT OF BYLAWS LIMITING CORPORATE POWERS",
+      "minted": "2026-11-03",
+      "uuid": "b49c2566-94eb-41c3-b4a1-ebed91a7352a",
+      "corpusIssueId": "cae572e4-a1ef-5969-9f13-e23a3b4c9a07",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.BY_LAWS.EFFECT_OF_BYLAWS_LIMITING_CORPORATE_POWERS"
+    },
+    {
       "id": "640b56836ec2453d809fd83550766db4",
       "keys": [
         "corporate-law/corporate-governance-law/by-laws/statutory-authority-to-make-bylaws"
@@ -82065,6 +82178,17 @@
       "uuid": "780d02d9-61be-4411-9410-e2fc858af24a",
       "corpusIssueId": "95625962-58ba-5a68-9c48-8dbfef690b30",
       "pathNotation": "CRIMINAL_LAW.CAPITAL_PUNISHMENT.METHODS_OF_EXECUTION.FEDERAL_EXECUTION_PROTOCOL_CHALLENGES"
+    },
+    {
+      "id": "70ba77cd0cee47f3971c0293e6674130",
+      "keys": [
+        "criminal-law/capital-punishment/racial-discrimination-in-death-penalty-imposition"
+      ],
+      "label": "RACIAL DISCRIMINATION IN DEATH PENALTY IMPOSITION",
+      "minted": "2026-11-03",
+      "uuid": "70ba77cd-0cee-47f3-971c-0293e6674130",
+      "corpusIssueId": "77fac65d-4a81-5567-a3f2-98942cfdb851",
+      "pathNotation": "CRIMINAL_LAW.CAPITAL_PUNISHMENT.RACIAL_DISCRIMINATION_IN_DEATH_PENALTY_IMPOSITION"
     },
     {
       "id": "0707627adf4b41379fa886f894731595",
@@ -99132,6 +99256,26 @@
       "uuid": "4fbf5c0f-2720-466d-8416-6ff771008852",
       "corpusIssueId": "f6835b6d-7392-5ed0-a844-87300445beb3",
       "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.MINERAL_RESOURCES_LAW.MINING_CLAIMS_AND_LOCATIONS.ANNUAL_ASSESSMENT_OR_LABOR_REQUIREMENTS.TIMING_OF_PERFORMANCE"
+    },
+    {
+      "id": "68cfdd4e46384a41899b0f542d40b66c",
+      "keys": [
+        "environmental-and-natural-resource-law/mineral-resources-law/mining-claims-and-locations/extralateral-rights"
+      ],
+      "label": "Extralateral Rights",
+      "minted": "2026-11-03",
+      "uuid": "68cfdd4e-4638-4a41-899b-0f542d40b66c"
+    },
+    {
+      "id": "781251b9309c473a8597df91cd089474",
+      "keys": [
+        "environmental-and-natural-resource-law/mineral-resources-law/mining-claims-and-locations/extralateral-rights/effect-on-extralateral-right"
+      ],
+      "label": "EFFECT ON EXTRALATERAL RIGHT",
+      "minted": "2026-11-03",
+      "uuid": "781251b9-309c-473a-8597-df91cd089474",
+      "corpusIssueId": "b8f9e945-7161-53e4-acce-b817774f5f24",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.MINERAL_RESOURCES_LAW.MINING_CLAIMS_AND_LOCATIONS.EXTRALATERAL_RIGHTS.EFFECT_ON_EXTRALATERAL_RIGHT"
     },
     {
       "id": "41a5e8f5052b4947821a3e7149cc3c1b",
@@ -120534,6 +120678,26 @@
       "uuid": "16962ccf-ee8b-432e-9308-62c379721a96",
       "corpusIssueId": "38387afd-8cd8-5cba-b822-78c8dd44fc2d",
       "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.EXPERT_TESTIMONY.LIMITATIONS_ON_EXPERT_OPINION"
+    },
+    {
+      "id": "a430995d6f3640e698487f1b2208f183",
+      "keys": [
+        "evidence-law/types-of-evidence/extrajudicial-statements-as-probative-facts"
+      ],
+      "label": "Extrajudicial Statements as Probative Facts",
+      "minted": "2026-11-03",
+      "uuid": "a430995d-6f36-40e6-9848-7f1b2208f183"
+    },
+    {
+      "id": "1e158df38f644e5e9fdfdbfc3bdb6c65",
+      "keys": [
+        "evidence-law/types-of-evidence/extrajudicial-statements-as-probative-facts/identification"
+      ],
+      "label": "IDENTIFICATION",
+      "minted": "2026-11-03",
+      "uuid": "1e158df3-8f64-4e5e-9fdf-dbfc3bdb6c65",
+      "corpusIssueId": "e87c7ae2-976c-548d-a534-e170963ac1ed",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.EXTRAJUDICIAL_STATEMENTS_AS_PROBATIVE_FACTS.IDENTIFICATION"
     },
     {
       "id": "a3805d0689e9463baf2afbe9bc5f42ab",
@@ -147118,6 +147282,17 @@
       "uuid": "75885f76-1b7f-475e-bf5f-06b203ae0aff",
       "corpusIssueId": "9d16ab0b-23f0-55fb-add0-9f3931c416d5",
       "pathNotation": "INSURANCE_LAW.INTERPRETATION_ENFORCEMENT_AND_DISPUTES.JUDICIAL_INTERPRETATION_OF_INSURANCE_CONTRACTS.CASE_LAW_ON_INSURANCE_CONTRACT_DISPUTES"
+    },
+    {
+      "id": "3924d05dc888427ca4065394b3533a38",
+      "keys": [
+        "insurance-law/judicial-interpretation-and-precedent"
+      ],
+      "label": "JUDICIAL INTERPRETATION AND PRECEDENT",
+      "minted": "2026-11-03",
+      "uuid": "3924d05d-c888-427c-a406-5394b3533a38",
+      "corpusIssueId": "03483dd9-bf6b-551d-b3f3-7863b9ee3c87",
+      "pathNotation": "INSURANCE_LAW.JUDICIAL_INTERPRETATION_AND_PRECEDENT"
     },
     {
       "id": "61cc20899d1e4aa4abf4acd4e21d791a",
@@ -188304,6 +188479,25 @@
       "pathNotation": "LAW_OF_WRONGDOING.FRAUD_AND_ECONOMIC_TORTS_LAW.DISTURBANCE_OF_POSSESSION.LIABILITY_FOR_DISTURBANCE_OF_POSSESSION"
     },
     {
+      "id": "32998a9be8004e6da4e32e1aaef34d87",
+      "keys": [
+        "law-of-wrongdoing/fraud-and-economic-torts-law/elements-of-fraud"
+      ],
+      "label": "Elements of Fraud",
+      "minted": "2026-11-03",
+      "uuid": "32998a9b-e800-4e6d-a4e3-2e1aaef34d87"
+    },
+    {
+      "id": "38ddb25d82764eae84e162b73e383bf4",
+      "keys": [
+        "law-of-wrongdoing/fraud-and-economic-torts-law/elements-of-fraud/scienter-knowledge-and-intent"
+      ],
+      "label": "Scienter, Knowledge, and Intent",
+      "minted": "2026-11-03",
+      "uuid": "38ddb25d-8276-4eae-84e1-62b73e383bf4",
+      "pathNotation": "LAW_OF_WRONGDOING.FRAUD_AND_ECONOMIC_TORTS_LAW.ELEMENTS_OF_FRAUD.SCIENTER_KNOWLEDGE_AND_INTENT"
+    },
+    {
       "id": "2bc4536edffa435f993bf662f1b05d9d",
       "keys": [
         "law-of-wrongdoing/fraud-and-economic-torts-law/enticement-of-spouse"
@@ -201851,6 +202045,26 @@
       "uuid": "434538f5-cbaa-42ad-b3e2-235279a9eeb0",
       "corpusIssueId": "bd63f71c-8d8c-5530-96e1-925650474acc",
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.RIGHTS_AND_DUTIES_OF_PARTIES.MODIFICATION_BY_SPECIAL_CONTRACT.PERMISSIBLE_QUALIFICATIONS_UNDER_AMERICAN_RULE"
+    },
+    {
+      "id": "4dcfdebe97b44bef87b2449e279451a1",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/rights-and-duties-of-parties/notice-requirements"
+      ],
+      "label": "Notice Requirements",
+      "minted": "2026-11-03",
+      "uuid": "4dcfdebe-97b4-4bef-87b2-449e279451a1"
+    },
+    {
+      "id": "fddf6dae54c448e9a8e28cb22042eb52",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/rights-and-duties-of-parties/notice-requirements/notice-without-personal-delivery"
+      ],
+      "label": "NOTICE WITHOUT PERSONAL DELIVERY",
+      "minted": "2026-11-03",
+      "uuid": "fddf6dae-54c4-48e9-a8e2-8cb22042eb52",
+      "corpusIssueId": "18aefb3d-ade9-554a-a61f-91f7198fd239",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.RIGHTS_AND_DUTIES_OF_PARTIES.NOTICE_REQUIREMENTS.NOTICE_WITHOUT_PERSONAL_DELIVERY"
     },
     {
       "id": "c24c1758f93f4f00a375b829acb22bbf",
@@ -239354,6 +239568,35 @@
       "pathNotation": "PROCEDURAL_LAW.FEDERAL_RULES_OF_CIVIL_PROCEDURE.TRIAL.JURY_TRIAL.RIGHT_TO_JURY_TRIAL_AND_DEMAND_FRCP_38"
     },
     {
+      "id": "abe0c394b28748cba1a262406a7fb7f1",
+      "keys": [
+        "procedural-law/federal-state-jurisdictional-conflicts"
+      ],
+      "label": "Federal State Jurisdictional Conflicts",
+      "minted": "2026-11-03",
+      "uuid": "abe0c394-b287-48cb-a1a2-62406a7fb7f1"
+    },
+    {
+      "id": "32ac235be8de4773bc48f5fe95b25e12",
+      "keys": [
+        "procedural-law/federal-state-jurisdictional-conflicts/bankruptcy-jurisdiction"
+      ],
+      "label": "Bankruptcy Jurisdiction",
+      "minted": "2026-11-03",
+      "uuid": "32ac235b-e8de-4773-bc48-f5fe95b25e12"
+    },
+    {
+      "id": "93f0d0ef13c044d2b782731cc47cf8e7",
+      "keys": [
+        "procedural-law/federal-state-jurisdictional-conflicts/bankruptcy-jurisdiction/surrender-of-state-court-custody-or-property-to-federal-bankruptcy-court"
+      ],
+      "label": "SURRENDER OF STATE COURT CUSTODY OR PROPERTY TO FEDERAL BANKRUPTCY COURT",
+      "minted": "2026-11-03",
+      "uuid": "93f0d0ef-13c0-44d2-b782-731cc47cf8e7",
+      "corpusIssueId": "5e76d981-fcff-51c6-8b79-0acc9ec827b1",
+      "pathNotation": "PROCEDURAL_LAW.FEDERAL_STATE_JURISDICTIONAL_CONFLICTS.BANKRUPTCY_JURISDICTION.SURRENDER_OF_STATE_COURT_CUSTODY_OR_PROPERTY_TO_FEDERAL_BANKRUPTCY_COURT"
+    },
+    {
       "id": "a0b32f8437d643c49cefa9b72ce4956b",
       "uuid": "a0b32f84-37d6-43c4-9cef-a9b72ce4956b",
       "keys": [
@@ -247394,6 +247637,17 @@
       "uuid": "fbcf8e8f-4422-4653-97c2-9f411f9f09d4",
       "corpusIssueId": "cf5f82b0-6e9a-5ff4-b6ae-ed2fc31f0525",
       "pathNotation": "PROCEDURAL_LAW.PROPERTY_SUBJECT_TO_EXECUTION.EXEMPTIONS_FROM_EXECUTION.FRANCHISES_AS_EXEMPT_PROPERTY"
+    },
+    {
+      "id": "5004b99ae87048038a5be7f1150a8bfc",
+      "keys": [
+        "procedural-law/property-subject-to-execution/exemptions-from-execution/scope-of-exemption-protection"
+      ],
+      "label": "SCOPE OF EXEMPTION PROTECTION",
+      "minted": "2026-11-03",
+      "uuid": "5004b99a-e870-4803-8a5b-e7f1150a8bfc",
+      "corpusIssueId": "4d2106c5-aff0-530a-81cf-7cf0f8225dea",
+      "pathNotation": "PROCEDURAL_LAW.PROPERTY_SUBJECT_TO_EXECUTION.EXEMPTIONS_FROM_EXECUTION.SCOPE_OF_EXEMPTION_PROTECTION"
     },
     {
       "id": "5f20e190b35a4b5f890bf44fe169853f",
@@ -266523,6 +266777,17 @@
       "minted": "2026-10-31",
       "uuid": "9167da32-f7ee-4f43-bfba-84a29c5c8365",
       "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.PUBLIC_USE_REQUIREMENT.COMPETING_PUBLIC_UTILITIES_AND_FRANCHISES.COMPETING_FERRIES_AND_BRIDGES"
+    },
+    {
+      "id": "6660eddbbec8448f8f93c705415a6977",
+      "keys": [
+        "real-estate-law/eminent-domain-law/public-use-requirement/conversion-of-historic-sites-to-public-use"
+      ],
+      "label": "CONVERSION OF HISTORIC SITES TO PUBLIC USE",
+      "minted": "2026-11-03",
+      "uuid": "6660eddb-bec8-448f-8f93-c705415a6977",
+      "corpusIssueId": "232db846-0c61-5617-ad03-788971cc6f0e",
+      "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.PUBLIC_USE_REQUIREMENT.CONVERSION_OF_HISTORIC_SITES_TO_PUBLIC_USE"
     },
     {
       "id": "edde8768a6604221b2cd1171ce2394b1",
@@ -297418,6 +297683,26 @@
       "label": "REDEMPTION OF MORTGAGES",
       "corpusIssueId": "c9cd13e0-4919-53b0-a239-393b26d0e61b",
       "pathNotation": "REMEDIES_LAW.BILLS_QUIA_TIMET.REDEMPTION_OF_MORTGAGES"
+    },
+    {
+      "id": "b327057db8aa42b8bb4bd373c2ba95c9",
+      "keys": [
+        "remedies-law/bills-quia-timet/scope-of-equitable-relief"
+      ],
+      "label": "Scope of Equitable Relief",
+      "minted": "2026-11-03",
+      "uuid": "b327057d-b8aa-42b8-bb4b-d373c2ba95c9"
+    },
+    {
+      "id": "f5eeaf66e19640ab8f0cc0792a06c9ac",
+      "keys": [
+        "remedies-law/bills-quia-timet/scope-of-equitable-relief/remedy-in-equity-more-extensive"
+      ],
+      "label": "REMEDY IN EQUITY MORE EXTENSIVE",
+      "minted": "2026-11-03",
+      "uuid": "f5eeaf66-e196-40ab-8f0c-c0792a06c9ac",
+      "corpusIssueId": "760eb410-b45b-5f18-a2b4-92b765f49936",
+      "pathNotation": "REMEDIES_LAW.BILLS_QUIA_TIMET.SCOPE_OF_EQUITABLE_RELIEF.REMEDY_IN_EQUITY_MORE_EXTENSIVE"
     },
     {
       "id": "c097fa9920c743d6a987ff9a70e84755",
