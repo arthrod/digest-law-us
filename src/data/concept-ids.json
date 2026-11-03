@@ -12755,6 +12755,26 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.DEBTS_SUBJECT_TO_BANKRUPTCY.UNLIQUIDATED_DEBTS"
     },
     {
+      "id": "ef68b57458884ddbb4a414663191ee1b",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/defenses-available-to-debtor"
+      ],
+      "label": "Defenses Available to Debtor",
+      "minted": "2026-11-03",
+      "uuid": "ef68b574-5888-4ddb-b4a4-14663191ee1b"
+    },
+    {
+      "id": "aa7fb160d7374d2d8e7caf0477b1eeb0",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/defenses-available-to-debtor/defense-of-solvency"
+      ],
+      "label": "DEFENSE OF SOLVENCY",
+      "minted": "2026-11-03",
+      "uuid": "aa7fb160-d737-4d2d-8e7c-af0477b1eeb0",
+      "corpusIssueId": "48ed0431-53c6-58a1-9eb0-1d8c4b507abe",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.DEFENSES_AVAILABLE_TO_DEBTOR.DEFENSE_OF_SOLVENCY"
+    },
+    {
       "id": "5b5b9a426c5c4a04b1c38175bdaf96b7",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/documentation-and-filing-requirements"
@@ -23187,6 +23207,26 @@
       "label": "Federal Taxing Power",
       "minted": "2026-10-02",
       "uuid": "93653a62-7c12-4434-af25-b0d908ee9d09"
+    },
+    {
+      "id": "cd6fbbdf34e541269e5c68604d416ee6",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-taxing-power/constitutional-limits-on-federal-taxation"
+      ],
+      "label": "Constitutional Limits on Federal Taxation",
+      "minted": "2026-11-03",
+      "uuid": "cd6fbbdf-34e5-4126-9e5c-68604d416ee6"
+    },
+    {
+      "id": "ccfb4e514a654528b55e050b455e039d",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-taxing-power/constitutional-limits-on-federal-taxation/export-clause"
+      ],
+      "label": "EXPORT CLAUSE",
+      "minted": "2026-11-03",
+      "uuid": "ccfb4e51-4a65-4528-b55e-050b455e039d",
+      "corpusIssueId": "b6de8a3f-7fe2-5919-8791-36e5d83bf7ac",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.FEDERAL_TAXING_POWER.CONSTITUTIONAL_LIMITS_ON_FEDERAL_TAXATION.EXPORT_CLAUSE"
     },
     {
       "id": "645d04cbdf99495d906c63ae7bcfe447",
@@ -35583,6 +35623,17 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.REQUIREMENT_OF_EXCHANGE_AND_TYPES_OF_EXCHANGE.TYPES_OF_EXCHANGE"
     },
     {
+      "id": "6448e01015f94b83b7542826b8253150",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/requirement-that-consideration-move-from-the-plaintiff"
+      ],
+      "label": "REQUIREMENT THAT CONSIDERATION MOVE FROM THE PLAINTIFF",
+      "minted": "2026-11-03",
+      "uuid": "6448e010-15f9-4b83-b754-2826b8253150",
+      "corpusIssueId": "ab444af0-d8ca-5ebe-9f09-065c4203a200",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.REQUIREMENT_THAT_CONSIDERATION_MOVE_FROM_THE_PLAINTIFF"
+    },
+    {
       "id": "ec72bb4f41f24482933e75eb1bfedf4b",
       "keys": [
         "contract-law/formation-and-enforceability/consideration/sealed-instruments-and-consideration"
@@ -42653,6 +42704,26 @@
       "uuid": "1709ab44-ed17-4547-bc5d-c45db0962999",
       "corpusIssueId": "33797c01-94f5-5f3d-8a0d-e66d825af457",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.ANTICIPATORY_REPUDIATION.VOLUNTARY_DISABILITY_TO_PERFORM"
+    },
+    {
+      "id": "74497b35a79f4d39981902c7045c8b3f",
+      "keys": [
+        "contract-law/performance-and-breach/appropriation-of-payments-or-performance"
+      ],
+      "label": "Appropriation of Payments or Performance",
+      "minted": "2026-11-03",
+      "uuid": "74497b35-a79f-4d39-9819-02c7045c8b3f"
+    },
+    {
+      "id": "8e1a0ebfa26445f89faec09e36ae2e27",
+      "keys": [
+        "contract-law/performance-and-breach/appropriation-of-payments-or-performance/default-appropriation-by-law"
+      ],
+      "label": "DEFAULT APPROPRIATION BY LAW",
+      "minted": "2026-11-03",
+      "uuid": "8e1a0ebf-a264-45f8-9fae-c09e36ae2e27",
+      "corpusIssueId": "35d26db9-c829-5f3e-8b88-1bde2a7cc437",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.APPROPRIATION_OF_PAYMENTS_OR_PERFORMANCE.DEFAULT_APPROPRIATION_BY_LAW"
     },
     {
       "id": "f6726a08f1fc44a4b9d5c8c6e630b43c",
@@ -64622,6 +64693,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.FORMATION_OF_PARTNERSHIPS.NECESSARY_ELEMENTS_OF_PARTNERSHIP_FORMATION"
     },
     {
+      "id": "646327747b8c4f6a97f01d5e4566b3ba",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/general-partnership-law"
+      ],
+      "label": "GENERAL PARTNERSHIP LAW",
+      "minted": "2026-11-03",
+      "uuid": "64632774-7b8c-4f6a-97f0-1d5e4566b3ba",
+      "corpusIssueId": "64144312-8d0e-594d-b939-ea5f31ffe529",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.GENERAL_PARTNERSHIP_LAW"
+    },
+    {
       "id": "de46df86d7a14255b52df7d253c341aa",
       "keys": [
         "corporate-law/business-organizations-law/partnerships/general-partnerships"
@@ -74883,6 +74965,26 @@
       "uuid": "678b2571-7249-48ac-9a78-4a6190c947c5",
       "corpusIssueId": "ff10daf6-fc26-59b0-bd20-722ba64d5fab",
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.TRANSFER_AND_TRANSMISSION_OF_SHARES.ESTOPPEL.NEGLIGENCE_OF_TRANSFEREE_PRECLUDING_ESTOPPEL"
+    },
+    {
+      "id": "885dd302ea89457aa6e3cb0cd0f956ea",
+      "keys": [
+        "corporate-law/corporate-governance-law/transfer-and-transmission-of-shares/execution-and-judicial-sale"
+      ],
+      "label": "Execution and Judicial Sale",
+      "minted": "2026-11-03",
+      "uuid": "885dd302-ea89-457a-a6e3-cb0cd0f956ea"
+    },
+    {
+      "id": "7eb2d1a426b4416398446d74e8ac4752",
+      "keys": [
+        "corporate-law/corporate-governance-law/transfer-and-transmission-of-shares/execution-and-judicial-sale/purchasers-at-execution-sale"
+      ],
+      "label": "PURCHASERS AT EXECUTION SALE",
+      "minted": "2026-11-03",
+      "uuid": "7eb2d1a4-26b4-4163-9844-6d74e8ac4752",
+      "corpusIssueId": "6fb5cf2b-05c2-5028-82ad-bdd62ee4c8af",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.TRANSFER_AND_TRANSMISSION_OF_SHARES.EXECUTION_AND_JUDICIAL_SALE.PURCHASERS_AT_EXECUTION_SALE"
     },
     {
       "id": "7dc9f3f36c4246ee9f7ba0ee4ee77dfb",
@@ -109706,6 +109808,26 @@
       "pathNotation": "EVIDENCE_LAW.COMPETENCY_AND_PRIVILEGES.SPOUSAL_PRIVILEGE_AND_MARITAL_COMMUNICATIONS.INCOMPETENCY_TO_TESTIFY_AGAINST_SPOUSE"
     },
     {
+      "id": "29c7f9430ab44233811384b3f39be207",
+      "keys": [
+        "evidence-law/competency-and-privileges/witness-competency"
+      ],
+      "label": "Witness Competency",
+      "minted": "2026-11-03",
+      "uuid": "29c7f943-0ab4-4233-8113-84b3f39be207"
+    },
+    {
+      "id": "f12033687cf643df92845d099aaef565",
+      "keys": [
+        "evidence-law/competency-and-privileges/witness-competency/capacity-of-infants"
+      ],
+      "label": "CAPACITY OF INFANTS",
+      "minted": "2026-11-03",
+      "uuid": "f1203368-7cf6-43df-9284-5d099aaef565",
+      "corpusIssueId": "5c3f5f16-d1c0-5457-ae4c-f6b2097037f0",
+      "pathNotation": "EVIDENCE_LAW.COMPETENCY_AND_PRIVILEGES.WITNESS_COMPETENCY.CAPACITY_OF_INFANTS"
+    },
+    {
       "id": "185963cae6104f8c8e04d236076fed8d",
       "keys": [
         "evidence-law/competency-and-qualifications-of-witnesses"
@@ -110279,6 +110401,26 @@
       "uuid": "56d51b2b-c109-45dd-a588-21a4e14a240e",
       "corpusIssueId": "95ebe41c-5589-57c6-bdb9-dcf91fd423e0",
       "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.AUTHENTICATION_AND_PROOF_OF_DOCUMENTS.WILLS.HOLOGRAPHIC_WILLS"
+    },
+    {
+      "id": "5836ef872d2745c78d89592c5485fb55",
+      "keys": [
+        "evidence-law/documentary-evidence/authentication-and-proof-of-writings"
+      ],
+      "label": "Authentication and Proof of Writings",
+      "minted": "2026-11-03",
+      "uuid": "5836ef87-2d27-45c7-8d89-592c5485fb55"
+    },
+    {
+      "id": "e60b993083994fc984df7157c6d0fd38",
+      "keys": [
+        "evidence-law/documentary-evidence/authentication-and-proof-of-writings/certified-copies"
+      ],
+      "label": "CERTIFIED COPIES",
+      "minted": "2026-11-03",
+      "uuid": "e60b9930-8399-4fc9-84df-7157c6d0fd38",
+      "corpusIssueId": "56f5ca49-7354-5570-879c-fdf6c2d22800",
+      "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.AUTHENTICATION_AND_PROOF_OF_WRITINGS.CERTIFIED_COPIES"
     },
     {
       "id": "59343dbbe5bc4c40becfdef15295d152",
@@ -131143,6 +131285,35 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.FORMATION_AND_REQUISITES.STATUTE_OF_FRAUDS.PROMISE_TO_ANSWER_FOR_DEBT_OF_ANOTHER.TO_WHOM_PROMISE_MADE"
     },
     {
+      "id": "ea095a400e5d4cc7a9d801a16686e03c",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/formation-and-requisites/writing-requirement"
+      ],
+      "label": "Writing Requirement",
+      "minted": "2026-11-03",
+      "uuid": "ea095a40-0e5d-4cc7-a9d8-01a16686e03c"
+    },
+    {
+      "id": "4e496253d5eb40e291f33b50cf9d103d",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/formation-and-requisites/writing-requirement/sufficiency-of-writing"
+      ],
+      "label": "Sufficiency of Writing",
+      "minted": "2026-11-03",
+      "uuid": "4e496253-d5eb-40e2-91f3-3b50cf9d103d"
+    },
+    {
+      "id": "0e5c80a39d944ba8a84306c6a90eb94e",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/formation-and-requisites/writing-requirement/sufficiency-of-writing/writings-constituting-a-guaranty"
+      ],
+      "label": "WRITINGS CONSTITUTING A GUARANTY",
+      "minted": "2026-11-03",
+      "uuid": "0e5c80a3-9d94-4ba8-a843-06c6a90eb94e",
+      "corpusIssueId": "c05e01ff-5872-5d1e-9f56-9b8c776831e0",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.FORMATION_AND_REQUISITES.WRITING_REQUIREMENT.SUFFICIENCY_OF_WRITING.WRITINGS_CONSTITUTING_A_GUARANTY"
+    },
+    {
       "id": "0a53cae0035d4e9f87d9ca01459c893a",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/formation-and-validity"
@@ -142724,6 +142895,26 @@
       "label": "Types of Instruments",
       "minted": "2026-10-02",
       "uuid": "bc2a3726-8883-4d2d-bebf-a2e31a2c39a9"
+    },
+    {
+      "id": "804bc98e1a7a4e3ba745d4df86331f59",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/types-of-instruments/accommodation-paper"
+      ],
+      "label": "Accommodation Paper",
+      "minted": "2026-11-03",
+      "uuid": "804bc98e-1a7a-4e3b-a745-d4df86331f59"
+    },
+    {
+      "id": "799f0b58e56b468990fac5f9f842af86",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/types-of-instruments/accommodation-paper/rights-of-bona-fide-holders"
+      ],
+      "label": "RIGHTS OF BONA FIDE HOLDERS",
+      "minted": "2026-11-03",
+      "uuid": "799f0b58-e56b-4689-90fa-c5f9f842af86",
+      "corpusIssueId": "5e070495-5c09-5386-8416-8e3184350fbb",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.TYPES_OF_INSTRUMENTS.ACCOMMODATION_PAPER.RIGHTS_OF_BONA_FIDE_HOLDERS"
     },
     {
       "id": "4e1c47125d6843248d9a6904f90461d8",
@@ -179399,6 +179590,17 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.APPOINTMENT_AND_AUTHORIZATION_OF_AGENTS.AUTHORIZATION_BY_CONDUCT_OR_ESTOPPEL.REGULAR_AND_PUBLIC_EXERCISE_OF_OFFICE_OR_AGENCY"
     },
     {
+      "id": "0719bbcd32af4fe586c3c87a9cab6266",
+      "keys": [
+        "law-of-obligations/appointment-and-authorization-of-agents/construction-of-written-authorization"
+      ],
+      "label": "CONSTRUCTION OF WRITTEN AUTHORIZATION",
+      "minted": "2026-11-03",
+      "uuid": "0719bbcd-32af-4fe5-86c3-c87a9cab6266",
+      "corpusIssueId": "877faed0-2ff7-5496-9039-705bd0cd199c",
+      "pathNotation": "LAW_OF_OBLIGATIONS.APPOINTMENT_AND_AUTHORIZATION_OF_AGENTS.CONSTRUCTION_OF_WRITTEN_AUTHORIZATION"
+    },
+    {
       "id": "a047ea466b1f4e3783dbd5ec34b0ea45",
       "keys": [
         "law-of-obligations/assignment-of-rights"
@@ -209913,6 +210115,17 @@
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.POWERS_AND_AUTHORITY.DIVISION_OF_POWERS"
     },
     {
+      "id": "2a925ff4dde448f6bce9b5217ce0f6e3",
+      "keys": [
+        "municipal-law/municipal-corporations/powers-and-authority/implied-or-incidental-powers"
+      ],
+      "label": "IMPLIED OR INCIDENTAL POWERS",
+      "minted": "2026-11-03",
+      "uuid": "2a925ff4-dde4-48f6-bce9-b5217ce0f6e3",
+      "corpusIssueId": "7c26e08b-f55c-5772-8be4-c9fbac3122e5",
+      "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.POWERS_AND_AUTHORITY.IMPLIED_OR_INCIDENTAL_POWERS"
+    },
+    {
       "id": "673e973e885a46d0aeb9bd56eda29c02",
       "keys": [
         "municipal-law/municipal-corporations/powers-and-authority/implied-powers"
@@ -212732,6 +212945,17 @@
       "uuid": "7993ca3f-8d30-42d7-932d-3ea20c2958d8",
       "corpusIssueId": "afee9d31-1813-5a05-bac3-31e2ab7e2201",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.IMMIGRATION_LAW.NATURALIZATION_PROCEDURES_AND_REQUIREMENTS.CRIMINAL_OFFENSES_RELATED_TO_NATURALIZATION"
+    },
+    {
+      "id": "0fc7c657fcdb45a78654ca390287627e",
+      "keys": [
+        "personal-and-family-law/immigration-law/naturalization/collective-naturalization"
+      ],
+      "label": "COLLECTIVE NATURALIZATION",
+      "minted": "2026-11-03",
+      "uuid": "0fc7c657-fcdb-45a7-8654-ca390287627e",
+      "corpusIssueId": "c71e3251-19d2-598a-8368-6ca73d8d68ad",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.IMMIGRATION_LAW.NATURALIZATION.COLLECTIVE_NATURALIZATION"
     },
     {
       "id": "edb0ebbb2ccf4143a6f80c6da0de2a0a",
@@ -222623,6 +222847,26 @@
       "uuid": "9490e127-a572-4fe0-8a6d-b6de33264b42",
       "corpusIssueId": "3146a72c-a0e7-5dcb-b001-e95b88e16c40",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PERSONS_AND_STATUS.LEGAL_INCAPACITY_AND_DISABILITY.INFANCY_AND_MINORITY.CONTRAST_WITH_MENTAL_INCAPACITY"
+    },
+    {
+      "id": "0ff2b872560247149bf69d752aba9c50",
+      "keys": [
+        "personal-and-family-law/persons-and-status/mental-incapacity-and-insanity"
+      ],
+      "label": "Mental Incapacity and Insanity",
+      "minted": "2026-11-03",
+      "uuid": "0ff2b872-5602-4714-9bf6-9d752aba9c50"
+    },
+    {
+      "id": "f7d5b542662b4d5e8daa79520eb450c2",
+      "keys": [
+        "personal-and-family-law/persons-and-status/mental-incapacity-and-insanity/general-incapacity-of-insane-persons"
+      ],
+      "label": "GENERAL INCAPACITY OF INSANE PERSONS",
+      "minted": "2026-11-03",
+      "uuid": "f7d5b542-662b-4d5e-8daa-79520eb450c2",
+      "corpusIssueId": "9111fcbf-57e1-5e15-b175-cd4f2498eed6",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PERSONS_AND_STATUS.MENTAL_INCAPACITY_AND_INSANITY.GENERAL_INCAPACITY_OF_INSANE_PERSONS"
     },
     {
       "id": "9ba99899d3fe498dbabe9718cd0984bd",
@@ -266715,6 +266959,17 @@
       "uuid": "60f3e629-d7c8-49c9-b740-5ad4d7f1aa78",
       "corpusIssueId": "d24d79c8-db75-545d-b732-fcdd18370433",
       "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.COMPENSATION_AND_VALUATION.SECURITY_AND_PAYMENT_OF_COMPENSATION.ADEQUATE_AND_SAFE_FUND_REQUIREMENT"
+    },
+    {
+      "id": "2b1b0bb2c0a64c2bb143af8b12d199e4",
+      "keys": [
+        "real-estate-law/eminent-domain-law/compensation-and-valuation/taxation-of-remaining-property"
+      ],
+      "label": "TAXATION OF REMAINING PROPERTY",
+      "minted": "2026-11-03",
+      "uuid": "2b1b0bb2-c0a6-4c2b-b143-af8b12d199e4",
+      "corpusIssueId": "a32b8508-3106-5ef3-9a4e-8b48bf053d5a",
+      "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.COMPENSATION_AND_VALUATION.TAXATION_OF_REMAINING_PROPERTY"
     },
     {
       "id": "b57767566e334572a7240686c11983d7",
