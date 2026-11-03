@@ -29189,6 +29189,26 @@
       "pathNotation": "CONTRACT_LAW.BREACH_OF_CONTRACT.MEASURE_OF_DAMAGES.FLUCTUATIONS_IN_VALUE_DURING_CONTRACT"
     },
     {
+      "id": "cc591e618c0a4b80b2080c94f4ce336f",
+      "keys": [
+        "contract-law/breach-of-contract/measure-of-damages/specific-contract-types"
+      ],
+      "label": "Specific Contract Types",
+      "minted": "2026-11-03",
+      "uuid": "cc591e61-8c0a-4b80-b208-0c94f4ce336f"
+    },
+    {
+      "id": "9a503b205c6c4bfd9f9fb49162c340fb",
+      "keys": [
+        "contract-law/breach-of-contract/measure-of-damages/specific-contract-types/farm-on-shares-sharecrop-contracts"
+      ],
+      "label": "FARM-ON-SHARES (SHARECROP) CONTRACTS",
+      "minted": "2026-11-03",
+      "uuid": "9a503b20-5c6c-4bfd-9f9f-b49162c340fb",
+      "corpusIssueId": "4c5adfe8-b0ee-59c9-96c0-04fa862b0b9d",
+      "pathNotation": "CONTRACT_LAW.BREACH_OF_CONTRACT.MEASURE_OF_DAMAGES.SPECIFIC_CONTRACT_TYPES.FARM_ON_SHARES_SHARECROP_CONTRACTS"
+    },
+    {
       "id": "4a5a6bb3ce714665be864b3ea4f183a9",
       "keys": [
         "contract-law/breach-of-contract/remedies-for-breach"
@@ -32652,6 +32672,34 @@
       "uuid": "ddaa094c-9edb-49a9-a995-104b68b8cc46",
       "corpusIssueId": "87229f35-41bb-5aab-b5ad-6d43f483ebab",
       "pathNotation": "CONTRACT_LAW.DISCHARGE_AND_TERMINATION.DISCHARGE_BY_AGREEMENT.SUBSTITUTED_CONTRACT_AND_NOVATION.INCONSISTENT_NEW_CONTRACT_AS_DISCHARGE"
+    },
+    {
+      "id": "12466abe4dd443f28e46eee7c8cb77ec",
+      "keys": [
+        "contract-law/discharge-and-termination/discharge-by-alteration-of-instrument"
+      ],
+      "label": "Discharge by Alteration of Instrument",
+      "minted": "2026-11-03",
+      "uuid": "12466abe-4dd4-43f2-8e46-eee7c8cb77ec"
+    },
+    {
+      "id": "c05e76f64e754065b81bf0630bdab74a",
+      "keys": [
+        "contract-law/discharge-and-termination/discharge-by-alteration-of-instrument/sealed-instruments"
+      ],
+      "label": "Sealed Instruments",
+      "minted": "2026-11-03",
+      "uuid": "c05e76f6-4e75-4065-b81b-f0630bdab74a"
+    },
+    {
+      "id": "c6c719f1fc544de69e5f4c367790a438",
+      "keys": [
+        "contract-law/discharge-and-termination/discharge-by-alteration-of-instrument/sealed-instruments/authorized-alteration"
+      ],
+      "label": "AUTHORIZED ALTERATION",
+      "minted": "2026-11-03",
+      "uuid": "c6c719f1-fc54-4de6-9e5f-4c367790a438",
+      "pathNotation": "CONTRACT_LAW.DISCHARGE_AND_TERMINATION.DISCHARGE_BY_ALTERATION_OF_INSTRUMENT.SEALED_INSTRUMENTS.AUTHORIZED_ALTERATION"
     },
     {
       "id": "6f23d344e0c94654bbadeafa72119cfe",
@@ -108498,6 +108546,26 @@
       "pathNotation": "EVIDENCE_LAW.BURDEN_AND_STANDARD_OF_PROOF.QUANTUM_OF_PROOF_IN_CRIMINAL_CASES.PROOF_OF_GUILT_OF_PRINCIPAL"
     },
     {
+      "id": "a8f0d933372e40efaf1595103db98d92",
+      "keys": [
+        "evidence-law/burden-and-standard-of-proof/testamentary-capacity"
+      ],
+      "label": "Testamentary Capacity",
+      "minted": "2026-11-03",
+      "uuid": "a8f0d933-372e-40ef-af15-95103db98d92"
+    },
+    {
+      "id": "f5321a76315741e4baacc869bf1604a8",
+      "keys": [
+        "evidence-law/burden-and-standard-of-proof/testamentary-capacity/proof-of-general-insanity"
+      ],
+      "label": "PROOF OF GENERAL INSANITY",
+      "minted": "2026-11-03",
+      "uuid": "f5321a76-3157-41e4-baac-c869bf1604a8",
+      "corpusIssueId": "21ff1eaf-de87-5917-ac08-09706efb03a5",
+      "pathNotation": "EVIDENCE_LAW.BURDEN_AND_STANDARD_OF_PROOF.TESTAMENTARY_CAPACITY.PROOF_OF_GENERAL_INSANITY"
+    },
+    {
       "id": "ab98963665ae4e7dbfa2586f6a5fb50d",
       "uuid": "ab989636-65ae-4e7d-bfa2-586f6a5fb50d",
       "keys": [
@@ -114375,6 +114443,26 @@
       "uuid": "0fb1a724-c2fa-4708-acfc-9145c9683490",
       "corpusIssueId": "bab3d451-0ee0-595e-8039-a2556978b8a4",
       "pathNotation": "EVIDENCE_LAW.HEARSAY_AND_EXCEPTIONS.PARTY_ADMISSIONS.ADMISSION_OF_A_PARTY_OPPONENT"
+    },
+    {
+      "id": "fc78d4fd4b554bbeadfad4fdd66d1616",
+      "keys": [
+        "evidence-law/hearsay-and-exceptions/pedigree-declarations"
+      ],
+      "label": "Pedigree Declarations",
+      "minted": "2026-11-03",
+      "uuid": "fc78d4fd-4b55-4bbe-adfa-d4fdd66d1616"
+    },
+    {
+      "id": "dfa38913c2724fc686a45ef9c9a7e8ba",
+      "keys": [
+        "evidence-law/hearsay-and-exceptions/pedigree-declarations/post-litem-motam"
+      ],
+      "label": "POST LITEM MOTAM",
+      "minted": "2026-11-03",
+      "uuid": "dfa38913-c272-4fc6-86a4-5ef9c9a7e8ba",
+      "corpusIssueId": "201b7f11-81e9-5de1-a30b-1045f8f0af22",
+      "pathNotation": "EVIDENCE_LAW.HEARSAY_AND_EXCEPTIONS.PEDIGREE_DECLARATIONS.POST_LITEM_MOTAM"
     },
     {
       "id": "853322c6b952481d907f379fc8b095cf",
@@ -149768,6 +149856,35 @@
       "label": "Insurable Interest",
       "minted": "2026-10-02",
       "uuid": "9b4fee75-67c1-49b0-9ec5-f1245eefd689"
+    },
+    {
+      "id": "9a9e179720f64829bb5b10febdfe1cc9",
+      "keys": [
+        "insurance-law/marine-insurance/insurable-interest-and-valuation"
+      ],
+      "label": "Insurable Interest and Valuation",
+      "minted": "2026-11-03",
+      "uuid": "9a9e1797-20f6-4829-bb5b-10febdfe1cc9"
+    },
+    {
+      "id": "12c0e6196f1445b09d0d95a5b324d973",
+      "keys": [
+        "insurance-law/marine-insurance/insurable-interest-and-valuation/cargo-valuation"
+      ],
+      "label": "Cargo Valuation",
+      "minted": "2026-11-03",
+      "uuid": "12c0e619-6f14-45b0-9d0d-95a5b324d973"
+    },
+    {
+      "id": "a7bc188b60d34cc3a83d1186764757f3",
+      "keys": [
+        "insurance-law/marine-insurance/insurable-interest-and-valuation/cargo-valuation/value-at-risk-versus-whole-cargo"
+      ],
+      "label": "VALUE AT RISK VERSUS WHOLE CARGO",
+      "minted": "2026-11-03",
+      "uuid": "a7bc188b-60d3-4cc3-a83d-1186764757f3",
+      "corpusIssueId": "b054ad96-53ff-5f1d-a279-3f8fde2c1628",
+      "pathNotation": "INSURANCE_LAW.MARINE_INSURANCE.INSURABLE_INTEREST_AND_VALUATION.CARGO_VALUATION.VALUE_AT_RISK_VERSUS_WHOLE_CARGO"
     },
     {
       "id": "ab7ec945f8094d138964068020ad25e9",
@@ -278611,6 +278728,26 @@
       "uuid": "0dd3fa4f-6b37-4184-b393-f86f0a1687c5",
       "corpusIssueId": "f7c84a12-f033-5726-a0b3-3634ecbbfc12",
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.PUBLIC_USE_AND_TAKINGS.EMINENT_DOMAIN.RIGHTS_IN_EXISTING_CROSSINGS"
+    },
+    {
+      "id": "c35d789fad3840b29cef865e4d3da9a8",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/railroad-rights-of-way"
+      ],
+      "label": "Railroad Rights of Way",
+      "minted": "2026-11-03",
+      "uuid": "c35d789f-ad38-40b2-9cef-865e4d3da9a8"
+    },
+    {
+      "id": "9f937a5ccc7e45b09ace06370cdffff5",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/railroad-rights-of-way/center-line-of-railroad-route"
+      ],
+      "label": "Center Line of Railroad Route",
+      "minted": "2026-11-03",
+      "uuid": "9f937a5c-cc7e-45b0-9ace-06370cdffff5",
+      "corpusIssueId": "2b5a6e82-cc3b-5bc6-8577-e64c73ddca85",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.RAILROAD_RIGHTS_OF_WAY.CENTER_LINE_OF_RAILROAD_ROUTE"
     },
     {
       "id": "4f5464549fc44b51ac5dd16be37d9993",
