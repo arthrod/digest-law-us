@@ -52033,6 +52033,26 @@
       "label": "Corporate Governance and Internal Affairs"
     },
     {
+      "id": "4c205c55fb554e578152da3fbbce3f40",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance-and-internal-affairs/agency-and-authority-of-corporate-officers-and-agents"
+      ],
+      "label": "Agency and Authority of Corporate Officers and Agents",
+      "minted": "2026-11-03",
+      "uuid": "4c205c55-fb55-4e57-8152-da3fbbce3f40"
+    },
+    {
+      "id": "93d635eca08941fea3c1173b959c1aa8",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance-and-internal-affairs/agency-and-authority-of-corporate-officers-and-agents/discretionary-powers-of-corporate-agents"
+      ],
+      "label": "DISCRETIONARY POWERS OF CORPORATE AGENTS",
+      "minted": "2026-11-03",
+      "uuid": "93d635ec-a089-41fe-a3c1-173b959c1aa8",
+      "corpusIssueId": "8b4eb487-30a5-54ff-8055-02019abc8a3a",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_GOVERNANCE_AND_INTERNAL_AFFAIRS.AGENCY_AND_AUTHORITY_OF_CORPORATE_OFFICERS_AND_AGENTS.DISCRETIONARY_POWERS_OF_CORPORATE_AGENTS"
+    },
+    {
       "id": "ab52705fc96344b6ac337ae0af946f0a",
       "keys": [
         "corporate-law/business-organizations-law/corporations/corporate-governance-and-internal-affairs/amendments-to-corporate-charters-or-bylaws"
@@ -69280,6 +69300,17 @@
       "label": "Stock",
       "minted": "2026-10-18",
       "uuid": "3e316a5d-7fae-4eee-9148-6f93aef61750"
+    },
+    {
+      "id": "651a4126aea44e32a8c20030bc4144f8",
+      "keys": [
+        "corporate-law/corporate-finance-and-securities/stock-and-dividends"
+      ],
+      "label": "STOCK AND DIVIDENDS",
+      "minted": "2026-11-03",
+      "uuid": "651a4126-aea4-4e32-a8c2-0030bc4144f8",
+      "corpusIssueId": "5b795c98-58d6-56ee-9a19-b0335822101d",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_AND_SECURITIES.STOCK_AND_DIVIDENDS"
     },
     {
       "id": "343025cf13b64383bcaf24799450a04c",
@@ -89569,6 +89600,17 @@
       "uuid": "36defaa5-2860-4f35-9477-1b9e16cb237d",
       "corpusIssueId": "beec8156-726e-5199-9773-fee40cfa2e21",
       "pathNotation": "CRIMINAL_LAW.INDICTMENTS.SPECIFIC_CRIMES_INVOLVING_PUBLIC_OFFICIALS_AND_EMPLOYEES"
+    },
+    {
+      "id": "4dea844a360a4ea1ac5c2c11fc0daaad",
+      "keys": [
+        "criminal-law/indictments/specification-of-parties-in-indictment"
+      ],
+      "label": "SPECIFICATION OF PARTIES IN INDICTMENT",
+      "minted": "2026-11-03",
+      "uuid": "4dea844a-360a-4ea1-ac5c-2c11fc0daaad",
+      "corpusIssueId": "322de7ce-779b-5d3d-a921-e5d911813cc4",
+      "pathNotation": "CRIMINAL_LAW.INDICTMENTS.SPECIFICATION_OF_PARTIES_IN_INDICTMENT"
     },
     {
       "id": "da9f981ec1f74e2284012e3e5ead9534",
@@ -139294,6 +139336,17 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_DEFENSES_OF_SURETY.DISCHARGE_OF_SURETY.DISCHARGE_BY_ALTERATION_OF_THE_CONTRACT"
     },
     {
+      "id": "545341ad11484d0696e2ff5d4b9111d1",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-defenses-of-surety/discharge-of-surety/discharge-by-concealment-of-material-fact"
+      ],
+      "label": "DISCHARGE BY CONCEALMENT OF MATERIAL FACT",
+      "minted": "2026-11-03",
+      "uuid": "545341ad-1148-4d06-96e2-ff5d4b9111d1",
+      "corpusIssueId": "04d1c87d-72cd-515e-a4df-7c9654c5f133",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_DEFENSES_OF_SURETY.DISCHARGE_OF_SURETY.DISCHARGE_BY_CONCEALMENT_OF_MATERIAL_FACT"
+    },
+    {
       "id": "ddf75d59cbd942969df12eb6796b8925",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/rights-and-defenses-of-surety/discharge-of-surety/extension-of-time-to-principal"
@@ -170236,6 +170289,26 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.COURT_OPINIONS_AND_JUDICIAL_STATEMENTS"
     },
     {
+      "id": "a068dc3a0d9c486aa8776eace552bbd6",
+      "keys": [
+        "jurisprudence-and-legal-method/court-rules"
+      ],
+      "label": "Court Rules",
+      "minted": "2026-11-03",
+      "uuid": "a068dc3a-0d9c-486a-a877-6eace552bbd6"
+    },
+    {
+      "id": "ab6b8921e55942b692e70ee390cd6ba2",
+      "keys": [
+        "jurisprudence-and-legal-method/court-rules/federal-and-state-court-rules"
+      ],
+      "label": "FEDERAL AND STATE COURT RULES",
+      "minted": "2026-11-03",
+      "uuid": "ab6b8921-e559-42b6-92e7-0ee390cd6ba2",
+      "corpusIssueId": "9fc72d24-0863-592b-b1d7-0477a170f9ef",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.COURT_RULES.FEDERAL_AND_STATE_COURT_RULES"
+    },
+    {
       "id": "1c84c242e65c43e19ed827d9aaa2a061",
       "keys": [
         "jurisprudence-and-legal-method/creation-and-abolition-of-public-offices"
@@ -175654,6 +175727,17 @@
       "uuid": "e52eb8f9-4e6a-41c4-a5a3-f761c01a7f7c",
       "corpusIssueId": "27436565-15b5-5c09-abe1-cdcc15474804",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATUTES_AND_CODES.STATE_STATUTORY_COMPILATIONS.ALABAMA_CODE_OF_1896.SECTION_4730"
+    },
+    {
+      "id": "834b6d6a27534ce594b2cc34deffcb48",
+      "keys": [
+        "jurisprudence-and-legal-method/statutes-and-codes/state-statutory-compilations/texas-revised-civil-statutes"
+      ],
+      "label": "TEXAS REVISED CIVIL STATUTES",
+      "minted": "2026-11-03",
+      "uuid": "834b6d6a-2753-4ce5-94b2-cc34deffcb48",
+      "corpusIssueId": "d806d700-9134-5498-a96e-3bf912be8b14",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATUTES_AND_CODES.STATE_STATUTORY_COMPILATIONS.TEXAS_REVISED_CIVIL_STATUTES"
     },
     {
       "id": "f66c24249dfe4f288c48392f26d3a7ac",
@@ -197424,6 +197508,35 @@
       "uuid": "e66ada05-e0a9-4042-8972-e68550106334"
     },
     {
+      "id": "47d1cbfb80244f20bed06b853d99daa7",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/specific-applications-and-contexts/railroad-operations"
+      ],
+      "label": "Railroad Operations",
+      "minted": "2026-11-03",
+      "uuid": "47d1cbfb-8024-4f20-bed0-6b853d99daa7"
+    },
+    {
+      "id": "fb8ae7fdc8da455b946dffb9b8abfe21",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/specific-applications-and-contexts/railroad-operations/train-collisions"
+      ],
+      "label": "Train Collisions",
+      "minted": "2026-11-03",
+      "uuid": "fb8ae7fd-c8da-455b-946d-ffb9b8abfe21"
+    },
+    {
+      "id": "5bad1bb6832c40eda15a34bac23453e9",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/specific-applications-and-contexts/railroad-operations/train-collisions/personal-injuries-from-collisions"
+      ],
+      "label": "PERSONAL INJURIES FROM COLLISIONS",
+      "minted": "2026-11-03",
+      "uuid": "5bad1bb6-832c-40ed-a15a-34bac23453e9",
+      "corpusIssueId": "7013c753-5c79-5c1a-8288-a20595ffbdc0",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.SPECIFIC_APPLICATIONS_AND_CONTEXTS.RAILROAD_OPERATIONS.TRAIN_COLLISIONS.PERSONAL_INJURIES_FROM_COLLISIONS"
+    },
+    {
       "id": "4c6fdf8d38bd481c83b1fafb960af605",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/specific-applications-and-contexts/transportation-negligence"
@@ -207549,6 +207662,35 @@
       "pathNotation": "LEGAL_PROFESSION_AND_ACCESS_TO_JUSTICE.FORMATION_AND_EXISTENCE_OF_RELATIONSHIP.PREREQUISITES_TO_ESTABLISHMENT"
     },
     {
+      "id": "07728bded25d43c8aa240deacff643ff",
+      "keys": [
+        "legal-profession-and-access-to-justice/government-lawyers-ethical-obligations"
+      ],
+      "label": "Government Lawyers Ethical Obligations",
+      "minted": "2026-11-03",
+      "uuid": "07728bde-d25d-43c8-aa24-0deacff643ff"
+    },
+    {
+      "id": "094d040330154d6aae8c0aaae0550bb8",
+      "keys": [
+        "legal-profession-and-access-to-justice/government-lawyers-ethical-obligations/state-attorneys-general"
+      ],
+      "label": "State Attorneys General",
+      "minted": "2026-11-03",
+      "uuid": "094d0403-3015-4d6a-ae8c-0aaae0550bb8"
+    },
+    {
+      "id": "6893b36e6f854ef9b4ae30beee7c1890",
+      "keys": [
+        "legal-profession-and-access-to-justice/government-lawyers-ethical-obligations/state-attorneys-general/ethical-dilemmas"
+      ],
+      "label": "Ethical Dilemmas",
+      "minted": "2026-11-03",
+      "uuid": "6893b36e-6f85-4ef9-b4ae-30beee7c1890",
+      "corpusIssueId": "4a672e70-2d2b-5b27-b67e-037dc01b40a0",
+      "pathNotation": "LEGAL_PROFESSION_AND_ACCESS_TO_JUSTICE.GOVERNMENT_LAWYERS_ETHICAL_OBLIGATIONS.STATE_ATTORNEYS_GENERAL.ETHICAL_DILEMMAS"
+    },
+    {
       "id": "d210e5f844884c0ba8f13b0a2c5f45fa",
       "keys": [
         "legal-profession-and-access-to-justice/judicial-authority-and-dignity"
@@ -210716,6 +210858,26 @@
       "uuid": "b259cf28-0e5d-4dae-85f6-96d171d4ffe6",
       "corpusIssueId": "6eff2d39-eef7-53a1-bfcc-d0b5d59aca7e",
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_FINANCE_AND_TAXATION.TAX_COLLECTION_AND_ENFORCEMENT.FORFEITURE_AND_PENALTIES_FOR_NONPAYMENT"
+    },
+    {
+      "id": "63ef761a587b4eb8a3528f726c242a25",
+      "keys": [
+        "municipal-law/municipal-fiscal-affairs"
+      ],
+      "label": "Municipal Fiscal Affairs",
+      "minted": "2026-11-03",
+      "uuid": "63ef761a-587b-4eb8-a352-8f726c242a25"
+    },
+    {
+      "id": "53d96265173c4c23be0a4c780b3317ba",
+      "keys": [
+        "municipal-law/municipal-fiscal-affairs/appropriations-for-police-purposes"
+      ],
+      "label": "APPROPRIATIONS FOR POLICE PURPOSES",
+      "minted": "2026-11-03",
+      "uuid": "53d96265-173c-4c23-be0a-4c780b3317ba",
+      "corpusIssueId": "93ef6cc9-6b24-54f2-9f0f-a7de9a5eedb6",
+      "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_FISCAL_AFFAIRS.APPROPRIATIONS_FOR_POLICE_PURPOSES"
     },
     {
       "id": "6031b3764ed24f108f8be5ce8763cebf",
@@ -257270,6 +257432,35 @@
       "uuid": "19188894-afda-494d-8a27-b287fbf66b4d",
       "corpusIssueId": "a86170db-99c8-5e86-9e28-18cb8302aedc",
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FEDERAL_COMMUNICATIONS_COMMISSION"
+    },
+    {
+      "id": "0610432c091248aa807ba252a78d0bd2",
+      "keys": [
+        "public-and-administrative-law/federal-pesticide-regulation-fifra"
+      ],
+      "label": "Federal Pesticide Regulation Fifra",
+      "minted": "2026-11-03",
+      "uuid": "0610432c-0912-48aa-807b-a252a78d0bd2"
+    },
+    {
+      "id": "0bc92ad7283744fe8254155dbab90081",
+      "keys": [
+        "public-and-administrative-law/federal-pesticide-regulation-fifra/pesticide-registration-cancellation"
+      ],
+      "label": "Pesticide Registration Cancellation",
+      "minted": "2026-11-03",
+      "uuid": "0bc92ad7-2837-44fe-8254-155dbab90081"
+    },
+    {
+      "id": "2a623b38fba2458291f67bb603018bca",
+      "keys": [
+        "public-and-administrative-law/federal-pesticide-regulation-fifra/pesticide-registration-cancellation/epa-cancellation-authority-and-procedure"
+      ],
+      "label": "EPA CANCELLATION AUTHORITY AND PROCEDURE",
+      "minted": "2026-11-03",
+      "uuid": "2a623b38-fba2-4582-91f6-7bb603018bca",
+      "corpusIssueId": "ebfdd5e0-8ee4-5dbd-9c05-223296ea3359",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FEDERAL_PESTICIDE_REGULATION_FIFRA.PESTICIDE_REGISTRATION_CANCELLATION.EPA_CANCELLATION_AUTHORITY_AND_PROCEDURE"
     },
     {
       "id": "7a86b817e9bf48f3b16f0387d85882cc",
@@ -307224,6 +307415,17 @@
       "label": "EVASIVE ANSWER AS INSUFFICIENT",
       "corpusIssueId": "87b9403c-af6b-50e5-b215-a9b51fb01b08",
       "pathNotation": "REMEDIES_LAW.INJUNCTIONS.PLEADING_AND_PRACTICE_IN_INJUNCTION_PROCEEDINGS.ANSWER_AND_DEFENSES.EVASIVE_ANSWER_AS_INSUFFICIENT"
+    },
+    {
+      "id": "3668425b36094fada61d71495161c045",
+      "keys": [
+        "remedies-law/injunctions/pleadings-and-verification"
+      ],
+      "label": "PLEADINGS AND VERIFICATION",
+      "minted": "2026-11-03",
+      "uuid": "3668425b-3609-4fad-a61d-71495161c045",
+      "corpusIssueId": "05fb2f97-3c20-56e6-b82d-71df5cb00072",
+      "pathNotation": "REMEDIES_LAW.INJUNCTIONS.PLEADINGS_AND_VERIFICATION"
     },
     {
       "id": "8f08149a82294597b3fa86365d1a1414",
