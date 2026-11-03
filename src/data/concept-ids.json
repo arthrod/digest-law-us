@@ -26325,6 +26325,26 @@
       "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.STATE_AUTHORITY_AND_SOVEREIGNTY.CONSTITUTIONAL_LIMITATIONS_ON_STATE_POWER.RESTRICTIONS_ON_THE_AUTHORITY_OF_THE_SEVERAL_STATES"
     },
     {
+      "id": "dfa41e00390745db971eb62520f26788",
+      "keys": [
+        "constitutional-and-civil-rights-law/state-constitutional-authority"
+      ],
+      "label": "State Constitutional Authority",
+      "minted": "2026-11-03",
+      "uuid": "dfa41e00-3907-45db-971e-b62520f26788"
+    },
+    {
+      "id": "39a73535009944288b319a6d85a0f9eb",
+      "keys": [
+        "constitutional-and-civil-rights-law/state-constitutional-authority/state-legislative-power"
+      ],
+      "label": "STATE LEGISLATIVE POWER",
+      "minted": "2026-11-03",
+      "uuid": "39a73535-0099-4428-8b31-9a6d85a0f9eb",
+      "corpusIssueId": "7af2af7f-3f0a-521b-bb91-d26b9f6a2663",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.STATE_CONSTITUTIONAL_AUTHORITY.STATE_LEGISLATIVE_POWER"
+    },
+    {
       "id": "0799e063a8914f668ad141280873dcce",
       "keys": [
         "constitutional-and-civil-rights-law/state-constitutional-provisions"
@@ -30345,6 +30365,15 @@
       "pathNotation": "CONTRACT_LAW.CONTRACTUAL_DEFENSES_AGAINST_ENFORCEMENT.DURESS"
     },
     {
+      "id": "e22b0e64f41d490faad6b1ac55eca2b3",
+      "keys": [
+        "contract-law/contractual-obligations"
+      ],
+      "label": "Contractual Obligations",
+      "minted": "2026-11-03",
+      "uuid": "e22b0e64-f41d-490f-aad6-b1ac55eca2b3"
+    },
+    {
       "id": "c9c55f76f810407d9d1ebb314ca01d02",
       "keys": [
         "contract-law/contractual-obligations-and-liabilities"
@@ -30363,6 +30392,26 @@
       "uuid": "22a428b3-083b-4076-8ea3-e1df704bb904",
       "corpusIssueId": "15ef6dcd-a583-58b9-9d55-7cd794ce62bb",
       "pathNotation": "CONTRACT_LAW.CONTRACTUAL_OBLIGATIONS_AND_LIABILITIES.CONTINGENT_LIABILITIES"
+    },
+    {
+      "id": "f0de4eb793e04f4f8b7853bf5d6f72cb",
+      "keys": [
+        "contract-law/contractual-obligations/support-and-maintenance-agreements"
+      ],
+      "label": "Support and Maintenance Agreements",
+      "minted": "2026-11-03",
+      "uuid": "f0de4eb7-93e0-4f4f-8b78-53bf5d6f72cb"
+    },
+    {
+      "id": "9ee550c6eff3409e8cc9446f8bf04469",
+      "keys": [
+        "contract-law/contractual-obligations/support-and-maintenance-agreements/lifetime-support-obligations"
+      ],
+      "label": "LIFETIME SUPPORT OBLIGATIONS",
+      "minted": "2026-11-03",
+      "uuid": "9ee550c6-eff3-409e-8cc9-446f8bf04469",
+      "corpusIssueId": "db7df3da-098e-51ca-b732-62be21d00556",
+      "pathNotation": "CONTRACT_LAW.CONTRACTUAL_OBLIGATIONS.SUPPORT_AND_MAINTENANCE_AGREEMENTS.LIFETIME_SUPPORT_OBLIGATIONS"
     },
     {
       "id": "ff8788ca1df64242a4c31e8ee9fc038f",
@@ -43219,6 +43268,26 @@
       "uuid": "f1feea8a-eda2-4424-9786-4c2d1c68810e",
       "corpusIssueId": "789e856e-2641-565b-83b2-48ab1867ea8a",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.MODIFICATION.CHANGE_IN_PLACE_OF_PERFORMANCE"
+    },
+    {
+      "id": "c903b80b440645a2864f8a78a5b6d4e1",
+      "keys": [
+        "contract-law/performance-and-breach/obligation-to-pay"
+      ],
+      "label": "Obligation to Pay",
+      "minted": "2026-11-03",
+      "uuid": "c903b80b-4406-45a2-864f-8a78a5b6d4e1"
+    },
+    {
+      "id": "45ef1e64187d437f949c781322802725",
+      "keys": [
+        "contract-law/performance-and-breach/obligation-to-pay/payment-under-contractual-agreement"
+      ],
+      "label": "PAYMENT UNDER CONTRACTUAL AGREEMENT",
+      "minted": "2026-11-03",
+      "uuid": "45ef1e64-187d-437f-949c-781322802725",
+      "corpusIssueId": "94231180-3dc9-5521-905e-4c755e1dca34",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.OBLIGATION_TO_PAY.PAYMENT_UNDER_CONTRACTUAL_AGREEMENT"
     },
     {
       "id": "daef73734a244ee0827956ef18a08791",
@@ -72636,6 +72705,17 @@
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.SHAREHOLDER_MEETINGS.PROXY_VOTING.COMPELLING_EXECUTION_OF_PROXY"
     },
     {
+      "id": "508b2a0d0d924c85bfabed8aa4351a75",
+      "keys": [
+        "corporate-law/corporate-governance-law/shareholder-meetings/quorum-and-voting-requirements"
+      ],
+      "label": "QUORUM AND VOTING REQUIREMENTS",
+      "minted": "2026-11-03",
+      "uuid": "508b2a0d-0d92-4c85-bfab-ed8aa4351a75",
+      "corpusIssueId": "09950575-d4a7-5d38-99fe-b38f003ce2db",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.SHAREHOLDER_MEETINGS.QUORUM_AND_VOTING_REQUIREMENTS"
+    },
+    {
       "id": "769102b5b2234795bcb5111905fec099",
       "keys": [
         "corporate-law/corporate-governance-law/shareholder-meetings/voting-rights"
@@ -73505,6 +73585,17 @@
       "uuid": "c5ed6b24-c50d-4054-bb54-0ae7fdba76f4",
       "corpusIssueId": "a0325e7a-4890-5148-a806-cc9b5b04bdc6",
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.STOCKHOLDER_LIABILITY.STATUTORY_LIABILITY_OF_STOCKHOLDERS.STRICT_CONSTRUCTION"
+    },
+    {
+      "id": "9fec03631ba84828b4dab0b802625253",
+      "keys": [
+        "corporate-law/corporate-governance-law/stockholder-liability/stockholder-liability-generally"
+      ],
+      "label": "STOCKHOLDER LIABILITY GENERALLY",
+      "minted": "2026-11-03",
+      "uuid": "9fec0363-1ba8-4828-b4da-b0b802625253",
+      "corpusIssueId": "84a5a455-68e1-5993-b127-bdd1bb12fc95",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.STOCKHOLDER_LIABILITY.STOCKHOLDER_LIABILITY_GENERALLY"
     },
     {
       "id": "62b2e7d7aa4b4cf0bafac853e1c921b7",
@@ -168002,6 +168093,17 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.COMMON_LAW_TREATISES_AND_REPORTS.COKE_S_INSTITUTES_AND_COMMENTARIES.COKE_UPON_LITTLETON"
     },
     {
+      "id": "13fd98330a3544eaaa0f417a189c3ccf",
+      "keys": [
+        "jurisprudence-and-legal-method/common-law/applicability-and-precedence-of-common-law"
+      ],
+      "label": "APPLICABILITY AND PRECEDENCE OF COMMON LAW",
+      "minted": "2026-11-03",
+      "uuid": "13fd9833-0a35-44ea-aa0f-417a189c3ccf",
+      "corpusIssueId": "7c899092-950c-5c94-8604-0addde1731c4",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.COMMON_LAW.APPLICABILITY_AND_PRECEDENCE_OF_COMMON_LAW"
+    },
+    {
       "id": "34d1c551e2e24b3c88708b3350863ca8",
       "keys": [
         "jurisprudence-and-legal-method/common-law/definition-and-nature-of-common-law"
@@ -185740,6 +185842,26 @@
       "uuid": "3056fb7e-24f9-492d-8543-dc3fab165116",
       "corpusIssueId": "4a35614a-f89e-5e92-84b2-30bd9aaff346",
       "pathNotation": "LAW_OF_WRONGDOING.CONSPIRACY.CONSPIRACY_BY_SHAREHOLDERS.CONSPIRACY_BY_MINORITY_SHAREHOLDERS"
+    },
+    {
+      "id": "e363da4848204d649c447f3267374f41",
+      "keys": [
+        "law-of-wrongdoing/cruelty-and-inhuman-treatment"
+      ],
+      "label": "Cruelty and Inhuman Treatment",
+      "minted": "2026-11-03",
+      "uuid": "e363da48-4820-4d64-9c44-7f3267374f41"
+    },
+    {
+      "id": "bc8ac6747a8541beb9161624bd71ec81",
+      "keys": [
+        "law-of-wrongdoing/cruelty-and-inhuman-treatment/inhuman-treatment-as-ground-for-divorce-or-separation"
+      ],
+      "label": "INHUMAN TREATMENT AS GROUND FOR DIVORCE OR SEPARATION",
+      "minted": "2026-11-03",
+      "uuid": "bc8ac674-7a85-41be-b916-1624bd71ec81",
+      "corpusIssueId": "bd9b0cb9-e8c0-52e8-a8f6-62ba0b94c3f3",
+      "pathNotation": "LAW_OF_WRONGDOING.CRUELTY_AND_INHUMAN_TREATMENT.INHUMAN_TREATMENT_AS_GROUND_FOR_DIVORCE_OR_SEPARATION"
     },
     {
       "id": "dd26d56c153645fc8000f671f6f25648",
@@ -206894,6 +207016,17 @@
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.DUTIES_AND_LIABILITIES.LIABILITY_FOR_CORPORATE_DUTIES"
     },
     {
+      "id": "9e5b8cf945e34dc7b6106d167937a60e",
+      "keys": [
+        "municipal-law/municipal-corporations/exclusivity-of-municipal-jurisdiction"
+      ],
+      "label": "EXCLUSIVITY OF MUNICIPAL JURISDICTION",
+      "minted": "2026-11-03",
+      "uuid": "9e5b8cf9-45e3-4dc7-b610-6d167937a60e",
+      "corpusIssueId": "06d444d2-c7e2-58e0-94bf-9f1a9d2a8012",
+      "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.EXCLUSIVITY_OF_MUNICIPAL_JURISDICTION"
+    },
+    {
       "id": "b7661d28109548db8caf93556dc8f8a8",
       "keys": [
         "municipal-law/municipal-corporations/financial-management-and-assets"
@@ -213303,6 +213436,25 @@
       "uuid": "e42cc07a-3ef5-43c3-9db5-7c9c2dece7a4",
       "corpusIssueId": "024a7a3f-0d08-5fa6-84e0-f0ea3bc44d91",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE_AND_DISSOLUTION.DIVORCE_AND_SEPARATION.ALIMONY_AND_SPOUSAL_SUPPORT.SOURCE_OF_ALIMONY_HUSBAND_S_FACULTIES"
+    },
+    {
+      "id": "426787b2d3d44fc9a4ce434bdb8246db",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce-and-dissolution/divorce/alimony-and-spousal-support"
+      ],
+      "label": "Alimony and Spousal Support",
+      "minted": "2026-11-03",
+      "uuid": "426787b2-d3d4-4fc9-a4ce-434bdb8246db"
+    },
+    {
+      "id": "1375750e400c4b1e85c543713202be60",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce-and-dissolution/divorce/alimony-and-spousal-support/alimony-upon-denial-of-divorce"
+      ],
+      "label": "Alimony Upon Denial of Divorce",
+      "minted": "2026-11-03",
+      "uuid": "1375750e-400c-4b1e-85c5-43713202be60",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE_AND_DISSOLUTION.DIVORCE.ALIMONY_AND_SPOUSAL_SUPPORT.ALIMONY_UPON_DENIAL_OF_DIVORCE"
     },
     {
       "id": "ac315fc1848a4a57bacf2170775fd7bc",
@@ -232851,6 +233003,26 @@
       "pathNotation": "PROCEDURAL_LAW.CLASS_ACTIONS.CLASS_ACTION_OVERVIEW_AND_NOTES"
     },
     {
+      "id": "1a53347954f1481d9e0dd4e58e2841b5",
+      "keys": [
+        "procedural-law/class-actions/class-certification"
+      ],
+      "label": "Class Certification",
+      "minted": "2026-11-03",
+      "uuid": "1a533479-54f1-481d-9e0d-d4e58e2841b5"
+    },
+    {
+      "id": "3ab6fc16bcee42d89b3d3cf1aecc269e",
+      "keys": [
+        "procedural-law/class-actions/class-certification/settlement-approval"
+      ],
+      "label": "SETTLEMENT APPROVAL",
+      "minted": "2026-11-03",
+      "uuid": "3ab6fc16-bcee-42d8-9b3d-3cf1aecc269e",
+      "corpusIssueId": "f8b59c05-a859-5574-82b7-ca8016f5326d",
+      "pathNotation": "PROCEDURAL_LAW.CLASS_ACTIONS.CLASS_CERTIFICATION.SETTLEMENT_APPROVAL"
+    },
+    {
       "id": "a121f531c22549aaac541d196d2e4530",
       "keys": [
         "procedural-law/class-actions/federal-class-action-framework"
@@ -235857,6 +236029,17 @@
       "uuid": "552ddef9-c32d-4299-a0b3-eed0db274a1e",
       "corpusIssueId": "bf30f9c0-7daf-5c94-a622-6e2b441ececf",
       "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.MERGER.JOINT_DEBTOR_ACTS"
+    },
+    {
+      "id": "a62b46fe2e8f49958095ca843d94e005",
+      "keys": [
+        "procedural-law/effects-of-judgments/merger/judgments-against-warrantors-and-garnishees"
+      ],
+      "label": "JUDGMENTS AGAINST WARRANTORS AND GARNISHEES",
+      "minted": "2026-11-03",
+      "uuid": "a62b46fe-2e8f-4995-8095-ca843d94e005",
+      "corpusIssueId": "50df5498-2b7c-5e21-85ee-f51ad6bc27a7",
+      "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.MERGER.JUDGMENTS_AGAINST_WARRANTORS_AND_GARNISHEES"
     },
     {
       "id": "a1a82b992b344783ac735bce884ba978",
@@ -267209,6 +267392,26 @@
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.RULE_IN_SHELLEY_S_CASE.LIABILITY_OF_PURCHASERS"
     },
     {
+      "id": "44f22aad13174373a3da90999d10a161",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/rules-construing-limitations"
+      ],
+      "label": "Rules Construing Limitations",
+      "minted": "2026-11-03",
+      "uuid": "44f22aad-1317-4373-a3da-90999d10a161"
+    },
+    {
+      "id": "42c46757e5664034b8435d6f19e275aa",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/rules-construing-limitations/rule-in-shelley-s-case"
+      ],
+      "label": "RULE IN SHELLEY'S CASE",
+      "minted": "2026-11-03",
+      "uuid": "42c46757-e566-4034-b843-5d6f19e275aa",
+      "corpusIssueId": "b4a5ba91-ef3f-57e8-915c-57d4c1e1f389",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.RULES_CONSTRUING_LIMITATIONS.RULE_IN_SHELLEY_S_CASE"
+    },
+    {
       "id": "370255d7c5d341d2bd07a72fc478d6d2",
       "uuid": "370255d7-c5d3-41d2-bd07-a72fc478d6d2",
       "keys": [
@@ -293057,6 +293260,26 @@
       "pathNotation": "REAL_ESTATE_LAW.TRANSFER_AND_CONVEYANCING.MARITAL_INTERESTS_IN_REAL_PROPERTY.WIFE_S_JOINDER_IN_HUSBAND_S_DEED"
     },
     {
+      "id": "71960ed2e0c648568cc4fb240cf31739",
+      "keys": [
+        "real-estate-law/transfer-and-conveyancing/modes-of-conveyance"
+      ],
+      "label": "Modes of Conveyance",
+      "minted": "2026-11-03",
+      "uuid": "71960ed2-e0c6-4856-8cc4-fb240cf31739"
+    },
+    {
+      "id": "07842342bb57469e8dfdaba3fbade29d",
+      "keys": [
+        "real-estate-law/transfer-and-conveyancing/modes-of-conveyance/feoffment-and-grant"
+      ],
+      "label": "FEOFFMENT AND GRANT",
+      "minted": "2026-11-03",
+      "uuid": "07842342-bb57-469e-8dfd-aba3fbade29d",
+      "corpusIssueId": "813d8957-a297-5dce-9fa4-f88cf9000a6a",
+      "pathNotation": "REAL_ESTATE_LAW.TRANSFER_AND_CONVEYANCING.MODES_OF_CONVEYANCE.FEOFFMENT_AND_GRANT"
+    },
+    {
       "id": "5cc81b17c41c48b987a706a52cdc029a",
       "keys": [
         "real-estate-law/transfer-and-conveyancing/mortgages-and-security-interests"
@@ -298831,6 +299054,26 @@
       "pathNotation": "REMEDIES_LAW.EQUITABLE_REMEDIES.INJUNCTIONS.EXCEPTIONS_TO_GENERAL_RULES"
     },
     {
+      "id": "6efde866ad1c43aa865cd08c359d271e",
+      "keys": [
+        "remedies-law/equitable-remedies/injunctions/form-and-content-of-injunctive-writs"
+      ],
+      "label": "Form and Content of Injunctive Writs",
+      "minted": "2026-11-03",
+      "uuid": "6efde866-ad1c-43aa-865c-d08c359d271e"
+    },
+    {
+      "id": "020e9a7548424d56a72e18a96fe734d0",
+      "keys": [
+        "remedies-law/equitable-remedies/injunctions/form-and-content-of-injunctive-writs/precision-in-writs"
+      ],
+      "label": "PRECISION IN WRITS",
+      "minted": "2026-11-03",
+      "uuid": "020e9a75-4842-4d56-a72e-18a96fe734d0",
+      "corpusIssueId": "35de1510-f2b8-5e8c-916f-46ec743cba07",
+      "pathNotation": "REMEDIES_LAW.EQUITABLE_REMEDIES.INJUNCTIONS.FORM_AND_CONTENT_OF_INJUNCTIVE_WRITS.PRECISION_IN_WRITS"
+    },
+    {
       "id": "d65929526dc24e29b315dbe1d0a8069b",
       "keys": [
         "remedies-law/equitable-remedies/injunctions/general-principles-and-applications"
@@ -304286,6 +304529,26 @@
       "pathNotation": "REMEDIES_LAW.INJUNCTIONS.SCOPE_AND_AVAILABILITY.RELIEF_AGAINST_JUDICIAL_PROCEEDINGS.PROHIBITION_OF_ATTACHMENT_PROCEEDINGS"
     },
     {
+      "id": "baf46be2d5584883a548268d25cbee27",
+      "keys": [
+        "remedies-law/injunctions/scope-and-grounds-for-injunctive-relief"
+      ],
+      "label": "Scope and Grounds for Injunctive Relief",
+      "minted": "2026-11-03",
+      "uuid": "baf46be2-d558-4883-a548-268d25cbee27"
+    },
+    {
+      "id": "abb2e2100618415d8ee77f5217f01057",
+      "keys": [
+        "remedies-law/injunctions/scope-and-grounds-for-injunctive-relief/injunctions-after-patent-expiration"
+      ],
+      "label": "INJUNCTIONS AFTER PATENT EXPIRATION",
+      "minted": "2026-11-03",
+      "uuid": "abb2e210-0618-415d-8ee7-7f5217f01057",
+      "corpusIssueId": "212d49a9-1107-5391-b23c-397b66f6f181",
+      "pathNotation": "REMEDIES_LAW.INJUNCTIONS.SCOPE_AND_GROUNDS_FOR_INJUNCTIVE_RELIEF.INJUNCTIONS_AFTER_PATENT_EXPIRATION"
+    },
+    {
       "id": "98f760c1b65b4727b802432da4695704",
       "uuid": "98f760c1-b65b-4727-b802-432da4695704",
       "keys": [
@@ -308589,6 +308852,17 @@
       "pathNotation": "REMEDIES_LAW.RECEIVERS.EFFECTS_OF_APPOINTMENT_ON_EXISTING_RIGHTS_AND_INTERESTS"
     },
     {
+      "id": "be26e36793ce44d5a0aa87c185870789",
+      "keys": [
+        "remedies-law/receivers/equitity-jurisdiction-to-appoint-receivers"
+      ],
+      "label": "EQUITITY JURISDICTION TO APPOINT RECEIVERS",
+      "minted": "2026-11-03",
+      "uuid": "be26e367-93ce-44d5-a0aa-87c185870789",
+      "corpusIssueId": "238b1f07-2efb-55ed-be9a-e6fdc13fa94f",
+      "pathNotation": "REMEDIES_LAW.RECEIVERS.EQUITITY_JURISDICTION_TO_APPOINT_RECEIVERS"
+    },
+    {
       "id": "f4d63d3843d44d1caa4341ea368215d9",
       "keys": [
         "remedies-law/receivers/grounds-for-appointment"
@@ -309426,6 +309700,26 @@
       "uuid": "34ff292f-30df-4a5e-9ff1-fc03fd31d0bd",
       "corpusIssueId": "39199be3-75ee-5637-9a25-113b65aa3fe4",
       "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.APPOINTMENT_OF_RECEIVERS.RECEIVERS_IN_BANKRUPTCY"
+    },
+    {
+      "id": "be7a124a6c6b41c48e0c822ac893a0ab",
+      "keys": [
+        "remedies-law/receivership/appointment-of-receivers/receivers-over-corporations"
+      ],
+      "label": "Receivers Over Corporations",
+      "minted": "2026-11-03",
+      "uuid": "be7a124a-6c6b-41c4-8e0c-822ac893a0ab"
+    },
+    {
+      "id": "9480b05b8f31447085809764533baeb1",
+      "keys": [
+        "remedies-law/receivership/appointment-of-receivers/receivers-over-corporations/general-principles-governing-appointment"
+      ],
+      "label": "GENERAL PRINCIPLES GOVERNING APPOINTMENT",
+      "minted": "2026-11-03",
+      "uuid": "9480b05b-8f31-4470-8580-9764533baeb1",
+      "corpusIssueId": "92034187-cb87-5108-9467-f547511d66f2",
+      "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.APPOINTMENT_OF_RECEIVERS.RECEIVERS_OVER_CORPORATIONS.GENERAL_PRINCIPLES_GOVERNING_APPOINTMENT"
     },
     {
       "id": "a29d0c7a85974b5fb971223eff9d5457",
@@ -315544,6 +315838,26 @@
       "uuid": "03601642-c848-4103-bd45-f7d610b74c89",
       "corpusIssueId": "1934d0c1-837e-584b-ad92-3630bc0eabb3",
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.STATE_AND_LOCAL_TAXATION.SPECIAL_ASSESSMENTS.DISTINCTION_BETWEEN_TAXES_AND_ASSESSMENTS_FOR_LOCAL_IMPROVEMENTS"
+    },
+    {
+      "id": "5e50b47be84c488ea69eeaaaeff3c42e",
+      "keys": [
+        "tax-and-revenue-law/tax-law/state-and-local-taxation/special-assessments/street-improvement-assessments"
+      ],
+      "label": "Street Improvement Assessments",
+      "minted": "2026-11-03",
+      "uuid": "5e50b47b-e84c-488e-a69e-eaaaeff3c42e"
+    },
+    {
+      "id": "4da5757bf839465aab3c3dc3f7debab5",
+      "keys": [
+        "tax-and-revenue-law/tax-law/state-and-local-taxation/special-assessments/street-improvement-assessments/notice-to-property-owners"
+      ],
+      "label": "NOTICE TO PROPERTY OWNERS",
+      "minted": "2026-11-03",
+      "uuid": "4da5757b-f839-465a-ab3c-3dc3f7debab5",
+      "corpusIssueId": "460099dd-f8c5-57b7-973a-58e164d5cc37",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.STATE_AND_LOCAL_TAXATION.SPECIAL_ASSESSMENTS.STREET_IMPROVEMENT_ASSESSMENTS.NOTICE_TO_PROPERTY_OWNERS"
     },
     {
       "id": "658ae4d082854d568765540ffa44cd79",
