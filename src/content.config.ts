@@ -151,7 +151,7 @@ const rawId = ({ entry }: { entry: string }) =>
             finished_at: z.string().optional(),
             retained_sources: z.number().optional(),
             started_at: z.string().optional(),
-            visited_urls: z.number().optional(),
+            visited_urls: z.number().nullish(),
           })
           .partial()
           .optional(),
