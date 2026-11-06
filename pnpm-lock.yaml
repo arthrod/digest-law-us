@@ -70,8 +70,8 @@ importers:
         specifier: ^0.9.12
         version: 0.9.12(@emnapi/runtime@1.11.3)(prettier@3.9.10)(typescript@7.0.2)
       '@bruits/satteri-wasm32-wasi':
-        specifier: ^0.10.5
-        version: 0.10.5
+        specifier: ^0.11.0
+        version: 0.11.6
       '@emnapi/core':
         specifier: ^1.11.3
         version: 1.11.3
@@ -306,6 +306,11 @@ packages:
 
   '@bruits/satteri-wasm32-wasi@0.10.5':
     resolution: {integrity: sha512-ypz8c/Zmipxp4IoeDa228Gstv6TLzVmNs3yC6wKCoNSOjx1iwpgzu87Y3hTkXFdwChVGU85qeUDuOIarGUZQLw==}
+    engines: {node: '>=14.0.0'}
+    cpu: [wasm32]
+
+  '@bruits/satteri-wasm32-wasi@0.11.6':
+    resolution: {integrity: sha512-GrjNThC6BfA0u8LZwGpOeEFVKoJZsriowLtj/rBYj18fW7/UZouyzn/0Tsxg+tMaxMUgC9HFA078EmfAsdVONg==}
     engines: {node: '>=14.0.0'}
     cpu: [wasm32]
 
@@ -3755,6 +3760,13 @@ snapshots:
     optional: true
 
   '@bruits/satteri-wasm32-wasi@0.10.5':
+    dependencies:
+      '@emnapi/core': 1.11.1
+      '@emnapi/runtime': 1.11.1
+      '@napi-rs/wasm-runtime': 1.2.6(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+    optional: true
+
+  '@bruits/satteri-wasm32-wasi@0.11.6':
     dependencies:
       '@emnapi/core': 1.11.1
       '@emnapi/runtime': 1.11.1
