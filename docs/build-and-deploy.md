@@ -116,6 +116,9 @@ bun scripts/deploy-shards.ts --only=root
 scripts/smoke-prod.sh                       # read-only checks against digest.law
 ```
 
+`robots.txt` and every other Astro route cannot ship this way: they change
+only with a build.
+
 Precondition: `dist/` must be the build whose shards are live. The catalog
 lists only concepts with a page in `dist/`; written from a newer, undeployed
 build, it would send agents to pages that 404. The smoke test's last check

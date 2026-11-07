@@ -1,15 +1,8 @@
 import type { APIRoute } from "astro";
 
-function getRobotsTxt(sitemapURL: URL): string {
-  return `
-User-agent: *
-Allow: /
+import { robotsTxt } from "@/lib/robots";
 
-Sitemap: ${sitemapURL.href}
-`;
-}
-
-export const GET: APIRoute = ({ site }) => {
-  const sitemapURL = new URL("sitemap-index.xml", site);
-  return new Response(getRobotsTxt(sitemapURL));
-};
+export const GET: APIRoute = ({ site }) =>
+  new Response(robotsTxt(site ?? new URL("https://digest.law/")), {
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });

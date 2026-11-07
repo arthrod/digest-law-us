@@ -1,0 +1,38 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://digest.law/mcp",
+      "service-desc": [
+        {
+          "href": "https://digest.law/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://digest.law/.well-known/agent-skills/american-legal-digest/SKILL.md",
+          "type": "text/markdown"
+        }
+      ]
+    },
+    {
+      "anchor": "https://digest.law/id/",
+      "service-doc": [
+        { "href": "https://digest.law/methodology/", "type": "text/html" }
+      ],
+      "describedby": [
+        { "href": "https://digest.law/skos.jsonld", "type": "application/ld+json" }
+      ]
+    },
+    {
+      "anchor": "https://digest.law/",
+      "service-doc": [{ "href": "https://digest.law/", "type": "text/html" }],
+      "describedby": [
+        { "href": "https://digest.law/skos.jsonld", "type": "application/ld+json" }
+      ],
+      "related": [
+        { "href": "https://digest.law/sitemap-index.xml", "type": "application/xml" }
+      ]
+    }
+  ]
+}

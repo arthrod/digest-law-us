@@ -27,7 +27,10 @@
     "not_found_handling": "404-page",
     // /id/* is the concept-identity resolver (w3id.org/digest-law/concept/…
     // lands there); it must reach the Worker rather than the 404 page.
-    "run_worker_first": ["/api/*", "/id/*", "/mcp", "/mcp/*"],
+    // "/" is the home page: root-level files are otherwise served straight
+    // from assets, and the Worker could not add its discovery Link headers
+    // (worker/mcp.ts withAgentLinks) to the page agents fetch first.
+    "run_worker_first": ["/", "/api/*", "/id/*", "/mcp", "/mcp/*"],
   },
   // Contact form mail. The allow-lists are the platform-level backstop on
   // worker/index.ts's own routing: even a bug there cannot address mail to

@@ -22,6 +22,10 @@ t "robots.txt names the sitemap" 1 "$(curl -s -m 30 -A "$UA" "$H/robots.txt" | g
 t "sitemap index" 200 "$(code "$H/sitemap-index.xml")"
 t "MCP server card" 200 "$(code "$H/.well-known/mcp/server-card.json")"
 t "MCP server card is JSON" application/json "$(ctype "$H/.well-known/mcp/server-card.json" | cut -d';' -f1)"
+t "API catalog type" application/linkset+json "$(ctype "$H/.well-known/api-catalog" | cut -d';' -f1)"
+t "agent skills index" 200 "$(code "$H/.well-known/agent-skills/index.json")"
+t "home page Link: api-catalog" 1 "$(curl -s -I -m 30 -A "$UA" "$H/" | grep -i '^link:' | grep -c 'rel="api-catalog"')"
+t "robots.txt Content-Signal" 1 "$(curl -s -m 30 -A "$UA" "$H/robots.txt" | grep -c '^Content-Signal: ')"
 t "GET /mcp is 405" 405 "$(code "$H/mcp")"
 t "initialize" digest-law "$(rpc '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"smoke","version":"0"}}}' | jq -r '.result.serverInfo.name')"
 t "tools/list" "get_concept,list_concepts,search_concepts" \

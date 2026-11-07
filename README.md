@@ -75,6 +75,14 @@ and the permanent concept IRI — and does not return the prose of a digest.
 The server card is at
 `https://digest.law/.well-known/mcp/server-card.json`.
 
+Discovery follows live-contracts: every HTML response (the home page
+included) sends RFC 8288 `Link` headers to the RFC 9727 API catalog
+(`/.well-known/api-catalog`), the server card and the sitemap, and
+`/.well-known/agent-skills/index.json` lists a SKILL.md on how to find, cite
+and read a topic. robots.txt allows search and AI crawlers and states
+`Content-Signal: search=yes, ai-input=yes, ai-train=yes` (policy in
+`src/lib/robots.ts`).
+
 The endpoint allows 60 requests per 60 seconds per client IP, the same cap
 as Live Contracts, enforced by the `MCP_RATE_LIMITER` binding in
 `wrangler.jsonc`. A local `wrangler dev` without that binding still answers.

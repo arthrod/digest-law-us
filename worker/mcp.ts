@@ -23,8 +23,27 @@ const CONCEPT_IRI = "https://w3id.org/digest-law/concept/",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Max-Age": "86400",
   },
-  DISCOVERY_LINK =
-    '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
+  /**
+   * RFC 8288 relations sent on every HTML response, same set as
+   * live-contracts: the RFC 9727 API catalog, the MCP server card, and the
+   * sitemap. The catalog body is a static asset (public/.well-known/).
+   */
+  DISCOVERY_LINKS = [
+    {
+      rel: "api-catalog",
+      value:
+        '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
+    },
+    {
+      rel: "service-desc",
+      value:
+        '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
+    },
+    {
+      rel: "sitemap",
+      value: '</sitemap-index.xml>; rel="sitemap"; type="application/xml"',
+    },
+  ],
   INSTRUCTIONS =
     "Read-only access to the American Legal Digest concept catalog. " +
     "Use search_concepts to match a label or route, list_concepts to browse an area, " +
@@ -323,14 +342,24 @@ function json(
   });
 }
 
-/** Link relation on HTML documents, so an agent can find the server card. */
+/**
+ * Discovery relations on HTML documents, so an agent that fetched any page
+ * can find the API catalog, the server card and the sitemap. A relation the
+ * response already carries (from `_headers`, say) is not repeated.
+ */
 export function withAgentLinks(response: Response): Response {
   const contentType = response.headers.get("content-type") ?? "",
     headers = new Headers(response.headers);
   if (!contentType.includes("text/html")) {
     return response;
   }
-  headers.append("Link", DISCOVERY_LINK);
+  // oxlint-disable-next-line eslint/one-var -- read only for HTML responses
+  const existing = headers.get("link") ?? "";
+  for (const { rel, value } of DISCOVERY_LINKS) {
+    if (!existing.includes(`rel="${rel}"`)) {
+      headers.append("Link", value);
+    }
+  }
   return new Response(response.body, {
     headers,
     status: response.status,
