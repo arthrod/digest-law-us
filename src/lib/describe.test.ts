@@ -137,6 +137,18 @@ describe("isBoilerplate", () => {
       "another wording of the caveat",
       "Provisional synthesis — sparse retained primary authority (2 sources). Verify claims against official jurisdiction-specific sources before relying on this digest.",
     ],
+    [
+      "the sentence without its period",
+      "Derived from retained sources of the research run",
+    ],
+    [
+      "the sentence with a remediation note",
+      "Derived from retained sources of the research run (PR #7227 remediation).",
+    ],
+    [
+      "the sentence for a remediated run",
+      "Derived from retained sources of this run (remediated).",
+    ],
     ["an empty description", ""],
     ["white space", "  \n"],
   ])("%s is boilerplate", (_label, text) => {
@@ -151,6 +163,14 @@ describe("isBoilerplate", () => {
     [
       "one that mentions a provisional synthesis",
       "When a provisional synthesis binds.",
+    ],
+    [
+      "a provisional synthesis of its own topic (91 digests)",
+      "Provisional synthesis of how the doctrine of admissions operates in evidence law, based on a sparse secondary-source corpus.",
+    ],
+    [
+      "a provisional synthesis for a stated use",
+      "Provisional synthesis for use when deciding whether a remedial or evidentiary issue is governed by state law.",
     ],
   ])("%s is not", (_label, text) => {
     expect(isBoilerplate(text)).toBe(false);
