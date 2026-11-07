@@ -27,6 +27,7 @@
  * folder roots (P1-014E wants an editorial decision), and the scheme IRI is
  * still the legacy route base (P1-014A).
  */
+import { SITE } from "../config";
 import { conceptIriFor, legacyIriFor } from "./concept-ids";
 import type { Corpus, TreeNode } from "./corpus";
 import {
@@ -361,7 +362,8 @@ export function articleJsonLd(
       author: ORGANIZATION,
       description: opts.description,
       headline: node.label,
-      image: `${SITE_BASE}default-og.jpg`,
+      // The page's og:image (Layout.astro); seo.test.ts measures it.
+      image: `${SITE_BASE}${SITE.ogImage}`,
       inLanguage: SCHEME_LANGUAGE,
       isAccessibleForFree: true,
       isPartOf: {
