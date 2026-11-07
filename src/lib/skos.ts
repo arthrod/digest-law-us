@@ -27,6 +27,7 @@
  * folder roots (P1-014E wants an editorial decision), and the scheme IRI is
  * still the legacy route base (P1-014A).
  */
+import { SITE } from "../config";
 import { conceptIriFor, legacyIriFor } from "./concept-ids";
 import type { Corpus, TreeNode } from "./corpus";
 import {
@@ -40,6 +41,15 @@ import {
   W3ID_BASE,
 } from "./iri";
 import { humanize } from "./labels";
+import {
+  CONTENT_LICENSE,
+  ORGANIZATION,
+  SCHEMA_ORG,
+  scriptJson,
+  SITE_NAME,
+  WEBSITE_ID,
+} from "./schema-org";
+import { isoTime } from "./seo";
 
 const CONTEXT = {
   dct: "http://purl.org/dc/terms/",
@@ -331,31 +341,48 @@ export function conceptJsonLd(corpus: Corpus, node: TreeNode): string {
   return JSON.stringify({ "@context": CONTEXT, ...conceptFor(corpus, node) });
 }
 
-/** schema.org Article for a digest page (separate script, plain context). */
+/**
+ * schema.org Article for a digest page (separate script, plain context).
+ * Dates follow the page's article:* tags (seo.ts isoTime): a day stays a
+ * day, a date-time becomes UTC, and a date that does not exist is left out.
+ */
 export function articleJsonLd(
   node: TreeNode,
-  opts: { description: string; dateModified?: string; sourceUrls: string[] }
+  opts: {
+    dateModified?: string;
+    datePublished?: string;
+    description: string;
+    sourceUrls: string[];
+  }
 ): string {
   const article: Record<string, unknown> = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    about: { "@id": conceptIri(node.slugPath) },
-    author: { "@type": "Organization", name: "American Legal Digest" },
-    description: opts.description,
-    headline: node.label,
-    isAccessibleForFree: true,
-    isPartOf: {
-      "@type": "WebSite",
-      name: "American Legal Digest",
-      url: SITE_BASE,
+      "@context": SCHEMA_ORG,
+      "@type": "Article",
+      about: { "@id": conceptIri(node.slugPath) },
+      author: ORGANIZATION,
+      description: opts.description,
+      headline: node.label,
+      // The page's og:image (Layout.astro); seo.test.ts measures it.
+      image: `${SITE_BASE}${SITE.ogImage}`,
+      inLanguage: SCHEME_LANGUAGE,
+      isAccessibleForFree: true,
+      isPartOf: {
+        "@id": WEBSITE_ID,
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: SITE_BASE,
+      },
+      license: CONTENT_LICENSE,
+      mainEntityOfPage: pageUrl(node.slugPath),
+      publisher: ORGANIZATION,
     },
-    mainEntityOfPage: pageUrl(node.slugPath),
-  };
-  if (opts.dateModified) {
-    const iso = String(opts.dateModified).slice(0, 10);
-    if (/^\d{4}-\d{2}-\d{2}$/u.test(iso)) {
-      article.dateModified = iso;
-    }
+    modified = isoTime(opts.dateModified),
+    published = isoTime(opts.datePublished);
+  if (published) {
+    article.datePublished = published;
+  }
+  if (modified) {
+    article.dateModified = modified;
   }
   if (opts.sourceUrls.length) {
     article.hasPart = opts.sourceUrls.map((url) => ({
@@ -363,7 +390,7 @@ export function articleJsonLd(
       itemLocation: url,
     }));
   }
-  return JSON.stringify(article);
+  return scriptJson(article);
 }
 
 /** schema.org ArchiveComponent for a retained-source page. */

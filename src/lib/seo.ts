@@ -30,7 +30,7 @@ export function ogImageMeta(ogImage: string): typeof OG_IMAGE | null {
 }
 
 /** A day stays a day; a date-time is normalized to UTC ISO 8601. */
-function isoTime(text: string | undefined): string | null {
+export function isoTime(text: string | undefined): string | null {
   const date = dateOf(text);
   if (!(date && text)) {
     return null;
