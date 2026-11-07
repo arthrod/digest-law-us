@@ -263,7 +263,7 @@ export function feedOptions(entries: FeedEntry[]): RSSOptions {
   }
   return {
     customData: channel.join(""),
-    description: `The ${FEED_SIZE} most recently revised digests in the American Legal Digest, a public reference of American law with retained primary sources.`,
+    description: `The ${entries.length} most recently revised digests in the American Legal Digest, a public reference of American law with retained primary sources.`,
     items: entries.map(feedItem),
     site: SITE_BASE,
     title: "American Legal Digest — recently revised",
