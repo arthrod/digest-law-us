@@ -435,6 +435,19 @@ describe("a page served as HTML still revalidates", () => {
     expect(response.headers.get("etag")).toBe(ETAG);
   });
 
+  test("the 304 keeps the page's other Vary dimensions", async () => {
+    const { render } = renderer(() =>
+        htmlResponse(PAGE_HTML, { vary: "Accept-Encoding" })
+      ),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": ETAG }),
+        {},
+        render
+      );
+    expect(response.status).toBe(304);
+    expect(response.headers.get("vary")).toBe("Accept-Encoding, Accept");
+  });
+
   test("another ETag still gets the full HTML", async () => {
     const { render } = renderer(),
       response = await negotiateMarkdown(

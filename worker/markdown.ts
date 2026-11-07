@@ -126,22 +126,27 @@ function isNegotiable(response: Response): boolean {
   return type.includes("text/html") || type.includes("text/markdown");
 }
 
+/** A Vary value that also names Accept, keeping what it already names. */
+function withAccept(vary: string | null): string {
+  if (!vary) {
+    return "Accept";
+  }
+  return vary
+    .split(",")
+    .some((value) => ["*", "accept"].includes(value.trim().toLowerCase()))
+    ? vary
+    : `${vary}, Accept`;
+}
+
 /** `Vary: Accept` on every page that has a markdown twin. */
 export function varyOnAccept(response: Response): Response {
   const vary = response.headers.get("vary");
-  if (!isNegotiable(response)) {
-    return response;
-  }
-  if (
-    vary
-      ?.split(",")
-      .some((value) => ["*", "accept"].includes(value.trim().toLowerCase()))
-  ) {
+  if (!isNegotiable(response) || withAccept(vary) === vary) {
     return response;
   }
   // oxlint-disable-next-line eslint/one-var -- headers are copied only when Vary actually changes
   const headers = new Headers(response.headers);
-  headers.set("vary", vary ? `${vary}, Accept` : "Accept");
+  headers.set("vary", withAccept(vary));
   return new Response(response.body, {
     headers,
     status: response.status,
@@ -213,9 +218,13 @@ function isFresh(request: Request, etag: string): boolean {
   );
 }
 
-/** A 304 carries what the 200 would have said about caching (RFC 9110 §15.4.5). */
-function notModified(etag: string, page: Response): Response {
-  const headers = new Headers({ etag, vary: "Accept" }),
+/**
+ * A 304 carries what the 200 would have said about caching, Vary included
+ * (RFC 9110 §15.4.5): the markdown says `Accept`, the HTML says its own
+ * Vary plus `Accept`.
+ */
+function notModified(etag: string, page: Response, vary = "Accept"): Response {
+  const headers = new Headers({ etag, vary }),
     pagePolicy = page.headers.get("cache-control");
   if (pagePolicy) {
     headers.set("cache-control", pagePolicy);
@@ -329,7 +338,7 @@ async function asPage(request: Request, page: Response): Promise<Response> {
   const etag = page.headers.get("etag");
   if (page.status === 200 && etag && isFresh(request, etag)) {
     await page.body?.cancel();
-    return notModified(etag, page);
+    return notModified(etag, page, withAccept(page.headers.get("vary")));
   }
   return await forMethod(request, varyOnAccept(page));
 }
