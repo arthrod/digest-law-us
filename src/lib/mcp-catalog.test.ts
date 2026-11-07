@@ -1,11 +1,13 @@
 import { describe, expect, test } from "bun:test";
 
 import {
+  currentLabels,
   findConcept,
   listConcepts,
   searchConcepts,
   toCatalog,
   withBuiltPages,
+  withCurrentLabels,
 } from "./mcp-catalog";
 import type { CatalogSource } from "./mcp-catalog";
 
@@ -150,5 +152,72 @@ describe("withBuiltPages", () => {
     expect(dropped).toEqual([]);
     expect(built.concepts).toHaveLength(3);
     expect(merged?.successor).toBe("evidence-law/proof-of-writings");
+  });
+});
+
+describe("current labels", () => {
+  const A = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    B = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    IRI = "https://w3id.org/digest-law/concept/",
+    skos = {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/digest-law/us/",
+          "@type": "skos:ConceptScheme",
+        },
+        {
+          "@id": `${IRI}${A}`,
+          "skos:prefLabel": {
+            "@language": "en",
+            "@value": "Manure as Appurtenant to Land",
+          },
+        },
+        { "@id": `${IRI}${B}`, "skos:prefLabel": "Interbank Collection" },
+        {
+          "@id": `${IRI}dddddddddddddddddddddddddddddddd`,
+          "skos:prefLabel": [{ "@language": "en", "@value": "First" }],
+        },
+        { "@id": `${IRI}eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee` },
+      ],
+    };
+
+  test("reads each concept's prefLabel, in every JSON-LD shape", () => {
+    expect([...currentLabels(skos)].toSorted()).toEqual([
+      [A, "Manure as Appurtenant to Land"],
+      [B, "Interbank Collection"],
+      ["dddddddddddddddddddddddddddddddd", "First"],
+    ]);
+  });
+
+  test.each([null, 42, "x", {}, { "@graph": "nope" }])(
+    "a dump without a graph yields no labels (%p)",
+    (value) => {
+      expect(currentLabels(value).size).toBe(0);
+    }
+  );
+
+  test("replaces mint-time labels and counts the changes", () => {
+    const { catalog: labelled, refreshed } = withCurrentLabels(
+      {
+        concepts: [
+          {
+            id: A,
+            label: "MANURE AS APPURTENANT TO LAND",
+            retired: false,
+            route: "a",
+          },
+          { id: B, label: "Interbank Collection", retired: false, route: "b" },
+          { id: GONE, label: "Withdrawn", retired: true, route: "c" },
+        ],
+        version: 1,
+      },
+      currentLabels(skos)
+    );
+    expect(labelled.concepts.map((concept) => concept.label)).toEqual([
+      "Manure as Appurtenant to Land",
+      "Interbank Collection",
+      "Withdrawn",
+    ]);
+    expect(refreshed).toBe(1);
   });
 });

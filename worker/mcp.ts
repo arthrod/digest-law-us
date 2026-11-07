@@ -94,6 +94,10 @@ const CONCEPT_IRI = "https://w3id.org/digest-law/concept/",
     },
   ];
 
+/** Most messages one POST may carry; one POST spends one rate-limit token. */
+// oxlint-disable-next-line eslint/one-var -- exported, so it cannot join the private list above
+export const MAX_BATCH = 10;
+
 export interface RateLimit {
   limit: (options: { key: string }) => Promise<{ success: boolean }>;
 }
@@ -238,13 +242,19 @@ function callTool(catalog: Catalog, name: string, args: Json): Json | null {
   throw new Error(`unknown tool: ${name}`);
 }
 
-function handleMessage(message: Json, catalog: Catalog | null): Json | null {
+function handleMessage(message: unknown, catalog: Catalog | null): Json | null {
+  // request.json() accepts any JSON: null, 5, "ping" and {"method": 5} all
+  // parse. They must come back as Invalid Request, not as a thrown TypeError.
+  if (!message || typeof message !== "object" || Array.isArray(message)) {
+    return err(null, -32_600, "Invalid Request");
+  }
+  // oxlint-disable-next-line eslint/one-var -- destructured only once message is known to be an object
   const { id, method, params } = message as {
     id?: unknown;
-    method?: string;
+    method?: unknown;
     params?: Json;
   };
-  if (!method) {
+  if (typeof method !== "string" || !method) {
     return err(id, -32_600, "Invalid Request");
   }
   if (method === "initialize") {
@@ -296,6 +306,10 @@ function handleMessage(message: Json, catalog: Catalog | null): Json | null {
     }
   }
   return err(id, -32_601, `Method not found: ${method}`);
+}
+
+function isInvalidRequest(reply: Json): boolean {
+  return (reply.error as { code?: number } | undefined)?.code === -32_600;
 }
 
 function json(
@@ -378,20 +392,31 @@ export async function handleMcp(
   }
 
   // oxlint-disable-next-line eslint/one-var -- catalog loads only after the rate limit and the parse
+  // One POST spends one rate-limit token, so a batch is capped: without a
+  // cap, one request could run thousands of catalog scans.
+  if (
+    Array.isArray(message) &&
+    (message.length === 0 || message.length > MAX_BATCH)
+  ) {
+    return json(
+      err(null, -32_600, `A batch holds 1 to ${MAX_BATCH} messages.`),
+      400
+    );
+  }
+  // oxlint-disable-next-line eslint/one-var -- catalog loads only after the batch check
   const catalog = await loadCatalog(request, env);
   if (Array.isArray(message)) {
-    const settled = await Promise.all(
-        message.map((item) => handleMessage(item as Json, catalog))
-      ),
-      // oxlint-disable-next-line eslint/sort-vars -- replies is the filter of settled
-      replies = settled.filter((reply): reply is Json => reply !== null);
+    const replies = message
+      .map((item) => handleMessage(item, catalog))
+      .filter((reply): reply is Json => reply !== null);
     return replies.length
       ? json(replies)
       : new Response(null, { headers: CORS, status: 202 });
   }
   // oxlint-disable-next-line eslint/one-var -- reply is only needed on the single-message path
-  const reply = handleMessage(message as Json, catalog);
-  return reply === null
-    ? new Response(null, { headers: CORS, status: 202 })
-    : json(reply);
+  const reply = handleMessage(message, catalog);
+  if (reply === null) {
+    return new Response(null, { headers: CORS, status: 202 });
+  }
+  return json(reply, isInvalidRequest(reply) ? 400 : 200);
 }

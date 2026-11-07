@@ -80,6 +80,39 @@ describe("write-mcp-catalog", () => {
     );
   });
 
+  test("takes labels from the build's SKOS dump, not the registry", async () => {
+    const dist = await fakeDist([liveRoute]);
+    await writeFile(
+      path.join(dist, "skos.jsonld"),
+      JSON.stringify({
+        "@graph": [
+          {
+            "@id": `https://w3id.org/digest-law/concept/${liveId}`,
+            "skos:prefLabel": { "@language": "en", "@value": "Current Label" },
+          },
+        ],
+      })
+    );
+    // oxlint-disable-next-line eslint/one-var -- runs after the dump is written
+    const result = await run(dist),
+      // oxlint-disable-next-line eslint/sort-vars -- catalog exists only after run (TDZ)
+      catalog = JSON.parse(
+        await readFile(path.join(dist, "mcp-catalog.json"), "utf8")
+      ) as Catalog;
+    expect(result.exitCode).toBe(0);
+    expect(
+      catalog.concepts.find((concept) => concept.id === liveId)?.label
+    ).toBe("Current Label");
+  });
+
+  test("without a SKOS dump it keeps registry labels and says so", async () => {
+    const dist = await fakeDist([liveRoute]),
+      // oxlint-disable-next-line eslint/sort-vars -- result depends on dist (TDZ)
+      result = await run(dist);
+    expect(result.exitCode).toBe(0);
+    expect(result.stderr).toContain("skos.jsonld");
+  });
+
   test("refuses a directory that is not a build", async () => {
     const result = await run(
       path.join(tmpdir(), "no-such-dist-for-mcp-catalog")

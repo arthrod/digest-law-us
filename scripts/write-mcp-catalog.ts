@@ -13,13 +13,19 @@
  * the build, or a digest the frontmatter check left out, has no page to send
  * an agent to. Tombstones are kept; `/id/{id}` answers for them either way.
  * An empty catalog is refused rather than written, because the Worker would
- * serve it as "no matches" for every query.
+ * serve it as "no matches" for every query. Labels are taken from the build's
+ * `skos.jsonld` where it has one: the registry's label is the mint-time one.
  */
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { allConcepts } from "../src/lib/concept-ids";
-import { toCatalog, withBuiltPages } from "../src/lib/mcp-catalog";
+import {
+  currentLabels,
+  toCatalog,
+  withBuiltPages,
+  withCurrentLabels,
+} from "../src/lib/mcp-catalog";
 
 const dist = path.resolve(process.argv[2] ?? "dist"),
   pageOf = (route: string) => Bun.file(path.join(dist, route, "index.html"));
@@ -56,8 +62,30 @@ if (live === 0) {
   process.exit(1);
 }
 
-await writeFile(path.join(dist, "mcp-catalog.json"), JSON.stringify(catalog));
+// Labels come from the build's SKOS dump: the registry keeps the label at
+// mint time, which goes stale on every rename or re-casing.
+// oxlint-disable-next-line eslint/one-var -- read only once the catalog is known to be non-empty
+const skos = Bun.file(path.join(dist, "skos.jsonld")),
+  // oxlint-disable-next-line eslint/sort-vars -- hasSkos depends on skos (TDZ)
+  hasSkos = await skos.exists();
+if (!hasSkos) {
+  console.warn(
+    `No skos.jsonld in ${dist}: keeping the registry's mint-time labels.`
+  );
+}
+// oxlint-disable-next-line eslint/one-var -- labels need the existence check above
+const labels = hasSkos
+    ? currentLabels(await skos.json())
+    : new Map<string, string>(),
+  // oxlint-disable-next-line eslint/sort-vars -- labelled depends on labels (TDZ)
+  labelled = withCurrentLabels(catalog, labels);
+
+await writeFile(
+  path.join(dist, "mcp-catalog.json"),
+  JSON.stringify(labelled.catalog)
+);
 console.log(
   `mcp-catalog.json: ${live} live, ${catalog.concepts.length - live} retired, ` +
-    `${dropped.length} left out (no page in this build)`
+    `${dropped.length} left out (no page in this build), ` +
+    `${labelled.refreshed} labels refreshed from skos.jsonld`
 );

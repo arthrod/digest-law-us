@@ -45,8 +45,11 @@ None of the three sites passes `dnsAid`, OAuth, Auth.md, A2A or ARD.
 ## Production finding: `/mcp` is deployed but cannot answer
 
 The uncommitted MCP work (worker/mcp.ts) was deployed to the root Worker on
-2026-11-06 without a build. The Worker reads `/mcp-catalog.json`, which only
-`astro build` produces, so it does not exist in production:
+2026-11-06 without a build. The Worker reads `/mcp-catalog.json`, which was
+then an Astro endpoint, so it existed only after a full build and is not in
+production. PR 1 moves it to `scripts/write-mcp-catalog.ts`, which `pnpm run
+build` runs after `astro build` and which also runs on its own against an
+existing `dist/`:
 
 ```
 POST https://digest.law/mcp  tools/call search_concepts

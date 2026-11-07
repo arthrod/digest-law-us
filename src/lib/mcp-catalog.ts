@@ -41,7 +41,9 @@ export interface ListQuery {
   page: number;
 }
 
-const AREA_SPLIT = "/";
+const AREA_SPLIT = "/",
+  /** A concept node's `@id` in the SKOS dump; the id is the last segment. */
+  CONCEPT_IRI = /\/concept\/(?<id>[0-9a-f]{32})$/u;
 
 function currentRoute(keys: readonly string[]): string {
   return keys.at(-1) ?? "";
@@ -190,4 +192,56 @@ export function withBuiltPages(
     concepts.push(concept);
   }
   return { catalog: { concepts, version: catalog.version }, dropped };
+}
+
+/** A JSON-LD literal in any of its shapes: "x", {"@value": "x"}, or a list of those. */
+function labelValue(value: unknown): string | undefined {
+  if (typeof value === "string") {
+    return value;
+  }
+  if (Array.isArray(value)) {
+    return labelValue(value[0]);
+  }
+  // oxlint-disable-next-line eslint/one-var -- only objects reach this point
+  const literal = (value as { "@value"?: unknown } | null)?.["@value"];
+  return typeof literal === "string" ? literal : undefined;
+}
+
+/**
+ * Concept id → current preferred label, read from the build's SKOS dump
+ * (`dist/skos.jsonld`). The registry's `label` is the label at mint time —
+ * a diagnostic aid that goes stale on every rename or re-casing — so the
+ * catalog takes its labels from the same build as the pages it points at.
+ */
+export function currentLabels(skos: unknown): Map<string, string> {
+  const graph = (skos as { "@graph"?: unknown } | null)?.["@graph"],
+    labels = new Map<string, string>();
+  if (!Array.isArray(graph)) {
+    return labels;
+  }
+  for (const node of graph as Record<string, unknown>[]) {
+    const id = CONCEPT_IRI.exec(String(node?.["@id"] ?? ""))?.groups?.id,
+      label = labelValue(node?.["skos:prefLabel"]);
+    if (id && label) {
+      labels.set(id, label);
+    }
+  }
+  return labels;
+}
+
+/** The catalog with each concept's label replaced by its current one, where known. */
+export function withCurrentLabels(
+  catalog: Catalog,
+  labels: ReadonlyMap<string, string>
+): { catalog: Catalog; refreshed: number } {
+  let refreshed = 0;
+  const concepts = catalog.concepts.map((concept) => {
+    const label = labels.get(concept.id);
+    if (!label || label === concept.label) {
+      return concept;
+    }
+    refreshed += 1;
+    return { ...concept, label };
+  });
+  return { catalog: { concepts, version: catalog.version }, refreshed };
 }

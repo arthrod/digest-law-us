@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, test } from "bun:test";
 
 import type { Catalog } from "../src/lib/mcp-catalog";
 import worker from "./index";
-import { handleMcp, resetMcpCatalogCache } from "./mcp";
+import { handleMcp, MAX_BATCH, resetMcpCatalogCache } from "./mcp";
 import type { McpEnv, RateLimit } from "./mcp";
 
 const CATALOG: Catalog = {
@@ -172,6 +172,64 @@ describe("MCP JSON-RPC", () => {
       envWith(CATALOG)
     );
     expect(response.status).toBe(400);
+  });
+});
+
+describe("malformed messages and batches", () => {
+  const ping = { id: 7, jsonrpc: "2.0", method: "ping" };
+
+  test.each([
+    ["null", null],
+    ["a number", 5],
+    ["a string", "ping"],
+    ["a non-string method", { id: 1, jsonrpc: "2.0", method: 5 }],
+  ])("%s is an Invalid Request, not a crash", async (_label, body) => {
+    const response = await handleMcp(post(body), envWith(CATALOG)),
+      // oxlint-disable-next-line eslint/sort-vars -- reply is read from response
+      reply = (await response.json()) as { error: { code: number } };
+    expect(response.status).toBe(400);
+    expect(reply.error.code).toBe(-32_600);
+    expect(response.headers.get("access-control-allow-origin")).toBe("*");
+  });
+
+  test("one bad item in a batch does not sink the others", async () => {
+    const response = await handleMcp(post([null, ping]), envWith(CATALOG)),
+      // oxlint-disable-next-line eslint/sort-vars -- replies are read from response
+      replies = (await response.json()) as {
+        error?: { code: number };
+        id: unknown;
+        result?: unknown;
+      }[];
+    // oxlint-disable-next-line eslint/one-var -- destructures replies, read above
+    const [bad, good] = replies;
+    expect(response.status).toBe(200);
+    expect(bad?.error?.code).toBe(-32_600);
+    expect(good?.id).toBe(7);
+  });
+
+  test.each([
+    ["empty", 0],
+    ["over the cap", MAX_BATCH + 1],
+  ])("a batch that is %s is refused whole", async (_label, size) => {
+    const response = await handleMcp(
+        post(Array.from({ length: size }, () => ping)),
+        envWith(CATALOG)
+      ),
+      // oxlint-disable-next-line eslint/sort-vars -- reply is read from response
+      reply = (await response.json()) as { error: { code: number } };
+    expect(response.status).toBe(400);
+    expect(reply.error.code).toBe(-32_600);
+  });
+
+  test("a batch at the cap is answered", async () => {
+    const response = await handleMcp(
+        post(Array.from({ length: MAX_BATCH }, () => ping)),
+        envWith(CATALOG)
+      ),
+      // oxlint-disable-next-line eslint/sort-vars -- replies are read from response
+      replies = (await response.json()) as unknown[];
+    expect(response.status).toBe(200);
+    expect(replies).toHaveLength(MAX_BATCH);
   });
 });
 
