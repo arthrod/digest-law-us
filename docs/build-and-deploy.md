@@ -146,6 +146,27 @@ Preflight refuses a deploy when:
   fetches both maps whole, so `/id/*` or `/mcp` would stop answering. Today
   they are 4.1 MB and 6.4 MB.
 
+## DNS-AID records
+
+`pnpm run dns:aid` (`scripts/setup-dns-aid.ts`) publishes the DNS-AID
+entry points ([draft-mozleywilliams-dnsop-dnsaid-02](https://datatracker.ietf.org/doc/draft-mozleywilliams-dnsop-dnsaid/))
+as SVCB records in the digest.law zone. It needs no build and no deploy:
+
+```sh
+export CF_API_TOKEN=…            # Zone → DNS → Edit on digest.law ("Edit zone DNS")
+pnpm run dns:aid                 # dry run: prints create/update/keep/delete
+pnpm run dns:aid -- --apply      # makes the changes
+dig SVCB _index._agents.digest.law +dnssec @1.1.1.1
+```
+
+`_index._agents.digest.law` points agents at the site (`alpn="h2"`), and
+`_mcp._agents.digest.law` at the MCP endpoint (`alpn="mcp,h2"`), both
+ServiceMode on 443. Re-running is safe: matching records are kept, others
+updated, extra copies deleted. wrangler's OAuth token cannot edit DNS. The
+script says when DNSSEC is off; the draft makes it optional, but it is what
+lets an agent trust the answer, and it is enabled in the dashboard (DNS →
+Settings → DNSSEC), not by the script.
+
 ## Monitoring and memory
 
 - `build-deploy-tmux.sh` runs the build inside a systemd scope with
