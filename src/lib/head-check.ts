@@ -6,6 +6,8 @@
  * all the tag reader below handles.
  */
 
+import { BOILERPLATE } from "./describe";
+
 /** The home page, a digest page (it carries an Article), or any other page. */
 export type PageKind = "digest" | "home" | "page";
 
@@ -17,10 +19,6 @@ export interface HeadTag {
 type Json = Record<string, unknown>;
 
 const ATTRIBUTE = /(?<key>[\w:.-]+)(?:="(?<value>[^"]*)")?/gu,
-  BOILERPLATE = [
-    "Derived from retained sources of the research run.",
-    "Provisional synthesis",
-  ],
   ENTITIES: Record<string, string> = {
     "&#39;": "'",
     "&amp;": "&",
@@ -126,12 +124,16 @@ function everyPage(tags: HeadTag[], blocks: unknown[]): (string | null)[] {
     ),
     webmcp = tags.some(
       (tag) => tag.name === "script" && tag.attrs.src === "/webmcp.js"
-    );
+    ),
+    [description = ""] = metaValues(tags, "description");
   return [
     canonicals.length === 1
       ? null
       : `canonical: expected 1, found ${canonicals.length}`,
     expectMeta(tags, "description"),
+    // Shared and embedded, the page says the same thing about itself.
+    expectMeta(tags, "og:description", description),
+    expectMeta(tags, "twitter:description", description),
     expectMeta(tags, "og:locale", "en_US"),
     expectMeta(tags, "og:image:width", "1200"),
     expectMeta(tags, "og:image:height", "630"),
@@ -175,6 +177,11 @@ function digestProblems(tags: HeadTag[], blocks: unknown[]): string[] {
         : null,
     ].filter((problem): problem is string => problem !== null);
   if (article) {
+    if (article.description !== description) {
+      problems.push(
+        `article: description "${String(article.description)}" is not the page's`
+      );
+    }
     for (const field of ["license", "publisher", "inLanguage"]) {
       if (!article[field]) {
         problems.push(`article: no ${field}`);
