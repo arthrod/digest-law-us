@@ -208,6 +208,16 @@ describe("ledeOf", () => {
       '<p class="lead">Attributed.</p>',
       "Attributed.",
     ],
+    [
+      "hexadecimal references decode",
+      "<p>&#x201C;Quoted&#x201D; &#xa7; 1</p>",
+      "\u201CQuoted\u201D \u00A7 1",
+    ],
+    [
+      "a reference past U+10FFFF is left as written, not thrown on",
+      "<p>Odd &#99999999; and &#x110000; here.</p>",
+      "Odd &#99999999; and &#x110000; here.",
+    ],
     ["no paragraph gives nothing", "<h1>Only a title</h1>", ""],
     ["no html gives nothing", undefined, ""],
   ])("%s", (_label, html, expected) => {
