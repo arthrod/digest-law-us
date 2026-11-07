@@ -95,7 +95,8 @@ markdown and get the HTML, now with `Vary: Accept`. Pages over 2 MiB, and
 clients past 60 conversions a minute (`MARKDOWN_RATE_LIMITER`), get the HTML
 too.
 
-In a browser that supports WebMCP (`navigator.modelContext`), every page
+In a browser that supports WebMCP (`document.modelContext`, or the older
+`navigator.modelContext`), every page
 registers the same three read-only tools with the browser's agent; each is a
 call to `POST /mcp` (`public/webmcp.js`, loaded by `Layout.astro`). Other
 browsers skip it and send nothing.
