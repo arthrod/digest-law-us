@@ -319,21 +319,44 @@ async function convert(
   }
 }
 
+/**
+ * The page itself, when it is what the client gets. The page was rendered
+ * without the client's conditions (conversion needs its body), so its own
+ * ETag is checked here: a client holding this HTML gets a 304, not the page
+ * again. The markdown validator is separate; see `isFresh` above.
+ */
+async function asPage(request: Request, page: Response): Promise<Response> {
+  const etag = page.headers.get("etag");
+  if (page.status === 200 && etag && isFresh(request, etag)) {
+    await page.body?.cancel();
+    return notModified(etag, page);
+  }
+  return await forMethod(request, varyOnAccept(page));
+}
+
+/**
+ * Only HTML can be converted, so a path naming another kind of file is
+ * rendered exactly as asked: its own conditions and method reach the assets
+ * (a HEAD or 304 for the 29 MiB skos.jsonld, not the whole file).
+ */
+function namesOtherFile(request: Request): boolean {
+  const name = new URL(request.url).pathname.split("/").pop() ?? "";
+  return /\.[^.]+$/u.test(name) && !/\.html?$/iu.test(name);
+}
+
 /** The page as rendered, from the bytes already read off its body. */
 function asHtml(
   request: Request,
   page: Response,
   html: ArrayBuffer
 ): Promise<Response> {
-  return forMethod(
+  return asPage(
     request,
-    varyOnAccept(
-      new Response(html, {
-        headers: page.headers,
-        status: page.status,
-        statusText: page.statusText,
-      })
-    )
+    new Response(html, {
+      headers: page.headers,
+      status: page.status,
+      statusText: page.statusText,
+    })
   );
 }
 
@@ -365,6 +388,10 @@ export async function negotiateMarkdown(
   render: (request: Request) => Promise<Response>,
   options: MarkdownOptions = {}
 ): Promise<Response> {
+  if (namesOtherFile(request)) {
+    return varyOnAccept(await render(request));
+  }
+  // oxlint-disable-next-line eslint/one-var -- rendered only for a path that may be a page
   const page = await render(forPage(request)),
     { AI: ai } = env;
   if (
@@ -372,7 +399,7 @@ export async function negotiateMarkdown(
     page.status !== 200 ||
     !contentTypeOf(page).includes("text/html")
   ) {
-    return forMethod(request, varyOnAccept(page));
+    return await asPage(request, page);
   }
 
   // oxlint-disable-next-line eslint/one-var -- the key needs a renderable HTML page first
@@ -396,7 +423,7 @@ export async function negotiateMarkdown(
     Number(page.headers.get("content-length")) > MAX_HTML_BYTES ||
     !(await allowed(request, env))
   ) {
-    return forMethod(request, varyOnAccept(page));
+    return await asPage(request, page);
   }
 
   // oxlint-disable-next-line eslint/one-var -- the body is read only once the page qualifies

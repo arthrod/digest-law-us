@@ -145,6 +145,16 @@ describe("headProblems: every page", () => {
     ["no feed link", without("application/rss+xml"), "feed link:"],
     ["no WebMCP script", without("webmcp.js"), "webmcp:"],
     [
+      "a canonical without an href",
+      replacing('rel="canonical"', '<link rel="canonical">'),
+      "canonical:",
+    ],
+    [
+      "a canonical with an empty href",
+      replacing('rel="canonical"', '<link href="" rel="canonical">'),
+      "canonical:",
+    ],
+    [
       "two canonicals",
       (head: string[]) => [
         ...head,
@@ -287,6 +297,19 @@ describe("duplicateDescriptions", () => {
         { description: "Shared.", path: "/c/" },
       ])
     ).toEqual(['"Shared." on 2 pages: /a/, /c/']);
+  });
+
+  test("stays linear when many pages share one description", () => {
+    const pages = Array.from({ length: 60_000 }, (_, index) => ({
+        description: "Shared.",
+        path: `/p${index}/`,
+      })),
+      started = performance.now(),
+      [finding = ""] = duplicateDescriptions(pages);
+    expect(finding.startsWith('"Shared." on 60000 pages: /p0/, /p1/')).toBe(
+      true
+    );
+    expect(performance.now() - started).toBeLessThan(1000);
   });
 
   test("no duplicates, no findings", () => {
