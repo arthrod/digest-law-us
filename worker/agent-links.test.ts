@@ -65,6 +65,26 @@ describe("withAgentLinks", () => {
     expect(link).toContain(String(API_CATALOG));
   });
 
+  test("a relation named inside an escaped quote does not count", () => {
+    // RFC 8288 quoted-string allows quoted-pair: `\"` does not close it, so
+    // `rel=sitemap` here is part of the title.
+    const link = withAgentLinks(
+      html({
+        link: String.raw`</other>; title="example \"; rel=sitemap other"; rel=preload`,
+      })
+    ).headers.get("link");
+    expect(link).toContain('</sitemap-index.xml>; rel="sitemap"');
+  });
+
+  test("an escaped backslash still closes the quote", () => {
+    const headers = String(
+      withAgentLinks(
+        html({ link: String.raw`</a>; title="x\\"; rel=api-catalog` })
+      ).headers.get("link")
+    );
+    expect(headers.split("api-catalog>")).toHaveLength(1);
+  });
+
   test("non-HTML responses are left alone", () => {
     const json = Response.json({ ok: true });
     expect(withAgentLinks(json).headers.get("link")).toBeNull();

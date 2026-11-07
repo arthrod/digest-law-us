@@ -342,14 +342,21 @@ function json(
   });
 }
 
-/** Split on `separator` where it is outside `<…>` and outside quotes. */
+/**
+ * Split on `separator` where it is outside `<…>` and outside quotes. Inside a
+ * quoted-string a backslash escapes the next character (RFC 9110 quoted-pair),
+ * so `\"` does not close the quote.
+ */
 function splitOutside(text: string, separator: string): string[] {
   const parts: string[] = [];
   let inUri = false,
     quoted = false,
     start = 0;
-  for (const [index, char] of [...text].entries()) {
-    if (char === '"' && !inUri) {
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (quoted && char === "\\") {
+      index += 1;
+    } else if (char === '"' && !inUri) {
       quoted = !quoted;
     } else if (!quoted && char === "<") {
       inUri = true;
