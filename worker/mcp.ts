@@ -342,6 +342,52 @@ function json(
   });
 }
 
+/** Split on `separator` where it is outside `<…>` and outside quotes. */
+function splitOutside(text: string, separator: string): string[] {
+  const parts: string[] = [];
+  let inUri = false,
+    quoted = false,
+    start = 0;
+  for (const [index, char] of [...text].entries()) {
+    if (char === '"' && !inUri) {
+      quoted = !quoted;
+    } else if (!quoted && char === "<") {
+      inUri = true;
+    } else if (!quoted && char === ">") {
+      inUri = false;
+    } else if (!(quoted || inUri) && char === separator) {
+      parts.push(text.slice(start, index));
+      start = index + 1;
+    }
+  }
+  parts.push(text.slice(start));
+  return parts;
+}
+
+/**
+ * Every relation type named by a `rel` parameter in a Link header (RFC 8288),
+ * lowercased: quoted or bare, one or several per link. Text inside a target
+ * URI never counts.
+ */
+export function linkRelations(header: string): Set<string> {
+  const relations = new Set<string>();
+  for (const link of splitOutside(header, ",")) {
+    for (const param of splitOutside(link.slice(link.indexOf(">") + 1), ";")) {
+      const [key = "", ...rest] = param.split("=");
+      if (key.trim().toLowerCase() === "rel") {
+        for (const token of rest
+          .join("=")
+          .replaceAll('"', "")
+          .trim()
+          .split(/\s+/u)) {
+          relations.add(token.toLowerCase());
+        }
+      }
+    }
+  }
+  return relations;
+}
+
 /**
  * Discovery relations on HTML documents, so an agent that fetched any page
  * can find the API catalog, the server card and the sitemap. A relation the
@@ -355,8 +401,10 @@ export function withAgentLinks(response: Response): Response {
   }
   // oxlint-disable-next-line eslint/one-var -- read only for HTML responses
   const existing = headers.get("link") ?? "";
+  // oxlint-disable-next-line eslint/one-var -- parsed from existing, read just above
+  const relations = linkRelations(existing);
   for (const { rel, value } of DISCOVERY_LINKS) {
-    if (!existing.includes(`rel="${rel}"`)) {
+    if (!relations.has(rel)) {
       headers.append("Link", value);
     }
   }

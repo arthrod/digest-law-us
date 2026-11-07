@@ -111,6 +111,7 @@ minutes, with no rebuild:
 
 ```sh
 bun scripts/write-mcp-catalog.ts            # refresh dist/mcp-catalog.json
+pnpm run skills:index                       # if a SKILL.md changed (new digest)
 cp -r public/.well-known public/_headers dist/   # whatever changed in public/
 bun scripts/deploy-shards.ts --only=root
 scripts/smoke-prod.sh                       # read-only checks against digest.law

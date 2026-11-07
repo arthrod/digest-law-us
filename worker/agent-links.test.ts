@@ -43,6 +43,28 @@ describe("withAgentLinks", () => {
     expect(link).toContain('rel="preload"');
   });
 
+  test.each([
+    ["unquoted", "</a>; rel=api-catalog"],
+    ["one of several relations", '</a>; rel="describedby api-catalog"'],
+    ["in another case", '</a>; REL="API-Catalog"'],
+    ["among other links", '</x>; rel="preload", </a>; rel="api-catalog"'],
+  ])(
+    "an existing api-catalog relation (%s) is not repeated",
+    (_label, link) => {
+      const headers = String(
+        withAgentLinks(html({ link })).headers.get("link")
+      );
+      expect(headers.split("api-catalog>")).toHaveLength(1);
+    }
+  );
+
+  test("a relation named inside a URL does not count", () => {
+    const link = withAgentLinks(
+      html({ link: '<https://x.test/?a=rel="api-catalog">; rel="preload"' })
+    ).headers.get("link");
+    expect(link).toContain(String(API_CATALOG));
+  });
+
   test("non-HTML responses are left alone", () => {
     const json = Response.json({ ok: true });
     expect(withAgentLinks(json).headers.get("link")).toBeNull();
@@ -51,10 +73,10 @@ describe("withAgentLinks", () => {
 
 describe("the home page", () => {
   test("reaches the Worker: wrangler routes / to it first", async () => {
-    const config = await Bun.file(
-      new URL("../wrangler.jsonc", import.meta.url)
-    ).text();
-    expect(config).toMatch(/"run_worker_first":\s*\[[^\]]*"\/"[,\]]/u);
+    const config = Bun.JSONC.parse(
+      await Bun.file(new URL("../wrangler.jsonc", import.meta.url)).text()
+    ) as { assets: { run_worker_first: string[] } };
+    expect(config.assets.run_worker_first).toContain("/");
   });
 
   test("carries the API catalog link", async () => {

@@ -5,6 +5,9 @@
 import { describe, expect, test } from "bun:test";
 import { createHash } from "node:crypto";
 
+import { skillEntry } from "./agent-skills";
+import type { SkillEntry } from "./agent-skills";
+
 const PUBLIC = new URL("../../public/", import.meta.url),
   SITE = "https://digest.law",
   SKILL_NAME = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/u,
@@ -18,13 +21,7 @@ const PUBLIC = new URL("../../public/", import.meta.url),
   // oxlint-disable-next-line eslint/sort-vars -- see above
   index = (await read(".well-known/agent-skills/index.json").json()) as {
     $schema: string;
-    skills: {
-      description: string;
-      digest: string;
-      name: string;
-      type: string;
-      url: string;
-    }[];
+    skills: SkillEntry[];
   };
 
 function hrefs(): string[] {
@@ -96,11 +93,10 @@ describe("Agent Skills index (v0.2.0)", () => {
     }
   });
 
-  test("every SKILL.md frontmatter matches its index entry", async () => {
+  test("every index entry is what its SKILL.md frontmatter says", async () => {
     for (const skill of index.skills) {
-      const text = await read(skill.url.slice(1)).text();
-      expect(text).toContain(`\nname: ${skill.name}\n`);
-      expect(text).toContain(`\ndescription: ${skill.description}\n`);
+      const bytes = await read(skill.url.slice(1)).bytes();
+      expect(skillEntry(skill.name, bytes)).toEqual(skill);
     }
   });
 });
