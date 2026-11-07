@@ -9,6 +9,7 @@ import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCorpus } from "@/lib/corpus";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/schema-org";
 import { schemeSummaryJsonLd } from "@/lib/skos";
 
 /* oxlint-disable eslint/sort-vars -- counts call fmt and read the corpus destructure; sorting would hit the TDZ */
@@ -39,6 +40,8 @@ const corpus = await getCorpus(),
 <Layout>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={schemeSummaryJsonLd(corpus)} />
+    <script type="application/ld+json" set:html={websiteJsonLd()} />
+    <script type="application/ld+json" set:html={organizationJsonLd()} />
     <link
       href="/skos.jsonld"
       rel="alternate"
