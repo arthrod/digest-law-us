@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 
 import { getRssString } from "@astrojs/rss";
 
@@ -101,6 +101,18 @@ describe("revisedAt", () => {
       "2026-09-09T09:09:09Z",
       "2026-09-09T09:09:09.000Z",
     ],
+    [
+      "microseconds and an offset, as the research run writes them",
+      undefined,
+      "2026-09-09T09:09:09.123456+02:00",
+      "2026-09-09T07:09:09.123Z",
+    ],
+    [
+      "a space for the T, as RFC 3339 allows",
+      undefined,
+      "2026-09-09 09:09:09Z",
+      "2026-09-09T09:09:09.000Z",
+    ],
   ])("%s", (_label, modified, timestamp, expected) => {
     expect(revisedAt(modified, timestamp)?.toISOString()).toBe(expected);
   });
@@ -114,8 +126,44 @@ describe("revisedAt", () => {
       "2026-02-30",
       undefined,
     ],
+    [
+      "a date-time on a day that does not exist",
+      undefined,
+      "2026-02-30T10:00:00Z",
+    ],
+    ["prose and local-format dates", "March 5, 2026", "11/04/2026"],
+    ["a year or a month alone", "2026", "2026-11"],
+    ["an hour past the day", undefined, "2026-11-04T25:00:00Z"],
+    [
+      "unfilled template placeholders",
+      "{{YYYY-MM-DD}}",
+      "{{ISO_8601_UTC_TIMESTAMP}}",
+    ],
   ])("%s give no date", (_label, modified, timestamp) => {
     expect(revisedAt(modified, timestamp)).toBeNull();
+  });
+});
+
+describe("revisedAt on a build machine outside UTC", () => {
+  // bun test runs in UTC; builds run in whatever zone the machine is in.
+  const zone = process.env.TZ;
+  beforeAll(() => {
+    process.env.TZ = "America/New_York";
+  });
+  afterAll(() => {
+    process.env.TZ = zone ?? "Etc/UTC";
+  });
+
+  test("a date-time without an offset is UTC, not the machine's time", () => {
+    expect(revisedAt(undefined, "2026-09-09T09:09:09")?.toISOString()).toBe(
+      "2026-09-09T09:09:09.000Z"
+    );
+  });
+
+  test("a day is midnight UTC", () => {
+    expect(revisedAt("2026-09-09")?.toISOString()).toBe(
+      "2026-09-09T00:00:00.000Z"
+    );
   });
 });
 
@@ -218,6 +266,36 @@ describe("ledeOf", () => {
       "<p>Odd &#99999999; and &#x110000; here.</p>",
       "Odd &#99999999; and &#x110000; here.",
     ],
+    [
+      "a reference to a character XML cannot carry stays as written",
+      "<p>A &#0; B &#x1; C &#xD800; D &#xFFFE; E</p>",
+      "A &#0; B &#x1; C &#xD800; D &#xFFFE; E",
+    ],
+    [
+      "an empty paragraph is passed over",
+      '<p></p><p> &nbsp; </p><p><img src="x.png" alt=""></p><p>The first words.</p>',
+      "The first words.",
+    ],
+    [
+      "a paragraph quoted, in a figure, aside or details is not the lede",
+      "<blockquote><p>Quoted.</p></blockquote><figure><p>Figure.</p></figure><aside><p>Aside.</p></aside><details><summary>More</summary><p>Hidden.</p></details><p>The digest's own.</p>",
+      "The digest's own.",
+    ],
+    [
+      "a nested quotation is passed over whole",
+      "<blockquote><blockquote><p>Inner.</p></blockquote><p>Outer.</p></blockquote><p>Own.</p>",
+      "Own.",
+    ],
+    [
+      "a > inside a quoted attribute does not end the tag",
+      '<p>See <a title="a > b" href="/x/">the rule</a>.</p>',
+      "See the rule.",
+    ],
+    [
+      "a tag that only starts with p is not a paragraph",
+      '<picture><source srcset="x"></picture><param name="a"><p>Real.</p>',
+      "Real.",
+    ],
     ["no paragraph gives nothing", "<h1>Only a title</h1>", ""],
     ["no html gives nothing", undefined, ""],
   ])("%s", (_label, html, expected) => {
@@ -233,6 +311,13 @@ describe("ledeOf", () => {
     expect(words.join(" ").startsWith(lede.slice(0, -1))).toBe(true);
     expect(lede.at(-2)).not.toBe(" ");
     expect(words).toContain(lede.slice(0, -1).split(" ").at(-1));
+  });
+
+  test("a cut never splits a character in two", () => {
+    const lede = ledeOf(`<p>${"\u{1F600}".repeat(300)}</p>`);
+    expect(lede.length).toBeLessThanOrEqual(280);
+    expect(lede.endsWith("…")).toBe(true);
+    expect(lede.isWellFormed()).toBe(true);
   });
 });
 
