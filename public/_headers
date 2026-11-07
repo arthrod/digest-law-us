@@ -14,3 +14,9 @@
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+# RFC 9727 API catalog: no file extension to infer a type from (same rule as
+# live-contracts).
+/.well-known/api-catalog
+  Content-Type: application/linkset+json
+  Cache-Control: public, max-age=86400

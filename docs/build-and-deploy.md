@@ -111,10 +111,14 @@ minutes, with no rebuild:
 
 ```sh
 bun scripts/write-mcp-catalog.ts            # refresh dist/mcp-catalog.json
+pnpm run skills:index                       # if a SKILL.md changed (new digest)
 cp -r public/.well-known public/_headers dist/   # whatever changed in public/
 bun scripts/deploy-shards.ts --only=root
 scripts/smoke-prod.sh                       # read-only checks against digest.law
 ```
+
+`robots.txt` and every other Astro route cannot ship this way: they change
+only with a build.
 
 Precondition: `dist/` must be the build whose shards are live. The catalog
 lists only concepts with a page in `dist/`; written from a newer, undeployed

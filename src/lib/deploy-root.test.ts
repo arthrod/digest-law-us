@@ -40,6 +40,13 @@ describe("missingRootFiles", () => {
     expect(await missingRootFiles(() => Promise.resolve(true))).toEqual([]);
   });
 
+  test("the discovery documents are required: API catalog and skills index", () => {
+    expect(REQUIRED_ROOT_FILES).toContain(".well-known/api-catalog");
+    expect(REQUIRED_ROOT_FILES).toContain(
+      ".well-known/agent-skills/index.json"
+    );
+  });
+
   test("the MCP Worker's inputs are required: catalog and server card", () => {
     expect(REQUIRED_ROOT_FILES).toContain("mcp-catalog.json");
     expect(REQUIRED_ROOT_FILES).toContain(".well-known/mcp/server-card.json");
