@@ -79,7 +79,7 @@ over the corpus (15,526 digests, 2026-11-07):
 So about 13,000 pages carry the same description, which search engines
 treat as missing. Every digest opens with a summary paragraph (8 of 8 in a
 random sample). The feed (PR 4) already uses it; the pages need a re-render
-of every digest, so they change with PR 5's full build.
+of every digest, so they change with the tier 2 batch's full build.
 
 ## Inventory
 
@@ -122,16 +122,23 @@ Verdicts: **adopt** = port as is; **adapt** = port the idea at a cheaper tier;
 4. **RSS**: `/rss.xml`, the 50 most recently revised digests, served as
    `application/rss+xml`. Items are described by the digest's opening
    paragraph where the frontmatter description is boilerplate (below).
-5. **Tier 2 batch**: head meta, BreadcrumbList, WebSite/Organization,
+5. **Head check**: `scripts/check-head.ts` reads a sample of a built dist and
+   fails on every gap the tier 2 batch closes. On the 10-bundle preview
+   build of PR 4 it fails all 200 pages (og:locale, og:image size and alt,
+   feed link, WebMCP), all 10 digest pages (og:type, article times,
+   BreadcrumbList, Article fields) and the home page (WebSite,
+   Organization); 7 of the 10 digests share the boilerplate description.
+   The PRs that follow turn it green.
+6. **Tier 2 batch**: head meta, BreadcrumbList, WebSite/Organization,
    Article fields, RSS `<link>`, WebMCP script tag, and digest meta
    descriptions from the opening paragraph (`ledeOf` in `src/lib/feed.ts`). Merge only right before a
    planned full build.
-6. **DNS-AID** script for digest.law.
+7. **DNS-AID** script for digest.law.
 
 Expected scanner result after 1–4 deploy: `linkHeaders`, `markdownNegotiation`,
 `contentSignals`, `apiCatalog`, `mcpServerCard`, `agentSkills` pass. That
-moves digest.law from 3 to 9 of 16. `webMcp` follows with PR 5, and `dnsAid`
-once the owner runs PR 6's script.
+moves digest.law from 3 to 9 of 16. `webMcp` follows with the tier 2 batch, and `dnsAid`
+once the owner runs the DNS-AID script.
 
 ## Plan review
 
@@ -146,7 +153,7 @@ seven points. What became of each:
 | 4   | Past 25 MiB the catalog (or id map) is split into parts, and the Worker, which fetches it whole, would see nothing | **Fixed in PR 1**: preflight refuses a split id map or catalog (4.1 MB and 6.4 MB today)                                                                                                                        |
 | 5   | `"/"` in `run_worker_first` costs a Worker invocation on the busiest URL; `_headers` could carry the Link          | Rejected: every shard page already goes through the Worker, and `/` must reach it for markdown negotiation                                                                                                      |
 | 6   | Markdown negotiation is underspecified (binding, input, q-values, cache key, invalidation, fallback, rate limit)   | **Addressed in PR 3**: `ai` binding; Blob input; q-value parsing; cache key = path + HTML ETag; HTML fallback on every failure; its own `MARKDOWN_RATE_LIMITER` (AGENTS.md keeps `MCP_RATE_LIMITER` for `/mcp`) |
-| 7   | `property="twitter:card"` is not a defect                                                                          | Accepted: dropped from PR 5                                                                                                                                                                                     |
+| 7   | `property="twitter:card"` is not a defect                                                                          | Accepted: dropped from the tier 2 batch                                                                                                                                                                         |
 
 PR 3 was checked against the real converter with a throwaway `wrangler dev`
 probe (AI bindings always run remotely):
@@ -162,6 +169,6 @@ probe (AI bindings always run remotely):
 - Content Signals policy. The default chosen here is `search=yes,
   ai-input=yes, ai-train=yes`, consistent with CC BY 4.0. Change it in
   `src/pages/robots.txt.ts`.
-- When to run the next full build, which PR 5 needs.
+- When to run the next full build, which the tier 2 batch needs.
 - DNS-AID needs a token with Zone → DNS → Edit on digest.law and DNSSEC
   enabled for the zone.
