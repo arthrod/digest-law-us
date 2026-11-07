@@ -61,8 +61,12 @@ never produce giant pages.
 Digest topics are `skos:Concept`s with permanent w3id IRIs. Every digest
 page embeds its concept as JSON-LD (prefLabel/altLabel/hiddenLabel,
 definition, scopeNote, notation, broader/narrower/related, closeMatch to
-FOLIO and friends), plus a schema.org `Article`; source pages embed
-`ArchiveComponent`. The full `skos:ConceptScheme` is published at
+FOLIO and friends), plus a schema.org `Article` (CC BY 4.0 `license`,
+`publisher`, `inLanguage`, `datePublished`/`dateModified`); source pages
+embed `ArchiveComponent`. Every page with a breadcrumb trail carries the
+same trail as a `BreadcrumbList`, and the home page declares the
+`WebSite` (with a `SearchAction` on `/search/?q=`) and the `Organization`
+(`src/lib/schema-org.ts`). The full `skos:ConceptScheme` is published at
 `/skos.jsonld`. Relations to not-yet-published topics keep their IRIs —
 identifiers exist before pages do — and render as muted, unlinked chips,
 never dead links, never dropped.

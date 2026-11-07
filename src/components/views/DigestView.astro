@@ -177,6 +177,7 @@ const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
       set:html={articleJsonLd(node, {
         description,
         dateModified: fm.modified ?? fm.timestamp,
+        datePublished: fm.created,
         sourceUrls,
       })}
     />
