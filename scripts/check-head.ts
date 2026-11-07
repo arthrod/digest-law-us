@@ -77,9 +77,9 @@ const counts = problemCounts(failures.map((failure) => failure.problems)),
 console.log(
   `${sample.length} pages checked: ${kinds.home} home, ${kinds.digest} digest, ${kinds.page} other (of ${routes.length} in ${dist})`
 );
-if (counts.length === 0) {
+if (counts.length === 0 && shared.length === 0) {
   console.log("no problems");
-} else {
+} else if (counts.length > 0) {
   console.log("\npages failing each check:");
   for (const [check, pages] of counts) {
     const example = failures.find((failure) =>
