@@ -1,6 +1,8 @@
 /**
  * WebMCP (https://webmachinelearning.github.io/webmcp/): offers digest.law's
- * read-only MCP tools to a browser agent through navigator.modelContext.
+ * read-only MCP tools to a browser agent through document.modelContext
+ * (navigator.modelContext, the name Chrome 150 deprecated, where that is all
+ * there is).
  * Every tool is a tools/call to POST /mcp, so what a tool does lives in one
  * place (worker/mcp.ts). Browsers without WebMCP skip all of it and send
  * nothing.
@@ -9,29 +11,34 @@
  * Worker: a change here is a root-only deploy, not a rebuild. The tools must
  * match /mcp's tools/list; worker/webmcp.test.ts compares them.
  *
- * registerTool is the API; provideContext, which the spec is dropping
+ * registerTool is the API, and it returns a promise that rejects a name
+ * registered twice; provideContext, which the spec is dropping
  * (webmachinelearning/webmcp#101), is used only where registerTool is absent.
+ * Chrome before 155 passes a tool's arguments as a JSON string.
  */
 /* oxlint-disable unicorn/consistent-function-scoping -- a classic script: a function outside the IIFE would be a global */
 (() => {
-  const asError = (text) => ({
+  const argumentsOf = (args) =>
+      typeof args === "string" ? JSON.parse(args) : (args ?? {}),
+    asError = (text) => ({
       content: [{ text, type: "text" }],
       isError: true,
     }),
-    call = async (name, args) => {
+    call = async (name, args, signal) => {
       try {
         const response = await fetch("/mcp", {
             body: JSON.stringify({
               id: 1,
               jsonrpc: "2.0",
               method: "tools/call",
-              params: { arguments: args ?? {}, name },
+              params: { arguments: argumentsOf(args), name },
             }),
             headers: {
               accept: "application/json, text/event-stream",
               "content-type": "application/json",
             },
             method: "POST",
+            signal,
           }),
           // oxlint-disable-next-line eslint/sort-vars -- reply reads response (TDZ)
           reply = await response.json();
@@ -43,12 +50,12 @@
         return asError(`The request to /mcp failed: ${String(error)}`);
       }
     },
-    context = navigator.modelContext,
+    context = document.modelContext ?? navigator.modelContext,
     limit = { default: 20, maximum: 50, minimum: 1, type: "integer" },
     tool = (name, description, inputSchema) => ({
       annotations: { readOnlyHint: true },
       description,
-      execute: (args) => call(name, args),
+      execute: (args, options) => call(name, args, options?.signal),
       inputSchema,
       name,
     }),
@@ -112,9 +119,11 @@
   if (typeof context.registerTool === "function") {
     for (const each of tools) {
       try {
-        context.registerTool(each);
+        // Already registered by an earlier page of this visit: a rejection,
+        // or a throw in older drafts. Either way the tool is there.
+        Promise.resolve(context.registerTool(each)).catch(() => false);
       } catch {
-        // Already registered by an earlier page of this visit.
+        // See above.
       }
     }
   } else if (typeof context.provideContext === "function") {
