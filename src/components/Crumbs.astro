@@ -1,4 +1,6 @@
 ---
+import { breadcrumbJsonLd } from "@/lib/schema-org";
+
 export interface CrumbItem {
   /** Omit for the current page (rendered as ink, unlinked). */
   href?: string;
@@ -8,7 +10,9 @@ export interface CrumbItem {
 interface Props {
   items: CrumbItem[];
 }
-const { items } = Astro.props;
+const { items } = Astro.props,
+  // The same trail for search engines: a BreadcrumbList (schema-org.ts).
+  trail = breadcrumbJsonLd(items);
 ---
 
 <nav aria-label="Breadcrumb" class="ald-meta text-ink-muted leading-relaxed">
@@ -25,3 +29,4 @@ const { items } = Astro.props;
       </>
     ))}
 </nav>
+{trail && <script type="application/ld+json" set:html={trail} />}
