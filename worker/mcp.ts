@@ -23,8 +23,27 @@ const CONCEPT_IRI = "https://w3id.org/digest-law/concept/",
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Max-Age": "86400",
   },
-  DISCOVERY_LINK =
-    '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
+  /**
+   * RFC 8288 relations sent on every HTML response, same set as
+   * live-contracts: the RFC 9727 API catalog, the MCP server card, and the
+   * sitemap. The catalog body is a static asset (public/.well-known/).
+   */
+  DISCOVERY_LINKS = [
+    {
+      rel: "api-catalog",
+      value:
+        '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
+    },
+    {
+      rel: "service-desc",
+      value:
+        '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
+    },
+    {
+      rel: "sitemap",
+      value: '</sitemap-index.xml>; rel="sitemap"; type="application/xml"',
+    },
+  ],
   INSTRUCTIONS =
     "Read-only access to the American Legal Digest concept catalog. " +
     "Use search_concepts to match a label or route, list_concepts to browse an area, " +
@@ -323,14 +342,72 @@ function json(
   });
 }
 
-/** Link relation on HTML documents, so an agent can find the server card. */
+/** Split on `separator` where it is outside `<…>` and outside quotes. */
+function splitOutside(text: string, separator: string): string[] {
+  const parts: string[] = [];
+  let inUri = false,
+    quoted = false,
+    start = 0;
+  for (const [index, char] of [...text].entries()) {
+    if (char === '"' && !inUri) {
+      quoted = !quoted;
+    } else if (!quoted && char === "<") {
+      inUri = true;
+    } else if (!quoted && char === ">") {
+      inUri = false;
+    } else if (!(quoted || inUri) && char === separator) {
+      parts.push(text.slice(start, index));
+      start = index + 1;
+    }
+  }
+  parts.push(text.slice(start));
+  return parts;
+}
+
+/**
+ * Every relation type named by a `rel` parameter in a Link header (RFC 8288),
+ * lowercased: quoted or bare, one or several per link. Text inside a target
+ * URI never counts.
+ */
+export function linkRelations(header: string): Set<string> {
+  const relations = new Set<string>();
+  for (const link of splitOutside(header, ",")) {
+    for (const param of splitOutside(link.slice(link.indexOf(">") + 1), ";")) {
+      const [key = "", ...rest] = param.split("=");
+      if (key.trim().toLowerCase() === "rel") {
+        for (const token of rest
+          .join("=")
+          .replaceAll('"', "")
+          .trim()
+          .split(/\s+/u)) {
+          relations.add(token.toLowerCase());
+        }
+      }
+    }
+  }
+  return relations;
+}
+
+/**
+ * Discovery relations on HTML documents, so an agent that fetched any page
+ * can find the API catalog, the server card and the sitemap. A relation the
+ * response already carries (from `_headers`, say) is not repeated.
+ */
 export function withAgentLinks(response: Response): Response {
   const contentType = response.headers.get("content-type") ?? "",
     headers = new Headers(response.headers);
   if (!contentType.includes("text/html")) {
     return response;
   }
-  headers.append("Link", DISCOVERY_LINK);
+  // oxlint-disable-next-line eslint/one-var -- read only for HTML responses
+  const existing = headers.get("link") ?? "";
+  // oxlint-disable-next-line eslint/one-var -- parsed from existing, read just above
+  const relations = linkRelations(existing);
+  for (const { rel, value } of DISCOVERY_LINKS) {
+    if (!relations.has(rel)) {
+      headers.append("Link", value);
+    }
+  }
   return new Response(response.body, {
     headers,
     status: response.status,

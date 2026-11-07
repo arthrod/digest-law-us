@@ -15,12 +15,15 @@ export function staysOnRoot(folder: string): boolean {
 
 /**
  * Paths under dist/ that a deploy must not ship without. The root Worker
- * reads the two JSON maps at runtime (`/id/*` and `/mcp`); the server card is
- * what the Worker's own `Link` header points at.
+ * reads the two JSON maps at runtime (`/id/*` and `/mcp`); the API catalog,
+ * the server card and the skills index are what the Worker's own `Link`
+ * headers and the API catalog point at.
  */
 export const REQUIRED_ROOT_FILES: readonly string[] = [
   "id-map.json",
   "mcp-catalog.json",
+  ".well-known/api-catalog",
+  ".well-known/agent-skills/index.json",
   ".well-known/mcp/server-card.json",
 ];
 
