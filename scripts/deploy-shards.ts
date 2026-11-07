@@ -53,6 +53,8 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 
+import { missingRootFiles, staysOnRoot } from "../src/lib/deploy-root";
+
 const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   ASSIGNMENTS_PATH = path.resolve(
     import.meta.dirname,
@@ -207,7 +209,13 @@ async function inventory(): Promise<Inventory> {
           oversizeNested.push(path.relative(DIST, full));
         }
       }
-      folders.push({ files: nested.length, name: entry.name });
+      if (staysOnRoot(entry.name)) {
+        // /.well-known/* and friends ship with the root Worker: see
+        // src/lib/deploy-root.ts.
+        rootFiles += nested.length;
+      } else {
+        folders.push({ files: nested.length, name: entry.name });
+      }
     } else if (entry.name !== ".assetsignore" && !isPart(entry.name)) {
       rootFiles += 1;
       const { size } = await stat(path.join(DIST, entry.name));
@@ -218,7 +226,7 @@ async function inventory(): Promise<Inventory> {
   }
   if (oversizeNested.length > 0) {
     throw new Error(
-      `Files over the ${MAX_ASSET_BYTES / 1024 / 1024} MiB asset cap inside sharded folders: ${oversizeNested.join(", ")}. ` +
+      `Files over the ${MAX_ASSET_BYTES / 1024 / 1024} MiB asset cap inside folders: ${oversizeNested.join(", ")}. ` +
         "Shards have no Worker to reassemble split files — that is a human decision."
     );
   }
@@ -609,6 +617,16 @@ async function preflight(
       (e) => e.isFile() && e.name !== ".assetsignore" && !excluded.has(e.name)
     ),
     tooBig: string[] = [];
+  let nestedOnRoot = 0;
+  for (const entry of rootEntries) {
+    if (entry.isDirectory() && staysOnRoot(entry.name)) {
+      const all = await readdir(path.join(DIST, entry.name), {
+        recursive: true,
+        withFileTypes: true,
+      });
+      nestedOnRoot += all.filter((n) => n.isFile()).length;
+    }
+  }
   for (const entry of shipped) {
     const { size } = await stat(path.join(DIST, entry.name));
     if (size > MAX_ASSET_BYTES) {
@@ -622,8 +640,17 @@ async function preflight(
   );
   check(
     `root ≤ ${MAX_ASSETS} files`,
-    shipped.length <= MAX_ASSETS,
-    `${shipped.length}`
+    shipped.length + nestedOnRoot <= MAX_ASSETS,
+    `${shipped.length + nestedOnRoot}`
+  );
+  // oxlint-disable-next-line eslint/one-var -- reads dist after the size checks
+  const missing = await missingRootFiles(
+    async (file) => await Bun.file(path.join(DIST, file)).exists()
+  );
+  check(
+    "root carries what the Worker reads (id map, MCP catalog, server card)",
+    missing.length === 0,
+    missing.join(", ")
   );
 
   for (const [urlPath, asset] of Object.entries(oversize)) {
@@ -782,7 +809,7 @@ try {
     );
   }
   console.log(
-    `  digest-law (root)   ${String(rootFiles).padStart(6)} files  + worker, /api/*, /id/*`
+    `  digest-law (root)   ${String(rootFiles).padStart(6)} files  + worker, /api/*, /id/*, /mcp`
   );
   for (const [urlPath, asset] of Object.entries(oversize)) {
     console.log(
