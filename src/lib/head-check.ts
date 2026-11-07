@@ -124,12 +124,16 @@ function everyPage(tags: HeadTag[], blocks: unknown[]): (string | null)[] {
     ),
     webmcp = tags.some(
       (tag) => tag.name === "script" && tag.attrs.src === "/webmcp.js"
-    );
+    ),
+    [description = ""] = metaValues(tags, "description");
   return [
     canonicals.length === 1
       ? null
       : `canonical: expected 1, found ${canonicals.length}`,
     expectMeta(tags, "description"),
+    // Shared and embedded, the page says the same thing about itself.
+    expectMeta(tags, "og:description", description),
+    expectMeta(tags, "twitter:description", description),
     expectMeta(tags, "og:locale", "en_US"),
     expectMeta(tags, "og:image:width", "1200"),
     expectMeta(tags, "og:image:height", "630"),
@@ -173,6 +177,11 @@ function digestProblems(tags: HeadTag[], blocks: unknown[]): string[] {
         : null,
     ].filter((problem): problem is string => problem !== null);
   if (article) {
+    if (article.description !== description) {
+      problems.push(
+        `article: description "${String(article.description)}" is not the page's`
+      );
+    }
     for (const field of ["license", "publisher", "inLanguage"]) {
       if (!article[field]) {
         problems.push(`article: no ${field}`);
