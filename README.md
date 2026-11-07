@@ -95,6 +95,13 @@ markdown and get the HTML, now with `Vary: Accept`. Pages over 2 MiB, and
 clients past 60 conversions a minute (`MARKDOWN_RATE_LIMITER`), get the HTML
 too.
 
+`https://digest.law/rss.xml` is an RSS 2.0 feed of the 50 most recently
+revised digests (`src/lib/feed.ts`). Each item is described by its digest's
+own description, its SKOS definition, or the opening paragraph of the
+digest, in that order: 13,114 digests share one boilerplate frontmatter
+description, which the feed skips. Each revision has its own `guid`, so a
+reader shows a digest again when it is revised.
+
 ## Building
 
 The corpus is **not** in this repository — it lives in a private research

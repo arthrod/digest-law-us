@@ -62,6 +62,25 @@ that 404. There is a second problem: a `dist/.well-known/` folder would be
 treated as a shard folder by `scripts/deploy-shards.ts`, so a root-only
 deploy could never ship it.
 
+## Finding: one description on 13,114 digest pages
+
+Digest pages take their meta description, `og:description` and Article
+`description` from frontmatter `description`, then `definition`. Measured
+over the corpus (15,526 digests, 2026-11-07):
+
+| Frontmatter `description`                                        | Digests |
+| ---------------------------------------------------------------- | ------: |
+| "Derived from retained sources of the research run."             |  13,114 |
+| "Provisional synthesis — no primary authority was retained by …" |      87 |
+| empty                                                            |      93 |
+| any other value (each one unique)                                |   2,232 |
+| has a `definition` to fall back on                               |   2,242 |
+
+So about 13,000 pages carry the same description, which search engines
+treat as missing. Every digest opens with a summary paragraph (8 of 8 in a
+random sample). The feed (PR 4) already uses it; the pages need a re-render
+of every digest, so they change with PR 5's full build.
+
 ## Inventory
 
 Verdicts: **adopt** = port as is; **adapt** = port the idea at a cheaper tier;
@@ -100,9 +119,12 @@ Verdicts: **adopt** = port as is; **adapt** = port the idea at a cheaper tier;
 2. **Discovery**: API catalog, agent skills index, Link headers on every
    HTML response including `/`; robots.txt Content Signals and AI bot rules.
 3. **Markdown negotiation** in the Worker (`AI.toMarkdown`, Cache API).
-4. **RSS**: `/rss.xml` plus its content type.
+4. **RSS**: `/rss.xml`, the 50 most recently revised digests, served as
+   `application/rss+xml`. Items are described by the digest's opening
+   paragraph where the frontmatter description is boilerplate (below).
 5. **Tier 2 batch**: head meta, BreadcrumbList, WebSite/Organization,
-   Article fields, RSS `<link>`, WebMCP script tag. Merge only right before a
+   Article fields, RSS `<link>`, WebMCP script tag, and digest meta
+   descriptions from the opening paragraph (`ledeOf` in `src/lib/feed.ts`). Merge only right before a
    planned full build.
 6. **DNS-AID** script for digest.law.
 
