@@ -20,6 +20,7 @@
     "deploy:plan": "bun scripts/deploy-shards.ts --plan",
     "fix": "ultracite fix",
     "check:head": "bun scripts/check-head.ts",
+    "dns:aid": "bun scripts/setup-dns-aid.ts",
     "frontmatter:check": "bun scripts/check-digest-frontmatter.ts",
     "ids:check": "bun scripts/mint-concept-ids.ts --check",
     "ids:mint": "bun scripts/mint-concept-ids.ts",
