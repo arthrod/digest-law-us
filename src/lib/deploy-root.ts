@@ -25,6 +25,9 @@ export const REQUIRED_ROOT_FILES: readonly string[] = [
   ".well-known/api-catalog",
   ".well-known/agent-skills/index.json",
   ".well-known/mcp/server-card.json",
+  // Every page links to these two (Layout.astro).
+  "rss.xml",
+  "webmcp.js",
 ];
 
 export async function missingRootFiles(

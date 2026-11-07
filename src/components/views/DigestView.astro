@@ -160,7 +160,16 @@ const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
  title = `${node.label} — ${areaLabel} — American Legal Digest`;
 ---
 
-<Layout {description} {title}>
+<Layout
+  {description}
+  {title}
+  article={{
+    modified: fm.modified ?? fm.timestamp,
+    published: fm.created,
+    section: areaLabel,
+  }}
+  ogType="article"
+>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={conceptJsonLd(corpus, node)} />
     <script
