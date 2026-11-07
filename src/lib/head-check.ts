@@ -6,6 +6,8 @@
  * all the tag reader below handles.
  */
 
+import { BOILERPLATE } from "./describe";
+
 /** The home page, a digest page (it carries an Article), or any other page. */
 export type PageKind = "digest" | "home" | "page";
 
@@ -17,10 +19,6 @@ export interface HeadTag {
 type Json = Record<string, unknown>;
 
 const ATTRIBUTE = /(?<key>[\w:.-]+)(?:="(?<value>[^"]*)")?/gu,
-  BOILERPLATE = [
-    "Derived from retained sources of the research run.",
-    "Provisional synthesis",
-  ],
   ENTITIES: Record<string, string> = {
     "&#39;": "'",
     "&amp;": "&",

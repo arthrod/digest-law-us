@@ -110,7 +110,10 @@ revised digests (`src/lib/feed.ts`). Each item is described by its digest's
 own description, its SKOS definition, or the opening paragraph of the
 digest, in that order: 13,114 digests share one boilerplate frontmatter
 description, which the feed skips. Each revision has its own `guid`, so a
-reader shows a digest again when it is revised.
+reader shows a digest again when it is revised. A digest page's meta,
+Open Graph and Article descriptions follow the same order
+(`src/lib/describe.ts`), with the opening paragraph cut at 160 characters;
+the line under the page title is left as it was.
 
 ## Building
 
