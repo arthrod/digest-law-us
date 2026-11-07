@@ -116,6 +116,28 @@ describe("headProblems: every page", () => {
       replacing('name="description"', '<meta content="" name="description">'),
       "description:",
     ],
+    ["no og:description", without("og:description"), "og:description:"],
+    [
+      "an og:description that is not the description",
+      replacing(
+        "og:description",
+        '<meta content="Something else." property="og:description">'
+      ),
+      "og:description:",
+    ],
+    [
+      "no twitter:description",
+      without("twitter:description"),
+      "twitter:description:",
+    ],
+    [
+      "a twitter:description that is not the description",
+      replacing(
+        "twitter:description",
+        '<meta content="Something else." property="twitter:description">'
+      ),
+      "twitter:description:",
+    ],
     ["no og:locale", without("og:locale"), "og:locale:"],
     ["no og:image:width", without("og:image:width"), "og:image:width:"],
     ["no og:image:height", without("og:image:height"), "og:image:height:"],
@@ -183,6 +205,18 @@ describe("headProblems: digest pages", () => {
       );
     }
   );
+
+  test("an Article whose description is not the page's", () => {
+    const page = digestPage(
+      replacing(
+        "application/ld+json",
+        ld({ ...ARTICLE, description: "Something else." })
+      )
+    );
+    expect(headProblems(page, "digest").join("\n")).toContain(
+      "article: description"
+    );
+  });
 
   test("no BreadcrumbList", () => {
     expect(

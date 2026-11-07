@@ -213,8 +213,12 @@ describe("ledeOf for a meta description", () => {
   });
 });
 
-describe("the digest page", () => {
-  test("describes its head with describeDigest, and keeps its visible line", async () => {
+// DigestView cannot render under bun test (it reads astro:content). This
+// guards its wiring; scripts/check-head.ts checks the rendered heads of the
+// preview build: description, og:description, twitter:description and the
+// Article's description agree, and none is boilerplate.
+describe("the digest page's wiring", () => {
+  test("hands describeDigest to the head, and keeps its visible line", async () => {
     const view = await Bun.file(
       new URL("../components/views/DigestView.astro", import.meta.url)
     ).text();
