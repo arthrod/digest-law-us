@@ -12,9 +12,19 @@ import {
   WORKER_READ_FILES,
 } from "./deploy-root";
 
-// Written by the build itself: id-map.json by an Astro endpoint,
-// mcp-catalog.json by scripts/write-mcp-catalog.ts.
-const GENERATED = new Set(["id-map.json", "mcp-catalog.json"]),
+// Written by the build itself, each by the source named here.
+const GENERATED = new Map([
+    ["id-map.json", "src/pages/id-map.json.ts"],
+    ["mcp-catalog.json", "scripts/write-mcp-catalog.ts"],
+    ["rss.xml", "src/pages/rss.xml.ts"],
+  ]),
+  // Astro endpoints: src/pages/<path>.ts is written to dist/<path>.
+  ROUTES = [...GENERATED].filter(([, source]) =>
+    source.startsWith("src/pages/")
+  ),
+  SCRIPTS = [...GENERATED].filter(
+    ([, source]) => !source.startsWith("src/pages/")
+  ),
   STATIC_FILES = REQUIRED_ROOT_FILES.filter((file) => !GENERATED.has(file));
 
 describe("staysOnRoot", () => {
@@ -52,8 +62,33 @@ describe("missingRootFiles", () => {
     expect(REQUIRED_ROOT_FILES).toContain(".well-known/mcp/server-card.json");
   });
 
+  test("what every page links to is required: the feed and the WebMCP script", () => {
+    expect(REQUIRED_ROOT_FILES).toContain("rss.xml");
+    expect(REQUIRED_ROOT_FILES).toContain("webmcp.js");
+  });
+
   test.each(STATIC_FILES)("%s is committed under public/", async (file) => {
     expect(await Bun.file(`public/${file}`).exists()).toBe(true);
+  });
+
+  test.each([...GENERATED])("%s is written by %s", async (_file, source) => {
+    expect(await Bun.file(source).exists()).toBe(true);
+  });
+
+  test.each(ROUTES)(
+    "%s is the path Astro gives the endpoint %s",
+    async (file, source) => {
+      expect(source.replace(/^src\/pages\//u, "").replace(/\.ts$/u, "")).toBe(
+        file
+      );
+      expect(await Bun.file(source).text()).toMatch(
+        /export (?:async )?(?:const|function) GET\b/u
+      );
+    }
+  );
+
+  test.each(SCRIPTS)("%s is the file %s writes", async (file, source) => {
+    expect(await Bun.file(source).text()).toContain(file);
   });
 });
 
