@@ -182,6 +182,7 @@ describe("malformed messages and batches", () => {
     ["null", null],
     ["a number", 5],
     ["a string", "ping"],
+    ["a message with no method", { id: 1, jsonrpc: "2.0" }],
     ["a non-string method", { id: 1, jsonrpc: "2.0", method: 5 }],
   ])("%s is an Invalid Request, not a crash", async (_label, body) => {
     const response = await handleMcp(post(body), envWith(CATALOG)),
@@ -192,20 +193,27 @@ describe("malformed messages and batches", () => {
     expect(response.headers.get("access-control-allow-origin")).toBe("*");
   });
 
-  test("one bad item in a batch does not sink the others", async () => {
-    const response = await handleMcp(post([null, ping]), envWith(CATALOG)),
-      // oxlint-disable-next-line eslint/sort-vars -- replies are read from response
-      replies = (await response.json()) as {
-        error?: { code: number };
-        id: unknown;
-        result?: unknown;
-      }[];
-    // oxlint-disable-next-line eslint/one-var -- destructures replies, read above
-    const [bad, good] = replies;
-    expect(response.status).toBe(200);
-    expect(bad?.error?.code).toBe(-32_600);
-    expect(good?.id).toBe(7);
-  });
+  test.each([
+    ["null", null],
+    ["an array", []],
+    ["a message with no method", { id: 1, jsonrpc: "2.0" }],
+  ])(
+    "a bad item (%s) in a batch does not sink the others",
+    async (_label, item) => {
+      const response = await handleMcp(post([item, ping]), envWith(CATALOG)),
+        // oxlint-disable-next-line eslint/sort-vars -- replies are read from response
+        replies = (await response.json()) as {
+          error?: { code: number };
+          id: unknown;
+          result?: unknown;
+        }[];
+      // oxlint-disable-next-line eslint/one-var -- destructures replies, read above
+      const [bad, good] = replies;
+      expect(response.status).toBe(200);
+      expect(bad?.error?.code).toBe(-32_600);
+      expect(good?.id).toBe(7);
+    }
+  );
 
   test.each([
     ["empty", 0],
@@ -219,6 +227,24 @@ describe("malformed messages and batches", () => {
       reply = (await response.json()) as { error: { code: number } };
     expect(response.status).toBe(400);
     expect(reply.error.code).toBe(-32_600);
+  });
+
+  test("an oversized batch is refused before the catalog is fetched", async () => {
+    let fetched = false;
+    const env: McpEnv = {
+        ASSETS: {
+          fetch: () => {
+            fetched = true;
+            return Promise.resolve(Response.json(CATALOG));
+          },
+        },
+      },
+      response = await handleMcp(
+        post(Array.from({ length: MAX_BATCH + 1 }, () => ping)),
+        env
+      );
+    expect(response.status).toBe(400);
+    expect(fetched).toBe(false);
   });
 
   test("a batch at the cap is answered", async () => {
