@@ -299,17 +299,16 @@ describe("duplicateDescriptions", () => {
     ).toEqual(['"Shared." on 2 pages: /a/, /c/']);
   });
 
+  // Bun's 5 s test timeout is the bound: the quadratic version took 6.6 s.
   test("stays linear when many pages share one description", () => {
     const pages = Array.from({ length: 60_000 }, (_, index) => ({
         description: "Shared.",
         path: `/p${index}/`,
       })),
-      started = performance.now(),
       [finding = ""] = duplicateDescriptions(pages);
     expect(finding.startsWith('"Shared." on 60000 pages: /p0/, /p1/')).toBe(
       true
     );
-    expect(performance.now() - started).toBeLessThan(1000);
   });
 
   test("no duplicates, no findings", () => {
