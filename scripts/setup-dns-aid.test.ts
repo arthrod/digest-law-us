@@ -259,4 +259,27 @@ describe("run", () => {
     expect(output).toContain("Authentication error");
     expect(code).toBe(1);
   });
+
+  test.each([
+    [
+      "an HTML error page",
+      () =>
+        new Response("<html><body>502 Bad Gateway</body></html>", {
+          headers: { "content-type": "text/html" },
+          status: 502,
+        }),
+      502,
+    ],
+    ["an empty body", () => new Response(null, { status: 524 }), 524],
+  ])(
+    "a write answered with %s names the call and its status",
+    async (_label, answer, status) => {
+      const api = fakeApi({ write: answer }),
+        { code, output } = await runWith(api, { apply: true });
+      expect(output).toContain(
+        `POST /zones/${ZONE_ID}/dns_records: HTTP ${status}`
+      );
+      expect(code).toBe(1);
+    }
+  );
 });

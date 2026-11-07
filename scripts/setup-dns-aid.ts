@@ -142,7 +142,24 @@ function line(action: Action): string {
   return `${action.kind.padEnd(6)} ${name} SVCB ${data.priority} ${data.target}. ${data.value}`;
 }
 
-/** A Cloudflare API call that throws with Cloudflare's own message. */
+/**
+ * The body as Cloudflare's JSON envelope; anything else (a proxy's HTML
+ * error page, an empty 524) as an empty one, so the HTTP status speaks.
+ */
+async function replyOf(response: Response): Promise<Reply> {
+  const text = await response.text();
+  try {
+    const parsed: unknown = JSON.parse(text);
+    return parsed !== null && typeof parsed === "object"
+      ? (parsed as Reply)
+      : {};
+  } catch {
+    return {};
+  }
+}
+
+/** A Cloudflare API call that throws with Cloudflare's own message, or the
+ *  HTTP status when there is none, always naming the call. */
 function caller(options: RunOptions, token: string): Call {
   return async (method, path, body) => {
     const response = await options.fetch(`${API}${path}`, {
@@ -154,7 +171,7 @@ function caller(options: RunOptions, token: string): Call {
         method,
       }),
       // oxlint-disable-next-line eslint/sort-vars -- reply reads response (TDZ)
-      reply = (await response.json()) as Reply;
+      reply = await replyOf(response);
     if (!(response.ok && reply.success)) {
       const reasons = (reply.errors ?? []).map((error) => error.message);
       throw new Error(
