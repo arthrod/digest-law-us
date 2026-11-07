@@ -56,6 +56,18 @@ describe("headTags", () => {
     ]);
   });
 
+  test("a > inside a quoted value does not end the tag (Astro leaves it raw)", () => {
+    const tags = headTags(
+      html(['<meta content="When a > b, see § 2." name="description">'])
+    );
+    expect(tags).toEqual([
+      {
+        attrs: { content: "When a > b, see § 2.", name: "description" },
+        name: "meta",
+      },
+    ]);
+  });
+
   test("ignores tags in the body", () => {
     const tags = headTags(html([], ['<meta content="x" name="description">']));
     expect(tags).toEqual([]);

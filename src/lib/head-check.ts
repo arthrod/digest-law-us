@@ -31,7 +31,9 @@ const ATTRIBUTE = /(?<key>[\w:.-]+)(?:="(?<value>[^"]*)")?/gu,
   HEAD = /<head[^>]*>(?<head>[\s\S]*?)<\/head>/iu,
   JSON_LD =
     /<script\b[^>]*type="application\/ld\+json"[^>]*>(?<json>[\s\S]*?)<\/script>/giu,
-  TAG = /<(?<name>link|meta|script)\b(?<attrs>[^>]*)>/giu;
+  // A quoted value may hold a raw ">": Astro escapes only & and " in
+  // attributes.
+  TAG = /<(?<name>link|meta|script)\b(?<attrs>(?:[^>"]|"[^"]*")*)>/giu;
 
 function decode(value: string): string {
   return value.replaceAll(

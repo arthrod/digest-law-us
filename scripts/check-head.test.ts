@@ -93,6 +93,20 @@ describe("scripts/check-head.ts", () => {
     expect(stdout).toContain("2 pages checked: 1 home, 0 digest, 1 other");
   });
 
+  test.each([
+    "--sample=abc",
+    "--sample=",
+    "--sample=0",
+    "--sample=-5",
+    "--sample=2.5",
+  ])("%s is refused, not a pass on the home page alone", async (flag) => {
+    const dist = await fakeDist({ "": HOME, a: PAGE }),
+      { exitCode, stdout } = await run(dist, flag);
+    expect(stdout).toContain("--sample must be a positive integer");
+    expect(stdout).not.toContain("pages checked");
+    expect(exitCode).toBe(1);
+  });
+
   test("no built pages is an error, not a pass", async () => {
     const dist = await fakeDist({}),
       { exitCode, stdout } = await run(dist);

@@ -8,7 +8,8 @@
  * The sample is spread evenly over the sorted routes and always holds the
  * home page, so two runs on one dist read the same pages. Exits 1 when a
  * sampled page has a problem, when sampled digest pages share a
- * description, or when the dist holds no page at all.
+ * description, when the dist holds no page at all, or when --sample is not
+ * a positive integer.
  */
 import path from "node:path";
 
@@ -29,6 +30,15 @@ const args = process.argv.slice(2),
   size = args.includes("--all")
     ? Number.POSITIVE_INFINITY
     : Number(sampleArg?.slice("--sample=".length) ?? 300);
+
+if (
+  size !== Number.POSITIVE_INFINITY &&
+  !(Number.isInteger(size) && size > 0)
+) {
+  // A typo here would otherwise check the home page alone and pass.
+  console.log(`--sample must be a positive integer, got "${sampleArg}"`);
+  process.exit(1);
+}
 
 for await (const file of new Bun.Glob("**/index.html").scan(dist)) {
   routes.push(`/${file.slice(0, -"index.html".length)}`);
