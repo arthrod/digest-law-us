@@ -27,7 +27,7 @@
     "not_found_handling": "404-page",
     // /id/* is the concept-identity resolver (w3id.org/digest-law/concept/…
     // lands there); it must reach the Worker rather than the 404 page.
-    "run_worker_first": ["/api/*", "/id/*"],
+    "run_worker_first": ["/api/*", "/id/*", "/mcp", "/mcp/*"],
   },
   // Contact form mail. The allow-lists are the platform-level backstop on
   // worker/index.ts's own routing: even a bug there cannot address mail to
@@ -46,5 +46,16 @@
   "workers_dev": true,
   "preview_urls": true,
   "observability": { "enabled": true },
+  // Same cap as live-contracts: 60 requests per 60 seconds per client IP on
+  // the public /mcp endpoint. Workers only allows a period of 10 or 60, so
+  // this is one sustained request per second with a burst of 60.
+  // namespace_id is account-wide; 2101 is digest.law's, not live-contracts' 1001.
+  "ratelimits": [
+    {
+      "name": "MCP_RATE_LIMITER",
+      "namespace_id": "2101",
+      "simple": { "limit": 60, "period": 60 },
+    },
+  ],
   "routes": [{ "pattern": "digest.law", "custom_domain": true }],
 }

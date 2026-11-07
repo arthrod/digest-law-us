@@ -67,6 +67,18 @@ FOLIO and friends), plus a schema.org `Article`; source pages embed
 identifiers exist before pages do — and render as muted, unlinked chips,
 never dead links, never dropped.
 
+## For agents
+
+`POST https://digest.law/mcp` is a read-only MCP server (stateless
+Streamable HTTP). It searches the concept catalog — label, route, page URL,
+and the permanent concept IRI — and does not return the prose of a digest.
+The server card is at
+`https://digest.law/.well-known/mcp/server-card.json`.
+
+The endpoint allows 60 requests per 60 seconds per client IP, the same cap
+as Live Contracts, enforced by the `MCP_RATE_LIMITER` binding in
+`wrangler.jsonc`. A local `wrangler dev` without that binding still answers.
+
 ## Building
 
 The corpus is **not** in this repository — it lives in a private research
