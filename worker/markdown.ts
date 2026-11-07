@@ -287,16 +287,22 @@ function asHtml(request: Request, page: Response, html: ArrayBuffer): Response {
   );
 }
 
+/** False when over the limit, and when the limiter itself fails: the page
+ *  is then served as HTML, like every other failure on this path. */
 async function allowed(request: Request, env: MarkdownEnv): Promise<boolean> {
   const limiter = env.MARKDOWN_RATE_LIMITER;
   if (!limiter) {
     return true;
   }
-  // oxlint-disable-next-line eslint/one-var -- the limit call follows the binding check
-  const { success } = await limiter.limit({
-    key: request.headers.get("cf-connecting-ip") ?? "anon",
-  });
-  return success;
+  try {
+    const { success } = await limiter.limit({
+      key: request.headers.get("cf-connecting-ip") ?? "anon",
+    });
+    return success;
+  } catch (error) {
+    console.error(`[markdown] rate limiter failed: ${String(error)}`);
+    return false;
+  }
 }
 
 /**
