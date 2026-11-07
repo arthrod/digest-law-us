@@ -95,6 +95,11 @@ markdown and get the HTML, now with `Vary: Accept`. Pages over 2 MiB, and
 clients past 60 conversions a minute (`MARKDOWN_RATE_LIMITER`), get the HTML
 too.
 
+In a browser that supports WebMCP (`navigator.modelContext`), every page
+registers the same three read-only tools with the browser's agent; each is a
+call to `POST /mcp` (`public/webmcp.js`, loaded by `Layout.astro`). Other
+browsers skip it and send nothing.
+
 `https://digest.law/rss.xml` is an RSS 2.0 feed of the 50 most recently
 revised digests (`src/lib/feed.ts`). Each item is described by its digest's
 own description, its SKOS definition, or the opening paragraph of the

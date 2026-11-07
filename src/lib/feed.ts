@@ -9,8 +9,10 @@
 import type { RSSFeedItem, RSSOptions } from "@astrojs/rss";
 
 import type { Corpus } from "./corpus";
+import { DAY, dateOf } from "./dates";
 import { SITE_BASE } from "./iri";
 import { humanize } from "./labels";
+import { FEED_TITLE } from "./seo";
 import { pageUrl } from "./skos";
 
 /** Items in the feed. */
@@ -41,14 +43,9 @@ const ANY_TAG =
     /<(?<close>\/)?(?<name>[a-z][\da-z-]*)(?=[\s/>])(?:[^>"']|"[^"]*"|'[^']*')*>/giu,
   /** Paragraphs in these are quoted or set aside: never the digest's lede. */
   ASIDE_TAGS = new Set(["aside", "blockquote", "details", "figure"]),
-  DAY = /^\d{4}-\d{2}-\d{2}$/u,
   ENTITY =
     /&(?:#(?<dec>\d+)|#x(?<hex>[\da-f]+)|(?<name>amp|apos|gt|lt|nbsp|quot));/giu,
   FEED_URL = `${SITE_BASE}rss.xml`,
-  /** An ISO 8601 day, or date-time with an optional offset (RFC 3339 also
-   *  allows a space for the T). */
-  ISO =
-    /^(?<day>\d{4}-\d{2}-\d{2})(?:[ T](?<time>\d{2}:\d{2}(?::\d{2}(?:\.\d+)?)?)(?<zone>Z|[+-]\d{2}:\d{2})?)?$/u,
   /** A lede longer than this is cut at a word and ends with an ellipsis. */
   LEDE_MAX = 280,
   /** U+10FFFF, the last code point. */
@@ -82,32 +79,6 @@ const ANY_TAG =
 
 function escapeXml(text: string): string {
   return text.replaceAll(/["&'<>]/gu, (char) => XML_ESCAPES[char] ?? char);
-}
-
-/** `new Date` rolls 2026-02-30 over to March; a real day prints back the same. */
-function isDay(day: string): boolean {
-  const date = new Date(`${day}T00:00:00Z`);
-  return (
-    !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === day
-  );
-}
-
-/**
- * A date, or null unless the text is an ISO 8601 day or date-time. A
- * date-time without an offset is UTC: `new Date` would read it, and prose
- * like "March 5, 2026", in the build machine's zone, so the same corpus
- * would give different feeds on different machines.
- */
-function dateOf(text: string | undefined): Date | null {
-  const parts = text?.match(ISO)?.groups;
-  if (!(parts?.day && isDay(parts.day))) {
-    return null;
-  }
-  // oxlint-disable-next-line eslint/one-var -- built only from a valid day
-  const date = new Date(
-    `${parts.day}T${parts.time ?? "00:00"}${parts.zone ?? "Z"}`
-  );
-  return Number.isNaN(date.getTime()) ? null : date;
 }
 
 /**
@@ -338,7 +309,7 @@ export function feedOptions(entries: FeedEntry[]): RSSOptions {
     description: `The ${entries.length} most recently revised digests in the American Legal Digest, a public reference of American law with retained primary sources.`,
     items: entries.map(feedItem),
     site: SITE_BASE,
-    title: "American Legal Digest — recently revised",
+    title: FEED_TITLE,
     xmlns: { atom: "http://www.w3.org/2005/Atom" },
   };
 }
