@@ -5,9 +5,9 @@
  * opening paragraph, a generic sentence.
  *
  * A description the research run wrote for many digests at once describes
- * none of them: "Derived from retained sources of the research run." heads
- * 13,114 of 15,526 digests, and a "Provisional synthesis — …" caveat (shown
- * on the page itself) 87 more. They are recognized by their text, from the
+ * none of them: "Derived from retained sources of the research run…" or a
+ * "Provisional synthesis — …" caveat (shown on the page itself) heads
+ * 13,243 of 15,524 digests. They are recognized by their text, from the
  * one digest alone: a count over the corpus would be an input the
  * incremental build's cache key cannot see (cache-keys.ts), and a page could
  * keep a stale description. scripts/check-head.ts reports descriptions that
@@ -17,10 +17,16 @@
  * it, so a change here re-renders every digest page (rebuild tier 2).
  */
 
-/** Openings of descriptions the research run wrote for many digests. */
+/**
+ * Openings of descriptions the research run wrote for many digests: its
+ * sentence, with or without a period or a remediation note ("…research run
+ * (PR #7227 remediation).", "…of this run (remediated)."), and the caveat,
+ * always with its dash. "Provisional synthesis of…", "…for…" and "…from…"
+ * open 91 descriptions of their own topic, so the dash is required.
+ */
 export const BOILERPLATE: readonly string[] = [
-    "Derived from retained sources of the research run.",
-    "Provisional synthesis",
+    "Derived from retained sources of",
+    "Provisional synthesis —",
   ],
   /** A meta description over this is cut short in search results. */
   META_MAX = 160;
