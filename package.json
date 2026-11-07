@@ -19,6 +19,7 @@
     "deploy:full": "pnpm run frontmatter:check && pnpm run ids:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=12288 astro build && bun scripts/write-mcp-catalog.ts && pagefind --site dist && cp -r dist/pagefind public/ && bun scripts/deploy-shards.ts",
     "deploy:plan": "bun scripts/deploy-shards.ts --plan",
     "fix": "ultracite fix",
+    "check:head": "bun scripts/check-head.ts",
     "frontmatter:check": "bun scripts/check-digest-frontmatter.ts",
     "ids:check": "bun scripts/mint-concept-ids.ts --check",
     "ids:mint": "bun scripts/mint-concept-ids.ts",
