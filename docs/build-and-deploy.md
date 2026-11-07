@@ -111,16 +111,29 @@ minutes, with no rebuild:
 
 ```sh
 bun scripts/write-mcp-catalog.ts            # refresh dist/mcp-catalog.json
-cp -r public/.well-known dist/              # only if public/.well-known changed
+cp -r public/.well-known public/_headers dist/   # whatever changed in public/
 bun scripts/deploy-shards.ts --only=root
 scripts/smoke-prod.sh                       # read-only checks against digest.law
 ```
 
-Preflight refuses a deploy whose `dist/` lacks a file the root Worker reads
-at runtime (`id-map.json`, `mcp-catalog.json`,
-`.well-known/mcp/server-card.json`). On 2026-11-06 the root Worker shipped
-`/mcp` without the catalog, and every tool call answered "Concept catalog is
-unavailable".
+Precondition: `dist/` must be the build whose shards are live. The catalog
+lists only concepts with a page in `dist/`; written from a newer, undeployed
+build, it would send agents to pages that 404. The smoke test's last check
+("a search hit's page exists") catches that after the fact.
+
+Preflight refuses a deploy when:
+
+- `dist/` lacks a file the root Worker reads at runtime (`id-map.json`,
+  `mcp-catalog.json`, `.well-known/mcp/server-card.json`). On 2026-11-06 the
+  root Worker shipped `/mcp` without the catalog, and every tool call
+  answered "Concept catalog is unavailable".
+- a file under `public/` (pagefind aside) is missing from `dist/` or differs
+  from it. `astro build` copies `public/` into `dist/`; a root-only deploy
+  ships `dist/` as it is, so an uncopied edit would ship stale.
+- the id map or the MCP catalog is past the 25 MiB asset cap. Such a file is
+  split into parts that only the oversize route reassembles, while the Worker
+  fetches both maps whole, so `/id/*` or `/mcp` would stop answering. Today
+  they are 4.1 MB and 6.4 MB.
 
 ## Monitoring and memory
 

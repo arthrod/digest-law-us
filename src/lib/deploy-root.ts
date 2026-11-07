@@ -32,3 +32,40 @@ export async function missingRootFiles(
   );
   return REQUIRED_ROOT_FILES.filter((_, index) => !present[index]);
 }
+
+/**
+ * The maps the Worker fetches whole with `env.ASSETS.fetch` (worker/index.ts
+ * loadIdMap, worker/mcp.ts loadCatalog). A file past the asset cap is split
+ * into parts that only the Worker's oversize route reassembles, so a split
+ * map would read as missing and `/id/*` or `/mcp` would stop answering.
+ */
+// oxlint-disable-next-line eslint/one-var -- documented next to splitWorkerReads, its one reader
+export const WORKER_READ_FILES: readonly string[] = [
+  "id-map.json",
+  "mcp-catalog.json",
+];
+
+/** Worker-read maps among the oversize URL paths (`/name`) the packer split. */
+export function splitWorkerReads(oversizePaths: readonly string[]): string[] {
+  const split = new Set(oversizePaths.map((urlPath) => urlPath.slice(1)));
+  return WORKER_READ_FILES.filter((file) => split.has(file));
+}
+
+/**
+ * public/ paths whose dist/ copy is missing or different. `astro build`
+ * copies public/ into dist/; a root-only deploy ships dist/ as it is, so an
+ * edit to public/_headers or public/.well-known/ that was not copied over
+ * would ship stale. pagefind/ is skipped: it is copied the other way, from
+ * dist/ into public/.
+ */
+export async function staleCopies(
+  publicFiles: readonly string[],
+  sameInDist: (file: string) => boolean | Promise<boolean>
+): Promise<string[]> {
+  const compared = publicFiles.filter((file) => !file.startsWith("pagefind/")),
+    // oxlint-disable-next-line eslint/sort-vars -- same is computed from compared (TDZ)
+    same = await Promise.all(
+      compared.map(async (file) => await sameInDist(file))
+    );
+  return compared.filter((_, index) => !same[index]);
+}
