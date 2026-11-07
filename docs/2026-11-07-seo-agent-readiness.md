@@ -96,7 +96,7 @@ Verdicts: **adopt** = port as is; **adapt** = port the idea at a cheaper tier;
 | Markdown content negotiation                                    | middleware renders markdown from D1                                      | —                                                                              | none                                                                                             | **adapt**: Worker calls `env.AI.toMarkdown()` (free for HTML) on `Accept: text/markdown`, cached. The zone-level "Markdown for Agents" switch needs a Pro plan; digest.law is on Free | 0     |
 | robots.txt AI bot rules + Content Signals                       | explicit bots + `Content-Signal: search=yes, ai-input=yes, ai-train=yes` | `astro-robots-txt`                                                             | wildcard allow, no signals                                                                       | **adopt** (policy: CC BY 4.0 content, so all three `yes`; owner to confirm)                                                                                                           | 1     |
 | WebMCP (`document.modelContext`; `navigator` before Chrome 150) | inline script in `Base.astro`                                            | —                                                                              | none                                                                                             | **adapt**: root-level `/webmcp.js` that calls the same `/mcp`, one `<script>` tag                                                                                                     | 0 + 2 |
-| DNS-AID (`_index`, `_mcp` SVCB under `_agents`)                 | `scripts/setup-dns-aid.sh`                                               | —                                                                              | none                                                                                             | **adopt** as a script; running it needs a DNS-edit token and DNSSEC on the zone                                                                                                       | owner |
+| DNS-AID (`_index`, `_mcp` SVCB under `_agents`)                 | `scripts/setup-dns-aid.sh`                                               | —                                                                              | none                                                                                             | **adopt** as an idempotent script (dry run by default); running it needs a DNS-edit token. DNSSEC is optional in draft -02, recommended                                               | owner |
 | Production smoke test                                           | `test/smoke-prod.sh`                                                     | —                                                                              | none                                                                                             | **adopt** for digest.law                                                                                                                                                              | —     |
 | Config invariants test                                          | `test/wrangler-config.test.ts`                                           | —                                                                              | partial (`worker/*.test.ts`)                                                                     | **adopt** for `run_worker_first` and the rate limiter                                                                                                                                 | —     |
 | RSS feed                                                        | —                                                                        | `@astrojs/rss` skill (unused; starter removed)                                 | `@astrojs/rss` installed, no route                                                               | **adopt**: `/rss.xml`, most recently modified digests                                                                                                                                 | 1     |
@@ -133,7 +133,9 @@ Verdicts: **adopt** = port as is; **adapt** = port the idea at a cheaper tier;
    Article fields, RSS `<link>`, WebMCP script tag, and digest meta
    descriptions from the opening paragraph (`describeDigest` and `ledeOf` in `src/lib/describe.ts`). Merge only right before a
    planned full build.
-7. **DNS-AID** script for digest.law.
+7. **DNS-AID** script for digest.law: `pnpm run dns:aid` (dry run), then
+   `-- --apply`. live-contracts' shell version POSTs on every run, so a
+   second run duplicates its records; this one keeps, updates or deletes.
 
 Expected scanner result after 1–4 deploy: `linkHeaders`, `markdownNegotiation`,
 `contentSignals`, `apiCatalog`, `mcpServerCard`, `agentSkills` pass. That
@@ -170,5 +172,6 @@ probe (AI bindings always run remotely):
   ai-input=yes, ai-train=yes`, consistent with CC BY 4.0. Change it in
   `src/pages/robots.txt.ts`.
 - When to run the next full build, which the tier 2 batch needs.
-- DNS-AID needs a token with Zone → DNS → Edit on digest.law and DNSSEC
-  enabled for the zone.
+- DNS-AID needs a token with Zone → DNS → Edit on digest.law
+  (`pnpm run dns:aid`, see docs/build-and-deploy.md); enabling DNSSEC on
+  the zone is recommended.
