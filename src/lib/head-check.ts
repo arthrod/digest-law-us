@@ -112,8 +112,12 @@ function expectMeta(
 }
 
 function everyPage(tags: HeadTag[], blocks: unknown[]): (string | null)[] {
+  // A canonical without a URL names nothing, so it does not count.
   const canonicals = tags.filter(
-      (tag) => tag.name === "link" && tag.attrs.rel === "canonical"
+      (tag) =>
+        tag.name === "link" &&
+        tag.attrs.rel === "canonical" &&
+        Boolean(tag.attrs.href?.trim())
     ),
     feed = tags.some(
       (tag) =>
@@ -232,10 +236,12 @@ export function duplicateDescriptions(
 ): string[] {
   const byDescription = new Map<string, string[]>();
   for (const { description, path } of pages) {
-    byDescription.set(description, [
-      ...(byDescription.get(description) ?? []),
-      path,
-    ]);
+    const paths = byDescription.get(description);
+    if (paths) {
+      paths.push(path);
+    } else {
+      byDescription.set(description, [path]);
+    }
   }
   return [...byDescription]
     .filter(([, paths]) => paths.length > 1)

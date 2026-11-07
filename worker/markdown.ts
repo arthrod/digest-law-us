@@ -126,22 +126,27 @@ function isNegotiable(response: Response): boolean {
   return type.includes("text/html") || type.includes("text/markdown");
 }
 
+/** A Vary value that also names Accept, keeping what it already names. */
+function withAccept(vary: string | null): string {
+  if (!vary) {
+    return "Accept";
+  }
+  return vary
+    .split(",")
+    .some((value) => ["*", "accept"].includes(value.trim().toLowerCase()))
+    ? vary
+    : `${vary}, Accept`;
+}
+
 /** `Vary: Accept` on every page that has a markdown twin. */
 export function varyOnAccept(response: Response): Response {
   const vary = response.headers.get("vary");
-  if (!isNegotiable(response)) {
-    return response;
-  }
-  if (
-    vary
-      ?.split(",")
-      .some((value) => ["*", "accept"].includes(value.trim().toLowerCase()))
-  ) {
+  if (!isNegotiable(response) || withAccept(vary) === vary) {
     return response;
   }
   // oxlint-disable-next-line eslint/one-var -- headers are copied only when Vary actually changes
   const headers = new Headers(response.headers);
-  headers.set("vary", vary ? `${vary}, Accept` : "Accept");
+  headers.set("vary", withAccept(vary));
   return new Response(response.body, {
     headers,
     status: response.status,
@@ -213,9 +218,13 @@ function isFresh(request: Request, etag: string): boolean {
   );
 }
 
-/** A 304 carries what the 200 would have said about caching (RFC 9110 §15.4.5). */
-function notModified(etag: string, page: Response): Response {
-  const headers = new Headers({ etag, vary: "Accept" }),
+/**
+ * A 304 carries what the 200 would have said about caching, Vary included
+ * (RFC 9110 §15.4.5): the markdown says `Accept`, the HTML says its own
+ * Vary plus `Accept`.
+ */
+function notModified(etag: string, page: Response, vary = "Accept"): Response {
+  const headers = new Headers({ etag, vary }),
     pagePolicy = page.headers.get("cache-control");
   if (pagePolicy) {
     headers.set("cache-control", pagePolicy);
@@ -319,21 +328,44 @@ async function convert(
   }
 }
 
+/**
+ * The page itself, when it is what the client gets. The page was rendered
+ * without the client's conditions (conversion needs its body), so its own
+ * ETag is checked here: a client holding this HTML gets a 304, not the page
+ * again. The markdown validator is separate; see `isFresh` above.
+ */
+async function asPage(request: Request, page: Response): Promise<Response> {
+  const etag = page.headers.get("etag");
+  if (page.status === 200 && etag && isFresh(request, etag)) {
+    await page.body?.cancel();
+    return notModified(etag, page, withAccept(page.headers.get("vary")));
+  }
+  return await forMethod(request, varyOnAccept(page));
+}
+
+/**
+ * Only HTML can be converted, so a path naming another kind of file is
+ * rendered exactly as asked: its own conditions and method reach the assets
+ * (a HEAD or 304 for the 29 MiB skos.jsonld, not the whole file).
+ */
+function namesOtherFile(request: Request): boolean {
+  const name = new URL(request.url).pathname.split("/").pop() ?? "";
+  return /\.[^.]+$/u.test(name) && !/\.html?$/iu.test(name);
+}
+
 /** The page as rendered, from the bytes already read off its body. */
 function asHtml(
   request: Request,
   page: Response,
   html: ArrayBuffer
 ): Promise<Response> {
-  return forMethod(
+  return asPage(
     request,
-    varyOnAccept(
-      new Response(html, {
-        headers: page.headers,
-        status: page.status,
-        statusText: page.statusText,
-      })
-    )
+    new Response(html, {
+      headers: page.headers,
+      status: page.status,
+      statusText: page.statusText,
+    })
   );
 }
 
@@ -365,6 +397,10 @@ export async function negotiateMarkdown(
   render: (request: Request) => Promise<Response>,
   options: MarkdownOptions = {}
 ): Promise<Response> {
+  if (namesOtherFile(request)) {
+    return varyOnAccept(await render(request));
+  }
+  // oxlint-disable-next-line eslint/one-var -- rendered only for a path that may be a page
   const page = await render(forPage(request)),
     { AI: ai } = env;
   if (
@@ -372,7 +408,7 @@ export async function negotiateMarkdown(
     page.status !== 200 ||
     !contentTypeOf(page).includes("text/html")
   ) {
-    return forMethod(request, varyOnAccept(page));
+    return await asPage(request, page);
   }
 
   // oxlint-disable-next-line eslint/one-var -- the key needs a renderable HTML page first
@@ -396,7 +432,7 @@ export async function negotiateMarkdown(
     Number(page.headers.get("content-length")) > MAX_HTML_BYTES ||
     !(await allowed(request, env))
   ) {
-    return forMethod(request, varyOnAccept(page));
+    return await asPage(request, page);
   }
 
   // oxlint-disable-next-line eslint/one-var -- the body is read only once the page qualifies

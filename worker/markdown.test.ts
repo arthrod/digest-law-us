@@ -398,6 +398,108 @@ describe("falls back to the HTML", () => {
   });
 });
 
+describe("a page served as HTML still revalidates", () => {
+  test.each([
+    ["without the AI binding", {} as MarkdownEnv],
+    [
+      "over the markdown rate limit",
+      {
+        AI: fakeAi().ai,
+        MARKDOWN_RATE_LIMITER: {
+          limit: () => Promise.resolve({ success: false }),
+        },
+      } as MarkdownEnv,
+    ],
+  ])("%s, the HTML's own ETag gets a 304", async (_label, env) => {
+    const { body, state } = trackedBody(),
+      { render } = renderer(() => htmlResponse(body)),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": ETAG }),
+        env,
+        render
+      );
+    expect(response.status).toBe(304);
+    expect(response.headers.get("etag")).toBe(ETAG);
+    expect(response.headers.get("vary")).toContain("Accept");
+    expect(state.cancelled).toBe(true);
+  });
+
+  test("when the conversion fails, the HTML's own ETag gets a 304", async () => {
+    const { render } = renderer(),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": ETAG }),
+        { AI: fakeAi(() => Promise.reject(new Error("AI down"))).ai },
+        render
+      );
+    expect(response.status).toBe(304);
+    expect(response.headers.get("etag")).toBe(ETAG);
+  });
+
+  test("the 304 keeps the page's other Vary dimensions", async () => {
+    const { render } = renderer(() =>
+        htmlResponse(PAGE_HTML, { vary: "Accept-Encoding" })
+      ),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": ETAG }),
+        {},
+        render
+      );
+    expect(response.status).toBe(304);
+    expect(response.headers.get("vary")).toBe("Accept-Encoding, Accept");
+  });
+
+  test("another ETag still gets the full HTML", async () => {
+    const { render } = renderer(),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": '"old"' }),
+        {},
+        render
+      );
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe(PAGE_HTML);
+  });
+});
+
+describe("a file that is not a page", () => {
+  const FILE = "https://digest.law/skos.jsonld";
+
+  test.each(["GET", "HEAD"])(
+    "is rendered as asked (%s), conditions included",
+    async (method) => {
+      const { ai, calls } = fakeAi(),
+        { render, seen } = renderer(
+          () => new Response(null, { headers: { etag: ETAG }, status: 304 })
+        ),
+        response = await negotiateMarkdown(
+          new Request(FILE, {
+            headers: { accept: "text/markdown", "if-none-match": ETAG },
+            method,
+          }),
+          { AI: ai },
+          render
+        );
+      expect(seen[0]?.method).toBe(method);
+      expect(seen[0]?.headers.get("if-none-match")).toBe(ETAG);
+      expect(response.status).toBe(304);
+      expect(calls).toHaveLength(0);
+    }
+  );
+
+  test("an .html path is still a page", async () => {
+    const { ai, calls } = fakeAi(),
+      { render } = renderer(),
+      response = await negotiateMarkdown(
+        new Request("https://digest.law/404.html", {
+          headers: { accept: "text/markdown" },
+        }),
+        { AI: ai },
+        render
+      );
+    expect(calls).toHaveLength(1);
+    expect(response.headers.get("content-type")).toContain("text/markdown");
+  });
+});
+
 describe("the conversion cache", () => {
   test("a second request for the same build is served from cache", async () => {
     const { ai, calls } = fakeAi(),
