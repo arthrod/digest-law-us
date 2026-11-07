@@ -2,6 +2,7 @@
  * Values for the <head> of every page (Layout.astro). Kept apart from the
  * views so they can be tested; scripts/check-head.ts checks the built pages.
  */
+import { SITE } from "../config";
 import { DAY, dateOf } from "./dates";
 
 /** The feed's title, for <link rel="alternate"> and the feed itself. */
@@ -17,6 +18,15 @@ export interface ArticleMeta {
   published?: string;
   /** The digest's area. */
   section?: string;
+}
+
+/**
+ * Size and alt text for a page's social image: known for the default image
+ * (OG_IMAGE, measured in seo.test.ts), not for one a page brings itself,
+ * whose tags are then left out rather than made to contradict it.
+ */
+export function ogImageMeta(ogImage: string): typeof OG_IMAGE | null {
+  return ogImage === `/${SITE.ogImage}` ? OG_IMAGE : null;
 }
 
 /** A day stays a day; a date-time is normalized to UTC ISO 8601. */

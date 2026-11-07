@@ -18,6 +18,13 @@ const GENERATED = new Map([
     ["mcp-catalog.json", "scripts/write-mcp-catalog.ts"],
     ["rss.xml", "src/pages/rss.xml.ts"],
   ]),
+  // Astro endpoints: src/pages/<path>.ts is written to dist/<path>.
+  ROUTES = [...GENERATED].filter(([, source]) =>
+    source.startsWith("src/pages/")
+  ),
+  SCRIPTS = [...GENERATED].filter(
+    ([, source]) => !source.startsWith("src/pages/")
+  ),
   STATIC_FILES = REQUIRED_ROOT_FILES.filter((file) => !GENERATED.has(file));
 
 describe("staysOnRoot", () => {
@@ -66,6 +73,22 @@ describe("missingRootFiles", () => {
 
   test.each([...GENERATED])("%s is written by %s", async (_file, source) => {
     expect(await Bun.file(source).exists()).toBe(true);
+  });
+
+  test.each(ROUTES)(
+    "%s is the path Astro gives the endpoint %s",
+    async (file, source) => {
+      expect(source.replace(/^src\/pages\//u, "").replace(/\.ts$/u, "")).toBe(
+        file
+      );
+      expect(await Bun.file(source).text()).toMatch(
+        /export (?:async )?(?:const|function) GET\b/u
+      );
+    }
+  );
+
+  test.each(SCRIPTS)("%s is the file %s writes", async (file, source) => {
+    expect(await Bun.file(source).text()).toContain(file);
   });
 });
 
