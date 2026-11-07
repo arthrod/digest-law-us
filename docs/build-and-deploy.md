@@ -83,6 +83,13 @@ then cold: about 3.5–4.3 h on this corpus. Upgrading Astro does the same.
 
 ## Deploy
 
+- **Before deploying a build, check its pages' `<head>`**:
+  `pnpm run check:head` reads 300 pages spread evenly over `dist/` (the home
+  page always among them; `--sample=N` or `--all` for more) and fails on a
+  missing canonical, description, Open Graph field, feed link, WebMCP script,
+  Article or BreadcrumbList JSON-LD, or on digest pages that share a
+  description. It takes seconds. On a preview build:
+  `bun scripts/check-head.ts dist-preview --all`.
 - `pnpm run deploy` is upload only: it runs `pnpm run ids:check`, then
   `bun scripts/deploy-shards.ts`. It does **not** build, so run it only after
   a successful `pnpm run build`. `./build-deploy-tmux.sh` chains the two with
