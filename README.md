@@ -87,6 +87,14 @@ The endpoint allows 60 requests per 60 seconds per client IP, the same cap
 as Live Contracts, enforced by the `MCP_RATE_LIMITER` binding in
 `wrangler.jsonc`. A local `wrangler dev` without that binding still answers.
 
+Any page also comes as markdown: send `Accept: text/markdown` and the root
+Worker converts the page with Workers AI `toMarkdown()` (free for HTML),
+caches the result per build, and answers `text/markdown` with an
+`x-markdown-tokens` header (`worker/markdown.ts`). Browsers never ask for
+markdown and get the HTML, now with `Vary: Accept`. Pages over 2 MiB, and
+clients past 60 conversions a minute (`MARKDOWN_RATE_LIMITER`), get the HTML
+too.
+
 ## Building
 
 The corpus is **not** in this repository — it lives in a private research

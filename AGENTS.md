@@ -122,6 +122,11 @@ needs to answer JSON-RPC. Three things about that are easy to break:
    It reads `dist/mcp-catalog.json`, which `scripts/write-mcp-catalog.ts`
    writes after `astro build`; `deploy-shards.ts` refuses to deploy without
    it. `dist/.well-known/` always ships with the root Worker, never a shard.
+   A GET or HEAD whose `Accept` prefers `text/markdown` gets the same page
+   converted by `env.AI.toMarkdown()` (`worker/markdown.ts`); every failure
+   there falls back to the HTML, never to an error. Its rate limit is its own
+   binding, `MARKDOWN_RATE_LIMITER`; do not point it at `/mcp` or the
+   reverse.
 3. **Recipients never come from the request.** `worker/index.ts` maps a topic
    id to a recipient list from `src/lib/committee.ts`, and
    `allowed_destination_addresses` in `wrangler.jsonc` closes the set again at
