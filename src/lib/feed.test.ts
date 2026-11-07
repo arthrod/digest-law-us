@@ -313,6 +313,14 @@ describe("the RSS document", () => {
     expect(xml).toContain('xmlns:atom="http://www.w3.org/2005/Atom"');
   });
 
+  test("its description counts the items it holds, not the size it aims for", () => {
+    expect(items).toHaveLength(2);
+    expect(xml).toContain(
+      "<description>The 2 most recently revised digests in the American Legal Digest"
+    );
+    expect(xml).not.toContain(`The ${FEED_SIZE} most recently`);
+  });
+
   test("its build date is the newest revision, not the time of the build", () => {
     expect(xml).toContain(
       "<lastBuildDate>Wed, 04 Nov 2026 10:00:00 GMT</lastBuildDate>"
