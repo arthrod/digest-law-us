@@ -131,7 +131,7 @@ Verdicts: **adopt** = port as is; **adapt** = port the idea at a cheaper tier;
    The PRs that follow turn it green.
 6. **Tier 2 batch**: head meta, BreadcrumbList, WebSite/Organization,
    Article fields, RSS `<link>`, WebMCP script tag, and digest meta
-   descriptions from the opening paragraph (`ledeOf` in `src/lib/feed.ts`). Merge only right before a
+   descriptions from the opening paragraph (`describeDigest` and `ledeOf` in `src/lib/describe.ts`). Merge only right before a
    planned full build.
 7. **DNS-AID** script for digest.law.
 

@@ -41,7 +41,8 @@ function article(dates: { dateModified?: string; datePublished?: string }) {
   return articleJsonLd(
     digestNode("evidence-law/proof-of-writings", "Proof of writings"),
     {
-      description: "Rules for proving a writing.",
+      // The description the page's meta tags carry (head-check.fixtures BASE).
+      description: "Rules for proving a writing & its contents.",
       sourceUrls: [],
       ...dates,
     }
