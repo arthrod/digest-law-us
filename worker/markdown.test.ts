@@ -355,6 +355,24 @@ describe("falls back to the HTML", () => {
     expect(calls).toHaveLength(0);
     expect(response.headers.get("content-type")).toContain("text/html");
   });
+
+  test("a rate limiter that fails serves the HTML, not an error", async () => {
+    const { ai, calls } = fakeAi(),
+      { render } = renderer(),
+      response = await negotiateMarkdown(
+        get("text/markdown"),
+        {
+          AI: ai,
+          MARKDOWN_RATE_LIMITER: {
+            limit: () => Promise.reject(new Error("binding unavailable")),
+          },
+        },
+        render
+      );
+    expect(calls).toHaveLength(0);
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toContain("text/html");
+  });
 });
 
 describe("the conversion cache", () => {
