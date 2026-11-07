@@ -43,6 +43,8 @@ const DAY = /^\d{4}-\d{2}-\d{2}$/u,
   FEED_URL = `${SITE_BASE}rss.xml`,
   /** A lede longer than this is cut at a word and ends with an ellipsis. */
   LEDE_MAX = 280,
+  /** U+10FFFF, the last code point. */
+  MAX_CODE_POINT = 1_114_111,
   NAMED_ENTITIES: Record<string, string> = {
     amp: "&",
     apos: "'",
@@ -123,14 +125,19 @@ export function digestDescription(
   );
 }
 
+/** A numeric reference past U+10FFFF names no character; it stays as written. */
+function fromCodePoint(code: number, match: string): string {
+  return code <= MAX_CODE_POINT ? String.fromCodePoint(code) : match;
+}
+
 function decodeEntities(text: string): string {
   return text.replaceAll(ENTITY, (match, ...args: unknown[]) => {
     const groups = args.at(-1) as { dec?: string; hex?: string; name?: string };
     if (groups.dec) {
-      return String.fromCodePoint(Number(groups.dec));
+      return fromCodePoint(Number(groups.dec), match);
     }
     if (groups.hex) {
-      return String.fromCodePoint(Number.parseInt(groups.hex, 16));
+      return fromCodePoint(Number.parseInt(groups.hex, 16), match);
     }
     return NAMED_ENTITIES[groups.name?.toLowerCase() ?? ""] ?? match;
   });
