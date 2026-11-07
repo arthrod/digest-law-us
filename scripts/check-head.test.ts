@@ -84,6 +84,7 @@ describe("scripts/check-head.ts", () => {
       { exitCode, stdout } = await run(dist, "--all");
     expect(stdout).toContain("shared descriptions: 1");
     expect(stdout).toContain("on 2 pages: /a/one/, /a/two/");
+    expect(stdout).not.toContain("no problems");
     expect(exitCode).toBe(1);
   });
 
