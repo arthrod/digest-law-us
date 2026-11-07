@@ -15,6 +15,7 @@ import SkosRail from "@/components/SkosRail.astro";
 import Layout from "@/layouts/Layout.astro";
 import { channelFor, cleanProfile } from "@/lib/channels";
 import { crumbsFor, getCorpus, resolveRef } from "@/lib/corpus";
+import { describeDigest, ledeOf, META_MAX } from "@/lib/describe";
 import { formatBytes, formatDate, humanize } from "@/lib/labels";
 import { articleJsonLd, conceptJsonLd } from "@/lib/skos";
 
@@ -127,6 +128,16 @@ const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
   `Digest of ${node.label} in ${areaLabel}, with retained sources and audit.`,
  historicalLine = fm.historical_labels,
  itemIds = (fm as Record<string, unknown>)["item_ids"],
+ // The head (meta, og, Article) gets a description that tells this digest
+ // apart; the line under the title keeps `description`, since the lede is
+ // already the page's first paragraph.
+ metaDescription = describeDigest({
+  area: areaLabel,
+  definition: fm.definition ?? "",
+  description: fm.description ?? "",
+  label: node.label,
+  lede: ledeOf(digest.rendered?.html, META_MAX),
+ }),
 
 /** The full SKOS record, for the rail's disclosure — identity and lifecycle
  *  fields as key/value rows, semantic fields as prose. Relations and
@@ -161,7 +172,7 @@ const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
 ---
 
 <Layout
-  {description}
+  description={metaDescription}
   {title}
   article={{
     modified: fm.modified ?? fm.timestamp,
@@ -175,7 +186,7 @@ const altLine = fm.alt_labels.filter((l) => humanize(l) !== node.label),
     <script
       type="application/ld+json"
       set:html={articleJsonLd(node, {
-        description,
+        description: metaDescription,
         dateModified: fm.modified ?? fm.timestamp,
         datePublished: fm.created,
         sourceUrls,
