@@ -126,7 +126,10 @@ needs to answer JSON-RPC. Three things about that are easy to break:
    converted by `env.AI.toMarkdown()` (`worker/markdown.ts`); every failure
    there falls back to the HTML, never to an error. Its rate limit is its own
    binding, `MARKDOWN_RATE_LIMITER`; do not point it at `/mcp` or the
-   reverse.
+   reverse. `public/webmcp.js` offers `/mcp`'s tools to browser agents; its
+   tool list must match `tools/list` (`worker/webmcp.test.ts` fails when
+   they drift), and it is a root-level file, so changing it needs no
+   rebuild.
 3. **Recipients never come from the request.** `worker/index.ts` maps a topic
    id to a recipient list from `src/lib/committee.ts`, and
    `allowed_destination_addresses` in `wrangler.jsonc` closes the set again at

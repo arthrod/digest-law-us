@@ -1,19 +1,26 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import SITE from "@/config";
+import type { ArticleMeta } from "@/lib/seo";
+import { articleTags, FEED_TITLE, OG_IMAGE, OG_LOCALE } from "@/lib/seo";
 import "@/styles/global.css";
 
 interface Props {
+  /** Digest pages: revision days and area, as Open Graph article tags. */
+  article?: ArticleMeta;
   canonicalURL?: string;
   description?: string;
   ogImage?: string;
+  ogType?: "article" | "website";
   title?: string;
 }
 
 const {
+  article,
   title = SITE.title,
   description = SITE.description,
   ogImage = `/${SITE.ogImage}`,
+  ogType = "website",
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
 } = Astro.props,
 
@@ -58,14 +65,27 @@ const {
     <meta content={description} name="description">
     <meta content={SITE.author} name="author">
     <link href="/sitemap-index.xml" rel="sitemap">
+    <link
+      href="/rss.xml"
+      rel="alternate"
+      title={FEED_TITLE}
+      type="application/rss+xml"
+    >
 
     <!-- Open Graph -->
-    <meta content="website" property="og:type">
+    <meta content={ogType} property="og:type">
+    <meta content={OG_LOCALE} property="og:locale">
     <meta content={SITE.title} property="og:site_name">
     <meta content={title} property="og:title">
     <meta content={description} property="og:description">
     <meta content={canonicalURL} property="og:url">
     <meta content={socialImageURL} property="og:image">
+    <meta content={String(OG_IMAGE.width)} property="og:image:width">
+    <meta content={String(OG_IMAGE.height)} property="og:image:height">
+    <meta content={OG_IMAGE.alt} property="og:image:alt">
+    {articleTags(article).map((tag) => (
+      <meta content={tag.content} property={tag.property}>
+    ))}
 
     <!-- Twitter / X -->
     <meta content="summary_large_image" property="twitter:card">
@@ -73,9 +93,13 @@ const {
     <meta content={title} property="twitter:title">
     <meta content={description} property="twitter:description">
     <meta content={socialImageURL} property="twitter:image">
+    <meta content={OG_IMAGE.alt} property="twitter:image:alt">
 
     <!-- Filled at runtime by theme.ts to match the current background -->
     <meta content="" name="theme-color">
+
+    <!-- WebMCP tools for browser agents; a no-op elsewhere (public/webmcp.js) -->
+    <script defer is:inline src="/webmcp.js"></script>
 
     <!-- Extra head content injected by pages (JSON-LD, etc.) -->
     <slot name="head" />

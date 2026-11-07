@@ -46,6 +46,12 @@ over 2 MiB, and clients past 60 conversions a minute, get the HTML instead.
 curl -H 'Accept: text/markdown' https://digest.law/evidence-law/proof-of-writings/
 ```
 
+## Follow revisions
+
+`https://digest.law/rss.xml` is RSS 2.0: the 50 most recently revised
+digests, newest first, each with its page URL and a summary. A revised
+digest comes back as a new item (its `guid` names the revision day).
+
 ## Read the evidence
 
 Under each topic: `…/sources/{slug}/` (each retained source in full),
