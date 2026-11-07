@@ -53,12 +53,24 @@
   // the public /mcp endpoint. Workers only allows a period of 10 or 60, so
   // this is one sustained request per second with a burst of 60.
   // namespace_id is account-wide; 2101 is digest.law's, not live-contracts' 1001.
+  //
+  // MARKDOWN_RATE_LIMITER caps `Accept: text/markdown` conversions (cache
+  // misses only) at the same rate. It is a separate binding with its own
+  // namespace so markdown traffic never eats into an MCP client's budget.
   "ratelimits": [
     {
       "name": "MCP_RATE_LIMITER",
       "namespace_id": "2101",
       "simple": { "limit": 60, "period": 60 },
     },
+    {
+      "name": "MARKDOWN_RATE_LIMITER",
+      "namespace_id": "2102",
+      "simple": { "limit": 60, "period": 60 },
+    },
   ],
+  // Workers AI, for toMarkdown(): pages converted on `Accept: text/markdown`
+  // (worker/markdown.ts). HTML conversion is free; nothing here runs a model.
+  "ai": { "binding": "AI" },
   "routes": [{ "pattern": "digest.law", "custom_domain": true }],
 }

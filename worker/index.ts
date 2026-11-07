@@ -4,7 +4,8 @@
  * The site is a fully pre-rendered Astro build served from the assets
  * binding. This Worker handles POST /api/contact (Email Sending), /id/{concept-id},
  * oversized assets, shard fallback, and POST /mcp. Everything else falls through
- * to the assets.
+ * to the assets — as markdown when the client's Accept prefers it
+ * (worker/markdown.ts), as the HTML otherwise.
  *
  * Recipients are NOT taken from the request. The topic id selects a
  * recipient list from src/lib/committee.ts, and `allowed_destination_addresses`
@@ -13,6 +14,8 @@
  */
 
 import { LIMITS, topicById } from "../src/lib/committee";
+import { negotiateMarkdown, prefersMarkdown, varyOnAccept } from "./markdown";
+import type { MarkdownAi, MarkdownCache } from "./markdown";
 import { handleMcp, withAgentLinks } from "./mcp";
 import type { RateLimit } from "./mcp";
 
@@ -43,8 +46,12 @@ interface OversizeAsset {
 }
 
 interface Env {
+  /** Workers AI: `toMarkdown()` for `Accept: text/markdown` (worker/markdown.ts). */
+  AI?: MarkdownAi;
   ASSETS: AssetFetcher;
   CONTACT_EMAIL: SendEmailBinding;
+  /** 60 markdown conversions / 60 seconds per IP. Absent under wrangler dev. */
+  MARKDOWN_RATE_LIMITER?: RateLimit;
   /** 60 requests / 60 seconds per IP on POST /mcp. Absent under wrangler dev. */
   MCP_RATE_LIMITER?: RateLimit;
   /**
@@ -525,8 +532,25 @@ async function dispatch(
   return await env.ASSETS.fetch(request);
 }
 
+/** `caches.default` in workerd; absent in tests and other runtimes. */
+function defaultCache(): MarkdownCache | undefined {
+  return (globalThis as { caches?: { default?: MarkdownCache } }).caches
+    ?.default;
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx?: WaitUntil): Promise<Response> {
-    return withAgentLinks(await dispatch(request, env, ctx));
+    const render = async (page: Request) =>
+      withAgentLinks(await dispatch(page, env, ctx));
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      prefersMarkdown(request.headers.get("accept"))
+    ) {
+      return await negotiateMarkdown(request, env, render, {
+        cache: defaultCache(),
+        waitUntil: ctx ? (promise) => ctx.waitUntil(promise) : undefined,
+      });
+    }
+    return varyOnAccept(await render(request));
   },
 };

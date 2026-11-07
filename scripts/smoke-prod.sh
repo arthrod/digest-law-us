@@ -26,6 +26,11 @@ t "API catalog type" application/linkset+json "$(ctype "$H/.well-known/api-catal
 t "agent skills index" 200 "$(code "$H/.well-known/agent-skills/index.json")"
 t "home page Link: api-catalog" 1 "$(curl -s -I -m 30 -A "$UA" "$H/" | grep -i '^link:' | grep -c 'rel="api-catalog"')"
 t "robots.txt Content-Signal" 1 "$(curl -s -m 30 -A "$UA" "$H/robots.txt" | grep -c '^Content-Signal: ')"
+md="$H/evidence-law/proof-of-writings/"
+t "markdown on Accept: text/markdown" text/markdown "$(ctype -H 'accept: text/markdown' "$md" | cut -d';' -f1)"
+t "markdown says its token count" 1 "$(curl -s -o /dev/null -D - -m 30 -A "$UA" -H 'accept: text/markdown' "$md" | grep -ci '^x-markdown-tokens: [0-9]')"
+t "a browser still gets HTML" text/html "$(ctype "$md" | cut -d';' -f1)"
+t "HTML varies on Accept" 1 "$(curl -s -I -m 30 -A "$UA" "$md" | grep -i '^vary:' | grep -ci 'accept')"
 t "GET /mcp is 405" 405 "$(code "$H/mcp")"
 t "initialize" digest-law "$(rpc '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"smoke","version":"0"}}}' | jq -r '.result.serverInfo.name')"
 t "tools/list" "get_concept,list_concepts,search_concepts" \

@@ -1,6 +1,6 @@
 ---
 name: american-legal-digest
-description: Find, cite and read American Legal Digest topics on digest.law through its read-only MCP server, permanent concept IRIs and SKOS dump.
+description: Find, cite and read American Legal Digest topics on digest.law through its read-only MCP server, markdown pages, permanent concept IRIs and SKOS dump.
 ---
 
 # American Legal Digest (digest.law)
@@ -34,6 +34,17 @@ digest itself. Limit: 60 requests per minute per IP.
   survivor when a duplicate was merged, 410 when a concept was retired).
 - Every page embeds its SKOS concept and a schema.org `Article` as JSON-LD.
   The whole scheme is at `https://digest.law/skos.jsonld`.
+
+## Read a page as markdown
+
+Send `Accept: text/markdown` to any page URL and the page comes back as
+markdown: YAML front matter (title, description), the digest with absolute
+links, then the page's JSON-LD. `x-markdown-tokens` gives its size. Pages
+over 2 MiB, and clients past 60 conversions a minute, get the HTML instead.
+
+```bash
+curl -H 'Accept: text/markdown' https://digest.law/evidence-law/proof-of-writings/
+```
 
 ## Read the evidence
 

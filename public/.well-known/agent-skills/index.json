@@ -2,8 +2,8 @@
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
   "skills": [
     {
-      "description": "Find, cite and read American Legal Digest topics on digest.law through its read-only MCP server, permanent concept IRIs and SKOS dump.",
-      "digest": "sha256:e04e45620cb223aeb948d54e39971527a3484ac8a431fde349803a4e34f26c14",
+      "description": "Find, cite and read American Legal Digest topics on digest.law through its read-only MCP server, markdown pages, permanent concept IRIs and SKOS dump.",
+      "digest": "sha256:c79d401e07567d00d5df082689c9771ecc61a464bf0b9049cfdcf461f8b74f7b",
       "name": "american-legal-digest",
       "type": "skill-md",
       "url": "/.well-known/agent-skills/american-legal-digest/SKILL.md"
