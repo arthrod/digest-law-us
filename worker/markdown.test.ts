@@ -36,12 +36,13 @@ const BROWSER =
     tokens: 7,
   },
   ETAG = '"abc123"',
+  MARKDOWN_ETAG = 'W/"md-abc123"',
   PAGE = "https://digest.law/evidence-law/proof-of-writings/",
   PAGE_HTML =
     "<html><head><title>Proof of writings</title></head><body><main>Proof</main></body></html>";
 
 function htmlResponse(
-  body = PAGE_HTML,
+  body: BodyInit = PAGE_HTML,
   headers: Record<string, string> = {},
   status = 200
 ): Response {
@@ -100,6 +101,28 @@ function fakeCache() {
     } satisfies MarkdownCache,
     store,
   };
+}
+
+/** A page body that records whether it was cancelled rather than sent. */
+function trackedBody() {
+  const audit = { cancelled: false },
+    body = new ReadableStream<Uint8Array>({
+      cancel: () => {
+        audit.cancelled = true;
+      },
+      start: (controller) => {
+        controller.enqueue(new TextEncoder().encode(PAGE_HTML));
+        controller.close();
+      },
+    });
+  return { body, state: audit };
+}
+
+function head(headers: Record<string, string> = {}): Request {
+  return new Request(PAGE, {
+    headers: { accept: "text/markdown", ...headers },
+    method: "HEAD",
+  });
 }
 
 async function wranglerConfig(): Promise<string> {
@@ -480,6 +503,139 @@ describe("the conversion cache", () => {
     await Promise.all(pending);
     expect(pending).toHaveLength(1);
     expect(store.size).toBe(1);
+  });
+});
+
+describe("a HEAD sends no body", () => {
+  test("and releases the page body it falls back on", async () => {
+    const { body, state } = trackedBody(),
+      { render } = renderer(() => htmlResponse(body)),
+      response = await negotiateMarkdown(head(), {}, render);
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe("");
+    expect(state.cancelled).toBe(true);
+  });
+});
+
+describe("revalidation", () => {
+  test("the markdown carries its own weak ETag, derived from the page's", async () => {
+    const { ai } = fakeAi(),
+      { render } = renderer(),
+      response = await negotiateMarkdown(
+        get("text/markdown"),
+        { AI: ai },
+        render
+      );
+    expect(response.headers.get("etag")).toBe(MARKDOWN_ETAG);
+  });
+
+  test("a weak page ETag gives the same markdown ETag", async () => {
+    const { ai } = fakeAi(),
+      { render } = renderer(() =>
+        htmlResponse(PAGE_HTML, { etag: 'W/"abc123"' })
+      ),
+      response = await negotiateMarkdown(
+        get("text/markdown"),
+        { AI: ai },
+        render
+      );
+    expect(response.headers.get("etag")).toBe(MARKDOWN_ETAG);
+  });
+
+  test("a copy served from cache keeps that ETag", async () => {
+    const { ai } = fakeAi(),
+      { cache } = fakeCache(),
+      { render } = renderer();
+    await negotiateMarkdown(get("text/markdown"), { AI: ai }, render, {
+      cache,
+    });
+    // oxlint-disable-next-line eslint/one-var -- the cache is filled above
+    const hit = await negotiateMarkdown(
+      get("text/markdown"),
+      { AI: ai },
+      render,
+      { cache }
+    );
+    expect(hit.headers.get("etag")).toBe(MARKDOWN_ETAG);
+  });
+
+  test.each([
+    ["its ETag", MARKDOWN_ETAG],
+    ["its ETag, compared weakly", '"md-abc123"'],
+    ["its ETag among others", `"other", ${MARKDOWN_ETAG}`],
+    ["the wildcard", "*"],
+  ])(
+    "If-None-Match with %s is a 304, converted by no one",
+    async (_label, tag) => {
+      const { ai, calls } = fakeAi(),
+        { body, state } = trackedBody(),
+        limited: string[] = [],
+        { render } = renderer(() => htmlResponse(body)),
+        response = await negotiateMarkdown(
+          get("text/markdown", { "if-none-match": tag }),
+          {
+            AI: ai,
+            MARKDOWN_RATE_LIMITER: {
+              limit: ({ key }) => {
+                limited.push(key);
+                return Promise.resolve({ success: true });
+              },
+            },
+          },
+          render
+        );
+      expect(response.status).toBe(304);
+      expect(await response.text()).toBe("");
+      expect(response.headers.get("etag")).toBe(MARKDOWN_ETAG);
+      expect(response.headers.get("vary")).toContain("Accept");
+      expect(response.headers.get("cache-control")).toBe(
+        "public, max-age=0, must-revalidate"
+      );
+      expect(calls).toHaveLength(0);
+      expect(limited).toHaveLength(0);
+      expect(state.cancelled).toBe(true);
+    }
+  );
+
+  test("the HTML's own ETag does not revalidate the markdown", async () => {
+    const { ai, calls } = fakeAi(),
+      { render } = renderer(),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": ETAG }),
+        { AI: ai },
+        render
+      );
+    expect(response.status).toBe(200);
+    expect(calls).toHaveLength(1);
+  });
+
+  test("a stale ETag from an older build is converted again", async () => {
+    const { ai, calls } = fakeAi(),
+      { render } = renderer(),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": 'W/"md-older"' }),
+        { AI: ai },
+        render
+      );
+    expect(response.status).toBe(200);
+    expect(calls).toHaveLength(1);
+  });
+
+  test("a page without an ETag gives markdown without one, never a 304", async () => {
+    const { ai } = fakeAi(),
+      { render } = renderer(
+        () =>
+          new Response(PAGE_HTML, {
+            headers: { "content-type": "text/html; charset=utf-8" },
+          })
+      ),
+      response = await negotiateMarkdown(
+        get("text/markdown", { "if-none-match": "*" }),
+        { AI: ai },
+        render
+      );
+    expect(response.status).toBe(200);
+    expect(response.headers.get("etag")).toBeNull();
   });
 });
 

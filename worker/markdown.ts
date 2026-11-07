@@ -170,15 +170,57 @@ function cacheKey(request: Request, etag: string): Request {
   );
 }
 
-/** A HEAD gets the same headers as the GET, and no body. */
-function forMethod(request: Request, response: Response): Response {
+/** A HEAD gets the same headers as the GET, and no body: the body it would
+ *  have had is cancelled, so the stream behind it is released, not left open. */
+async function forMethod(
+  request: Request,
+  response: Response
+): Promise<Response> {
   if (request.method !== "HEAD") {
     return response;
+  }
+  if (response.body && !response.body.locked) {
+    await response.body.cancel();
   }
   return new Response(null, {
     headers: response.headers,
     status: response.status,
   });
+}
+
+/**
+ * The markdown's own validator, derived from the page's. Weak: a converter
+ * update may change the bytes of the same page's markdown, not its meaning.
+ * Never the page's ETag itself, which names the HTML.
+ */
+export function markdownEtag(pageEtag: string): string {
+  const opaque = pageEtag.replace(/^W\//u, "").replaceAll('"', "");
+  return `W/"md-${opaque}"`;
+}
+
+/** An entity tag without its weakness marker, for weak comparison. */
+function opaqueTag(tag: string): string {
+  return tag.replace(/^W\//u, "");
+}
+
+/** If-None-Match against an ETag, compared weakly (RFC 9110 §13.1.2). */
+function isFresh(request: Request, etag: string): boolean {
+  const tags = request.headers
+    .get("if-none-match")
+    ?.match(/\*|(?:W\/)?"[^"]*"/gu);
+  return (tags ?? []).some(
+    (tag) => tag === "*" || opaqueTag(tag) === opaqueTag(etag)
+  );
+}
+
+/** A 304 carries what the 200 would have said about caching (RFC 9110 §15.4.5). */
+function notModified(etag: string, page: Response): Response {
+  const headers = new Headers({ etag, vary: "Accept" }),
+    pagePolicy = page.headers.get("cache-control");
+  if (pagePolicy) {
+    headers.set("cache-control", pagePolicy);
+  }
+  return new Response(null, { headers, status: 304 });
 }
 
 /** The client-facing caching policy is the page's, whatever was cached. */
@@ -195,7 +237,8 @@ function withPageCaching(response: Response, page: Response): Response {
 
 function markdownResponse(
   conversion: MarkdownConversion,
-  page: Response
+  page: Response,
+  etag: string | null
 ): Response {
   const headers = new Headers({
       "content-signal": CONTENT_SIGNAL,
@@ -206,6 +249,9 @@ function markdownResponse(
     link = page.headers.get("link");
   if (link) {
     headers.set("link", link);
+  }
+  if (etag) {
+    headers.set("etag", etag);
   }
   if (typeof conversion.tokens === "number") {
     headers.set("x-markdown-tokens", String(conversion.tokens));
@@ -274,7 +320,11 @@ async function convert(
 }
 
 /** The page as rendered, from the bytes already read off its body. */
-function asHtml(request: Request, page: Response, html: ArrayBuffer): Response {
+function asHtml(
+  request: Request,
+  page: Response,
+  html: ArrayBuffer
+): Promise<Response> {
   return forMethod(
     request,
     varyOnAccept(
@@ -328,8 +378,15 @@ export async function negotiateMarkdown(
   // oxlint-disable-next-line eslint/one-var -- the key needs a renderable HTML page first
   const etag = page.headers.get("etag"),
     key = etag ? cacheKey(request, etag) : null,
-    // oxlint-disable-next-line eslint/sort-vars -- hit is looked up by key (TDZ)
-    hit = await cached(options.cache, key);
+    // oxlint-disable-next-line eslint/sort-vars -- derived from the page's etag (TDZ)
+    validator = etag ? markdownEtag(etag) : null;
+  if (validator && isFresh(request, validator)) {
+    await page.body?.cancel();
+    return notModified(validator, page);
+  }
+
+  // oxlint-disable-next-line eslint/one-var -- only looked up when the client's copy is stale
+  const hit = await cached(options.cache, key);
   if (hit) {
     await page.body?.cancel();
     return forMethod(request, withPageCaching(hit, page));
@@ -355,7 +412,10 @@ export async function negotiateMarkdown(
   }
 
   // oxlint-disable-next-line eslint/one-var -- built from the successful conversion
-  const response = withPageCaching(markdownResponse(conversion, page), page);
+  const response = withPageCaching(
+    markdownResponse(conversion, page, validator),
+    page
+  );
   await store(response, key, options);
   return forMethod(request, response);
 }
