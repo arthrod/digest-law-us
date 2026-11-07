@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=24576 astro dev",
     "dev:preview": "NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro dev",
-    "build": "pnpm run frontmatter:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=24576 astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "pnpm run frontmatter:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=24576 astro build && bun scripts/write-mcp-catalog.ts && pagefind --site dist && cp -r dist/pagefind public/",
     "build:preview": "rm -rf dist-preview && NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro build && pagefind --site dist-preview",
     "preview:preview": "NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro preview",
     "preview": "NODE_OPTIONS=--max-old-space-size=24576 astro preview",
@@ -16,7 +16,7 @@
     "lint": "oxlint .",
     "check": "ultracite check",
     "deploy": "pnpm run ids:check && bun scripts/deploy-shards.ts",
-    "deploy:full": "pnpm run frontmatter:check && pnpm run ids:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=12288 astro build && pagefind --site dist && cp -r dist/pagefind public/ && bun scripts/deploy-shards.ts",
+    "deploy:full": "pnpm run frontmatter:check && pnpm run ids:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=12288 astro build && bun scripts/write-mcp-catalog.ts && pagefind --site dist && cp -r dist/pagefind public/ && bun scripts/deploy-shards.ts",
     "deploy:plan": "bun scripts/deploy-shards.ts --plan",
     "fix": "ultracite fix",
     "frontmatter:check": "bun scripts/check-digest-frontmatter.ts",
@@ -25,9 +25,10 @@
     "ids:check:main": "bun scripts/mint-concept-ids.ts --check --from-git ../key-digest-runner origin/main",
     "ids:mint:main": "git -C ../key-digest-runner fetch -q origin && bun scripts/mint-concept-ids.ts --from-git ../key-digest-runner origin/main",
     "skos:check": "bun scripts/check-skos.ts",
-    "test": "bun test src worker",
+    "test": "bun test src worker scripts",
     "postinstall": "node scripts/patch-astro-store-writer.mjs",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "smoke": "scripts/smoke-prod.sh"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.5",

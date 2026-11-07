@@ -45,7 +45,10 @@ variables.
      `build.concurrency` comes from `BUILD_CONCURRENCY` (default 1), so 4
      pages render in parallel. Raising it has not been measured; memory is the
      limit, so change one setting at a time and watch the memory log.
-4. **Runs `pagefind --site dist`** (54,392 pages indexed) and copies the index
+4. **Writes `dist/mcp-catalog.json`** (`scripts/write-mcp-catalog.ts`), the
+   concept catalog the `/mcp` Worker reads. It lists only concepts whose page
+   is in this `dist/`, and refuses to write an empty catalog.
+5. **Runs `pagefind --site dist`** (54,392 pages indexed) and copies the index
    into `public/`.
 
 ## Why 4 workers
@@ -98,6 +101,39 @@ then cold: about 3.5–4.3 h on this corpus. Upgrading Astro does the same.
   into writing its debug log under `~/.config/.wrangler/logs/` (257 MB for one
   shard). It is not hung. Wrangler's log settings in `deploy-shards.ts` could
   probably shorten this; that is untested.
+
+## Root-only deploys
+
+The root Worker carries the Worker code, every root-level file, and every
+top-level dot-folder (`dist/.well-known/`; see `src/lib/deploy-root.ts`).
+Shards carry everything else. A change that touches only those ships in
+minutes, with no rebuild:
+
+```sh
+bun scripts/write-mcp-catalog.ts            # refresh dist/mcp-catalog.json
+cp -r public/.well-known public/_headers dist/   # whatever changed in public/
+bun scripts/deploy-shards.ts --only=root
+scripts/smoke-prod.sh                       # read-only checks against digest.law
+```
+
+Precondition: `dist/` must be the build whose shards are live. The catalog
+lists only concepts with a page in `dist/`; written from a newer, undeployed
+build, it would send agents to pages that 404. The smoke test's last check
+("a search hit's page exists") catches that after the fact.
+
+Preflight refuses a deploy when:
+
+- `dist/` lacks a file the root Worker reads at runtime (`id-map.json`,
+  `mcp-catalog.json`, `.well-known/mcp/server-card.json`). On 2026-11-06 the
+  root Worker shipped `/mcp` without the catalog, and every tool call
+  answered "Concept catalog is unavailable".
+- a file under `public/` (pagefind aside) is missing from `dist/` or differs
+  from it. `astro build` copies `public/` into `dist/`; a root-only deploy
+  ships `dist/` as it is, so an uncopied edit would ship stale.
+- the id map or the MCP catalog is past the 25 MiB asset cap. Such a file is
+  split into parts that only the oversize route reassembles, while the Worker
+  fetches both maps whole, so `/id/*` or `/mcp` would stop answering. Today
+  they are 4.1 MB and 6.4 MB.
 
 ## Monitoring and memory
 

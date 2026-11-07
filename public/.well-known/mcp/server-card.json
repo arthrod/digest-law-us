@@ -1,0 +1,28 @@
+{
+  "serverInfo": {
+    "name": "digest-law",
+    "title": "American Legal Digest",
+    "version": "1.0.0"
+  },
+  "description": "Read-only MCP access to the American Legal Digest concept catalog: labels, routes, and permanent concept IRIs. The digest prose lives on each concept's page. Digests are a map of doctrine, not legal advice.",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://digest.law/mcp"
+  },
+  "capabilities": { "tools": { "listChanged": false } },
+  "documentation": "https://digest.law/",
+  "tools": [
+    {
+      "name": "search_concepts",
+      "description": "Search concept labels and routes."
+    },
+    {
+      "name": "list_concepts",
+      "description": "List concepts, optionally under one area, with pagination."
+    },
+    {
+      "name": "get_concept",
+      "description": "Fetch one concept by id or current route."
+    }
+  ]
+}

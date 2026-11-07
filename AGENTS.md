@@ -104,16 +104,24 @@ change whenever a route does.
 ## The Worker is load-bearing now — `assets`-only deploys are gone
 
 `wrangler.jsonc` used to be an assets-only config. It now has `main:
-"worker/index.ts"`, because `/contact/` needs somewhere to POST. Three things
-about that are easy to break:
+"worker/index.ts"`, because `/contact/` needs somewhere to POST and `/mcp`
+needs to answer JSON-RPC. Three things about that are easy to break:
 
-1. **`assets.run_worker_first: ["/api/*"]` is required.** With
+1. **`assets.run_worker_first` must include `/api/*`, `/id/*`, and `/mcp`.** With
    `not_found_handling: "404-page"` and no `run_worker_first`, a POST to
-   `/api/contact` is answered with the 404 page and the Worker never runs. The
-   symptom is a form that "silently fails" with a 200.
-2. **The Worker must fall through.** Anything that is not `/api/contact` is
-   returned by `env.ASSETS.fetch(request)`. Do not add routing cleverness
-   there; the 20,900 static pages are the product.
+   `/api/contact` or `/mcp` is answered with the 404 page and the Worker never
+   runs. The symptom is a form that "silently fails" with a 200, or an MCP
+   client that receives the HTML 404.
+2. **The Worker must fall through.** Anything that is not `/api/contact`,
+   `/id/{concept-id}`, `/mcp`, or an oversize asset is returned by
+   `env.ASSETS.fetch(request)` (or the shard that owns that folder). Do not
+   add routing cleverness there; the 20,900 static pages are the product.
+   `/mcp` is the read-only concept catalog (`worker/mcp.ts`). It is rate
+   limited at 60 requests / 60 seconds per IP by `MCP_RATE_LIMITER`. Do not
+   point that binding at the contact form, and do not remove it from `/mcp`.
+   It reads `dist/mcp-catalog.json`, which `scripts/write-mcp-catalog.ts`
+   writes after `astro build`; `deploy-shards.ts` refuses to deploy without
+   it. `dist/.well-known/` always ships with the root Worker, never a shard.
 3. **Recipients never come from the request.** `worker/index.ts` maps a topic
    id to a recipient list from `src/lib/committee.ts`, and
    `allowed_destination_addresses` in `wrangler.jsonc` closes the set again at
@@ -132,11 +140,12 @@ npx wrangler email sending dns get digest.law   # confirm SPF + DKIM landed
 from `wrangler dev`, add `"remote": true` to the `send_email` binding — and
 take it out again before deploying.
 
-Abuse controls today are a honeypot field, an `Origin` check, length caps, and
-the closed recipient set. There is **no rate limit**: the worst case is spam
-into the committee's own inboxes, not an open relay. If that becomes a
-problem, Turnstile or a rate-limit binding is the next step, not more
-validation.
+Abuse controls on the contact form today are a honeypot field, an `Origin`
+check, length caps, and the closed recipient set. The contact form has **no
+rate limit**: the worst case is spam into the committee's own inboxes, not an
+open relay. If that becomes a problem, Turnstile or a separate rate-limit
+binding is the next step, not more validation. `/mcp` already has its own
+binding; do not reuse it here.
 
 ## Committee and contact data lives in one module
 

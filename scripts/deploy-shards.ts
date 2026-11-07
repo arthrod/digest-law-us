@@ -53,6 +53,13 @@ import {
 } from "node:fs/promises";
 import path from "node:path";
 
+import {
+  missingRootFiles,
+  splitWorkerReads,
+  staleCopies,
+  staysOnRoot,
+} from "../src/lib/deploy-root";
+
 const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   ASSIGNMENTS_PATH = path.resolve(
     import.meta.dirname,
@@ -78,6 +85,7 @@ const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   /** Part size for splitting oversized root files, safely under the cap. */
   PART_BYTES = 20 * 1024 * 1024,
   PART_SUFFIX = ".part-",
+  PUBLIC_DIR = path.join(APP_ROOT, "public"),
   SHARD_SERVICE_PREFIX = "digest-law-shard-",
   WRANGLER_BIN = path.join(APP_ROOT, "node_modules/.bin/wrangler"),
   isPart = (name: string) => /\.part-\d{3}$/u.test(name),
@@ -207,7 +215,13 @@ async function inventory(): Promise<Inventory> {
           oversizeNested.push(path.relative(DIST, full));
         }
       }
-      folders.push({ files: nested.length, name: entry.name });
+      if (staysOnRoot(entry.name)) {
+        // /.well-known/* and friends ship with the root Worker: see
+        // src/lib/deploy-root.ts.
+        rootFiles += nested.length;
+      } else {
+        folders.push({ files: nested.length, name: entry.name });
+      }
     } else if (entry.name !== ".assetsignore" && !isPart(entry.name)) {
       rootFiles += 1;
       const { size } = await stat(path.join(DIST, entry.name));
@@ -218,7 +232,7 @@ async function inventory(): Promise<Inventory> {
   }
   if (oversizeNested.length > 0) {
     throw new Error(
-      `Files over the ${MAX_ASSET_BYTES / 1024 / 1024} MiB asset cap inside sharded folders: ${oversizeNested.join(", ")}. ` +
+      `Files over the ${MAX_ASSET_BYTES / 1024 / 1024} MiB asset cap inside folders: ${oversizeNested.join(", ")}. ` +
         "Shards have no Worker to reassemble split files — that is a human decision."
     );
   }
@@ -571,6 +585,16 @@ async function sha256(file: string): Promise<string> {
   return hasher.digest("hex");
 }
 
+/** Whether `copy` exists and holds exactly the bytes of `original`. */
+async function sameBytes(original: string, copy: string): Promise<boolean> {
+  if (!(await Bun.file(copy).exists())) {
+    return false;
+  }
+  // oxlint-disable-next-line eslint/one-var -- read only once the copy is known to exist
+  const [left, right] = await Promise.all([readFile(original), readFile(copy)]);
+  return left.equals(right);
+}
+
 /**
  * Throws with every problem found, before a single Worker deploys. The asset
  * checks mirror what wrangler enforces while building its manifest — which
@@ -609,6 +633,16 @@ async function preflight(
       (e) => e.isFile() && e.name !== ".assetsignore" && !excluded.has(e.name)
     ),
     tooBig: string[] = [];
+  let nestedOnRoot = 0;
+  for (const entry of rootEntries) {
+    if (entry.isDirectory() && staysOnRoot(entry.name)) {
+      const all = await readdir(path.join(DIST, entry.name), {
+        recursive: true,
+        withFileTypes: true,
+      });
+      nestedOnRoot += all.filter((n) => n.isFile()).length;
+    }
+  }
   for (const entry of shipped) {
     const { size } = await stat(path.join(DIST, entry.name));
     if (size > MAX_ASSET_BYTES) {
@@ -622,8 +656,48 @@ async function preflight(
   );
   check(
     `root ≤ ${MAX_ASSETS} files`,
-    shipped.length <= MAX_ASSETS,
-    `${shipped.length}`
+    shipped.length + nestedOnRoot <= MAX_ASSETS,
+    `${shipped.length + nestedOnRoot}`
+  );
+  // oxlint-disable-next-line eslint/one-var -- reads dist after the size checks
+  const missing = await missingRootFiles(
+    async (file) => await Bun.file(path.join(DIST, file)).exists()
+  );
+  check(
+    "root carries what the Worker reads (id map, MCP catalog, server card)",
+    missing.length === 0,
+    missing.join(", ")
+  );
+  // A root-only deploy ships dist/ as it is: a public/ edit that was never
+  // copied over (cp -r public/.well-known public/_headers dist/) ships stale.
+  // oxlint-disable-next-line eslint/one-var -- reads public/ after the dist checks
+  const publicEntries = await readdir(PUBLIC_DIR, {
+      recursive: true,
+      withFileTypes: true,
+    }),
+    // oxlint-disable-next-line eslint/sort-vars -- publicFiles maps publicEntries (TDZ)
+    publicFiles = publicEntries
+      .filter((entry) => entry.isFile())
+      .map((entry) =>
+        path.relative(PUBLIC_DIR, path.join(entry.parentPath, entry.name))
+      ),
+    // oxlint-disable-next-line eslint/sort-vars -- stale compares publicFiles (TDZ)
+    stale = await staleCopies(
+      publicFiles,
+      async (file) =>
+        await sameBytes(path.join(PUBLIC_DIR, file), path.join(DIST, file))
+    ),
+    // oxlint-disable-next-line eslint/sort-vars -- split follows stale in reading order
+    split = splitWorkerReads(Object.keys(oversize));
+  check(
+    "dist/ has the current public/ files (copy them over or rebuild — docs/build-and-deploy.md)",
+    stale.length === 0,
+    stale.join(", ")
+  );
+  check(
+    `the Worker reads its maps whole (id map, MCP catalog ≤ ${MAX_ASSET_BYTES / 1024 / 1024} MiB, never split)`,
+    split.length === 0,
+    split.join(", ")
   );
 
   for (const [urlPath, asset] of Object.entries(oversize)) {
@@ -782,7 +856,7 @@ try {
     );
   }
   console.log(
-    `  digest-law (root)   ${String(rootFiles).padStart(6)} files  + worker, /api/*, /id/*`
+    `  digest-law (root)   ${String(rootFiles).padStart(6)} files  + worker, /api/*, /id/*, /mcp`
   );
   for (const [urlPath, asset] of Object.entries(oversize)) {
     console.log(
