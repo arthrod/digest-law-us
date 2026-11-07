@@ -2,7 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import SITE from "@/config";
 import type { ArticleMeta } from "@/lib/seo";
-import { articleTags, FEED_TITLE, OG_IMAGE, OG_LOCALE } from "@/lib/seo";
+import { articleTags, FEED_TITLE, OG_LOCALE, ogImageMeta } from "@/lib/seo";
 import "@/styles/global.css";
 
 interface Props {
@@ -24,6 +24,7 @@ const {
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
 } = Astro.props,
 
+ imageMeta = ogImageMeta(ogImage),
  socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
 ---
 
@@ -80,9 +81,13 @@ const {
     <meta content={description} property="og:description">
     <meta content={canonicalURL} property="og:url">
     <meta content={socialImageURL} property="og:image">
-    <meta content={String(OG_IMAGE.width)} property="og:image:width">
-    <meta content={String(OG_IMAGE.height)} property="og:image:height">
-    <meta content={OG_IMAGE.alt} property="og:image:alt">
+    {imageMeta && (
+      <>
+        <meta content={String(imageMeta.width)} property="og:image:width">
+        <meta content={String(imageMeta.height)} property="og:image:height">
+        <meta content={imageMeta.alt} property="og:image:alt">
+      </>
+    )}
     {articleTags(article).map((tag) => (
       <meta content={tag.content} property={tag.property}>
     ))}
@@ -93,7 +98,7 @@ const {
     <meta content={title} property="twitter:title">
     <meta content={description} property="twitter:description">
     <meta content={socialImageURL} property="twitter:image">
-    <meta content={OG_IMAGE.alt} property="twitter:image:alt">
+    {imageMeta && <meta content={imageMeta.alt} property="twitter:image:alt">}
 
     <!-- Filled at runtime by theme.ts to match the current background -->
     <meta content="" name="theme-color">
