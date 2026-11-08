@@ -45,6 +45,31 @@ describe("readFrontmatterExcludes", () => {
     expect(kept.toSorted()).toEqual(["a/ok.md", "b/keep.md"]);
   });
 
+  test("a corrupt run.json drops out of the runs glob, and only that entry", async () => {
+    const corpus = path.join(dir, "corpus");
+    for (const rel of [
+      "okf/Good_Bundle/run.json",
+      "okf/Bad_Bundle/run.json",
+      "okf/Good_Bundle/digest.md",
+    ]) {
+      await Bun.write(path.join(corpus, rel), "{}");
+    }
+    await writeFile(
+      FRONTMATTER_EXCLUDES_FILE,
+      JSON.stringify(["okf/Bad_Bundle/run.json"])
+    );
+    // oxlint-disable-next-line eslint/one-var -- must glob after the fixtures and the list are written
+    const digests = await glob(
+        ["**/*.md", ...(await readFrontmatterExcludes())],
+        { cwd: corpus }
+      ),
+      runs = await glob(["**/run.json", ...(await readFrontmatterExcludes())], {
+        cwd: corpus,
+      });
+    expect(digests.toSorted()).toEqual(["okf/Good_Bundle/digest.md"]);
+    expect(runs.toSorted()).toEqual(["okf/Good_Bundle/run.json"]);
+  });
+
   test("a list that is not an array is an error, not a silent no-op", async () => {
     await writeFile(FRONTMATTER_EXCLUDES_FILE, '{"a": 1}');
     await expect(readFrontmatterExcludes()).rejects.toThrow(TypeError);

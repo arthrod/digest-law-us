@@ -132,7 +132,8 @@ const rawId = ({ entry }: { entry: string }) =>
     loader: glob({
       base: CORPUS_DIR,
       generateId: rawId,
-      pattern: scoped(["**/run.json"]),
+      /** A corrupt manifest would abort content sync; the preflight excludes it. */
+      pattern: scoped(["**/run.json", ...frontmatterExcludes]),
     }),
     schema: z
       .object({

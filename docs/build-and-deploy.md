@@ -19,18 +19,21 @@ variables.
 
 ## What `pnpm run build` does
 
-1. **Checks frontmatter and leaves out bad digests.** `pnpm run frontmatter:check`
-   (`scripts/check-digest-frontmatter.ts`) parses every digest with Astro's
-   frontmatter parser and runs the real `digestSchema`. This takes about 20
-   seconds for 13.6k digests. Every failing file is written to
-   `.frontmatter-excludes.json` (gitignored, rewritten on every build).
+1. **Checks frontmatter and data entries, and leaves out bad ones.** `pnpm run
+   frontmatter:check` (`scripts/check-digest-frontmatter.ts`) parses every
+   digest with Astro's frontmatter parser and runs the real `digestSchema`, and
+   `JSON.parse`s every `run.json` in the `runs` collection. This takes about 20
+   seconds for 15.5k digests and 15.4k manifests. Every failing file is written
+   to `.frontmatter-excludes.json` (gitignored, rewritten on every build).
    `src/content.config.ts` reads that list and removes those files from the
-   digests glob. A malformed digest therefore costs one page, not the whole
-   build. Without this check, the build only finds a bad digest after hours of
-   content sync, and then aborts. The failing files and the schema errors are
-   printed at the top of the log; fix them upstream in the corpus. Use
-   `bun scripts/check-digest-frontmatter.ts --strict` to fail instead, e.g. in
-   CI.
+   digests _and_ runs globs. A malformed digest therefore costs one page, and a
+   corrupt manifest costs one bundle its provenance panel, not the whole build.
+   Without this check, the build only finds a bad entry after hours of content
+   sync, and then aborts: a `run.json` with a stray `@@ -0,0 +1,531 @@` diff
+   header on it killed the 2026-11-08 run 24 minutes in. The failing files and
+   the schema errors are printed at the top of the log; fix them upstream in the
+   corpus. Use `bun scripts/check-digest-frontmatter.ts --strict` to fail
+   instead, e.g. in CI.
 2. **Checks the Astro store-writer patch.** `node scripts/patch-astro-store-writer.mjs --check`
    verifies the patch is still applied. A dependency bump can silently undo it;
    `pnpm install` re-applies it through `postinstall`.

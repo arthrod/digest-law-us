@@ -33,11 +33,12 @@ in one go). Rules:
 ## Full build and deploy
 
 `pnpm run build` is self-sufficient: it leaves out digests whose frontmatter
-fails the schema (see `.frontmatter-excludes.json`), and renders with 4
-prerender workers using the incremental cache. The measured reasons, timings,
-the tmux/memory-log launcher (`./build-deploy-tmux.sh`) and the deploy
-procedure are in **docs/build-and-deploy.md** — read it before changing the
-worker count, swap, or deploy scripts.
+fails the schema, and `run.json` manifests that are not valid JSON (see
+`.frontmatter-excludes.json`), and renders with 4 prerender workers using the
+incremental cache. The measured reasons, timings, the tmux/memory-log launcher
+(`./build-deploy-tmux.sh`) and the deploy procedure are in
+**docs/build-and-deploy.md** — read it before changing the worker count, swap,
+or deploy scripts.
 
 ## Don't let a pipe eat the build's exit code
 
