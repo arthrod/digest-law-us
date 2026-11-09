@@ -24,7 +24,9 @@ STALL_MIN=${STALL_MIN:-45}
 SHARDS_EXPECTED=${SHARDS_EXPECTED:-10}
 mkdir -p "$STATE_DIR"
 
-LOG=$(ls -t build-deploy-*.log 2>/dev/null | head -1)
+# *.mem.log matches that glob too and is written every 30 s; it carries no
+# phase markers, so pick only the run logs.
+LOG=$(ls -t build-deploy-*.log 2>/dev/null | grep -v '\.mem\.log$' | head -1)
 if [ -z "$LOG" ]; then
   echo "no build-deploy-*.log here: nothing to monitor"
   exit 3
@@ -49,6 +51,7 @@ if [ -n "$result" ]; then
 fi
 
 # Upload phase: one "=== deploying <worker> ===" line per Worker, shards first.
+prodline=""
 shards_started=$(grep -ac '=== deploying digest-law-shard-' "$LOG")
 uploading=$(grep -ac '=== deploying ' "$LOG")
 
@@ -59,24 +62,39 @@ uploading=$(grep -ac '=== deploying ' "$LOG")
 # every page, so half an hour of silence there is a real hang.
 stall_min=$STALL_MIN
 
-if [ "$shards_started" -gt 0 ]; then
+# Does the live site answer? Only asked once the run has reached the deploy, so
+# a build that never got that far costs the cron no network call.
+prod_state() {
+  if ! command -v curl >/dev/null 2>&1; then
+    printf ' prod=?'
+    return
+  fi
+  printf ' prod=%s' "$(curl -s -o /dev/null -w '%{http_code}' -m 5 https://digest.law/ 2>/dev/null || echo err)"
+}
+
+if grep -aq 'Workers deployed.' "$LOG"; then
+  phase="DEPLOYED $(grep -a 'Workers deployed.' "$LOG" | tail -1 | sed 's/^ *//')"
+  prodline=$(prod_state)
+elif [ "$uploading" -gt 0 ]; then
+  prodline=$(prod_state)
+  # A shard upload goes ~30 min without a log line while wrangler writes its
+  # debug log, so silence there is not a stall.
   stall_min=$(( STALL_MIN * 2 ))
   current=$(grep -a '=== deploying ' "$LOG" | tail -1 | sed 's/=== deploying //; s/ ===$//')
-  # "Uploaded"/"Version ID" lines prove the current Worker's files are on their
-  # way; wrangler then spends ~30 min writing its debug log before moving on.
   if [ "$(printf '%s' "$current" | grep -c 'root')" -gt 0 ]; then
     phase="UPLOAD root worker (the cutover: nothing changes for visitors until this finishes)"
   else
-    phase="UPLOAD $current ($shards_started/$SHARDS_EXPECTED shards started, then root)"
+    phase="UPLOAD $current ($shards_started/$SHARDS_EXPECTED shards, then root)"
   fi
-elif [ "$(grep -ac 'check:head' "$LOG")" -gt 0 ] || [ "$uploading" -gt 0 ]; then
-  phase="GATE check:head (the build finished; the deploy is next)"
-elif [ "$(grep -ac 'Complete!' "$LOG")" -gt 0 ]; then
+elif [ "$(grep -ac 'page(s) built in' "$LOG")" -gt 0 ]; then
+  # Pagefind indexes the whole dist with no output between "Building search
+  # indexes" and its report; an hour of silence is normal, not a hang.
+  stall_min=$(( STALL_MIN * 4 ))
   phase="AFTERBUILD catalog/pagefind (rendering done)"
 elif [ "$(grep -ac 'Building static entrypoints' "$LOG")" -gt 0 ] ||
   [ "$(grep -ac 'Rearranging server assets' "$LOG")" -gt 0 ]; then
   pages=$(grep -ac '├─ /' "$LOG" 2>/dev/null)
-  phase="RENDER $pages pages logged (of ~357k)"
+  phase="RENDER $pages pages logged"
 elif [ "$(grep -ac 'Synced content' "$LOG")" -gt 0 ]; then
   phase="RENDER starting (content synced)"
 else
@@ -104,7 +122,7 @@ elif [ "$log_age_min" -ge "$stall_min" ]; then
   note=" quiet ${log_age_min}m (a shard upload looks like this for ~30m; a cold sync for hours)"
 fi
 
-line="$(date -Is) $phase | log $(numfmt --to=iec "$size") last write ${log_age_min}m ago ${memline}${note}"
+line="$(date -Is) $phase${prodline:-} | log $(numfmt --to=iec "$size") last write ${log_age_min}m ago ${memline}${note}"
 printf '%s %s\n' "$size" "$line" > "$STATE"
 
 if [ "${UPLOAD_MONITOR_QUIET:-0}" = "1" ] && [ "$status" -eq 0 ]; then
