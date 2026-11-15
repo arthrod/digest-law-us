@@ -37847,6 +37847,35 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.IMMORAL_CONSIDERATION.CONTRACTS_TO_ACT_AS_HOUSEKEEPER"
     },
     {
+      "id": "22bbfb072a5c41f4a214abc97b53bdb7",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/legality-of-consideration"
+      ],
+      "label": "Legality of Consideration",
+      "minted": "2026-11-15",
+      "uuid": "22bbfb07-2a5c-41f4-a214-abc97b53bdb7"
+    },
+    {
+      "id": "a83fa58161144d1988a494c7aa3916a8",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/legality-of-consideration/immoral-consideration"
+      ],
+      "label": "Immoral Consideration",
+      "minted": "2026-11-15",
+      "uuid": "a83fa581-6114-4d19-88a4-94c7aa3916a8"
+    },
+    {
+      "id": "ce71f012e1474a13ac9d7a656bda4184",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/legality-of-consideration/immoral-consideration/executed-contract-with-immoral-purpose-not-carried-out"
+      ],
+      "label": "EXECUTED CONTRACT WITH IMMORAL PURPOSE NOT CARRIED OUT",
+      "minted": "2026-11-15",
+      "uuid": "ce71f012-e147-4a13-ac9d-7a656bda4184",
+      "corpusIssueId": "5c6ccc15-38b9-59b4-8d06-6254c91c149f",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.LEGALITY_OF_CONSIDERATION.IMMORAL_CONSIDERATION.EXECUTED_CONTRACT_WITH_IMMORAL_PURPOSE_NOT_CARRIED_OUT"
+    },
+    {
       "id": "f3a620470ab243f88b0c1812b32b5c91",
       "keys": [
         "contract-law/formation-and-enforceability/consideration/moral-consideration"
@@ -59545,6 +59574,17 @@
       "uuid": "9b6f2d64-c87f-4153-8c28-d90a705a32a7"
     },
     {
+      "id": "2c2f0cf4d288477b8a772f35aeedb89e",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-incorporation/incorporation-documents-and-procedures/name-and-subscription-agreements"
+      ],
+      "label": "NAME AND SUBSCRIPTION AGREEMENTS",
+      "minted": "2026-11-15",
+      "uuid": "2c2f0cf4-d288-477b-8a77-2f35aeedb89e",
+      "corpusIssueId": "71068e75-8c2e-59da-8fc2-932773f4a867",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.FORMATION_AND_INCORPORATION.INCORPORATION_DOCUMENTS_AND_PROCEDURES.NAME_AND_SUBSCRIPTION_AGREEMENTS"
+    },
+    {
       "id": "aff5960f40b84eaca63e9401b87727ef",
       "keys": [
         "corporate-law/business-organizations-law/corporations/formation-and-incorporation/incorporation-documents-and-procedures/name-of-incorporation-instrument"
@@ -61996,6 +62036,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_RIGHTS_AND_REMEDIES.RIGHT_TO_INSPECT_CORPORATE_BOOKS_AND_RECORDS"
     },
     {
+      "id": "837510b86de74af9ba58558491dc2e29",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholder-rights-and-remedies/right-to-inspect-corporate-books-and-records/proceedings-to-enforce-right-of-inspection"
+      ],
+      "label": "PROCEEDINGS TO ENFORCE RIGHT OF INSPECTION",
+      "minted": "2026-11-15",
+      "uuid": "837510b8-6de7-4af9-ba58-558491dc2e29",
+      "corpusIssueId": "d359eeea-6009-5e3a-b5a9-31f3b4fd23e6",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_RIGHTS_AND_REMEDIES.RIGHT_TO_INSPECT_CORPORATE_BOOKS_AND_RECORDS.PROCEEDINGS_TO_ENFORCE_RIGHT_OF_INSPECTION"
+    },
+    {
       "id": "667d5cca73d24e2c8320c26227382fca",
       "keys": [
         "corporate-law/business-organizations-law/corporations/shareholder-rights-and-remedies/shareholders-rights-and-remedies"
@@ -62964,6 +63015,17 @@
       "minted": "2026-10-30",
       "uuid": "618839e8-8707-4440-8760-0b1a536ae5aa",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CREDITORS_RIGHTS_AND_REMEDIES.EQUITABLE_REMEDIES_OF_PARTNERSHIP_CREDITORS"
+    },
+    {
+      "id": "0e39c7b6bac44162ad84c9dd0fa86f24",
+      "keys": [
+        "corporate-law/business-organizations-law/decentralized-autonomous-organizations-daos"
+      ],
+      "label": "DECENTRALIZED AUTONOMOUS ORGANIZATIONS (DAOS)",
+      "minted": "2026-11-15",
+      "uuid": "0e39c7b6-bac4-4162-ad84-c9dd0fa86f24",
+      "corpusIssueId": "f0b0b9d6-8ab1-54b6-97e3-d3db5e6303a7",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.DECENTRALIZED_AUTONOMOUS_ORGANIZATIONS_DAOS"
     },
     {
       "id": "80d925e937db485b97f6960ec025e793",
@@ -64183,6 +64245,26 @@
       "uuid": "43e6d8fc-741f-4ba9-b945-1bfbb0d954d7",
       "corpusIssueId": "d176c90c-4da2-5b10-bb51-735ff74ec65e",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.FORMATION_AND_EXISTENCE_OF_PARTNERSHIP.INTENTION_TO_FORM_PARTNERSHIP.MERE_INTENTION_INSUFFICIENT"
+    },
+    {
+      "id": "3ba99d47d3e34e9188319d66d88050db",
+      "keys": [
+        "corporate-law/business-organizations-law/formation-and-existence-of-partnership/partnership-by-estoppel"
+      ],
+      "label": "Partnership by Estoppel",
+      "minted": "2026-11-15",
+      "uuid": "3ba99d47-d3e3-4e91-8831-9d66d88050db"
+    },
+    {
+      "id": "6ec46dc9a2ad4d4e965d23e087748b34",
+      "keys": [
+        "corporate-law/business-organizations-law/formation-and-existence-of-partnership/partnership-by-estoppel/test-of-estoppel"
+      ],
+      "label": "TEST OF ESTOPPEL",
+      "minted": "2026-11-15",
+      "uuid": "6ec46dc9-a2ad-4d4e-965d-23e087748b34",
+      "corpusIssueId": "550fee45-47db-57d9-bf0e-4ddff2c34785",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.FORMATION_AND_EXISTENCE_OF_PARTNERSHIP.PARTNERSHIP_BY_ESTOPPEL.TEST_OF_ESTOPPEL"
     },
     {
       "id": "a9545dbc7ca5429896eda18539fb49c7",
@@ -65889,6 +65971,17 @@
       ],
       "minted": "2026-07-31",
       "label": "Partner Authority and Powers Before Dissolution"
+    },
+    {
+      "id": "a13f5f657710434d9aad4a6463653d8f",
+      "keys": [
+        "corporate-law/business-organizations-law/partner-authority-and-powers-before-dissolution/management-and-conduct-of-partnership-business"
+      ],
+      "label": "MANAGEMENT AND CONDUCT OF PARTNERSHIP BUSINESS",
+      "minted": "2026-11-15",
+      "uuid": "a13f5f65-7710-434d-9aad-4a6463653d8f",
+      "corpusIssueId": "0a277a33-ea21-5263-8d90-bb179e16119e",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNER_AUTHORITY_AND_POWERS_BEFORE_DISSOLUTION.MANAGEMENT_AND_CONDUCT_OF_PARTNERSHIP_BUSINESS"
     },
     {
       "id": "a1aeb3bae3f94e40806e4a4844318d42",
@@ -102800,6 +102893,26 @@
       "uuid": "dfd28d6e-b062-450f-bbc5-046201fa9feb"
     },
     {
+      "id": "d1d5b46f70eb44a896e2d615397351f6",
+      "keys": [
+        "criminal-law/right-to-counsel/ineffective-assistance-of-counsel"
+      ],
+      "label": "Ineffective Assistance of Counsel",
+      "minted": "2026-11-15",
+      "uuid": "d1d5b46f-70eb-44a8-96e2-d615397351f6"
+    },
+    {
+      "id": "1934f568246f404f98e9e8d524dceeec",
+      "keys": [
+        "criminal-law/right-to-counsel/ineffective-assistance-of-counsel/strickland-v-washington"
+      ],
+      "label": "STRICKLAND V. WASHINGTON",
+      "minted": "2026-11-15",
+      "uuid": "1934f568-246f-404f-98e9-e8d524dceeec",
+      "corpusIssueId": "eefde30e-62b5-5f04-9792-de9708fb93ca",
+      "pathNotation": "CRIMINAL_LAW.RIGHT_TO_COUNSEL.INEFFECTIVE_ASSISTANCE_OF_COUNSEL.STRICKLAND_V_WASHINGTON"
+    },
+    {
       "id": "5bd64acce31743d9bcda3384d47519b3",
       "keys": [
         "criminal-law/right-to-counsel/presumption-of-prejudice-and-constructive-denial-of-counsel"
@@ -128876,6 +128989,35 @@
       "pathNotation": "EVIDENCE_LAW.TRIAL_EVIDENCE.ORDER_OF_PROOF.JUDICIAL_DISCRETION_IN_ORDER_OF_PROOF"
     },
     {
+      "id": "9de34c80a88a42f0a6400d90f5673e39",
+      "keys": [
+        "evidence-law/trial-procedure-and-conduct"
+      ],
+      "label": "Trial Procedure and Conduct",
+      "minted": "2026-11-15",
+      "uuid": "9de34c80-a88a-42f0-a640-0d90f5673e39"
+    },
+    {
+      "id": "8db61aeadd7042e8af94506af3720abf",
+      "keys": [
+        "evidence-law/trial-procedure-and-conduct/participation-by-the-judge"
+      ],
+      "label": "Participation by the Judge",
+      "minted": "2026-11-15",
+      "uuid": "8db61aea-dd70-42e8-af94-506af3720abf"
+    },
+    {
+      "id": "00b0189afc734b3c8b8ee8e2f139504f",
+      "keys": [
+        "evidence-law/trial-procedure-and-conduct/participation-by-the-judge/judge-s-questioning-of-witnesses"
+      ],
+      "label": "JUDGE'S QUESTIONING OF WITNESSES",
+      "minted": "2026-11-15",
+      "uuid": "00b0189a-fc73-4b3c-8b8e-e8e2f139504f",
+      "corpusIssueId": "0bdff200-d68e-51ae-8436-1be664ec96c0",
+      "pathNotation": "EVIDENCE_LAW.TRIAL_PROCEDURE_AND_CONDUCT.PARTICIPATION_BY_THE_JUDGE.JUDGE_S_QUESTIONING_OF_WITNESSES"
+    },
+    {
       "id": "be678efeeb8944cf9c262d7e62902adb",
       "uuid": "be678efe-eb89-44cf-9c26-2d7e62902adb",
       "keys": [
@@ -134379,6 +134521,35 @@
       "uuid": "40c99064-268a-4534-970e-b24e26b3cbf4",
       "corpusIssueId": "6059a942-973c-5372-94bf-3d49cfc9ae9c",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_AND_NOTES.INDORSEMENT.JUDICIAL_PRECEDENTS_ON_INDORSEMENT"
+    },
+    {
+      "id": "da606e4731ce4ac1ae78f6348c7d10ed",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-and-notes/notice-of-dishonor"
+      ],
+      "label": "Notice of Dishonor",
+      "minted": "2026-11-15",
+      "uuid": "da606e47-31ce-4ac1-ae78-f6348c7d10ed"
+    },
+    {
+      "id": "6ff816e1c2b94a81b1980303e838fc10",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-and-notes/notice-of-dishonor/excuses-for-failure-to-give-notice"
+      ],
+      "label": "Excuses for Failure to Give Notice",
+      "minted": "2026-11-15",
+      "uuid": "6ff816e1-c2b9-4a81-b198-0303e838fc10"
+    },
+    {
+      "id": "b93c2eae0e0b4889a1c37a980221d3ad",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-and-notes/notice-of-dishonor/excuses-for-failure-to-give-notice/persons-to-whom-notice-is-not-required"
+      ],
+      "label": "PERSONS TO WHOM NOTICE IS NOT REQUIRED",
+      "minted": "2026-11-15",
+      "uuid": "b93c2eae-0e0b-4889-a1c3-7a980221d3ad",
+      "corpusIssueId": "ab2f8462-40e3-503a-8efe-7e4759374460",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_AND_NOTES.NOTICE_OF_DISHONOR.EXCUSES_FOR_FAILURE_TO_GIVE_NOTICE.PERSONS_TO_WHOM_NOTICE_IS_NOT_REQUIRED"
     },
     {
       "id": "e2aaa7145f3b4bea86915822d2b0a289",
@@ -176229,6 +176400,17 @@
       "pathNotation": "IP_LAW.PATENT_LAW.PATENT_CLAIMS_AND_SPECIFICATION.FUNCTIONAL_CLAIMING_PROHIBITION"
     },
     {
+      "id": "de96ad539e99406ab3fec85be72a6ecd",
+      "keys": [
+        "ip-law/patent-law/patent-construction-and-interpretation"
+      ],
+      "label": "PATENT CONSTRUCTION AND INTERPRETATION",
+      "minted": "2026-11-15",
+      "uuid": "de96ad53-9e99-406a-b3fe-c85be72a6ecd",
+      "corpusIssueId": "f83cc8f2-83a8-5057-845e-d62baa0b09b2",
+      "pathNotation": "IP_LAW.PATENT_LAW.PATENT_CONSTRUCTION_AND_INTERPRETATION"
+    },
+    {
       "id": "9b0c14aeb65745f39e9ce1c9e8a22ce0",
       "keys": [
         "ip-law/patent-law/patent-cooperation-treaty-and-national-stage"
@@ -194007,6 +194189,17 @@
       "uuid": "f4f20a21-f9a7-454a-bc47-10ce18f6c4f7"
     },
     {
+      "id": "935c63a3f8d74a9bb2d85e2fde599858",
+      "keys": [
+        "law-of-obligations/duties-and-liabilities-of-agent-to-third-persons/agent-s-liability-on-contract/agent-as-party-to-contract"
+      ],
+      "label": "AGENT AS PARTY TO CONTRACT",
+      "minted": "2026-11-15",
+      "uuid": "935c63a3-f8d7-4a9b-b2d8-5e2fde599858",
+      "corpusIssueId": "780b8df7-4e4e-541c-9b2b-dfe345bd723d",
+      "pathNotation": "LAW_OF_OBLIGATIONS.DUTIES_AND_LIABILITIES_OF_AGENT_TO_THIRD_PERSONS.AGENT_S_LIABILITY_ON_CONTRACT.AGENT_AS_PARTY_TO_CONTRACT"
+    },
+    {
       "id": "637176486d894af09954611ff6dd83cc",
       "keys": [
         "law-of-obligations/duties-and-liabilities-of-agent-to-third-persons/agent-s-liability-on-contract/liability-for-price-of-goods"
@@ -197476,6 +197669,26 @@
       "uuid": "9def62af-f663-4240-b871-e7122125a298",
       "corpusIssueId": "6a03408c-b918-5799-b352-00ac2e464668",
       "pathNotation": "LAW_OF_OBLIGATIONS.PRINCIPAL_S_LIABILITY_TO_THIRD_PARTIES.TORT_LIABILITY.EXCEPTIONS_TO_INDEPENDENT_CONTRACTOR_RULE.EXTRA_HAZARDOUS_WORK"
+    },
+    {
+      "id": "98c44cb2d6f54d36b8f823f99ee2454d",
+      "keys": [
+        "law-of-obligations/principal-s-liability-to-third-parties/undisclosed-principal"
+      ],
+      "label": "Undisclosed Principal",
+      "minted": "2026-11-15",
+      "uuid": "98c44cb2-d6f5-4d36-b8f8-23f99ee2454d"
+    },
+    {
+      "id": "d6161bd2f1df41c5bc3642835e996c4e",
+      "keys": [
+        "law-of-obligations/principal-s-liability-to-third-parties/undisclosed-principal/liability-upon-discovery"
+      ],
+      "label": "LIABILITY UPON DISCOVERY",
+      "minted": "2026-11-15",
+      "uuid": "d6161bd2-f1df-41c5-bc36-42835e996c4e",
+      "corpusIssueId": "28c6e217-40e7-5423-8fa2-28f617e6ca88",
+      "pathNotation": "LAW_OF_OBLIGATIONS.PRINCIPAL_S_LIABILITY_TO_THIRD_PARTIES.UNDISCLOSED_PRINCIPAL.LIABILITY_UPON_DISCOVERY"
     },
     {
       "id": "027f14ea63eb4f26b03da39bbb2d4788",
@@ -203029,6 +203242,26 @@
       "uuid": "84895d02-736c-40b7-bbfc-3e9d141d9748",
       "corpusIssueId": "a7db3850-97ce-5337-8db3-b8ab8d531853",
       "pathNotation": "LAW_OF_WRONGDOING.GENERAL_FRAMEWORK_AND_OVERVIEW.INTRODUCTION_TO_TORT_LAW"
+    },
+    {
+      "id": "cef9404272004431a05fa3be678acf43",
+      "keys": [
+        "law-of-wrongdoing/general-principles-and-overview"
+      ],
+      "label": "General Principles and Overview",
+      "minted": "2026-11-15",
+      "uuid": "cef94042-7200-4431-a05f-a3be678acf43"
+    },
+    {
+      "id": "937dbf1a3a864fa9b041b064fbc1ee0b",
+      "keys": [
+        "law-of-wrongdoing/general-principles-and-overview/loss-shifting-and-distribution"
+      ],
+      "label": "LOSS SHIFTING AND DISTRIBUTION",
+      "minted": "2026-11-15",
+      "uuid": "937dbf1a-3a86-4fa9-b041-b064fbc1ee0b",
+      "corpusIssueId": "dc6f3d8c-e39b-5302-b166-e2f80bdc1049",
+      "pathNotation": "LAW_OF_WRONGDOING.GENERAL_PRINCIPLES_AND_OVERVIEW.LOSS_SHIFTING_AND_DISTRIBUTION"
     },
     {
       "id": "194864958b634715818a9139865e6729",
@@ -231574,6 +231807,26 @@
       "uuid": "b5a50c5f-41a0-4626-8c21-f5bfe729f7a2",
       "corpusIssueId": "f4fd0847-5219-5ffd-85f8-06ec09178990",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE.GROUNDS_FOR_DIVORCE.FAULT_BASED_GROUNDS.BIGAMY_AS_GROUND_FOR_DIVORCE"
+    },
+    {
+      "id": "470dcb5098a6473dac865532ab94a063",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce/judicial-discretion-of-the-court"
+      ],
+      "label": "Judicial Discretion of the Court",
+      "minted": "2026-11-15",
+      "uuid": "470dcb50-98a6-473d-ac86-5532ab94a063"
+    },
+    {
+      "id": "679333aa4dc047fa82d3086ae85ae5f1",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce/judicial-discretion-of-the-court/general-principles"
+      ],
+      "label": "GENERAL PRINCIPLES",
+      "minted": "2026-11-15",
+      "uuid": "679333aa-4dc0-47fa-82d3-086ae85ae5f1",
+      "corpusIssueId": "689deb1f-13b9-5648-8a0b-656f7c799628",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE.JUDICIAL_DISCRETION_OF_THE_COURT.GENERAL_PRINCIPLES"
     },
     {
       "id": "f82bebd4cc39480cb66e004daff6754a",
@@ -268845,6 +269098,17 @@
       "uuid": "4de2efe2-8f85-405d-af17-71b250783d0b",
       "corpusIssueId": "3928724f-a5b1-5f67-a156-b6edcb9664c3",
       "pathNotation": "PROCEDURAL_LAW.STANDING.CONSTITUTIONAL_STANDING_REQUIREMENTS.FUTURE_INJURY_REQUIREMENT_FOR_INJUNCTIVE_RELIEF"
+    },
+    {
+      "id": "d9987c284f6147c28628520e88623bbf",
+      "keys": [
+        "procedural-law/standing/constitutional-standing-requirements/injury-in-fact-and-causal-connection"
+      ],
+      "label": "INJURY IN FACT AND CAUSAL CONNECTION",
+      "minted": "2026-11-15",
+      "uuid": "d9987c28-4f61-47c2-8628-520e88623bbf",
+      "corpusIssueId": "1a544f94-d652-5cca-aaa9-95e17d6f9c12",
+      "pathNotation": "PROCEDURAL_LAW.STANDING.CONSTITUTIONAL_STANDING_REQUIREMENTS.INJURY_IN_FACT_AND_CAUSAL_CONNECTION"
     },
     {
       "id": "e863a168cb804caf9eaef49a83498374",
@@ -318370,6 +318634,17 @@
       "uuid": "c110ba38-38fe-4dcb-9d04-c6153ad7fae9",
       "corpusIssueId": "9c78b3ea-0934-591d-ad33-5decaf3b98ab",
       "pathNotation": "REAL_ESTATE_LAW.VESTED_AND_CONTINGENT_INTERESTS.STATUTORY_EFFECTS_ON_VESTED_AND_CONTINGENT_INTERESTS"
+    },
+    {
+      "id": "e8f5ac81a04d4456b1437f00a0cb74cd",
+      "keys": [
+        "real-estate-law/vested-and-contingent-interests/time-of-intention-for-testamentary-dispositions"
+      ],
+      "label": "TIME OF INTENTION FOR TESTAMENTARY DISPOSITIONS",
+      "minted": "2026-11-15",
+      "uuid": "e8f5ac81-a04d-4456-b143-7f00a0cb74cd",
+      "corpusIssueId": "8ee3cf02-85f6-5e0a-b821-9b2d8c537598",
+      "pathNotation": "REAL_ESTATE_LAW.VESTED_AND_CONTINGENT_INTERESTS.TIME_OF_INTENTION_FOR_TESTAMENTARY_DISPOSITIONS"
     },
     {
       "id": "463558e854df4a44a581fa393b1db5f2",
