@@ -14,42 +14,44 @@ on:
 
 jobs:
   build:
-    name: Code standards & build
+    name: Code standards & tests
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    # Lint, format and the full test suite finish in about ten seconds. The
+    # old three-minute budget was sized for a site build that never ran here
+    # (it cannot — see the note where that step used to be); this is headroom
+    # for a cold `pnpm install`, nothing more.
+    timeout-minutes: 10
 
     steps:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@v7
 
+      # CI, compose.yaml and the Dockerfile pin the same pnpm version. If one
+      # of them drifts, a lockfile that installs here can fail there.
       - name: "📦 Install pnpm"
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
-          version: "12.14.0"
+          version: "12.21.0"
 
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version: "26"
           cache: "pnpm"
+
+      # Bun is not optional in this repo: `pnpm test` is
+      # `bun test src worker scripts`, and `pnpm run build` starts with
+      # `bun scripts/check-digest-frontmatter.ts`. Without Bun installed every
+      # command that shells out to it exits 127 — which is what made this
+      # workflow fail instantly, before it ever reached the build. Installed
+      # before dependencies because `postinstall` and the test runner need it.
+      - name: "🥟 Install Bun"
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.4.4"
 
       - name: "📦 Install dependencies"
         run: pnpm install --frozen-lockfile
-
-      # Incremental builds (experimental.incrementalBuild) can only skip
-      # pages when the previous build's cache survives in node_modules/.astro
-      # — Astro empties dist/ every build and restores skipped pages from
-      # there. The key is per-run so the freshest cache is always saved;
-      # restore-keys falls back to the newest previous run. Restored after
-      # install so pnpm cannot disturb it. Any deploy workflow that builds
-      # the real corpus needs this same step to benefit.
-      - name: "♻️ Restore Astro build cache"
-        uses: actions/cache@v6
-        with:
-          path: node_modules/.astro
-          key: astro-build-${{ runner.os }}-${{ github.run_id }}
-          restore-keys: |
-            astro-build-${{ runner.os }}-
 
       - name: "🔎 Lint code"
         run: pnpm run lint
@@ -57,5 +59,25 @@ jobs:
       - name: "📝 Checking code format"
         run: pnpm run format:check
 
-      - name: "🚀 Build the project"
-        run: pnpm run build
+      - name: "🧪 Run tests"
+        run: pnpm test
+
+      # There is deliberately no build step here.
+      #
+      # `pnpm run build` renders the American Legal Digest corpus, and that
+      # corpus is NOT in this repository. src/corpus.config.ts defaults
+      # CORPUS_DIR to ../key-digest-runner/key_digest/american_legal_digest/okf
+      # — a sibling checkout of the private key-digest-runner repo — and
+      # src/content.config.ts globs every content collection out of that
+      # directory when the config loads. On a fresh runner the path does not
+      # exist, so the build dies while loading content, before any page code
+      # runs: it can only ever fail for a missing private checkout, never for
+      # a defect in this repository. That is why every PR, including main's
+      # own HEAD, was red.
+      #
+      # The real build is verified by the deploy pipeline, on the machine that
+      # has the corpus (`pnpm run deploy:full`: ~27 minutes, 24 GB heap). What
+      # CI can honestly check is what is actually here: lint, format, tests.
+      #
+      # The incremental-build cache that used to live here is gone with it —
+      # it cached node_modules/.astro, which only a real build fills.
