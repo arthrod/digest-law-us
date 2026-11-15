@@ -14451,6 +14451,15 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.ELIGIBILITY_AND_STANDING.PERSONS_AGAINST_WHOM_PETITIONS_MAY_BE_FILED"
     },
     {
+      "id": "9ffa364c95104706b72050b6485831aa",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/exemptions"
+      ],
+      "label": "Exemptions",
+      "minted": "2026-11-15",
+      "uuid": "9ffa364c-9510-4706-b720-50b6485831aa"
+    },
+    {
       "id": "c560f657f162460a828ebb423d1963d8",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/exemptions-and-excluded-property"
@@ -14498,6 +14507,17 @@
       "uuid": "c844d0e0-37cb-4f93-8f64-e84c17a2652c",
       "corpusIssueId": "42a0eae7-7075-5ceb-95a6-8d5aa0066371",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.EXEMPTIONS_AND_EXCLUSIONS_FROM_THE_ESTATE.LIFE_INSURANCE_POLICIES.REDEMPTION_BY_PAYING_SURRENDER_VALUE"
+    },
+    {
+      "id": "cf5281298c5c4f8ab724724060828af6",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/exemptions/setting-apart-exempt-property"
+      ],
+      "label": "SETTING APART EXEMPT PROPERTY",
+      "minted": "2026-11-15",
+      "uuid": "cf528129-8c5c-4f8a-b724-724060828af6",
+      "corpusIssueId": "9081ae10-e6e9-507f-96ab-e787c2f5fe6a",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.EXEMPTIONS.SETTING_APART_EXEMPT_PROPERTY"
     },
     {
       "id": "9381d92e74eb4377b24320e825dcb880",
@@ -40219,6 +40239,17 @@
       "uuid": "5193947a-1437-4ed9-ba3b-63e900041fea",
       "corpusIssueId": "3612382d-1202-533c-883a-84ce589a2371",
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.FORM_AND_EXECUTION_OF_CONTRACTS.STATUTE_OF_FRAUDS.ORAL_CONTRACTS_WITHIN_THE_STATUTE"
+    },
+    {
+      "id": "b38a34f058d446b2ba67347841a7d314",
+      "keys": [
+        "contract-law/formation-and-enforceability/form-and-execution-of-contracts/statute-of-frauds/oral-contracts-within-the-statute/partnership-agreements"
+      ],
+      "label": "PARTNERSHIP AGREEMENTS",
+      "minted": "2026-11-15",
+      "uuid": "b38a34f0-58d4-46b2-ba67-347841a7d314",
+      "corpusIssueId": "63516473-890e-5f68-9b10-ccbdcfcbbbb4",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.FORM_AND_EXECUTION_OF_CONTRACTS.STATUTE_OF_FRAUDS.ORAL_CONTRACTS_WITHIN_THE_STATUTE.PARTNERSHIP_AGREEMENTS"
     },
     {
       "id": "3e77ba6b91554af59a2b9e5b9b3cc1f2",
@@ -163280,6 +163311,26 @@
       "pathNotation": "INSURANCE_LAW.LIFE_INSURANCE.MUTUAL_AND_BENEFICIARY_ASSOCIATIONS.ASSESSMENTS"
     },
     {
+      "id": "7e451b6d3e3243948ff6ec0f0630ca0e",
+      "keys": [
+        "insurance-law/life-insurance/policy-defenses-and-exceptions"
+      ],
+      "label": "Policy Defenses and Exceptions",
+      "minted": "2026-11-15",
+      "uuid": "7e451b6d-3e32-4394-8ff6-ec0f0630ca0e"
+    },
+    {
+      "id": "2e8515a70d5744619ac2c634e3bdbff7",
+      "keys": [
+        "insurance-law/life-insurance/policy-defenses-and-exceptions/violation-of-law-exception"
+      ],
+      "label": "VIOLATION OF LAW EXCEPTION",
+      "minted": "2026-11-15",
+      "uuid": "2e8515a7-0d57-4461-9ac2-c634e3bdbff7",
+      "corpusIssueId": "c361e3d3-5072-5549-9daf-cefbf5f89ed9",
+      "pathNotation": "INSURANCE_LAW.LIFE_INSURANCE.POLICY_DEFENSES_AND_EXCEPTIONS.VIOLATION_OF_LAW_EXCEPTION"
+    },
+    {
       "id": "9c42ba2ac30040939a3c96feb8ffc27a",
       "keys": [
         "insurance-law/life-insurance/policy-enforcement-and-actions"
@@ -183591,6 +183642,26 @@
       "label": "Trips Agreement",
       "minted": "2026-10-02",
       "uuid": "ed7e1149-26df-4ce9-a3f6-d23a6312c81b"
+    },
+    {
+      "id": "33c44695ef00495fa7ef4e2953948781",
+      "keys": [
+        "ip-law/trips-agreement/dispute-prevention-and-settlement"
+      ],
+      "label": "Dispute Prevention and Settlement",
+      "minted": "2026-11-15",
+      "uuid": "33c44695-ef00-495f-a7ef-4e2953948781"
+    },
+    {
+      "id": "478bfa4a47824afe85c4ac8dfbfd542d",
+      "keys": [
+        "ip-law/trips-agreement/dispute-prevention-and-settlement/dispute-settlement-under-article-64"
+      ],
+      "label": "DISPUTE SETTLEMENT UNDER ARTICLE 64",
+      "minted": "2026-11-15",
+      "uuid": "478bfa4a-4782-4afe-85c4-ac8dfbfd542d",
+      "corpusIssueId": "986ba3f3-9991-56f6-b021-d54f70d088ac",
+      "pathNotation": "IP_LAW.TRIPS_AGREEMENT.DISPUTE_PREVENTION_AND_SETTLEMENT.DISPUTE_SETTLEMENT_UNDER_ARTICLE_64"
     },
     {
       "id": "10a9f4e9c2434ef5acf2c0899c1b4c02",
@@ -238423,6 +238494,17 @@
       "uuid": "e3578c4a-3e51-4086-b3af-111392df6afa",
       "corpusIssueId": "ea08ec95-036f-59d2-9580-642db5098caa",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMATION_AND_VALIDITY_OF_MARRIAGE.IMPEDIMENTS_TO_MARRIAGE.PRIOR_UNDISSOLVED_MARRIAGE.POLYGAMY"
+    },
+    {
+      "id": "dc721bccc36f4b22966c87dc5a5788f6",
+      "keys": [
+        "personal-and-family-law/marriage-law/formation-and-validity-of-marriage/marriage-ceremony-in-jest"
+      ],
+      "label": "MARRIAGE CEREMONY IN JEST",
+      "minted": "2026-11-15",
+      "uuid": "dc721bcc-c36f-4b22-966c-87dc5a5788f6",
+      "corpusIssueId": "14fc7a99-1216-56e8-9da7-42762958d82d",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMATION_AND_VALIDITY_OF_MARRIAGE.MARRIAGE_CEREMONY_IN_JEST"
     },
     {
       "id": "08a4e35534d24f0bb1d9dab137cb7d50",
@@ -328802,6 +328884,17 @@
       "label": "Measurement of Damages",
       "minted": "2026-10-02",
       "uuid": "d77021f5-5f7a-4357-b15f-1335078e466c"
+    },
+    {
+      "id": "75922cb9ddaf4364af56cc7dc5590859",
+      "keys": [
+        "remedies-law/damages/measurement-of-damages/determination-by-pleadings-and-witness-estimates"
+      ],
+      "label": "DETERMINATION BY PLEADINGS AND WITNESS ESTIMATES",
+      "minted": "2026-11-15",
+      "uuid": "75922cb9-ddaf-4364-af56-cc7dc5590859",
+      "corpusIssueId": "39f4775a-bafc-5245-b3b3-bfefc8ca59d3",
+      "pathNotation": "REMEDIES_LAW.DAMAGES.MEASUREMENT_OF_DAMAGES.DETERMINATION_BY_PLEADINGS_AND_WITNESS_ESTIMATES"
     },
     {
       "id": "54e0e6dfab77498199a3039041e15880",
