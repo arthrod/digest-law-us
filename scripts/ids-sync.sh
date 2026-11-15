@@ -9,6 +9,28 @@
 # is unminted or orphaned. Run hourly by ops/systemd/digest-ids-sync.timer.
 set -euo pipefail
 
+# A systemd unit hands us a minimal PATH, and bun moved out of ~/.bun/bin into
+# the vite-plus toolchain — the unit then died 127 every hour, so the registry
+# silently stopped keeping up and `deploy` refused to publish. Resolve the
+# binary here instead of trusting whoever launched us.
+BUN="$(command -v bun || true)"
+if [ -z "$BUN" ]; then
+  for candidate in \
+    "$HOME/.vite-plus/bin/bun" \
+    "$HOME/.bun/bin/bun" \
+    /usr/local/bin/bun \
+    /usr/bin/bun; do
+    if [ -x "$candidate" ]; then
+      BUN="$candidate"
+      break
+    fi
+  done
+fi
+if [ -z "$BUN" ]; then
+  echo "ids-sync: bun not found on PATH or in ~/.vite-plus/bin, ~/.bun/bin, /usr/local/bin, /usr/bin" >&2
+  exit 127
+fi
+
 SITE="${SITE_REPO:-$HOME/workspace/digest-law-us}"
 RUNNER="${RUNNER_REPO:-$HOME/workspace/key-digest-runner}"
 WT="${IDS_SYNC_WORKTREE:-$HOME/workspace/.digest-law-ids-sync}"
@@ -26,12 +48,12 @@ cd "$WT"
 git reset -q --hard
 git checkout -q --detach origin/main
 
-bun scripts/mint-concept-ids.ts --from-git "$RUNNER" origin/main
+"$BUN" scripts/mint-concept-ids.ts --from-git "$RUNNER" origin/main
 if git diff --quiet -- src/data/concept-ids.json; then
   echo "ids-sync: registry already in step"
   exit 0
 fi
-bun scripts/mint-concept-ids.ts --check --from-git "$RUNNER" origin/main
+"$BUN" scripts/mint-concept-ids.ts --check --from-git "$RUNNER" origin/main
 
 stamp="$(date -u +%Y%m%dT%H%M%SZ)"
 branch="chore/ids-sync-$stamp"

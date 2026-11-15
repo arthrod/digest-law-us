@@ -5,6 +5,6 @@ After=network-online.target
 [Service]
 Type=oneshot
 ExecStart=%h/workspace/digest-law-us/scripts/ids-sync.sh
-Environment=PATH=%h/.bun/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=PATH=%h/.vite-plus/bin:%h/.bun/bin:%h/.local/bin:/usr/local/bin:/usr/bin:/bin
 Nice=10
 IOSchedulingClass=idle
