@@ -66773,6 +66773,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.DISSOLUTION_AND_WINDING_UP.EFFECT_OF_DISSOLUTION_ON_THIRD_PARTIES"
     },
     {
+      "id": "b77d8cfcf7f84210835002715addff04",
+      "keys": [
+        "corporate-law/business-organizations-law/dissolution-and-winding-up/events-causing-dissolution"
+      ],
+      "label": "Events Causing Dissolution",
+      "minted": "2026-11-16",
+      "uuid": "b77d8cfc-f7f8-4210-8350-02715addff04"
+    },
+    {
+      "id": "25e9f5e7a8f947c19a2b8b4b8e06943c",
+      "keys": [
+        "corporate-law/business-organizations-law/dissolution-and-winding-up/events-causing-dissolution/marriage-of-female-partner"
+      ],
+      "label": "MARRIAGE OF FEMALE PARTNER",
+      "minted": "2026-11-16",
+      "uuid": "25e9f5e7-a8f9-47c1-9a2b-8b4b8e06943c",
+      "corpusIssueId": "f23e050d-cd5d-5120-927a-0c39291cba6a",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.DISSOLUTION_AND_WINDING_UP.EVENTS_CAUSING_DISSOLUTION.MARRIAGE_OF_FEMALE_PARTNER"
+    },
+    {
       "id": "7fd02bf1672c4364813f89c8bd061bf1",
       "keys": [
         "corporate-law/business-organizations-law/dissolution-and-winding-up/implied-powers-after-dissolution"
@@ -101053,6 +101073,17 @@
       "label": "JURISDICTION AND VENUE",
       "corpusIssueId": "4f519ce5-4aac-58d8-8061-3e3eba91b0e1",
       "pathNotation": "CRIMINAL_LAW.JURISDICTION_AND_VENUE"
+    },
+    {
+      "id": "aae663c11cd44fc99c4fceee0e39c397",
+      "keys": [
+        "criminal-law/jurisdiction-and-venue/state-specific-procedural-provisions"
+      ],
+      "label": "STATE-SPECIFIC PROCEDURAL PROVISIONS",
+      "minted": "2026-11-16",
+      "uuid": "aae663c1-1cd4-4fc9-9c4f-ceee0e39c397",
+      "corpusIssueId": "3a55b722-4859-54ed-85ce-06d0ad5a5d56",
+      "pathNotation": "CRIMINAL_LAW.JURISDICTION_AND_VENUE.STATE_SPECIFIC_PROCEDURAL_PROVISIONS"
     },
     {
       "id": "68b7825c468240608286dabc59e6102b",
@@ -183817,6 +183848,35 @@
       "uuid": "182d97a4-005f-4d7c-b98d-7478c0c5fecf"
     },
     {
+      "id": "d207e93032b24084998b76e0f1a58bc6",
+      "keys": [
+        "ip-law/patent-law/ownership-and-transfer/assignment"
+      ],
+      "label": "Assignment",
+      "minted": "2026-11-16",
+      "uuid": "d207e930-32b2-4084-998b-76e0f1a58bc6"
+    },
+    {
+      "id": "0cced889b0d1487aa23ffc0645767081",
+      "keys": [
+        "ip-law/patent-law/ownership-and-transfer/assignment/scope-of-assignment"
+      ],
+      "label": "Scope of Assignment",
+      "minted": "2026-11-16",
+      "uuid": "0cced889-b0d1-487a-a23f-fc0645767081"
+    },
+    {
+      "id": "42d2652e797f4f3fb143e339b2731ca9",
+      "keys": [
+        "ip-law/patent-law/ownership-and-transfer/assignment/scope-of-assignment/extension-of-patent-term"
+      ],
+      "label": "EXTENSION OF PATENT TERM",
+      "minted": "2026-11-16",
+      "uuid": "42d2652e-797f-4f3f-b143-e339b2731ca9",
+      "corpusIssueId": "0db31cca-1278-541a-90c7-707d7265f7dd",
+      "pathNotation": "IP_LAW.PATENT_LAW.OWNERSHIP_AND_TRANSFER.ASSIGNMENT.SCOPE_OF_ASSIGNMENT.EXTENSION_OF_PATENT_TERM"
+    },
+    {
       "id": "88892d956f3c4d8191530109267d118b",
       "keys": [
         "ip-law/patent-law/ownership-and-transfer/devolution-on-death"
@@ -255196,6 +255256,26 @@
       "uuid": "1a7ea95e-127b-45b4-bbcd-6e207666c746",
       "corpusIssueId": "71c2f3a0-6127-518f-b467-e98a67834b8e",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.INTESTATE_SUCCESSION_AND_FAMILY_ALLOWANCES.WIDOW_S_ALLOWANCE"
+    },
+    {
+      "id": "9e4a3ecb7a2644b186eec043373f02af",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/intestate-succession/adoption-and-inheritance-rights"
+      ],
+      "label": "Adoption and Inheritance Rights",
+      "minted": "2026-11-16",
+      "uuid": "9e4a3ecb-7a26-44b1-86ee-c043373f02af"
+    },
+    {
+      "id": "d25d4cce33b64f3fbeeb2a51ec6d5989",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/intestate-succession/adoption-and-inheritance-rights/inheritance-through-intended-adoptive-parents"
+      ],
+      "label": "INHERITANCE THROUGH INTENDED ADOPTIVE PARENTS",
+      "minted": "2026-11-16",
+      "uuid": "d25d4cce-33b6-4f3f-beeb-2a51ec6d5989",
+      "corpusIssueId": "c7c11171-f3b0-5b75-9b88-b92794ab94a5",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.INTESTATE_SUCCESSION.ADOPTION_AND_INHERITANCE_RIGHTS.INHERITANCE_THROUGH_INTENDED_ADOPTIVE_PARENTS"
     },
     {
       "id": "59a49d808eed4e86a626b28abb3c7c20",
@@ -358405,6 +358485,35 @@
       "uuid": "3ddacffb-dba2-453f-806a-d3df5ec68941",
       "corpusIssueId": "6a82030b-e1c7-5275-8686-a5373273f7f0",
       "pathNotation": "TRANSPORTATION_LAW.DUTIES_OF_CARRIERS_AND_INNKEEPERS"
+    },
+    {
+      "id": "140c8899809f4d37aa77a8fcc9d19879",
+      "keys": [
+        "transportation-law/duties-of-carriers/carriers-of-passengers"
+      ],
+      "label": "Carriers of Passengers",
+      "minted": "2026-11-16",
+      "uuid": "140c8899-809f-4d37-aa77-a8fcc9d19879"
+    },
+    {
+      "id": "5e1e759f7be8451999acc2f9e19690f5",
+      "keys": [
+        "transportation-law/duties-of-carriers/carriers-of-passengers/defenses-and-exemptions-from-liability"
+      ],
+      "label": "Defenses and Exemptions From Liability",
+      "minted": "2026-11-16",
+      "uuid": "5e1e759f-7be8-4519-99ac-c2f9e19690f5"
+    },
+    {
+      "id": "0d89242a61ed427592a8dda7f11f1d2c",
+      "keys": [
+        "transportation-law/duties-of-carriers/carriers-of-passengers/defenses-and-exemptions-from-liability/protection-for-losses-caused-by-public-authority"
+      ],
+      "label": "PROTECTION FOR LOSSES CAUSED BY PUBLIC AUTHORITY",
+      "minted": "2026-11-16",
+      "uuid": "0d89242a-61ed-4275-92a8-dda7f11f1d2c",
+      "corpusIssueId": "815e5665-f8a7-596a-ace9-b8498d2dde33",
+      "pathNotation": "TRANSPORTATION_LAW.DUTIES_OF_CARRIERS.CARRIERS_OF_PASSENGERS.DEFENSES_AND_EXEMPTIONS_FROM_LIABILITY.PROTECTION_FOR_LOSSES_CAUSED_BY_PUBLIC_AUTHORITY"
     },
     {
       "id": "17f05b1bf8c84fd8980651c0ac9bfb7b",
