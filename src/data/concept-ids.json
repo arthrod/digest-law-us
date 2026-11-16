@@ -20233,6 +20233,26 @@
       "uuid": "470d1e58-47e8-4646-a3db-f09d32879d0c"
     },
     {
+      "id": "a960ec2fdab94e0ea664f47c45777032",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/performance-of-sales-contracts/acceptance-of-goods-by-buyer"
+      ],
+      "label": "Acceptance of Goods by Buyer",
+      "minted": "2026-11-16",
+      "uuid": "a960ec2f-dab9-4e0e-a664-f47c45777032"
+    },
+    {
+      "id": "cbaca9c130a44cb0aa821535f7a90d1f",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/performance-of-sales-contracts/acceptance-of-goods-by-buyer/conduct-not-constituting-acceptance"
+      ],
+      "label": "CONDUCT NOT CONSTITUTING ACCEPTANCE",
+      "minted": "2026-11-16",
+      "uuid": "cbaca9c1-30a4-4cb0-aa82-1535f7a90d1f",
+      "corpusIssueId": "84d7bf6a-5257-571f-9982-bbb3cb67ec8c",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.BUSINESS_TRANSACTIONS_LAW.PERFORMANCE_OF_SALES_CONTRACTS.ACCEPTANCE_OF_GOODS_BY_BUYER.CONDUCT_NOT_CONSTITUTING_ACCEPTANCE"
+    },
+    {
       "id": "b62a408be4814c48a0f60b3fa9617eae",
       "keys": [
         "commercial-and-trade-law/business-transactions-law/performance-of-sales-contracts/delivery-and-acceptance-of-goods"
@@ -86878,6 +86898,26 @@
       "uuid": "a958ecbd-6c96-4150-8ae9-de98f264410e",
       "corpusIssueId": "2a0caf2f-6251-5602-93ef-9667e47a0c5a",
       "pathNotation": "CORPORATE_LAW.FORMATION_AND_INCORPORATION.ARTICLES_OF_INCORPORATION.COMMENCEMENT_OF_CORPORATE_EXISTENCE"
+    },
+    {
+      "id": "61f0994089ec4863a2463417b883f005",
+      "keys": [
+        "corporate-law/formation-and-incorporation/articles-of-incorporation/corporate-purpose-or-object-clause"
+      ],
+      "label": "Corporate Purpose or Object Clause",
+      "minted": "2026-11-16",
+      "uuid": "61f09940-89ec-4863-a246-3417b883f005"
+    },
+    {
+      "id": "a239aa3c601e4cb28d2050277b7c88a3",
+      "keys": [
+        "corporate-law/formation-and-incorporation/articles-of-incorporation/corporate-purpose-or-object-clause/subsidiary-objects-or-powers"
+      ],
+      "label": "SUBSIDIARY OBJECTS OR POWERS",
+      "minted": "2026-11-16",
+      "uuid": "a239aa3c-601e-4cb2-8d20-50277b7c88a3",
+      "corpusIssueId": "d755317b-d425-55d3-ad66-6f5038d098e9",
+      "pathNotation": "CORPORATE_LAW.FORMATION_AND_INCORPORATION.ARTICLES_OF_INCORPORATION.CORPORATE_PURPOSE_OR_OBJECT_CLAUSE.SUBSIDIARY_OBJECTS_OR_POWERS"
     },
     {
       "id": "9405272572684b439627eba65f928694",
@@ -290354,6 +290394,17 @@
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.POWERS_AND_DUTIES_OF_PUBLIC_OFFICERS.JURISDICTION_OF_OFFICERS.GENERAL_AND_SPECIAL_JURISDICTION"
     },
     {
+      "id": "65188cc29bd04829b8a8dc299fe543fe",
+      "keys": [
+        "public-and-administrative-law/powers-and-duties-of-public-officers/litigation-and-settlement-authority"
+      ],
+      "label": "LITIGATION AND SETTLEMENT AUTHORITY",
+      "minted": "2026-11-16",
+      "uuid": "65188cc2-9bd0-4829-b8a8-dc299fe543fe",
+      "corpusIssueId": "4c7ee8d0-7a14-56cf-b8d0-54237c146778",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.POWERS_AND_DUTIES_OF_PUBLIC_OFFICERS.LITIGATION_AND_SETTLEMENT_AUTHORITY"
+    },
+    {
       "id": "c8e58103d9d74a8b8f6934fcfc31f9a2",
       "keys": [
         "public-and-administrative-law/powers-and-duties-of-public-officers/vested-rights-in-public-office"
@@ -296803,6 +296854,26 @@
       "uuid": "1102b077-b603-4433-bdc7-60c490d71e07",
       "corpusIssueId": "e1fb371e-966d-5ef5-a705-3c0dec658f69",
       "pathNotation": "REAL_ESTATE_LAW.DEEDS_FORM_EXECUTION_AND_DELIVERY.DELIVERY_OF_DEEDS.IRREVOCABILITY_UPON_DELIVERY"
+    },
+    {
+      "id": "93203cf745d545a59ba9108263fdc551",
+      "keys": [
+        "real-estate-law/deeds/boundaries-and-monuments"
+      ],
+      "label": "Boundaries and Monuments",
+      "minted": "2026-11-16",
+      "uuid": "93203cf7-45d5-45a5-9ba9-108263fdc551"
+    },
+    {
+      "id": "b00fd727c41a4ce2a71a6f3567767ed2",
+      "keys": [
+        "real-estate-law/deeds/boundaries-and-monuments/latent-ambiguity-as-to-monument-intended"
+      ],
+      "label": "LATENT AMBIGUITY AS TO MONUMENT INTENDED",
+      "minted": "2026-11-16",
+      "uuid": "b00fd727-c41a-4ce2-a71a-6f3567767ed2",
+      "corpusIssueId": "ba8d5ef4-53e8-5904-9843-a96af36bf610",
+      "pathNotation": "REAL_ESTATE_LAW.DEEDS.BOUNDARIES_AND_MONUMENTS.LATENT_AMBIGUITY_AS_TO_MONUMENT_INTENDED"
     },
     {
       "id": "881ed8b7fcd94b40b5e8322314704523",
@@ -357562,6 +357633,26 @@
       "uuid": "48fe5da2-a1c2-4daa-ad7a-a2c8a327293e",
       "corpusIssueId": "60df951c-e25f-5271-9a49-16d53052ef40",
       "pathNotation": "TRANSPORTATION_LAW.CARRIERS_OF_PASSENGERS.AUTHORITY_OF_CARRIERS.IMPLIED_AUTHORITY"
+    },
+    {
+      "id": "d3a58eab7ac54ac69a9584d240bc7737",
+      "keys": [
+        "transportation-law/carriers-of-passengers/bridge-canal-and-turnpike-companies"
+      ],
+      "label": "Bridge Canal and Turnpike Companies",
+      "minted": "2026-11-16",
+      "uuid": "d3a58eab-7ac5-4ac6-9a95-84d240bc7737"
+    },
+    {
+      "id": "f1bbf8c85d19444da91e5663dceb3f0b",
+      "keys": [
+        "transportation-law/carriers-of-passengers/bridge-canal-and-turnpike-companies/bridge-companies"
+      ],
+      "label": "BRIDGE COMPANIES",
+      "minted": "2026-11-16",
+      "uuid": "f1bbf8c8-5d19-444d-a91e-5663dceb3f0b",
+      "corpusIssueId": "95bea2bf-23b1-5c94-a270-e555ca873105",
+      "pathNotation": "TRANSPORTATION_LAW.CARRIERS_OF_PASSENGERS.BRIDGE_CANAL_AND_TURNPIKE_COMPANIES.BRIDGE_COMPANIES"
     },
     {
       "id": "d7b30c8d02304ec58718849952840ec8",
