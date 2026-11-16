@@ -4307,6 +4307,26 @@
       "uuid": "e2a54a7f-8912-4c6d-a32c-a5638103be93"
     },
     {
+      "id": "684dd8f4dcbb4052af646e3db32dcf18",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-offenses-and-fraud/concealment-and-fraudulent-intent"
+      ],
+      "label": "Concealment and Fraudulent Intent",
+      "minted": "2026-11-16",
+      "uuid": "684dd8f4-dcbb-4052-af64-6e3db32dcf18"
+    },
+    {
+      "id": "42cc4cf339924584a72fe74533eeffe8",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-offenses-and-fraud/concealment-and-fraudulent-intent/concealment-and-knowing-fraudulent-conduct"
+      ],
+      "label": "CONCEALMENT AND KNOWING FRAUDULENT CONDUCT",
+      "minted": "2026-11-16",
+      "uuid": "42cc4cf3-3992-4584-a72f-e74533eeffe8",
+      "corpusIssueId": "070d5827-f6d1-5845-b3a6-1f22ec01b028",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_OFFENSES_AND_FRAUD.CONCEALMENT_AND_FRAUDULENT_INTENT.CONCEALMENT_AND_KNOWING_FRAUDULENT_CONDUCT"
+    },
+    {
       "id": "5872ac8d7fed42298030f8603b6d13a8",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/bankruptcy-offenses-and-fraud/concealment-of-assets"
@@ -14124,6 +14144,44 @@
       "uuid": "60c177d1-3022-4222-9f84-8225f455a084",
       "corpusIssueId": "3ec3d56c-94ce-5ea9-9657-acb47187f074",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.TRUSTEE_S_POWERS_AND_DUTIES.TRUSTEE_S_TITLE_AND_RIGHT_TO_ASSETS"
+    },
+    {
+      "id": "bb48a60762e34c4e9a50283365c67f85",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/trustee-s-title-and-rights"
+      ],
+      "label": "Trustee S Title and Rights",
+      "minted": "2026-11-16",
+      "uuid": "bb48a607-62e3-4c4e-9a50-283365c67f85"
+    },
+    {
+      "id": "d058bb382a5b4259955bf05878645e52",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/trustee-s-title-and-rights/exempt-property"
+      ],
+      "label": "Exempt Property",
+      "minted": "2026-11-16",
+      "uuid": "d058bb38-2a5b-4259-955b-f05878645e52"
+    },
+    {
+      "id": "6e754834a2d945e98aa438cba7f7027d",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/trustee-s-title-and-rights/exempt-property/liens-on-exempt-property"
+      ],
+      "label": "Liens on Exempt Property",
+      "minted": "2026-11-16",
+      "uuid": "6e754834-a2d9-45e9-8aa4-38cba7f7027d"
+    },
+    {
+      "id": "8b73d0452ccb480380695b2b6dfeb78b",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/trustee-s-title-and-rights/exempt-property/liens-on-exempt-property/payment-of-liens-as-non-preferential-transfer"
+      ],
+      "label": "PAYMENT OF LIENS AS NON-PREFERENTIAL TRANSFER",
+      "minted": "2026-11-16",
+      "uuid": "8b73d045-2ccb-4803-8069-5b2b6dfeb78b",
+      "corpusIssueId": "a6813e2e-74a6-5d1c-8d78-7fb18a051c28",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.TRUSTEE_S_TITLE_AND_RIGHTS.EXEMPT_PROPERTY.LIENS_ON_EXEMPT_PROPERTY.PAYMENT_OF_LIENS_AS_NON_PREFERENTIAL_TRANSFER"
     },
     {
       "id": "50ba3c4a9bd6415dbe7cc205ec1fa9fc",
@@ -40191,6 +40249,17 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.IMMORAL_CONSIDERATION.CONTRACTS_TO_ACT_AS_HOUSEKEEPER"
     },
     {
+      "id": "48f093250dd443e982c3f2423096c8e7",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/joint-adventure-agreements"
+      ],
+      "label": "JOINT ADVENTURE AGREEMENTS",
+      "minted": "2026-11-16",
+      "uuid": "48f09325-0dd4-43e9-82c3-f2423096c8e7",
+      "corpusIssueId": "514b02e6-88ab-545a-94f4-8828a24c8d15",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.JOINT_ADVENTURE_AGREEMENTS"
+    },
+    {
       "id": "22bbfb072a5c41f4a214abc97b53bdb7",
       "keys": [
         "contract-law/formation-and-enforceability/consideration/legality-of-consideration"
@@ -40970,6 +41039,26 @@
       "uuid": "c51c8f4a-7db4-4ad7-8a02-85334b315565",
       "corpusIssueId": "a9096a7d-894e-54ac-9858-99e0cf06f27c",
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.DEFECTS_IN_FORMATION.MISTAKE.MISTAKE_AS_TO_ESSENTIAL_ELEMENT"
+    },
+    {
+      "id": "a009190f09074384a425f7c33fc6d23a",
+      "keys": [
+        "contract-law/formation-and-enforceability/defects-in-formation/mistake/mistake-in-expression"
+      ],
+      "label": "Mistake in Expression",
+      "minted": "2026-11-16",
+      "uuid": "a009190f-0907-4384-a425-f7c33fc6d23a"
+    },
+    {
+      "id": "c53e2a933b1b49e19015f19c91779c5d",
+      "keys": [
+        "contract-law/formation-and-enforceability/defects-in-formation/mistake/mistake-in-expression/illustrations"
+      ],
+      "label": "ILLUSTRATIONS",
+      "minted": "2026-11-16",
+      "uuid": "c53e2a93-3b1b-49e1-9015-f19c91779c5d",
+      "corpusIssueId": "d0a2a5b4-37c8-5c15-ac59-03a2a1b4131a",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.DEFECTS_IN_FORMATION.MISTAKE.MISTAKE_IN_EXPRESSION.ILLUSTRATIONS"
     },
     {
       "id": "d1af288e92264a959efdd7f1fe493ae1",
@@ -58248,6 +58337,17 @@
       "uuid": "e54dd5b6-483c-4793-902f-7f3d642b09d3"
     },
     {
+      "id": "15271aed7120422cb30118b54bfe4cbd",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-finance-and-securities/issuance-of-securities/contracts-for-purchase-of-shares"
+      ],
+      "label": "CONTRACTS FOR PURCHASE OF SHARES",
+      "minted": "2026-11-16",
+      "uuid": "15271aed-7120-422c-b301-18b54bfe4cbd",
+      "corpusIssueId": "fb688726-7d56-5493-9fc8-f5b6022e7997",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_FINANCE_AND_SECURITIES.ISSUANCE_OF_SECURITIES.CONTRACTS_FOR_PURCHASE_OF_SHARES"
+    },
+    {
       "id": "4ebe94c4494d4ccd86d7b458a45789bc",
       "keys": [
         "corporate-law/business-organizations-law/corporations/corporate-finance-and-securities/issuance-of-securities/rolling-stock-as-collateral-or-asset-backing"
@@ -59111,6 +59211,26 @@
       ],
       "minted": "2026-07-31",
       "label": "Bylaws"
+    },
+    {
+      "id": "3dc951cfa15646aabcdae3d0c26d8468",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance-and-internal-affairs/bylaws-and-rules"
+      ],
+      "label": "Bylaws and Rules",
+      "minted": "2026-11-16",
+      "uuid": "3dc951cf-a156-46aa-bcda-e3d0c26d8468"
+    },
+    {
+      "id": "d23de0a7e387492a9cd33f2001e5667d",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance-and-internal-affairs/bylaws-and-rules/restrictions-on-share-transferability"
+      ],
+      "label": "RESTRICTIONS ON SHARE TRANSFERABILITY",
+      "minted": "2026-11-16",
+      "uuid": "d23de0a7-e387-492a-9cd3-3f2001e5667d",
+      "corpusIssueId": "bbb9bb7e-eda5-5c8d-aaba-475c533fce69",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_GOVERNANCE_AND_INTERNAL_AFFAIRS.BYLAWS_AND_RULES.RESTRICTIONS_ON_SHARE_TRANSFERABILITY"
     },
     {
       "id": "3476bcc631ca4523bef6760081c565f0",
@@ -100255,6 +100375,17 @@
       "uuid": "616b5fcb-cacd-4007-86f2-6c17a56eae03",
       "corpusIssueId": "e39c98d9-3db7-5dbb-b38c-411678b27e45",
       "pathNotation": "CRIMINAL_LAW.INDICTMENTS.COMMON_LAW_RULES_GOVERNING_INDICTMENTS"
+    },
+    {
+      "id": "97806760aa0c4e07a6ae97e4cd881603",
+      "keys": [
+        "criminal-law/indictments/consolidation-of-indictments"
+      ],
+      "label": "CONSOLIDATION OF INDICTMENTS",
+      "minted": "2026-11-16",
+      "uuid": "97806760-aa0c-4e07-a6ae-97e4cd881603",
+      "corpusIssueId": "121713fd-03f0-55ef-993b-24eda46f2ce4",
+      "pathNotation": "CRIMINAL_LAW.INDICTMENTS.CONSOLIDATION_OF_INDICTMENTS"
     },
     {
       "id": "230fff1cbd824f5d8cd87cb5041cc864",
@@ -157008,6 +157139,17 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_PARTIES.BONA_FIDE_HOLDERS_OR_PURCHASERS.INDORSEMENT_AND_TRANSFER"
     },
     {
+      "id": "a3690a1e30ad4ceb85bed334eeaf6e66",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-parties/bona-fide-holders-or-purchasers/transactions-involving-bona-fide-holders"
+      ],
+      "label": "TRANSACTIONS INVOLVING BONA FIDE HOLDERS",
+      "minted": "2026-11-16",
+      "uuid": "a3690a1e-30ad-4ceb-85be-d334eeaf6e66",
+      "corpusIssueId": "833bf2c4-bfdc-5b35-afba-2d91d1b450a2",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_PARTIES.BONA_FIDE_HOLDERS_OR_PURCHASERS.TRANSACTIONS_INVOLVING_BONA_FIDE_HOLDERS"
+    },
+    {
       "id": "27e7c171051048d99d993cd0052be36b",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-parties/creditor-s-duties-toward-surety"
@@ -177510,6 +177652,26 @@
       "uuid": "37814ba7-996f-4d3c-9c5f-03ed8ed8624b",
       "corpusIssueId": "3529fdba-76fe-5cd7-b3bf-ad58368ee881",
       "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.LEGISLATIVE_JURISDICTION.EXERCISE_OF_LEGISLATIVE_JURISDICTION.CREATION_OF_RIGHTS_UPON_HAPPENING_OF_EVENTS"
+    },
+    {
+      "id": "12572f54cad848178ed64a62f86a607f",
+      "keys": [
+        "international-and-comparative-law/legislative-jurisdiction/jurisdiction-over-interstate-communications"
+      ],
+      "label": "Jurisdiction Over Interstate Communications",
+      "minted": "2026-11-16",
+      "uuid": "12572f54-cad8-4817-8ed6-4a62f86a607f"
+    },
+    {
+      "id": "886345a54c5545309d661f0e811f8bb4",
+      "keys": [
+        "international-and-comparative-law/legislative-jurisdiction/jurisdiction-over-interstate-communications/communication-sent-from-one-state-to-another"
+      ],
+      "label": "COMMUNICATION SENT FROM ONE STATE TO ANOTHER",
+      "minted": "2026-11-16",
+      "uuid": "886345a5-4c55-4530-9d66-1f0e811f8bb4",
+      "corpusIssueId": "819b272c-2df3-5b24-a4c5-32fee0f6c9e9",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.LEGISLATIVE_JURISDICTION.JURISDICTION_OVER_INTERSTATE_COMMUNICATIONS.COMMUNICATION_SENT_FROM_ONE_STATE_TO_ANOTHER"
     },
     {
       "id": "edd23dc8baa64c818883377379d70a98",
@@ -251687,6 +251849,26 @@
       "uuid": "bcf31def-81dd-41ac-b943-d4a797858cbb",
       "corpusIssueId": "b21bdb70-7c85-58ef-b8f8-5a7d0c4aa8a1",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.PERSONAL_REPRESENTATIVES.EXECUTORS.APPOINTMENT_AND_QUALIFICATION.MULTIPLE_EXECUTORS_WITH_DISTINCT_FUNCTIONS"
+    },
+    {
+      "id": "80668df603254958aca2c5c6030156e4",
+      "keys": [
+        "personal-and-family-law/probate-law/personal-representatives/status-after-final-settlement"
+      ],
+      "label": "Status After Final Settlement",
+      "minted": "2026-11-16",
+      "uuid": "80668df6-0325-4958-aca2-c5c6030156e4"
+    },
+    {
+      "id": "682da29b441543659761db070b8c554e",
+      "keys": [
+        "personal-and-family-law/probate-law/personal-representatives/status-after-final-settlement/liability-of-the-estate-at-common-law"
+      ],
+      "label": "LIABILITY OF THE ESTATE AT COMMON LAW",
+      "minted": "2026-11-16",
+      "uuid": "682da29b-4415-4365-9761-db070b8c554e",
+      "corpusIssueId": "2a8f4c2a-8043-5337-96bd-870fb98a2513",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.PERSONAL_REPRESENTATIVES.STATUS_AFTER_FINAL_SETTLEMENT.LIABILITY_OF_THE_ESTATE_AT_COMMON_LAW"
     },
     {
       "id": "58a64bb4bcb141fbb3bf09903d81c564",
