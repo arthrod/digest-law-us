@@ -43581,6 +43581,26 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CAPACITY_OF_PARTIES.PROHIBITION_ON_INTERSPOUSAL_CONTRACTS"
     },
     {
+      "id": "d7af1db1ad904303847f91cb13df46e6",
+      "keys": [
+        "contract-law/formation-and-enforceability/capacity-of-parties/ratification"
+      ],
+      "label": "Ratification",
+      "minted": "2026-11-18",
+      "uuid": "d7af1db1-ad90-4303-847f-91cb13df46e6"
+    },
+    {
+      "id": "13c36c6d7d964b8ebd7f38934b54dc3a",
+      "keys": [
+        "contract-law/formation-and-enforceability/capacity-of-parties/ratification/knowledge-requirement"
+      ],
+      "label": "KNOWLEDGE REQUIREMENT",
+      "minted": "2026-11-18",
+      "uuid": "13c36c6d-7d96-4b8e-bd7f-38934b54dc3a",
+      "corpusIssueId": "5ecfba05-c6bb-5be3-81b9-1b4dc7c9b247",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CAPACITY_OF_PARTIES.RATIFICATION.KNOWLEDGE_REQUIREMENT"
+    },
+    {
       "id": "fd5629466b7d4e69b8a2d47394cc1e8c",
       "keys": [
         "contract-law/formation-and-enforceability/certainty-of-terms"
@@ -73285,6 +73305,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDERS_AND_SHAREHOLDER_RIGHTS.ACTIONS_BETWEEN_STOCKHOLDERS_AND_THIRD_PARTIES"
     },
     {
+      "id": "831b7578d0954b3d8156453fe9617f82",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholders/determination-of-shareholder-status"
+      ],
+      "label": "Determination of Shareholder Status",
+      "minted": "2026-11-18",
+      "uuid": "831b7578-d095-4b3d-8156-453fe9617f82"
+    },
+    {
+      "id": "b38bde66649d4802943e3a56ac982f05",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholders/determination-of-shareholder-status/infant-shareholders"
+      ],
+      "label": "INFANT SHAREHOLDERS",
+      "minted": "2026-11-18",
+      "uuid": "b38bde66-649d-4802-943e-3a56ac982f05",
+      "corpusIssueId": "f10da345-2295-552a-8477-b7bf34a7fc97",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDERS.DETERMINATION_OF_SHAREHOLDER_STATUS.INFANT_SHAREHOLDERS"
+    },
+    {
       "id": "f18b49c9986441b5b6c2ec732e7c9b0c",
       "keys": [
         "corporate-law/business-organizations-law/corporations/shareholders/shareholder-meetings"
@@ -75691,6 +75731,35 @@
       "uuid": "09e7f6b7-3276-42cd-8621-f44fd3f42edb",
       "corpusIssueId": "8133eab9-2639-5180-a497-415346e7ddc5",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.FORMATION_AND_CREATION.PARTNERSHIP_AS_LEGAL_ENTITY.THEORY_OF_LEGAL_OWNERSHIP_BY_PARTNERSHIP"
+    },
+    {
+      "id": "1965719b685c4bf28542d4f35e254216",
+      "keys": [
+        "corporate-law/business-organizations-law/formation-and-duration"
+      ],
+      "label": "Formation and Duration",
+      "minted": "2026-11-18",
+      "uuid": "1965719b-685c-4bf2-8542-d4f35e254216"
+    },
+    {
+      "id": "552e7254893a490fadebaca418cb9530",
+      "keys": [
+        "corporate-law/business-organizations-law/formation-and-duration/partnership-at-will"
+      ],
+      "label": "Partnership at Will",
+      "minted": "2026-11-18",
+      "uuid": "552e7254-893a-490f-adeb-aca418cb9530"
+    },
+    {
+      "id": "33a62e48adbc49ccbaeeff1dbd842281",
+      "keys": [
+        "corporate-law/business-organizations-law/formation-and-duration/partnership-at-will/dissolution-and-termination"
+      ],
+      "label": "DISSOLUTION AND TERMINATION",
+      "minted": "2026-11-18",
+      "uuid": "33a62e48-adbc-49cc-baee-ff1dbd842281",
+      "corpusIssueId": "b71643c2-cadb-58d4-aaf2-4936603e6794",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.FORMATION_AND_DURATION.PARTNERSHIP_AT_WILL.DISSOLUTION_AND_TERMINATION"
     },
     {
       "id": "035b16cd19d34fb5ad5dd6862111338e",
@@ -133546,6 +133615,17 @@
       "label": "Judgments as Evidence"
     },
     {
+      "id": "ad1614d9183042e994d919b3a7732bff",
+      "keys": [
+        "evidence-law/admissibility-of-evidence/judgments-as-evidence/admissibility-of-judgments-against-parties"
+      ],
+      "label": "ADMISSIBILITY OF JUDGMENTS AGAINST PARTIES",
+      "minted": "2026-11-18",
+      "uuid": "ad1614d9-1830-42e9-94d9-19b3a7732bff",
+      "corpusIssueId": "f6817e49-c998-5e85-94f6-6af2390ae861",
+      "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_OF_EVIDENCE.JUDGMENTS_AS_EVIDENCE.ADMISSIBILITY_OF_JUDGMENTS_AGAINST_PARTIES"
+    },
+    {
       "id": "f5e8a2aa7034462ab4497036914d2ab8",
       "uuid": "f5e8a2aa-7034-462a-b449-7036914d2ab8",
       "keys": [
@@ -136421,6 +136501,35 @@
       "uuid": "795cf7dc-3808-4e80-a4e8-48d7da34b8d1",
       "corpusIssueId": "0bcd0eff-5212-51cc-b4ad-90f17a1ea9b4",
       "pathNotation": "EVIDENCE_LAW.BURDEN_OF_PROOF_AND_PRODUCTION.BURDENS_OF_PRODUCTION_AND_PERSUASION"
+    },
+    {
+      "id": "7243f657b99f4852b4333dcf01df9574",
+      "keys": [
+        "evidence-law/burden-of-proof-and-quantum-of-proof"
+      ],
+      "label": "Burden of Proof and Quantum of Proof",
+      "minted": "2026-11-18",
+      "uuid": "7243f657-b99f-4852-b433-3dcf01df9574"
+    },
+    {
+      "id": "fd3cf90230a24455b7455c70c7c9b4a1",
+      "keys": [
+        "evidence-law/burden-of-proof-and-quantum-of-proof/damages-evidence"
+      ],
+      "label": "Damages Evidence",
+      "minted": "2026-11-18",
+      "uuid": "fd3cf902-30a2-4455-b745-5c70c7c9b4a1"
+    },
+    {
+      "id": "393fae15423541b9961545643af247b7",
+      "keys": [
+        "evidence-law/burden-of-proof-and-quantum-of-proof/damages-evidence/medical-expenses-proof"
+      ],
+      "label": "MEDICAL EXPENSES PROOF",
+      "minted": "2026-11-18",
+      "uuid": "393fae15-4235-41b9-9615-45643af247b7",
+      "corpusIssueId": "fae477f3-b5b8-53f4-af31-c39388c0f603",
+      "pathNotation": "EVIDENCE_LAW.BURDEN_OF_PROOF_AND_QUANTUM_OF_PROOF.DAMAGES_EVIDENCE.MEDICAL_EXPENSES_PROOF"
     },
     {
       "id": "9ef073b0e3174b658e93f9282d6c757b",
@@ -296155,6 +296264,17 @@
       "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.DISMISSAL_OF_ACTIONS_AND_PROCEEDINGS.DECREE_OF_DISMISSAL"
     },
     {
+      "id": "1d0b8a761b924834a067e258cb9002c9",
+      "keys": [
+        "procedural-law/effects-of-judgments/error-and-irregularity-in-judgments"
+      ],
+      "label": "ERROR AND IRREGULARITY IN JUDGMENTS",
+      "minted": "2026-11-18",
+      "uuid": "1d0b8a76-1b92-4834-a067-e258cb9002c9",
+      "corpusIssueId": "ef308d51-b5ad-5509-8017-cfbf809c99ef",
+      "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.ERROR_AND_IRREGULARITY_IN_JUDGMENTS"
+    },
+    {
       "id": "7a5fd04d54404961a8046fc62145da9c",
       "keys": [
         "procedural-law/effects-of-judgments/evidentiary-effect"
@@ -361754,6 +361874,26 @@
       "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.EQUITY_OF_REDEMPTION.BARRING_THE_RIGHT_TO_REDEEM.ACKNOWLEDGMENT_AFTER_TWENTY_YEARS"
     },
     {
+      "id": "fa7cf87fc8ae49678b65713530ca90d5",
+      "keys": [
+        "real-estate-law/security-interests-in-real-property/mortgages/execution-and-formalities"
+      ],
+      "label": "Execution and Formalities",
+      "minted": "2026-11-18",
+      "uuid": "fa7cf87f-c8ae-4967-8b65-713530ca90d5"
+    },
+    {
+      "id": "ca386deceda84046bbbdcb06d0272d6d",
+      "keys": [
+        "real-estate-law/security-interests-in-real-property/mortgages/execution-and-formalities/acknowledgment-or-probate"
+      ],
+      "label": "ACKNOWLEDGMENT OR PROBATE",
+      "minted": "2026-11-18",
+      "uuid": "ca386dec-eda8-4046-bbbd-cb06d0272d6d",
+      "corpusIssueId": "0856d7e8-4cba-5c51-9eb3-95efbc31b3c2",
+      "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.EXECUTION_AND_FORMALITIES.ACKNOWLEDGMENT_OR_PROBATE"
+    },
+    {
       "id": "74a9450df9a1415b8e6e4b5bec2ecd99",
       "keys": [
         "real-estate-law/security-interests-in-real-property/mortgages/foreclosure"
@@ -389450,6 +389590,26 @@
       "uuid": "53a87e83-d6f3-45a8-a00c-7cea3a7bf563",
       "corpusIssueId": "42698fb3-d8b4-57e3-bb5f-7feb5bdeadfc",
       "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.RECEIVERS_OVER_CORPORATIONS.RECEIVERS_OVER_RAILWAY_COMPANIES"
+    },
+    {
+      "id": "ae9470b70cd4427aaf1b9de6dc45d897",
+      "keys": [
+        "remedies-law/receivership/receivers-over-corporations/trust-doctrine-jurisdictional-basis"
+      ],
+      "label": "Trust Doctrine Jurisdictional Basis",
+      "minted": "2026-11-18",
+      "uuid": "ae9470b7-0cd4-427a-af1b-9de6dc45d897"
+    },
+    {
+      "id": "3039a15d66ae4e18b56a341299e67178",
+      "keys": [
+        "remedies-law/receivership/receivers-over-corporations/trust-doctrine-jurisdictional-basis/misappropriation-as-ground-for-appointment"
+      ],
+      "label": "MISAPPROPRIATION AS GROUND FOR APPOINTMENT",
+      "minted": "2026-11-18",
+      "uuid": "3039a15d-66ae-4e18-b56a-341299e67178",
+      "corpusIssueId": "325b90e4-de8f-5744-805d-483d79c48a95",
+      "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.RECEIVERS_OVER_CORPORATIONS.TRUST_DOCTRINE_JURISDICTIONAL_BASIS.MISAPPROPRIATION_AS_GROUND_FOR_APPOINTMENT"
     },
     {
       "id": "db58abccf28c48dcba568b000bbdacd6",
