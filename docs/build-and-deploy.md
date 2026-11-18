@@ -176,6 +176,32 @@ Settings → DNSSEC), not by the script.
   `MemoryMax=27G` and `MemorySwapMax=${SWAP_MAX:-96G}`. A runaway build gets
   killed for running out of memory without taking Coolify, Temporal or the
   research fleet with it.
+- **Two cron entries watch a run, because a run outlives a working day.**
+  `scripts/check-upload.sh` (every 30 min) prints where the newest run stands —
+  content sync, rendering, pagefind, the shard being uploaded, or deployed —
+  with scope memory, and, once the deploy starts, whether `digest.law` answers.
+  One line per sample goes to `~/.local/state/digest-upload-monitor/cron.log`.
+  It exits 1 on a failed run, 2 when the log stopped growing in a phase that
+  should be writing (content sync and pagefind are silent for hours by design, a
+  shard upload for ~30 min, rendering never), and 3 when there is no run.
+  `scripts/build-deploy-watchdog.sh` (every 30 min, at :05 and :35) relaunches
+  `./build-deploy-tmux.sh` when the newest run failed or vanished and nothing is
+  in flight — at most 4 relaunches in 24 h, never within 30 min — logging to
+  `watchdog.log`. `touch ~/.local/state/digest-upload-monitor/HOLD` stops the
+  restarts. Install both with:
+
+  ```sh
+  crontab -l | { cat; cat <<'EOF'
+  */30 * * * * /home/arthrod/workspace/digest-law-us/scripts/check-upload.sh >> /home/arthrod/.local/state/digest-upload-monitor/cron.log 2>&1
+  5,35 * * * * /home/arthrod/workspace/digest-law-us/scripts/build-deploy-watchdog.sh >> /home/arthrod/.local/state/digest-upload-monitor/watchdog.log 2>&1
+  EOF
+  } | crontab -
+  ```
+
+  Both pick the newest `build-deploy-*.log` and **skip `.mem.log`**, which
+  matches the same glob and carries no phase markers. Getting that wrong made
+  the 2026-11-08 run report "content sync" while pagefind was indexing.
+
 - **Memory log.** The launcher logs `time scope_ram scope_peak scope_swap
   host_avail host_swap_used` every 30 s to `build-deploy-<stamp>.mem.log`.
 - **Is it healthy?** During rendering, swap should level off (about 48–54 GB
