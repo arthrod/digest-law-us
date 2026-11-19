@@ -47565,6 +47565,26 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.DEFENSES_AND_DISCHARGE.MERGER"
     },
     {
+      "id": "a2749c4d03374160b7ea71ebc2493aca",
+      "keys": [
+        "contract-law/formation-and-enforceability/defenses-and-grounds-for-avoidance"
+      ],
+      "label": "Defenses and Grounds for Avoidance",
+      "minted": "2026-11-19",
+      "uuid": "a2749c4d-0337-4160-b7ea-71ebc2493aca"
+    },
+    {
+      "id": "e1140b5cc17940e88d37ed7e39a5be52",
+      "keys": [
+        "contract-law/formation-and-enforceability/defenses-and-grounds-for-avoidance/mistake-impossibility-and-frustration"
+      ],
+      "label": "MISTAKE IMPOSSIBILITY AND FRUSTRATION",
+      "minted": "2026-11-19",
+      "uuid": "e1140b5c-c179-40e8-8d37-ed7e39a5be52",
+      "corpusIssueId": "266b9736-7f8f-5f5f-a079-a76d8e8b5472",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.DEFENSES_AND_GROUNDS_FOR_AVOIDANCE.MISTAKE_IMPOSSIBILITY_AND_FRUSTRATION"
+    },
+    {
       "id": "d1af288e92264a959efdd7f1fe493ae1",
       "keys": [
         "contract-law/formation-and-enforceability/defenses-to-enforcement"
@@ -63512,6 +63532,35 @@
       "uuid": "2ece19bd-b8af-45b3-87fd-b37810a5248d",
       "corpusIssueId": "93b00cb7-8321-5318-9d2e-ccd30260b24d",
       "pathNotation": "CONTRACT_LAW.VALIDITY_AND_ENFORCEABILITY.CONTRACTS_IN_RESTRAINT_OF_TRADE.REASONABLE_AND_PARTIAL_RESTRAINT"
+    },
+    {
+      "id": "b57c488213094488bdb7736ece6f8a48",
+      "keys": [
+        "contract-law/validity-and-enforceability/contracts-obstructing-administration-of-justice"
+      ],
+      "label": "Contracts Obstructing Administration of Justice",
+      "minted": "2026-11-19",
+      "uuid": "b57c4882-1309-4488-bdb7-736ece6f8a48"
+    },
+    {
+      "id": "0e627e8d1d124c0dac821644eafd5a76",
+      "keys": [
+        "contract-law/validity-and-enforceability/contracts-obstructing-administration-of-justice/suretyship-and-bail"
+      ],
+      "label": "Suretyship and Bail",
+      "minted": "2026-11-19",
+      "uuid": "0e627e8d-1d12-4c0d-ac82-1644eafd5a76"
+    },
+    {
+      "id": "f24960e5fcb244fe95e721783663ed70",
+      "keys": [
+        "contract-law/validity-and-enforceability/contracts-obstructing-administration-of-justice/suretyship-and-bail/indemnification-of-bail-sureties"
+      ],
+      "label": "INDEMNIFICATION OF BAIL SURETIES",
+      "minted": "2026-11-19",
+      "uuid": "f24960e5-fcb2-44fe-95e7-21783663ed70",
+      "corpusIssueId": "bf8fb015-9be8-5888-95df-acf67da3725d",
+      "pathNotation": "CONTRACT_LAW.VALIDITY_AND_ENFORCEABILITY.CONTRACTS_OBSTRUCTING_ADMINISTRATION_OF_JUSTICE.SURETYSHIP_AND_BAIL.INDEMNIFICATION_OF_BAIL_SURETIES"
     },
     {
       "id": "232193d3acea4b0082aac7f683415418",
@@ -118223,6 +118272,17 @@
       "uuid": "88bbce57-cc95-4606-95cf-02e5e1446eb8"
     },
     {
+      "id": "a078b4408ed2474e842a99b292c5a654",
+      "keys": [
+        "criminal-law/indictments/variance-between-indictment-and-proof/fatal-variances"
+      ],
+      "label": "FATAL VARIANCES",
+      "minted": "2026-11-19",
+      "uuid": "a078b440-8ed2-474e-842a-99b292c5a654",
+      "corpusIssueId": "d7cf6c03-7386-5d97-8c5b-1b7d0544496c",
+      "pathNotation": "CRIMINAL_LAW.INDICTMENTS.VARIANCE_BETWEEN_INDICTMENT_AND_PROOF.FATAL_VARIANCES"
+    },
+    {
       "id": "446325d54ab740f99d066f524bacda38",
       "keys": [
         "criminal-law/indictments/variance-between-indictment-and-proof/variance-in-name"
@@ -147023,6 +147083,17 @@
       "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.SECONDARY_EVIDENCE.LOST_OR_DESTROYED_DOCUMENTS.ADMISSIBILITY_OF_COPIES_AND_PHOTOGRAPHS"
     },
     {
+      "id": "377179eee0d74bfd99d78b03318c4883",
+      "keys": [
+        "evidence-law/documentary-evidence/secondary-evidence/proof-of-lost-documents"
+      ],
+      "label": "PROOF OF LOST DOCUMENTS",
+      "minted": "2026-11-19",
+      "uuid": "377179ee-e0d7-4bfd-99d7-8b03318c4883",
+      "corpusIssueId": "ce5fbf55-fe80-513b-97fe-49f43bc0cfb6",
+      "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.SECONDARY_EVIDENCE.PROOF_OF_LOST_DOCUMENTS"
+    },
+    {
       "id": "6434ef51d29042c383b4c1a6574af14a",
       "keys": [
         "evidence-law/documentary-evidence/statutes-as-evidence"
@@ -172908,6 +172979,17 @@
       "uuid": "0bb052b3-fb09-45b3-bb35-185860d3bd8d",
       "corpusIssueId": "ea8d4e07-d602-5452-aaef-6dc5407f3dc5",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.HOLDERS_AND_TRANSFEREES.INDORSEE_S_RIGHTS_AND_DEFENSES.KNOWLEDGE_OF_INVALIDITY_DUE_TO_ALIENAGE"
+    },
+    {
+      "id": "7734a3a44c674c78b1ece36fac697bbd",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/holders-and-transferees/rights-of-bona-fide-holders"
+      ],
+      "label": "RIGHTS OF BONA FIDE HOLDERS",
+      "minted": "2026-11-19",
+      "uuid": "7734a3a4-4c67-4c78-b1ec-e36fac697bbd",
+      "corpusIssueId": "af2acb67-cae0-5055-b954-0d69143c63b4",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.HOLDERS_AND_TRANSFEREES.RIGHTS_OF_BONA_FIDE_HOLDERS"
     },
     {
       "id": "b325e9b2fe1740b6ab41d446ae6941fc",
@@ -199125,6 +199207,17 @@
       "uuid": "383db76b-4cb5-4b86-8c0c-434800df9e64",
       "corpusIssueId": "6763817a-b515-578b-8908-6a6fbac8f5e7",
       "pathNotation": "INSURANCE_LAW.PREMIUMS.PAYMENT_OF_PREMIUMS.PERSONS_ENTITLED_TO_RECEIVE_PREMIUM_PAYMENT"
+    },
+    {
+      "id": "02828f9fb7be4eabb7b7ac03e64ee273",
+      "keys": [
+        "insurance-law/premiums/payment-of-premiums/prepayment-not-always-essential"
+      ],
+      "label": "PREPAYMENT NOT ALWAYS ESSENTIAL",
+      "minted": "2026-11-19",
+      "uuid": "02828f9f-b7be-4eab-b7b7-ac03e64ee273",
+      "corpusIssueId": "c14ebb57-3bab-5bf4-bdaa-a3f25aace8c6",
+      "pathNotation": "INSURANCE_LAW.PREMIUMS.PAYMENT_OF_PREMIUMS.PREPAYMENT_NOT_ALWAYS_ESSENTIAL"
     },
     {
       "id": "b3e60b22cb57422a9bf33d7e9eb00a03",
@@ -241750,6 +241843,26 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.RESPONDEAT_SUPERIOR_AND_PRINCIPAL_LIABILITY"
     },
     {
+      "id": "8264b10010ed4523a1d5d62d879662bf",
+      "keys": [
+        "law-of-obligations/respondeat-superior/family-and-domestic-relations"
+      ],
+      "label": "Family and Domestic Relations",
+      "minted": "2026-11-19",
+      "uuid": "8264b100-10ed-4523-a1d5-d62d879662bf"
+    },
+    {
+      "id": "95128b979ff544ebb8c7bb03759c99ca",
+      "keys": [
+        "law-of-obligations/respondeat-superior/family-and-domestic-relations/husband-and-wife"
+      ],
+      "label": "HUSBAND AND WIFE",
+      "minted": "2026-11-19",
+      "uuid": "95128b97-9ff5-44eb-b8c7-bb03759c99ca",
+      "corpusIssueId": "0de37707-4600-509d-81d5-a5c40c51e480",
+      "pathNotation": "LAW_OF_OBLIGATIONS.RESPONDEAT_SUPERIOR.FAMILY_AND_DOMESTIC_RELATIONS.HUSBAND_AND_WIFE"
+    },
+    {
       "id": "3c4979e9999445acb0cc701550418c03",
       "uuid": "3c4979e9-9994-45ac-b0cc-701550418c03",
       "keys": [
@@ -268299,6 +268412,17 @@
       "uuid": "6409d295-ef56-414a-b469-091dd12a24a2",
       "corpusIssueId": "09112aa8-78ee-50bf-b99b-39511a886aae",
       "pathNotation": "LAW_OF_WRONGDOING.TRESPASS_TO_LAND.DEFENSES.IMPLIED_CONSENT.MEDIA_TRESPASS"
+    },
+    {
+      "id": "cfb7029fcb2d4b739acacf75a2f316d5",
+      "keys": [
+        "law-of-wrongdoing/trespass-to-land/elements-of-trespass"
+      ],
+      "label": "ELEMENTS OF TRESPASS",
+      "minted": "2026-11-19",
+      "uuid": "cfb7029f-cb2d-4b73-9aca-cf75a2f316d5",
+      "corpusIssueId": "8ffc9ae9-d334-5411-a00e-89be75fffda3",
+      "pathNotation": "LAW_OF_WRONGDOING.TRESPASS_TO_LAND.ELEMENTS_OF_TRESPASS"
     },
     {
       "id": "df01f2fc70fb488881457bbefa26db2d",
@@ -297952,6 +298076,35 @@
       "uuid": "fd3c3d16-a689-4685-a028-ff1dd4b77892",
       "corpusIssueId": "d0798161-cda0-5b7a-971b-fbe0d230a05c",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.GUARDIANSHIP.GUARDIAN_COMPENSATION"
+    },
+    {
+      "id": "0aed42b65d404898a2d03018fc92b648",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/guardianship/guardian-s-powers-and-duties"
+      ],
+      "label": "Guardian S Powers and Duties",
+      "minted": "2026-11-19",
+      "uuid": "0aed42b6-5d40-4898-a2d0-3018fc92b648"
+    },
+    {
+      "id": "756e2e4feb294653a719d445f762c932",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/guardianship/guardian-s-powers-and-duties/sales-of-ward-s-property"
+      ],
+      "label": "Sales of Ward S Property",
+      "minted": "2026-11-19",
+      "uuid": "756e2e4f-eb29-4653-a719-d445f762c932"
+    },
+    {
+      "id": "9a83b1f8430f459eb249aef133eb3090",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/guardianship/guardian-s-powers-and-duties/sales-of-ward-s-property/civil-law-rules"
+      ],
+      "label": "CIVIL-LAW RULES",
+      "minted": "2026-11-19",
+      "uuid": "9a83b1f8-430f-459e-b249-aef133eb3090",
+      "corpusIssueId": "5c9870b3-1eec-5a74-ac4b-f7c4b23c801a",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.GUARDIANSHIP.GUARDIAN_S_POWERS_AND_DUTIES.SALES_OF_WARD_S_PROPERTY.CIVIL_LAW_RULES"
     },
     {
       "id": "2c4ce6d9bf7740868dcb7222b5fe1f7e",
@@ -369116,6 +369269,17 @@
       "uuid": "f8fc47c1-c2c0-459b-a4a9-f45e609a9d24",
       "corpusIssueId": "667b3325-56c5-591b-8421-8f3c07856fef",
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.POSSESSION_AND_RIGHTS.PRESUMPTION_OF_OWNER_S_POSSESSION"
+    },
+    {
+      "id": "904e784b9be84344b6cd6814a5f3fd0f",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/privilege-to-use"
+      ],
+      "label": "PRIVILEGE TO USE",
+      "minted": "2026-11-19",
+      "uuid": "904e784b-9be8-4344-b6cd-6814a5f3fd0f",
+      "corpusIssueId": "3694cb61-683e-50fd-9b45-6c952b170116",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.PRIVILEGE_TO_USE"
     },
     {
       "id": "c96ba43b5d7e41f9ae31d74a45b30f52",
