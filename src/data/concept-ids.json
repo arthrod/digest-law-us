@@ -12444,6 +12444,17 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.PREFERENTIAL_TRANSFERS.POST_PETITION_PREFERENCES.PREFERENCES_BEFORE_ADJUDICATION"
     },
     {
+      "id": "6e06db1a090d4cc394ee3b9e1008f9d7",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/priority-and-treatment-of-claims"
+      ],
+      "label": "PRIORITY AND TREATMENT OF CLAIMS",
+      "minted": "2026-11-19",
+      "uuid": "6e06db1a-090d-4cc3-94ee-3b9e1008f9d7",
+      "corpusIssueId": "600e0694-2779-513e-8172-67ad674a53a8",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.PRIORITY_AND_TREATMENT_OF_CLAIMS"
+    },
+    {
       "id": "e00263796e7a4b8399ca81cf2bd09380",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/priority-of-claims"
@@ -26005,6 +26016,26 @@
       "label": "Trade Law",
       "minted": "2026-10-02",
       "uuid": "20cfe3f7-e628-4385-96a6-4873519c8f0e"
+    },
+    {
+      "id": "b8ac3de5f5f0470f8228ed61aee87c52",
+      "keys": [
+        "commercial-and-trade-law/trade-law/technical-barriers-to-trade"
+      ],
+      "label": "Technical Barriers to Trade",
+      "minted": "2026-11-19",
+      "uuid": "b8ac3de5-f5f0-470f-8228-ed61aee87c52"
+    },
+    {
+      "id": "0564222083ad43b782a6980fa7294add",
+      "keys": [
+        "commercial-and-trade-law/trade-law/technical-barriers-to-trade/food-and-nutrition-regulation"
+      ],
+      "label": "FOOD AND NUTRITION REGULATION",
+      "minted": "2026-11-19",
+      "uuid": "05642220-83ad-43b7-82a6-980fa7294add",
+      "corpusIssueId": "e508225e-2d83-5a09-a6df-8e5f8e049377",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.TRADE_LAW.TECHNICAL_BARRIERS_TO_TRADE.FOOD_AND_NUTRITION_REGULATION"
     },
     {
       "id": "5bbf3b8604c347649684d1a74b0cb2c0",
@@ -89107,6 +89138,24 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PRIVATE_CORPORATIONS.SHARES_AND_SHAREHOLDERS.NOMINEE_AND_DUMMY_STOCKHOLDERS"
     },
     {
+      "id": "59290aa2471a47c3b11fecb978930a9b",
+      "keys": [
+        "corporate-law/business-organizations-law/proof-and-evidence-of-marriage"
+      ],
+      "label": "Proof and Evidence of Marriage",
+      "minted": "2026-11-19",
+      "uuid": "59290aa2-471a-47c3-b11f-ecb978930a9b"
+    },
+    {
+      "id": "7388ff2233a646c0a18f1ed6ae692ff1",
+      "keys": [
+        "corporate-law/business-organizations-law/proof-and-evidence-of-marriage/certificates-as-proof-of-marriage"
+      ],
+      "label": "Certificates as Proof of Marriage",
+      "minted": "2026-11-19",
+      "uuid": "7388ff22-33a6-46c0-a18f-1ed6ae692ff1"
+    },
+    {
       "id": "0cdb559e54da40e5ba069e95ffa20539",
       "keys": [
         "corporate-law/business-organizations-law/public-service-corporations"
@@ -106629,6 +106678,17 @@
       "uuid": "85f10bce-62a2-4887-981e-a5890c5a0019",
       "corpusIssueId": "bdd38b39-15b7-598e-9254-695e11293fc0",
       "pathNotation": "CORPORATE_LAW.SECURITIES_AND_SHAREHOLDINGS.SUBSCRIPTIONS_FOR_SHARES.FRAUD_AND_DECEIT.ERROR_AS_TO_VALUE_WITHOUT_EVIDENCE_OF_FRAUD"
+    },
+    {
+      "id": "850a65c27aca4f63923636a7c4bc2cff",
+      "keys": [
+        "corporate-law/securities-and-shareholdings/subscriptions-for-shares/fraud-and-deceit/pleading-fraud-with-particularity"
+      ],
+      "label": "PLEADING FRAUD WITH PARTICULARITY",
+      "minted": "2026-11-19",
+      "uuid": "850a65c2-7aca-4f63-9236-36a7c4bc2cff",
+      "corpusIssueId": "f75aabb3-bc55-51a4-bec4-0cb33914a308",
+      "pathNotation": "CORPORATE_LAW.SECURITIES_AND_SHAREHOLDINGS.SUBSCRIPTIONS_FOR_SHARES.FRAUD_AND_DECEIT.PLEADING_FRAUD_WITH_PARTICULARITY"
     },
     {
       "id": "a464c9608ef947119c939d591c1fcea6",
@@ -125551,6 +125611,26 @@
       "pathNotation": "CRIMINAL_LAW.PRINCIPALS_AND_ACCESSORIES.ACCESSORIES_AFTER_THE_FACT.SCOPE_AND_STRUCTURE_OF_LEGAL_DISCUSSION"
     },
     {
+      "id": "be5dff7337604ed4a2075780ba41325d",
+      "keys": [
+        "criminal-law/principals-and-accessories/presence-requirement-for-principals"
+      ],
+      "label": "Presence Requirement for Principals",
+      "minted": "2026-11-19",
+      "uuid": "be5dff73-3760-4ed4-a207-5780ba41325d"
+    },
+    {
+      "id": "fffe4fb4d3144b748ab06db67eb8945a",
+      "keys": [
+        "criminal-law/principals-and-accessories/presence-requirement-for-principals/actual-or-constructive-presence"
+      ],
+      "label": "ACTUAL OR CONSTRUCTIVE PRESENCE",
+      "minted": "2026-11-19",
+      "uuid": "fffe4fb4-d314-4b74-8ab0-6db67eb8945a",
+      "corpusIssueId": "10bf3c44-3ca5-54f2-b486-b69e538943bf",
+      "pathNotation": "CRIMINAL_LAW.PRINCIPALS_AND_ACCESSORIES.PRESENCE_REQUIREMENT_FOR_PRINCIPALS.ACTUAL_OR_CONSTRUCTIVE_PRESENCE"
+    },
+    {
       "id": "009852a0fd0446ec9b525d65e6f22d2d",
       "keys": [
         "criminal-law/principals-and-accessories/principal-in-the-second-degree"
@@ -136519,6 +136599,26 @@
       "uuid": "625bd0f3-ed49-4e36-951b-39ab00126a9d",
       "corpusIssueId": "ebeeccaa-b369-5c53-9583-3e13fb6854a3",
       "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.PRIOR_APPROPRIATION_DOCTRINE.STATUTORY_REGULATION_OF_APPROPRIATION.CONSTITUTIONALITY_OF_WATER_STATUTES"
+    },
+    {
+      "id": "657d74e8b60040a4b77d3643220710d5",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/prior-appropriation/abandonment-and-forfeiture"
+      ],
+      "label": "Abandonment and Forfeiture",
+      "minted": "2026-11-19",
+      "uuid": "657d74e8-b600-40a4-b77d-3643220710d5"
+    },
+    {
+      "id": "6a11c34817e6435c8693545fe22d5f41",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/prior-appropriation/abandonment-and-forfeiture/abandoned-or-forfeited-claims-to-public-land"
+      ],
+      "label": "ABANDONED OR FORFEITED CLAIMS TO PUBLIC LAND",
+      "minted": "2026-11-19",
+      "uuid": "6a11c348-17e6-435c-8693-545fe22d5f41",
+      "corpusIssueId": "57dc80e0-60de-585c-af99-f1ac2caa3006",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.PRIOR_APPROPRIATION.ABANDONMENT_AND_FORFEITURE.ABANDONED_OR_FORFEITED_CLAIMS_TO_PUBLIC_LAND"
     },
     {
       "id": "df1ea4a3e055418cb0e9fcf8b33af793",
@@ -182070,6 +182170,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PRESENTMENT_FOR_PAYMENT.TIME_OF_PRESENTMENT.PROPER_DAY_FOR_PRESENTMENT"
     },
     {
+      "id": "2c773dab52c94db895bd2141c73052dc",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/presentment-for-payment/time-or-day-of-presentment"
+      ],
+      "label": "Time or Day of Presentment",
+      "minted": "2026-11-19",
+      "uuid": "2c773dab-52c9-4db8-95bd-2141c73052dc"
+    },
+    {
+      "id": "d5d9c70d4ca54ad38ea99b6c5bcf5218",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/presentment-for-payment/time-or-day-of-presentment/computation-of-time-when-instrument-payable-on-last-day"
+      ],
+      "label": "COMPUTATION OF TIME WHEN INSTRUMENT PAYABLE ON LAST DAY",
+      "minted": "2026-11-19",
+      "uuid": "d5d9c70d-4ca5-4ad3-8ea9-9b6c5bcf5218",
+      "corpusIssueId": "3180b774-9a9c-5b31-bedd-e4d976627a79",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PRESENTMENT_FOR_PAYMENT.TIME_OR_DAY_OF_PRESENTMENT.COMPUTATION_OF_TIME_WHEN_INSTRUMENT_PAYABLE_ON_LAST_DAY"
+    },
+    {
       "id": "e894e29b235648d084c151bae639117d",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/presentment-for-payment/to-whom-made"
@@ -222050,6 +222170,17 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.COMMON_LAW.INTERPRETATION_OF_STATUTES.INFLUENCE_OF_COMMON_LAW_ON_STATUTORY_INTERPRETATION"
     },
     {
+      "id": "f91dff75ccfe4b41b87662df1177a6f8",
+      "keys": [
+        "jurisprudence-and-legal-method/common-law/proof-of-unwritten-law"
+      ],
+      "label": "PROOF OF UNWRITTEN LAW",
+      "minted": "2026-11-19",
+      "uuid": "f91dff75-ccfe-4b41-b876-62df1177a6f8",
+      "corpusIssueId": "ff5d943a-7317-527c-a5f9-bf75989efd06",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.COMMON_LAW.PROOF_OF_UNWRITTEN_LAW"
+    },
+    {
       "id": "1ef396d19c6f450d91aa65d4b8d5603f",
       "keys": [
         "jurisprudence-and-legal-method/compiled-statutes"
@@ -224265,6 +224396,26 @@
       "uuid": "2d2b1217-5076-4785-bbcd-bbe0ee7a2fca",
       "corpusIssueId": "95ff26e4-5693-5413-999c-c8bb93eeb556",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.INTERPRETATION_OF_STATUTES.REMEDIAL_STATUTES.PUBLIC_PURPOSE_AND_SCOPE_OF_REMEDIAL_ACTS"
+    },
+    {
+      "id": "8d8a1f6cca4d46fc886176fce7cf0140",
+      "keys": [
+        "jurisprudence-and-legal-method/interpretation-of-statutes/retroactive-application-of-statutes"
+      ],
+      "label": "Retroactive Application of Statutes",
+      "minted": "2026-11-19",
+      "uuid": "8d8a1f6c-ca4d-46fc-8861-76fce7cf0140"
+    },
+    {
+      "id": "5fe319faebdb4b7b86b505836177de84",
+      "keys": [
+        "jurisprudence-and-legal-method/interpretation-of-statutes/retroactive-application-of-statutes/limitations-of-actions-as-procedural"
+      ],
+      "label": "LIMITATIONS OF ACTIONS AS PROCEDURAL",
+      "minted": "2026-11-19",
+      "uuid": "5fe319fa-ebdb-4b7b-86b5-05836177de84",
+      "corpusIssueId": "03927fbe-a819-5413-af8d-674c6628d9c5",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.INTERPRETATION_OF_STATUTES.RETROACTIVE_APPLICATION_OF_STATUTES.LIMITATIONS_OF_ACTIONS_AS_PROCEDURAL"
     },
     {
       "id": "d3c24e751930420c8cd8fdc7f1b2d01d",
@@ -227935,6 +228086,26 @@
       "uuid": "675d044c-1a0d-48dc-bbd8-fc111ba95de8",
       "corpusIssueId": "6b18286a-f72f-5704-8d22-c34967b597a1",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.REPEAL_AND_AMENDMENT.PARTIAL_REPEAL"
+    },
+    {
+      "id": "01cc4463c730492290f36dd54ba148a0",
+      "keys": [
+        "jurisprudence-and-legal-method/repeal-and-amendment/presumption-against-implied-repeal"
+      ],
+      "label": "Presumption Against Implied Repeal",
+      "minted": "2026-11-19",
+      "uuid": "01cc4463-c730-4922-90f3-6dd54ba148a0"
+    },
+    {
+      "id": "f1067402660547758edef4eee0b00372",
+      "keys": [
+        "jurisprudence-and-legal-method/repeal-and-amendment/presumption-against-implied-repeal/amendments-using-same-terms"
+      ],
+      "label": "AMENDMENTS USING SAME TERMS",
+      "minted": "2026-11-19",
+      "uuid": "f1067402-6605-4775-8ede-f4eee0b00372",
+      "corpusIssueId": "62c9124a-9feb-53ee-83d2-5cdbe8957185",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.REPEAL_AND_AMENDMENT.PRESUMPTION_AGAINST_IMPLIED_REPEAL.AMENDMENTS_USING_SAME_TERMS"
     },
     {
       "id": "32b92f22a1bc463491adca6ccde2e2c9",
@@ -239485,6 +239656,15 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.ELECTRONIC_GOVERNMENT_AND_DIGITAL_ADMINISTRATION.RIGHT_AND_OBLIGATION_TO_ELECTRONIC_INTERACTION_WITH_PUBLIC_ADMINISTRATIONS"
     },
     {
+      "id": "cef63759ce6b438289a8d645ffedcb46",
+      "keys": [
+        "law-of-obligations/employer-liability"
+      ],
+      "label": "Employer Liability",
+      "minted": "2026-11-19",
+      "uuid": "cef63759-ce6b-4382-89a8-d645ffedcb46"
+    },
+    {
       "id": "ca388f38e8e946c6b9727b88d245b1ea",
       "keys": [
         "law-of-obligations/employer-liability-for-employee-conduct"
@@ -239543,6 +239723,17 @@
       "uuid": "596e00a4-3ee4-49d9-8115-bd46059e52d0",
       "corpusIssueId": "97ee8634-749e-58bc-ab1e-517a1fb5d7a1",
       "pathNotation": "LAW_OF_OBLIGATIONS.EMPLOYER_LIABILITY_FOR_EMPLOYEE_TORTS.SCOPE_OF_EMPLOYMENT.PERSONAL_MALICE_EXCEPTION"
+    },
+    {
+      "id": "92729429388a4c3f88f79d8f1965a370",
+      "keys": [
+        "law-of-obligations/employer-liability/fellow-servant-rule"
+      ],
+      "label": "FELLOW-SERVANT RULE",
+      "minted": "2026-11-19",
+      "uuid": "92729429-388a-4c3f-88f7-9d8f1965a370",
+      "corpusIssueId": "e526d3e4-4279-51eb-8b4d-f72602ee5d70",
+      "pathNotation": "LAW_OF_OBLIGATIONS.EMPLOYER_LIABILITY.FELLOW_SERVANT_RULE"
     },
     {
       "id": "401193f2f000456d90be09d6348ce4bd",
@@ -279939,6 +280130,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.JUVENILE_LAW.VOIDABILITY_OF_MINORS_LEASES"
     },
     {
+      "id": "bf9521d923f84b24b1a029a70a99b109",
+      "keys": [
+        "personal-and-family-law/juvenile-law/wife-s-necessaries-and-marriage"
+      ],
+      "label": "WIFE'S NECESSARIES AND MARRIAGE",
+      "minted": "2026-11-19",
+      "uuid": "bf9521d9-23f8-4b24-b1a0-29a70a99b109",
+      "corpusIssueId": "cdf980e1-3d1b-55de-8367-20014b5b5c52",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.JUVENILE_LAW.WIFE_S_NECESSARIES_AND_MARRIAGE"
+    },
+    {
       "id": "77acf7ac2a204566bffb49e761b2bf82",
       "keys": [
         "personal-and-family-law/legal-capacity-and-disability"
@@ -281444,6 +281646,26 @@
       "uuid": "c0bacbd4-d4f0-46c7-9353-92dd19f7c2fb"
     },
     {
+      "id": "2bece4455ddd4886965b1235b72cd4c5",
+      "keys": [
+        "personal-and-family-law/marriage-law/coverture-and-its-effects"
+      ],
+      "label": "Coverture and Its Effects",
+      "minted": "2026-11-19",
+      "uuid": "2bece445-5ddd-4886-965b-1235b72cd4c5"
+    },
+    {
+      "id": "ca562c04277c4320968e8685a0ead938",
+      "keys": [
+        "personal-and-family-law/marriage-law/coverture-and-its-effects/equalization-of-sexes-and-marital-property-reform"
+      ],
+      "label": "EQUALIZATION OF SEXES AND MARITAL PROPERTY REFORM",
+      "minted": "2026-11-19",
+      "uuid": "ca562c04-277c-4320-968e-8685a0ead938",
+      "corpusIssueId": "7b6816a0-c812-50d9-a42e-4fcbede33040",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.COVERTURE_AND_ITS_EFFECTS.EQUALIZATION_OF_SEXES_AND_MARITAL_PROPERTY_REFORM"
+    },
+    {
       "id": "4b860bce28d74e4b9a2dbc270ad9c40b",
       "keys": [
         "personal-and-family-law/marriage-law/coverture-at-common-law"
@@ -282195,6 +282417,26 @@
       "label": "Financial Adjustments",
       "minted": "2026-10-02",
       "uuid": "d64f247c-7b47-446f-b0ca-11c8ca45ab7b"
+    },
+    {
+      "id": "bc6111c27c4445f49a576ce231dc00c7",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce-and-annulment/financial-adjustments-and-support"
+      ],
+      "label": "Financial Adjustments and Support",
+      "minted": "2026-11-19",
+      "uuid": "bc6111c2-7c44-45f4-9a57-6ce231dc00c7"
+    },
+    {
+      "id": "3cf49cf5ce4a4e4d809516b9c8958049",
+      "keys": [
+        "personal-and-family-law/marriage-law/divorce-and-annulment/financial-adjustments-and-support/suit-money"
+      ],
+      "label": "SUIT-MONEY",
+      "minted": "2026-11-19",
+      "uuid": "3cf49cf5-ce4a-4e4d-8095-16b9c8958049",
+      "corpusIssueId": "135ecabb-3618-5966-b4d8-890d6174667a",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DIVORCE_AND_ANNULMENT.FINANCIAL_ADJUSTMENTS_AND_SUPPORT.SUIT_MONEY"
     },
     {
       "id": "15e9d814f6a84e4cada501df497cf42d",
@@ -313981,6 +314223,26 @@
       "pathNotation": "PROCEDURAL_LAW.EXECUTION_AND_LEVY.PRIORITY_AMONG_EXECUTION_CREDITORS.PRIORITY_BY_PRIOR_LEVY"
     },
     {
+      "id": "81480c325b36489097ae2e258a63fd1e",
+      "keys": [
+        "procedural-law/execution-and-levy/property-subject-to-execution"
+      ],
+      "label": "Property Subject to Execution",
+      "minted": "2026-11-19",
+      "uuid": "81480c32-5b36-4890-97ae-2e258a63fd1e"
+    },
+    {
+      "id": "37aba83d661b429981806f84688eb2da",
+      "keys": [
+        "procedural-law/execution-and-levy/property-subject-to-execution/property-found-on-defendant-s-person"
+      ],
+      "label": "PROPERTY FOUND ON DEFENDANT'S PERSON",
+      "minted": "2026-11-19",
+      "uuid": "37aba83d-661b-4299-8180-6f84688eb2da",
+      "corpusIssueId": "5de3bdaf-30d4-56b1-a7ef-79f2b4a68f7b",
+      "pathNotation": "PROCEDURAL_LAW.EXECUTION_AND_LEVY.PROPERTY_SUBJECT_TO_EXECUTION.PROPERTY_FOUND_ON_DEFENDANT_S_PERSON"
+    },
+    {
       "id": "94c7c341f6d24dc385ebc0adf0700229",
       "keys": [
         "procedural-law/execution-and-supplementary-proceedings"
@@ -332827,6 +333089,26 @@
       "pathNotation": "PROCEDURAL_LAW.WRITS_OF_EXECUTION.AMENDMENT_OF_WRITS.AMENDING_DIRECTION_TO_OFFICER"
     },
     {
+      "id": "da03f106b8ca4e359862500caac4c132",
+      "keys": [
+        "procedural-law/writs-of-execution/amendment-of-writs/subject-property"
+      ],
+      "label": "Subject Property",
+      "minted": "2026-11-19",
+      "uuid": "da03f106-b8ca-4e35-9862-500caac4c132"
+    },
+    {
+      "id": "3f31b0a51bfd4932b3fbffce6517e92b",
+      "keys": [
+        "procedural-law/writs-of-execution/amendment-of-writs/subject-property/pawned-or-pledged-property"
+      ],
+      "label": "PAWNED OR PLEDGED PROPERTY",
+      "minted": "2026-11-19",
+      "uuid": "3f31b0a5-1bfd-4932-b3fb-ffce6517e92b",
+      "corpusIssueId": "295a6469-39e3-5915-a6db-bf23cac9e390",
+      "pathNotation": "PROCEDURAL_LAW.WRITS_OF_EXECUTION.AMENDMENT_OF_WRITS.SUBJECT_PROPERTY.PAWNED_OR_PLEDGED_PROPERTY"
+    },
+    {
       "id": "5d1d5edcab934406afa03805a1fecba7",
       "uuid": "5d1d5edc-ab93-4406-afa0-3805a1fecba7",
       "keys": [
@@ -350951,6 +351233,17 @@
       "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.NATURE_AND_DEFINITION_OF_THE_POWER.DISTINGUISHED_FROM_WAR_POWER"
     },
     {
+      "id": "182011de641840b8843409e461265d45",
+      "keys": [
+        "real-estate-law/eminent-domain-law/nature-and-scope-of-eminent-domain-power"
+      ],
+      "label": "NATURE AND SCOPE OF EMINENT DOMAIN POWER",
+      "minted": "2026-11-19",
+      "uuid": "182011de-6418-40b8-8434-09e461265d45",
+      "corpusIssueId": "5b8fbd40-a35f-5994-9ea0-393dfecdb430",
+      "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.NATURE_AND_SCOPE_OF_EMINENT_DOMAIN_POWER"
+    },
+    {
       "id": "750d3b76650d425b8e6f81f1cc7b3d0e",
       "keys": [
         "real-estate-law/eminent-domain-law/nature-and-scope-of-the-power"
@@ -353432,6 +353725,26 @@
       "uuid": "652c4f15-e514-428a-ac27-94269d0bbe38",
       "corpusIssueId": "bef25c5d-59f4-538f-8b86-a2027b3e944a",
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.MARITAL_PROPERTY_INTERESTS.CURTESY.CURTESY_IN_REVERSION"
+    },
+    {
+      "id": "8e89bcd7186e4a7aa7103aa11db00b1c",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/marital-property-interests/dower"
+      ],
+      "label": "Dower",
+      "minted": "2026-11-19",
+      "uuid": "8e89bcd7-186e-4a7a-a710-3aa11db00b1c"
+    },
+    {
+      "id": "cb1a900f72a74b95bc0f59ac3c33faf1",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/marital-property-interests/dower/entitlement-to-dower"
+      ],
+      "label": "ENTITLEMENT TO DOWER",
+      "minted": "2026-11-19",
+      "uuid": "cb1a900f-72a7-4b95-bc0f-59ac3c33faf1",
+      "corpusIssueId": "13475467-8939-54ce-b352-6d1eb5c99b37",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.MARITAL_PROPERTY_INTERESTS.DOWER.ENTITLEMENT_TO_DOWER"
     },
     {
       "id": "cc251bd8e52c4a20aa6712624b96b3fa",
@@ -371204,6 +371517,17 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.TENANT_DUTIES.WASTE.FORFEITURE_OF_RIGHT_TO_NOTICE"
     },
     {
+      "id": "44175a36b42e4fdeb9728745e1f9e051",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/tenant-duties/waste/voluntary-waste"
+      ],
+      "label": "VOLUNTARY WASTE",
+      "minted": "2026-11-19",
+      "uuid": "44175a36-b42e-4fde-b972-8745e1f9e051",
+      "corpusIssueId": "47d81a2c-838e-5831-b48d-dc1961ca9ad9",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.TENANT_DUTIES.WASTE.VOLUNTARY_WASTE"
+    },
+    {
       "id": "076d3b3f9a6b46dea0066f1cb92c73bb",
       "uuid": "076d3b3f-9a6b-46de-a006-6f1cb92c73bb",
       "keys": [
@@ -381841,6 +382165,17 @@
       "label": "Priority and Notice",
       "minted": "2026-10-18",
       "uuid": "d047e68e-1c2d-4000-b77a-fd6a23e7b122"
+    },
+    {
+      "id": "1162d2c93a8a47dd90259b0839711c36",
+      "keys": [
+        "real-estate-law/security-interests-in-real-property/mortgages/priority-and-notice/notice-of-intended-mortgage"
+      ],
+      "label": "NOTICE OF INTENDED MORTGAGE",
+      "minted": "2026-11-19",
+      "uuid": "1162d2c9-3a8a-47dd-9025-9b0839711c36",
+      "corpusIssueId": "efe8b508-5b24-5c82-a9d1-2363215b4b01",
+      "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.PRIORITY_AND_NOTICE.NOTICE_OF_INTENDED_MORTGAGE"
     },
     {
       "id": "e2ba02dff082477da50b58e53f7bbcef",
