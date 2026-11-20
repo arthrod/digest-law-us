@@ -155271,6 +155271,17 @@
       "uuid": "cf742446-ee13-4428-a3b6-d9a13a150570"
     },
     {
+      "id": "8ec91bc8fa6146019925b63e5ccc4699",
+      "keys": [
+        "evidence-law/opinion-evidence/expert-and-lay-opinion-testimony/opinion-as-to-documents"
+      ],
+      "label": "OPINION AS TO DOCUMENTS",
+      "minted": "2026-11-20",
+      "uuid": "8ec91bc8-fa61-4601-9925-b63e5ccc4699",
+      "corpusIssueId": "131b3bf7-faa8-5f6a-b345-d0aee0f1b098",
+      "pathNotation": "EVIDENCE_LAW.OPINION_EVIDENCE.EXPERT_AND_LAY_OPINION_TESTIMONY.OPINION_AS_TO_DOCUMENTS"
+    },
+    {
       "id": "d089ff49bca9476fa897eb2ed0811fae",
       "keys": [
         "evidence-law/opinion-evidence/expert-and-lay-opinion-testimony/opinions-as-to-amount-of-damages"
@@ -164459,6 +164470,35 @@
       "uuid": "4d021aec-c050-4a9e-87c3-9519ff6e1b69",
       "corpusIssueId": "d3e60de8-8637-5fde-9a61-d65fd0b7ea6f",
       "pathNotation": "EVIDENCE_LAW.WITNESSES.COMPETENCY_OF_WITNESSES.CONVICTION_AS_DISQUALIFICATION.STATUTORY_REMOVAL_OF_DISQUALIFICATION"
+    },
+    {
+      "id": "6b67efe961f74c69ba5ab9fa15acee30",
+      "keys": [
+        "evidence-law/witnesses/competency-of-witnesses/dead-man-s-statutes-and-disqualification-of-interested-witnesses"
+      ],
+      "label": "Dead Man S Statutes and Disqualification of Interested Witnesses",
+      "minted": "2026-11-20",
+      "uuid": "6b67efe9-61f7-4c69-ba5a-b9fa15acee30"
+    },
+    {
+      "id": "affb1c63232f44de998b9334834641d4",
+      "keys": [
+        "evidence-law/witnesses/competency-of-witnesses/dead-man-s-statutes-and-disqualification-of-interested-witnesses/surviving-party-disqualification"
+      ],
+      "label": "Surviving Party Disqualification",
+      "minted": "2026-11-20",
+      "uuid": "affb1c63-232f-44de-998b-9334834641d4"
+    },
+    {
+      "id": "a74535fbdee649578394422693de6ccd",
+      "keys": [
+        "evidence-law/witnesses/competency-of-witnesses/dead-man-s-statutes-and-disqualification-of-interested-witnesses/surviving-party-disqualification/administrator-or-executor-as-party"
+      ],
+      "label": "ADMINISTRATOR OR EXECUTOR AS PARTY",
+      "minted": "2026-11-20",
+      "uuid": "a74535fb-dee6-4957-8394-422693de6ccd",
+      "corpusIssueId": "7f61253d-aa56-5d93-8891-42be0d1ae84c",
+      "pathNotation": "EVIDENCE_LAW.WITNESSES.COMPETENCY_OF_WITNESSES.DEAD_MAN_S_STATUTES_AND_DISQUALIFICATION_OF_INTERESTED_WITNESSES.SURVIVING_PARTY_DISQUALIFICATION.ADMINISTRATOR_OR_EXECUTOR_AS_PARTY"
     },
     {
       "id": "fefd516adeb1449987f31eb0d14daacc",
@@ -183958,6 +183998,17 @@
       "uuid": "fb6c31c8-b5b7-4051-ae2f-3ba893eac2f5",
       "corpusIssueId": "e96e4add-2ff5-56de-9a3d-ae82d3577b05",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PRESENTMENT_FOR_PAYMENT.MULTIPLE_PROMISORS_NOT_PARTNERS"
+    },
+    {
+      "id": "5bb7ad88ebb04635bf6cd371a6827b94",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/presentment-for-payment/necessity-of-presentment-and-effect-of-failure"
+      ],
+      "label": "NECESSITY OF PRESENTMENT AND EFFECT OF FAILURE",
+      "minted": "2026-11-20",
+      "uuid": "5bb7ad88-ebb0-4635-bf6c-d371a6827b94",
+      "corpusIssueId": "a78a4490-181a-5e26-94c7-ee1e0182f908",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PRESENTMENT_FOR_PAYMENT.NECESSITY_OF_PRESENTMENT_AND_EFFECT_OF_FAILURE"
     },
     {
       "id": "bc99153302744e9a9ea791e7db0fc955",
@@ -254962,6 +255013,17 @@
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DEFENSES.CONTRIBUTORY_NEGLIGENCE.LAST_CLEAR_CHANCE_DOCTRINE.FAILURE_TO_SEE_PLAINTIFF"
     },
     {
+      "id": "f544cd3b66b9455f84e9b29a536f2c41",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/defenses/contributory-negligence/timing-of-contributory-negligence-defense"
+      ],
+      "label": "TIMING OF CONTRIBUTORY NEGLIGENCE DEFENSE",
+      "minted": "2026-11-20",
+      "uuid": "f544cd3b-66b9-455f-84e9-b29a536f2c41",
+      "corpusIssueId": "27896980-e4c1-5fca-9e98-7ba59774607b",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DEFENSES.CONTRIBUTORY_NEGLIGENCE.TIMING_OF_CONTRIBUTORY_NEGLIGENCE_DEFENSE"
+    },
+    {
       "id": "b0f88cbda8154512bf7e7161d2d6ad2b",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/defenses/defenses-to-prima-facie-case"
@@ -314079,6 +314141,26 @@
       "uuid": "4b6e6a42-ea95-4f24-8061-ab22797b6707",
       "corpusIssueId": "25ee848e-b473-5641-940b-b1b62fcfafa6",
       "pathNotation": "PROCEDURAL_LAW.COUNTERCLAIMS.COUNTERCLAIM_DEFINED"
+    },
+    {
+      "id": "3b2c91b040314d33bc4db3482b9b0c44",
+      "keys": [
+        "procedural-law/court-orders"
+      ],
+      "label": "Court Orders",
+      "minted": "2026-11-20",
+      "uuid": "3b2c91b0-4031-4d33-bc4d-b3482b9b0c44"
+    },
+    {
+      "id": "32625084b5a94f33b2192bd382ac317b",
+      "keys": [
+        "procedural-law/court-orders/orders-to-disregard-standing-rules"
+      ],
+      "label": "ORDERS TO DISREGARD STANDING RULES",
+      "minted": "2026-11-20",
+      "uuid": "32625084-b5a9-4f33-b219-2bd382ac317b",
+      "corpusIssueId": "b1416bab-62ed-5595-837b-f67e2b9bd58c",
+      "pathNotation": "PROCEDURAL_LAW.COURT_ORDERS.ORDERS_TO_DISREGARD_STANDING_RULES"
     },
     {
       "id": "f8c6d41fb7624088a8e4cbb88ed8cbf1",
@@ -385131,6 +385213,35 @@
       "uuid": "552cf697-3a3d-41ec-9f7c-faa31b3eeece",
       "corpusIssueId": "1548dd06-0b4e-5089-94c7-78f6ea5bd4d8",
       "pathNotation": "REAL_ESTATE_LAW.RULE_AGAINST_PERPETUITIES.REMOTENESS_OF_VESTING.UNCERTAIN_EVENT_AS_CONTINGENCY"
+    },
+    {
+      "id": "8fcf60d0ba754ba69e1ae8fdaa97a01d",
+      "keys": [
+        "real-estate-law/rule-against-perpetuities/rule-against-perpetuities"
+      ],
+      "label": "Rule Against Perpetuities",
+      "minted": "2026-11-20",
+      "uuid": "8fcf60d0-ba75-4ba6-9e1a-e8fdaa97a01d"
+    },
+    {
+      "id": "5ce24e6d46ca4f9f9a8a8ebbf0603acd",
+      "keys": [
+        "real-estate-law/rule-against-perpetuities/rule-against-perpetuities/measuring-lives-and-periods"
+      ],
+      "label": "Measuring Lives and Periods",
+      "minted": "2026-11-20",
+      "uuid": "5ce24e6d-46ca-4f9f-9a8a-8ebbf0603acd"
+    },
+    {
+      "id": "6f1b208b248d4026bab990e074b5de9d",
+      "keys": [
+        "real-estate-law/rule-against-perpetuities/rule-against-perpetuities/measuring-lives-and-periods/grantor-s-life-as-measuring-life"
+      ],
+      "label": "GRANTOR'S LIFE AS MEASURING LIFE",
+      "minted": "2026-11-20",
+      "uuid": "6f1b208b-248d-4026-bab9-90e074b5de9d",
+      "corpusIssueId": "d1cff915-f566-537e-9b6e-e8888bd9a44b",
+      "pathNotation": "REAL_ESTATE_LAW.RULE_AGAINST_PERPETUITIES.RULE_AGAINST_PERPETUITIES.MEASURING_LIVES_AND_PERIODS.GRANTOR_S_LIFE_AS_MEASURING_LIFE"
     },
     {
       "id": "a9c883010be540c996e0e156c9745b14",
