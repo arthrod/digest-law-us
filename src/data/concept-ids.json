@@ -9419,6 +9419,17 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.DISCHARGE_OF_DEBTS.PROCEDURAL_REQUIREMENTS_FOR_DISCHARGE.TIMELINES_AND_DEADLINES_FOR_FILING_PETITION"
     },
     {
+      "id": "7c3fadace641475a912ca4fef9ba489a",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/discharge-of-debts/stay-of-discharge"
+      ],
+      "label": "STAY OF DISCHARGE",
+      "minted": "2026-11-20",
+      "uuid": "7c3fadac-e641-475a-912c-a4fef9ba489a",
+      "corpusIssueId": "a1737b58-9084-5443-8226-26717f7139a5",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.DISCHARGE_OF_DEBTS.STAY_OF_DISCHARGE"
+    },
+    {
       "id": "4e1a881126a3492aac1487fb618ca217",
       "uuid": "4e1a8811-26a3-492a-ac14-87fb618ca217",
       "keys": [
@@ -47256,6 +47267,24 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.IMPLIED_REASONABLE_EFFORTS_PROMISE_IN_EXCLUSIVE_DEALING.WOOD_V_LUCY_LADY_DUFF_GORDON"
     },
     {
+      "id": "0c67656f75134bd593a8caa9e58a5e54",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/inadequacy-of-consideration"
+      ],
+      "label": "Inadequacy of Consideration",
+      "minted": "2026-11-20",
+      "uuid": "0c67656f-7513-4bd5-93a8-caa9e58a5e54"
+    },
+    {
+      "id": "50423dbaa533428db5ee67ba61998377",
+      "keys": [
+        "contract-law/formation-and-enforceability/consideration/inadequacy-of-consideration/rescission-for-inadequate-consideration"
+      ],
+      "label": "Rescission for Inadequate Consideration",
+      "minted": "2026-11-20",
+      "uuid": "50423dba-a533-428d-b5ee-67ba61998377"
+    },
+    {
       "id": "48f093250dd443e982c3f2423096c8e7",
       "keys": [
         "contract-law/formation-and-enforceability/consideration/joint-adventure-agreements"
@@ -64175,6 +64204,17 @@
       "uuid": "0897f76b-2aa4-435c-997a-49856c1cb3d8",
       "corpusIssueId": "5aecbba3-8417-5119-958e-18ff899ca333",
       "pathNotation": "CONTRACT_LAW.TYPES_OF_CONTRACTS.SIMPLE_CONTRACTS.ORAL_AND_WRITTEN_SIMPLE_CONTRACTS"
+    },
+    {
+      "id": "d10dd62089844b9fa269a87611cd5652",
+      "keys": [
+        "contract-law/types-of-contracts/simple-contracts/simple-contract-debts"
+      ],
+      "label": "SIMPLE CONTRACT DEBTS",
+      "minted": "2026-11-20",
+      "uuid": "d10dd620-8984-4b9f-a269-a87611cd5652",
+      "corpusIssueId": "1f9db743-ab99-568f-95e4-a825b0942443",
+      "pathNotation": "CONTRACT_LAW.TYPES_OF_CONTRACTS.SIMPLE_CONTRACTS.SIMPLE_CONTRACT_DEBTS"
     },
     {
       "id": "88afd3008329470e8610fb8934ed0c94",
@@ -127290,6 +127330,26 @@
       "uuid": "9404fe1a-21fe-4ff5-880f-3c27e615ebf8"
     },
     {
+      "id": "0777f7b758884bfa9ce6d86e55963cfc",
+      "keys": [
+        "criminal-law/property-and-economic-crimes/bankruptcy-crimes-and-fraud"
+      ],
+      "label": "Bankruptcy Crimes and Fraud",
+      "minted": "2026-11-20",
+      "uuid": "0777f7b7-5888-4bfa-9ce6-d86e55963cfc"
+    },
+    {
+      "id": "6be58cdc70d34fe79d96d3e8bacd6a28",
+      "keys": [
+        "criminal-law/property-and-economic-crimes/bankruptcy-crimes-and-fraud/criminal-punishment-for-bankruptcy-offenses"
+      ],
+      "label": "CRIMINAL PUNISHMENT FOR BANKRUPTCY OFFENSES",
+      "minted": "2026-11-20",
+      "uuid": "6be58cdc-70d3-4fe7-9d96-d3e8bacd6a28",
+      "corpusIssueId": "8c983059-220c-5069-81ac-d5dd0f7bb5e0",
+      "pathNotation": "CRIMINAL_LAW.PROPERTY_AND_ECONOMIC_CRIMES.BANKRUPTCY_CRIMES_AND_FRAUD.CRIMINAL_PUNISHMENT_FOR_BANKRUPTCY_OFFENSES"
+    },
+    {
       "id": "dbbc44ad50884b82a0a923cbf66e880e",
       "keys": [
         "criminal-law/property-and-economic-crimes/definition-and-scope-of-property-related-terms"
@@ -137840,6 +137900,17 @@
       "uuid": "91ee5405-19b2-4012-8f02-24643d7f2036"
     },
     {
+      "id": "845ea4ef5ef34ec7bb2a16706dd2fbe8",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/ownership-and-classification-of-water/general-principles"
+      ],
+      "label": "GENERAL PRINCIPLES",
+      "minted": "2026-11-20",
+      "uuid": "845ea4ef-5ef3-4ec7-bb2a-16706dd2fbe8",
+      "corpusIssueId": "b81753e4-6c9b-5aae-a94f-56460a9a740e",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.OWNERSHIP_AND_CLASSIFICATION_OF_WATER.GENERAL_PRINCIPLES"
+    },
+    {
       "id": "ecde62894f9c4daea551cf9a4326a7c9",
       "keys": [
         "environmental-and-natural-resource-law/water-resources-and-wetlands-law/ownership-and-classification-of-water/public-ownership-of-water-resources"
@@ -143238,6 +143309,26 @@
       "corpusIssueId": "d5bd8f91-15a8-52e3-8a66-e1250e799d60",
       "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_OF_EVIDENCE.SPECIFIC_TYPES_OF_EVIDENCE.EVIDENCE_OF_CRIMINAL_OR_TORTIOUS_ACTS.EVIDENCE_OF_ARSON_OR_FIRE_RELATED_ACTS",
       "retired": "2026-10-20"
+    },
+    {
+      "id": "10e35400af3643758fbe39d55ceaf1ee",
+      "keys": [
+        "evidence-law/admissibility-of-evidence/statutory-exclusionary-rules"
+      ],
+      "label": "Statutory Exclusionary Rules",
+      "minted": "2026-11-20",
+      "uuid": "10e35400-af36-4375-8fbe-39d55ceaf1ee"
+    },
+    {
+      "id": "93bf2558afeb4cbf834ccd4127bba857",
+      "keys": [
+        "evidence-law/admissibility-of-evidence/statutory-exclusionary-rules/notice-requirements-for-documentary-evidence-at-trial"
+      ],
+      "label": "NOTICE REQUIREMENTS FOR DOCUMENTARY EVIDENCE AT TRIAL",
+      "minted": "2026-11-20",
+      "uuid": "93bf2558-afeb-4cbf-834c-cd4127bba857",
+      "corpusIssueId": "5bcff64e-a9eb-5d95-a693-d3e87ef714d1",
+      "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_OF_EVIDENCE.STATUTORY_EXCLUSIONARY_RULES.NOTICE_REQUIREMENTS_FOR_DOCUMENTARY_EVIDENCE_AT_TRIAL"
     },
     {
       "id": "8ebd95c5c52645ef8ba6407bdab31ecf",
@@ -175105,6 +175196,24 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.GENERAL_LIEN_LAW.DEFINITION_OF_LIEN"
     },
     {
+      "id": "ac4d86f39729476e9b37f75e1077f9c7",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/general-provisions-and-interpretation"
+      ],
+      "label": "General Provisions and Interpretation",
+      "minted": "2026-11-20",
+      "uuid": "ac4d86f3-9729-476e-9b37-f75e1077f9c7"
+    },
+    {
+      "id": "bddfaeedb121453bb38e032ca9b78311",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/general-provisions-and-interpretation/residual-application-of-law-merchant"
+      ],
+      "label": "Residual Application of Law Merchant",
+      "minted": "2026-11-20",
+      "uuid": "bddfaeed-b121-453b-b38e-032ca9b78311"
+    },
+    {
       "id": "3d704cbf8fa84e5d818241d9f5ae9bd6",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/guarantor-s-rights-and-defenses"
@@ -185976,6 +186085,17 @@
       "label": "Bona Fide Holders or Purchasers"
     },
     {
+      "id": "582f38959c7148f4982d9e93b65adb7a",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-parties/bona-fide-holders-or-purchasers/damages-and-remedies"
+      ],
+      "label": "DAMAGES AND REMEDIES",
+      "minted": "2026-11-20",
+      "uuid": "582f3895-9c71-48f4-982d-9e93b65adb7a",
+      "corpusIssueId": "0f78bba3-5806-5798-86b6-102e50d744f9",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_PARTIES.BONA_FIDE_HOLDERS_OR_PURCHASERS.DAMAGES_AND_REMEDIES"
+    },
+    {
       "id": "5fc62691324d457b8941c3012a576ce7",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-parties/bona-fide-holders-or-purchasers/defenses-and-discharges"
@@ -186491,6 +186611,17 @@
       "uuid": "8076f3a5-5af5-4b42-a332-a4a2593c6023",
       "corpusIssueId": "e528eb04-bf27-5e73-aadb-b6dd3bc07cb1",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_SURETIES.INDEMNITY_RIGHTS_OF_SURETIES.SURETY_OF_EXECUTOR_OR_ADMINISTRATOR"
+    },
+    {
+      "id": "df452d610a064a42aac2509fd3ce0bd4",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-sureties/indemnity-rights-of-sureties/surety-s-right-to-indemnity-from-partner"
+      ],
+      "label": "SURETY'S RIGHT TO INDEMNITY FROM PARTNER",
+      "minted": "2026-11-20",
+      "uuid": "df452d61-0a06-4a42-aac2-509fd3ce0bd4",
+      "corpusIssueId": "059a2365-6a5f-5cea-9454-76b601a3ce44",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_SURETIES.INDEMNITY_RIGHTS_OF_SURETIES.SURETY_S_RIGHT_TO_INDEMNITY_FROM_PARTNER"
     },
     {
       "id": "5c0a0ee2428642bda81589daa722dba3",
@@ -219186,6 +219317,17 @@
       "pathNotation": "IP_LAW.PATENT_LAW.PATENT_INFRINGEMENT.INJUNCTIVE_RELIEF_FOR_INFRINGEMENT_OR_THREATENED_INFRINGEMENT"
     },
     {
+      "id": "4f6de1b6dfbf4868ba172f5000941f6a",
+      "keys": [
+        "ip-law/patent-law/patent-infringement/judicial-interpretation-and-precedent"
+      ],
+      "label": "JUDICIAL INTERPRETATION AND PRECEDENT",
+      "minted": "2026-11-20",
+      "uuid": "4f6de1b6-dfbf-4868-ba17-2f5000941f6a",
+      "corpusIssueId": "dfb125ee-927e-5e3a-828d-82e49008f681",
+      "pathNotation": "IP_LAW.PATENT_LAW.PATENT_INFRINGEMENT.JUDICIAL_INTERPRETATION_AND_PRECEDENT"
+    },
+    {
       "id": "1b0c1820c6a748d880e9450b9e601ab7",
       "keys": [
         "ip-law/patent-law/patent-infringement/measurement-of-damages"
@@ -231950,6 +232092,17 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_COURT_DECISIONS.MICHIGAN_SUPREME_COURT_REPORTS"
     },
     {
+      "id": "7cc4e9c8a0734ccbb88cd5a172d74cce",
+      "keys": [
+        "jurisprudence-and-legal-method/state-court-decisions/texas-state-court-decisions"
+      ],
+      "label": "TEXAS STATE COURT DECISIONS",
+      "minted": "2026-11-20",
+      "uuid": "7cc4e9c8-a073-4ccb-b88c-d5a172d74cce",
+      "corpusIssueId": "966e72fb-ec35-59b9-b0e4-adf7f3b8370b",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_COURT_DECISIONS.TEXAS_STATE_COURT_DECISIONS"
+    },
+    {
       "id": "4a6a318deb2b4b9595ddf2f2a4916416",
       "keys": [
         "jurisprudence-and-legal-method/state-court-reports"
@@ -236553,6 +236706,17 @@
       "uuid": "f766bfb9-2025-4564-bb29-541d2cd317ec",
       "corpusIssueId": "10a6f848-0f4c-5c35-86a0-cdbf99f22ace",
       "pathNotation": "LABOR_AND_EMPLOYMENT_LAW.SAFE_WORKPLACE_AND_APPLIANCES.NOTICE_OF_DEFECT_OR_DANGER.NOTICE_PRESUMED_FROM_LAPSE_OF_TIME"
+    },
+    {
+      "id": "34708fae6c074e9f87783c8266ac7d59",
+      "keys": [
+        "labor-and-employment-law/safe-workplace-and-appliances/permanent-structures"
+      ],
+      "label": "PERMANENT STRUCTURES",
+      "minted": "2026-11-20",
+      "uuid": "34708fae-6c07-4e9f-8778-3c8266ac7d59",
+      "corpusIssueId": "8d91f91f-e883-5a19-902a-06a73bec28ad",
+      "pathNotation": "LABOR_AND_EMPLOYMENT_LAW.SAFE_WORKPLACE_AND_APPLIANCES.PERMANENT_STRUCTURES"
     },
     {
       "id": "e153514afa374d09a4aec091c818b2da",
@@ -243037,6 +243201,44 @@
       "uuid": "7e258025-4a6a-448f-bb07-e43d404ff60e",
       "corpusIssueId": "18720787-3f18-5f74-baa2-6d53fd76dd5b",
       "pathNotation": "LAW_OF_OBLIGATIONS.FORMATION_AND_DURATION_OF_AGENCY.TERMINATION_OF_AGENCY.TERMINATION_BY_DISPOSAL_OF_SUBJECT_MATTER"
+    },
+    {
+      "id": "76d0552ea8084d79b7cbf2c72461a7a5",
+      "keys": [
+        "law-of-obligations/formation-and-termination"
+      ],
+      "label": "Formation and Termination",
+      "minted": "2026-11-20",
+      "uuid": "76d0552e-a808-4d79-b7cb-f2c72461a7a5"
+    },
+    {
+      "id": "c8d880a244404b70911342175c4fa6b3",
+      "keys": [
+        "law-of-obligations/formation-and-termination/termination-of-agency"
+      ],
+      "label": "Termination of Agency",
+      "minted": "2026-11-20",
+      "uuid": "c8d880a2-4440-4b70-9113-42175c4fa6b3"
+    },
+    {
+      "id": "cf94c690457140e0897c43e2503a8026",
+      "keys": [
+        "law-of-obligations/formation-and-termination/termination-of-agency/effect-of-death-or-revocation"
+      ],
+      "label": "Effect of Death or Revocation",
+      "minted": "2026-11-20",
+      "uuid": "cf94c690-4571-40e0-897c-43e2503a8026"
+    },
+    {
+      "id": "b28c820407ad4beb8e271407892da5f4",
+      "keys": [
+        "law-of-obligations/formation-and-termination/termination-of-agency/effect-of-death-or-revocation/power-coupled-with-an-interest-exception"
+      ],
+      "label": "POWER COUPLED WITH AN INTEREST EXCEPTION",
+      "minted": "2026-11-20",
+      "uuid": "b28c8204-07ad-4beb-8e27-1407892da5f4",
+      "corpusIssueId": "54baae4d-2917-5040-86ad-db61537ebca0",
+      "pathNotation": "LAW_OF_OBLIGATIONS.FORMATION_AND_TERMINATION.TERMINATION_OF_AGENCY.EFFECT_OF_DEATH_OR_REVOCATION.POWER_COUPLED_WITH_AN_INTEREST_EXCEPTION"
     },
     {
       "id": "66c2628a3b7547afb85de625b54f0fe9",
@@ -252195,6 +252397,35 @@
       "uuid": "97c918aa-92ca-42ad-a5b1-6279ad728a5e",
       "corpusIssueId": "7f5bc67e-8de1-52a7-b2d4-489ad47c6303",
       "pathNotation": "LAW_OF_WRONGDOING.INJURY_TO_PROPERTY.INJURIES_TO_REAL_PROPERTY.INJURIES_TO_TREES_AND_VEGETATION.MEASURE_OF_DAMAGES"
+    },
+    {
+      "id": "7fecc0364dde4f069bb3bb7e1a5ea39c",
+      "keys": [
+        "law-of-wrongdoing/injury-to-property/waste"
+      ],
+      "label": "Waste",
+      "minted": "2026-11-20",
+      "uuid": "7fecc036-4dde-4f06-9bb3-bb7e1a5ea39c"
+    },
+    {
+      "id": "e065ea8f4bdd4df881440245b23d3094",
+      "keys": [
+        "law-of-wrongdoing/injury-to-property/waste/waste-by-mortgagor"
+      ],
+      "label": "Waste by Mortgagor",
+      "minted": "2026-11-20",
+      "uuid": "e065ea8f-4bdd-4df8-8144-0245b23d3094"
+    },
+    {
+      "id": "d874a5ae43a74c48a257e4fe8d414e16",
+      "keys": [
+        "law-of-wrongdoing/injury-to-property/waste/waste-by-mortgagor/injunctive-relief-for-waste"
+      ],
+      "label": "INJUNCTIVE RELIEF FOR WASTE",
+      "minted": "2026-11-20",
+      "uuid": "d874a5ae-43a7-4c48-a257-e4fe8d414e16",
+      "corpusIssueId": "cde1f922-7610-5806-a035-5b0b6f57217f",
+      "pathNotation": "LAW_OF_WRONGDOING.INJURY_TO_PROPERTY.WASTE.WASTE_BY_MORTGAGOR.INJUNCTIVE_RELIEF_FOR_WASTE"
     },
     {
       "id": "1a4d2dcee0b04e3681c13e9314ba5d5e",
@@ -275118,6 +275349,26 @@
       "pathNotation": "LEGAL_PROFESSION_AND_ACCESS_TO_JUSTICE.JUDICIAL_ETHICS_AND_CONDUCT.JUDICIAL_DUTIES_AND_RESPONSIBILITIES.PROMOTING_PUBLIC_CONFIDENCE_IN_THE_JUDICIARY"
     },
     {
+      "id": "304958bb8bb744e4bbf726a21c7af4b0",
+      "keys": [
+        "legal-profession-and-access-to-justice/judicial-ethics-and-conduct/study-and-pedagogical-materials"
+      ],
+      "label": "Study and Pedagogical Materials",
+      "minted": "2026-11-20",
+      "uuid": "304958bb-8bb7-44e4-bbf7-26a21c7af4b0"
+    },
+    {
+      "id": "cfd0d227959c4312873e55771ff2f095",
+      "keys": [
+        "legal-profession-and-access-to-justice/judicial-ethics-and-conduct/study-and-pedagogical-materials/review-questions"
+      ],
+      "label": "REVIEW QUESTIONS",
+      "minted": "2026-11-20",
+      "uuid": "cfd0d227-959c-4312-873e-55771ff2f095",
+      "corpusIssueId": "7be62a40-7b1e-59c2-8636-48521e694fc2",
+      "pathNotation": "LEGAL_PROFESSION_AND_ACCESS_TO_JUSTICE.JUDICIAL_ETHICS_AND_CONDUCT.STUDY_AND_PEDAGOGICAL_MATERIALS.REVIEW_QUESTIONS"
+    },
+    {
       "id": "eb72b7897a8f452595a74bcd164af950",
       "uuid": "eb72b789-7a8f-4525-95a7-4bcd164af950",
       "keys": [
@@ -296368,6 +296619,26 @@
       "uuid": "87d1f8e1-2690-4c7e-9fad-12d2ab6af6ba",
       "corpusIssueId": "1eb8d1e6-651e-52f0-bf39-bb8489660fb3",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.ADMINISTRATION_OF_ESTATES.DEBTS_AND_CLAIMS_AGAINST_THE_ESTATE"
+    },
+    {
+      "id": "96c5e8c6f2794563b281ba8bdc3f9740",
+      "keys": [
+        "personal-and-family-law/probate-law/administration-of-estates/distribution-and-accounting"
+      ],
+      "label": "Distribution and Accounting",
+      "minted": "2026-11-20",
+      "uuid": "96c5e8c6-f279-4563-b281-ba8bdc3f9740"
+    },
+    {
+      "id": "2e737626c22f411ba161ae1b82be1762",
+      "keys": [
+        "personal-and-family-law/probate-law/administration-of-estates/distribution-and-accounting/refunding-bonds"
+      ],
+      "label": "REFUNDING BONDS",
+      "minted": "2026-11-20",
+      "uuid": "2e737626-c22f-411b-a161-ae1b82be1762",
+      "corpusIssueId": "eed4d48a-3b07-5117-8d45-a1972f755710",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.ADMINISTRATION_OF_ESTATES.DISTRIBUTION_AND_ACCOUNTING.REFUNDING_BONDS"
     },
     {
       "id": "8e8a57297cd843d7a7bc9c563877633e",
@@ -340715,6 +340986,35 @@
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.CREATION_AND_ACQUISITION_OF_OFFICE.ACCEPTANCE_OF_OFFICE.PRESUMPTION_OF_ACCEPTANCE_FROM_EXERCISE"
     },
     {
+      "id": "b97bd9cd8d2848098c94d34b14fff7b0",
+      "keys": [
+        "public-and-administrative-law/creation-and-filling-of-office"
+      ],
+      "label": "Creation and Filling of Office",
+      "minted": "2026-11-20",
+      "uuid": "b97bd9cd-8d28-4809-8c94-d34b14fff7b0"
+    },
+    {
+      "id": "4dc9ad021a5d4a0f9f90b092d690cc5c",
+      "keys": [
+        "public-and-administrative-law/creation-and-filling-of-office/appointments"
+      ],
+      "label": "Appointments",
+      "minted": "2026-11-20",
+      "uuid": "4dc9ad02-1a5d-4a0f-9f90-b092d690cc5c"
+    },
+    {
+      "id": "9d68228fd13c4ed18897f378b271f92c",
+      "keys": [
+        "public-and-administrative-law/creation-and-filling-of-office/appointments/appointments-to-fill-vacancies"
+      ],
+      "label": "APPOINTMENTS TO FILL VACANCIES",
+      "minted": "2026-11-20",
+      "uuid": "9d68228f-d13c-4ed1-8897-f378b271f92c",
+      "corpusIssueId": "02c8a579-b87d-5b0b-afa3-8fa4f15b7600",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.CREATION_AND_FILLING_OF_OFFICE.APPOINTMENTS.APPOINTMENTS_TO_FILL_VACANCIES"
+    },
+    {
       "id": "12e0090683924008884bd20e749134c8",
       "keys": [
         "public-and-administrative-law/creation-and-filling-of-public-offices"
@@ -347755,6 +348055,17 @@
       "pathNotation": "REAL_ESTATE_LAW.ADVERSE_POSSESSION.ELEMENTS_AND_REQUIREMENTS.CLAIM_OF_TITLE"
     },
     {
+      "id": "8234a14f595c4eec8aa535b579fca1fe",
+      "keys": [
+        "real-estate-law/adverse-possession/elements-and-requirements/right-of-action-requirement"
+      ],
+      "label": "RIGHT OF ACTION REQUIREMENT",
+      "minted": "2026-11-20",
+      "uuid": "8234a14f-595c-4eec-8aa5-35b579fca1fe",
+      "corpusIssueId": "710915e0-bd1e-53aa-a7dd-3e327fa0aaad",
+      "pathNotation": "REAL_ESTATE_LAW.ADVERSE_POSSESSION.ELEMENTS_AND_REQUIREMENTS.RIGHT_OF_ACTION_REQUIREMENT"
+    },
+    {
       "id": "f134a73eb8a24d0bbf9d6e9fc1085b5c",
       "keys": [
         "real-estate-law/adverse-possession/statutory-period"
@@ -353639,6 +353950,15 @@
       "uuid": "d0cd0955-de74-4668-b559-99702ccaf7d8",
       "corpusIssueId": "5dc3a90e-c947-5a24-80c8-156ae1b8b502",
       "pathNotation": "REAL_ESTATE_LAW.EASEMENTS.IMPLIED_EASEMENTS.EASEMENT_IMPLIED_BY_EXISTING_USE"
+    },
+    {
+      "id": "e25fd68d876742e7b5045bb1d000c356",
+      "keys": [
+        "real-estate-law/easements/partition-fences"
+      ],
+      "label": "Partition Fences",
+      "minted": "2026-11-20",
+      "uuid": "e25fd68d-8767-42e7-b504-5bb1d000c356"
     },
     {
       "id": "23e9f1dbb3e1454884cf72aea543ab33",
@@ -379671,6 +379991,26 @@
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURITY_INTERESTS.EQUITABLE_MORTGAGES.MORTGAGORS.JOINT_MORTGAGORS_AND_TENANTS_IN_COMMON"
     },
     {
+      "id": "408cdc52c6b842968a52df474563c7d0",
+      "keys": [
+        "real-estate-law/mortgages-and-security-interests/equitable-mortgages/parol-evidence-to-prove-absolute-deed-a-mortgage"
+      ],
+      "label": "Parol Evidence to Prove Absolute Deed a Mortgage",
+      "minted": "2026-11-20",
+      "uuid": "408cdc52-c6b8-4296-8a52-df474563c7d0"
+    },
+    {
+      "id": "70a7c2a257fd458ea1a5dde59909261e",
+      "keys": [
+        "real-estate-law/mortgages-and-security-interests/equitable-mortgages/parol-evidence-to-prove-absolute-deed-a-mortgage/grantor-s-understanding-as-evidence"
+      ],
+      "label": "GRANTOR'S UNDERSTANDING AS EVIDENCE",
+      "minted": "2026-11-20",
+      "uuid": "70a7c2a2-57fd-458e-a1a5-dde59909261e",
+      "corpusIssueId": "1ae4f15a-6a7c-5559-9dde-c299de9562a3",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURITY_INTERESTS.EQUITABLE_MORTGAGES.PAROL_EVIDENCE_TO_PROVE_ABSOLUTE_DEED_A_MORTGAGE.GRANTOR_S_UNDERSTANDING_AS_EVIDENCE"
+    },
+    {
       "id": "17f4a5a8e5e54d1494962174ba8a040f",
       "uuid": "17f4a5a8-e5e5-4d14-9496-2174ba8a040f",
       "keys": [
@@ -402328,6 +402668,17 @@
       "pathNotation": "REMEDIES_LAW.EQUITABLE_REMEDIES.RELIEF_AGAINST_FORFEITURES.MORTGAGE_DEFAULT_RELIEF"
     },
     {
+      "id": "b8ea962a50ed4f1b9381a0eb40daa64b",
+      "keys": [
+        "remedies-law/equitable-remedies/relief-from-equitable-proceedings-and-decrees"
+      ],
+      "label": "RELIEF FROM EQUITABLE PROCEEDINGS AND DECREES",
+      "minted": "2026-11-20",
+      "uuid": "b8ea962a-50ed-4f1b-9381-a0eb40daa64b",
+      "corpusIssueId": "16cdf4ff-77ce-5a65-a6f9-0e864586b092",
+      "pathNotation": "REMEDIES_LAW.EQUITABLE_REMEDIES.RELIEF_FROM_EQUITABLE_PROCEEDINGS_AND_DECREES"
+    },
+    {
       "id": "48ed4a4c25c34d77af2485daa7b3e51e",
       "keys": [
         "remedies-law/equitable-remedies/relief-from-error-mistake-or-new-evidence"
@@ -413907,6 +414258,17 @@
       "uuid": "8076a756-0c7b-425a-a295-0ea11ecbe65b",
       "corpusIssueId": "8c27070a-ba7d-5da1-b2d0-63f1a6659c8c",
       "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.APPOINTMENT_AND_QUALIFICATION_OF_RECEIVER.MULTIPLE_RECEIVERS_AND_CONTRACTS_BY_RECEIVER"
+    },
+    {
+      "id": "f498ca06bb35486b9b1af6c8c309ed70",
+      "keys": [
+        "remedies-law/receivership/appointment-and-qualification-of-receiver/proof-of-inadequacy-and-insolvency"
+      ],
+      "label": "PROOF OF INADEQUACY AND INSOLVENCY",
+      "minted": "2026-11-20",
+      "uuid": "f498ca06-bb35-486b-9b1a-f6c8c309ed70",
+      "corpusIssueId": "e0871a50-0676-5802-b7a0-fce6d696b80b",
+      "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.APPOINTMENT_AND_QUALIFICATION_OF_RECEIVER.PROOF_OF_INADEQUACY_AND_INSOLVENCY"
     },
     {
       "id": "df836996a9fa4d17a69ff33f3c61fbe9",
