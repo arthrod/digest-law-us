@@ -1462,6 +1462,15 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.ADMINISTRATION_OF_THE_ESTATE.PREFERENCES_AND_FRAUDULENT_TRANSFERS.PREFERENTIAL_TRANSFERS.DISBURSEMENT_AS_PREFERENCE.PROCEEDS_OF_PROPERTY_AS_DISBURSEMENT"
     },
     {
+      "id": "964680583dff4d1d82d7bcb27bb921d6",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/administration-of-the-estate/preservation-of-the-estate-before-trustee-appointed"
+      ],
+      "label": "Preservation of the Estate Before Trustee Appointed",
+      "minted": "2026-11-20",
+      "uuid": "96468058-3dff-4d1d-82d7-bcb27bb921d6"
+    },
+    {
       "id": "f9ddc0352a9c4c70804945c01c1e5512",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/administration-of-the-estate/priority-and-distribution"
@@ -74583,6 +74592,33 @@
       "uuid": "c8502194-2d1a-4fcd-81ae-b99096092bd7"
     },
     {
+      "id": "1494e0695dfe4d8a97042defbb104e6f",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-operation/incorporation-process"
+      ],
+      "label": "Incorporation Process",
+      "minted": "2026-11-20",
+      "uuid": "1494e069-5dfe-4d8a-9704-2defbb104e6f"
+    },
+    {
+      "id": "7f2bc4a9afe445fd93269b743bd21a94",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-operation/incorporation-process/notice-requirements"
+      ],
+      "label": "Notice Requirements",
+      "minted": "2026-11-20",
+      "uuid": "7f2bc4a9-afe4-45fd-9326-9b743bd21a94"
+    },
+    {
+      "id": "5dc8db4f27d04d949662024e4dca9004",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-operation/incorporation-process/notice-requirements/limits-of-doctrine-of-constructive-notice"
+      ],
+      "label": "Limits of Doctrine of Constructive Notice",
+      "minted": "2026-11-20",
+      "uuid": "5dc8db4f-27d0-4d94-9662-024e4dca9004"
+    },
+    {
       "id": "44d76e05fb4a44c3a3bfb06fc175986b",
       "keys": [
         "corporate-law/business-organizations-law/corporations/formation-and-operation/irregular-incorporation"
@@ -92201,6 +92237,24 @@
       "uuid": "2b071780-fdc9-4306-8714-afdb31405cc5",
       "corpusIssueId": "d91fcc1f-2da6-5169-b006-34ce67749a00",
       "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_AND_DISTRIBUTIONS.DIVIDENDS.IMPROPERLY_DECLARED_DIVIDENDS"
+    },
+    {
+      "id": "4061e09072754a07a922fe4a7cb75cab",
+      "keys": [
+        "corporate-law/corporate-finance-and-distributions/stock-distributions"
+      ],
+      "label": "Stock Distributions",
+      "minted": "2026-11-20",
+      "uuid": "4061e090-7275-4a07-a922-fe4a7cb75cab"
+    },
+    {
+      "id": "6d1fb90813c6491cad54da550ba08150",
+      "keys": [
+        "corporate-law/corporate-finance-and-distributions/stock-distributions/basis-allocation-under-section-307"
+      ],
+      "label": "Basis Allocation Under Section 307",
+      "minted": "2026-11-20",
+      "uuid": "6d1fb908-13c6-491c-ad54-da550ba08150"
     },
     {
       "id": "3997d066c4224f6d9a5907f1fb74c152",
@@ -117880,6 +117934,26 @@
       "pathNotation": "CRIMINAL_LAW.HOMICIDE.MENS_REA_REQUIREMENTS.DEPRAVED_INDIFFERENCE_MURDER"
     },
     {
+      "id": "b394163038c24117a5a020f11fe1ba9c",
+      "keys": [
+        "criminal-law/homicide/model-penal-code-commentary"
+      ],
+      "label": "Model Penal Code Commentary",
+      "minted": "2026-11-20",
+      "uuid": "b3941630-38c2-4117-a5a0-20f11fe1ba9c"
+    },
+    {
+      "id": "95ba6613dfb64da08d1465831b2ae95d",
+      "keys": [
+        "criminal-law/homicide/model-penal-code-commentary/model-penal-code-210-2-commentary"
+      ],
+      "label": "MODEL PENAL CODE § 210.2 COMMENTARY",
+      "minted": "2026-11-20",
+      "uuid": "95ba6613-dfb6-4da0-8d14-65831b2ae95d",
+      "corpusIssueId": "318b5425-5995-5e84-b44e-48bdfdbed509",
+      "pathNotation": "CRIMINAL_LAW.HOMICIDE.MODEL_PENAL_CODE_COMMENTARY.MODEL_PENAL_CODE_210_2_COMMENTARY"
+    },
+    {
       "id": "011366edc9ff4688b10d68f88540373a",
       "keys": [
         "criminal-law/homicide/model-penal-code-framework"
@@ -120839,8 +120913,7 @@
       "minted": "2026-10-02",
       "uuid": "cc49bbe2-d233-419d-8728-bbadd45fbe11",
       "corpusIssueId": "d690abfd-eea3-51a6-9e84-8987b7389849",
-      "pathNotation": "CRIMINAL_LAW.LEGALITY.LEGALITY_DOCTRINE",
-      "retired": "2026-10-20"
+      "pathNotation": "CRIMINAL_LAW.LEGALITY.LEGALITY_DOCTRINE"
     },
     {
       "id": "22845c9d77454b80b8f91d1abfa606aa",
@@ -139749,6 +139822,17 @@
       "uuid": "ef678c41-94e8-43bd-97d9-ce78c52742a5",
       "corpusIssueId": "3a02dc01-e766-5875-88d9-ab11930b4415",
       "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.WATER_RIGHTS.FEDERAL_STATUTORY_FRAMEWORKS"
+    },
+    {
+      "id": "bc76bdac575840669f19a68070157c63",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/water-rights/irrigation-rights"
+      ],
+      "label": "IRRIGATION RIGHTS",
+      "minted": "2026-11-20",
+      "uuid": "bc76bdac-5758-4066-9f19-a68070157c63",
+      "corpusIssueId": "bfef626c-0d13-54cd-bb33-60802ef5c880",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.WATER_RIGHTS.IRRIGATION_RIGHTS"
     },
     {
       "id": "5a118dd4ef304d77b43cf5f86856d1bb",
@@ -162730,6 +162814,24 @@
       "uuid": "9f9cb3ae-bd3d-4b95-94c4-363ee8139b22",
       "corpusIssueId": "b0a8749d-aab8-5fb1-94c1-109d181e8068",
       "pathNotation": "EVIDENCE_LAW.WITNESS_COMPETENCY_AND_QUALIFICATION.INTEREST_BASED_DISQUALIFICATION.PECUNIARY_INTEREST"
+    },
+    {
+      "id": "8c742eca9ce64d2facf85dc523961efa",
+      "keys": [
+        "evidence-law/witness-competency-and-qualification/lay-non-expert-witnesses"
+      ],
+      "label": "Lay Non Expert Witnesses",
+      "minted": "2026-11-20",
+      "uuid": "8c742eca-9ce6-4d2f-acf8-5dc523961efa"
+    },
+    {
+      "id": "44a4d5e01379435f8b321d7f293e0cbe",
+      "keys": [
+        "evidence-law/witness-competency-and-qualification/lay-non-expert-witnesses/personal-knowledge-requirement-and-lay-opinions"
+      ],
+      "label": "Personal Knowledge Requirement and Lay Opinions",
+      "minted": "2026-11-20",
+      "uuid": "44a4d5e0-1379-435f-8b32-1d7f293e0cbe"
     },
     {
       "id": "489bba843da54dea929e342f96b887c2",
@@ -230978,6 +231080,15 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_COURT_DECISIONS.BAIL_IN_SURETYSHIP_AND_GUARANTY"
     },
     {
+      "id": "7340ef021c3e4147825c5190836f2cd5",
+      "keys": [
+        "jurisprudence-and-legal-method/state-court-decisions/illinois-state-court-decisions"
+      ],
+      "label": "Illinois State Court Decisions",
+      "minted": "2026-11-20",
+      "uuid": "7340ef02-1c3e-4147-825c-5190836f2cd5"
+    },
+    {
       "id": "3c8af33ee6fa4418b5630365893af456",
       "keys": [
         "jurisprudence-and-legal-method/state-court-decisions/massachusetts-supreme-judicial-court"
@@ -259388,6 +259499,26 @@
       "uuid": "839eeb32-6b43-4746-88c5-c8a16acc2b18"
     },
     {
+      "id": "f826c8ee5d0145ccbf4e1b1197f63702",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/premises-liability/condition-of-premises"
+      ],
+      "label": "Condition of Premises",
+      "minted": "2026-11-20",
+      "uuid": "f826c8ee-5d01-45cc-bf4e-1b1197f63702"
+    },
+    {
+      "id": "ec9ca3530e86485fb5c2074d620cc43d",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/premises-liability/condition-of-premises/slippery-or-hazardous-surfaces"
+      ],
+      "label": "SLIPPERY OR HAZARDOUS SURFACES",
+      "minted": "2026-11-20",
+      "uuid": "ec9ca353-0e86-485f-b5c2-074d620cc43d",
+      "corpusIssueId": "e28b1668-19db-502f-96a9-f541acf140e2",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.PREMISES_LIABILITY.CONDITION_OF_PREMISES.SLIPPERY_OR_HAZARDOUS_SURFACES"
+    },
+    {
       "id": "5f3f5330badd4688abb72c785214e618",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/premises-liability/dangerous-conditions-on-land"
@@ -283272,6 +283403,24 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.ALIMONY_AND_SPOUSAL_SUPPORT.BANKRUPTCY_EXEMPTIONS_FOR_ALIMONY"
     },
     {
+      "id": "0cfff91e05314ec08f8aed517f14227c",
+      "keys": [
+        "personal-and-family-law/marriage-law/alimony-and-spousal-support/eligibility-and-limitations"
+      ],
+      "label": "Eligibility and Limitations",
+      "minted": "2026-11-20",
+      "uuid": "0cfff91e-0531-4ec0-8f8a-ed517f14227c"
+    },
+    {
+      "id": "0d848e017ede46caa130526716dc0968",
+      "keys": [
+        "personal-and-family-law/marriage-law/alimony-and-spousal-support/eligibility-and-limitations/guilty-party-status"
+      ],
+      "label": "Guilty Party Status",
+      "minted": "2026-11-20",
+      "uuid": "0d848e01-7ede-46ca-a130-526716dc0968"
+    },
+    {
       "id": "63d2c954dc3d4eaf976c8ffaca5d7d92",
       "keys": [
         "personal-and-family-law/marriage-law/alimony-and-spousal-support/enforcement-of-alimony-obligations"
@@ -287347,6 +287496,17 @@
       "uuid": "65a4d0dd-334e-432f-a8a5-569becfa4fc1",
       "corpusIssueId": "5fb5baf6-0aea-5d02-804a-2860c684a03b",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMALITIES_AND_CELEBRATION.RELIGIOUS_CEREMONY"
+    },
+    {
+      "id": "772d135fc8b547de9b2c21bbf234dc01",
+      "keys": [
+        "personal-and-family-law/marriage-law/formalities-and-celebration/witnesses-to-marriage"
+      ],
+      "label": "WITNESSES TO MARRIAGE",
+      "minted": "2026-11-20",
+      "uuid": "772d135f-c8b5-47de-9b2c-21bbf234dc01",
+      "corpusIssueId": "5bdfb8a6-41e4-5090-99c8-ba7356bbe436",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMALITIES_AND_CELEBRATION.WITNESSES_TO_MARRIAGE"
     },
     {
       "id": "f9580d1bdb594d6186574d7799393c06",
@@ -315740,6 +315900,15 @@
       "label": "Preclusive Effects",
       "minted": "2026-11-20",
       "uuid": "e2540af2-d8fb-4a94-9590-9f280bcc244c"
+    },
+    {
+      "id": "83ade07c183b47c58a7f5380900adb91",
+      "keys": [
+        "procedural-law/effects-of-judgments/preclusive-effects/identity-of-subject-matter"
+      ],
+      "label": "Identity of Subject Matter",
+      "minted": "2026-11-20",
+      "uuid": "83ade07c-183b-47c5-8a7f-5380900adb91"
     },
     {
       "id": "94d09674d2944d0a84200ac6fea7033b",
@@ -357040,6 +357209,24 @@
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.MARITAL_PROPERTY_INTERESTS.DOWER.ENTITLEMENT_TO_DOWER"
     },
     {
+      "id": "3d41c5e3b4a3470094f4b8f24bbd6ea5",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/marital-property-interests/dower/loss-or-bar-of-dower"
+      ],
+      "label": "Loss or Bar of Dower",
+      "minted": "2026-11-20",
+      "uuid": "3d41c5e3-b4a3-4700-94f4-b8f24bbd6ea5"
+    },
+    {
+      "id": "80beeea46bec48e195e7f7e784f9bdb3",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/marital-property-interests/dower/loss-or-bar-of-dower/vendee-s-liability-for-dower"
+      ],
+      "label": "Vendee S Liability for Dower",
+      "minted": "2026-11-20",
+      "uuid": "80beeea4-6bec-48e1-95e7-f7e784f9bdb3"
+    },
+    {
       "id": "cc251bd8e52c4a20aa6712624b96b3fa",
       "keys": [
         "real-estate-law/estates-and-future-interests/other-estates-and-future-interests"
@@ -357430,6 +357617,26 @@
       "uuid": "2029cab3-4bf7-40ff-9e0a-692900924086",
       "corpusIssueId": "74b74a46-0ac0-5438-8bd3-917a851c00b1",
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.COMMON_LAW_TENURES.ORIGIN_AND_HISTORY_OF_COMMON_LAW_TENURES"
+    },
+    {
+      "id": "cef565261de54446839a34d3043742c0",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/conditions-and-limitations"
+      ],
+      "label": "Conditions and Limitations",
+      "minted": "2026-11-20",
+      "uuid": "cef56526-1de5-4446-839a-34d3043742c0"
+    },
+    {
+      "id": "2ed125812bac41fbaabb7fee22c1b1cb",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/conditions-and-limitations/distinction-between-conditions-and-limitations"
+      ],
+      "label": "DISTINCTION BETWEEN CONDITIONS AND LIMITATIONS",
+      "minted": "2026-11-20",
+      "uuid": "2ed12581-2bac-41fb-aabb-7fee22c1b1cb",
+      "corpusIssueId": "5218dc97-d758-56f5-a63b-765a42417df6",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.CONDITIONS_AND_LIMITATIONS.DISTINCTION_BETWEEN_CONDITIONS_AND_LIMITATIONS"
     },
     {
       "id": "a8e8383504124bbaa60dbadfc5b2c7f0",
@@ -397349,6 +397556,24 @@
       "pathNotation": "REMEDIES_LAW.DAMAGES.NOMINAL_DAMAGES.NATURE_AND_PURPOSE"
     },
     {
+      "id": "bd4d065e33e743b6b28ee45e967e2b3c",
+      "keys": [
+        "remedies-law/damages/punitive-and-multiplied-damages"
+      ],
+      "label": "Punitive and Multiplied Damages",
+      "minted": "2026-11-20",
+      "uuid": "bd4d065e-33e7-43b6-b28e-e45e967e2b3c"
+    },
+    {
+      "id": "820135c0aeb24b5ea30d0bf6093e84fb",
+      "keys": [
+        "remedies-law/damages/punitive-and-multiplied-damages/exemplary-double-and-treble-damages"
+      ],
+      "label": "Exemplary Double and Treble Damages",
+      "minted": "2026-11-20",
+      "uuid": "820135c0-aeb2-4b5e-a30d-0bf6093e84fb"
+    },
+    {
       "id": "4f57fc1df00d4f09a94be8e7e5cd53f2",
       "keys": [
         "remedies-law/damages/punitive-damages"
@@ -411697,6 +411922,24 @@
       "pathNotation": "REMEDIES_LAW.RECEIVERS.NATURE_AND_SCOPE_OF_RECEIVERSHIP_REMEDY.AUXILIARY_CHARACTER_OF_RECEIVERSHIP"
     },
     {
+      "id": "180d2b4728ac4ad7bc07513ec82c073f",
+      "keys": [
+        "remedies-law/receivers/powers-and-duties-of-receivers"
+      ],
+      "label": "Powers and Duties of Receivers",
+      "minted": "2026-11-20",
+      "uuid": "180d2b47-28ac-4ad7-bc07-513ec82c073f"
+    },
+    {
+      "id": "a3afc0228ab1455b8ccb735f7ebe2d5d",
+      "keys": [
+        "remedies-law/receivers/powers-and-duties-of-receivers/rights-of-action-vesting-in-receiver"
+      ],
+      "label": "Rights of Action Vesting in Receiver",
+      "minted": "2026-11-20",
+      "uuid": "a3afc022-8ab1-455b-8ccb-735f7ebe2d5d"
+    },
+    {
       "id": "b5e662b95b1d4ddeb35b3ef8d0f98f03",
       "keys": [
         "remedies-law/receivers/receiver-s-powers-duties-and-status"
@@ -423214,6 +423457,24 @@
       "uuid": "1557f6ee-6521-4ad8-aa4f-0e9f65619f07",
       "corpusIssueId": "3f8ef2a9-e2e8-52e9-bbe4-76d73b5cb6cd",
       "pathNotation": "TRANSPORTATION_LAW.COMMON_CARRIERS.CLASSIFICATION_AS_COMMON_CARRIER.OWNERS_OF_STEAMBOATS_AND_CANAL_BOATS"
+    },
+    {
+      "id": "aaea1644ee314c43910ac4fe494d86ea",
+      "keys": [
+        "transportation-law/common-carriers/classification-of-common-carriers"
+      ],
+      "label": "Classification of Common Carriers",
+      "minted": "2026-11-20",
+      "uuid": "aaea1644-ee31-4c43-910a-c4fe494d86ea"
+    },
+    {
+      "id": "83fe8cd0294a453596f3eeee42e89628",
+      "keys": [
+        "transportation-law/common-carriers/classification-of-common-carriers/express-companies-as-common-carriers"
+      ],
+      "label": "Express Companies as Common Carriers",
+      "minted": "2026-11-20",
+      "uuid": "83fe8cd0-294a-4535-96f3-eeee42e89628"
     },
     {
       "id": "08ed5adbb4ab4ba7aff26b66fe8bdda8",
