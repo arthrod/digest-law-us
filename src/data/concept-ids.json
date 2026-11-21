@@ -24861,6 +24861,35 @@
       "pathNotation": "COMMERCIAL_AND_TRADE_LAW.BUSINESS_TRANSACTIONS_LAW.SALES_UCC_ARTICLE_2.PARTIES_TO_SALES_TRANSACTIONS.MERCHANT_STATUS_DETERMINATION.SPECIAL_CASES_OF_MERCHANT_STATUS"
     },
     {
+      "id": "50711f48be9b4dd1bbbb424031e958f0",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/seller-s-lien-and-possession"
+      ],
+      "label": "Seller S Lien and Possession",
+      "minted": "2026-11-21",
+      "uuid": "50711f48-be9b-4dd1-bbbb-424031e958f0"
+    },
+    {
+      "id": "e2e340becec84e4eaceb4c826a674d44",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/seller-s-lien-and-possession/loss-or-waiver-of-lien"
+      ],
+      "label": "Loss or Waiver of Lien",
+      "minted": "2026-11-21",
+      "uuid": "e2e340be-cec8-4e4e-aceb-4c826a674d44"
+    },
+    {
+      "id": "7a3ccffbfcc6429b9346cae6e47d1288",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/seller-s-lien-and-possession/loss-or-waiver-of-lien/goods-placed-in-public-place"
+      ],
+      "label": "GOODS PLACED IN PUBLIC PLACE",
+      "minted": "2026-11-21",
+      "uuid": "7a3ccffb-fcc6-429b-9346-cae6e47d1288",
+      "corpusIssueId": "a398b607-724b-5a55-bc7b-0e390d3810d6",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.BUSINESS_TRANSACTIONS_LAW.SELLER_S_LIEN_AND_POSSESSION.LOSS_OR_WAIVER_OF_LIEN.GOODS_PLACED_IN_PUBLIC_PLACE"
+    },
+    {
       "id": "5285a7922197492aba1aa0b9f45e631b",
       "keys": [
         "commercial-and-trade-law/business-transactions-law/seller-s-obligations"
@@ -33940,6 +33969,26 @@
       "label": "CONSTITUTIONAL LIMITATIONS ON STATE LEGISLATIVE POWER",
       "corpusIssueId": "25ab7576-b9ac-5bdb-8db6-c330ff60622f",
       "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.JUDICIAL_REVIEW_OF_LEGISLATIVE_AND_EXECUTIVE_ACTIONS.CONSTITUTIONAL_LIMITATIONS_ON_STATE_LEGISLATIVE_POWER"
+    },
+    {
+      "id": "a4d2d8e43d5c43f2a0758af19e76d083",
+      "keys": [
+        "constitutional-and-civil-rights-law/judicial-review-of-police-power"
+      ],
+      "label": "Judicial Review of Police Power",
+      "minted": "2026-11-21",
+      "uuid": "a4d2d8e4-3d5c-43f2-a075-8af19e76d083"
+    },
+    {
+      "id": "0c11bc37ffa745fd850a403097e99c23",
+      "keys": [
+        "constitutional-and-civil-rights-law/judicial-review-of-police-power/reasonableness-review"
+      ],
+      "label": "REASONABLENESS REVIEW",
+      "minted": "2026-11-21",
+      "uuid": "0c11bc37-ffa7-45fd-850a-403097e99c23",
+      "corpusIssueId": "10ea9ed3-1902-5c60-8283-9aec2a28c910",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.JUDICIAL_REVIEW_OF_POLICE_POWER.REASONABLENESS_REVIEW"
     },
     {
       "id": "13b4fa598707451380941e04f7aed528",
@@ -51020,6 +51069,17 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.OFFER_AND_ACCEPTANCE.AUCTION_SALES"
     },
     {
+      "id": "6072d731bda747ba9dd2b2c5583eeb28",
+      "keys": [
+        "contract-law/formation-and-enforceability/offer-and-acceptance/battle-of-the-forms"
+      ],
+      "label": "BATTLE OF THE FORMS",
+      "minted": "2026-11-21",
+      "uuid": "6072d731-bda7-47ba-9dd2-b2c5583eeb28",
+      "corpusIssueId": "5b33deef-df87-59eb-956d-76196f1a44ee",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.OFFER_AND_ACCEPTANCE.BATTLE_OF_THE_FORMS"
+    },
+    {
       "id": "3fb310ec44dc436db72264988cc221cb",
       "keys": [
         "contract-law/formation-and-enforceability/offer-and-acceptance/bid-solicitation-and-acceptance"
@@ -60024,6 +60084,26 @@
       "uuid": "22c47056-cc30-4248-a31a-96bc025a3de6",
       "corpusIssueId": "84a2b691-d7b6-5386-92b6-623701844068",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.TENDER_OF_PERFORMANCE.NON_APPORTIONMENT_OF_CONSIDERATION"
+    },
+    {
+      "id": "779195bbe357418ab2c51bd6a71bba4d",
+      "keys": [
+        "contract-law/performance-and-breach/tender-of-performance/partial-failure-of-consideration"
+      ],
+      "label": "Partial Failure of Consideration",
+      "minted": "2026-11-21",
+      "uuid": "779195bb-e357-418a-b2c5-1bd6a71bba4d"
+    },
+    {
+      "id": "8253eaf5b62e4e93921e5547cff32112",
+      "keys": [
+        "contract-law/performance-and-breach/tender-of-performance/partial-failure-of-consideration/inability-to-make-tender"
+      ],
+      "label": "INABILITY TO MAKE TENDER",
+      "minted": "2026-11-21",
+      "uuid": "8253eaf5-b62e-4e93-921e-5547cff32112",
+      "corpusIssueId": "74c80586-1175-5e75-a292-91d6b799cea9",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.TENDER_OF_PERFORMANCE.PARTIAL_FAILURE_OF_CONSIDERATION.INABILITY_TO_MAKE_TENDER"
     },
     {
       "id": "6981508647f640348db45a0be8b9297f",
@@ -75802,6 +75882,17 @@
       "label": "Incorporation Process",
       "minted": "2026-11-20",
       "uuid": "1494e069-5dfe-4d8a-9704-2defbb104e6f"
+    },
+    {
+      "id": "3c6c646dd6ea4180a4afd93d8c57d012",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-operation/incorporation-process/acknowledgment-of-incorporation-instruments"
+      ],
+      "label": "ACKNOWLEDGMENT OF INCORPORATION INSTRUMENTS",
+      "minted": "2026-11-21",
+      "uuid": "3c6c646d-d6ea-4180-a4af-d93d8c57d012",
+      "corpusIssueId": "a177e7c7-f434-53b9-867e-a5ef2f2da84f",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.FORMATION_AND_OPERATION.INCORPORATION_PROCESS.ACKNOWLEDGMENT_OF_INCORPORATION_INSTRUMENTS"
     },
     {
       "id": "7f2bc4a9afe445fd93269b743bd21a94",
@@ -108961,6 +109052,35 @@
       "pathNotation": "CORPORATE_LAW.QUALIFICATION_AND_REGISTRATION_REQUIREMENTS.INTERSTATE_COMMERCE_LIMITATION.DORMANT_COMMERCE_CLAUSE_IMMUNITY"
     },
     {
+      "id": "5f94f6558287490886da2bb63028d910",
+      "keys": [
+        "corporate-law/railroad-corporations"
+      ],
+      "label": "Railroad Corporations",
+      "minted": "2026-11-21",
+      "uuid": "5f94f655-8287-4908-86da-2bb63028d910"
+    },
+    {
+      "id": "786976ac0d8e468eaa8949538da29753",
+      "keys": [
+        "corporate-law/railroad-corporations/duty-to-operate"
+      ],
+      "label": "Duty to Operate",
+      "minted": "2026-11-21",
+      "uuid": "786976ac-0d8e-468e-aa89-49538da29753"
+    },
+    {
+      "id": "e1f7fe6fe91f49bfafbfed84e3c0768c",
+      "keys": [
+        "corporate-law/railroad-corporations/duty-to-operate/consequences-of-refusal-to-operate"
+      ],
+      "label": "CONSEQUENCES OF REFUSAL TO OPERATE",
+      "minted": "2026-11-21",
+      "uuid": "e1f7fe6f-e91f-49bf-afbf-ed84e3c0768c",
+      "corpusIssueId": "892d87c6-748c-5025-9868-f86158ecc41c",
+      "pathNotation": "CORPORATE_LAW.RAILROAD_CORPORATIONS.DUTY_TO_OPERATE.CONSEQUENCES_OF_REFUSAL_TO_OPERATE"
+    },
+    {
       "id": "d0573affabe3494b8a5a64e56e622ee5",
       "keys": [
         "corporate-law/receivership-and-reorganization"
@@ -126943,6 +127063,35 @@
       "pathNotation": "CRIMINAL_LAW.PLEADINGS_AND_INDICTMENTS.PLEA_OF_NOT_GUILTY.WRITTEN_FORM_REQUIREMENT"
     },
     {
+      "id": "ec21f2883705464e8907cb8660385185",
+      "keys": [
+        "criminal-law/pleadings-and-indictments/pleas"
+      ],
+      "label": "Pleas",
+      "minted": "2026-11-21",
+      "uuid": "ec21f288-3705-464e-8907-cb8660385185"
+    },
+    {
+      "id": "ae8839c1ee0444d8af49aa8e636be2d5",
+      "keys": [
+        "criminal-law/pleadings-and-indictments/pleas/special-pleas"
+      ],
+      "label": "Special Pleas",
+      "minted": "2026-11-21",
+      "uuid": "ae8839c1-ee04-44d8-af49-aa8e636be2d5"
+    },
+    {
+      "id": "0d0a98e89c494faab4a1960b45cf290d",
+      "keys": [
+        "criminal-law/pleadings-and-indictments/pleas/special-pleas/puis-darrein-continuance"
+      ],
+      "label": "PUIS DARREIN CONTINUANCE",
+      "minted": "2026-11-21",
+      "uuid": "0d0a98e8-9c49-4faa-b4a1-960b45cf290d",
+      "corpusIssueId": "e3f998aa-0950-5ff7-8e3f-241aff7ca6a6",
+      "pathNotation": "CRIMINAL_LAW.PLEADINGS_AND_INDICTMENTS.PLEAS.SPECIAL_PLEAS.PUIS_DARREIN_CONTINUANCE"
+    },
+    {
       "id": "3df2acd61c174448a1ef157498ad9258",
       "keys": [
         "criminal-law/pleadings-and-motions"
@@ -131825,6 +131974,26 @@
       "pathNotation": "CRIMINAL_LAW.THEFT_AND_LARCENY.MENS_REA_AND_INTENT.INTENT_TO_STEAL_FORMED_AFTER_TAKING"
     },
     {
+      "id": "15bfb20709334996a7981d9d1c6edc2e",
+      "keys": [
+        "criminal-law/theft-and-larceny/receiving-stolen-goods"
+      ],
+      "label": "Receiving Stolen Goods",
+      "minted": "2026-11-21",
+      "uuid": "15bfb207-0933-4996-a798-1d9d1c6edc2e"
+    },
+    {
+      "id": "7866cb0cdde24270aecad70dfa3a4b4d",
+      "keys": [
+        "criminal-law/theft-and-larceny/receiving-stolen-goods/valuation-thresholds-and-grading"
+      ],
+      "label": "VALUATION THRESHOLDS AND GRADING",
+      "minted": "2026-11-21",
+      "uuid": "7866cb0c-dde2-4270-aeca-d70dfa3a4b4d",
+      "corpusIssueId": "46cf5ce8-2aa4-5651-bdc7-8854c1e46395",
+      "pathNotation": "CRIMINAL_LAW.THEFT_AND_LARCENY.RECEIVING_STOLEN_GOODS.VALUATION_THRESHOLDS_AND_GRADING"
+    },
+    {
       "id": "b5c0066e0b474024bc61657dac54db11",
       "keys": [
         "criminal-law/theft-and-related-offenses"
@@ -135929,6 +136098,26 @@
       ],
       "minted": "2026-07-31",
       "label": "Location and Discovery"
+    },
+    {
+      "id": "ee05a84562af4d94a2adc8a54271443e",
+      "keys": [
+        "environmental-and-natural-resource-law/mineral-resources-law/public-domain-mining-claims/location-and-discovery/annual-labor-or-assessment-work-requirements"
+      ],
+      "label": "Annual Labor or Assessment Work Requirements",
+      "minted": "2026-11-21",
+      "uuid": "ee05a845-62af-4d94-a2ad-c8a54271443e"
+    },
+    {
+      "id": "e53d9de4813b4a959c310242e1cda61d",
+      "keys": [
+        "environmental-and-natural-resource-law/mineral-resources-law/public-domain-mining-claims/location-and-discovery/annual-labor-or-assessment-work-requirements/work-within-a-single-location"
+      ],
+      "label": "WORK WITHIN A SINGLE LOCATION",
+      "minted": "2026-11-21",
+      "uuid": "e53d9de4-813b-4a95-9c31-0242e1cda61d",
+      "corpusIssueId": "fc2fb2e8-2c57-5e8e-8fdc-51f6a79ecac5",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.MINERAL_RESOURCES_LAW.PUBLIC_DOMAIN_MINING_CLAIMS.LOCATION_AND_DISCOVERY.ANNUAL_LABOR_OR_ASSESSMENT_WORK_REQUIREMENTS.WORK_WITHIN_A_SINGLE_LOCATION"
     },
     {
       "id": "a0b6d5bfbc314bb8b02c234b685fed92",
@@ -146792,6 +146981,17 @@
       "uuid": "2be1bb20-c543-4c9d-b245-5ba38165ab42",
       "corpusIssueId": "8cc69adc-be2b-5356-b5c3-8ed5bf5106ca",
       "pathNotation": "EVIDENCE_LAW.BURDEN_OF_PROOF_AND_PRESUMPTIONS.BURDEN_OF_PROOF_ALLOCATION.BONA_FIDE_PURCHASER_STATUS"
+    },
+    {
+      "id": "ba2a122d04f542f9ada3f93216758e94",
+      "keys": [
+        "evidence-law/burden-of-proof-and-presumptions/burden-of-proof-and-presumption-of-innocence"
+      ],
+      "label": "BURDEN OF PROOF AND PRESUMPTION OF INNOCENCE",
+      "minted": "2026-11-21",
+      "uuid": "ba2a122d-04f5-42f9-ada3-f93216758e94",
+      "corpusIssueId": "91d736f6-85f9-55d5-866e-20540a50ac52",
+      "pathNotation": "EVIDENCE_LAW.BURDEN_OF_PROOF_AND_PRESUMPTIONS.BURDEN_OF_PROOF_AND_PRESUMPTION_OF_INNOCENCE"
     },
     {
       "id": "a0fcc6ed5b934e91b693df2ed538552c",
@@ -170119,6 +170319,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE.FORM_AND_REQUISITES.DRAWING_ON_A_PARTICULAR_FUND"
     },
     {
+      "id": "f611b3b3756942baafd0989eabe35d46",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange/holder-in-due-course"
+      ],
+      "label": "Holder in Due Course",
+      "minted": "2026-11-21",
+      "uuid": "f611b3b3-7569-42ba-afd0-989eabe35d46"
+    },
+    {
+      "id": "783b80fffebe4259b7b7de2e399778c5",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange/holder-in-due-course/bona-fide-purchaser-for-value"
+      ],
+      "label": "BONA FIDE PURCHASER FOR VALUE",
+      "minted": "2026-11-21",
+      "uuid": "783b80ff-febe-4259-b7b7-de2e399778c5",
+      "corpusIssueId": "5ac67790-a686-52c9-9991-c02acc86a636",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE.HOLDER_IN_DUE_COURSE.BONA_FIDE_PURCHASER_FOR_VALUE"
+    },
+    {
       "id": "7bc3ae4acf9b4817b242e196a5ee5138",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/bills-of-exchange/holder-rights-and-defenses"
@@ -170474,6 +170694,17 @@
       "uuid": "e5da48ae-4e26-4d02-8fb4-f319cfb03927",
       "corpusIssueId": "75bd3a1b-dbdc-5f27-850c-8acc7b750f4b",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE.RIGHTS_AND_LIABILITIES_OF_PARTIES.TRANSFER_BY_INDORSEMENT.BLANK_INDORSEMENT.ACCEPTOR_S_RIGHT_TO_TRANSFER"
+    },
+    {
+      "id": "66b1b7ce077c4b54a10f6f51cdcc1728",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange/scope-and-subject-matter-of-bills-of-exchange"
+      ],
+      "label": "SCOPE AND SUBJECT MATTER OF BILLS OF EXCHANGE",
+      "minted": "2026-11-21",
+      "uuid": "66b1b7ce-077c-4b54-a10f-6f51cdcc1728",
+      "corpusIssueId": "6d4ce22d-114e-51ae-ab7c-cfadff147862",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE.SCOPE_AND_SUBJECT_MATTER_OF_BILLS_OF_EXCHANGE"
     },
     {
       "id": "30dc703b0dea4ca9861cb81238647948",
@@ -234833,6 +235064,17 @@
       "uuid": "7340ef02-1c3e-4147-825c-5190836f2cd5"
     },
     {
+      "id": "d17072f3a3d04b0791909b2b99ffa437",
+      "keys": [
+        "jurisprudence-and-legal-method/state-court-decisions/massachusetts-case-law"
+      ],
+      "label": "MASSACHUSETTS CASE LAW",
+      "minted": "2026-11-21",
+      "uuid": "d17072f3-a3d0-4b07-9190-9b2b99ffa437",
+      "corpusIssueId": "a8838ddc-3793-5234-943e-998937dd3bc6",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_COURT_DECISIONS.MASSACHUSETTS_CASE_LAW"
+    },
+    {
       "id": "3c8af33ee6fa4418b5630365893af456",
       "keys": [
         "jurisprudence-and-legal-method/state-court-decisions/massachusetts-supreme-judicial-court"
@@ -240501,6 +240743,17 @@
       "uuid": "a3eafb37-dcea-4b71-b07f-09bccb06ea5f",
       "corpusIssueId": "10cd92f2-a875-5962-a1af-55552c6b399d",
       "pathNotation": "LAW_OF_OBLIGATIONS.AGENCY.ROLE_AND_STATUS_OF_INTERMEDIARIES"
+    },
+    {
+      "id": "c8e359ab17fd4777be2500d501acbba6",
+      "keys": [
+        "law-of-obligations/agency/types-and-forms-of-agency"
+      ],
+      "label": "TYPES AND FORMS OF AGENCY",
+      "minted": "2026-11-21",
+      "uuid": "c8e359ab-17fd-4777-be25-00d501acbba6",
+      "corpusIssueId": "00115b48-43cb-56ce-94aa-3a11f7f4de66",
+      "pathNotation": "LAW_OF_OBLIGATIONS.AGENCY.TYPES_AND_FORMS_OF_AGENCY"
     },
     {
       "id": "fb3b5d13ab164cd1a61d71c6435c68ea",
@@ -246204,6 +246457,17 @@
       "uuid": "d7ef95ce-592f-4b73-9847-254e30d8350e",
       "corpusIssueId": "a9ffd74a-3cb6-5752-854e-35a27e33d78c",
       "pathNotation": "LAW_OF_OBLIGATIONS.FORMATION_OF_AGENCY.CREATION_OF_PRINCIPAL_AGENT_RELATION"
+    },
+    {
+      "id": "1f86f3d6358943cbba92a2fb44362773",
+      "keys": [
+        "law-of-obligations/fundamentals-of-vicarious-liability"
+      ],
+      "label": "FUNDAMENTALS OF VICARIOUS LIABILITY",
+      "minted": "2026-11-21",
+      "uuid": "1f86f3d6-3589-43cb-ba92-a2fb44362773",
+      "corpusIssueId": "d395aba9-196f-5f2b-a468-c2f837399374",
+      "pathNotation": "LAW_OF_OBLIGATIONS.FUNDAMENTALS_OF_VICARIOUS_LIABILITY"
     },
     {
       "id": "d56076fd0f83400aaa1e21096b05a168",
@@ -307464,6 +307728,15 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.LUCID_INTERVALS_AND_TESTAMENTARY_ACTS"
     },
     {
+      "id": "290d14bc5184414da89236059d0b9ab8",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/mental-capacity"
+      ],
+      "label": "Mental Capacity",
+      "minted": "2026-11-21",
+      "uuid": "290d14bc-5184-414d-a892-36059d0b9ab8"
+    },
+    {
       "id": "44854bd2752d41e78d1195cdba12cdcf",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/mental-capacity-requirements"
@@ -307484,6 +307757,17 @@
       "uuid": "09f5cb28-03c3-4dad-9e84-51de37a2646a",
       "corpusIssueId": "3e1d66aa-5080-5c31-a934-b00301eb01a0",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.MENTAL_CAPACITY_STANDARDS"
+    },
+    {
+      "id": "cf485047c77344e5826b6fbdda34e745",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/mental-capacity/evidence-of-unsoundness"
+      ],
+      "label": "EVIDENCE OF UNSOUNDNESS",
+      "minted": "2026-11-21",
+      "uuid": "cf485047-c773-44e5-826b-6fbdda34e745",
+      "corpusIssueId": "4b8f23be-9f4b-574a-ad96-674f95a1722a",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.MENTAL_CAPACITY.EVIDENCE_OF_UNSOUNDNESS"
     },
     {
       "id": "9b9ed49aced04da1809216bc751789ab",
@@ -363218,6 +363502,35 @@
       "label": "Estates and Interests in Land"
     },
     {
+      "id": "a46991aad9c84d98bcf56aa379b90ae9",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/acquisition-and-loss-of-property-rights"
+      ],
+      "label": "Acquisition and Loss of Property Rights",
+      "minted": "2026-11-21",
+      "uuid": "a46991aa-d9c8-4d98-bcf5-6aa379b90ae9"
+    },
+    {
+      "id": "766e23a4012240dfb0a3851a5df7cba5",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/acquisition-and-loss-of-property-rights/limitation-of-actions-and-adverse-possession"
+      ],
+      "label": "Limitation of Actions and Adverse Possession",
+      "minted": "2026-11-21",
+      "uuid": "766e23a4-0122-40df-b0a3-851a5df7cba5"
+    },
+    {
+      "id": "139cfe3248a346758fa73a5dcd18269f",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/acquisition-and-loss-of-property-rights/limitation-of-actions-and-adverse-possession/bar-by-lapse-of-time"
+      ],
+      "label": "BAR BY LAPSE OF TIME",
+      "minted": "2026-11-21",
+      "uuid": "139cfe32-48a3-4675-8fa7-3a5dcd18269f",
+      "corpusIssueId": "ae33a918-ecce-5091-bcaa-3e673a991634",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.ACQUISITION_AND_LOSS_OF_PROPERTY_RIGHTS.LIMITATION_OF_ACTIONS_AND_ADVERSE_POSSESSION.BAR_BY_LAPSE_OF_TIME"
+    },
+    {
       "id": "1b22cdd4c4a94e178fd9ef4d5f723a45",
       "keys": [
         "real-estate-law/estates-and-interests-in-land/co-ownership"
@@ -373229,6 +373542,26 @@
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.EASEMENTS_AND_SERVITUDES.PUBLIC_RIGHTS_AND_PUBLIC_EASEMENTS"
     },
     {
+      "id": "fea40ca9ae8d42b8bcbb51a864e325a2",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/easements-and-servitudes/public-servitudes-and-highway-uses"
+      ],
+      "label": "Public Servitudes and Highway Uses",
+      "minted": "2026-11-21",
+      "uuid": "fea40ca9-ae8d-42b8-bcbb-51a864e325a2"
+    },
+    {
+      "id": "08fdd6e21b9d48c39f5c8cf657d4e076",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/easements-and-servitudes/public-servitudes-and-highway-uses/coexistence-of-railroads-and-public-highways"
+      ],
+      "label": "COEXISTENCE OF RAILROADS AND PUBLIC HIGHWAYS",
+      "minted": "2026-11-21",
+      "uuid": "08fdd6e2-1b9d-48c3-9f5c-8cf657d4e076",
+      "corpusIssueId": "69df389d-9599-50a7-addc-33a8bcb394bd",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.EASEMENTS_AND_SERVITUDES.PUBLIC_SERVITUDES_AND_HIGHWAY_USES.COEXISTENCE_OF_RAILROADS_AND_PUBLIC_HIGHWAYS"
+    },
+    {
       "id": "e1acdbfd3cda4f0db8e19299e3a4fea7",
       "keys": [
         "real-estate-law/land-use-and-zoning-law/eminent-domain"
@@ -375948,6 +376281,17 @@
       "uuid": "1721e4b6-695e-41b9-91b7-e1ba45869314",
       "corpusIssueId": "bb006f1a-50a5-57c2-bcba-c4b85cad4383",
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.WATER_RIGHTS_AND_WATERCOURSES.CHARACTERISTICS_AND_DEFINITION_OF_WATERCOURSES.BANKS_OF_WATERCOURSES"
+    },
+    {
+      "id": "c2f65e2f889348368711f76d555ba92e",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/water-rights/acquisition-of-water-rights"
+      ],
+      "label": "ACQUISITION OF WATER RIGHTS",
+      "minted": "2026-11-21",
+      "uuid": "c2f65e2f-8893-4836-8711-f76d555ba92e",
+      "corpusIssueId": "dffeae34-cf68-59bb-9d20-e1335da08fb0",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.WATER_RIGHTS.ACQUISITION_OF_WATER_RIGHTS"
     },
     {
       "id": "6a015f7bae4446e787ce3238780ad613",
@@ -379229,6 +379573,17 @@
       "uuid": "0cbe65b3-0fc2-48ac-94c6-7a43c76d9267",
       "corpusIssueId": "2a71e6ac-6597-53ee-8326-204bf3e918aa",
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LEASEHOLD_ESTATES.ASSIGNMENT_AND_SUBLETTING.ASSIGNEE_S_POSSESSION_ADVERSE_TO_LANDLORD"
+    },
+    {
+      "id": "b1b9f80e04b74aeb9ff8afb508a98bf8",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/leasehold-estates/holdover-tenancy"
+      ],
+      "label": "HOLDOVER TENANCY",
+      "minted": "2026-11-21",
+      "uuid": "b1b9f80e-04b7-4aeb-9ff8-afb508a98bf8",
+      "corpusIssueId": "28181f6c-7531-5478-85d5-296f7d522574",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LEASEHOLD_ESTATES.HOLDOVER_TENANCY"
     },
     {
       "id": "e23a5dfda12a4ff4ab9d046678090282",
