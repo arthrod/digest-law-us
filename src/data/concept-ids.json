@@ -20931,6 +20931,26 @@
       "pathNotation": "CAPITAL_MARKETS_LAW.TRANSFER_AND_REGISTRATION_OF_SHARES.ESTOPPEL_BY_ASSIGNMENT_OF_STOCK_CERTIFICATE"
     },
     {
+      "id": "f9099f57f7384502bf20a9c9a0e41238",
+      "keys": [
+        "capital-markets-law/transfer-and-registration-of-shares/transfer-to-the-corporation"
+      ],
+      "label": "Transfer to the Corporation",
+      "minted": "2026-11-21",
+      "uuid": "f9099f57-f738-4502-bf20-a9c9a0e41238"
+    },
+    {
+      "id": "5e72fec718394c18a1e6c20228721053",
+      "keys": [
+        "capital-markets-law/transfer-and-registration-of-shares/transfer-to-the-corporation/corporation-as-transferee-of-its-own-stock"
+      ],
+      "label": "CORPORATION AS TRANSFEREE OF ITS OWN STOCK",
+      "minted": "2026-11-21",
+      "uuid": "5e72fec7-1839-4c18-a1e6-c20228721053",
+      "corpusIssueId": "d4ddadae-f838-5131-b6c1-70d28b04f816",
+      "pathNotation": "CAPITAL_MARKETS_LAW.TRANSFER_AND_REGISTRATION_OF_SHARES.TRANSFER_TO_THE_CORPORATION.CORPORATION_AS_TRANSFEREE_OF_ITS_OWN_STOCK"
+    },
+    {
       "id": "28c0a72b753242b790a49f35ad36af9f",
       "keys": [
         "capital-markets-law/transfer-and-sale-of-stock"
@@ -53117,6 +53137,26 @@
       "uuid": "e7dd9b49-3148-4fc8-9c63-c860274262ce",
       "corpusIssueId": "e60d6350-9540-5d42-b1c2-2638dd68ed65",
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.VOIDABILITY_AND_RESCISSION.CONSTRUCTIVE_FRAUD.WHETHER_CONTRACT_IS_VOIDABLE"
+    },
+    {
+      "id": "2181a898a7984f05b55faa9f55e2c25d",
+      "keys": [
+        "contract-law/formation-and-enforceability/waiver-of-rights-under-contract"
+      ],
+      "label": "Waiver of Rights Under Contract",
+      "minted": "2026-11-21",
+      "uuid": "2181a898-a798-4f05-b55f-aa9f55e2c25d"
+    },
+    {
+      "id": "fba28aca1860469c923cc5216a7b6215",
+      "keys": [
+        "contract-law/formation-and-enforceability/waiver-of-rights-under-contract/waiver-of-reward-for-lost-property"
+      ],
+      "label": "WAIVER OF REWARD FOR LOST PROPERTY",
+      "minted": "2026-11-21",
+      "uuid": "fba28aca-1860-469c-923c-c5216a7b6215",
+      "corpusIssueId": "78f49320-f0b9-585e-a49f-cd8221243a75",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.WAIVER_OF_RIGHTS_UNDER_CONTRACT.WAIVER_OF_REWARD_FOR_LOST_PROPERTY"
     },
     {
       "id": "76699023d43f4f3b87a0838b9639ae0e",
@@ -109558,6 +109598,26 @@
       "pathNotation": "CORPORATE_LAW.SECURITIES_AND_SHAREHOLDINGS.SUBSCRIPTIONS_FOR_SHARES.EFFECT_OF_CORPORATE_INSOLVENCY_OR_RELEASE_ON_SUBSCRIBER_LIABILITY"
     },
     {
+      "id": "a4f10bb0eb374d19bec1460f4c66177c",
+      "keys": [
+        "corporate-law/securities-and-shareholdings/subscriptions-for-shares/enforcement-of-subscriptions"
+      ],
+      "label": "Enforcement of Subscriptions",
+      "minted": "2026-11-21",
+      "uuid": "a4f10bb0-eb37-4d19-bec1-460f4c66177c"
+    },
+    {
+      "id": "69c65f1ef620457095004b0df6a034ed",
+      "keys": [
+        "corporate-law/securities-and-shareholdings/subscriptions-for-shares/enforcement-of-subscriptions/renewed-corporate-debts"
+      ],
+      "label": "RENEWED CORPORATE DEBTS",
+      "minted": "2026-11-21",
+      "uuid": "69c65f1e-f620-4570-9500-4b0df6a034ed",
+      "corpusIssueId": "53e98903-4338-5fd5-9e01-d22d0d51eff1",
+      "pathNotation": "CORPORATE_LAW.SECURITIES_AND_SHAREHOLDINGS.SUBSCRIPTIONS_FOR_SHARES.ENFORCEMENT_OF_SUBSCRIPTIONS.RENEWED_CORPORATE_DEBTS"
+    },
+    {
       "id": "430c5f96d0ed44fc97be2b5e542e4c01",
       "keys": [
         "corporate-law/securities-and-shareholdings/subscriptions-for-shares/evidentiary-effect-of-subscription-records"
@@ -132572,6 +132632,17 @@
       "pathNotation": "CRIMINAL_LAW.TREASON.ELEMENTS_AND_SCOPE_OF_TREASON"
     },
     {
+      "id": "02cae611d16341b2bd492e8291438cc6",
+      "keys": [
+        "criminal-law/treason/elements-and-scope-of-treason/levying-war-and-aid-and-comfort"
+      ],
+      "label": "LEVYING WAR AND AID AND COMFORT",
+      "minted": "2026-11-21",
+      "uuid": "02cae611-d163-41b2-bd49-2e8291438cc6",
+      "corpusIssueId": "05dcb238-67dc-5f2d-b4fb-5658078d4cc1",
+      "pathNotation": "CRIMINAL_LAW.TREASON.ELEMENTS_AND_SCOPE_OF_TREASON.LEVYING_WAR_AND_AID_AND_COMFORT"
+    },
+    {
       "id": "278de5eaa160466c8b4db8cdfd71a8fc",
       "keys": [
         "criminal-law/treason/evidentiary-rules-in-treason-prosecutions"
@@ -139088,6 +139159,24 @@
       "label": "Classification of Waters",
       "minted": "2026-10-02",
       "uuid": "f3fa356a-3309-47e6-9c81-28496bcafd41"
+    },
+    {
+      "id": "0db7df8ad86f4fe8bcd02794cfa1f3ed",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/classification-of-waters/running-waters"
+      ],
+      "label": "Running Waters",
+      "minted": "2026-11-21",
+      "uuid": "0db7df8a-d86f-4fe8-bcd0-2794cfa1f3ed"
+    },
+    {
+      "id": "c90ec2ee9442425d8e334604c97e9bbf",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/classification-of-waters/running-waters/civil-law-doctrine"
+      ],
+      "label": "Civil Law Doctrine",
+      "minted": "2026-11-21",
+      "uuid": "c90ec2ee-9442-425d-8e33-4604c97e9bbf"
     },
     {
       "id": "f0892c35bdf3438fbd3b4158f8052d60",
@@ -172016,6 +172105,35 @@
       "uuid": "d03624ae-7b12-48a6-afe5-045da3233b21",
       "corpusIssueId": "99ca304e-767b-527f-b9c6-60f9dc43cceb",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.CHATTEL_MORTGAGES.FORECLOSURE.POWER_OF_SALE_FORECLOSURE"
+    },
+    {
+      "id": "111cdbaaf5d1478e8ef1694272fa90e1",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/chattel-mortgages/formal-requirements"
+      ],
+      "label": "Formal Requirements",
+      "minted": "2026-11-21",
+      "uuid": "111cdbaa-f5d1-478e-8ef1-694272fa90e1"
+    },
+    {
+      "id": "ec8165f5454b4380a7289ba5d8500003",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/chattel-mortgages/formal-requirements/schedule-or-description-of-property"
+      ],
+      "label": "Schedule or Description of Property",
+      "minted": "2026-11-21",
+      "uuid": "ec8165f5-454b-4380-a728-9ba5d8500003"
+    },
+    {
+      "id": "562c5629dfe744eaa09bb43c32f0b737",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/chattel-mortgages/formal-requirements/schedule-or-description-of-property/failure-to-attach-schedule"
+      ],
+      "label": "FAILURE TO ATTACH SCHEDULE",
+      "minted": "2026-11-21",
+      "uuid": "562c5629-dfe7-44ea-a09b-b43c32f0b737",
+      "corpusIssueId": "1a99bd60-acc8-5d6b-b7e4-cface6288dd9",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.CHATTEL_MORTGAGES.FORMAL_REQUIREMENTS.SCHEDULE_OR_DESCRIPTION_OF_PROPERTY.FAILURE_TO_ATTACH_SCHEDULE"
     },
     {
       "id": "713820d1c60a4b2d904a0d524d32e2af",
@@ -210537,6 +210655,26 @@
       "uuid": "f15ba008-50d3-42d3-9e2e-d15d42e50877"
     },
     {
+      "id": "2cf667ff4442400d9224cb35c13ccb4e",
+      "keys": [
+        "international-and-comparative-law/customary-international-law/domestic-incorporation-and-effect"
+      ],
+      "label": "Domestic Incorporation and Effect",
+      "minted": "2026-11-21",
+      "uuid": "2cf667ff-4442-400d-9224-cb35c13ccb4e"
+    },
+    {
+      "id": "343bd783acaf46b9b368aff6503829df",
+      "keys": [
+        "international-and-comparative-law/customary-international-law/domestic-incorporation-and-effect/customary-international-law-in-united-states-courts"
+      ],
+      "label": "CUSTOMARY INTERNATIONAL LAW IN UNITED STATES COURTS",
+      "minted": "2026-11-21",
+      "uuid": "343bd783-acaf-46b9-b368-aff6503829df",
+      "corpusIssueId": "7c5e78d8-ffa2-5365-aa71-ee78792bfdf8",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.CUSTOMARY_INTERNATIONAL_LAW.DOMESTIC_INCORPORATION_AND_EFFECT.CUSTOMARY_INTERNATIONAL_LAW_IN_UNITED_STATES_COURTS"
+    },
+    {
       "id": "5af365f1ab0b4e03bef4e0d0de735c73",
       "keys": [
         "international-and-comparative-law/customary-international-law/lotus-principle-and-state-jurisdiction"
@@ -226246,6 +226384,26 @@
       "retired": "2026-11-03"
     },
     {
+      "id": "72821e2e906f4182928c0b9724d02007",
+      "keys": [
+        "jurisprudence-and-legal-method/canons-and-maxims-of-construction/in-pari-materia-doctrine"
+      ],
+      "label": "In Pari Materia Doctrine",
+      "minted": "2026-11-21",
+      "uuid": "72821e2e-906f-4182-928c-0b9724d02007"
+    },
+    {
+      "id": "1031b1c104df461f91769c4f41ff2920",
+      "keys": [
+        "jurisprudence-and-legal-method/canons-and-maxims-of-construction/in-pari-materia-doctrine/treatment-of-repealed-and-expired-acts"
+      ],
+      "label": "TREATMENT OF REPEALED AND EXPIRED ACTS",
+      "minted": "2026-11-21",
+      "uuid": "1031b1c1-04df-461f-9176-9c4f41ff2920",
+      "corpusIssueId": "0e837c19-7848-5277-80dc-b74de102b31f",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.CANONS_AND_MAXIMS_OF_CONSTRUCTION.IN_PARI_MATERIA_DOCTRINE.TREATMENT_OF_REPEALED_AND_EXPIRED_ACTS"
+    },
+    {
       "id": "4593a9e243844c028904c02395e113c8",
       "keys": [
         "jurisprudence-and-legal-method/canons-and-maxims-of-construction/insertion-of-words-to-carry-out-intent"
@@ -233662,6 +233820,26 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.NAMED_DECISIONS_AND_CASE_CITATIONS.BANKRUPTCY_CASES"
     },
     {
+      "id": "8be9ea0c19f0488fb87f860422445f34",
+      "keys": [
+        "jurisprudence-and-legal-method/national-defense-and-military-powers"
+      ],
+      "label": "National Defense and Military Powers",
+      "minted": "2026-11-21",
+      "uuid": "8be9ea0c-19f0-488f-b87f-860422445f34"
+    },
+    {
+      "id": "819b566fe8964cf9b36b24d9df29d892",
+      "keys": [
+        "jurisprudence-and-legal-method/national-defense-and-military-powers/standing-army-and-common-defense"
+      ],
+      "label": "STANDING ARMY AND COMMON DEFENSE",
+      "minted": "2026-11-21",
+      "uuid": "819b566f-e896-4cf9-b36b-24d9df29d892",
+      "corpusIssueId": "e8ec2820-4b6b-5094-8646-144b84acf118",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.NATIONAL_DEFENSE_AND_MILITARY_POWERS.STANDING_ARMY_AND_COMMON_DEFENSE"
+    },
+    {
       "id": "2c43106a21b4456d8e90914d38b0e881",
       "uuid": "2c43106a-21b4-456d-8e90-914d38b0e881",
       "keys": [
@@ -234349,6 +234527,35 @@
       "uuid": "ed96e351-0f93-46a0-878f-6dafa864babc",
       "corpusIssueId": "b1434036-739b-59a0-a4be-969e5920401d",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.REFERENCE_TO_SPECIFIC_TREATISES_IN_CRIMINAL_LAW"
+    },
+    {
+      "id": "231c56fda63c4c16a84ba9394415c5a2",
+      "keys": [
+        "jurisprudence-and-legal-method/regulation-of-private-industries"
+      ],
+      "label": "Regulation of Private Industries",
+      "minted": "2026-11-21",
+      "uuid": "231c56fd-a63c-4c16-a84b-a9394415c5a2"
+    },
+    {
+      "id": "1b071aafe12e4efca1f7d9960dfb9e84",
+      "keys": [
+        "jurisprudence-and-legal-method/regulation-of-private-industries/railroad-rate-regulation"
+      ],
+      "label": "Railroad Rate Regulation",
+      "minted": "2026-11-21",
+      "uuid": "1b071aaf-e12e-4efc-a1f7-d9960dfb9e84"
+    },
+    {
+      "id": "840f1cd273bc44538fb4c840fd3ee1b3",
+      "keys": [
+        "jurisprudence-and-legal-method/regulation-of-private-industries/railroad-rate-regulation/legislative-reduction-of-railroad-rates"
+      ],
+      "label": "LEGISLATIVE REDUCTION OF RAILROAD RATES",
+      "minted": "2026-11-21",
+      "uuid": "840f1cd2-73bc-4453-8fb4-c840fd3ee1b3",
+      "corpusIssueId": "194dfd78-728b-506f-b248-9802a7d48b33",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.REGULATION_OF_PRIVATE_INDUSTRIES.RAILROAD_RATE_REGULATION.LEGISLATIVE_REDUCTION_OF_RAILROAD_RATES"
     },
     {
       "id": "8f0e451dc887442696b74887e2b7a59a",
@@ -246539,6 +246746,26 @@
       "label": "Scope of Employment",
       "minted": "2026-10-02",
       "uuid": "dcc2945c-4535-430b-94a6-f07a2bf7cd97"
+    },
+    {
+      "id": "d77a53b8fc59445f9ea99bf4c7b11913",
+      "keys": [
+        "law-of-obligations/employer-liability-for-employee-torts/scope-of-employment/intentional-torts-outside-scope-of-employment"
+      ],
+      "label": "Intentional Torts Outside Scope of Employment",
+      "minted": "2026-11-21",
+      "uuid": "d77a53b8-fc59-445f-9ea9-9bf4c7b11913"
+    },
+    {
+      "id": "5272d58b970a4afa8cd834aaf8f41105",
+      "keys": [
+        "law-of-obligations/employer-liability-for-employee-torts/scope-of-employment/intentional-torts-outside-scope-of-employment/assault-by-servant"
+      ],
+      "label": "ASSAULT BY SERVANT",
+      "minted": "2026-11-21",
+      "uuid": "5272d58b-970a-4afa-8cd8-34aaf8f41105",
+      "corpusIssueId": "fb9f6f5a-1353-51ff-a8a8-6e3e198c72fa",
+      "pathNotation": "LAW_OF_OBLIGATIONS.EMPLOYER_LIABILITY_FOR_EMPLOYEE_TORTS.SCOPE_OF_EMPLOYMENT.INTENTIONAL_TORTS_OUTSIDE_SCOPE_OF_EMPLOYMENT.ASSAULT_BY_SERVANT"
     },
     {
       "id": "596e00a43ee449d98115bd46059e52d0",
@@ -287768,6 +287995,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.JUVENILE_LAW.GUARDIAN_S_POWERS_OVER_WARD_S_PROPERTY.SALE_OF_WARD_S_LANDS.SALE_UNDER_LEGISLATIVE_AUTHORITY"
     },
     {
+      "id": "cf29ff0aa3c44f768591782f120bb85d",
+      "keys": [
+        "personal-and-family-law/juvenile-law/guardianship-and-trusts"
+      ],
+      "label": "GUARDIANSHIP AND TRUSTS",
+      "minted": "2026-11-21",
+      "uuid": "cf29ff0a-a3c4-4f76-8591-782f120bb85d",
+      "corpusIssueId": "e028d93e-c619-57c5-8f68-bd0bef9a925b",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.JUVENILE_LAW.GUARDIANSHIP_AND_TRUSTS"
+    },
+    {
       "id": "52bc9c480cba4af6b30d682687be7dbf",
       "keys": [
         "personal-and-family-law/juvenile-law/guardianship-of-illegitimate-children"
@@ -294552,6 +294790,35 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.MARITAL_AGREEMENTS.PROPERTY_DIVISION_AGREEMENTS"
     },
     {
+      "id": "c25fe0979f4642feb7f3889728d747e8",
+      "keys": [
+        "personal-and-family-law/marriage-law/marital-and-family-interests-in-land"
+      ],
+      "label": "Marital and Family Interests in Land",
+      "minted": "2026-11-21",
+      "uuid": "c25fe097-9f46-42fe-b7f3-889728d747e8"
+    },
+    {
+      "id": "fd61b143138e45c69dafc5a49b99fbc8",
+      "keys": [
+        "personal-and-family-law/marriage-law/marital-and-family-interests-in-land/dower"
+      ],
+      "label": "Dower",
+      "minted": "2026-11-21",
+      "uuid": "fd61b143-138e-45c6-9daf-c5a49b99fbc8"
+    },
+    {
+      "id": "258e4b8eb5a1445392f6505d41fe537b",
+      "keys": [
+        "personal-and-family-law/marriage-law/marital-and-family-interests-in-land/dower/contingent-remainder-as-bar-to-dower"
+      ],
+      "label": "CONTINGENT REMAINDER AS BAR TO DOWER",
+      "minted": "2026-11-21",
+      "uuid": "258e4b8e-b5a1-4453-92f6-505d41fe537b",
+      "corpusIssueId": "0a68bee3-6e23-593e-bc02-4e65a07bc344",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.MARITAL_AND_FAMILY_INTERESTS_IN_LAND.DOWER.CONTINGENT_REMAINDER_AS_BAR_TO_DOWER"
+    },
+    {
       "id": "3937ed9a28da431b9265b07aa768641b",
       "keys": [
         "personal-and-family-law/marriage-law/marital-and-family-property-interests"
@@ -297706,6 +297973,17 @@
       "minted": "2026-11-02",
       "uuid": "5351afab-c1d4-4cbc-8f27-bfce62c31be6",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.RIGHTS_AND_OBLIGATIONS_BETWEEN_SPOUSES.STATUTORY_MODIFICATIONS_OF_SPOUSAL_DUTIES"
+    },
+    {
+      "id": "302548f837d74b7aa7b91223b744ecb1",
+      "keys": [
+        "personal-and-family-law/marriage-law/rights-and-obligations-between-spouses/wife-s-liability-for-husband-s-debts"
+      ],
+      "label": "WIFE'S LIABILITY FOR HUSBAND'S DEBTS",
+      "minted": "2026-11-21",
+      "uuid": "302548f8-37d7-4b7a-a7b9-1223b744ecb1",
+      "corpusIssueId": "cf86c243-cbe2-5200-837c-69ef6f39c9d7",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.RIGHTS_AND_OBLIGATIONS_BETWEEN_SPOUSES.WIFE_S_LIABILITY_FOR_HUSBAND_S_DEBTS"
     },
     {
       "id": "3c0ba8b7c4154f0aa5a8843db295edeb",
@@ -311183,6 +311461,26 @@
       "label": "RENUNCIATION AFTER ACCEPTANCE",
       "corpusIssueId": "adc4832d-bc3d-58a6-a25b-b8eeea17e730",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.TRUSTEES.APPOINTMENT_ACCEPTANCE_AND_DISCLAIMER.RENUNCIATION_AFTER_ACCEPTANCE"
+    },
+    {
+      "id": "9461baebe9614975b28cb9d1908c372f",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/trustees/capacity-to-serve-as-trustee"
+      ],
+      "label": "Capacity to Serve as Trustee",
+      "minted": "2026-11-21",
+      "uuid": "9461baeb-e961-4975-b28c-b9d1908c372f"
+    },
+    {
+      "id": "0b0276710b1c4c5ea700860ea8c81d9d",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/trustees/capacity-to-serve-as-trustee/corporations-as-trustees"
+      ],
+      "label": "CORPORATIONS AS TRUSTEES",
+      "minted": "2026-11-21",
+      "uuid": "0b027671-0b1c-4c5e-a700-860ea8c81d9d",
+      "corpusIssueId": "b99d667b-8250-5bb2-bb81-8825b15f4d27",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.TRUSTEES.CAPACITY_TO_SERVE_AS_TRUSTEE.CORPORATIONS_AS_TRUSTEES"
     },
     {
       "id": "818685547b4a4851a8531be2733441b4",
@@ -365005,6 +365303,15 @@
       "uuid": "34e8473c-7862-4ded-8c2d-2e59ab7ddce2"
     },
     {
+      "id": "34049cc330b243fa81d15aefb12741cd",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/estates-for-life/dower-and-curtesy"
+      ],
+      "label": "Dower and Curtesy",
+      "minted": "2026-11-21",
+      "uuid": "34049cc3-30b2-43fa-81d1-5aefb12741cd"
+    },
+    {
       "id": "cef14e4472404fc3949df18fe53f3956",
       "keys": [
         "real-estate-law/estates-and-interests-in-land/estates-for-life/dower-and-curtesy-as-life-estates"
@@ -365025,6 +365332,17 @@
       "uuid": "b29c12cd-5e95-4036-8254-875c10f1a3ac",
       "corpusIssueId": "e82ffbfa-05ab-5204-bda0-63511839d20a",
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.ESTATES_FOR_LIFE.DOWER_AND_CURTESY_AS_LIFE_ESTATES.WIDOW_S_ELECTION_BETWEEN_DOWER_AND_SETTLEMENT"
+    },
+    {
+      "id": "65ed18b950c24fe9a034edc07c6581e7",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/estates-for-life/dower-and-curtesy/testamentary-provision-in-lieu-of-dower"
+      ],
+      "label": "TESTAMENTARY PROVISION IN LIEU OF DOWER",
+      "minted": "2026-11-21",
+      "uuid": "65ed18b9-50c2-4fe9-a034-edc07c6581e7",
+      "corpusIssueId": "7eff6783-4a6d-58a5-8574-7bda7a319a75",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.ESTATES_FOR_LIFE.DOWER_AND_CURTESY.TESTAMENTARY_PROVISION_IN_LIEU_OF_DOWER"
     },
     {
       "id": "20dc67bea4604f1084304ebf96d52e46",
