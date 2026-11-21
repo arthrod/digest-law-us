@@ -73022,6 +73022,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_GOVERNANCE.SHAREHOLDER_MEETINGS.ORDER_OF_BUSINESS"
     },
     {
+      "id": "c34919fcf7d34671ac69cb89d926321f",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance/shareholder-meetings/place-of-meetings"
+      ],
+      "label": "PLACE OF MEETINGS",
+      "minted": "2026-11-21",
+      "uuid": "c34919fc-f7d3-4671-ac69-cb89d926321f",
+      "corpusIssueId": "dc9b82fb-6733-5f00-b37b-139f34b84456",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_GOVERNANCE.SHAREHOLDER_MEETINGS.PLACE_OF_MEETINGS"
+    },
+    {
       "id": "13ae10d92fef4dc285f3db3010467186",
       "keys": [
         "corporate-law/business-organizations-law/corporations/corporate-governance/shareholder-meetings/voting-procedures"
@@ -84336,6 +84347,26 @@
       "uuid": "eaf7fc67-dc8c-49bc-9fe3-b6021cef023d",
       "corpusIssueId": "ef00e125-c0c1-50e6-8e59-9151f2c155af",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.MANAGEMENT_AND_GOVERNANCE.ROLES_AND_AUTHORITY_OF_MANAGERS.GENERAL_MANAGER_AUTHORITY_AND_RESPONSIBILITIES"
+    },
+    {
+      "id": "f0aaad12b3a54b24abd1f309597cab40",
+      "keys": [
+        "corporate-law/business-organizations-law/management-and-operation"
+      ],
+      "label": "Management and Operation",
+      "minted": "2026-11-21",
+      "uuid": "f0aaad12-b3a5-4b24-abd1-f309597cab40"
+    },
+    {
+      "id": "9d29d5954e51417ca17d976186a70dbd",
+      "keys": [
+        "corporate-law/business-organizations-law/management-and-operation/conduct-of-the-business"
+      ],
+      "label": "CONDUCT OF THE BUSINESS",
+      "minted": "2026-11-21",
+      "uuid": "9d29d595-4e51-417c-a17d-976186a70dbd",
+      "corpusIssueId": "ee260095-b6ae-5107-822a-78b01ed8d179",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.MANAGEMENT_AND_OPERATION.CONDUCT_OF_THE_BUSINESS"
     },
     {
       "id": "b2cfb08f994e463a9cbee9ca75ffe955",
@@ -116248,6 +116279,26 @@
       "uuid": "cdc6324f-444b-4cf5-9ab1-13359a779d58",
       "corpusIssueId": "dbbacbd7-76a1-5b4b-bb23-e8731b85bcf0",
       "pathNotation": "CRIMINAL_LAW.CRIMINAL_ATTEMPT.LEGAL_IMPOSSIBILITY_AND_FACTUAL_IMPOSSIBILITY.PEOPLE_V_RIZZO"
+    },
+    {
+      "id": "6852320c08894567b3a303d118891460",
+      "keys": [
+        "criminal-law/criminal-attempt/punishment-for-criminal-attempt"
+      ],
+      "label": "Punishment for Criminal Attempt",
+      "minted": "2026-11-21",
+      "uuid": "6852320c-0889-4567-b3a3-03d118891460"
+    },
+    {
+      "id": "ccf6b151d2bc469986e75c2f6c597481",
+      "keys": [
+        "criminal-law/criminal-attempt/punishment-for-criminal-attempt/new-york-statutory-scheme"
+      ],
+      "label": "NEW YORK STATUTORY SCHEME",
+      "minted": "2026-11-21",
+      "uuid": "ccf6b151-d2bc-4699-86e7-5c2f6c597481",
+      "corpusIssueId": "9b4f903d-4980-5470-ae80-2a58176abb72",
+      "pathNotation": "CRIMINAL_LAW.CRIMINAL_ATTEMPT.PUNISHMENT_FOR_CRIMINAL_ATTEMPT.NEW_YORK_STATUTORY_SCHEME"
     },
     {
       "id": "5be5c58bafdd40d8819ec9650aaa85cc",
@@ -151684,6 +151735,26 @@
       "uuid": "cb9b2bc1-3ccf-474b-918b-634b946de926",
       "corpusIssueId": "331101b8-8729-5aac-95d5-b164672ef3fb",
       "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.PRODUCTION_OF_DOCUMENTS.PRODUCTION_IN_COURT"
+    },
+    {
+      "id": "378a9d1395394c25829cef05a92e9d44",
+      "keys": [
+        "evidence-law/documentary-evidence/proof-of-official-authority"
+      ],
+      "label": "Proof of Official Authority",
+      "minted": "2026-11-21",
+      "uuid": "378a9d13-9539-4c25-829c-ef05a92e9d44"
+    },
+    {
+      "id": "fd0e081673fd4895867c5e9628be7803",
+      "keys": [
+        "evidence-law/documentary-evidence/proof-of-official-authority/authority-of-public-officer"
+      ],
+      "label": "AUTHORITY OF PUBLIC OFFICER",
+      "minted": "2026-11-21",
+      "uuid": "fd0e0816-73fd-4895-867c-5e9628be7803",
+      "corpusIssueId": "b00daa36-4048-5aa1-ae60-e20817e60316",
+      "pathNotation": "EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.PROOF_OF_OFFICIAL_AUTHORITY.AUTHORITY_OF_PUBLIC_OFFICER"
     },
     {
       "id": "d20d4406301c44d8b46def9109c8d6b1",
@@ -234305,6 +234376,26 @@
       "uuid": "e6989d1a-b3e5-47f4-be95-d6efbd3a67a5",
       "corpusIssueId": "dbb4248a-acd9-5d7d-969b-8634b8b16c4f",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.LIMITATIONS_ON_LEGISLATIVE_POWER.ABSENCE_OF_CONSTITUTIONAL_PROHIBITION"
+    },
+    {
+      "id": "068c91263eff4548b3fbfaed5abd1290",
+      "keys": [
+        "jurisprudence-and-legal-method/limitations-on-legislative-power/due-process-limitations"
+      ],
+      "label": "Due Process Limitations",
+      "minted": "2026-11-21",
+      "uuid": "068c9126-3eff-4548-b3fb-faed5abd1290"
+    },
+    {
+      "id": "29f5703a89414dd58618e6da60e033dd",
+      "keys": [
+        "jurisprudence-and-legal-method/limitations-on-legislative-power/due-process-limitations/taxation-procedure"
+      ],
+      "label": "TAXATION PROCEDURE",
+      "minted": "2026-11-21",
+      "uuid": "29f5703a-8941-4dd5-8618-e6da60e033dd",
+      "corpusIssueId": "9c603d41-3221-5851-8ff1-9ac72c8c110e",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.LIMITATIONS_ON_LEGISLATIVE_POWER.DUE_PROCESS_LIMITATIONS.TAXATION_PROCEDURE"
     },
     {
       "id": "99535b8a6ead4982beba9816f7cc16b3",
@@ -393775,6 +393866,17 @@
       "uuid": "4c12c3e9-5afc-4a13-8d9f-a60250997faf",
       "corpusIssueId": "5a3d766c-ae18-5d52-a520-18bfc2a714da",
       "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.ABSOLUTE_DEEDS_AS_MORTGAGES.EFFECT_ON_TITLE_AND_POSSESSION"
+    },
+    {
+      "id": "155af6b4215b4c449d8f4325e5ed8524",
+      "keys": [
+        "real-estate-law/security-interests-in-real-property/mortgages/absolute-deeds-as-mortgages/extrinsic-evidence-connecting-deed-and-defeasance"
+      ],
+      "label": "EXTRINSIC EVIDENCE CONNECTING DEED AND DEFEASANCE",
+      "minted": "2026-11-21",
+      "uuid": "155af6b4-215b-4c44-9d8f-4325e5ed8524",
+      "corpusIssueId": "3e0ebad3-191d-5827-b81f-b33b50531b74",
+      "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.ABSOLUTE_DEEDS_AS_MORTGAGES.EXTRINSIC_EVIDENCE_CONNECTING_DEED_AND_DEFEASANCE"
     },
     {
       "id": "e14fd1fa1edc48829bcf07c55b46a2df",
