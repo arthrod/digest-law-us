@@ -4246,6 +4246,17 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_ESTATE_ADMINISTRATION.EXPENSES_AND_REIMBURSEMENT.BENEFIT_TO_ESTATE_AS_PREREQUISITE_FOR_REIMBURSEMENT"
     },
     {
+      "id": "2f82f16c8e9f477f87f71544f01c164e",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/bankruptcy-estate-administration/expenses-and-reimbursement/non-reimbursable-expenses"
+      ],
+      "label": "NON-REIMBURSABLE EXPENSES",
+      "minted": "2026-11-21",
+      "uuid": "2f82f16c-8e9f-477f-87f7-1544f01c164e",
+      "corpusIssueId": "37869abc-41df-5844-9815-1b9250e5051b",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.BANKRUPTCY_ESTATE_ADMINISTRATION.EXPENSES_AND_REIMBURSEMENT.NON_REIMBURSABLE_EXPENSES"
+    },
+    {
       "id": "9e181baef4a34135abfa22780aaaf74f",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/bankruptcy-estate-administration/fiduciary-duties-and-economy-in-administration"
@@ -15667,6 +15678,26 @@
       "uuid": "cc891eea-567f-4c3f-99c2-255279a3ee71",
       "corpusIssueId": "e37248f2-1d9c-522b-a0d7-2584a354e4f4",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.REFERENCES_AND_REFEREES.PROCEEDINGS_AFTER_REFERENCE"
+    },
+    {
+      "id": "cb4caf5f3dd8484b9979c94cc859935e",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/removal-proceedings"
+      ],
+      "label": "Removal Proceedings",
+      "minted": "2026-11-21",
+      "uuid": "cb4caf5f-3dd8-484b-9979-c94cc859935e"
+    },
+    {
+      "id": "4cf565662c6c42debbdf11fd1a109d4d",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/removal-proceedings/order-of-removal"
+      ],
+      "label": "ORDER OF REMOVAL",
+      "minted": "2026-11-21",
+      "uuid": "4cf56566-2c6c-42de-bbdf-11fd1a109d4d",
+      "corpusIssueId": "d983041e-c8c1-5d0c-8f6a-fb93d4a4e92e",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.REMOVAL_PROCEEDINGS.ORDER_OF_REMOVAL"
     },
     {
       "id": "69effb71a92a41978a2ac7a65b7aa91f",
@@ -41941,6 +41972,35 @@
       "pathNotation": "CONTRACT_LAW.DEBTS_AND_OBLIGATIONS.DISCHARGE_OF_DEBTS.MODES_OF_DISCHARGE"
     },
     {
+      "id": "fe3b1086cbef4a0fa83c4f9e4cdacf8b",
+      "keys": [
+        "contract-law/deeds"
+      ],
+      "label": "Deeds",
+      "minted": "2026-11-21",
+      "uuid": "fe3b1086-cbef-4a0f-a83c-4f9e4cdacf8b"
+    },
+    {
+      "id": "911b1ffd84b34ddc92c85d2b8b906ed3",
+      "keys": [
+        "contract-law/deeds/requirements-for-validity-of-deeds"
+      ],
+      "label": "Requirements for Validity of Deeds",
+      "minted": "2026-11-21",
+      "uuid": "911b1ffd-84b3-4ddc-92c8-5d2b8b906ed3"
+    },
+    {
+      "id": "b4b8c8aa212447b988e60907c9d35a64",
+      "keys": [
+        "contract-law/deeds/requirements-for-validity-of-deeds/delivery-of-deeds"
+      ],
+      "label": "DELIVERY OF DEEDS",
+      "minted": "2026-11-21",
+      "uuid": "b4b8c8aa-2124-47b9-88e6-0907c9d35a64",
+      "corpusIssueId": "4369aff9-db6f-54b2-8806-34a7b974d154",
+      "pathNotation": "CONTRACT_LAW.DEEDS.REQUIREMENTS_FOR_VALIDITY_OF_DEEDS.DELIVERY_OF_DEEDS"
+    },
+    {
       "id": "3688ead513734061908ccfc9a8dbc19c",
       "keys": [
         "contract-law/defects-defenses-and-avoidance"
@@ -58392,6 +58452,17 @@
       "uuid": "14151d16-1057-41aa-a6d0-47f8d0448e59",
       "corpusIssueId": "2688b75e-a6d5-508f-9104-46f1894d5145",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.DEFENSES_TO_ENFORCEMENT.LIMITATIONS_AND_LACHES.STATUTES_OF_NON_CLAIM"
+    },
+    {
+      "id": "1ebfaa51ce49422d83606bd51080a926",
+      "keys": [
+        "contract-law/performance-and-breach/defining-the-obligation-to-perform"
+      ],
+      "label": "DEFINING THE OBLIGATION TO PERFORM",
+      "minted": "2026-11-21",
+      "uuid": "1ebfaa51-ce49-422d-8360-6bd51080a926",
+      "corpusIssueId": "e4095549-d4b1-5765-a84f-73487483b7c9",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.DEFINING_THE_OBLIGATION_TO_PERFORM"
     },
     {
       "id": "99c228eb71b843959a919239b1963011",
@@ -102302,6 +102373,26 @@
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.TRANSFER_AND_TRANSMISSION_OF_SHARES.COMPANY_S_LIEN_ON_SHARES.ENFORCEMENT_OF_LIEN"
     },
     {
+      "id": "72590fe680464501a1c3b0949684d4fd",
+      "keys": [
+        "corporate-law/corporate-governance-law/transfer-and-transmission-of-shares/contract-of-sale-of-shares"
+      ],
+      "label": "Contract of Sale of Shares",
+      "minted": "2026-11-21",
+      "uuid": "72590fe6-8046-4501-a1c3-b0949684d4fd"
+    },
+    {
+      "id": "43b503176d064cb9a853a7edf3d13755",
+      "keys": [
+        "corporate-law/corporate-governance-law/transfer-and-transmission-of-shares/contract-of-sale-of-shares/interpretation-of-reservation-of-profits"
+      ],
+      "label": "INTERPRETATION OF RESERVATION OF PROFITS",
+      "minted": "2026-11-21",
+      "uuid": "43b50317-6d06-4cb9-a853-a7edf3d13755",
+      "corpusIssueId": "d2f4b0c4-5311-5545-a56a-ebc622c990e6",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.TRANSFER_AND_TRANSMISSION_OF_SHARES.CONTRACT_OF_SALE_OF_SHARES.INTERPRETATION_OF_RESERVATION_OF_PROFITS"
+    },
+    {
       "id": "c00b252b8e144181aec4859a85ac676b",
       "keys": [
         "corporate-law/corporate-governance-law/transfer-and-transmission-of-shares/delivery-of-endorsed-certificate-as-transfer"
@@ -138710,6 +138801,15 @@
       "uuid": "6020f135-30a6-44e9-a38d-cb18f2d15607"
     },
     {
+      "id": "636bfb4770e6414d93410dd2632ccfea",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/irrigation-and-appropriation"
+      ],
+      "label": "Irrigation and Appropriation",
+      "minted": "2026-11-21",
+      "uuid": "636bfb47-70e6-414d-9341-0dd2632ccfea"
+    },
+    {
       "id": "4e63f7892b764d13b162ea74beb40a6c",
       "keys": [
         "environmental-and-natural-resource-law/water-resources-and-wetlands-law/irrigation-and-appropriation-of-waters"
@@ -138737,6 +138837,26 @@
       "uuid": "12f4fd9d-fbd6-4c3e-9576-c1f8b211ea96",
       "corpusIssueId": "4bd297f6-1305-5f8a-9af8-ed5fe70a0f79",
       "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.IRRIGATION_AND_APPROPRIATION_OF_WATERS.IRRIGATION_DISTRICTS.HISTORY_AND_ADOPTION_OF_DISTRICT_LAWS"
+    },
+    {
+      "id": "959ca5397ab74181b407e0006b6af080",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/irrigation-and-appropriation/duties-of-water-providers"
+      ],
+      "label": "Duties of Water Providers",
+      "minted": "2026-11-21",
+      "uuid": "959ca539-7ab7-4181-b407-e0006b6af080"
+    },
+    {
+      "id": "e5cb1dc4717d4ae18bf3c3078344f1b5",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/irrigation-and-appropriation/duties-of-water-providers/nondiscrimination-in-water-service"
+      ],
+      "label": "NONDISCRIMINATION IN WATER SERVICE",
+      "minted": "2026-11-21",
+      "uuid": "e5cb1dc4-717d-4ae1-8bf3-c3078344f1b5",
+      "corpusIssueId": "d4526ba0-884d-50fd-a73f-fcdc2a68739f",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.IRRIGATION_AND_APPROPRIATION.DUTIES_OF_WATER_PROVIDERS.NONDISCRIMINATION_IN_WATER_SERVICE"
     },
     {
       "id": "f67839cb5be448c18db4b6770bec25e8",
@@ -164188,6 +164308,17 @@
       "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.PRESUMPTIONS.INFERENCES_OF_REGULARITY_IN_BUSINESS_AFFAIRS"
     },
     {
+      "id": "412b3b0f410b49e98d9be5afd61ed3b3",
+      "keys": [
+        "evidence-law/types-of-evidence/presumptions/presumptions-arising-from-time-and-conduct"
+      ],
+      "label": "PRESUMPTIONS ARISING FROM TIME AND CONDUCT",
+      "minted": "2026-11-21",
+      "uuid": "412b3b0f-410b-49e9-8d9b-e5afd61ed3b3",
+      "corpusIssueId": "1d4111da-2034-5027-ae37-11656f09238e",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.PRESUMPTIONS.PRESUMPTIONS_ARISING_FROM_TIME_AND_CONDUCT"
+    },
+    {
       "id": "1fada9d5586742a081e6cb42dce6020d",
       "keys": [
         "evidence-law/types-of-evidence/presumptions/presumptions-of-fact"
@@ -182453,6 +182584,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.NEGOTIATION_AND_TRANSFER.AVOIDANCE_OF_DELAY_AND_INCONVENIENCE_IN_NEGOTIATION"
     },
     {
+      "id": "3e5089ca6dc24269b18d9e0ad59710cd",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/negotiation-and-transfer/banks-and-collection-agents"
+      ],
+      "label": "Banks and Collection Agents",
+      "minted": "2026-11-21",
+      "uuid": "3e5089ca-6dc2-4269-b18d-9e0ad59710cd"
+    },
+    {
+      "id": "d0eb2230f42e427a933bf7915441b75f",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/negotiation-and-transfer/banks-and-collection-agents/implied-purchase-of-instruments"
+      ],
+      "label": "IMPLIED PURCHASE OF INSTRUMENTS",
+      "minted": "2026-11-21",
+      "uuid": "d0eb2230-f42e-427a-933b-f7915441b75f",
+      "corpusIssueId": "727016e5-1929-57f4-bd83-79c21294418b",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.NEGOTIATION_AND_TRANSFER.BANKS_AND_COLLECTION_AGENTS.IMPLIED_PURCHASE_OF_INSTRUMENTS"
+    },
+    {
       "id": "74624f1b91284da0a4f421bda74525c5",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/negotiation-and-transfer/bona-fide-holder"
@@ -199641,6 +199792,26 @@
       "uuid": "bb6ecabb-38e5-4c8a-bbbf-6b45b7b018e4",
       "corpusIssueId": "fc056ada-2816-5864-989b-e0eb784db019",
       "pathNotation": "INSURANCE_LAW.JUDICIAL_INTERPRETATION_OF_INSURANCE_POLICIES.ROLE_OF_USAGE_CUSTOM_AND_COURSE_OF_TRADE"
+    },
+    {
+      "id": "f88a61ef357546b5bdbea96e41983535",
+      "keys": [
+        "insurance-law/judicial-interpretation-of-insurance-policies/valued-policies"
+      ],
+      "label": "Valued Policies",
+      "minted": "2026-11-21",
+      "uuid": "f88a61ef-3575-46b5-bdbe-a96e41983535"
+    },
+    {
+      "id": "08b590f0a9dc4bc5a2264a9496980054",
+      "keys": [
+        "insurance-law/judicial-interpretation-of-insurance-policies/valued-policies/effect-of-valuation-language"
+      ],
+      "label": "EFFECT OF VALUATION LANGUAGE",
+      "minted": "2026-11-21",
+      "uuid": "08b590f0-a9dc-4bc5-a226-4a9496980054",
+      "corpusIssueId": "aec119c4-1776-5e6a-bee4-14d933baab79",
+      "pathNotation": "INSURANCE_LAW.JUDICIAL_INTERPRETATION_OF_INSURANCE_POLICIES.VALUED_POLICIES.EFFECT_OF_VALUATION_LANGUAGE"
     },
     {
       "id": "df437842ada2456b97e97d61142e1b3f",
@@ -231194,6 +231365,26 @@
       "uuid": "7fe02dae-68c4-4974-9649-8ef72e2e1f8e",
       "corpusIssueId": "038f7237-9182-595f-b145-ab70750f3b44",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.LEGAL_HISTORY_AND_TRADITIONS.COLONIAL_LEGAL_SYSTEMS.TRANSPLANTATION_OF_LAW_IN_COLONIES"
+    },
+    {
+      "id": "b6d8f20f30864da6b1a06da7d80b45fc",
+      "keys": [
+        "jurisprudence-and-legal-method/legal-history-and-traditions/evolution-of-legal-instruments-and-formalities"
+      ],
+      "label": "Evolution of Legal Instruments and Formalities",
+      "minted": "2026-11-21",
+      "uuid": "b6d8f20f-3086-4da6-b1a0-6da7d80b45fc"
+    },
+    {
+      "id": "40d58a9ea5ce4f2e8fc934b6346bdc0f",
+      "keys": [
+        "jurisprudence-and-legal-method/legal-history-and-traditions/evolution-of-legal-instruments-and-formalities/history-of-seals-in-legal-documents"
+      ],
+      "label": "HISTORY OF SEALS IN LEGAL DOCUMENTS",
+      "minted": "2026-11-21",
+      "uuid": "40d58a9e-a5ce-4f2e-8fc9-34b6346bdc0f",
+      "corpusIssueId": "a8e5b92a-c999-5613-8615-2a069985f225",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.LEGAL_HISTORY_AND_TRADITIONS.EVOLUTION_OF_LEGAL_INSTRUMENTS_AND_FORMALITIES.HISTORY_OF_SEALS_IN_LEGAL_DOCUMENTS"
     },
     {
       "id": "c8942d962da2422b8eae06183b025e99",
@@ -319765,6 +319956,17 @@
       "uuid": "ff025496-c332-4ddf-844a-c3ef6398059d"
     },
     {
+      "id": "f5258c7e073545429b340a110917b335",
+      "keys": [
+        "procedural-law/dispute-resolution/alternative-dispute-resolution-overview"
+      ],
+      "label": "ALTERNATIVE DISPUTE RESOLUTION OVERVIEW",
+      "minted": "2026-11-21",
+      "uuid": "f5258c7e-0735-4542-9b34-0a110917b335",
+      "corpusIssueId": "e593188f-0e85-5e60-8b59-687bb3afb6ef",
+      "pathNotation": "PROCEDURAL_LAW.DISPUTE_RESOLUTION.ALTERNATIVE_DISPUTE_RESOLUTION_OVERVIEW"
+    },
+    {
       "id": "bd403657dbff46b29b2dd1cad47e9be2",
       "keys": [
         "procedural-law/dispute-resolution/overview-and-framework"
@@ -364423,6 +364625,26 @@
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.FREEHOLD_ESTATES.FEE_SIMPLE.FEE_CONDITIONAL_AT_COMMON_LAW"
     },
     {
+      "id": "08e90b7799be4dfdbb2a12edab0cfca0",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/freehold-estates/fee-simple/fee-on-limitation"
+      ],
+      "label": "Fee on Limitation",
+      "minted": "2026-11-21",
+      "uuid": "08e90b77-99be-4dfd-bb2a-12edab0cfca0"
+    },
+    {
+      "id": "988348906f684be09d09ec8a582c629b",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/freehold-estates/fee-simple/fee-on-limitation/nature-and-creation"
+      ],
+      "label": "NATURE AND CREATION",
+      "minted": "2026-11-21",
+      "uuid": "98834890-6f68-4be0-9d09-ec8a582c629b",
+      "corpusIssueId": "d4fce067-2443-5bc2-94d6-7bf095adf0e0",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.FREEHOLD_ESTATES.FEE_SIMPLE.FEE_ON_LIMITATION.NATURE_AND_CREATION"
+    },
+    {
       "id": "c0cb795e933a4640a321729f9b09dbf0",
       "keys": [
         "real-estate-law/estates-and-interests-in-land/freehold-estates/fee-simple/inheritability"
@@ -367965,6 +368187,26 @@
       "label": "ALTERNATIVE PRINCIPLES FOR FIXTURE CLASSIFICATION",
       "corpusIssueId": "25001d7c-be64-5e3a-b8a5-24847eb259d2",
       "pathNotation": "REAL_ESTATE_LAW.FIXTURES.CLASSIFICATION_AND_LIABILITY_OF_FIXTURES.ALTERNATIVE_PRINCIPLES_FOR_FIXTURE_CLASSIFICATION"
+    },
+    {
+      "id": "f0de51547a524ad3abdf15d42a65c1b3",
+      "keys": [
+        "real-estate-law/fixtures/classification-and-status"
+      ],
+      "label": "Classification and Status",
+      "minted": "2026-11-21",
+      "uuid": "f0de5154-7a52-4ad3-abdf-15d42a65c1b3"
+    },
+    {
+      "id": "939b9222bb5c4fea8c88e715ad83348f",
+      "keys": [
+        "real-estate-law/fixtures/classification-and-status/fixtures-placed-by-permanent-owner"
+      ],
+      "label": "FIXTURES PLACED BY PERMANENT OWNER",
+      "minted": "2026-11-21",
+      "uuid": "939b9222-bb5c-4fea-8c88-e715ad83348f",
+      "corpusIssueId": "c3233477-2eb1-532d-962d-f3256d41014d",
+      "pathNotation": "REAL_ESTATE_LAW.FIXTURES.CLASSIFICATION_AND_STATUS.FIXTURES_PLACED_BY_PERMANENT_OWNER"
     },
     {
       "id": "a090fd55f82a4607a1bfe4f5dc887be5",
@@ -376677,6 +376919,26 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.COVENANTS_AND_CONDITIONS.COVENANTS_OF_TITLE.COVENANT_OF_SEISIN_AND_COVENANT_AGAINST_ENCUMBRANCES"
     },
     {
+      "id": "026e1245a96b41e1b525696ecd31217c",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/covenants-and-conditions/covenants-running-with-the-land"
+      ],
+      "label": "Covenants Running with the Land",
+      "minted": "2026-11-21",
+      "uuid": "026e1245-a96b-41e1-b525-696ecd31217c"
+    },
+    {
+      "id": "8c448237b6074fa09eae9e749ee9c4c9",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/covenants-and-conditions/covenants-running-with-the-land/requirement-that-covenant-touch-and-concern-the-land"
+      ],
+      "label": "REQUIREMENT THAT COVENANT TOUCH AND CONCERN THE LAND",
+      "minted": "2026-11-21",
+      "uuid": "8c448237-b607-4fa0-9eae-9e749ee9c4c9",
+      "corpusIssueId": "57907491-40d1-5aa5-acff-8c6ee732274c",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.COVENANTS_AND_CONDITIONS.COVENANTS_RUNNING_WITH_THE_LAND.REQUIREMENT_THAT_COVENANT_TOUCH_AND_CONCERN_THE_LAND"
+    },
+    {
       "id": "694e9522d7864d4a8b5d836ebdfcea88",
       "keys": [
         "real-estate-law/landlord-tenant-law/covenants-and-conditions/implied-covenants"
@@ -382997,6 +383259,26 @@
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGE_SCOPE_AND_COVERAGE.FUTURE_ADVANCES.FUTURE_ADVANCES_AS_WITHIN_DESCRIPTION_OF_MORTGAGE"
     },
     {
+      "id": "a5bde3be4ebb45e894f66e5326ec1174",
+      "keys": [
+        "real-estate-law/mortgagee-in-possession"
+      ],
+      "label": "Mortgagee in Possession",
+      "minted": "2026-11-21",
+      "uuid": "a5bde3be-4ebb-45e8-94f6-6e5326ec1174"
+    },
+    {
+      "id": "dcff2e727b654fb192e74738dac0ac1d",
+      "keys": [
+        "real-estate-law/mortgagee-in-possession/rights-position-and-duties"
+      ],
+      "label": "RIGHTS, POSITION, AND DUTIES",
+      "minted": "2026-11-21",
+      "uuid": "dcff2e72-7b65-4fb1-92e7-4738dac0ac1d",
+      "corpusIssueId": "d0288663-3e34-552d-aa10-c943bcb3f8bf",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGEE_IN_POSSESSION.RIGHTS_POSITION_AND_DUTIES"
+    },
+    {
       "id": "d71f471db7ca490b96f2fd6696862c8b",
       "uuid": "d71f471d-b7ca-490b-96f2-fd6696862c8b",
       "keys": [
@@ -385352,6 +385634,26 @@
       "uuid": "541fde41-cbc5-4492-93fd-6e0b84451074",
       "corpusIssueId": "668993e8-3fa3-5061-9fc1-e807b2f026c2",
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES.ASSIGNMENT_OF_MORTGAGES.TRANSFER_OF_MORTGAGE_SECURITIES.SALE_AND_DELIVERY_WITHOUT_INDORSEMENT"
+    },
+    {
+      "id": "e162bb9aa9ad43af89beccfa49ea728f",
+      "keys": [
+        "real-estate-law/mortgages/covenants-in-mortgage-agreements"
+      ],
+      "label": "Covenants in Mortgage Agreements",
+      "minted": "2026-11-21",
+      "uuid": "e162bb9a-a9ad-43af-89be-ccfa49ea728f"
+    },
+    {
+      "id": "4a33ef849c1647de8e07dbe9ace7ba9d",
+      "keys": [
+        "real-estate-law/mortgages/covenants-in-mortgage-agreements/covenants-of-seisin-and-right-to-convey"
+      ],
+      "label": "COVENANTS OF SEISIN AND RIGHT TO CONVEY",
+      "minted": "2026-11-21",
+      "uuid": "4a33ef84-9c16-47de-8e07-dbe9ace7ba9d",
+      "corpusIssueId": "bd2efdd6-12d2-5439-b449-571cc1a71532",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES.COVENANTS_IN_MORTGAGE_AGREEMENTS.COVENANTS_OF_SEISIN_AND_RIGHT_TO_CONVEY"
     },
     {
       "id": "205ea289659742c1ad98543be8cdadef",
@@ -407695,6 +407997,17 @@
       "uuid": "28946de6-0fa1-4e09-80b8-664713586708",
       "corpusIssueId": "98d3b6b8-2bb3-5d69-a3c6-b1bb2009a4a9",
       "pathNotation": "REMEDIES_LAW.EXECUTIONS.PROCEEDINGS_IN_AID_OF_EXECUTION.CASE_LAW_REFERENCES"
+    },
+    {
+      "id": "e82dd2db41754f8b98c16068cd65e6dd",
+      "keys": [
+        "remedies-law/executions/proceedings-in-aid-of-execution/homestead-exemptions"
+      ],
+      "label": "HOMESTEAD EXEMPTIONS",
+      "minted": "2026-11-21",
+      "uuid": "e82dd2db-4175-4f8b-98c1-6068cd65e6dd",
+      "corpusIssueId": "cde9fd78-b33f-54b0-bd71-6611e73d94a0",
+      "pathNotation": "REMEDIES_LAW.EXECUTIONS.PROCEEDINGS_IN_AID_OF_EXECUTION.HOMESTEAD_EXEMPTIONS"
     },
     {
       "id": "c576261b37d04e56b772d7d23953c601",
