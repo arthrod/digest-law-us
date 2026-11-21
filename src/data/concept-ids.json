@@ -56309,6 +56309,15 @@
       "pathNotation": "CONTRACT_LAW.PARTIES_AND_CAPACITY.MARRIED_WOMEN.HUSBAND_S_LIABILITY_FOR_WIFE_S_CONTRACTS.NON_LIABILITY_OF_HUSBAND"
     },
     {
+      "id": "3e755897d4eb4bc095a2b2929e451158",
+      "keys": [
+        "contract-law/parties-and-capacity/married-women/necessaries"
+      ],
+      "label": "Necessaries",
+      "minted": "2026-11-21",
+      "uuid": "3e755897-d4eb-4bc0-95a2-b2929e451158"
+    },
+    {
       "id": "93c973bb387e43418fda86469f6490df",
       "keys": [
         "contract-law/parties-and-capacity/married-women/necessaries-and-husband-s-liability"
@@ -56318,6 +56327,17 @@
       "uuid": "93c973bb-387e-4341-8fda-86469f6490df",
       "corpusIssueId": "2fc2885e-aab5-53ab-9a9f-76600f186698",
       "pathNotation": "CONTRACT_LAW.PARTIES_AND_CAPACITY.MARRIED_WOMEN.NECESSARIES_AND_HUSBAND_S_LIABILITY"
+    },
+    {
+      "id": "bd3150fcdafb4988b099b604fe09ecf4",
+      "keys": [
+        "contract-law/parties-and-capacity/married-women/necessaries/husband-s-liability-for-wife-s-necessaries"
+      ],
+      "label": "HUSBAND'S LIABILITY FOR WIFE'S NECESSARIES",
+      "minted": "2026-11-21",
+      "uuid": "bd3150fc-dafb-4988-b099-b604fe09ecf4",
+      "corpusIssueId": "2425f22f-cb95-59b4-b586-ffada2c609f6",
+      "pathNotation": "CONTRACT_LAW.PARTIES_AND_CAPACITY.MARRIED_WOMEN.NECESSARIES.HUSBAND_S_LIABILITY_FOR_WIFE_S_NECESSARIES"
     },
     {
       "id": "96adb789e06b4d2bb07164103c667fb2",
@@ -100518,6 +100538,17 @@
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.STOCKHOLDER_LIABILITY.CONTRIBUTION_AMONG_STOCKHOLDERS.TIME_OF_ACCRUAL_OF_DEBT"
     },
     {
+      "id": "3f5b50e3691f419497855bc29a0dcffe",
+      "keys": [
+        "corporate-law/corporate-governance-law/stockholder-liability/extent-of-liability"
+      ],
+      "label": "EXTENT OF LIABILITY",
+      "minted": "2026-11-21",
+      "uuid": "3f5b50e3-691f-4194-9785-5bc29a0dcffe",
+      "corpusIssueId": "1d9442f1-b125-5772-b4a8-2fdf242a9876",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.STOCKHOLDER_LIABILITY.EXTENT_OF_LIABILITY"
+    },
+    {
       "id": "1d5f83efcfac4d18b8c5182bd7c1b9c5",
       "keys": [
         "corporate-law/corporate-governance-law/stockholder-liability/fraud-liability"
@@ -109630,6 +109661,35 @@
       "label": "STATUTORY ENFORCEMENT ACTIONS UNDER DGCL § 367",
       "corpusIssueId": "d734b83d-9ab6-5548-8b59-84e0bb5912c3",
       "pathNotation": "CORPORATE_LAW.SPECIALIZED_CORPORATE_ENTITIES.BENEFIT_CORPORATIONS.DIRECTOR_DUTIES_TO_CONSIDER_STAKEHOLDERS.STATUTORY_ENFORCEMENT_ACTIONS_UNDER_DGCL_367"
+    },
+    {
+      "id": "ad4fd4e252c54d4585549cc2d076f3cb",
+      "keys": [
+        "corporate-law/specialized-corporations"
+      ],
+      "label": "Specialized Corporations",
+      "minted": "2026-11-21",
+      "uuid": "ad4fd4e2-52c5-4d45-8554-9cc2d076f3cb"
+    },
+    {
+      "id": "204854513af447babc859d59d2eca147",
+      "keys": [
+        "corporate-law/specialized-corporations/building-and-loan-associations"
+      ],
+      "label": "Building and Loan Associations",
+      "minted": "2026-11-21",
+      "uuid": "20485451-3af4-47ba-bc85-9d59d2eca147"
+    },
+    {
+      "id": "94ca92559d134d458a0791f2a70a4ffa",
+      "keys": [
+        "corporate-law/specialized-corporations/building-and-loan-associations/incorporation"
+      ],
+      "label": "INCORPORATION",
+      "minted": "2026-11-21",
+      "uuid": "94ca9255-9d13-4d45-8a07-91f2a70a4ffa",
+      "corpusIssueId": "da8cdb19-7885-5e49-b233-d554a8c8352b",
+      "pathNotation": "CORPORATE_LAW.SPECIALIZED_CORPORATIONS.BUILDING_AND_LOAN_ASSOCIATIONS.INCORPORATION"
     },
     {
       "id": "adf444c4e8b74e39b2eeeaeb3d1f49c3",
@@ -142148,6 +142208,17 @@
       "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_AND_RELEVANCE.STATE_OF_MIND_EVIDENCE"
     },
     {
+      "id": "8dae2dfda95a49beb69a13867699d2d2",
+      "keys": [
+        "evidence-law/admissibility-and-relevance/ultimate-facts-vs-evidenciary-facts"
+      ],
+      "label": "ULTIMATE FACTS VS. EVIDENCIARY FACTS",
+      "minted": "2026-11-21",
+      "uuid": "8dae2dfd-a95a-49be-b69a-13867699d2d2",
+      "corpusIssueId": "a1e096b1-f4c8-5fde-a717-7197363322df",
+      "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_AND_RELEVANCE.ULTIMATE_FACTS_VS_EVIDENCIARY_FACTS"
+    },
+    {
       "id": "02815432fe2f46ce97935d95d8bffc3d",
       "uuid": "02815432-fe2f-46ce-9793-5d95d8bffc3d",
       "keys": [
@@ -160110,6 +160181,35 @@
       "uuid": "eff55b35-a538-4fa3-a4aa-2b55b19f7a02",
       "corpusIssueId": "2b239a2f-d222-5879-8f30-9da184738e2e",
       "pathNotation": "EVIDENCE_LAW.SCOPE_AND_GOVERNING_PRINCIPLES.SCOPE_OF_THE_LAW_OF_EVIDENCE"
+    },
+    {
+      "id": "ec17649fb3054137b9e71aaf9fa219b2",
+      "keys": [
+        "evidence-law/sovereign-immunity"
+      ],
+      "label": "Sovereign Immunity",
+      "minted": "2026-11-21",
+      "uuid": "ec17649f-b305-4137-b9e7-1aaf9fa219b2"
+    },
+    {
+      "id": "9701faed4af3493192c361aa027e4851",
+      "keys": [
+        "evidence-law/sovereign-immunity/waiver-of-sovereign-immunity"
+      ],
+      "label": "Waiver of Sovereign Immunity",
+      "minted": "2026-11-21",
+      "uuid": "9701faed-4af3-4931-92c3-61aa027e4851"
+    },
+    {
+      "id": "cb48415db9394b36973133b67e8dd5b4",
+      "keys": [
+        "evidence-law/sovereign-immunity/waiver-of-sovereign-immunity/presumption-against-waiver"
+      ],
+      "label": "PRESUMPTION AGAINST WAIVER",
+      "minted": "2026-11-21",
+      "uuid": "cb48415d-b939-4b36-9731-33b67e8dd5b4",
+      "corpusIssueId": "9c42ef88-fdc8-5855-8327-902dd837490c",
+      "pathNotation": "EVIDENCE_LAW.SOVEREIGN_IMMUNITY.WAIVER_OF_SOVEREIGN_IMMUNITY.PRESUMPTION_AGAINST_WAIVER"
     },
     {
       "id": "3f856d44f335429b9ba813c263f3e79a",
@@ -199229,6 +199329,17 @@
       "pathNotation": "INSURANCE_LAW.MARINE_INSURANCE.ATTACHMENT_AND_DURATION_OF_RISK.VESSEL_BEING_FITTED_AT_PLACE"
     },
     {
+      "id": "0f3086c05c8c4d6fa72655169b1e3e32",
+      "keys": [
+        "insurance-law/marine-insurance/attachment-and-duration-of-risk/voyage-stopped-or-delayed-by-ice"
+      ],
+      "label": "VOYAGE STOPPED OR DELAYED BY ICE",
+      "minted": "2026-11-21",
+      "uuid": "0f3086c0-5c8c-4d6f-a726-55169b1e3e32",
+      "corpusIssueId": "b7d39a1d-186f-56d5-871d-bffb33e0f3a0",
+      "pathNotation": "INSURANCE_LAW.MARINE_INSURANCE.ATTACHMENT_AND_DURATION_OF_RISK.VOYAGE_STOPPED_OR_DELAYED_BY_ICE"
+    },
+    {
       "id": "278bc2dc32464007b663e945948d9c2c",
       "keys": [
         "insurance-law/marine-insurance/attachment-and-duration-of-risk/war-risk-and-belligerent-destination"
@@ -218490,6 +218601,26 @@
       "pathNotation": "IP_LAW.PATENT_LAW.INTERFERENCE_PROCEEDINGS.PARTIES_TO_PROCEEDINGS.ASSIGNEES"
     },
     {
+      "id": "f927e4ec5ab34dbdbad9bb56afce7f18",
+      "keys": [
+        "ip-law/patent-law/inventors-rights"
+      ],
+      "label": "Inventors Rights",
+      "minted": "2026-11-21",
+      "uuid": "f927e4ec-5ab3-4dbd-bad9-bb56afce7f18"
+    },
+    {
+      "id": "1d7963aff2054aaabbde3972fa02db3e",
+      "keys": [
+        "ip-law/patent-law/inventors-rights/abandonment-or-public-dedication"
+      ],
+      "label": "ABANDONMENT OR PUBLIC DEDICATION",
+      "minted": "2026-11-21",
+      "uuid": "1d7963af-f205-4aaa-bbde-3972fa02db3e",
+      "corpusIssueId": "4d15fbd5-083c-5174-9ccb-cd62412aa157",
+      "pathNotation": "IP_LAW.PATENT_LAW.INVENTORS_RIGHTS.ABANDONMENT_OR_PUBLIC_DEDICATION"
+    },
+    {
       "id": "4712b86f455c440b9a172662f31e2406",
       "keys": [
         "ip-law/patent-law/inventorship-and-invention"
@@ -222582,6 +222713,35 @@
       "uuid": "ed7e1149-26df-4ce9-a3f6-d23a6312c81b"
     },
     {
+      "id": "0339a8ab2c81465890a873ccfd43c1fa",
+      "keys": [
+        "ip-law/trips-agreement-wto"
+      ],
+      "label": "Trips Agreement Wto",
+      "minted": "2026-11-21",
+      "uuid": "0339a8ab-2c81-4658-90a8-73ccfd43c1fa"
+    },
+    {
+      "id": "ed5697b8b72049bfa4deefa9e38bb589",
+      "keys": [
+        "ip-law/trips-agreement-wto/part-vii-institutional-arrangements-and-final-provisions"
+      ],
+      "label": "Part Vii Institutional Arrangements and Final Provisions",
+      "minted": "2026-11-21",
+      "uuid": "ed5697b8-b720-49bf-a4de-efa9e38bb589"
+    },
+    {
+      "id": "6755a4d44e184e48bcc66cebcffbfc73",
+      "keys": [
+        "ip-law/trips-agreement-wto/part-vii-institutional-arrangements-and-final-provisions/security-exceptions-under-article-73"
+      ],
+      "label": "SECURITY EXCEPTIONS UNDER ARTICLE 73",
+      "minted": "2026-11-21",
+      "uuid": "6755a4d4-4e18-4e48-bcc6-6cebcffbfc73",
+      "corpusIssueId": "36942c03-6027-54f6-a081-36f997aed6ed",
+      "pathNotation": "IP_LAW.TRIPS_AGREEMENT_WTO.PART_VII_INSTITUTIONAL_ARRANGEMENTS_AND_FINAL_PROVISIONS.SECURITY_EXCEPTIONS_UNDER_ARTICLE_73"
+    },
+    {
       "id": "33c44695ef00495fa7ef4e2953948781",
       "keys": [
         "ip-law/trips-agreement/dispute-prevention-and-settlement"
@@ -226588,6 +226748,17 @@
       "uuid": "2879758f-8d5a-47f5-98a3-fb9c5aa69ec8",
       "corpusIssueId": "39685e3b-8a37-5869-aa78-cc2233ac504b",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.EQUITY_JURISPRUDENCE.NATURE_AND_ORIGIN_OF_EQUITY.THEORIES_OF_EQUITABLE_JURISDICTION"
+    },
+    {
+      "id": "b31db0950a9f41dc85b046ae052ac303",
+      "keys": [
+        "jurisprudence-and-legal-method/equity-jurisprudence/nature-and-scope-of-equity"
+      ],
+      "label": "NATURE AND SCOPE OF EQUITY",
+      "minted": "2026-11-21",
+      "uuid": "b31db095-0a9f-41dc-85b0-46ae052ac303",
+      "corpusIssueId": "8b99a89c-6f1c-53cd-a4ab-d0026ee7b260",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.EQUITY_JURISPRUDENCE.NATURE_AND_SCOPE_OF_EQUITY"
     },
     {
       "id": "1267f2116ce6495fad351423dbe7531d",
@@ -232323,6 +232494,17 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_COURT_DECISIONS.MICHIGAN_SUPREME_COURT_REPORTS"
     },
     {
+      "id": "50f89637856c4f4ea57f39d51e980875",
+      "keys": [
+        "jurisprudence-and-legal-method/state-court-decisions/montana-supreme-court-reports"
+      ],
+      "label": "MONTANA SUPREME COURT REPORTS",
+      "minted": "2026-11-21",
+      "uuid": "50f89637-856c-4f4e-a57f-39d51e980875",
+      "corpusIssueId": "85819edd-5b7a-5218-88f4-a65d93d8a1b7",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_COURT_DECISIONS.MONTANA_SUPREME_COURT_REPORTS"
+    },
+    {
       "id": "7cc4e9c8a0734ccbb88cd5a172d74cce",
       "keys": [
         "jurisprudence-and-legal-method/state-court-decisions/texas-state-court-decisions"
@@ -237723,6 +237905,15 @@
       "uuid": "ecfe761a-d102-46b8-9087-a2e12e401156",
       "corpusIssueId": "c28b542c-1550-5cd6-9e12-28d343e9d95f",
       "pathNotation": "LAW_OF_OBLIGATIONS.AGENCY.AUTHORITY_OF_AGENT.PROCURATION_AND_POWER_OF_ATTORNEY"
+    },
+    {
+      "id": "1b002b2cad334ce0bc6540a907db069a",
+      "keys": [
+        "law-of-obligations/agency/authority-of-agent/ratification-or-disaffirmance-of-unauthorized-acts"
+      ],
+      "label": "Ratification or Disaffirmance of Unauthorized Acts",
+      "minted": "2026-11-21",
+      "uuid": "1b002b2c-ad33-4ce0-bc65-40a907db069a"
     },
     {
       "id": "77f484c2c9dc4df2b1d56c012880b012",
@@ -244782,6 +244973,26 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.PRINCIPAL_AGENT_RELATIONSHIP.DUTIES_OF_PRINCIPAL_TO_AGENT.COMPENSATION_REIMBURSEMENT_AND_INDEMNITY"
     },
     {
+      "id": "6f186a676d1245a392ee564b2f300062",
+      "keys": [
+        "law-of-obligations/principal-agent-relationship/liability-to-third-parties"
+      ],
+      "label": "Liability to Third Parties",
+      "minted": "2026-11-21",
+      "uuid": "6f186a67-6d12-45a3-92ee-564b2f300062"
+    },
+    {
+      "id": "e63d604d62174cb68261b727a75eb592",
+      "keys": [
+        "law-of-obligations/principal-agent-relationship/liability-to-third-parties/effect-of-agent-s-conduct-on-principal-s-liability-to-strangers"
+      ],
+      "label": "EFFECT OF AGENT'S CONDUCT ON PRINCIPAL'S LIABILITY TO STRANGERS",
+      "minted": "2026-11-21",
+      "uuid": "e63d604d-6217-4cb6-8261-b727a75eb592",
+      "corpusIssueId": "dbc8ae23-427d-55bb-b876-e0381af9a4f6",
+      "pathNotation": "LAW_OF_OBLIGATIONS.PRINCIPAL_AGENT_RELATIONSHIP.LIABILITY_TO_THIRD_PARTIES.EFFECT_OF_AGENT_S_CONDUCT_ON_PRINCIPAL_S_LIABILITY_TO_STRANGERS"
+    },
+    {
       "id": "b108b4693af9401581bda144260f8801",
       "keys": [
         "law-of-obligations/principal-agent-relationship/notice-and-knowledge"
@@ -246585,6 +246796,26 @@
       "label": "Rights and Liabilities of Parties",
       "minted": "2026-11-17",
       "uuid": "76e9b6f4-2314-412c-9177-943292a83570"
+    },
+    {
+      "id": "40c760594f4c47e791e8b59e309c031d",
+      "keys": [
+        "law-of-obligations/rights-and-liabilities-of-parties/agent-and-third-party"
+      ],
+      "label": "Agent and Third Party",
+      "minted": "2026-11-21",
+      "uuid": "40c76059-4f4c-47e7-91e8-b59e309c031d"
+    },
+    {
+      "id": "1b783e87270e4122aeab3b82b516838f",
+      "keys": [
+        "law-of-obligations/rights-and-liabilities-of-parties/agent-and-third-party/effect-of-transactions-between-agent-and-other-party"
+      ],
+      "label": "EFFECT OF TRANSACTIONS BETWEEN AGENT AND OTHER PARTY",
+      "minted": "2026-11-21",
+      "uuid": "1b783e87-270e-4122-aeab-3b82b516838f",
+      "corpusIssueId": "db627258-9751-561f-8896-ceb5dad2a677",
+      "pathNotation": "LAW_OF_OBLIGATIONS.RIGHTS_AND_LIABILITIES_OF_PARTIES.AGENT_AND_THIRD_PARTY.EFFECT_OF_TRANSACTIONS_BETWEEN_AGENT_AND_OTHER_PARTY"
     },
     {
       "id": "29b22de8df84463a97cba9ecf33a051f",
@@ -291497,6 +291728,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.MARITAL_STATUS_AND_RIGHTS.PROPERTY_RIGHTS_INCIDENT_TO_MARITAL_STATUS"
     },
     {
+      "id": "915ca19337a8416ba6d929138533e4c3",
+      "keys": [
+        "personal-and-family-law/marriage-law/marital-status-and-rights/wifely-duties"
+      ],
+      "label": "Wifely Duties",
+      "minted": "2026-11-21",
+      "uuid": "915ca193-37a8-416b-a6d9-29138533e4c3"
+    },
+    {
+      "id": "ee54695a48414c3294c58be5a8d4c230",
+      "keys": [
+        "personal-and-family-law/marriage-law/marital-status-and-rights/wifely-duties/conformity-to-husband-s-habits"
+      ],
+      "label": "CONFORMITY TO HUSBAND'S HABITS",
+      "minted": "2026-11-21",
+      "uuid": "ee54695a-4841-4c32-94c5-8be5a8d4c230",
+      "corpusIssueId": "f070def1-5e6c-5073-b28f-c4a0360e5d06",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.MARITAL_STATUS_AND_RIGHTS.WIFELY_DUTIES.CONFORMITY_TO_HUSBAND_S_HABITS"
+    },
+    {
       "id": "74787ea192a9439485af3e09a7e57c1e",
       "uuid": "74787ea1-92a9-4394-85af-3e09a7e57c1e",
       "keys": [
@@ -304838,6 +305089,35 @@
       "label": "Probate and Estate Administration",
       "minted": "2026-11-15",
       "uuid": "bdcf6e05-3a13-4c87-90e8-ab104c9fe054"
+    },
+    {
+      "id": "0d5b9488c20246499b586e657a379c20",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/probate-and-estate-administration-statutes"
+      ],
+      "label": "Probate and Estate Administration Statutes",
+      "minted": "2026-11-21",
+      "uuid": "0d5b9488-c202-4649-9b58-6e657a379c20"
+    },
+    {
+      "id": "9eba7a09b03d4f8fa46fa6c0ca474be9",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/probate-and-estate-administration-statutes/protection-of-estates-of-deceased-persons"
+      ],
+      "label": "Protection of Estates of Deceased Persons",
+      "minted": "2026-11-21",
+      "uuid": "9eba7a09-b03d-4f8f-a46f-a6c0ca474be9"
+    },
+    {
+      "id": "fd466128ed5d4d8ba7a82d8b0afb9d88",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/probate-and-estate-administration-statutes/protection-of-estates-of-deceased-persons/statutory-protection-for-estates-of-dowee-and-curtest"
+      ],
+      "label": "STATUTORY PROTECTION FOR ESTATES OF DOWEE AND CURTEST",
+      "minted": "2026-11-21",
+      "uuid": "fd466128-ed5d-4d8b-a7a8-2d8b0afb9d88",
+      "corpusIssueId": "ec5ada73-5444-5901-a236-98057c4a8ead",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.PROBATE_AND_ESTATE_ADMINISTRATION_STATUTES.PROTECTION_OF_ESTATES_OF_DECEASED_PERSONS.STATUTORY_PROTECTION_FOR_ESTATES_OF_DOWEE_AND_CURTEST"
     },
     {
       "id": "8e4cccc2e72c45a6a8e76e3f6439f578",
@@ -336003,6 +336283,17 @@
       "pathNotation": "PROCEDURAL_LAW.SUBJECT_MATTER_JURISDICTION.SPECIAL_COURTS_AND_TRIBUNALS.JURISDICTION_OF_SPECIAL_JUSTICES_OF_THE_PEACE"
     },
     {
+      "id": "9a19d3865d95419c9dce88dbd4e5b54c",
+      "keys": [
+        "procedural-law/subject-matter-jurisdiction/subject-matter-jurisdiction-in-class-actions"
+      ],
+      "label": "SUBJECT MATTER JURISDICTION IN CLASS ACTIONS",
+      "minted": "2026-11-21",
+      "uuid": "9a19d386-5d95-419c-9dce-88dbd4e5b54c",
+      "corpusIssueId": "31b229c3-c1e2-5439-8320-26e1de69e91e",
+      "pathNotation": "PROCEDURAL_LAW.SUBJECT_MATTER_JURISDICTION.SUBJECT_MATTER_JURISDICTION_IN_CLASS_ACTIONS"
+    },
+    {
       "id": "473650ba9e7c488599517983b405b4b2",
       "keys": [
         "procedural-law/subject-matter-jurisdiction/supplemental-jurisdiction"
@@ -356690,6 +356981,17 @@
       "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.PROCEDURAL_AND_JUDICIAL_CONSTRAINTS.JUDICIAL_REVIEW_LIMITATIONS"
     },
     {
+      "id": "b26bd2e9e2904436b1de454410403826",
+      "keys": [
+        "real-estate-law/eminent-domain-law/procedural-and-statutory-constraints"
+      ],
+      "label": "PROCEDURAL AND STATUTORY CONSTRAINTS",
+      "minted": "2026-11-21",
+      "uuid": "b26bd2e9-e290-4436-b1de-454410403826",
+      "corpusIssueId": "aa34cd3f-3b79-59ef-839b-ad762edec135",
+      "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.PROCEDURAL_AND_STATUTORY_CONSTRAINTS"
+    },
+    {
       "id": "1356f9a850774a588017822aa040ed3c",
       "keys": [
         "real-estate-law/eminent-domain-law/procedural-and-substantive-requirements"
@@ -357248,6 +357550,17 @@
       "label": "Public Use and Purpose",
       "minted": "2026-10-02",
       "uuid": "c3dca7ec-74d6-4f54-af93-8746c1d11a6c"
+    },
+    {
+      "id": "22c5bd44f2674b4bbea959211efb0fe6",
+      "keys": [
+        "real-estate-law/eminent-domain-law/public-use-and-purpose/aid-to-private-enterprise"
+      ],
+      "label": "AID TO PRIVATE ENTERPRISE",
+      "minted": "2026-11-21",
+      "uuid": "22c5bd44-f267-4b4b-bea9-59211efb0fe6",
+      "corpusIssueId": "71fcc6a0-6b12-5fb7-87c8-70c1315d5293",
+      "pathNotation": "REAL_ESTATE_LAW.EMINENT_DOMAIN_LAW.PUBLIC_USE_AND_PURPOSE.AID_TO_PRIVATE_ENTERPRISE"
     },
     {
       "id": "e65a1adfc5014fb9a0a50a78d2fc4211",
@@ -365643,6 +365956,17 @@
       "uuid": "476c8a27-a7ab-44b1-a9e4-4c8955ed5b7e",
       "corpusIssueId": "bdaea6c2-f01b-533c-9f31-de7ad6b9325c",
       "pathNotation": "REAL_ESTATE_LAW.FUTURE_INTERESTS.VESTED_AND_CONTINGENT_INTERESTS.LIFE_ESTATES.LIFE_ESTATES_CREATED_BY_GIFTS_OVER"
+    },
+    {
+      "id": "43304aa5db0f48a4aa504126df1a85ed",
+      "keys": [
+        "real-estate-law/future-interests/vested-and-contingent-interests/publication-of-wills"
+      ],
+      "label": "PUBLICATION OF WILLS",
+      "minted": "2026-11-21",
+      "uuid": "43304aa5-db0f-48a4-aa50-4126df1a85ed",
+      "corpusIssueId": "f43135ab-e386-5719-8df8-935923bd86e4",
+      "pathNotation": "REAL_ESTATE_LAW.FUTURE_INTERESTS.VESTED_AND_CONTINGENT_INTERESTS.PUBLICATION_OF_WILLS"
     },
     {
       "id": "d2e1e3c95cda47ee9e28db2b57023f92",
