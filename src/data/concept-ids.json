@@ -18940,6 +18940,26 @@
       "pathNotation": "CAPITAL_MARKETS_LAW.BONDS_AND_DEBENTURES.UNDERWRITING_OF_BONDS.RIGHTS_OF_UNDERWRITER_TO_OVERDUE_COUPONS"
     },
     {
+      "id": "8669b8e727a7473ca3f94fdd2bf0c6c0",
+      "keys": [
+        "capital-markets-law/bonds-and-debentures/unissued-bonds"
+      ],
+      "label": "Unissued Bonds",
+      "minted": "2026-11-21",
+      "uuid": "8669b8e7-27a7-473c-a3f9-4fdd2bf0c6c0"
+    },
+    {
+      "id": "cb316a71f81247758612c19a77223c0a",
+      "keys": [
+        "capital-markets-law/bonds-and-debentures/unissued-bonds/unauthorized-issue"
+      ],
+      "label": "UNAUTHORIZED ISSUE",
+      "minted": "2026-11-21",
+      "uuid": "cb316a71-f812-4775-8612-c19a77223c0a",
+      "corpusIssueId": "83aed95b-b42f-5248-b293-4c109ab3b7a0",
+      "pathNotation": "CAPITAL_MARKETS_LAW.BONDS_AND_DEBENTURES.UNISSUED_BONDS.UNAUTHORIZED_ISSUE"
+    },
+    {
       "id": "8d1a3358623541cbbd97c6ede8911f8d",
       "keys": [
         "capital-markets-law/bonds-and-debt-securities"
@@ -56808,6 +56828,44 @@
       "pathNotation": "CONTRACT_LAW.NECESSITY_SUITABILITY_AND_EFFICIENCY_IN_PUBLIC_CONTRACTING"
     },
     {
+      "id": "fd2ec10528f846d5bc153680178e4da6",
+      "keys": [
+        "contract-law/negotiable-instruments"
+      ],
+      "label": "Negotiable Instruments",
+      "minted": "2026-11-21",
+      "uuid": "fd2ec105-28f8-46d5-bc15-3680178e4da6"
+    },
+    {
+      "id": "c716974f52f54534987e88b9fb13dada",
+      "keys": [
+        "contract-law/negotiable-instruments/bills-and-notes"
+      ],
+      "label": "Bills and Notes",
+      "minted": "2026-11-21",
+      "uuid": "c716974f-52f5-4534-987e-88b9fb13dada"
+    },
+    {
+      "id": "bdada92994b84d73a1a2ffc56def5613",
+      "keys": [
+        "contract-law/negotiable-instruments/bills-and-notes/accommodation-paper"
+      ],
+      "label": "Accommodation Paper",
+      "minted": "2026-11-21",
+      "uuid": "bdada929-94b8-4d73-a1a2-ffc56def5613"
+    },
+    {
+      "id": "8c5cfcd799f746fdbcbe94793c8a69eb",
+      "keys": [
+        "contract-law/negotiable-instruments/bills-and-notes/accommodation-paper/sufficiency-of-consideration"
+      ],
+      "label": "SUFFICIENCY OF CONSIDERATION",
+      "minted": "2026-11-21",
+      "uuid": "8c5cfcd7-99f7-46fd-bcbe-94793c8a69eb",
+      "corpusIssueId": "d6084184-9738-51e3-bc8c-acd0333c6f51",
+      "pathNotation": "CONTRACT_LAW.NEGOTIABLE_INSTRUMENTS.BILLS_AND_NOTES.ACCOMMODATION_PAPER.SUFFICIENCY_OF_CONSIDERATION"
+    },
+    {
       "id": "f83bfdc2c89e4989b9a87a095aae3fb8",
       "keys": [
         "contract-law/obligations-and-liabilities"
@@ -59150,8 +59208,7 @@
       "minted": "2026-10-17",
       "uuid": "9eb26fdc-b0cd-4fb2-941a-a7ae49ceb0bb",
       "corpusIssueId": "fabbd18a-aa05-5954-a97f-46f99c2b2b23",
-      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.EXCUSE_OF_PERFORMANCE.FRUSTRATION_OF_PURPOSE.WAR_AS_EXCUSE",
-      "retired": "2026-10-20"
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.EXCUSE_OF_PERFORMANCE.FRUSTRATION_OF_PURPOSE.WAR_AS_EXCUSE"
     },
     {
       "id": "174bca7e31ac475493f2fbdcd51bf591",
@@ -85258,6 +85315,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERS_DUTIES_AND_LIABILITIES.FIDUCIARY_DUTIES.DUTY_OF_GOOD_FAITH.PURCHASES_OF_CO_PARTNER_S_INTEREST"
     },
     {
+      "id": "02d6f9faa42d4274ba3bdcd0b0878d19",
+      "keys": [
+        "corporate-law/business-organizations-law/partners-duties-and-liabilities/fiduciary-duties/duty-to-share-outlays-and-losses"
+      ],
+      "label": "DUTY TO SHARE OUTLAYS AND LOSSES",
+      "minted": "2026-11-21",
+      "uuid": "02d6f9fa-a42d-4274-ba3b-dcd0b0878d19",
+      "corpusIssueId": "3f05281a-00bc-51a5-a53f-ea3048c3c141",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERS_DUTIES_AND_LIABILITIES.FIDUCIARY_DUTIES.DUTY_TO_SHARE_OUTLAYS_AND_LOSSES"
+    },
+    {
       "id": "f161f950ee1f486da5690600dbbb6064",
       "keys": [
         "corporate-law/business-organizations-law/partners-duties-and-liabilities/inter-se-and-as-to-third-persons"
@@ -93975,6 +94043,17 @@
       "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_AND_DISTRIBUTIONS.DIVIDENDS.IMPROPERLY_DECLARED_DIVIDENDS"
     },
     {
+      "id": "16da7da75f76418e90f39f631d53f18d",
+      "keys": [
+        "corporate-law/corporate-finance-and-distributions/dividends/insolvency-restriction-on-dividends"
+      ],
+      "label": "INSOLVENCY RESTRICTION ON DIVIDENDS",
+      "minted": "2026-11-21",
+      "uuid": "16da7da7-5f76-418e-90f3-9f631d53f18d",
+      "corpusIssueId": "16950f11-2791-5ba5-87ea-9f32946e599c",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_AND_DISTRIBUTIONS.DIVIDENDS.INSOLVENCY_RESTRICTION_ON_DIVIDENDS"
+    },
+    {
       "id": "4061e09072754a07a922fe4a7cb75cab",
       "keys": [
         "corporate-law/corporate-finance-and-distributions/stock-distributions"
@@ -96765,6 +96844,26 @@
       "uuid": "2c2d00d6-ba85-4b64-af0b-8c7b957e2bae",
       "corpusIssueId": "6460e61c-4d59-573e-b257-37a590866c07",
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.CORPORATE_GOVERNANCE_AND_SHAREHOLDER_RIGHTS.INSPECTION_OF_CORPORATE_BOOKS_AND_RECORDS.STATUTORY_PENALTY_FOR_REFUSAL"
+    },
+    {
+      "id": "e5fd4229944940dcb51b7129a071481c",
+      "keys": [
+        "corporate-law/corporate-governance-law/corporate-governance-and-shareholder-rights/shareholder-meetings-and-voting"
+      ],
+      "label": "Shareholder Meetings and Voting",
+      "minted": "2026-11-21",
+      "uuid": "e5fd4229-9449-40dc-b51b-7129a071481c"
+    },
+    {
+      "id": "f958f4bd71614042abf08bd689b25226",
+      "keys": [
+        "corporate-law/corporate-governance-law/corporate-governance-and-shareholder-rights/shareholder-meetings-and-voting/shareholder-action-by-written-consent"
+      ],
+      "label": "SHAREHOLDER ACTION BY WRITTEN CONSENT",
+      "minted": "2026-11-21",
+      "uuid": "f958f4bd-7161-4042-abf0-8bd689b25226",
+      "corpusIssueId": "e6ed9a7d-f07b-508a-a64a-4a2e67834dd6",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.CORPORATE_GOVERNANCE_AND_SHAREHOLDER_RIGHTS.SHAREHOLDER_MEETINGS_AND_VOTING.SHAREHOLDER_ACTION_BY_WRITTEN_CONSENT"
     },
     {
       "id": "03535f80ec5b47eba9b082f9e0887b1b",
@@ -130410,6 +130509,26 @@
       "uuid": "0b7958e1-57aa-456b-8577-b1c2c40a8067",
       "corpusIssueId": "b074483d-221e-537f-8394-791bb060a41c",
       "pathNotation": "CRIMINAL_LAW.RIGHT_TO_COUNSEL.SIXTH_AMENDMENT_GUARANTEE.EFFECTIVE_ASSISTANCE_OF_COUNSEL"
+    },
+    {
+      "id": "7be7816f4c8445e5aafea0f9e7436ee7",
+      "keys": [
+        "criminal-law/right-to-counsel/waiver-of-right-to-counsel"
+      ],
+      "label": "Waiver of Right to Counsel",
+      "minted": "2026-11-21",
+      "uuid": "7be7816f-4c84-45e5-aafe-a0f9e7436ee7"
+    },
+    {
+      "id": "d67f83cf2b8e42a88d3bc4b6d9e5ba43",
+      "keys": [
+        "criminal-law/right-to-counsel/waiver-of-right-to-counsel/pro-se-representation-by-criminal-defendants"
+      ],
+      "label": "PRO SE REPRESENTATION BY CRIMINAL DEFENDANTS",
+      "minted": "2026-11-21",
+      "uuid": "d67f83cf-2b8e-42a8-8d3b-c4b6d9e5ba43",
+      "corpusIssueId": "eba5d044-0447-5342-b4bf-a2a59cc9faf4",
+      "pathNotation": "CRIMINAL_LAW.RIGHT_TO_COUNSEL.WAIVER_OF_RIGHT_TO_COUNSEL.PRO_SE_REPRESENTATION_BY_CRIMINAL_DEFENDANTS"
     },
     {
       "id": "620244018018414f95bcdb131e4fc6e0",
@@ -256686,6 +256805,26 @@
       "pathNotation": "LAW_OF_WRONGDOING.INTENTIONAL_TORTS.ELEMENTS_OF_LIABILITY.CAUSATION_IN_INTENTIONAL_TORTS"
     },
     {
+      "id": "bc927d0998824d33bf74c60945ef728c",
+      "keys": [
+        "law-of-wrongdoing/intentional-torts/false-arrest-and-false-imprisonment"
+      ],
+      "label": "False Arrest and False Imprisonment",
+      "minted": "2026-11-21",
+      "uuid": "bc927d09-9882-4d33-bf74-c60945ef728c"
+    },
+    {
+      "id": "adaff5b216834356a40c0fbc127d6dcc",
+      "keys": [
+        "law-of-wrongdoing/intentional-torts/false-arrest-and-false-imprisonment/liability-of-public-officers"
+      ],
+      "label": "LIABILITY OF PUBLIC OFFICERS",
+      "minted": "2026-11-21",
+      "uuid": "adaff5b2-1683-4356-a40c-0fbc127d6dcc",
+      "corpusIssueId": "38099727-63c5-5ed9-a9b5-aabbb285812e",
+      "pathNotation": "LAW_OF_WRONGDOING.INTENTIONAL_TORTS.FALSE_ARREST_AND_FALSE_IMPRISONMENT.LIABILITY_OF_PUBLIC_OFFICERS"
+    },
+    {
       "id": "af367d91b6f84bf6870f5be52ff85bc7",
       "keys": [
         "law-of-wrongdoing/intentional-torts/false-imprisonment"
@@ -298877,6 +299016,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.VALIDITY_AND_VOIDABILITY_OF_MARRIAGE.EFFECTS_OF_VOID_MARRIAGE"
     },
     {
+      "id": "9f4435a9d2164c9cab13a0bd1baccaaa",
+      "keys": [
+        "personal-and-family-law/marriage-law/validity-and-voidability-of-marriage/forced-or-coerced-marriage"
+      ],
+      "label": "FORCED OR COERCED MARRIAGE",
+      "minted": "2026-11-21",
+      "uuid": "9f4435a9-d216-4c9c-ab13-a0bd1baccaaa",
+      "corpusIssueId": "81a3b14b-b41a-52a8-8489-0ac88ce8eed8",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.VALIDITY_AND_VOIDABILITY_OF_MARRIAGE.FORCED_OR_COERCED_MARRIAGE"
+    },
+    {
       "id": "6f34586d8f2f4a26bc1517b49b6f75a8",
       "keys": [
         "personal-and-family-law/marriage-law/validity-and-voidability-of-marriage/mental-capacity-and-consent"
@@ -332809,6 +332959,17 @@
       "pathNotation": "PROCEDURAL_LAW.PERSONAL_JURISDICTION.GENERAL_PRINCIPLES_AND_OVERVIEW"
     },
     {
+      "id": "28979babac51486ca984f8760fa0d0d6",
+      "keys": [
+        "procedural-law/personal-jurisdiction/general-principles-of-personal-jurisdiction"
+      ],
+      "label": "GENERAL PRINCIPLES OF PERSONAL JURISDICTION",
+      "minted": "2026-11-21",
+      "uuid": "28979bab-ac51-486c-a984-f8760fa0d0d6",
+      "corpusIssueId": "c9bc220d-e4f1-5fbb-9844-f6b976ff50df",
+      "pathNotation": "PROCEDURAL_LAW.PERSONAL_JURISDICTION.GENERAL_PRINCIPLES_OF_PERSONAL_JURISDICTION"
+    },
+    {
       "id": "8d9fe10eae2f4932ab26b4fde9c9a038",
       "uuid": "8d9fe10e-ae2f-4932-ab26-b4fde9c9a038",
       "keys": [
@@ -341454,6 +341615,24 @@
       "uuid": "75858725-5650-47ab-b6df-b18c4f157f8d",
       "corpusIssueId": "a84ad0b3-f3f4-5c3f-99d8-94f081e01f1c",
       "pathNotation": "PROCEDURAL_LAW.TRANSFER_OF_VENUE.GENERAL_NOTES_ON_TRANSFER_OF_VENUE"
+    },
+    {
+      "id": "bba3284631244268bdf4efac7e7c9858",
+      "keys": [
+        "procedural-law/transmission-of-record"
+      ],
+      "label": "Transmission of Record",
+      "minted": "2026-11-21",
+      "uuid": "bba32846-3124-4268-bdf4-efac7e7c9858"
+    },
+    {
+      "id": "f7879e34de3b4d559e4d2d3bc8656c59",
+      "keys": [
+        "procedural-law/transmission-of-record/record-for-transmission-to-supreme-court"
+      ],
+      "label": "Record for Transmission to Supreme Court",
+      "minted": "2026-11-21",
+      "uuid": "f7879e34-de3b-4d55-9e4d-2d3bc8656c59"
     },
     {
       "id": "6dd224cf08714f17a4d9055fe7de3714",
@@ -380610,6 +380789,26 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LEASEHOLD_ESTATES.HOLDOVER_TENANCY"
     },
     {
+      "id": "090331bf37734d1f9d5024e32d5c0f32",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/leasehold-estates/subleases"
+      ],
+      "label": "Subleases",
+      "minted": "2026-11-21",
+      "uuid": "090331bf-3773-4d1f-9d50-24e32d5c0f32"
+    },
+    {
+      "id": "b75efe4500654d66b13ad847a8340b11",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/leasehold-estates/subleases/rights-and-liabilities-between-sublessor-and-sublessee"
+      ],
+      "label": "RIGHTS AND LIABILITIES BETWEEN SUBLESSOR AND SUBLESSEE",
+      "minted": "2026-11-21",
+      "uuid": "b75efe45-0065-4d66-b13a-d847a8340b11",
+      "corpusIssueId": "9d6e78f0-2318-5411-a1f7-5c27f664ae65",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LEASEHOLD_ESTATES.SUBLEASES.RIGHTS_AND_LIABILITIES_BETWEEN_SUBLESSOR_AND_SUBLESSEE"
+    },
+    {
       "id": "e23a5dfda12a4ff4ab9d046678090282",
       "keys": [
         "real-estate-law/landlord-tenant-law/leasehold-estates/tenancy-at-will"
@@ -398452,6 +398651,26 @@
       "label": "Transfer and Conveyancing"
     },
     {
+      "id": "b1d2d471c421477bb0a67202f6ef41a9",
+      "keys": [
+        "real-estate-law/transfer-and-conveyancing/assignments"
+      ],
+      "label": "Assignments",
+      "minted": "2026-11-21",
+      "uuid": "b1d2d471-c421-477b-b0a6-7202f6ef41a9"
+    },
+    {
+      "id": "78cdcd272f324b4594b7a0b61450398e",
+      "keys": [
+        "real-estate-law/transfer-and-conveyancing/assignments/assignment-of-certificates-of-purchase"
+      ],
+      "label": "ASSIGNMENT OF CERTIFICATES OF PURCHASE",
+      "minted": "2026-11-21",
+      "uuid": "78cdcd27-2f32-4b45-94b7-a0b61450398e",
+      "corpusIssueId": "84c90edd-0e3c-5c86-9a53-9e58a9c61851",
+      "pathNotation": "REAL_ESTATE_LAW.TRANSFER_AND_CONVEYANCING.ASSIGNMENTS.ASSIGNMENT_OF_CERTIFICATES_OF_PURCHASE"
+    },
+    {
       "id": "5083511bbf904e0687c9c270bea880ea",
       "uuid": "5083511b-bf90-4e06-87c9-c270bea880ea",
       "keys": [
@@ -400905,6 +401124,17 @@
       "uuid": "48e33e33-5ad6-43be-9363-7eed0a1ed4dd",
       "corpusIssueId": "7480b5f6-e56e-509e-9491-d7f620c01051",
       "pathNotation": "REAL_ESTATE_LAW.TRANSFERS_OF_REAL_PROPERTY.DEEDS.INTERPRETATION_OF_DEEDS.WORDS_OF_INHERITANCE"
+    },
+    {
+      "id": "8f37fb1f1df64505be72e32b6e708f9a",
+      "keys": [
+        "real-estate-law/transfers-of-real-property/deeds/notice-and-knowledge-in-deed-transactions"
+      ],
+      "label": "NOTICE AND KNOWLEDGE IN DEED TRANSACTIONS",
+      "minted": "2026-11-21",
+      "uuid": "8f37fb1f-1df6-4505-be72-e32b6e708f9a",
+      "corpusIssueId": "356372fc-45f9-5dcd-97f4-ba24ee5c767d",
+      "pathNotation": "REAL_ESTATE_LAW.TRANSFERS_OF_REAL_PROPERTY.DEEDS.NOTICE_AND_KNOWLEDGE_IN_DEED_TRANSACTIONS"
     },
     {
       "id": "c9225ac898b3434e991d2c706acf6e86",
@@ -419601,6 +419831,17 @@
       "uuid": "26d9af05-03a6-49f8-a993-4b2c1480ebb4",
       "corpusIssueId": "be9b63ee-df6b-51e1-bbe2-686f2369254d",
       "pathNotation": "REMEDIES_LAW.RECEIVERS.APPOINTMENT_OF_RECEIVER.JURISDICTION_TO_APPOINT"
+    },
+    {
+      "id": "6ac32feb4ec1409eb51b34b23bf68253",
+      "keys": [
+        "remedies-law/receivers/appointment-of-receiver/receiver-of-all-assets"
+      ],
+      "label": "RECEIVER OF ALL ASSETS",
+      "minted": "2026-11-21",
+      "uuid": "6ac32feb-4ec1-409e-b51b-34b23bf68253",
+      "corpusIssueId": "a2a2e4dd-d3dd-557a-a69a-6dc5d9bc295d",
+      "pathNotation": "REMEDIES_LAW.RECEIVERS.APPOINTMENT_OF_RECEIVER.RECEIVER_OF_ALL_ASSETS"
     },
     {
       "id": "42bb40e68b834a72bf6d3d5a53f3b235",
