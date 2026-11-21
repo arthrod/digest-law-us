@@ -3151,6 +3151,17 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.AVOIDANCE_AND_PREFERENCES.PREFERENCES.INDIRECT_PREFERENCES_AND_ASSET_DEPLETION"
     },
     {
+      "id": "e76a9323749d4bfeb743325e68ee9be3",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/avoidance-and-preferences/preferences/voluntary-action-of-debtor-as-requisite-for-preference"
+      ],
+      "label": "VOLUNTARY ACTION OF DEBTOR AS REQUISITE FOR PREFERENCE",
+      "minted": "2026-11-21",
+      "uuid": "e76a9323-749d-4bfe-b743-325e68ee9be3",
+      "corpusIssueId": "0fb8482b-aae9-59d3-bf97-a008ab8efe00",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.AVOIDANCE_AND_PREFERENCES.PREFERENCES.VOLUNTARY_ACTION_OF_DEBTOR_AS_REQUISITE_FOR_PREFERENCE"
+    },
+    {
       "id": "804a17077fc64a47b597b99fc53d66bd",
       "uuid": "804a1707-7fc6-4a47-b597-b99fc53d66bd",
       "keys": [
@@ -11752,6 +11763,17 @@
       "uuid": "0374f62c-7634-4708-b797-f01af0de0368",
       "corpusIssueId": "e9f545ca-2cc8-53d5-8438-4d8f947bd332",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.JURISDICTION_AND_VENUE.CITIZENSHIP_DETERMINATION"
+    },
+    {
+      "id": "6e8e88f9843249d4ae35a82b7cd333dc",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/jurisdiction-and-venue/domicile-and-residence"
+      ],
+      "label": "DOMICILE AND RESIDENCE",
+      "minted": "2026-11-21",
+      "uuid": "6e8e88f9-8432-49d4-ae35-a82b7cd333dc",
+      "corpusIssueId": "a18c32d3-ee38-58b6-aed0-21acbfe97ed2",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.JURISDICTION_AND_VENUE.DOMICILE_AND_RESIDENCE"
     },
     {
       "id": "792007b1c23f45258932b5a0596dc7cb",
@@ -26609,6 +26631,26 @@
       "pathNotation": "COMMERCIAL_AND_TRADE_LAW.CONSUMER_PROTECTION_LAW.CREDIT_SALES.AUTO_LOANS"
     },
     {
+      "id": "a559267a094b4d9597d6bc01f459d334",
+      "keys": [
+        "commercial-and-trade-law/consumer-protection-law/dodd-frank-act-regulatory-regimes"
+      ],
+      "label": "Dodd Frank Act Regulatory Regimes",
+      "minted": "2026-11-21",
+      "uuid": "a559267a-094b-4d95-97d6-bc01f459d334"
+    },
+    {
+      "id": "54d24c47664549499253a712bcc0c4fb",
+      "keys": [
+        "commercial-and-trade-law/consumer-protection-law/dodd-frank-act-regulatory-regimes/regulation-of-short-term-credit"
+      ],
+      "label": "REGULATION OF SHORT-TERM CREDIT",
+      "minted": "2026-11-21",
+      "uuid": "54d24c47-6645-4949-9253-a712bcc0c4fb",
+      "corpusIssueId": "802395a4-f2ef-581e-af00-c7be61d9f99d",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.CONSUMER_PROTECTION_LAW.DODD_FRANK_ACT_REGULATORY_REGIMES.REGULATION_OF_SHORT_TERM_CREDIT"
+    },
+    {
       "id": "4e71a7c419d34b10a1ee2bd5cce14b2d",
       "keys": [
         "commercial-and-trade-law/consumer-protection-law/federal-regulatory-enforcement-agencies"
@@ -26696,6 +26738,17 @@
       "uuid": "ed6d88a6-477e-417b-aa03-b4d1346b6421",
       "corpusIssueId": "6689199b-1f17-52f4-b075-02112cd3b28d",
       "pathNotation": "COMMERCIAL_AND_TRADE_LAW.CONSUMER_PROTECTION_LAW.STATE_ATTORNEY_GENERAL_ENFORCEMENT"
+    },
+    {
+      "id": "6f5c957f99f14414a428c0a3a502c1d6",
+      "keys": [
+        "commercial-and-trade-law/consumer-protection-law/state-attorney-general-enforcement/general-introduction"
+      ],
+      "label": "GENERAL INTRODUCTION",
+      "minted": "2026-11-21",
+      "uuid": "6f5c957f-99f1-4414-a428-c0a3a502c1d6",
+      "corpusIssueId": "ec92daf3-e4dd-5b70-9362-dd6aab29772f",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.CONSUMER_PROTECTION_LAW.STATE_ATTORNEY_GENERAL_ENFORCEMENT.GENERAL_INTRODUCTION"
     },
     {
       "id": "9358fcc4c5604cb4a0ed1352c0c86331",
@@ -40826,6 +40879,35 @@
       "pathNotation": "CONTRACT_LAW.CONTRACT_FORMATION_AND_INTERPRETATION.TAXATION_AS_CONTRACTUAL_OBLIGATION"
     },
     {
+      "id": "8346bf0eeb1347a7b556b87436e39459",
+      "keys": [
+        "contract-law/contract-formation-and-validity"
+      ],
+      "label": "Contract Formation and Validity",
+      "minted": "2026-11-21",
+      "uuid": "8346bf0e-eb13-47a7-b556-b87436e39459"
+    },
+    {
+      "id": "60ae69ca0a47433d9c0758b0a3442a0c",
+      "keys": [
+        "contract-law/contract-formation-and-validity/subject-matter-of-contracts"
+      ],
+      "label": "Subject Matter of Contracts",
+      "minted": "2026-11-21",
+      "uuid": "60ae69ca-0a47-433d-9c07-58b0a3442a0c"
+    },
+    {
+      "id": "d5a8cfa789014f03bb7f21d5b26604eb",
+      "keys": [
+        "contract-law/contract-formation-and-validity/subject-matter-of-contracts/permissible-subject-matter-of-contracts"
+      ],
+      "label": "PERMISSIBLE SUBJECT MATTER OF CONTRACTS",
+      "minted": "2026-11-21",
+      "uuid": "d5a8cfa7-8901-4f03-bb7f-21d5b26604eb",
+      "corpusIssueId": "7149a373-9054-55e4-88db-c5f54050809c",
+      "pathNotation": "CONTRACT_LAW.CONTRACT_FORMATION_AND_VALIDITY.SUBJECT_MATTER_OF_CONTRACTS.PERMISSIBLE_SUBJECT_MATTER_OF_CONTRACTS"
+    },
+    {
       "id": "6134e18446784d588f39e5d5e8fc6caf",
       "keys": [
         "contract-law/contract-formation-framework"
@@ -52390,6 +52472,17 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.STATUTE_OF_FRAUDS.OPERATION_AND_EFFECT"
     },
     {
+      "id": "998c3b8927104b72af35777cf621e1f3",
+      "keys": [
+        "contract-law/formation-and-enforceability/statute-of-frauds/oral-contracts-within-statute-of-frauds"
+      ],
+      "label": "ORAL CONTRACTS WITHIN STATUTE OF FRAUDS",
+      "minted": "2026-11-21",
+      "uuid": "998c3b89-2710-4b72-af35-777cf621e1f3",
+      "corpusIssueId": "9dfdb015-71d3-59e4-93c7-49dd80c163e4",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.STATUTE_OF_FRAUDS.ORAL_CONTRACTS_WITHIN_STATUTE_OF_FRAUDS"
+    },
+    {
       "id": "75f7b8e8388943e18332eaa0d05516f2",
       "keys": [
         "contract-law/formation-and-enforceability/statute-of-frauds/original-promises"
@@ -57920,6 +58013,35 @@
       "uuid": "4aebe6c9-c5e4-406d-8eba-902e10f6303e",
       "corpusIssueId": "df0b5cf9-87c0-549e-89a9-2a70752e41dc",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.BREACH_OF_CONTRACT.COMMON_LAW_BREACH"
+    },
+    {
+      "id": "76c57f417ca54c4aa5826e05dde18c8e",
+      "keys": [
+        "contract-law/performance-and-breach/breach-of-contract/covenants"
+      ],
+      "label": "Covenants",
+      "minted": "2026-11-21",
+      "uuid": "76c57f41-7ca5-4c4a-a582-6e05dde18c8e"
+    },
+    {
+      "id": "0f17919e7bf745ad96ad1c7fd53e3cec",
+      "keys": [
+        "contract-law/performance-and-breach/breach-of-contract/covenants/independent-covenants"
+      ],
+      "label": "Independent Covenants",
+      "minted": "2026-11-21",
+      "uuid": "0f17919e-7bf7-45ad-96ad-1c7fd53e3cec"
+    },
+    {
+      "id": "13b72b212ae24b61bbf3c72af84334ba",
+      "keys": [
+        "contract-law/performance-and-breach/breach-of-contract/covenants/independent-covenants/definition-and-nature"
+      ],
+      "label": "DEFINITION AND NATURE",
+      "minted": "2026-11-21",
+      "uuid": "13b72b21-2ae2-4b61-bbf3-c72af84334ba",
+      "corpusIssueId": "4757e1ac-01f8-5866-a7af-deb94895bcc3",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.BREACH_OF_CONTRACT.COVENANTS.INDEPENDENT_COVENANTS.DEFINITION_AND_NATURE"
     },
     {
       "id": "3a0b29d40b9745108040b9636e68b0c7",
@@ -67473,6 +67595,15 @@
       "label": "Agency Principles Applicable to Corporations",
       "minted": "2026-10-02",
       "uuid": "91e87bed-e645-468c-bb57-5f32aa5d5a48"
+    },
+    {
+      "id": "09de27e8381e4ba9bd21579014f7c2af",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/agency-principles-applicable-to-corporations/agents-of-corporations"
+      ],
+      "label": "Agents of Corporations",
+      "minted": "2026-11-21",
+      "uuid": "09de27e8-381e-4ba9-bd21-579014f7c2af"
     },
     {
       "id": "1fa1012dc03f4434a45038f444656a56",
@@ -81568,6 +81699,35 @@
       "uuid": "2d76f7a6-99f5-4688-aa82-85fb63269bcb",
       "corpusIssueId": "9956e339-9558-539f-9b05-5551be229de2",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.ENTITY_FORMATION_AND_SELECTION.SOLE_PROPRIETORSHIPS.FORMATION_REQUIREMENTS"
+    },
+    {
+      "id": "848c9c1fb91942879d2544293387f749",
+      "keys": [
+        "corporate-law/business-organizations-law/entity-formation-and-structure"
+      ],
+      "label": "Entity Formation and Structure",
+      "minted": "2026-11-21",
+      "uuid": "848c9c1f-b919-4287-9d25-44293387f749"
+    },
+    {
+      "id": "af9506ab8bc0412984920219e0712884",
+      "keys": [
+        "corporate-law/business-organizations-law/entity-formation-and-structure/limited-liability"
+      ],
+      "label": "Limited Liability",
+      "minted": "2026-11-21",
+      "uuid": "af9506ab-8bc0-4129-8492-0219e0712884"
+    },
+    {
+      "id": "f56cad50e0f744c09b2d46294bb79bcf",
+      "keys": [
+        "corporate-law/business-organizations-law/entity-formation-and-structure/limited-liability/piercing-the-corporate-veil"
+      ],
+      "label": "PIERCING THE CORPORATE VEIL",
+      "minted": "2026-11-21",
+      "uuid": "f56cad50-e0f7-44c0-9b2d-46294bb79bcf",
+      "corpusIssueId": "9f3c609e-7e29-5e0d-aa6f-2eb05dea9631",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.ENTITY_FORMATION_AND_STRUCTURE.LIMITED_LIABILITY.PIERCING_THE_CORPORATE_VEIL"
     },
     {
       "id": "dda304f7dfb143a49782e957148d0c1b",
@@ -98177,6 +98337,17 @@
       "uuid": "cc325bd0-96e1-482d-81f4-890d319d7273",
       "corpusIssueId": "d3b7e176-7e3f-533c-bd2d-4bf4a4ceae2d",
       "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.DUTIES_OWED_BY_CONTROLLING_SHAREHOLDERS"
+    },
+    {
+      "id": "148bb298d25245bb98fec1f6a201c924",
+      "keys": [
+        "corporate-law/corporate-governance-law/duty-and-liability-of-the-corporation"
+      ],
+      "label": "DUTY AND LIABILITY OF THE CORPORATION",
+      "minted": "2026-11-21",
+      "uuid": "148bb298-d252-45bb-98fe-c1f6a201c924",
+      "corpusIssueId": "05a117fd-f83d-5deb-b625-9d50b444d368",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.DUTY_AND_LIABILITY_OF_THE_CORPORATION"
     },
     {
       "id": "c0cc28a3e5154a7ab8d9127c72cd2d93",
@@ -140626,6 +140797,26 @@
       "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.PRIOR_APPROPRIATION.MODE_OF_ACQUISITION_OF_WATER_RIGHTS.RIGHTS_BY_GRANT_OR_CONDEMNATION"
     },
     {
+      "id": "5243a5b9b2e843248b5d8280ef163106",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/prior-appropriation/nature-of-appropriative-right"
+      ],
+      "label": "Nature of Appropriative Right",
+      "minted": "2026-11-21",
+      "uuid": "5243a5b9-b2e8-4324-8b5d-8280ef163106"
+    },
+    {
+      "id": "616b06e0f7aa43488b966f8a197a7bc2",
+      "keys": [
+        "environmental-and-natural-resource-law/water-resources-and-wetlands-law/prior-appropriation/nature-of-appropriative-right/exclusivity-of-appropriative-right"
+      ],
+      "label": "EXCLUSIVITY OF APPROPRIATIVE RIGHT",
+      "minted": "2026-11-21",
+      "uuid": "616b06e0-f7aa-4348-8b96-6f8a197a7bc2",
+      "corpusIssueId": "e17dfe4a-7caf-5156-9ab0-30f269adbe48",
+      "pathNotation": "ENVIRONMENTAL_AND_NATURAL_RESOURCE_LAW.WATER_RESOURCES_AND_WETLANDS_LAW.PRIOR_APPROPRIATION.NATURE_OF_APPROPRIATIVE_RIGHT.EXCLUSIVITY_OF_APPROPRIATIVE_RIGHT"
+    },
+    {
       "id": "90dad9597f524bb2ae812b1c68809047",
       "keys": [
         "environmental-and-natural-resource-law/water-resources-and-wetlands-law/prior-appropriation/prior-appropriation"
@@ -164009,6 +164200,26 @@
       "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.DOCUMENTARY_EVIDENCE.SCIENTIFIC_AND_TECHNICAL_WRITINGS"
     },
     {
+      "id": "c754c79964144bec93d66e9c76a74acb",
+      "keys": [
+        "evidence-law/types-of-evidence/documentary-evidence/threats-by-accused"
+      ],
+      "label": "Threats by Accused",
+      "minted": "2026-11-21",
+      "uuid": "c754c799-6414-4bec-93d6-6e9c76a74acb"
+    },
+    {
+      "id": "58b4e32a3a714f11be340ef3b0abcee2",
+      "keys": [
+        "evidence-law/types-of-evidence/documentary-evidence/threats-by-accused/impersonal-and-conditional-threats"
+      ],
+      "label": "IMPERSONAL AND CONDITIONAL THREATS",
+      "minted": "2026-11-21",
+      "uuid": "58b4e32a-3a71-4f11-be34-0ef3b0abcee2",
+      "corpusIssueId": "9b668966-b290-51b4-a9b0-4b65bfbd8980",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.DOCUMENTARY_EVIDENCE.THREATS_BY_ACCUSED.IMPERSONAL_AND_CONDITIONAL_THREATS"
+    },
+    {
       "id": "a45f262d2aa14a388909e6c1d9033d35",
       "keys": [
         "evidence-law/types-of-evidence/documentary-evidence/use-of-writings-for-comparison"
@@ -183907,6 +184118,15 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.NOTICE_OF_DISHONOR"
     },
     {
+      "id": "4d000e34087f4eb8b89ad2e3c6ecc0a8",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/notice-of-dishonor/form-of-notice"
+      ],
+      "label": "Form of Notice",
+      "minted": "2026-11-21",
+      "uuid": "4d000e34-087f-4eb8-b89a-d2e3c6ecc0a8"
+    },
+    {
       "id": "08c9a78df22846568869ed39ede968df",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/notice-of-dishonor/notice-of-dishonor"
@@ -189234,6 +189454,26 @@
       "uuid": "1512da40-fc9c-49ec-9f62-7de407e327b9",
       "corpusIssueId": "b195563d-1b35-5118-9437-a98d860a563e",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_SURETIES.LIABILITY_OF_SURETIES.LIABILITY_DESPITE_TENANCY_OR_MODE_OF_OFFICE"
+    },
+    {
+      "id": "85b3b080176040cb843a835a445f3911",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-sureties/liability-of-surety-for-public-officials"
+      ],
+      "label": "Liability of Surety for Public Officials",
+      "minted": "2026-11-21",
+      "uuid": "85b3b080-1760-40cb-843a-835a445f3911"
+    },
+    {
+      "id": "b7ae5823a4cb495e9b81b28282ef4cc1",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-sureties/liability-of-surety-for-public-officials/liability-of-surety-of-clerk-of-court"
+      ],
+      "label": "LIABILITY OF SURETY OF CLERK OF COURT",
+      "minted": "2026-11-21",
+      "uuid": "b7ae5823-a4cb-495e-9b81-b28282ef4cc1",
+      "corpusIssueId": "acd4a7b2-3196-581c-a9b2-7fed9d3131bd",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_SURETIES.LIABILITY_OF_SURETY_FOR_PUBLIC_OFFICIALS.LIABILITY_OF_SURETY_OF_CLERK_OF_COURT"
     },
     {
       "id": "8e8c204698774d60af807283d0ece55f",
@@ -247145,6 +247385,15 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.LIABILITY_OF_AGENTS.MEASURE_OF_LIABILITY.DUTY_AS_MEASURE_OF_LIABILITY"
     },
     {
+      "id": "3941630dc147431ab9c1e091c3c68db8",
+      "keys": [
+        "law-of-obligations/liability-of-principal"
+      ],
+      "label": "Liability of Principal",
+      "minted": "2026-11-21",
+      "uuid": "3941630d-c147-431a-b9c1-e091c3c68db8"
+    },
+    {
       "id": "9bc8d9b9f020485aa0c5a5aff2c97f85",
       "keys": [
         "law-of-obligations/liability-of-principal-and-agent"
@@ -247192,6 +247441,17 @@
       "uuid": "50fd5d76-73c3-4ba1-bb34-9ced23c0daea",
       "corpusIssueId": "f7d5f400-a78a-5b08-bf07-a2d5d4f880d5",
       "pathNotation": "LAW_OF_OBLIGATIONS.LIABILITY_OF_PRINCIPAL_AND_AGENT.LIABILITY_OF_AGENT_FOR_SUBAGENT_S_ACTS.BROKER_S_LIABILITY_FOR_AGENT_S_ACTS"
+    },
+    {
+      "id": "d1b2a6d6276044439a1f01ebc09c0843",
+      "keys": [
+        "law-of-obligations/liability-of-principal/estoppel-arising-from-agent-s-acts"
+      ],
+      "label": "ESTOPPEL ARISING FROM AGENT'S ACTS",
+      "minted": "2026-11-21",
+      "uuid": "d1b2a6d6-2760-4443-9a1f-01ebc09c0843",
+      "corpusIssueId": "cdf07e8e-cd57-514d-a6b5-e7ec07fba9c8",
+      "pathNotation": "LAW_OF_OBLIGATIONS.LIABILITY_OF_PRINCIPAL.ESTOPPEL_ARISING_FROM_AGENT_S_ACTS"
     },
     {
       "id": "64db24713d374c1fbb27849ee88f329a",
@@ -247532,6 +247792,26 @@
       "label": "Mistake as Ground for Restitution",
       "minted": "2026-10-02",
       "uuid": "5e1172b9-2aee-4faf-bf9d-81485ecc6b78"
+    },
+    {
+      "id": "527ac64102974cf1b41de62ea24e7a95",
+      "keys": [
+        "law-of-obligations/mistake-as-ground-for-restitution/mistake-of-law"
+      ],
+      "label": "Mistake of Law",
+      "minted": "2026-11-21",
+      "uuid": "527ac641-0297-4cf1-b41d-e62ea24e7a95"
+    },
+    {
+      "id": "6460fbfdf60544dfb34221a9601c0540",
+      "keys": [
+        "law-of-obligations/mistake-as-ground-for-restitution/mistake-of-law/recovery-of-money-paid-under-mistake-of-law"
+      ],
+      "label": "RECOVERY OF MONEY PAID UNDER MISTAKE OF LAW",
+      "minted": "2026-11-21",
+      "uuid": "6460fbfd-f605-44df-b342-21a9601c0540",
+      "corpusIssueId": "72161593-70cf-53d4-9e5d-27bd0766aae8",
+      "pathNotation": "LAW_OF_OBLIGATIONS.MISTAKE_AS_GROUND_FOR_RESTITUTION.MISTAKE_OF_LAW.RECOVERY_OF_MONEY_PAID_UNDER_MISTAKE_OF_LAW"
     },
     {
       "id": "1f1c416540db48f281bcf58ff9ee1edf",
@@ -260096,6 +260376,17 @@
       "uuid": "5104f8d6-466d-49ef-9edb-d980285763d7",
       "corpusIssueId": "c88f217c-5c40-5d45-933a-1a0991f90a47",
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.AFFIRMATIVE_MISFEASANCE_VERSUS_NONFEASANCE.DISGUISED_AFFIRMATIVE_ACTS.RESCUERS"
+    },
+    {
+      "id": "4756283c6398435487eae8d22bb8baa0",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/affirmative-misfeasance-versus-nonfeasance/no-duty-to-aid-or-protect"
+      ],
+      "label": "NO DUTY TO AID OR PROTECT",
+      "minted": "2026-11-21",
+      "uuid": "4756283c-6398-4354-87ea-e8d22bb8baa0",
+      "corpusIssueId": "3eda2b31-32f6-542a-bd6a-acd3627a4bec",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.AFFIRMATIVE_MISFEASANCE_VERSUS_NONFEASANCE.NO_DUTY_TO_AID_OR_PROTECT"
     },
     {
       "id": "f2590099d11a4eea856c67d78f0edf41",
@@ -282335,6 +282626,17 @@
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.MUNICIPAL_POWERS_AND_DUTIES.INFRASTRUCTURE_AND_PUBLIC_WORKS.BRIDGES"
     },
     {
+      "id": "de69cb34a4c740ca9612f9d39c256748",
+      "keys": [
+        "municipal-law/municipal-corporations/municipal-powers-and-duties/infrastructure-and-public-works/completion-requirements-for-plants-or-roads"
+      ],
+      "label": "COMPLETION REQUIREMENTS FOR PLANTS OR ROADS",
+      "minted": "2026-11-21",
+      "uuid": "de69cb34-a4c7-40ca-9612-f9d39c256748",
+      "corpusIssueId": "07ccbd27-0078-58af-a893-149f2fbbd91b",
+      "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.MUNICIPAL_POWERS_AND_DUTIES.INFRASTRUCTURE_AND_PUBLIC_WORKS.COMPLETION_REQUIREMENTS_FOR_PLANTS_OR_ROADS"
+    },
+    {
       "id": "e9ca82d5adc04694b7e4c83f6a620b33",
       "keys": [
         "municipal-law/municipal-corporations/municipal-powers-and-functions"
@@ -289930,6 +290232,15 @@
       "uuid": "c9e89b10-fb22-4a38-9a2e-27c7537dec27",
       "corpusIssueId": "052a0c08-b852-5542-bacb-5516ccd4e47a",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.DESERTION.NON_COHABITATION_DISTINGUISHED_FROM_DESERTION"
+    },
+    {
+      "id": "502ef2d8a2be4f8fa5411b59cb040f3a",
+      "keys": [
+        "personal-and-family-law/marriage-law/desertion/offer-to-renew-cohabitation-and-forgiveness"
+      ],
+      "label": "Offer to Renew Cohabitation and Forgiveness",
+      "minted": "2026-11-21",
+      "uuid": "502ef2d8-a2be-4f8f-a541-1b59cb040f3a"
     },
     {
       "id": "51fd98217f914e9fa3057ff9f6993b65",
@@ -314850,6 +315161,17 @@
       "pathNotation": "PROCEDURAL_LAW.AFFIRMATIVE_DEFENSES.LACK_OF_CAPACITY_TO_SUE"
     },
     {
+      "id": "df180a62eb1e448faf4b6e849d00fbc3",
+      "keys": [
+        "procedural-law/affirmative-defenses/plea-of-property"
+      ],
+      "label": "PLEA OF PROPERTY",
+      "minted": "2026-11-21",
+      "uuid": "df180a62-eb1e-448f-af4b-6e849d00fbc3",
+      "corpusIssueId": "5341f878-f9d0-556c-b41b-bec7e214bea6",
+      "pathNotation": "PROCEDURAL_LAW.AFFIRMATIVE_DEFENSES.PLEA_OF_PROPERTY"
+    },
+    {
       "id": "97fd2e2b4364491e85d1d25dc07609aa",
       "uuid": "97fd2e2b-4364-491e-85d1-d25dc07609aa",
       "keys": [
@@ -322160,6 +322482,26 @@
       "uuid": "5060d725-b230-4b2c-ae40-8c4498fb6e1e",
       "corpusIssueId": "0313e35b-37d1-5986-b25e-1b8836139432",
       "pathNotation": "PROCEDURAL_LAW.ENTRY_AND_FORM_OF_JUDGMENT.FORMAL_ENTRY.DISTINCTION_BETWEEN_JUDGMENTS_AND_DECREES"
+    },
+    {
+      "id": "9bc71a4035c645da844f473be6c7ea62",
+      "keys": [
+        "procedural-law/entry-and-form-of-judgment/judgment-by-consent-stipulation-or-agreement"
+      ],
+      "label": "Judgment by Consent Stipulation or Agreement",
+      "minted": "2026-11-21",
+      "uuid": "9bc71a40-35c6-45da-844f-473be6c7ea62"
+    },
+    {
+      "id": "1fc2f3b1bac848d38816c5ad6a26eaf1",
+      "keys": [
+        "procedural-law/entry-and-form-of-judgment/judgment-by-consent-stipulation-or-agreement/taking-judgment-against-agreement"
+      ],
+      "label": "TAKING JUDGMENT AGAINST AGREEMENT",
+      "minted": "2026-11-21",
+      "uuid": "1fc2f3b1-bac8-48d3-8816-c5ad6a26eaf1",
+      "corpusIssueId": "aa9206cc-69c4-5de1-8fd7-a6a43095550b",
+      "pathNotation": "PROCEDURAL_LAW.ENTRY_AND_FORM_OF_JUDGMENT.JUDGMENT_BY_CONSENT_STIPULATION_OR_AGREEMENT.TAKING_JUDGMENT_AGAINST_AGREEMENT"
     },
     {
       "id": "16d656a3f98e45b5be85f8e2f4b85a52",
@@ -369391,6 +369733,17 @@
       "pathNotation": "REAL_ESTATE_LAW.FREEHOLD_ESTATES.FEE_SIMPLE.LIMITATIONS_ON_FEE_SIMPLE_OWNERSHIP"
     },
     {
+      "id": "def3cb93273848d7ade2249f4f739997",
+      "keys": [
+        "real-estate-law/freehold-estates/fee-simple/no-greater-estate-beyond-fee-simple"
+      ],
+      "label": "NO GREATER ESTATE BEYOND FEE SIMPLE",
+      "minted": "2026-11-21",
+      "uuid": "def3cb93-2738-48d7-ade2-249f4f739997",
+      "corpusIssueId": "01a5fc60-c99f-54dc-a607-ddd9aff45a9f",
+      "pathNotation": "REAL_ESTATE_LAW.FREEHOLD_ESTATES.FEE_SIMPLE.NO_GREATER_ESTATE_BEYOND_FEE_SIMPLE"
+    },
+    {
       "id": "8d89db675a0f4bb3ba9dbad75f10c2cb",
       "keys": [
         "real-estate-law/freehold-estates/fee-tail"
@@ -379652,6 +380005,15 @@
       "uuid": "c895f13a-41c2-4a38-bb5a-85f93e2a0733",
       "corpusIssueId": "e11d3310-af78-51a7-9199-8bf3121f2e61",
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LEASE_TERMS_AND_DURATION.LEASES_FOR_YEARS"
+    },
+    {
+      "id": "7c9caebc95384f558e5d543142e9f5fb",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/lease-versus-agreement-to-lease"
+      ],
+      "label": "Lease Versus Agreement to Lease",
+      "minted": "2026-11-21",
+      "uuid": "7c9caebc-9538-4f55-8e5d-543142e9f5fb"
     },
     {
       "id": "4df1f8154b1e4cf0b0d5f07ff666a700",
@@ -418459,6 +418821,17 @@
       "uuid": "fd40fbc9-787a-4c8c-af8f-235d31957809",
       "corpusIssueId": "ccc9be55-0c04-55fe-bb1d-86c64087343b",
       "pathNotation": "REMEDIES_LAW.PROVISIONAL_REMEDIES.CREDITORS_AS_PROPER_PARTIES"
+    },
+    {
+      "id": "9fdf921f5ff84cdf91d0b53c9f5b4acc",
+      "keys": [
+        "remedies-law/provisional-remedies/excusable-delay-for-provisional-relief"
+      ],
+      "label": "EXCUSABLE DELAY FOR PROVISIONAL RELIEF",
+      "minted": "2026-11-21",
+      "uuid": "9fdf921f-5ff8-4cdf-91d0-b53c9f5b4acc",
+      "corpusIssueId": "0388a136-6c6d-5e4f-a2dd-c59c9176ab82",
+      "pathNotation": "REMEDIES_LAW.PROVISIONAL_REMEDIES.EXCUSABLE_DELAY_FOR_PROVISIONAL_RELIEF"
     },
     {
       "id": "45bb11b906f04d278276e708bf309f76",
