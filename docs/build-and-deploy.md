@@ -97,7 +97,31 @@ then cold: about 3.5–4.3 h on this corpus. Upgrading Astro does the same.
   `bun scripts/deploy-shards.ts`. It does **not** build, so run it only after
   a successful `pnpm run build`. `./build-deploy-tmux.sh` chains the two with
   `&&`.
-- `pnpm run deploy:full` builds and deploys in one command.
+- `pnpm run deploy:full` is the whole procedure in one command, in this order:
+  1. `corpus:clean` (`scripts/corpus-clean.sh`): in the runner checkout, delete
+     adult-host sources, HTTP 429 captures and bundles with no retained source,
+     and write a report of duplicate-issue candidates to
+     `.corpus-duplicates.json`. Duplicates are reported, never deleted: a person
+     decides and records it in the runner's `taxonomy_overlay/`. The deletions
+     are not committed; land them with a runner PR. `pnpm run corpus:clean:dry`
+     shows what would go; `CORPUS_CLEAN_SKIP=1` skips the step.
+  2. `ids:mint`, then `ids:check`: retire the ids of what was just deleted and
+     mint new concepts, once.
+  3. `skills:index`: regenerate the agent skill (see below).
+  4. the same build as `pnpm run build` (frontmatter check, store-writer patch
+     check, `astro build`, MCP catalog, pagefind).
+  5. `check:head` and `skos:check` on the fresh `dist/`.
+  6. `deploy-shards.ts`, then `smoke` against production.
+- **Stray heading markers** (`## ## Checklist …`) written by the runner are
+  removed at render time by `src/lib/remark-fix-heading-markers.ts`; the corpus
+  file is not changed. Pages already in the incremental cache keep their old
+  HTML until their digest changes or the cache is cleared.
+- **The agent skill is generated.** `pnpm run skills:index` writes
+  `public/.well-known/agent-skills/american-legal-digest/SKILL.md` from
+  `src/skills/american-legal-digest/SKILL.template.md` plus the list of
+  top-level areas and their concept counts from the registry, then rebuilds
+  `index.json`. Edit the template, never the published file. It runs at the
+  start of `build` and `deploy:full`, before `astro build` copies `public/`.
 - **Shards.** `deploy-shards.ts` packs the top-level `dist/` folders into Workers
   `digest-law-shard-a` … `-j`, each under 80k files (Cloudflare caps a Worker at
   100k). Shards deploy first; the root `digest-law` Worker, which owns the
@@ -121,7 +145,7 @@ minutes, with no rebuild:
 
 ```sh
 bun scripts/write-mcp-catalog.ts            # refresh dist/mcp-catalog.json
-pnpm run skills:index                       # if a SKILL.md changed (new digest)
+pnpm run skills:index                       # regenerate SKILL.md (template or areas changed)
 cp -r public/.well-known public/_headers dist/   # whatever changed in public/
 bun scripts/deploy-shards.ts --only=root
 scripts/smoke-prod.sh                       # read-only checks against digest.law

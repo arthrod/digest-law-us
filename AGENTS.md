@@ -20,8 +20,9 @@ The fix is baked into `package.json`: the `build` script starts with
 `NODE_OPTIONS=--max-old-space-size=24576` (dev/preview/sync likewise) and the
 `deploy:full` script with `NODE_OPTIONS=--max-old-space-size=12288`. `deploy`
 itself no longer builds: it runs `ids:check` and uploads the existing `dist/`,
-so run it after a successful `build` (or use `deploy:full` to build and deploy
-in one go). Rules:
+so run it after a successful `build` (or use `deploy:full`, which cleans the
+corpus, mints ids, regenerates the agent skill, builds, checks and deploys in
+one go — the step list is in docs/build-and-deploy.md). Rules:
 
 1. **Always build via `pnpm run build` / `pnpm run deploy:full`** — never invoke a raw
    `astro build`, and never remove or "simplify away" the `NODE_OPTIONS` prefix

@@ -3,6 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
+import { remarkFixHeadingMarkers } from "./src/lib/remark-fix-heading-markers";
 import { remarkStripFmEcho } from "./src/lib/remark-strip-fm-echo";
 
 /**
@@ -103,11 +104,14 @@ export default defineConfig({
   markdown: {
     // Astro 7 defaults to the Sätteri processor and takes remark/rehype
     // plugins on the processor, not on `markdown` (the old keys still work
-    // but warn). We stay on unified: the corpus needs remarkStripFmEcho,
+    // but warn). We stay on unified: the corpus needs remarkStripFmEcho and
+    // remarkFixHeadingMarkers (stray `## ##` headings),
     // and src/lib/render-md.ts renders source chunks through the same
     // pipeline. shikiConfig stays here — it is passed to the processor as
     // a shared option, not a unified() one.
-    processor: unified({ remarkPlugins: [remarkStripFmEcho] }),
+    processor: unified({
+      remarkPlugins: [remarkStripFmEcho, remarkFixHeadingMarkers],
+    }),
     shikiConfig: {
       defaultColor: false,
       themes: { dark: "night-owl", light: "min-light" },
