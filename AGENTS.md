@@ -102,6 +102,14 @@ change whenever a route does.
   merged PR. Install: `cp ops/systemd/digest-ids-sync.* ~/.config/systemd/user/
   && systemctl --user daemon-reload && systemctl --user enable --now
   digest-ids-sync.timer`. Logs: `journalctl --user -u digest-ids-sync`.
+- Two corpus directories can slugify to the same route key (a stray hyphen —
+  `FIRE_AND_NON-MARITIME_INSURANCE` — or a Title_Case/SCREAMING_SNAKE twin
+  the fleet left behind). When that happens `ids:mint` **skips the ambiguous
+  route** and prints `ambiguous route "..."` lines instead of minting either
+  twin or aborting the whole write (it used to abort, which wedged every
+  later mint and every deploy). The skipped route publishes on the legacy
+  route IRI until someone deletes the stray twin in the runner corpus; the
+  fix is a deletion PR there, not a registry edit.
 
 ## The Worker is load-bearing now — `assets`-only deploys are gone
 

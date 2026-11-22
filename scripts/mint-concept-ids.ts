@@ -23,6 +23,14 @@
  * the new key to the existing record by hand (P1-014H). Guessing here would
  * silently fabricate identity continuity, which is the whole thing this
  * registry exists to prevent.
+ *
+ * The same discipline applies one level down: when two corpus directories
+ * slugify to the same route key (a stray hyphen, a Title_Case/SCREAMING_SNAKE
+ * twin the fleet left behind), neither is the concept — both are skipped, the
+ * collision is reported, and the rest of the corpus still mints. Minting one
+ * of them would bind the key to an arbitrary twin; aborting the whole write
+ * (the old behavior) let a single stray directory block every later mint and
+ * every deploy behind it.
  */
 
 import { spawnSync } from "node:child_process";
@@ -34,6 +42,7 @@ import { CORPUS_DIR } from "../src/corpus.config";
 import type { ConceptRecord, ConceptRegistry } from "../src/lib/concept-ids";
 import {
   dashedUuid,
+  duplicateSlugClaims,
   mintConceptId,
   orphansOf,
   reconcileRegistry,
@@ -65,6 +74,8 @@ const CONCEPT_ID_FORM = /^[0-9a-f]{32}$/u,
   gitRepo = gitAt === -1 ? undefined : process.argv[gitAt + 1];
 
 interface CorpusConcept {
+  /** Corpus directory, relative to the okf root — diagnostics only. */
+  dir: string;
   /** Identity the runner allocated at generation time, when it did. */
   conceptId?: string;
   corpusIssueId?: string;
@@ -171,6 +182,7 @@ function collectFromGit(repo: string, ref: string): CorpusConcept[] {
     return {
       conceptId: fm.concept_id,
       corpusIssueId: fm.issue_id,
+      dir,
       label:
         fm.pref_label ?? fm.title ?? humanize(dir.split("/").at(-1) ?? dir),
       pathNotation: fm.notation,
@@ -194,13 +206,16 @@ async function collect(dir: string, out: CorpusConcept[]): Promise<void> {
       const full = path.join(dir, entry.name),
         // A bundle's digest is the .md named after its own directory (corpus.ts).
         // oxlint-disable-next-line eslint/sort-vars -- fm depends on full (TDZ)
-        fm = await frontmatterOf(path.join(full, `${entry.name}.md`));
+        fm = await frontmatterOf(path.join(full, `${entry.name}.md`)),
+        // oxlint-disable-next-line eslint/sort-vars -- rel depends on full (TDZ)
+        rel = path.relative(corpusRoot, full);
       out.push({
         conceptId: fm.concept_id,
         corpusIssueId: fm.issue_id,
+        dir: rel,
         label: fm.pref_label ?? fm.title ?? humanize(entry.name),
         pathNotation: fm.notation,
-        slugPath: slugPathOf(path.relative(corpusRoot, full)),
+        slugPath: slugPathOf(rel),
       });
       await collect(full, out);
     })
@@ -273,18 +288,34 @@ if (concepts.length === 0) {
 }
 
 // oxlint-disable-next-line eslint/one-var -- needs concepts collected above
-const liveKeys = new Set(concepts.map((c) => c.slugPath)),
+const collisions = duplicateSlugClaims(concepts),
+  duplicateKeys = new Set(collisions.map((c) => c.slugPath)),
+  liveKeys = new Set(concepts.map((c) => c.slugPath)),
   orphans = orphansOf(registry, liveKeys),
-  unminted = concepts.filter((c) => !existingKeys.has(c.slugPath)),
+  // A route two directories claim is not mintable: whichever twin won, the id
+  // would name a concept the corpus has twice. Skip the whole set — the site
+  // publishes the route on the legacy IRI until the stray twin is deleted.
+  unminted = concepts.filter(
+    (c) => !existingKeys.has(c.slugPath) && !duplicateKeys.has(c.slugPath)
+  ),
   // oxlint-disable-next-line eslint/sort-vars -- buried depends on liveKeys (TDZ)
   buried = registry.concepts.filter(
     (record) => record.retired && record.keys.some((k) => liveKeys.has(k))
   );
 
+for (const collision of collisions) {
+  process.stderr.write(
+    `ambiguous route "${collision.slugPath}" — claimed by ` +
+      `${collision.dirs.join(", ")}; not minting until one is deleted in ` +
+      `the runner corpus\n`
+  );
+}
+
 process.stdout.write(
   `corpus concepts: ${concepts.length}\n` +
     `registry records: ${registry.concepts.length}\n` +
     `unminted: ${unminted.length}\n` +
+    `ambiguous routes (claimed by >1 corpus dir, not minted): ${collisions.length}\n` +
     `orphaned records (key no longer in corpus): ${orphans.length}\n` +
     `retired records whose route is live again: ${buried.length}\n`
 );
