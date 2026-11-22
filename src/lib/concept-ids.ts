@@ -198,6 +198,46 @@ export function reconcileRegistry(
 }
 
 /**
+ * Corpus concepts whose slug path is claimed by more than one directory.
+ *
+ * Directory names arrive in two families (Title_Case and SCREAMING_SNAKE) plus
+ * the occasional stray hyphen, and `slugSegment` folds all of them to the same
+ * kebab route — `FIRE_AND_NON-MARITIME_INSURANCE` and
+ * `FIRE_AND_NON_MARITIME_INSURANCE` are one route, not two concepts. When the
+ * fleet leaves such a twin behind, minting would bind one route key to two ids,
+ * which `validateRegistry` (rightly) refuses — and refusing the *whole* write
+ * let a single stray directory wedge every later mint. So the mint asks this
+ * first and skips the ambiguous routes entirely: no id is guessed for either
+ * twin, the rest of the corpus still mints, and the collision is reported for
+ * a person to delete the stray in the runner corpus.
+ */
+export interface SlugCollision {
+  /** The route key both directories would publish under. */
+  slugPath: string;
+  /** The corpus directories claiming it, in collection order. */
+  dirs: string[];
+}
+
+/** Route keys claimed by more than one corpus directory, sorted for reports. */
+export function duplicateSlugClaims(
+  concepts: readonly { dir: string; slugPath: string }[]
+): SlugCollision[] {
+  const bySlug = new Map<string, string[]>();
+  for (const concept of concepts) {
+    const dirs = bySlug.get(concept.slugPath);
+    if (dirs) {
+      dirs.push(concept.dir);
+    } else {
+      bySlug.set(concept.slugPath, [concept.dir]);
+    }
+  }
+  return [...bySlug]
+    .filter(([, dirs]) => dirs.length > 1)
+    .map(([slugPath, dirs]) => ({ dirs, slugPath }))
+    .toSorted((a, b) => a.slugPath.localeCompare(b.slugPath));
+}
+
+/**
  * The live concept a merged-away id now resolves to, following `replacedBy`
  * through earlier merges. Undefined when the chain ends at a retired record
  * without a successor, or loops.

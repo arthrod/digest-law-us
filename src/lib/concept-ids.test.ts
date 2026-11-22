@@ -9,6 +9,7 @@ import {
   allConcepts,
   conceptIriFor,
   dashedUuid,
+  duplicateSlugClaims,
   legacyIriFor,
   mintConceptId,
   orphansOf,
@@ -365,5 +366,52 @@ describe("restoring a merged concept whose route came back", () => {
     expect(restored.map((r) => r.id)).toEqual([b.id]);
     expect(b.replacedBy).toBeUndefined();
     expect(validateRegistry(reg)).toEqual([]);
+  });
+});
+
+describe("corpus directories that slugify to the same route", () => {
+  test("no collisions when every route key is claimed once", () => {
+    expect(
+      duplicateSlugClaims([
+        { dir: "Insurance_Law", slugPath: "insurance-law" },
+        { dir: "Insurance_Law/FIRE_INSURANCE", slugPath: "fire-insurance" },
+      ])
+    ).toEqual([]);
+  });
+
+  test("reports a stray-hyphen twin with both directories, in order", () => {
+    expect(
+      duplicateSlugClaims([
+        {
+          dir: "Insurance_Law/FIRE_AND_NON-MARITIME_INSURANCE",
+          slugPath: "insurance-law/fire-and-non-maritime-insurance",
+        },
+        {
+          dir: "Insurance_Law/FIRE_AND_NON_MARITIME_INSURANCE",
+          slugPath: "insurance-law/fire-and-non-maritime-insurance",
+        },
+      ])
+    ).toEqual([
+      {
+        dirs: [
+          "Insurance_Law/FIRE_AND_NON-MARITIME_INSURANCE",
+          "Insurance_Law/FIRE_AND_NON_MARITIME_INSURANCE",
+        ],
+        slugPath: "insurance-law/fire-and-non-maritime-insurance",
+      },
+    ]);
+  });
+
+  test("a Title_Case/SCREAMING_SNAKE twin collides too", () => {
+    const collisions = duplicateSlugClaims([
+      { dir: "Corporate_Law/BUSINESS_ORGANIZATIONS_LAW", slugPath: "b" },
+      { dir: "Corporate_Law/Business_Organizations_Law", slugPath: "b" },
+      { dir: "Remedies_Law", slugPath: "a" },
+    ]);
+    expect(collisions.map((c) => c.slugPath)).toEqual(["b"]);
+    expect(collisions[0]?.dirs).toEqual([
+      "Corporate_Law/BUSINESS_ORGANIZATIONS_LAW",
+      "Corporate_Law/Business_Organizations_Law",
+    ]);
   });
 });
