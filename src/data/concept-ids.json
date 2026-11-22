@@ -20088,6 +20088,26 @@
       "pathNotation": "CAPITAL_MARKETS_LAW.FEDERAL_SECURITIES_LAW.ANTIFRAUD_PROVISIONS.RULE_10B_5"
     },
     {
+      "id": "8b65691f96d0425d89b3c781fa588fcb",
+      "keys": [
+        "capital-markets-law/financial-reporting-and-disclosure"
+      ],
+      "label": "Financial Reporting and Disclosure",
+      "minted": "2026-11-22",
+      "uuid": "8b65691f-96d0-425d-89b3-c781fa588fcb"
+    },
+    {
+      "id": "02ffd59dcaec4552a34f47aab2f8a15c",
+      "keys": [
+        "capital-markets-law/financial-reporting-and-disclosure/financial-statements"
+      ],
+      "label": "FINANCIAL STATEMENTS",
+      "minted": "2026-11-22",
+      "uuid": "02ffd59d-caec-4552-a34f-47aab2f8a15c",
+      "corpusIssueId": "b4fe15ab-77d5-58d9-95cb-2f93fafb254a",
+      "pathNotation": "CAPITAL_MARKETS_LAW.FINANCIAL_REPORTING_AND_DISCLOSURE.FINANCIAL_STATEMENTS"
+    },
+    {
       "id": "5d50b925b2ef4a96a6358cfd9be858e5",
       "keys": [
         "capital-markets-law/fraud-and-manipulation"
@@ -20115,6 +20135,35 @@
       "uuid": "24de6849-0424-4ede-8d46-e8a2a953153a",
       "corpusIssueId": "82215810-f73c-5ab2-9df3-b78fccf0ecec",
       "pathNotation": "CAPITAL_MARKETS_LAW.FRAUD_AND_MANIPULATION.SECTION_10_B_AND_RULE_10B_5.ANTIFRAUD_PROHIBITIONS"
+    },
+    {
+      "id": "63a9444e53584841843c36c998727882",
+      "keys": [
+        "capital-markets-law/investment-vehicles-and-funds"
+      ],
+      "label": "Investment Vehicles and Funds",
+      "minted": "2026-11-22",
+      "uuid": "63a9444e-5358-4841-843c-36c998727882"
+    },
+    {
+      "id": "ddf1362c133945cfbc4f932eb375882a",
+      "keys": [
+        "capital-markets-law/investment-vehicles-and-funds/private-funds"
+      ],
+      "label": "Private Funds",
+      "minted": "2026-11-22",
+      "uuid": "ddf1362c-1339-45cf-bc4f-932eb375882a"
+    },
+    {
+      "id": "22c33e6859f94486855487ca5b97ec96",
+      "keys": [
+        "capital-markets-law/investment-vehicles-and-funds/private-funds/regulation-of-hedge-funds-and-private-funds"
+      ],
+      "label": "REGULATION OF HEDGE FUNDS AND PRIVATE FUNDS",
+      "minted": "2026-11-22",
+      "uuid": "22c33e68-59f9-4486-8554-87ca5b97ec96",
+      "corpusIssueId": "b519dd93-86a3-5ba9-8869-be212fb23e4d",
+      "pathNotation": "CAPITAL_MARKETS_LAW.INVESTMENT_VEHICLES_AND_FUNDS.PRIVATE_FUNDS.REGULATION_OF_HEDGE_FUNDS_AND_PRIVATE_FUNDS"
     },
     {
       "id": "6d29d50f94f64e01a1c40a0cfc193ebe",
@@ -56260,6 +56309,17 @@
       "pathNotation": "CONTRACT_LAW.INTERPRETATION_AND_CONSTRUCTION.DEPENDENT_AND_INDEPENDENT_PROMISES"
     },
     {
+      "id": "384389e7469d48e696b7298245246b15",
+      "keys": [
+        "contract-law/interpretation-and-construction/derogation-of-law-by-contractual-terms"
+      ],
+      "label": "DEROGATION OF LAW BY CONTRACTUAL TERMS",
+      "minted": "2026-11-22",
+      "uuid": "384389e7-469d-48e6-96b7-298245246b15",
+      "corpusIssueId": "c4c38ef1-9ec2-59db-ad33-7768dee3c5ea",
+      "pathNotation": "CONTRACT_LAW.INTERPRETATION_AND_CONSTRUCTION.DEROGATION_OF_LAW_BY_CONTRACTUAL_TERMS"
+    },
+    {
       "id": "4d2722955a9e49ddaaacb0f188b7c83a",
       "keys": [
         "contract-law/interpretation-and-construction/determination-of-contractual-intent"
@@ -71019,6 +71079,15 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_FINANCE_AND_CAPITAL_STRUCTURE.DIVIDENDS.STOCK_DIVIDENDS.RESCISSION_OF_STOCK_DIVIDEND"
     },
     {
+      "id": "5ee5628460e8489ebfcca262ac761e5a",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-finance-and-capital-structure/dividends/stock-or-property-dividends"
+      ],
+      "label": "Stock or Property Dividends",
+      "minted": "2026-11-22",
+      "uuid": "5ee56284-60e8-489e-bfcc-a262ac761e5a"
+    },
+    {
       "id": "9b4fdeaed4f1474d834e6a5082688fc5",
       "keys": [
         "corporate-law/business-organizations-law/corporations/corporate-finance-and-capital-structure/increase-of-capital"
@@ -72563,7 +72632,8 @@
       "minted": "2026-11-16",
       "uuid": "225e077a-21b7-475f-ab73-86aa1be5132f",
       "corpusIssueId": "14224d5c-1329-5b4e-ad36-45c91cd0f02b",
-      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_FINANCE_AND_CAPITAL_STRUCTURE.SUBSCRIPTIONS_FOR_CORPORATE_STOCK.DETERMINATION_OF_SUBSCRIPTION_VALIDITY"
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_FINANCE_AND_CAPITAL_STRUCTURE.SUBSCRIPTIONS_FOR_CORPORATE_STOCK.DETERMINATION_OF_SUBSCRIPTION_VALIDITY",
+      "retired": "2026-11-22"
     },
     {
       "id": "8cbedf3b6372475591042e3c8817e99c",
@@ -79710,6 +79780,17 @@
       "label": "Membership",
       "minted": "2026-11-15",
       "uuid": "d4c35b04-929c-487e-bd9f-897c9da1e797"
+    },
+    {
+      "id": "41865380e63c4b68b0615ce6d7103c4d",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/membership-in-corporations"
+      ],
+      "label": "MEMBERSHIP IN CORPORATIONS",
+      "minted": "2026-11-22",
+      "uuid": "41865380-e63c-4b68-b061-5ce6d7103c4d",
+      "corpusIssueId": "69b53da0-d601-5de7-8eca-82d7ce743aae",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.MEMBERSHIP_IN_CORPORATIONS"
     },
     {
       "id": "e49d6d502d6e41578f96e4958787acdc",
@@ -152934,6 +153015,17 @@
       "pathNotation": "EVIDENCE_LAW.CASE_LAW_INTERPRETATIONS.PRECEDENTIAL_EVIDENTIARY_RULINGS_IN_CIVIL_AND_CRIMINAL_TRIALS"
     },
     {
+      "id": "13e3dddc5dba4d4780efff1a89eec41d",
+      "keys": [
+        "evidence-law/case-law-precedents"
+      ],
+      "label": "CASE LAW PRECEDENTS",
+      "minted": "2026-11-22",
+      "uuid": "13e3dddc-5dba-4d47-80ef-ff1a89eec41d",
+      "corpusIssueId": "2ee84d50-cf21-54e3-9851-ec06fb73290c",
+      "pathNotation": "EVIDENCE_LAW.CASE_LAW_PRECEDENTS"
+    },
+    {
       "id": "a791d003e11f4841ae89dcfb3e465673",
       "uuid": "a791d003-e11f-4841-ae89-dcfb3e465673",
       "keys": [
@@ -202624,6 +202716,35 @@
       "pathNotation": "INSURANCE_LAW.FIRE_AND_NON_MARITIME_INSURANCE.DOUBLE_INSURANCE_AND_CONTRIBUTION.IDENTITY_OF_SUBJECT_MATTER_AND_INTEREST"
     },
     {
+      "id": "62565d096a694a86b0aec25d883cec66",
+      "keys": [
+        "insurance-law/fire-and-non-maritime-insurance/fire-insurance"
+      ],
+      "label": "Fire Insurance",
+      "minted": "2026-11-22",
+      "uuid": "62565d09-6a69-4a86-b0ae-c25d883cec66"
+    },
+    {
+      "id": "f108a7ed98344e2897a47fe420fa1300",
+      "keys": [
+        "insurance-law/fire-and-non-maritime-insurance/fire-insurance/loss-and-recovery"
+      ],
+      "label": "Loss and Recovery",
+      "minted": "2026-11-22",
+      "uuid": "f108a7ed-9834-4e28-97a4-7fe420fa1300"
+    },
+    {
+      "id": "52dfdcbedbef4aa2b65b778522dc3176",
+      "keys": [
+        "insurance-law/fire-and-non-maritime-insurance/fire-insurance/loss-and-recovery/amount-of-loss-recoverable-and-salvage"
+      ],
+      "label": "AMOUNT OF LOSS RECOVERABLE AND SALVAGE",
+      "minted": "2026-11-22",
+      "uuid": "52dfdcbe-dbef-4aa2-b65b-778522dc3176",
+      "corpusIssueId": "2b689d09-5efc-53d9-b8c0-4b44ed42af76",
+      "pathNotation": "INSURANCE_LAW.FIRE_AND_NON_MARITIME_INSURANCE.FIRE_INSURANCE.LOSS_AND_RECOVERY.AMOUNT_OF_LOSS_RECOVERABLE_AND_SALVAGE"
+    },
+    {
       "id": "b167504d5c374b2092ed276e035a8bb8",
       "keys": [
         "insurance-law/fire-and-non-maritime-insurance/loss-and-indemnity"
@@ -243331,6 +243452,17 @@
       "uuid": "1301cf85-9a09-403f-94a9-9075bd5517c2",
       "corpusIssueId": "93d3985f-f7dc-5443-b42d-d3166229e713",
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_STATUTORY_CODES.CALIFORNIA_CIVIL_CODE_PROVISIONS"
+    },
+    {
+      "id": "13c7c50af537476bafdc98f734006159",
+      "keys": [
+        "jurisprudence-and-legal-method/state-statutory-codes/idaho-revised-statutes"
+      ],
+      "label": "IDAHO REVISED STATUTES",
+      "minted": "2026-11-22",
+      "uuid": "13c7c50a-f537-476b-afdc-98f734006159",
+      "corpusIssueId": "9f0c3b8a-cbf3-51c4-a57d-897feeab572f",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.STATE_STATUTORY_CODES.IDAHO_REVISED_STATUTES"
     },
     {
       "id": "8db50116f70b46ee96dce76a1bb5425e",
@@ -324237,6 +324369,33 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.WILLS_TESTAMENTARY_FORMALITIES_AND_EXECUTION.TYPES_OF_WILLS.NUNCUPATIVE_WILLS.AMERICAN_LEGISLATION_AND_POLICY"
     },
     {
+      "id": "3f2d80e9b0ee449195371bf0c9675ab0",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/wills-testamentary-formalities-and-execution/will-construction-and-interpretation"
+      ],
+      "label": "Will Construction and Interpretation",
+      "minted": "2026-11-22",
+      "uuid": "3f2d80e9-b0ee-4491-9537-1bf0c9675ab0"
+    },
+    {
+      "id": "f781c8e81b314e13acce7040467697c7",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/wills-testamentary-formalities-and-execution/will-construction-and-interpretation/election-doctrine"
+      ],
+      "label": "Election Doctrine",
+      "minted": "2026-11-22",
+      "uuid": "f781c8e8-1b31-4e13-acce-7040467697c7"
+    },
+    {
+      "id": "a718b37a8f4a4268943e85717fbf9310",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/wills-testamentary-formalities-and-execution/will-construction-and-interpretation/election-doctrine/time-for-making-election"
+      ],
+      "label": "Time for Making Election",
+      "minted": "2026-11-22",
+      "uuid": "a718b37a-8f4a-4268-943e-85717fbf9310"
+    },
+    {
       "id": "d7af676466dd4fd38617a409d3f265d2",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/wills-testamentary-formalities-and-execution/will-contests-and-validity-challenges"
@@ -328723,6 +328882,17 @@
       "uuid": "136dcd3c-d0b4-424f-abd1-6bb325a27d5a",
       "corpusIssueId": "2a848018-3160-54ee-97b7-85c3a2f0a65e",
       "pathNotation": "PROCEDURAL_LAW.COMMENCEMENT_OF_ACTIONS.FEDERAL_RULES_OF_CIVIL_PROCEDURE.RULE_3_COMMENCEMENT"
+    },
+    {
+      "id": "7eac77fa7855409f8ba18873cc29ba0c",
+      "keys": [
+        "procedural-law/commencement-of-actions/issuance-of-writs-and-process"
+      ],
+      "label": "ISSUANCE OF WRITS AND PROCESS",
+      "minted": "2026-11-22",
+      "uuid": "7eac77fa-7855-409f-8ba1-8873cc29ba0c",
+      "corpusIssueId": "8f314045-2bcf-59f5-8811-6d09b4353483",
+      "pathNotation": "PROCEDURAL_LAW.COMMENCEMENT_OF_ACTIONS.ISSUANCE_OF_WRITS_AND_PROCESS"
     },
     {
       "id": "16416c9520ba4a61b86459c2770f41e1",
@@ -413315,6 +413485,17 @@
       "pathNotation": "REAL_ESTATE_LAW.TRANSFERS_OF_REAL_PROPERTY.CONVEYANCES.TITLE_AND_INTERESTS_IN_REAL_PROPERTY.PURCHASER_S_RIGHTS_AND_LIABILITIES"
     },
     {
+      "id": "a7139c948a094a1ebe72b42d126d7490",
+      "keys": [
+        "real-estate-law/transfers-of-real-property/covenants-and-agreements-to-convey"
+      ],
+      "label": "COVENANTS AND AGREEMENTS TO CONVEY",
+      "minted": "2026-11-22",
+      "uuid": "a7139c94-8a09-4a1e-be72-b42d126d7490",
+      "corpusIssueId": "571ef68c-978f-578d-a4dd-7cadbf1f08df",
+      "pathNotation": "REAL_ESTATE_LAW.TRANSFERS_OF_REAL_PROPERTY.COVENANTS_AND_AGREEMENTS_TO_CONVEY"
+    },
+    {
       "id": "f5fb6a94647e4c90a07d0b529cec7f3b",
       "uuid": "f5fb6a94-647e-4c90-a07d-0b529cec7f3b",
       "keys": [
@@ -418818,6 +418999,17 @@
       "label": "Laches",
       "minted": "2026-11-18",
       "uuid": "2b0a698d-5978-4c66-b4db-053c966c59c9"
+    },
+    {
+      "id": "d3f0149724be4ff1ab5cdaf867bdf3b7",
+      "keys": [
+        "remedies-law/equitable-defenses/laches/application-in-federal-courts"
+      ],
+      "label": "APPLICATION IN FEDERAL COURTS",
+      "minted": "2026-11-22",
+      "uuid": "d3f01497-24be-4ff1-ab5c-daf867bdf3b7",
+      "corpusIssueId": "34906beb-48d8-5f84-bcdf-2f00852c05c6",
+      "pathNotation": "REMEDIES_LAW.EQUITABLE_DEFENSES.LACHES.APPLICATION_IN_FEDERAL_COURTS"
     },
     {
       "id": "3425fee776ef41428ad20c4d73f53f50",
@@ -434499,6 +434691,26 @@
       "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.APPOINTMENT_OF_RECEIVERS.SEIZURE_FUNCTION"
     },
     {
+      "id": "690dc5c6cb27414d9657263d55a918c0",
+      "keys": [
+        "remedies-law/receivership/appointment-of-receivers/standing-and-interest-of-applicant"
+      ],
+      "label": "Standing and Interest of Applicant",
+      "minted": "2026-11-22",
+      "uuid": "690dc5c6-cb27-414d-9657-263d55a918c0"
+    },
+    {
+      "id": "3566fc80462e42e7a624c5fa8bed5a62",
+      "keys": [
+        "remedies-law/receivership/appointment-of-receivers/standing-and-interest-of-applicant/persons-without-interest-in-controversy"
+      ],
+      "label": "PERSONS WITHOUT INTEREST IN CONTROVERSY",
+      "minted": "2026-11-22",
+      "uuid": "3566fc80-462e-42e7-a624-c5fa8bed5a62",
+      "corpusIssueId": "fe0181a1-0b3a-5f23-85ee-3e983e4e634d",
+      "pathNotation": "REMEDIES_LAW.RECEIVERSHIP.APPOINTMENT_OF_RECEIVERS.STANDING_AND_INTEREST_OF_APPLICANT.PERSONS_WITHOUT_INTEREST_IN_CONTROVERSY"
+    },
+    {
       "id": "89f9915524cd48a2a7b24a49646145ca",
       "keys": [
         "remedies-law/receivership/appointment-of-receivers/statutory-authority-for-appointment"
@@ -437164,6 +437376,26 @@
       "pathNotation": "REMEDIES_LAW.SEIZURE_OF_PERSON_OR_PROPERTY.FEDERAL_RULE_OF_CIVIL_PROCEDURE_64"
     },
     {
+      "id": "e542bd8a7e73477e81fa12e3dd330509",
+      "keys": [
+        "remedies-law/service-of-process"
+      ],
+      "label": "Service of Process",
+      "minted": "2026-11-22",
+      "uuid": "e542bd8a-7e73-477e-81fa-12e3dd330509"
+    },
+    {
+      "id": "618967f8560144e6ae463c6bb45a67c3",
+      "keys": [
+        "remedies-law/service-of-process/manner-of-service"
+      ],
+      "label": "MANNER OF SERVICE",
+      "minted": "2026-11-22",
+      "uuid": "618967f8-5601-44e6-ae46-3c6bb45a67c3",
+      "corpusIssueId": "88f83f17-6102-5c8c-9757-2bf43b430828",
+      "pathNotation": "REMEDIES_LAW.SERVICE_OF_PROCESS.MANNER_OF_SERVICE"
+    },
+    {
       "id": "0bced67d927149a1aa59ec7964d15705",
       "keys": [
         "remedies-law/set-off"
@@ -437271,6 +437503,26 @@
       "uuid": "22813043-768c-4102-a33b-28b8dd8eb39a",
       "corpusIssueId": "565b5fd4-9f7f-50b2-b1cc-3226636f9a92",
       "pathNotation": "REMEDIES_LAW.SPECIFIC_PERFORMANCE.CONTRACTS_RELATING_TO_REAL_PROPERTY.ENFORCEMENT_BY_VENDOR_OF_REALTY"
+    },
+    {
+      "id": "9d46a9c1f99e461aa170a8755250b97e",
+      "keys": [
+        "remedies-law/specific-performance/covenants-to-repair"
+      ],
+      "label": "Covenants to Repair",
+      "minted": "2026-11-22",
+      "uuid": "9d46a9c1-f99e-461a-a170-a8755250b97e"
+    },
+    {
+      "id": "710192b61128423ba8619dcf34308316",
+      "keys": [
+        "remedies-law/specific-performance/covenants-to-repair/availability-against-landlord-and-tenant"
+      ],
+      "label": "AVAILABILITY AGAINST LANDLORD AND TENANT",
+      "minted": "2026-11-22",
+      "uuid": "710192b6-1128-423b-a861-9dcf34308316",
+      "corpusIssueId": "d5159f96-deca-58b0-9ce9-c0f3d3fd62de",
+      "pathNotation": "REMEDIES_LAW.SPECIFIC_PERFORMANCE.COVENANTS_TO_REPAIR.AVAILABILITY_AGAINST_LANDLORD_AND_TENANT"
     },
     {
       "id": "1cbce7607bba407999de4b73f7fad3ae",
