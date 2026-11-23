@@ -25321,6 +25321,26 @@
       "uuid": "bcff23c8-0580-44ec-945e-3840205eed49"
     },
     {
+      "id": "307e7a7387cc41139a594ad13a1cea24",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/performance-and-delivery/buyer-s-acceptance-and-receipt"
+      ],
+      "label": "Buyer S Acceptance and Receipt",
+      "minted": "2026-11-23",
+      "uuid": "307e7a73-87cc-4113-9a59-4ad13a1cea24"
+    },
+    {
+      "id": "aa037d4d207745f383c468d7dd3269d9",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/performance-and-delivery/buyer-s-acceptance-and-receipt/acceptance-as-question-of-fact"
+      ],
+      "label": "ACCEPTANCE AS QUESTION OF FACT",
+      "minted": "2026-11-23",
+      "uuid": "aa037d4d-2077-45f3-83c4-68d7dd3269d9",
+      "corpusIssueId": "ad99b177-1952-5bcb-bf77-2f7017fd58cd",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.BUSINESS_TRANSACTIONS_LAW.PERFORMANCE_AND_DELIVERY.BUYER_S_ACCEPTANCE_AND_RECEIPT.ACCEPTANCE_AS_QUESTION_OF_FACT"
+    },
+    {
       "id": "c8e627f0f8464b78a4e34919105e361c",
       "keys": [
         "commercial-and-trade-law/business-transactions-law/performance-and-delivery/buyer-s-rights-on-receipt"
@@ -31554,6 +31574,17 @@
       "uuid": "f11c7976-ae50-479c-8f78-6644ddff0bb5",
       "corpusIssueId": "6f486bd5-d3e8-582f-98d6-60240bc9267d",
       "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.DUE_PROCESS.JUDICIAL_REVIEW_OF_CONSTITUTIONAL_AMENDMENTS"
+    },
+    {
+      "id": "19bbc27d4f474e6592715cee2e44cc2d",
+      "keys": [
+        "constitutional-and-civil-rights-law/due-process/law-of-the-land-doctrine"
+      ],
+      "label": "LAW OF THE LAND DOCTRINE",
+      "minted": "2026-11-23",
+      "uuid": "19bbc27d-4f47-4e65-9271-5cee2e44cc2d",
+      "corpusIssueId": "b4d8802b-67b3-5e7d-8367-26f7ce8c38f4",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.DUE_PROCESS.LAW_OF_THE_LAND_DOCTRINE"
     },
     {
       "id": "e165a829358d447a9e07167b0c3238c0",
@@ -76421,6 +76452,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_GOVERNANCE_AND_MANAGEMENT.DIRECTORS_AND_OFFICERS.DIRECTORS_FINANCIAL_INTERESTS_AND_CONFLICTS.DEBTS_OWED_TO_DIRECTORS"
     },
     {
+      "id": "b8242a289f2f4dce9b13411f549c38a3",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance-and-management/directors-and-officers/duties-and-liabilities"
+      ],
+      "label": "Duties and Liabilities",
+      "minted": "2026-11-23",
+      "uuid": "b8242a28-9f2f-4dce-9b13-411f549c38a3"
+    },
+    {
+      "id": "f7dd438111a04e5e9693ab2f9d19683d",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-governance-and-management/directors-and-officers/duties-and-liabilities/non-exculpation-for-ignorance-or-negligence"
+      ],
+      "label": "NON-EXCULPATION FOR IGNORANCE OR NEGLIGENCE",
+      "minted": "2026-11-23",
+      "uuid": "f7dd4381-11a0-4e5e-9693-ab2f9d19683d",
+      "corpusIssueId": "75312c70-1d18-513f-9c6f-c1f79ada1d1e",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_GOVERNANCE_AND_MANAGEMENT.DIRECTORS_AND_OFFICERS.DUTIES_AND_LIABILITIES.NON_EXCULPATION_FOR_IGNORANCE_OR_NEGLIGENCE"
+    },
+    {
       "id": "a65d2d7048f94875b83c50c71ed141ce",
       "keys": [
         "corporate-law/business-organizations-law/corporations/corporate-governance-and-management/directors-authority-and-duties"
@@ -104081,6 +104132,26 @@
       "uuid": "046add03-8cfa-41c5-963b-5718d3b5444f"
     },
     {
+      "id": "b4404a533aaa4ad8b85a0c51250d2361",
+      "keys": [
+        "corporate-law/corporate-governance-law/directors-duties-and-liabilities/dividends"
+      ],
+      "label": "Dividends",
+      "minted": "2026-11-23",
+      "uuid": "b4404a53-3aaa-4ad8-b85a-0c51250d2361"
+    },
+    {
+      "id": "71eb1f5f78464b76ad801fec7207e6cd",
+      "keys": [
+        "corporate-law/corporate-governance-law/directors-duties-and-liabilities/dividends/liability-for-improper-dividends"
+      ],
+      "label": "LIABILITY FOR IMPROPER DIVIDENDS",
+      "minted": "2026-11-23",
+      "uuid": "71eb1f5f-7846-4b76-ad80-1fec7207e6cd",
+      "corpusIssueId": "b33917b1-0a45-5168-9d06-292f34ee9b90",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_GOVERNANCE_LAW.DIRECTORS_DUTIES_AND_LIABILITIES.DIVIDENDS.LIABILITY_FOR_IMPROPER_DIVIDENDS"
+    },
+    {
       "id": "013c97277c5849b880aa50995cdf10e5",
       "keys": [
         "corporate-law/corporate-governance-law/directors-duties-and-liabilities/liability-for-negligence"
@@ -119888,6 +119959,26 @@
       "pathNotation": "CRIMINAL_LAW.ATTEMPT_LIABILITY.ACT_WITH_INTENT_TO_COMMIT_OFFENSE"
     },
     {
+      "id": "88add95852594dedbed0a6c7e5778bdd",
+      "keys": [
+        "criminal-law/attempt-liability/preparatory-conduct-and-the-preparation-attempt-line"
+      ],
+      "label": "Preparatory Conduct and the Preparation Attempt Line",
+      "minted": "2026-11-23",
+      "uuid": "88add958-5259-4ded-bed0-a6c7e5778bdd"
+    },
+    {
+      "id": "cb171418fdfa418ead3f1b202b8319be",
+      "keys": [
+        "criminal-law/attempt-liability/preparatory-conduct-and-the-preparation-attempt-line/pre-attempt-conduct"
+      ],
+      "label": "PRE-ATTEMPT CONDUCT",
+      "minted": "2026-11-23",
+      "uuid": "cb171418-fdfa-418e-ad3f-1b202b8319be",
+      "corpusIssueId": "a957c514-f630-540d-9cb7-a44f046e365e",
+      "pathNotation": "CRIMINAL_LAW.ATTEMPT_LIABILITY.PREPARATORY_CONDUCT_AND_THE_PREPARATION_ATTEMPT_LINE.PRE_ATTEMPT_CONDUCT"
+    },
+    {
       "id": "03dce456c59c4819aaf3001b0a99c95e",
       "keys": [
         "criminal-law/attempt/assaults-with-intent"
@@ -120239,6 +120330,15 @@
       "pathNotation": "CRIMINAL_LAW.BURGLARY.BREAKING.BREAKING_OF_OUTSIDE_FENCE_OF_CURTILAGE"
     },
     {
+      "id": "3063a881bab5451d9b24b1da4fe8ebac",
+      "keys": [
+        "criminal-law/burglary/elements"
+      ],
+      "label": "Elements",
+      "minted": "2026-11-23",
+      "uuid": "3063a881-bab5-451d-9b24-b1da4fe8ebac"
+    },
+    {
       "id": "37f242c31cfb4a6e83e9e95ff1719525",
       "uuid": "37f242c3-1cfb-4a6e-83e9-e95ff1719525",
       "keys": [
@@ -120310,6 +120410,26 @@
       "uuid": "33555bf1-b492-44c3-ada0-10d382fe3673",
       "corpusIssueId": "9e72cb60-e027-5745-b3ba-b8ec834a4e65",
       "pathNotation": "CRIMINAL_LAW.BURGLARY.ELEMENTS_OF_BURGLARY.PLACE_OR_PREMISES_SUBJECT_TO_BURGLARY"
+    },
+    {
+      "id": "b2b33436e9ac4ba7aa085391f3a402b6",
+      "keys": [
+        "criminal-law/burglary/elements/character-of-the-building-or-premises"
+      ],
+      "label": "Character of the Building or Premises",
+      "minted": "2026-11-23",
+      "uuid": "b2b33436-e9ac-4ba7-aa08-5391f3a402b6"
+    },
+    {
+      "id": "691ac55e20da41559abe98335c64d7ad",
+      "keys": [
+        "criminal-law/burglary/elements/character-of-the-building-or-premises/corporate-owner-status"
+      ],
+      "label": "CORPORATE OWNER STATUS",
+      "minted": "2026-11-23",
+      "uuid": "691ac55e-20da-4155-9abe-98335c64d7ad",
+      "corpusIssueId": "af96d527-6cc5-5590-81e8-14492ab43e39",
+      "pathNotation": "CRIMINAL_LAW.BURGLARY.ELEMENTS.CHARACTER_OF_THE_BUILDING_OR_PREMISES.CORPORATE_OWNER_STATUS"
     },
     {
       "id": "408fece1a9ee40f5a7e715e869dfeb6c",
@@ -131620,6 +131740,35 @@
       "pathNotation": "CRIMINAL_LAW.MENS_REA_AND_CULPABILITY.INTOXICATION.EFFECT_OF_INTOXICATION_ON_DEGREE_OF_CRIME"
     },
     {
+      "id": "d6968e491faf481b884d5cacb9df5769",
+      "keys": [
+        "criminal-law/mens-rea-and-culpability/mistake-doctrine"
+      ],
+      "label": "Mistake Doctrine",
+      "minted": "2026-11-23",
+      "uuid": "d6968e49-1faf-481b-884d-5cacb9df5769"
+    },
+    {
+      "id": "e4c327f93bc44bf69ac8b8d9b918f03f",
+      "keys": [
+        "criminal-law/mens-rea-and-culpability/mistake-doctrine/mistake-of-law"
+      ],
+      "label": "Mistake of Law",
+      "minted": "2026-11-23",
+      "uuid": "e4c327f9-3bc4-4bf6-9ac8-b8d9b918f03f"
+    },
+    {
+      "id": "2d147119be4549eda0cd9dc88f8a2bef",
+      "keys": [
+        "criminal-law/mens-rea-and-culpability/mistake-doctrine/mistake-of-law/mistake-regarding-legal-element"
+      ],
+      "label": "MISTAKE REGARDING LEGAL ELEMENT",
+      "minted": "2026-11-23",
+      "uuid": "2d147119-be45-49ed-a0cd-9dc88f8a2bef",
+      "corpusIssueId": "0b7fc0ef-f6de-5eb4-b4cf-1f547e0821d9",
+      "pathNotation": "CRIMINAL_LAW.MENS_REA_AND_CULPABILITY.MISTAKE_DOCTRINE.MISTAKE_OF_LAW.MISTAKE_REGARDING_LEGAL_ELEMENT"
+    },
+    {
       "id": "76e41fa290d243ab9eae53134b003773",
       "keys": [
         "criminal-law/mens-rea-and-culpability/omissions-and-duty-to-act"
@@ -134206,6 +134355,64 @@
       "label": "Assault",
       "minted": "2026-10-02",
       "uuid": "16e65e45-dc47-434e-b50e-24118c7ffcf0"
+    },
+    {
+      "id": "86dd3e492bb540d1ac2fff973418580f",
+      "keys": [
+        "criminal-law/offenses-against-the-person/assault-and-battery"
+      ],
+      "label": "Assault and Battery",
+      "minted": "2026-11-23",
+      "uuid": "86dd3e49-2bb5-40d1-ac2f-ff973418580f"
+    },
+    {
+      "id": "153434493f094a3c940a6cac73073a5a",
+      "keys": [
+        "criminal-law/offenses-against-the-person/assault-and-battery/aggravated-assault"
+      ],
+      "label": "Aggravated Assault",
+      "minted": "2026-11-23",
+      "uuid": "15343449-3f09-4a3c-940a-6cac73073a5a"
+    },
+    {
+      "id": "0d995d2419ae470d9283b7eecadcb816",
+      "keys": [
+        "criminal-law/offenses-against-the-person/assault-and-battery/aggravated-assault/assault-with-a-deadly-weapon"
+      ],
+      "label": "ASSAULT WITH A DEADLY WEAPON",
+      "minted": "2026-11-23",
+      "uuid": "0d995d24-19ae-470d-9283-b7eecadcb816",
+      "corpusIssueId": "63e1275f-2c67-5368-8d18-c5b3c2ad0d4c",
+      "pathNotation": "CRIMINAL_LAW.OFFENSES_AGAINST_THE_PERSON.ASSAULT_AND_BATTERY.AGGRAVATED_ASSAULT.ASSAULT_WITH_A_DEADLY_WEAPON"
+    },
+    {
+      "id": "04a90fb44eaf4621919c9bc1adc21b67",
+      "keys": [
+        "criminal-law/offenses-against-the-person/assault-and-related-offenses"
+      ],
+      "label": "Assault and Related Offenses",
+      "minted": "2026-11-23",
+      "uuid": "04a90fb4-4eaf-4621-919c-9bc1adc21b67"
+    },
+    {
+      "id": "c735af4fc67f4caf9caff18c069bbbd4",
+      "keys": [
+        "criminal-law/offenses-against-the-person/assault-and-related-offenses/assault-with-intent-to-commit-felony"
+      ],
+      "label": "Assault with Intent to Commit Felony",
+      "minted": "2026-11-23",
+      "uuid": "c735af4f-c67f-4caf-9caf-f18c069bbbd4"
+    },
+    {
+      "id": "a1b7c6296411474b987b394e559eb1a5",
+      "keys": [
+        "criminal-law/offenses-against-the-person/assault-and-related-offenses/assault-with-intent-to-commit-felony/exclusions-from-assault-with-intent-to-commit-felony"
+      ],
+      "label": "EXCLUSIONS FROM ASSAULT WITH INTENT TO COMMIT FELONY",
+      "minted": "2026-11-23",
+      "uuid": "a1b7c629-6411-474b-987b-394e559eb1a5",
+      "corpusIssueId": "88d2b90e-25e1-52e5-a22c-0149935d4866",
+      "pathNotation": "CRIMINAL_LAW.OFFENSES_AGAINST_THE_PERSON.ASSAULT_AND_RELATED_OFFENSES.ASSAULT_WITH_INTENT_TO_COMMIT_FELONY.EXCLUSIONS_FROM_ASSAULT_WITH_INTENT_TO_COMMIT_FELONY"
     },
     {
       "id": "56ec4bb57c8345b08b984ce84ab74c91",
@@ -174518,6 +174725,17 @@
       "uuid": "19b1b555-f0df-4784-b43a-71721163c72a",
       "corpusIssueId": "e573aa39-f044-5c27-a001-ca9465d77c2a",
       "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.DOCUMENTARY_EVIDENCE.PUBLIC_RECORDS_AND_WRITINGS.TAX_LISTINGS_AND_ELECTION_MATERIALS"
+    },
+    {
+      "id": "cd8064582a34458c9bf55d8d3e713c13",
+      "keys": [
+        "evidence-law/types-of-evidence/documentary-evidence/recitals-in-deeds"
+      ],
+      "label": "RECITALS IN DEEDS",
+      "minted": "2026-11-23",
+      "uuid": "cd806458-2a34-458c-9bf5-5d8d3e713c13",
+      "corpusIssueId": "7b5c532a-45ac-534c-b32c-9565617831bf",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.DOCUMENTARY_EVIDENCE.RECITALS_IN_DEEDS"
     },
     {
       "id": "4f7431f0d3ec4779865b1003da4cbe3f",
@@ -237369,6 +237587,35 @@
       "pathNotation": "IP_LAW.PATENT_LAW.PATENT_SPECIFICATION_AND_DISCLOSURE.REFERENCE_CHARACTERS_IN_SPECIFICATIONS"
     },
     {
+      "id": "dca6e65391db4d1995e040c904e1273a",
+      "keys": [
+        "ip-law/patent-law/patent-statutes-and-international-treaties"
+      ],
+      "label": "Patent Statutes and International Treaties",
+      "minted": "2026-11-23",
+      "uuid": "dca6e653-91db-4d19-95e0-40c904e1273a"
+    },
+    {
+      "id": "5b30fc20444d4e3e97d7ab243ab64e52",
+      "keys": [
+        "ip-law/patent-law/patent-statutes-and-international-treaties/patent-cooperation-treaty-pct"
+      ],
+      "label": "Patent Cooperation Treaty Pct",
+      "minted": "2026-11-23",
+      "uuid": "5b30fc20-444d-4e3e-97d7-ab243ab64e52"
+    },
+    {
+      "id": "94e7f4ad8c9e4a68ac3935ad0a2d53b3",
+      "keys": [
+        "ip-law/patent-law/patent-statutes-and-international-treaties/patent-cooperation-treaty-pct/statutory-definitions"
+      ],
+      "label": "STATUTORY DEFINITIONS",
+      "minted": "2026-11-23",
+      "uuid": "94e7f4ad-8c9e-4a68-ac39-35ad0a2d53b3",
+      "corpusIssueId": "5e01314c-5ab6-5b2a-9cd4-d2edeb127863",
+      "pathNotation": "IP_LAW.PATENT_LAW.PATENT_STATUTES_AND_INTERNATIONAL_TREATIES.PATENT_COOPERATION_TREATY_PCT.STATUTORY_DEFINITIONS"
+    },
+    {
       "id": "3f93a53736024810ba8c56df0fac7365",
       "keys": [
         "ip-law/patent-law/patent-statutory-framework"
@@ -261246,6 +261493,26 @@
       "pathNotation": "LAW_OF_OBLIGATIONS.DUTIES_OF_AGENT_TO_PRINCIPAL.FIDUCIARY_DUTY_OF_LOYALTY.INCAPACITIES_RESULTING_FROM_BREACH_OF_LOYALTY"
     },
     {
+      "id": "ad0f2eab019d42eaa2d41e8e445d2a33",
+      "keys": [
+        "law-of-obligations/duties-of-agent-to-principal/fiduciary-duty-of-loyalty/self-dealing-and-use-of-agency-for-personal-ends"
+      ],
+      "label": "Self Dealing and Use of Agency for Personal Ends",
+      "minted": "2026-11-23",
+      "uuid": "ad0f2eab-019d-42ea-a2d4-1e8e445d2a33"
+    },
+    {
+      "id": "edbba7882e934e76a4ce4f8cae3cb295",
+      "keys": [
+        "law-of-obligations/duties-of-agent-to-principal/fiduciary-duty-of-loyalty/self-dealing-and-use-of-agency-for-personal-ends/agent-dealing-in-agency-business-for-own-benefit"
+      ],
+      "label": "AGENT DEALING IN AGENCY BUSINESS FOR OWN BENEFIT",
+      "minted": "2026-11-23",
+      "uuid": "edbba788-2e93-4e76-a4ce-4f8cae3cb295",
+      "corpusIssueId": "0075a1cd-849b-52fb-95d6-eaaefb727afb",
+      "pathNotation": "LAW_OF_OBLIGATIONS.DUTIES_OF_AGENT_TO_PRINCIPAL.FIDUCIARY_DUTY_OF_LOYALTY.SELF_DEALING_AND_USE_OF_AGENCY_FOR_PERSONAL_ENDS.AGENT_DEALING_IN_AGENCY_BUSINESS_FOR_OWN_BENEFIT"
+    },
+    {
       "id": "3774f84ba55e48f8aa739b8d99dac9e4",
       "keys": [
         "law-of-obligations/duties-of-agent-to-principal/insurance-procurement-agency"
@@ -265257,6 +265524,26 @@
       "uuid": "046b82ed-fc28-4792-965d-af4814149daf",
       "corpusIssueId": "55972faa-a771-56f7-8714-0d9499b02cde",
       "pathNotation": "LAW_OF_OBLIGATIONS.RECOVERY_FOR_BENEFITS_CONFERRED"
+    },
+    {
+      "id": "fddb9ec9de214e8d9da8ac0c5f889e84",
+      "keys": [
+        "law-of-obligations/recovery-for-benefits-conferred/mistake"
+      ],
+      "label": "Mistake",
+      "minted": "2026-11-23",
+      "uuid": "fddb9ec9-de21-4e8d-9da8-ac0c5f889e84"
+    },
+    {
+      "id": "b0ace230f3a640c09fcd1ec7f0147da7",
+      "keys": [
+        "law-of-obligations/recovery-for-benefits-conferred/mistake/payment-by-mistake-of-law"
+      ],
+      "label": "PAYMENT BY MISTAKE OF LAW",
+      "minted": "2026-11-23",
+      "uuid": "b0ace230-f3a6-40c0-9fcd-1ec7f0147da7",
+      "corpusIssueId": "7acf3096-8af4-5d71-97bf-698c113adbfb",
+      "pathNotation": "LAW_OF_OBLIGATIONS.RECOVERY_FOR_BENEFITS_CONFERRED.MISTAKE.PAYMENT_BY_MISTAKE_OF_LAW"
     },
     {
       "id": "e752f2c238524b3e9b3cce444627d259",
@@ -288057,6 +288344,17 @@
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.DISTINCTION_BETWEEN_CORPOREAL_AND_INCORPOREAL_PERSONAL_PROPERTY"
     },
     {
+      "id": "14e28728688746c9b3fffc5f0d9289e8",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/distinction-between-real-and-personal-property"
+      ],
+      "label": "DISTINCTION BETWEEN REAL AND PERSONAL PROPERTY",
+      "minted": "2026-11-23",
+      "uuid": "14e28728-6887-46c9-b3ff-fc5f0d9289e8",
+      "corpusIssueId": "961e7147-6754-555a-80de-c0bb2e7d8795",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.DISTINCTION_BETWEEN_REAL_AND_PERSONAL_PROPERTY"
+    },
+    {
       "id": "f8700036be8d421b9f31bfa7b597a048",
       "keys": [
         "law-of-wrongdoing/personal-property-law/distinction-from-other-legal-relationships"
@@ -294488,6 +294786,17 @@
       "uuid": "8f1ff52b-518f-40c2-bccc-a871c08cce85",
       "corpusIssueId": "5bd89483-9f97-594e-9ba1-601966d8da2f",
       "pathNotation": "LAW_OF_WRONGDOING.STATUTORY_PROVISIONS.DAMAGES_AND_MEASURE_OF_RECOVERY.MASSACHUSETTS_WRONGFUL_DEATH_STATUTE"
+    },
+    {
+      "id": "db4d23ac4f194af69b53f6981f8a9184",
+      "keys": [
+        "law-of-wrongdoing/strict-liability"
+      ],
+      "label": "STRICT LIABILITY",
+      "minted": "2026-11-23",
+      "uuid": "db4d23ac-4f19-4af6-9b53-f6981f8a9184",
+      "corpusIssueId": "304039c5-3152-563e-9cc4-fc9f46a4cb07",
+      "pathNotation": "LAW_OF_WRONGDOING.STRICT_LIABILITY"
     },
     {
       "id": "a7cb7e53220f44f3aa3c32a0c7387ef1",
@@ -325937,6 +326246,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.EXECUTORS_AND_ADMINISTRATORS.APPOINTMENT_AND_QUALIFICATION.PRIORITY_AND_RIGHT_OF_NEXT_OF_KIN"
     },
     {
+      "id": "375f327e098741e9bdc186aee6a10945",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/executors-and-administrators/appointment-of-executors"
+      ],
+      "label": "Appointment of Executors",
+      "minted": "2026-11-23",
+      "uuid": "375f327e-0987-41e9-bdc1-86aee6a10945"
+    },
+    {
+      "id": "e6b7db9b40804017bfe9c36f7042dd20",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/executors-and-administrators/appointment-of-executors/letters-testamentary"
+      ],
+      "label": "LETTERS TESTAMENTARY",
+      "minted": "2026-11-23",
+      "uuid": "e6b7db9b-4080-4017-bfe9-c36f7042dd20",
+      "corpusIssueId": "780b52eb-8568-5ccb-8690-aeead3a82c2f",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.EXECUTORS_AND_ADMINISTRATORS.APPOINTMENT_OF_EXECUTORS.LETTERS_TESTAMENTARY"
+    },
+    {
       "id": "5957e2d67ef048fbbacf6230c0cecffd",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/executors-and-administrators/authority-and-powers-of-estate-representatives"
@@ -342793,6 +343122,17 @@
       "uuid": "041e5e3d-09e2-4f75-adf7-47c1b455e95d",
       "corpusIssueId": "545adb60-98cc-5cb2-94f5-526b1ee3f5ac",
       "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.RES_JUDICATA.CLAIM_PRECLUSION.DEFENSES_AND_CAUSES_OF_ACTION_ONCE_PRESENTED"
+    },
+    {
+      "id": "37383f54bcc24c6cbfbd50032653d585",
+      "keys": [
+        "procedural-law/effects-of-judgments/res-judicata/conclusiveness-on-the-merits"
+      ],
+      "label": "CONCLUSIVENESS ON THE MERITS",
+      "minted": "2026-11-23",
+      "uuid": "37383f54-bcc2-4c6c-bfbd-50032653d585",
+      "corpusIssueId": "845489bc-022d-58b3-b52b-c8d9ad28809a",
+      "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.RES_JUDICATA.CONCLUSIVENESS_ON_THE_MERITS"
     },
     {
       "id": "bd940ba6d15042d79b1c2a9dd8949b20",
@@ -368132,6 +368472,35 @@
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.CYBERSECURITY_AND_COMPUTER_RELATED_WRONGS.UNAUTHORIZED_COMPUTER_ACCESS_AND_FRAUD.COMPUTER_FRAUD_AND_ABUSE_ACT"
     },
     {
+      "id": "61b0809680c9482e9e44e921d2f121e7",
+      "keys": [
+        "public-and-administrative-law/data-privacy-and-protection"
+      ],
+      "label": "Data Privacy and Protection",
+      "minted": "2026-11-23",
+      "uuid": "61b08096-80c9-482e-9e44-e921d2f121e7"
+    },
+    {
+      "id": "e3e711f1c68e4cfb86cb662abe4a555e",
+      "keys": [
+        "public-and-administrative-law/data-privacy-and-protection/private-entity-data-practices"
+      ],
+      "label": "Private Entity Data Practices",
+      "minted": "2026-11-23",
+      "uuid": "e3e711f1-c68e-4cfb-86cb-662abe4a555e"
+    },
+    {
+      "id": "f1359b8f0b254a3ab683aa54dfe35383",
+      "keys": [
+        "public-and-administrative-law/data-privacy-and-protection/private-entity-data-practices/privacy-policy-disclosures-and-updates"
+      ],
+      "label": "PRIVACY POLICY DISCLOSURES AND UPDATES",
+      "minted": "2026-11-23",
+      "uuid": "f1359b8f-0b25-4a3a-b683-aa54dfe35383",
+      "corpusIssueId": "53678c12-4213-5601-b23d-adfbe52ed0ee",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.DATA_PRIVACY_AND_PROTECTION.PRIVATE_ENTITY_DATA_PRACTICES.PRIVACY_POLICY_DISCLOSURES_AND_UPDATES"
+    },
+    {
       "id": "23af830efbe24a85a34b842188e604c2",
       "keys": [
         "public-and-administrative-law/de-facto-officers"
@@ -380925,6 +381294,26 @@
       "pathNotation": "REAL_ESTATE_LAW.DEEDS.DELIVERY_AND_ACCEPTANCE.EFFECT_OF_REGISTRATION_ON_DELIVERY"
     },
     {
+      "id": "2301479f4d0540ccb4f6519bfde7be87",
+      "keys": [
+        "real-estate-law/deeds/description-of-premises"
+      ],
+      "label": "Description of Premises",
+      "minted": "2026-11-23",
+      "uuid": "2301479f-4d05-40cc-b4f6-519bfde7be87"
+    },
+    {
+      "id": "2553327be6964989b4c17ae56e2d5f4f",
+      "keys": [
+        "real-estate-law/deeds/description-of-premises/imperfect-or-defective-description"
+      ],
+      "label": "IMPERFECT OR DEFECTIVE DESCRIPTION",
+      "minted": "2026-11-23",
+      "uuid": "2553327b-e696-4989-b4c1-7ae56e2d5f4f",
+      "corpusIssueId": "372589d1-ef7b-5df7-93a9-714fbab9b6e5",
+      "pathNotation": "REAL_ESTATE_LAW.DEEDS.DESCRIPTION_OF_PREMISES.IMPERFECT_OR_DEFECTIVE_DESCRIPTION"
+    },
+    {
       "id": "d80e6168bc8b4317b93a2b1ab5cb7b9f",
       "keys": [
         "real-estate-law/deeds/execution-and-acknowledgment"
@@ -389798,6 +390187,26 @@
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.FUTURE_INTERESTS.TESTAMENTARY_ESTATES_IN_FEE_TAIL.CONSTRUCTION_OF_DEVISES_CREATING_FEE_TAIL"
     },
     {
+      "id": "4cccbdaf33e44f36b4c23fdac9040818",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/future-interests/uses"
+      ],
+      "label": "Uses",
+      "minted": "2026-11-23",
+      "uuid": "4cccbdaf-33e4-4f36-b4c2-3fdac9040818"
+    },
+    {
+      "id": "c8338227f59e48c89d4a62c1bc2d96fc",
+      "keys": [
+        "real-estate-law/estates-and-interests-in-land/future-interests/uses/suspension-of-uses"
+      ],
+      "label": "SUSPENSION OF USES",
+      "minted": "2026-11-23",
+      "uuid": "c8338227-f59e-48c8-9d4a-62c1bc2d96fc",
+      "corpusIssueId": "1d63a2c3-6a99-52d6-ba7d-059acb42707b",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_INTERESTS_IN_LAND.FUTURE_INTERESTS.USES.SUSPENSION_OF_USES"
+    },
+    {
       "id": "8707ff7396674a27a981731105370ea5",
       "keys": [
         "real-estate-law/estates-and-interests-in-land/future-interests/vested-remainders"
@@ -394267,6 +394676,17 @@
       "label": "Rule Against Perpetuities",
       "minted": "2026-10-02",
       "uuid": "84a31b5b-682c-4658-8066-244f4bdc063b"
+    },
+    {
+      "id": "e4a94c29ad3740838bd8611b8e357df0",
+      "keys": [
+        "real-estate-law/future-interests/rule-against-perpetuities/application-to-personal-property-and-bailments"
+      ],
+      "label": "APPLICATION TO PERSONAL PROPERTY AND BAILMENTS",
+      "minted": "2026-11-23",
+      "uuid": "e4a94c29-ad37-4083-8bd8-611b8e357df0",
+      "corpusIssueId": "56ba9b56-5f93-51d5-b992-619ce9b07514",
+      "pathNotation": "REAL_ESTATE_LAW.FUTURE_INTERESTS.RULE_AGAINST_PERPETUITIES.APPLICATION_TO_PERSONAL_PROPERTY_AND_BAILMENTS"
     },
     {
       "id": "90b63e7f6a9240baab4935d01fdbc777",
@@ -407649,6 +408069,26 @@
       ],
       "minted": "2026-07-31",
       "label": "Liens and Encumbrances"
+    },
+    {
+      "id": "ab6b31db89724873aa509f805e7dbdf8",
+      "keys": [
+        "real-estate-law/liens-and-encumbrances/judgment-liens"
+      ],
+      "label": "Judgment Liens",
+      "minted": "2026-11-23",
+      "uuid": "ab6b31db-8972-4873-aa50-9f805e7dbdf8"
+    },
+    {
+      "id": "794d61e60cca4c18b8d3ac7fb5a6c023",
+      "keys": [
+        "real-estate-law/liens-and-encumbrances/judgment-liens/effect-of-judgment-liens-on-real-estate"
+      ],
+      "label": "EFFECT OF JUDGMENT LIENS ON REAL ESTATE",
+      "minted": "2026-11-23",
+      "uuid": "794d61e6-0cca-4c18-b8d3-ac7fb5a6c023",
+      "corpusIssueId": "5234fcc6-3a1c-5790-ad16-ff38e7189c74",
+      "pathNotation": "REAL_ESTATE_LAW.LIENS_AND_ENCUMBRANCES.JUDGMENT_LIENS.EFFECT_OF_JUDGMENT_LIENS_ON_REAL_ESTATE"
     },
     {
       "id": "e75198b7945d4b208e12da2e02a92026",
@@ -435481,6 +435921,26 @@
       "uuid": "6fc6d277-e433-4c50-9c66-8fccda34b799",
       "corpusIssueId": "e821bc07-6d92-5078-bf6f-4719f45817c7",
       "pathNotation": "REMEDIES_LAW.EXECUTIONS.SALES_UNDER_EXECUTION.LIABILITY_OF_PURCHASER_FOR_BID_PAYMENT"
+    },
+    {
+      "id": "1575a1cf796e4457b142d65d1a75bbbf",
+      "keys": [
+        "remedies-law/executions/sales-under-execution/rights-of-purchasers"
+      ],
+      "label": "Rights of Purchasers",
+      "minted": "2026-11-23",
+      "uuid": "1575a1cf-796e-4457-b142-d65d1a75bbbf"
+    },
+    {
+      "id": "3394e4850cfe4416b51298775c7defaa",
+      "keys": [
+        "remedies-law/executions/sales-under-execution/rights-of-purchasers/right-to-possession"
+      ],
+      "label": "RIGHT TO POSSESSION",
+      "minted": "2026-11-23",
+      "uuid": "3394e485-0cfe-4416-b512-98775c7defaa",
+      "corpusIssueId": "e9e64f91-b6bd-585c-b4af-b76057baf47f",
+      "pathNotation": "REMEDIES_LAW.EXECUTIONS.SALES_UNDER_EXECUTION.RIGHTS_OF_PURCHASERS.RIGHT_TO_POSSESSION"
     },
     {
       "id": "3da6c10692ad4292b7b6b25fc212a82c",
