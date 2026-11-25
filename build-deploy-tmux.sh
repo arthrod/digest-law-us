@@ -6,7 +6,7 @@
 #   ./build-deploy-tmux.sh full   pnpm run deploy:full (corpus clean, ids, build, checks,
 #                                 deploy, smoke)
 #   ASTRO_PRERENDER_WORKERS  unset = 4 (the `pnpm run build` default); N overrides
-#   SWAP_MAX                 scope swap cap (default 96G)
+#   SWAP_MAX                 scope swap cap (default 170G)
 # A light memory logger samples the scope every MEMLOG_INTERVAL seconds (default
 # 30) into build-deploy-<stamp>.mem.log: RAM, swap and peak of the scope, plus
 # host free RAM/swap.
@@ -14,7 +14,7 @@ set -euo pipefail
 cd /home/arthrod/workspace/digest-law-us
 STAMP=$(date +%Y%m%d-%H%M)
 LOG="$PWD/build-deploy-$STAMP.log"
-SWAP_MAX=${SWAP_MAX:-96G}
+SWAP_MAX=${SWAP_MAX:-170G}
 WORKERS=${ASTRO_PRERENDER_WORKERS:-}
 UNIT="digest-build-$STAMP"
 MEMLOG="$PWD/build-deploy-$STAMP.mem.log"
