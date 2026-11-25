@@ -3403,6 +3403,26 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.AUTOMATIC_STAY_AND_INJUNCTIVE_RELIEF.PROTECTION_FROM_ARREST"
     },
     {
+      "id": "1ac616ae7e364050b46fb53d348b8e46",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/automatic-stay-and-injunctive-relief/stay-of-proceedings-against-debtor"
+      ],
+      "label": "Stay of Proceedings Against Debtor",
+      "minted": "2026-11-25",
+      "uuid": "1ac616ae-7e36-4050-b46f-b53d348b8e46"
+    },
+    {
+      "id": "bd2866e79f7e40669487421a56942f98",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/automatic-stay-and-injunctive-relief/stay-of-proceedings-against-debtor/obstructive-suits-brought-after-bankruptcy-court-acquires-jurisdiction"
+      ],
+      "label": "OBSTRUCTIVE SUITS BROUGHT AFTER BANKRUPTCY COURT ACQUIRES JURISDICTION",
+      "minted": "2026-11-25",
+      "uuid": "bd2866e7-9f7e-4066-9487-421a56942f98",
+      "corpusIssueId": "b51ce1cb-4574-53e3-bf3d-24aa6139457d",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.AUTOMATIC_STAY_AND_INJUNCTIVE_RELIEF.STAY_OF_PROCEEDINGS_AGAINST_DEBTOR.OBSTRUCTIVE_SUITS_BROUGHT_AFTER_BANKRUPTCY_COURT_ACQUIRES_JURISDICTION"
+    },
+    {
       "id": "aa48cd37c9124e0a9951ffd371ee606f",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/automatic-stay-and-injunctive-relief/stay-of-proceedings-against-the-estate"
@@ -24894,6 +24914,26 @@
       "pathNotation": "COMMERCIAL_AND_TRADE_LAW.BUSINESS_TRANSACTIONS_LAW.COURT_SUPERVISION_AND_CONTROL.CONFIRMATION_OF_SALE"
     },
     {
+      "id": "7ca1f4e267b84b04a38c828e38637bd7",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/covenants-and-warranties"
+      ],
+      "label": "Covenants and Warranties",
+      "minted": "2026-11-25",
+      "uuid": "7ca1f4e2-67b8-4b04-a38c-828e38637bd7"
+    },
+    {
+      "id": "170a8cffbdc04758906a01a407a3747f",
+      "keys": [
+        "commercial-and-trade-law/business-transactions-law/covenants-and-warranties/breach-of-warranty"
+      ],
+      "label": "BREACH OF WARRANTY",
+      "minted": "2026-11-25",
+      "uuid": "170a8cff-bdc0-4758-906a-01a407a3747f",
+      "corpusIssueId": "2daac776-92dc-5531-8717-a1b0554ac040",
+      "pathNotation": "COMMERCIAL_AND_TRADE_LAW.BUSINESS_TRANSACTIONS_LAW.COVENANTS_AND_WARRANTIES.BREACH_OF_WARRANTY"
+    },
+    {
       "id": "c30c3c82f3ed4bd586f7011d3e571323",
       "keys": [
         "commercial-and-trade-law/business-transactions-law/cover-damages-ucc-2-712"
@@ -32065,6 +32105,35 @@
       "uuid": "668ad4d4-9438-48ee-814f-02f84fc6074d",
       "corpusIssueId": "0fc54e1f-9bef-53c0-a627-f8b85c4be83e",
       "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.DISCRIMINATION_LAW.DOCTRINAL_THEORY_AND_FRAMEWORK.EQUAL_PROTECTION_THEORY"
+    },
+    {
+      "id": "3cf473553f11403b9a2e2660effd9ea4",
+      "keys": [
+        "constitutional-and-civil-rights-law/discrimination-law/equal-protection-clause"
+      ],
+      "label": "Equal Protection Clause",
+      "minted": "2026-11-25",
+      "uuid": "3cf47355-3f11-403b-9a2e-2660effd9ea4"
+    },
+    {
+      "id": "e1df4bbfaf5144c08410678d4c0eecb1",
+      "keys": [
+        "constitutional-and-civil-rights-law/discrimination-law/equal-protection-clause/classification-scrutiny"
+      ],
+      "label": "Classification Scrutiny",
+      "minted": "2026-11-25",
+      "uuid": "e1df4bbf-af51-44c0-8410-678d4c0eecb1"
+    },
+    {
+      "id": "cff3f3e493cb44e0be342918fd0da08f",
+      "keys": [
+        "constitutional-and-civil-rights-law/discrimination-law/equal-protection-clause/classification-scrutiny/race-and-sex"
+      ],
+      "label": "RACE AND SEX",
+      "minted": "2026-11-25",
+      "uuid": "cff3f3e4-93cb-44e0-be34-2918fd0da08f",
+      "corpusIssueId": "e1988112-327a-580c-a557-06a4255539da",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.DISCRIMINATION_LAW.EQUAL_PROTECTION_CLAUSE.CLASSIFICATION_SCRUTINY.RACE_AND_SEX"
     },
     {
       "id": "5b8d100e596a49bfb972ba4945a4c1ac",
@@ -49834,6 +49903,17 @@
       "pathNotation": "CONTRACT_LAW.DISCHARGE_AND_TERMINATION.DISCHARGE_BY_PERFORMANCE_OR_WAIVER"
     },
     {
+      "id": "35165b27ed9e4c158b14574e146182a9",
+      "keys": [
+        "contract-law/discharge-and-termination/discharge-of-contract"
+      ],
+      "label": "DISCHARGE OF CONTRACT",
+      "minted": "2026-11-25",
+      "uuid": "35165b27-ed9e-4c15-8b14-574e146182a9",
+      "corpusIssueId": "b047c745-bd0c-5314-b787-eb51dd7aca37",
+      "pathNotation": "CONTRACT_LAW.DISCHARGE_AND_TERMINATION.DISCHARGE_OF_CONTRACT"
+    },
+    {
       "id": "c25da82ff8124c119a50e69d4d638d30",
       "keys": [
         "contract-law/discharge-and-termination/discharge-of-parties"
@@ -66658,6 +66738,17 @@
       "uuid": "4e465c2e-7b0d-4094-97ff-650d916fc5e7",
       "corpusIssueId": "591467a7-7474-5a6b-849c-d511eba7be46",
       "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.EXCUSE_OF_PERFORMANCE.IMPOSSIBILITY_IMPRACTICABILITY_AND_FRUSTRATION.DEFINITION_AND_SCOPE_OF_IMPOSSIBILITY"
+    },
+    {
+      "id": "77541abcf849412493d96025cf31e9e2",
+      "keys": [
+        "contract-law/performance-and-breach/excuse-of-performance/impossibility-impracticability-and-frustration/effect-on-expressly-assumed-liability"
+      ],
+      "label": "EFFECT ON EXPRESSLY ASSUMED LIABILITY",
+      "minted": "2026-11-25",
+      "uuid": "77541abc-f849-4124-93d9-6025cf31e9e2",
+      "corpusIssueId": "b57c19d2-6351-51e5-83b3-24cc948e6664",
+      "pathNotation": "CONTRACT_LAW.PERFORMANCE_AND_BREACH.EXCUSE_OF_PERFORMANCE.IMPOSSIBILITY_IMPRACTICABILITY_AND_FRUSTRATION.EFFECT_ON_EXPRESSLY_ASSUMED_LIABILITY"
     },
     {
       "id": "0c5a1a2b22a145d0a35627ab0fd080a9",
@@ -94723,6 +94814,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.LIMITED_PARTNERSHIPS.FORMATION_AND_COMPLIANCE.NATURE_OF_BUSINESS_PRESCRIBED_BY_LAW"
     },
     {
+      "id": "896464436aa4496c9736518bb3bbe1ac",
+      "keys": [
+        "corporate-law/business-organizations-law/limited-partnerships/formation-and-nature-of-limited-partnership"
+      ],
+      "label": "FORMATION AND NATURE OF LIMITED PARTNERSHIP",
+      "minted": "2026-11-25",
+      "uuid": "89646443-6aa4-496c-9736-518bb3bbe1ac",
+      "corpusIssueId": "adaafc75-eb86-5b13-a89b-28953b80d757",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.LIMITED_PARTNERSHIPS.FORMATION_AND_NATURE_OF_LIMITED_PARTNERSHIP"
+    },
+    {
       "id": "d4597de572eb491980d0fa4e0e62fd3c",
       "keys": [
         "corporate-law/business-organizations-law/limited-partnerships/formation-and-organizational-matters"
@@ -102936,6 +103038,17 @@
       "uuid": "601afa92-6861-4b58-b1d2-bb09a3600cda",
       "corpusIssueId": "04566969-c101-5900-aeaf-8b3719a4ec6b",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.PARTNERSHIP_PROPERTY.DISTRIBUTION_OF_ASSETS_WHERE_NO_JOINT_ESTATE_EXISTS"
+    },
+    {
+      "id": "d2f00b6c149442ac890621df41e96e19",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/partnership-property/incumbrances-or-claims-on-partnership-property"
+      ],
+      "label": "INCUMBRANCES OR CLAIMS ON PARTNERSHIP PROPERTY",
+      "minted": "2026-11-25",
+      "uuid": "d2f00b6c-1494-42ac-8906-21df41e96e19",
+      "corpusIssueId": "f55456e3-9560-517b-91be-ac11e16ecd92",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.PARTNERSHIP_PROPERTY.INCUMBRANCES_OR_CLAIMS_ON_PARTNERSHIP_PROPERTY"
     },
     {
       "id": "4afb637373634ac8bf0a39ed64d22f01",
@@ -161987,6 +162100,17 @@
       "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_AND_EXCLUSIONARY_RULES.HEARSAY_AND_NON_HEARSAY_DISTINCTIONS.RES_INTER_ALIOS_ACTA_THIRD_PARTY_ACTS_AND_DECLARATIONS"
     },
     {
+      "id": "d7aa616ec25d4519a2721164e78b6b09",
+      "keys": [
+        "evidence-law/admissibility-and-exclusionary-rules/hearsay-and-non-hearsay/prior-consistent-statements"
+      ],
+      "label": "PRIOR CONSISTENT STATEMENTS",
+      "minted": "2026-11-25",
+      "uuid": "d7aa616e-c25d-4519-a272-1164e78b6b09",
+      "corpusIssueId": "fea2e2b3-0fe2-571e-be40-44fc6a2f8b9c",
+      "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_AND_EXCLUSIONARY_RULES.HEARSAY_AND_NON_HEARSAY.PRIOR_CONSISTENT_STATEMENTS"
+    },
+    {
       "id": "a71b386227734916b6cc12758103de83",
       "keys": [
         "evidence-law/admissibility-and-exclusionary-rules/hearsay-and-non-hearsay/self-serving-declarations"
@@ -184381,6 +184505,17 @@
       "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.CIRCUMSTANTIAL_AND_INDIRECT_EVIDENCE.PRESUMPTIONS.PRESUMPTION_OF_DEATH"
     },
     {
+      "id": "bbe76839df24463789bc804b89f1b12b",
+      "keys": [
+        "evidence-law/types-of-evidence/circumstantial-and-indirect-evidence/silence-as-evidence-of-intent"
+      ],
+      "label": "SILENCE AS EVIDENCE OF INTENT",
+      "minted": "2026-11-25",
+      "uuid": "bbe76839-df24-4637-89bc-804b89f1b12b",
+      "corpusIssueId": "df31e161-d3bd-5ecd-8977-b648d4aa86cd",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.CIRCUMSTANTIAL_AND_INDIRECT_EVIDENCE.SILENCE_AS_EVIDENCE_OF_INTENT"
+    },
+    {
       "id": "5c8d554e7e104fa5b625f39922ff543a",
       "uuid": "5c8d554e-7e10-4fa5-b625-f39922ff543a",
       "keys": [
@@ -196118,6 +196253,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.COMMERCIAL_GUARANTIES.LIABILITY_OF_SURETIES.SURETY_LIABILITY_FOR_OFFICIAL_MISCONDUCT.NON_LIABILITY_FOR_SHERIFF_S_WRONGS"
     },
     {
+      "id": "1118b9e34cd74cf7a4005d24d9421c51",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/commercial-guaranties/negotiable-instruments-and-indorsements"
+      ],
+      "label": "Negotiable Instruments and Indorsements",
+      "minted": "2026-11-25",
+      "uuid": "1118b9e3-4cd7-4cf7-a400-5d24d9421c51"
+    },
+    {
+      "id": "49f74414c5154981a00459d1043c53b3",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/commercial-guaranties/negotiable-instruments-and-indorsements/liability-of-parties"
+      ],
+      "label": "LIABILITY OF PARTIES",
+      "minted": "2026-11-25",
+      "uuid": "49f74414-c515-4981-a004-59d1043c53b3",
+      "corpusIssueId": "f18ab490-047b-5ee7-b9c2-c1623dd51f7b",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.COMMERCIAL_GUARANTIES.NEGOTIABLE_INSTRUMENTS_AND_INDORSEMENTS.LIABILITY_OF_PARTIES"
+    },
+    {
       "id": "1cd0089769044166ba6c29cb70c660c7",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/commercial-guaranties/parol-evidence-as-to-contract-type-intended"
@@ -204698,6 +204853,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.MECHANICS_LIENS.PARTIES_AND_ESTATES_SUBJECT_TO_LIEN.ESTATES_LESS_THAN_FEE_SIMPLE.LESSEES"
     },
     {
+      "id": "226fc259f83b4ec58fa5a713c02c8308",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/mechanics-liens/parties-and-ownership-issues"
+      ],
+      "label": "Parties and Ownership Issues",
+      "minted": "2026-11-25",
+      "uuid": "226fc259-f83b-4ec5-8fa5-a713c02c8308"
+    },
+    {
+      "id": "e73e0db350dd4ccf9007627da37902af",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/mechanics-liens/parties-and-ownership-issues/separate-owners-under-joint-contract"
+      ],
+      "label": "SEPARATE OWNERS UNDER JOINT CONTRACT",
+      "minted": "2026-11-25",
+      "uuid": "e73e0db3-50dd-4ccf-9007-627da37902af",
+      "corpusIssueId": "0cee2119-07ae-5c44-a202-479248ecb8ae",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.MECHANICS_LIENS.PARTIES_AND_OWNERSHIP_ISSUES.SEPARATE_OWNERS_UNDER_JOINT_CONTRACT"
+    },
+    {
       "id": "a305098c0fd841ae93b49aa01e725495",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/mechanics-liens/perfection-and-enforcement"
@@ -211054,6 +211229,26 @@
       "uuid": "481885be-d587-4357-b437-ae65ee8123d7",
       "corpusIssueId": "cf129a25-0389-58b9-baee-4f3bfa45f192",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PRESENTMENT_AND_NOTICE.PROTEST.PROTEST_FOR_BETTER_SECURITY"
+    },
+    {
+      "id": "b2653a97426b417f98ad955120a08e29",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/presentment-and-notice/time-and-place-of-presentment"
+      ],
+      "label": "Time and Place of Presentment",
+      "minted": "2026-11-25",
+      "uuid": "b2653a97-426b-417f-98ad-955120a08e29"
+    },
+    {
+      "id": "91f016a6b2c34259a1b564b5f35629a1",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/presentment-and-notice/time-and-place-of-presentment/business-hours-for-presentment"
+      ],
+      "label": "BUSINESS HOURS FOR PRESENTMENT",
+      "minted": "2026-11-25",
+      "uuid": "91f016a6-b2c3-4259-a1b5-64b5f35629a1",
+      "corpusIssueId": "ead6178c-e528-5737-9491-83e382eafebb",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PRESENTMENT_AND_NOTICE.TIME_AND_PLACE_OF_PRESENTMENT.BUSINESS_HOURS_FOR_PRESENTMENT"
     },
     {
       "id": "e1d28cb3348d4000bfd2cbeb172c6ee0",
@@ -218365,6 +218560,17 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.WAIVER_OF_LIENS.STATUTORY_WAIVER_PROVISIONS"
     },
     {
+      "id": "6d29a8085c3e4de59a4d62792f217b61",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/waiver-of-liens/waiver-by-claim-of-ownership-by-lienor"
+      ],
+      "label": "WAIVER BY CLAIM OF OWNERSHIP BY LIENOR",
+      "minted": "2026-11-25",
+      "uuid": "6d29a808-5c3e-4de5-9a4d-62792f217b61",
+      "corpusIssueId": "3dd674cc-0a8c-5a06-82f2-ef4c0f22d653",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.WAIVER_OF_LIENS.WAIVER_BY_CLAIM_OF_OWNERSHIP_BY_LIENOR"
+    },
+    {
       "id": "2a4e1ca96c4a4007aa81cbc6f215fc94",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/waiver-of-liens/waiver-of-contractual-lien"
@@ -221533,6 +221739,35 @@
       "label": "INJURY BY WATER, REMOVAL, AND THEFT",
       "corpusIssueId": "ab05d76a-da09-563b-ac0c-f3fd4bf38038",
       "pathNotation": "INSURANCE_LAW.COVERAGE_AND_SCOPE_OF_RISKS.SPECIFIC_PERILS_AND_EXCLUSIONS.INJURY_BY_WATER_REMOVAL_AND_THEFT"
+    },
+    {
+      "id": "06bfcc5a44dd40c2816ed72f8a4a787a",
+      "keys": [
+        "insurance-law/defenses-and-barring-doctrines"
+      ],
+      "label": "Defenses and Barring Doctrines",
+      "minted": "2026-11-25",
+      "uuid": "06bfcc5a-44dd-40c2-816e-d72f8a4a787a"
+    },
+    {
+      "id": "879362e139f0499da67605921303eb96",
+      "keys": [
+        "insurance-law/defenses-and-barring-doctrines/estoppel-in-insurance"
+      ],
+      "label": "Estoppel in Insurance",
+      "minted": "2026-11-25",
+      "uuid": "879362e1-39f0-499d-a676-05921303eb96"
+    },
+    {
+      "id": "04795922732c4bd99327e3dff17e3a5a",
+      "keys": [
+        "insurance-law/defenses-and-barring-doctrines/estoppel-in-insurance/post-loss-facts-as-basis-for-estoppel"
+      ],
+      "label": "POST-LOSS FACTS AS BASIS FOR ESTOPPEL",
+      "minted": "2026-11-25",
+      "uuid": "04795922-732c-4bd9-9327-e3dff17e3a5a",
+      "corpusIssueId": "d72f25e7-1c0c-5c0c-80fd-849b5d7509ef",
+      "pathNotation": "INSURANCE_LAW.DEFENSES_AND_BARRING_DOCTRINES.ESTOPPEL_IN_INSURANCE.POST_LOSS_FACTS_AS_BASIS_FOR_ESTOPPEL"
     },
     {
       "id": "c5f95b6dd9904b07a7d045c8fd752372",
@@ -250214,6 +250449,17 @@
       "uuid": "edfe0b1b-f979-4512-b8ef-3dcf06347387",
       "corpusIssueId": "eb1d012a-67bc-5dbf-960b-f4b9e29797a2",
       "pathNotation": "IP_LAW.PATENT_LAW.NATURE_AND_CHARACTER_OF_PATENT_RIGHTS"
+    },
+    {
+      "id": "11a0603ff25a4857a9f6be605ce9a851",
+      "keys": [
+        "ip-law/patent-law/nature-and-character-of-patent-rights/patent-as-monopoly-and-contract"
+      ],
+      "label": "PATENT AS MONOPOLY AND CONTRACT",
+      "minted": "2026-11-25",
+      "uuid": "11a0603f-f25a-4857-a9f6-be605ce9a851",
+      "corpusIssueId": "5e525ec0-769f-516c-ba66-35195099f780",
+      "pathNotation": "IP_LAW.PATENT_LAW.NATURE_AND_CHARACTER_OF_PATENT_RIGHTS.PATENT_AS_MONOPOLY_AND_CONTRACT"
     },
     {
       "id": "721acfaa77b44a3bacfcfe9679617c07",
@@ -326647,6 +326893,17 @@
       "uuid": "5242753a-682f-4c94-8a54-8407609db3b7"
     },
     {
+      "id": "6261d30e0edb418e9de32324bb18ba65",
+      "keys": [
+        "personal-and-family-law/legitimacy-and-illegitimacy/illegitimacy-and-its-legal-consequences"
+      ],
+      "label": "ILLEGITIMACY AND ITS LEGAL CONSEQUENCES",
+      "minted": "2026-11-25",
+      "uuid": "6261d30e-0edb-418e-9de3-2324bb18ba65",
+      "corpusIssueId": "c1b231d3-ffdb-566a-93e1-ec0dfc8eb66c",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.LEGITIMACY_AND_ILLEGITIMACY.ILLEGITIMACY_AND_ITS_LEGAL_CONSEQUENCES"
+    },
+    {
       "id": "c2e54881c2f740b69e9e48151e98efe2",
       "keys": [
         "personal-and-family-law/legitimacy-and-illegitimacy/inheritance-and-gifts-to-illegitimate-relations"
@@ -336442,6 +336699,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.PROPERTY_RIGHTS_BETWEEN_SPOUSES.MARRIED_WOMEN_S_SEPARATE_ESTATES.HUSBAND_S_INVESTMENT_OF_WIFE_S_SEPARATE_PROPERTY"
     },
     {
+      "id": "7e117631ff564561ad8bfb63492c09b6",
+      "keys": [
+        "personal-and-family-law/marriage-law/property-rights-between-spouses/married-women-s-separate-estates/property-subject-to-separate-estate"
+      ],
+      "label": "PROPERTY SUBJECT TO SEPARATE ESTATE",
+      "minted": "2026-11-25",
+      "uuid": "7e117631-ff56-4561-ad8b-fb63492c09b6",
+      "corpusIssueId": "19d7867c-81f8-5e87-887d-9c2d7709d57a",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.PROPERTY_RIGHTS_BETWEEN_SPOUSES.MARRIED_WOMEN_S_SEPARATE_ESTATES.PROPERTY_SUBJECT_TO_SEPARATE_ESTATE"
+    },
+    {
       "id": "848269e289274be4b38fac5bd4ae7ce5",
       "keys": [
         "personal-and-family-law/marriage-law/property-rights-between-spouses/powers-of-appointment"
@@ -343956,6 +344224,17 @@
       "uuid": "03f53876-9dd4-484f-9a7a-ec545d296f12",
       "corpusIssueId": "d60b100b-d2a6-5996-b3e2-a01cfc2795aa",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.WILLS.SPECIAL_CLASSES_OF_TESTATORS.SEAMEN_S_WILLS"
+    },
+    {
+      "id": "7d12db840dd94e9daa6e9ba495b2d10e",
+      "keys": [
+        "personal-and-family-law/probate-law/wills/testamentary-intent"
+      ],
+      "label": "TESTAMENTARY INTENT",
+      "minted": "2026-11-25",
+      "uuid": "7d12db84-0dd9-4e9d-aa6e-9ba495b2d10e",
+      "corpusIssueId": "cddd2c5c-17a9-5919-9e58-16a37d655c3b",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.WILLS.TESTAMENTARY_INTENT"
     },
     {
       "id": "f263f9633e394bcf9638f541daf7c0f9",
@@ -359597,6 +359876,17 @@
       "uuid": "b512c75d-9047-4abc-bd6d-53babb4358a7",
       "corpusIssueId": "e623dc28-13de-5cf8-8e6c-023f254813aa",
       "pathNotation": "PROCEDURAL_LAW.CLAIM_AND_ISSUE_PRECLUSION.NON_COURT_PROCEEDINGS.ADMINISTRATIVE_DECISIONS_AND_ARBITRATIONS"
+    },
+    {
+      "id": "e0c051ac3a3540fb9eb3c38d5b75592c",
+      "keys": [
+        "procedural-law/claim-and-issue-preclusion/preclusion-questions"
+      ],
+      "label": "PRECLUSION QUESTIONS",
+      "minted": "2026-11-25",
+      "uuid": "e0c051ac-3a35-40fb-9eb3-c38d5b75592c",
+      "corpusIssueId": "4f214b16-c708-5a85-be31-ce550147e1a5",
+      "pathNotation": "PROCEDURAL_LAW.CLAIM_AND_ISSUE_PRECLUSION.PRECLUSION_QUESTIONS"
     },
     {
       "id": "ceb5f70b9a544eb58224ac7f19385d67",
@@ -385651,6 +385941,17 @@
       "pathNotation": "PROCEDURAL_LAW.SUPPLEMENTAL_PROCEEDINGS.ENFORCEMENT_OF_JUDGMENTS_THROUGH_SUPPLEMENTARY_PROCEEDINGS"
     },
     {
+      "id": "2564c71d71e14436829805abb1f531ff",
+      "keys": [
+        "procedural-law/supplemental-proceedings/nature-classification-and-effect"
+      ],
+      "label": "NATURE, CLASSIFICATION, AND EFFECT",
+      "minted": "2026-11-25",
+      "uuid": "2564c71d-71e1-4436-8298-05abb1f531ff",
+      "corpusIssueId": "9d1c090c-d13a-59ee-9149-4dd30df29cc4",
+      "pathNotation": "PROCEDURAL_LAW.SUPPLEMENTAL_PROCEEDINGS.NATURE_CLASSIFICATION_AND_EFFECT"
+    },
+    {
       "id": "5d381bac9c1f49e88349da9e26258bf5",
       "keys": [
         "procedural-law/supreme-court-appellate-jurisdiction-over-state-courts"
@@ -385859,6 +386160,26 @@
       "uuid": "70cd19a0-a78b-433c-b0dc-09d9e8a6f400",
       "corpusIssueId": "81bcb6ff-406c-5a99-9b9d-f678b42614ba",
       "pathNotation": "PROCEDURAL_LAW.TIME_FOR_APPEAL.STATUTORY_TIME_LIMITS_IN_CONTROVERSIES"
+    },
+    {
+      "id": "7f5d9209ec74459db7c507bec34e5bca",
+      "keys": [
+        "procedural-law/time-for-commencing-actions"
+      ],
+      "label": "Time for Commencing Actions",
+      "minted": "2026-11-25",
+      "uuid": "7f5d9209-ec74-459d-b7c5-07bec34e5bca"
+    },
+    {
+      "id": "12b914c1019b47bfb13f8377e89542ac",
+      "keys": [
+        "procedural-law/time-for-commencing-actions/general-principles"
+      ],
+      "label": "GENERAL PRINCIPLES",
+      "minted": "2026-11-25",
+      "uuid": "12b914c1-019b-47bf-b13f-8377e89542ac",
+      "corpusIssueId": "c6a2ea05-2121-5e2c-91cf-e881396edce7",
+      "pathNotation": "PROCEDURAL_LAW.TIME_FOR_COMMENCING_ACTIONS.GENERAL_PRINCIPLES"
     },
     {
       "id": "e779d78e4a2d4d0e99d8d8ff851fd81c",
@@ -417206,6 +417527,17 @@
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_IN_REAL_PROPERTY.PRESENT_ESTATES"
     },
     {
+      "id": "13f88bcffc8c42c190353941079177e8",
+      "keys": [
+        "real-estate-law/estates-in-real-property/present-estates-future-interests-and-cotenancies"
+      ],
+      "label": "PRESENT ESTATES, FUTURE INTERESTS, AND COTENANCIES",
+      "minted": "2026-11-25",
+      "uuid": "13f88bcf-fc8c-42c1-9035-3941079177e8",
+      "corpusIssueId": "fa24044f-a498-53a7-a928-0494645804d1",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_IN_REAL_PROPERTY.PRESENT_ESTATES_FUTURE_INTERESTS_AND_COTENANCIES"
+    },
+    {
       "id": "64780f6eb0a34b40a3cb6c1ff9e3a6eb",
       "keys": [
         "real-estate-law/estates-in-real-property/theory-and-classification"
@@ -423472,6 +423804,17 @@
       "uuid": "0519ccb0-fa78-4d82-a918-c7df610caa8f",
       "corpusIssueId": "6eba5a0b-3b26-5a5a-a0a7-5983e885a3bc",
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.EASEMENTS_AND_SERVITUDES.CREATION_OF_EASEMENTS.IMPLIED_GRANTS"
+    },
+    {
+      "id": "97b458daac244f3199534e5fa76df8dd",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/easements-and-servitudes/damages-for-servitudes"
+      ],
+      "label": "DAMAGES FOR SERVITUDES",
+      "minted": "2026-11-25",
+      "uuid": "97b458da-ac24-4f31-9953-4e5fa76df8dd",
+      "corpusIssueId": "2296cf2c-622d-5146-9593-76c332f58717",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.EASEMENTS_AND_SERVITUDES.DAMAGES_FOR_SERVITUDES"
     },
     {
       "id": "547e91083d3b46ef97fd3b78a5eee3b7",
@@ -437199,6 +437542,17 @@
       "uuid": "22efc07e-2657-416b-8cbd-cc470582e7b6",
       "corpusIssueId": "a232b5ad-966a-502f-a3bb-48dda5cd5f90",
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_OF_REAL_PROPERTY.FORECLOSURE.RIGHT_TO_FORECLOSE.INTENTION_AND_UNDERSTANDING_OF_THE_PARTIES"
+    },
+    {
+      "id": "e90f8fff87c54dbba4a9ae4c71df1ba6",
+      "keys": [
+        "real-estate-law/mortgages-of-real-property/foreclosure/right-to-foreclose/material-alterations"
+      ],
+      "label": "MATERIAL ALTERATIONS",
+      "minted": "2026-11-25",
+      "uuid": "e90f8fff-87c5-4dbb-a4a9-ae4c71df1ba6",
+      "corpusIssueId": "565bdd67-dc39-5ca7-800a-560f82cf6d9a",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_OF_REAL_PROPERTY.FORECLOSURE.RIGHT_TO_FORECLOSE.MATERIAL_ALTERATIONS"
     },
     {
       "id": "54ad02841a694130bbb1380c62512f7b",
@@ -452744,6 +453098,17 @@
       "label": "Attestation and Witnesses",
       "minted": "2026-10-17",
       "uuid": "d08ebf8a-e59d-422d-9990-3e88aaec6490"
+    },
+    {
+      "id": "cf93d2a7cac84e70be6e90a6834e5c33",
+      "keys": [
+        "real-estate-law/transfers-of-real-property/deeds/attestation-and-witnesses/conveyance-of-individual-interest-by-several-grantors"
+      ],
+      "label": "CONVEYANCE OF INDIVIDUAL INTEREST BY SEVERAL GRANTORS",
+      "minted": "2026-11-25",
+      "uuid": "cf93d2a7-cac8-4e70-be6e-90a6834e5c33",
+      "corpusIssueId": "2ab231e1-8cf5-57ec-93df-20c6b300f93b",
+      "pathNotation": "REAL_ESTATE_LAW.TRANSFERS_OF_REAL_PROPERTY.DEEDS.ATTESTATION_AND_WITNESSES.CONVEYANCE_OF_INDIVIDUAL_INTEREST_BY_SEVERAL_GRANTORS"
     },
     {
       "id": "9bee099ed42f48049dd86fca5f328ddb",
@@ -483471,6 +483836,26 @@
       "uuid": "4890b28e-b9f8-40a5-9e58-8b99ec16ea83",
       "corpusIssueId": "cfaa1539-2b49-55a6-ac03-7c78bc4ec19c",
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.STAMP_TAXES.CONSTRUCTION_AND_INTERPRETATION_OF_STAMP_ACTS"
+    },
+    {
+      "id": "cd53b491dc2a449d8fb1f985a3fca0ae",
+      "keys": [
+        "tax-and-revenue-law/tax-law/stamp-taxes/negotiable-instruments-stamp-tax"
+      ],
+      "label": "Negotiable Instruments Stamp Tax",
+      "minted": "2026-11-25",
+      "uuid": "cd53b491-dc2a-449d-8fb1-f985a3fca0ae"
+    },
+    {
+      "id": "1ca68d247aaf42a9bd4aa053d8c4ec01",
+      "keys": [
+        "tax-and-revenue-law/tax-law/stamp-taxes/negotiable-instruments-stamp-tax/statutory-construction-of-stamp-act"
+      ],
+      "label": "STATUTORY CONSTRUCTION OF STAMP ACT",
+      "minted": "2026-11-25",
+      "uuid": "1ca68d24-7aaf-42a9-bd4a-a053d8c4ec01",
+      "corpusIssueId": "5de28da6-8680-55fe-ac73-78179e286808",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.STAMP_TAXES.NEGOTIABLE_INSTRUMENTS_STAMP_TAX.STATUTORY_CONSTRUCTION_OF_STAMP_ACT"
     },
     {
       "id": "8d7aa4f24e02402e9a7cf889dd14a49c",
