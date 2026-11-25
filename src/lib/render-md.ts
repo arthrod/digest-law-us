@@ -4,7 +4,6 @@
  * through the content-layer store (see src/loaders/sources.ts) — each
  * source page renders exactly its own ≤200 KB slice here.
  */
-import { promises as fs } from "node:fs";
 import path from "node:path";
 
 import type { MarkdownRenderer } from "@astrojs/markdown-remark";
@@ -13,6 +12,7 @@ import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import { CORPUS_DIR } from "@/corpus.config";
 
 import { parseFrontmatterLoose } from "./frontmatter";
+import { readCorpusFile } from "./read-corpus";
 
 let processorPromise: Promise<MarkdownRenderer> | null = null;
 
@@ -27,6 +27,18 @@ const CACHE_MAX = 8,
   contentCache = new Map<string, string>(),
   corpusRoot = path.resolve(process.cwd(), CORPUS_DIR);
 
+/**
+ * Stand-in body for a file deleted from the live corpus after content sync
+ * listed it (see read-corpus.ts): the page still renders, saying so, instead
+ * of a missing file aborting a day-long build.
+ */
+function vanished(relFile: string): string {
+  console.warn(
+    `[render-md] ${relFile} was deleted from the corpus during the build`
+  );
+  return "> This document is no longer in the corpus. It was removed while this edition of the site was being built.\n";
+}
+
 async function readSourceContent(relFile: string): Promise<string> {
   const hit = contentCache.get(relFile);
   if (hit !== undefined) {
@@ -35,7 +47,9 @@ async function readSourceContent(relFile: string): Promise<string> {
     return hit;
   }
   // oxlint-disable-next-line eslint/one-var -- the read must stay behind the cache-hit early return
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
+  const raw =
+      (await readCorpusFile(path.join(corpusRoot, relFile))) ??
+      vanished(relFile),
     // Loose, because a few machine-written corpus files carry frontmatter
     // that is not loadable YAML. The loader already logged the warning and
     // recorded spans over the body this recovers; throwing here instead would
@@ -65,7 +79,9 @@ export interface RenderedChunk {
  * them out of the store is meant to avoid.
  */
 export async function renderCorpusFile(relFile: string): Promise<string> {
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
+  const raw =
+      (await readCorpusFile(path.join(corpusRoot, relFile))) ??
+      vanished(relFile),
     { content } = parseFrontmatterLoose(raw),
     // oxlint-disable-next-line eslint/sort-vars -- keep the awaited read before processor init
     processor = await getProcessor(),

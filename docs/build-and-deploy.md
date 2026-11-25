@@ -8,6 +8,7 @@ How the full-corpus build was made to finish (first complete run: 2026-10-21,
 ```sh
 pnpm run ids:check                 # deploy is gated on it; `pnpm run ids:mint` fixes it
 ./build-deploy-tmux.sh             # runs `pnpm run build && pnpm run deploy` in tmux
+./build-deploy-tmux.sh full        # runs `pnpm run deploy:full` in tmux instead
 tmux attach -t digest-build        # watch (detach: Ctrl-b d)
 tail -f build-deploy-<stamp>.log   # or follow the log
 tail -f build-deploy-<stamp>.mem.log
@@ -34,10 +35,7 @@ variables.
    the schema errors are printed at the top of the log; fix them upstream in the
    corpus. Use `bun scripts/check-digest-frontmatter.ts --strict` to fail
    instead, e.g. in CI.
-2. **Checks the Astro store-writer patch.** `node scripts/patch-astro-store-writer.mjs --check`
-   verifies the patch is still applied. A dependency bump can silently undo it;
-   `pnpm install` re-applies it through `postinstall`.
-3. **Runs `astro build` with 4 prerender workers.** It uses the incremental
+2. **Runs `astro build` with 4 prerender workers.** It uses the incremental
    build and a 24 GB main heap:
    - `ASTRO_PRERENDER_WORKERS` defaults to **4**. Override it with
      `ASTRO_PRERENDER_WORKERS=N pnpm run build`, or 0 for a single thread.
@@ -48,11 +46,37 @@ variables.
      `build.concurrency` comes from `BUILD_CONCURRENCY` (default 1), so 4
      pages render in parallel. Raising it has not been measured; memory is the
      limit, so change one setting at a time and watch the memory log.
-4. **Writes `dist/mcp-catalog.json`** (`scripts/write-mcp-catalog.ts`), the
+3. **Writes `dist/mcp-catalog.json`** (`scripts/write-mcp-catalog.ts`), the
    concept catalog the `/mcp` Worker reads. It lists only concepts whose page
    is in this `dist/`, and refuses to write an empty catalog.
-5. **Runs `pagefind --site dist`** (54,392 pages indexed) and copies the index
+4. **Runs `pagefind --site dist`** (54,392 pages indexed) and copies the index
    into `public/`.
+
+## The corpus changes while the build runs
+
+The build reads the live `../key-digest-runner` checkout for most of a day,
+and that checkout keeps moving: it is pulled, researchers' commits land, and
+`corpus:clean` deletes from it. A file listed at the start of content sync can
+be gone when it is read (2026-11-25: a purged bundle's source aborted the
+build with `ENOENT`). `src/lib/read-corpus.ts` makes that cost one entry: the
+sources and audits loaders skip a vanished file with a warning, and a page
+whose file vanishes after sync renders a "no longer in the corpus" notice.
+Astro's own glob loader already skips missing digests. Avoid pulling the
+runner during a build anyway; the deploy then ships a slightly inconsistent
+snapshot.
+
+## Dependencies
+
+`pnpm-workspace.yaml` sets `minimumReleaseAge: 10080`: pnpm never resolves a
+version published less than 7 days ago, so `pnpm update --latest` updates to
+the newest release that is at least a week old. Any lockfile change alters
+Astro's incremental-build key (`lockfileHash`), so the next build re-renders
+every page.
+
+Astro's content-store writer used to need a local patch (`getChunkEnd`
+encoding each character separately, which made content sync about 25 times
+slower). Astro fixed it upstream, so the patch script and its `postinstall`
+hook were removed.
 
 ## Why 4 workers
 
@@ -108,8 +132,8 @@ then cold: about 3.5–4.3 h on this corpus. Upgrading Astro does the same.
   2. `ids:mint`, then `ids:check`: retire the ids of what was just deleted and
      mint new concepts, once.
   3. `skills:index`: regenerate the agent skill (see below).
-  4. the same build as `pnpm run build` (frontmatter check, store-writer patch
-     check, `astro build`, MCP catalog, pagefind).
+  4. `pnpm run build` itself (skills index, frontmatter check, `astro build`,
+     MCP catalog, pagefind), so the two can never drift apart.
   5. `check:head` and `skos:check` on the fresh `dist/`.
   6. `deploy-shards.ts`, then `smoke` against production.
 - **Stray heading markers** (`## ## Checklist …`) written by the runner are

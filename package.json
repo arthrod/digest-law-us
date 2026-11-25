@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=24576 astro dev",
     "dev:preview": "NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro dev",
-    "build": "pnpm run skills:index && pnpm run frontmatter:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=24576 astro build && bun scripts/write-mcp-catalog.ts && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "pnpm run skills:index && pnpm run frontmatter:check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=24576 astro build && bun scripts/write-mcp-catalog.ts && pagefind --site dist && cp -r dist/pagefind public/",
     "build:preview": "rm -rf dist-preview && NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro build && pagefind --site dist-preview",
     "preview:preview": "NODE_OPTIONS=--max-old-space-size=12288 PREVIEW_BUNDLES=10 astro preview",
     "preview": "NODE_OPTIONS=--max-old-space-size=24576 astro preview",
@@ -16,7 +16,7 @@
     "lint": "oxlint .",
     "check": "ultracite check",
     "deploy": "pnpm run ids:check && bun scripts/deploy-shards.ts",
-    "deploy:full": "pnpm run corpus:clean && pnpm run ids:mint && pnpm run ids:check && pnpm run skills:index && pnpm run frontmatter:check && node scripts/patch-astro-store-writer.mjs --check && rm -rf public/pagefind && ASTRO_PRERENDER_WORKERS=${ASTRO_PRERENDER_WORKERS:-4} NODE_OPTIONS=--max-old-space-size=12288 astro build && bun scripts/write-mcp-catalog.ts && pagefind --site dist && cp -r dist/pagefind public/ && pnpm run check:head && pnpm run skos:check && bun scripts/deploy-shards.ts && pnpm run smoke",
+    "deploy:full": "pnpm run corpus:clean && pnpm run ids:mint && pnpm run ids:check && pnpm run build && pnpm run check:head && pnpm run skos:check && bun scripts/deploy-shards.ts && pnpm run smoke",
     "corpus:clean": "bash scripts/corpus-clean.sh",
     "corpus:clean:dry": "CORPUS_CLEAN_DRY=1 bash scripts/corpus-clean.sh",
     "deploy:plan": "bun scripts/deploy-shards.ts --plan",
@@ -30,7 +30,6 @@
     "ids:mint:main": "git -C ../key-digest-runner fetch -q origin && bun scripts/mint-concept-ids.ts --from-git ../key-digest-runner origin/main",
     "skos:check": "bun scripts/check-skos.ts",
     "test": "bun test src worker scripts",
-    "postinstall": "node scripts/patch-astro-store-writer.mjs",
     "prepare": "lefthook install",
     "smoke": "scripts/smoke-prod.sh",
     "skills:index": "bun scripts/agent-skills-index.ts"
@@ -64,14 +63,14 @@
     "@types/bun": "^1.4.4",
     "@types/lodash.kebabcase": "^4.1.9",
     "lefthook": "^2.2.2",
-    "lint-staged": "^17.6.0",
-    "oxfmt": "^0.78.0",
-    "oxlint": "^1.93.0",
+    "lint-staged": "^17.6.1",
+    "oxfmt": "^0.79.0",
+    "oxlint": "^1.94.0",
     "pagefind": "^1.6.0",
     "tinyglobby": "^0.2.17",
     "typescript": "^7.0.2",
-    "ultracite": "8.2.1",
-    "wrangler": "^4.162.0"
+    "ultracite": "8.3.0",
+    "wrangler": "^4.164.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,jsonc,css,scss,md,mdx,astro}": [

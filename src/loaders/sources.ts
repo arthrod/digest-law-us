@@ -9,7 +9,6 @@
  * makes hard constraint 3 (≤200 KB of source markdown per page) structural.
  */
 import { createHash } from "node:crypto";
-import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -19,6 +18,7 @@ import { PREVIEW_MODE, SOURCE_CHUNK_BYTES } from "@/corpus.config";
 import { parseFrontmatterLoose } from "@/lib/frontmatter";
 import { slugSegment } from "@/lib/labels";
 import { previewBundles } from "@/lib/preview";
+import { listCorpus, readCorpusFile } from "@/lib/read-corpus";
 
 export interface ChunkSpan {
   end: number;
@@ -79,9 +79,7 @@ export function sourcesLoader(corpusDir: string): Loader {
     async load({ store, logger, config, parseData, generateDigest }) {
       const root = path.resolve(fileURLToPath(config.root), corpusDir),
         // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
-        listing = await fs.readdir(root, {
-          recursive: true,
-        }),
+        listing = await listCorpus(root),
         // In preview mode the bundle set is decided before any file is read;
         // skipping here is what keeps a preview build from paying for the
         // whole ~13 GB of retained sources (see src/lib/preview.ts).
@@ -102,9 +100,15 @@ export function sourcesLoader(corpusDir: string): Loader {
       let count = 0;
 
       for (const rel of files) {
+        const raw = await readCorpusFile(path.join(root, rel));
+        if (raw === null) {
+          // Deleted from the live corpus after the listing (see read-corpus.ts).
+          logger.warn(`Skipped ${rel}: deleted from the corpus during sync`);
+          continue;
+        }
+        // oxlint-disable-next-line eslint/one-var -- must follow the vanished-file check above
         const bundle = rel.slice(0, rel.lastIndexOf("/sources/")),
           fileName = path.basename(rel, ".md"),
-          raw = await fs.readFile(path.join(root, rel), "utf8"),
           // A malformed frontmatter block must not kill a multi-hour build:
           // keep the document (body = everything past the delimiters), log
           // loudly, never drop. The page renderer recovers the identical body
