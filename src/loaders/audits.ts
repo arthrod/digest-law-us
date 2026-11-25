@@ -15,7 +15,6 @@
  * pipeline. Nothing about the published page changes — the audit is still
  * rendered verbatim, still indexed by Pagefind.
  */
-import { promises as fs } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,6 +23,7 @@ import type { Loader } from "astro/loaders";
 import { PREVIEW_MODE } from "@/corpus.config";
 import { parseFrontmatterLoose } from "@/lib/frontmatter";
 import { previewBundles } from "@/lib/preview";
+import { listCorpus, readCorpusFile } from "@/lib/read-corpus";
 
 const AUDIT_FILE = "_source_snippet_audit.md";
 
@@ -32,7 +32,7 @@ export function auditsLoader(corpusDir: string): Loader {
     async load({ store, logger, config, parseData, generateDigest }) {
       const root = path.resolve(fileURLToPath(config.root), corpusDir),
         // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
-        listing = await fs.readdir(root, { recursive: true }),
+        listing = await listCorpus(root),
         // oxlint-disable-next-line eslint/sort-vars -- dependency order (root, listing, preview, files); sorting would hit the TDZ and reorder the awaits
         preview = PREVIEW_MODE ? await previewBundles(root) : null,
         // oxlint-disable-next-line eslint/sort-vars -- files depends on listing and preview
@@ -50,10 +50,16 @@ export function auditsLoader(corpusDir: string): Loader {
       let count = 0;
 
       for (const rel of files) {
-        const raw = await fs.readFile(path.join(root, rel), "utf8"),
-          // A malformed frontmatter block must not kill a multi-hour build:
-          // keep the entry, log loudly, never drop it (same rule as sources).
-          { data: fm, error } = parseFrontmatterLoose(raw);
+        const raw = await readCorpusFile(path.join(root, rel));
+        if (raw === null) {
+          // Deleted from the live corpus after the listing (see read-corpus.ts).
+          logger.warn(`Skipped ${rel}: deleted from the corpus during sync`);
+          continue;
+        }
+        // A malformed frontmatter block must not kill a multi-hour build:
+        // keep the entry, log loudly, never drop it (same rule as sources).
+        // oxlint-disable-next-line eslint/one-var -- must follow the vanished-file check above
+        const { data: fm, error } = parseFrontmatterLoose(raw);
         if (error) {
           logger.warn(`Broken frontmatter in ${rel}: ${error}`);
         }

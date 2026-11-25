@@ -7,13 +7,9 @@ allowBuilds:
   sharp: true
   workerd: true
 
-# pnpm 12 rejects a lockfile entry published within the last 24 hours
-# (supply-chain protection). ultracite 8.2.1 was published 2026-11-14T20:04Z
-# and is pinned deliberately, so the gate would fail `--frozen-lockfile` on a
-# cold cache — which is exactly what CI is. Remove this line once the version
-# clears the window; nothing else depends on it.
-minimumReleaseAgeExclude:
-  - ultracite@8.2.1
+# Supply-chain gate: never resolve a version published less than 7 days ago
+# (minutes). `pnpm update --latest` honours it, so "latest" means n-7 days.
+minimumReleaseAge: 10080
 
 # Security floors for transitive dependencies flagged by Dependabot
 # (2026-10-02). Their parents pin ranges that never resolve past the

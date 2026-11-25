@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Launch `pnpm run build && pnpm run check:head && pnpm run deploy` in tmux
-# session digest-build, logging to build-deploy-<stamp>.log. See
+# Launch the build and deploy in tmux session digest-build, logging to build-deploy-<stamp>.log. See
 # docs/build-and-deploy.md. The head check is the documented gate before a
 # deploy: a build whose pages fail it must not ship.
+#   ./build-deploy-tmux.sh        pnpm run build && pnpm run check:head && pnpm run deploy
+#   ./build-deploy-tmux.sh full   pnpm run deploy:full (corpus clean, ids, build, checks,
+#                                 deploy, smoke)
 #   ASTRO_PRERENDER_WORKERS  unset = 4 (the `pnpm run build` default); N overrides
 #   SWAP_MAX                 scope swap cap (default 96G)
 # A light memory logger samples the scope every MEMLOG_INTERVAL seconds (default
@@ -17,13 +19,18 @@ WORKERS=${ASTRO_PRERENDER_WORKERS:-}
 UNIT="digest-build-$STAMP"
 MEMLOG="$PWD/build-deploy-$STAMP.mem.log"
 MEMLOG_INTERVAL=${MEMLOG_INTERVAL:-30}
+if [[ "${1:-}" == "full" ]]; then
+  STEPS="pnpm run deploy:full"
+else
+  STEPS="pnpm run build && pnpm run check:head && pnpm run deploy"
+fi
 INNER=$(cat <<INNER_EOF
 set -o pipefail
 export PATH="\$HOME/.bun/bin:\$PATH"
 cd $PWD
 ${WORKERS:+export ASTRO_PRERENDER_WORKERS=$WORKERS}
 {
-  echo "=== \$(date -Is) starting: pnpm run build && pnpm run check:head && pnpm run deploy ==="
+  echo "=== \$(date -Is) starting: $STEPS ==="
   echo "git: \$(git rev-parse --short HEAD); corpus: \$(git -C ../key-digest-runner rev-parse --short=10 HEAD)"
   echo "node \$(node --version), pnpm \$(pnpm --version), astro \$(pnpm exec astro --version 2>/dev/null)"
   echo "prerender workers: ${WORKERS:-4 (build default)}; scope MemoryMax=27G MemorySwapMax=$SWAP_MAX"
@@ -40,7 +47,7 @@ ${WORKERS:+export ASTRO_PRERENDER_WORKERS=$WORKERS}
 ) >> "$MEMLOG" 2>&1 &
 MEMLOG_PID=\$!
 systemd-run --user --scope -q --unit=$UNIT -p MemoryMax=27G -p MemorySwapMax=$SWAP_MAX \\
-  bash -c 'set -o pipefail; { pnpm run build && pnpm run check:head && pnpm run deploy; } 2>&1 | tee -a "\$0"' "$LOG"
+  bash -c 'set -o pipefail; { $STEPS; } 2>&1 | tee -a "\$0"' "$LOG"
 rc=\$?
 kill \$MEMLOG_PID 2>/dev/null
 echo "=== \$(date -Is) RESULT exit=\$rc \$([ \$rc -eq 0 ] && echo COMPLETE || echo FAILED) ===" | tee -a "$LOG"

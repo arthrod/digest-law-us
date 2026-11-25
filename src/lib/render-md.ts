@@ -4,7 +4,6 @@
  * through the content-layer store (see src/loaders/sources.ts) — each
  * source page renders exactly its own ≤200 KB slice here.
  */
-import { promises as fs } from "node:fs";
 import path from "node:path";
 
 import type { MarkdownRenderer } from "@astrojs/markdown-remark";
@@ -13,6 +12,7 @@ import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import { CORPUS_DIR } from "@/corpus.config";
 
 import { parseFrontmatterLoose } from "./frontmatter";
+import { readCorpusFile } from "./read-corpus";
 
 let processorPromise: Promise<MarkdownRenderer> | null = null;
 
@@ -27,7 +27,20 @@ const CACHE_MAX = 8,
   contentCache = new Map<string, string>(),
   corpusRoot = path.resolve(process.cwd(), CORPUS_DIR);
 
-async function readSourceContent(relFile: string): Promise<string> {
+/**
+ * Stand-in body for a file deleted from the live corpus after content sync
+ * listed it (see read-corpus.ts): the page still renders, saying so, instead
+ * of a missing file aborting a day-long build.
+ */
+function vanished(relFile: string): string {
+  console.warn(
+    `[render-md] ${relFile} was deleted from the corpus during the build`
+  );
+  return "> This document is no longer in the corpus. It was removed while this edition of the site was being built.\n";
+}
+
+/** Frontmatter-stripped source text, or `null` if the file was deleted (never cached). */
+async function readSourceContent(relFile: string): Promise<string | null> {
   const hit = contentCache.get(relFile);
   if (hit !== undefined) {
     contentCache.delete(relFile);
@@ -35,12 +48,16 @@ async function readSourceContent(relFile: string): Promise<string> {
     return hit;
   }
   // oxlint-disable-next-line eslint/one-var -- the read must stay behind the cache-hit early return
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
-    // Loose, because a few machine-written corpus files carry frontmatter
-    // that is not loadable YAML. The loader already logged the warning and
-    // recorded spans over the body this recovers; throwing here instead would
-    // take the whole build down over one unparseable `tags:` line.
-    { content } = parseFrontmatterLoose(raw);
+  const raw = await readCorpusFile(path.join(corpusRoot, relFile));
+  if (raw === null) {
+    return null;
+  }
+  // Loose, because a few machine-written corpus files carry frontmatter
+  // that is not loadable YAML. The loader already logged the warning and
+  // recorded spans over the body this recovers; throwing here instead would
+  // take the whole build down over one unparseable `tags:` line.
+  // oxlint-disable-next-line eslint/one-var -- must follow the deleted-file check above
+  const { content } = parseFrontmatterLoose(raw);
   contentCache.set(relFile, content);
   if (contentCache.size > CACHE_MAX) {
     const oldest = contentCache.keys().next().value;
@@ -65,7 +82,9 @@ export interface RenderedChunk {
  * them out of the store is meant to avoid.
  */
 export async function renderCorpusFile(relFile: string): Promise<string> {
-  const raw = await fs.readFile(path.join(corpusRoot, relFile), "utf8"),
+  const raw =
+      (await readCorpusFile(path.join(corpusRoot, relFile))) ??
+      vanished(relFile),
     { content } = parseFrontmatterLoose(raw),
     // oxlint-disable-next-line eslint/sort-vars -- keep the awaited read before processor init
     processor = await getProcessor(),
@@ -78,7 +97,12 @@ export async function renderSourceChunk(
   span: { start: number; end: number }
 ): Promise<RenderedChunk> {
   const content = await readSourceContent(relFile),
-    slice = content.slice(span.start, span.end),
+    // A deleted file has no text for the loader's spans to index into: every
+    // part renders the whole notice rather than a slice of it.
+    slice =
+      content === null
+        ? vanished(relFile)
+        : content.slice(span.start, span.end),
     // oxlint-disable-next-line eslint/sort-vars -- result depends on slice, so no sorted order exists
     processor = await getProcessor(),
     // oxlint-disable-next-line eslint/sort-vars -- result depends on slice, so no sorted order exists
