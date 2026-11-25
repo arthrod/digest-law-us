@@ -108265,6 +108265,26 @@
       "label": "Shares and Stock"
     },
     {
+      "id": "d6cf207feb6048dbb306016f4b352cb2",
+      "keys": [
+        "corporate-law/corporate-finance-and-securities/shares-and-stock/forfeiture-of-stock"
+      ],
+      "label": "Forfeiture of Stock",
+      "minted": "2026-11-25",
+      "uuid": "d6cf207f-eb60-48db-b306-016f4b352cb2"
+    },
+    {
+      "id": "16bd041a8d324819b3a9a7607ba85049",
+      "keys": [
+        "corporate-law/corporate-finance-and-securities/shares-and-stock/forfeiture-of-stock/surplus-after-forfeiture"
+      ],
+      "label": "SURPLUS AFTER FORFEITURE",
+      "minted": "2026-11-25",
+      "uuid": "16bd041a-8d32-4819-b3a9-a7607ba85049",
+      "corpusIssueId": "ef78a6ff-53f9-5d16-9ea5-2bd947f951fd",
+      "pathNotation": "CORPORATE_LAW.CORPORATE_FINANCE_AND_SECURITIES.SHARES_AND_STOCK.FORFEITURE_OF_STOCK.SURPLUS_AFTER_FORFEITURE"
+    },
+    {
       "id": "d2d0957589b846839ebe402153ec400f",
       "keys": [
         "corporate-law/corporate-finance-and-securities/shares-and-stock/issuance-of-stock"
@@ -128182,6 +128202,17 @@
       "pathNotation": "CRIMINAL_LAW.ANTI_CORRUPTION_LAW.BRIBE_RECEIVING.STATUTORY_GRADING_NEW_YORK_PENAL_LAW"
     },
     {
+      "id": "8208a663fe8a4b4d899c3e7daf63a5e1",
+      "keys": [
+        "criminal-law/anti-corruption-law/bribery-of-de-facto-officer"
+      ],
+      "label": "BRIBERY OF DE FACTO OFFICER",
+      "minted": "2026-11-25",
+      "uuid": "8208a663-fe8a-4b4d-899c-3e7daf63a5e1",
+      "corpusIssueId": "77c84bc8-870d-5688-afb7-2e695683d0d5",
+      "pathNotation": "CRIMINAL_LAW.ANTI_CORRUPTION_LAW.BRIBERY_OF_DE_FACTO_OFFICER"
+    },
+    {
       "id": "03ad7f4622484b5fad116726fefdf84b",
       "keys": [
         "criminal-law/anti-corruption-law/defenses"
@@ -135580,6 +135611,44 @@
       "uuid": "05b5f678-654b-406b-a1fa-5046826c483f"
     },
     {
+      "id": "d892494bc9d24405a521c71c30974b4c",
+      "keys": [
+        "criminal-law/fourth-amendment-reasonable-expectation-of-privacy"
+      ],
+      "label": "Fourth Amendment Reasonable Expectation of Privacy",
+      "minted": "2026-11-25",
+      "uuid": "d892494b-c9d2-4405-a521-c71c30974b4c"
+    },
+    {
+      "id": "d10b181a74ae40e09b7f61ea0110b7f1",
+      "keys": [
+        "criminal-law/fourth-amendment-reasonable-expectation-of-privacy/third-party-doctrine"
+      ],
+      "label": "Third Party Doctrine",
+      "minted": "2026-11-25",
+      "uuid": "d10b181a-74ae-40e0-9b7f-61ea0110b7f1"
+    },
+    {
+      "id": "aa3089bd5eb443839020216ad39161b8",
+      "keys": [
+        "criminal-law/fourth-amendment-reasonable-expectation-of-privacy/third-party-doctrine/cell-site-location-information-and-digital-records"
+      ],
+      "label": "Cell Site Location Information and Digital Records",
+      "minted": "2026-11-25",
+      "uuid": "aa3089bd-5eb4-4383-9020-216ad39161b8"
+    },
+    {
+      "id": "9ae9e94ed7b3447291b977535d204cd5",
+      "keys": [
+        "criminal-law/fourth-amendment-reasonable-expectation-of-privacy/third-party-doctrine/cell-site-location-information-and-digital-records/carpenter-v-united-states"
+      ],
+      "label": "CARPENTER V. UNITED STATES",
+      "minted": "2026-11-25",
+      "uuid": "9ae9e94e-d7b3-4472-91b9-77535d204cd5",
+      "corpusIssueId": "78fd8779-6453-5aec-ae88-d409046b5c73",
+      "pathNotation": "CRIMINAL_LAW.FOURTH_AMENDMENT_REASONABLE_EXPECTATION_OF_PRIVACY.THIRD_PARTY_DOCTRINE.CELL_SITE_LOCATION_INFORMATION_AND_DIGITAL_RECORDS.CARPENTER_V_UNITED_STATES"
+    },
+    {
       "id": "81e26f4e71a947678963f90baf4118fe",
       "keys": [
         "criminal-law/fourth-amendment-search-and-seizure"
@@ -136140,6 +136209,17 @@
       "uuid": "0149b740-0df7-4dc0-9a47-81f4f680e7fe",
       "corpusIssueId": "54e747d5-5b2d-5cf1-a65c-ab55749f6fba",
       "pathNotation": "CRIMINAL_LAW.GENERAL_PRINCIPLES_AND_DOCTRINES.INTRODUCTION_AND_OVERVIEW_OF_CRIMINAL_LAW"
+    },
+    {
+      "id": "a807f3322e1d43b1b2d07c9624b4dbc2",
+      "keys": [
+        "criminal-law/general-principles-and-doctrines/legality-principle"
+      ],
+      "label": "LEGALITY PRINCIPLE",
+      "minted": "2026-11-25",
+      "uuid": "a807f332-2e1d-43b1-b2d0-7c9624b4dbc2",
+      "corpusIssueId": "5fafcdac-9bda-53bd-8828-9af928a8fef8",
+      "pathNotation": "CRIMINAL_LAW.GENERAL_PRINCIPLES_AND_DOCTRINES.LEGALITY_PRINCIPLE"
     },
     {
       "id": "0942753879df47d79f5bb77038638d02",
@@ -186501,6 +186581,17 @@
       "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.DISCOVERY_AND_DISCLOSURE_OF_EVIDENCE.INDEPENDENTLY_DISCOVERED_FACTS"
     },
     {
+      "id": "4758685904674a6ca2a7e1d8cb010b3d",
+      "keys": [
+        "evidence-law/types-of-evidence/distinction-between-legal-and-historical-evidence"
+      ],
+      "label": "DISTINCTION BETWEEN LEGAL AND HISTORICAL EVIDENCE",
+      "minted": "2026-11-25",
+      "uuid": "47586859-0467-4a6c-a2a7-e1d8cb010b3d",
+      "corpusIssueId": "4ef2237d-8b43-5d36-bd42-5f6866286f6d",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.DISTINCTION_BETWEEN_LEGAL_AND_HISTORICAL_EVIDENCE"
+    },
+    {
       "id": "bf466c88ebc0410288e09611dafa8673",
       "keys": [
         "evidence-law/types-of-evidence/documentary-and-compendium-evidence"
@@ -197125,6 +197216,26 @@
       "uuid": "85b43434-9177-4cc0-8b88-ec910ad949a0",
       "corpusIssueId": "84224788-5617-5786-901d-9deac6f153f9",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.COMMERCIAL_GUARANTIES.ACCEPTANCE_OF_GUARANTY.NOTICE_OF_ACCEPTANCE.FEDERAL_COURT_RULE"
+    },
+    {
+      "id": "74d16e76035a40ea94a6ff30850a26bd",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/commercial-guaranties/affirmance-of-guaranty"
+      ],
+      "label": "Affirmance of Guaranty",
+      "minted": "2026-11-25",
+      "uuid": "74d16e76-035a-40ea-94a6-ff30850a26bd"
+    },
+    {
+      "id": "7751b100c84745c3a7e16201798dfe11",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/commercial-guaranties/affirmance-of-guaranty/affirmance-by-failure-to-prosecute-appeal"
+      ],
+      "label": "AFFIRMANCE BY FAILURE TO PROSECUTE APPEAL",
+      "minted": "2026-11-25",
+      "uuid": "7751b100-c847-45c3-a7e1-6201798dfe11",
+      "corpusIssueId": "21191f0f-1dfe-5504-863e-1cfcb9f7624b",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.COMMERCIAL_GUARANTIES.AFFIRMANCE_OF_GUARANTY.AFFIRMANCE_BY_FAILURE_TO_PROSECUTE_APPEAL"
     },
     {
       "id": "3b90891f02d04b688d38a9d70710448e",
@@ -210167,6 +210278,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PARTIES_AND_CAPACITY.CAPACITY_OF_MARRIED_WOMEN.EFFECT_OF_SUBSEQUENT_MARRIAGE_ON_PAYEE"
     },
     {
+      "id": "3a81e74fccad4002a41b6e759dfe5978",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/parties-and-capacity/capacity-of-promisor"
+      ],
+      "label": "Capacity of Promisor",
+      "minted": "2026-11-25",
+      "uuid": "3a81e74f-ccad-4002-a41b-6e759dfe5978"
+    },
+    {
+      "id": "e8c29edc3431430b991b0560223d07bc",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/parties-and-capacity/capacity-of-promisor/who-may-become-promisors-in-suretyship"
+      ],
+      "label": "WHO MAY BECOME PROMISORS IN SURETYSHIP",
+      "minted": "2026-11-25",
+      "uuid": "e8c29edc-3431-430b-991b-0560223d07bc",
+      "corpusIssueId": "898920a7-f518-5ea0-ab0c-052cbad10da2",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PARTIES_AND_CAPACITY.CAPACITY_OF_PROMISOR.WHO_MAY_BECOME_PROMISORS_IN_SURETYSHIP"
+    },
+    {
       "id": "5e003e17984046c1926bb9c04e71adc5",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/parties-and-capacity/disqualified-persons"
@@ -210523,6 +210654,26 @@
       "uuid": "de57c6f1-c96c-4fcf-9a85-1d84d24353a5",
       "corpusIssueId": "f5d0d58a-f632-5807-a941-82a523722bfa",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PARTIES_AND_LIABILITY.ACCEPTOR_S_CONTRACT.FICTITIOUS_PAYEE_DOCTRINE.ACCEPTOR_S_KNOWLEDGE_OF_FICTITIOUS_PAYEE"
+    },
+    {
+      "id": "35c4587dbf854c4292430e11f22ab25e",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/parties-and-liability/acceptor-s-liability"
+      ],
+      "label": "Acceptor S Liability",
+      "minted": "2026-11-25",
+      "uuid": "35c4587d-bf85-4c42-9243-0e11f22ab25e"
+    },
+    {
+      "id": "759c0712d6e847e0a6169fd26f349fb5",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/parties-and-liability/acceptor-s-liability/renunciation-of-rights-against-acceptor"
+      ],
+      "label": "RENUNCIATION OF RIGHTS AGAINST ACCEPTOR",
+      "minted": "2026-11-25",
+      "uuid": "759c0712-d6e8-47e0-a616-9fd26f349fb5",
+      "corpusIssueId": "c9d9b615-b66d-566c-a64a-bff66d9895d1",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.PARTIES_AND_LIABILITY.ACCEPTOR_S_LIABILITY.RENUNCIATION_OF_RIGHTS_AGAINST_ACCEPTOR"
     },
     {
       "id": "fd011140d7dc4aeebde3b4047ffce8d4",
@@ -258576,6 +258727,26 @@
       "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.CASE_CITATIONS_AND_REFERENCES.MASSACHUSETTS_SUPREME_JUDICIAL_COURT_DECISIONS.SEARS_V_DILLINGHAM"
     },
     {
+      "id": "2a74fbce4b5048fc876b3fa0f932c833",
+      "keys": [
+        "jurisprudence-and-legal-method/case-citations-and-references/new-york-reports"
+      ],
+      "label": "New York Reports",
+      "minted": "2026-11-25",
+      "uuid": "2a74fbce-4b50-48fc-876b-3fa0f932c833"
+    },
+    {
+      "id": "5bce167b5f434889a74f790780e649d6",
+      "keys": [
+        "jurisprudence-and-legal-method/case-citations-and-references/new-york-reports/cowen-s-reports"
+      ],
+      "label": "COWEN'S REPORTS",
+      "minted": "2026-11-25",
+      "uuid": "5bce167b-5f43-4889-a74f-790780e649d6",
+      "corpusIssueId": "83f8e3eb-82e9-5a31-a111-9a5b5f679fda",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.CASE_CITATIONS_AND_REFERENCES.NEW_YORK_REPORTS.COWEN_S_REPORTS"
+    },
+    {
       "id": "8e2671bddbdc4e83bf8c7d9eb9538c95",
       "keys": [
         "jurisprudence-and-legal-method/case-citations-and-references/savage-v-savage"
@@ -297559,6 +297730,17 @@
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.FIRE_RELATED_DUTIES"
     },
     {
+      "id": "92626403442246b890b8dbbc18ad337a",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/general-background-and-conceptual-foundations"
+      ],
+      "label": "GENERAL BACKGROUND AND CONCEPTUAL FOUNDATIONS",
+      "minted": "2026-11-25",
+      "uuid": "92626403-4422-46b8-90b8-dbbc18ad337a",
+      "corpusIssueId": "bf3b4e88-0c92-50ed-bcae-6ae3130724c6",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.GENERAL_BACKGROUND_AND_CONCEPTUAL_FOUNDATIONS"
+    },
+    {
       "id": "02bc159e6c884d1797229ae8489d5ef7",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/general-principles-of-duty"
@@ -327432,6 +327614,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.IMMIGRATION_LAW.ASIAN_EXCLUSION_AND_NATURALIZATION.RACIAL_PREREQUISITE_CASES.IN_RE_BALSARA_1910"
     },
     {
+      "id": "454505d574444dac9544ad0d988ee5f3",
+      "keys": [
+        "personal-and-family-law/immigration-law/capacity-to-hold-and-enforce-property-interests"
+      ],
+      "label": "Capacity to Hold and Enforce Property Interests",
+      "minted": "2026-11-25",
+      "uuid": "454505d5-7444-4dac-9544-ad0d988ee5f3"
+    },
+    {
+      "id": "af25cae45dfd45b9976228c4cd1496fe",
+      "keys": [
+        "personal-and-family-law/immigration-law/capacity-to-hold-and-enforce-property-interests/capacity-to-take-and-enforce-mortgages"
+      ],
+      "label": "CAPACITY TO TAKE AND ENFORCE MORTGAGES",
+      "minted": "2026-11-25",
+      "uuid": "af25cae4-5dfd-45b9-9762-28c4cd1496fe",
+      "corpusIssueId": "035caeb3-eb2a-5cbd-889c-07fdfad3b14d",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.IMMIGRATION_LAW.CAPACITY_TO_HOLD_AND_ENFORCE_PROPERTY_INTERESTS.CAPACITY_TO_TAKE_AND_ENFORCE_MORTGAGES"
+    },
+    {
       "id": "1a68ffcf618c4df8835c30fc91906d7a",
       "keys": [
         "personal-and-family-law/immigration-law/capacity-to-hold-property"
@@ -355578,6 +355780,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.TYPES_OF_TRUSTS.RESULTING_TRUSTS.RIGHTS_AND_INTERESTS_OF_BENEFICIARIES"
     },
     {
+      "id": "b87f2ff599d64458a22a8015f07c7eb0",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/uses-and-trusts-in-general"
+      ],
+      "label": "USES AND TRUSTS IN GENERAL",
+      "minted": "2026-11-25",
+      "uuid": "b87f2ff5-99d6-4458-a22a-8015f07c7eb0",
+      "corpusIssueId": "6d911ab4-4f69-5eb3-a7b2-b4943e812be2",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.USES_AND_TRUSTS_IN_GENERAL"
+    },
+    {
       "id": "79ae50b2de564944829f4e7333fc52e0",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/validity-and-effectiveness"
@@ -359286,6 +359499,17 @@
       ],
       "minted": "2026-07-31",
       "label": "Revocation of Wills"
+    },
+    {
+      "id": "4522531517f549b680ab49be21de7c58",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/wills/revocation-of-wills/revival-of-revoked-will"
+      ],
+      "label": "REVIVAL OF REVOKED WILL",
+      "minted": "2026-11-25",
+      "uuid": "45225315-17f5-49b6-80ab-49be21de7c58",
+      "corpusIssueId": "a5adf5b1-f0b5-5b8a-bf7c-47dd1cc53cd1",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.WILLS.REVOCATION_OF_WILLS.REVIVAL_OF_REVOKED_WILL"
     },
     {
       "id": "188ad363e5714f1089106d1c1f6f633c",
