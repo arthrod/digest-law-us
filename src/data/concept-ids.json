@@ -8323,6 +8323,24 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.CLAIMS_AND_DISTRIBUTION.FILING_AND_PROSECUTION_OF_CLAIMS.PERSONS_ENTITLED_TO_FILE_CLAIMS"
     },
     {
+      "id": "6362f5ef48264b65a2a9f534ada3d759",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/claims-and-distribution/proof-of-claim"
+      ],
+      "label": "Proof of Claim",
+      "minted": "2026-11-25",
+      "uuid": "6362f5ef-4826-4b65-a2a9-f534ada3d759"
+    },
+    {
+      "id": "378b9ee5b0fd4072916d5a50cd2ea6eb",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/claims-and-distribution/proof-of-claim/allowable-debts"
+      ],
+      "label": "Allowable Debts",
+      "minted": "2026-11-25",
+      "uuid": "378b9ee5-b0fd-4072-916d-5a50cd2ea6eb"
+    },
+    {
       "id": "33eea60844494a0a91643286a2446ffe",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/claims-and-distribution/provability-of-claims"
@@ -36240,6 +36258,33 @@
       "uuid": "f172aa03-51a5-4246-b56e-b0a064fbe656"
     },
     {
+      "id": "b86f3a2f5eec4e2dae653ae0c439a109",
+      "keys": [
+        "constitutional-and-civil-rights-law/historical-rights-restrictive-regimes/anti-asian-exclusion-and-violence"
+      ],
+      "label": "Anti Asian Exclusion and Violence",
+      "minted": "2026-11-25",
+      "uuid": "b86f3a2f-5eec-4e2d-ae65-3ae0c439a109"
+    },
+    {
+      "id": "8692adb2f650451cabc150299dc32988",
+      "keys": [
+        "constitutional-and-civil-rights-law/historical-rights-restrictive-regimes/anti-asian-exclusion-and-violence/anti-chinese-sentiment"
+      ],
+      "label": "Anti Chinese Sentiment",
+      "minted": "2026-11-25",
+      "uuid": "8692adb2-f650-451c-abc1-50299dc32988"
+    },
+    {
+      "id": "735676cac07c48978bdfce876872dbb2",
+      "keys": [
+        "constitutional-and-civil-rights-law/historical-rights-restrictive-regimes/anti-asian-exclusion-and-violence/anti-chinese-sentiment/1871-los-angeles-chinese-massacre"
+      ],
+      "label": "1871 Los Angeles Chinese Massacre",
+      "minted": "2026-11-25",
+      "uuid": "735676ca-c07c-4897-8bdf-ce876872dbb2"
+    },
+    {
       "id": "3276437f9398471fbb717e6b4be063ea",
       "keys": [
         "constitutional-and-civil-rights-law/historical-rights-restrictive-regimes/japanese-american-internment"
@@ -48825,6 +48870,35 @@
       "pathNotation": "CONTRACT_LAW.DEFENSES_AND_INVALIDITY.ILLEGALITY.RATIFICATION_OF_ILLEGAL_CONTRACT"
     },
     {
+      "id": "b594608b037942b2868adb22460c513f",
+      "keys": [
+        "contract-law/defenses-and-public-policy-limitations"
+      ],
+      "label": "Defenses and Public Policy Limitations",
+      "minted": "2026-11-25",
+      "uuid": "b594608b-0379-42b2-868a-db22460c513f"
+    },
+    {
+      "id": "63132656e2f44a08b367b05bc4c69304",
+      "keys": [
+        "contract-law/defenses-and-public-policy-limitations/restraints-on-trade-and-competition"
+      ],
+      "label": "Restraints on Trade and Competition",
+      "minted": "2026-11-25",
+      "uuid": "63132656-e2f4-4a08-b367-b05bc4c69304"
+    },
+    {
+      "id": "91a98c7ce1254b3086f8ef2df2248ba2",
+      "keys": [
+        "contract-law/defenses-and-public-policy-limitations/restraints-on-trade-and-competition/non-compete-and-non-disclosure-agreements"
+      ],
+      "label": "NON-COMPETE AND NON-DISCLOSURE AGREEMENTS",
+      "minted": "2026-11-25",
+      "uuid": "91a98c7c-e125-4b30-86f8-ef2df2248ba2",
+      "corpusIssueId": "650ff25b-709a-5993-8ea6-fda21482ed5b",
+      "pathNotation": "CONTRACT_LAW.DEFENSES_AND_PUBLIC_POLICY_LIMITATIONS.RESTRAINTS_ON_TRADE_AND_COMPETITION.NON_COMPETE_AND_NON_DISCLOSURE_AGREEMENTS"
+    },
+    {
       "id": "ed79d2402a9c402dbeeb14f5cc95bbe1",
       "keys": [
         "contract-law/defenses-and-unenforceability"
@@ -54837,6 +54911,35 @@
       "uuid": "ea117907-f4cc-4f32-b618-c8ea23a750fd",
       "corpusIssueId": "958b3b54-ef09-58e9-b562-de6f8ba9cb56",
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONSIDERATION.WANT_OR_FAILURE_OF_CONSIDERATION.OPTIONS_AND_FUTURES_DEALS"
+    },
+    {
+      "id": "fe308d26479e477a8e632388bc045847",
+      "keys": [
+        "contract-law/formation-and-enforceability/contract-vitiating-factors"
+      ],
+      "label": "Contract Vitiating Factors",
+      "minted": "2026-11-25",
+      "uuid": "fe308d26-479e-477a-8e63-2388bc045847"
+    },
+    {
+      "id": "6ca977281c08476fa47afcc56d4c4ff2",
+      "keys": [
+        "contract-law/formation-and-enforceability/contract-vitiating-factors/undue-influence"
+      ],
+      "label": "Undue Influence",
+      "minted": "2026-11-25",
+      "uuid": "6ca97728-1c08-476f-a47a-fcc56d4c4ff2"
+    },
+    {
+      "id": "a112389c6f0f47139ea41231a8a00a55",
+      "keys": [
+        "contract-law/formation-and-enforceability/contract-vitiating-factors/undue-influence/presumption-from-confidential-or-fiduciary-relationship"
+      ],
+      "label": "PRESUMPTION FROM CONFIDENTIAL OR FIDUCIARY RELATIONSHIP",
+      "minted": "2026-11-25",
+      "uuid": "a112389c-6f0f-4713-9ea4-1231a8a00a55",
+      "corpusIssueId": "fc86ebce-9bc1-5563-ab43-316e11dc1f4d",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.CONTRACT_VITIATING_FACTORS.UNDUE_INFLUENCE.PRESUMPTION_FROM_CONFIDENTIAL_OR_FIDUCIARY_RELATIONSHIP"
     },
     {
       "id": "3d6eccde553f4201884f1c349cf77a0f",
@@ -83421,6 +83524,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_POWOWERS_AND_CHARTERS.STATUTORY_AND_CHARTER_INTERPRETATION"
     },
     {
+      "id": "6c2cd178cd6e414e96f0e8fd4c6fab4c",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-property"
+      ],
+      "label": "Corporate Property",
+      "minted": "2026-11-25",
+      "uuid": "6c2cd178-cd6e-414e-96f0-e8fd4c6fab4c"
+    },
+    {
+      "id": "8946f6a28e6d42d6b9e84239d8f9fe58",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-property/use-of-corporate-property"
+      ],
+      "label": "USE OF CORPORATE PROPERTY",
+      "minted": "2026-11-25",
+      "uuid": "8946f6a2-8e6d-42d6-b9e8-4239d8f9fe58",
+      "corpusIssueId": "dccb12eb-9e92-5b89-9bec-77790c077ba8",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_PROPERTY.USE_OF_CORPORATE_PROPERTY"
+    },
+    {
       "id": "2db48f5c91b745dabb2a806ae50a157f",
       "keys": [
         "corporate-law/business-organizations-law/corporations/corporate-records-and-disclosure"
@@ -92453,6 +92576,17 @@
       "uuid": "5fb8efb4-7ed4-4612-a2d5-914ee128cb76",
       "corpusIssueId": "22bd5d34-b034-527b-8c13-2c34e9d0c8a6",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.DISSOLUTION_AND_WINDING_UP.SURVIVING_PARTNER_RIGHTS_AND_DUTIES.MISCONDUCT_OF_SURVIVING_PARTNER"
+    },
+    {
+      "id": "1c4b2580d7f24171b45d1499fa7ec840",
+      "keys": [
+        "corporate-law/business-organizations-law/dissolution-and-winding-up/surviving-partner-s-title-to-partnership-property"
+      ],
+      "label": "SURVIVING PARTNER'S TITLE TO PARTNERSHIP PROPERTY",
+      "minted": "2026-11-25",
+      "uuid": "1c4b2580-d7f2-4171-b45d-1499fa7ec840",
+      "corpusIssueId": "2ad33cdb-0977-5da2-bb88-1d885497fa13",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.DISSOLUTION_AND_WINDING_UP.SURVIVING_PARTNER_S_TITLE_TO_PARTNERSHIP_PROPERTY"
     },
     {
       "id": "0f093730788b4c3d91af317f45cdfd99",
@@ -136311,6 +136445,26 @@
       "pathNotation": "CRIMINAL_LAW.HOMICIDE.INTENTIONAL_HOMICIDE.MURDER.CHILD_ABUSE_HOMICIDE.MIDGETT_V_STATE_NOTES"
     },
     {
+      "id": "2c993ca7810d4c3c855c273b75b91aff",
+      "keys": [
+        "criminal-law/homicide/intentional-homicide/murder/malice-aforethought"
+      ],
+      "label": "Malice Aforethought",
+      "minted": "2026-11-25",
+      "uuid": "2c993ca7-810d-4c3c-855c-273b75b91aff"
+    },
+    {
+      "id": "4b4e68e80aaf47959f7e66b3a19fe0a0",
+      "keys": [
+        "criminal-law/homicide/intentional-homicide/murder/malice-aforethought/state-v-guthrie"
+      ],
+      "label": "STATE V. GUTHRIE",
+      "minted": "2026-11-25",
+      "uuid": "4b4e68e8-0aaf-4795-9f7e-66b3a19fe0a0",
+      "corpusIssueId": "579b4439-b1ef-5210-b4ea-e94688692a61",
+      "pathNotation": "CRIMINAL_LAW.HOMICIDE.INTENTIONAL_HOMICIDE.MURDER.MALICE_AFORETHOUGHT.STATE_V_GUTHRIE"
+    },
+    {
       "id": "b0f4471ebc6c43b38d82193cd1f0ba62",
       "keys": [
         "criminal-law/homicide/intentional-homicide/murder/mens-rea-and-provocation"
@@ -149396,6 +149550,17 @@
       "uuid": "4c456860-434b-440d-a99a-7b5a126efd99",
       "corpusIssueId": "201759e7-a485-51fa-826e-2b02b32cfdb2",
       "pathNotation": "CRIMINAL_LAW.SEXUAL_OFFENSES.RAPE_AND_SEXUAL_ASSAULT.STATUTORY_FRAMEWORKS"
+    },
+    {
+      "id": "5605bfce150e4a21bf83dbaf46cffcef",
+      "keys": [
+        "criminal-law/sexual-offenses/rape/common-law-and-statutory-status-of-rape"
+      ],
+      "label": "COMMON-LAW AND STATUTORY STATUS OF RAPE",
+      "minted": "2026-11-25",
+      "uuid": "5605bfce-150e-4a21-bf83-dbaf46cffcef",
+      "corpusIssueId": "6aacf1c0-145c-55dc-95d1-6711ef0a33e7",
+      "pathNotation": "CRIMINAL_LAW.SEXUAL_OFFENSES.RAPE.COMMON_LAW_AND_STATUTORY_STATUS_OF_RAPE"
     },
     {
       "id": "77027f34d0b540128ed9eeb92b232e22",
@@ -246939,6 +247104,35 @@
       "pathNotation": "IP_LAW.COPYRIGHT_LAW.COPYRIGHTABILITY_AND_PROTECTABILITY.BOUNDARY_WITH_THE_PUBLIC_DOMAIN"
     },
     {
+      "id": "ba561a3b626f4483af3b60faac4c5eb7",
+      "keys": [
+        "ip-law/copyright-law/copyrightability-limitations"
+      ],
+      "label": "Copyrightability Limitations",
+      "minted": "2026-11-25",
+      "uuid": "ba561a3b-626f-4483-af3b-60faac4c5eb7"
+    },
+    {
+      "id": "5f653e7a5eb04bf0b05e9e399a2b4b3d",
+      "keys": [
+        "ip-law/copyright-law/copyrightability-limitations/idea-expression-dichotomy-and-abstraction-test"
+      ],
+      "label": "Idea Expression Dichotomy and Abstraction Test",
+      "minted": "2026-11-25",
+      "uuid": "5f653e7a-5eb0-4bf0-b05e-9e399a2b4b3d"
+    },
+    {
+      "id": "485dac7d38db4e1197ef55455d298bc2",
+      "keys": [
+        "ip-law/copyright-law/copyrightability-limitations/idea-expression-dichotomy-and-abstraction-test/case-nichols-v-universal-pictures-corp"
+      ],
+      "label": "CASE: NICHOLS V. UNIVERSAL PICTURES CORP.",
+      "minted": "2026-11-25",
+      "uuid": "485dac7d-38db-4e11-97ef-55455d298bc2",
+      "corpusIssueId": "c0174779-3942-5322-a928-9a51fa1e9ca3",
+      "pathNotation": "IP_LAW.COPYRIGHT_LAW.COPYRIGHTABILITY_LIMITATIONS.IDEA_EXPRESSION_DICHOTOMY_AND_ABSTRACTION_TEST.CASE_NICHOLS_V_UNIVERSAL_PICTURES_CORP"
+    },
+    {
       "id": "413347af881d422c823ab2bbf6e37296",
       "uuid": "413347af-881d-422c-823a-b2bbf6e37296",
       "keys": [
@@ -254519,6 +254713,26 @@
       "uuid": "2087705d-63ba-4443-9e86-55ec617740f1",
       "corpusIssueId": "0b9d802f-c93b-55c8-b9df-6183010fab93",
       "pathNotation": "IP_LAW.PATENT_LAW.WRONGS_AGAINST_PATENTEES"
+    },
+    {
+      "id": "7137eb14c46a43f0a36da184ba15f14f",
+      "keys": [
+        "ip-law/right-of-publicity"
+      ],
+      "label": "Right of Publicity",
+      "minted": "2026-11-25",
+      "uuid": "7137eb14-c46a-43f0-a36d-a184ba15f14f"
+    },
+    {
+      "id": "7d32692b8dd04e4b9fde718ff347f5e4",
+      "keys": [
+        "ip-law/right-of-publicity/commercial-appropriation-of-identity"
+      ],
+      "label": "COMMERCIAL APPROPRIATION OF IDENTITY",
+      "minted": "2026-11-25",
+      "uuid": "7d32692b-8dd0-4e4b-9fde-718ff347f5e4",
+      "corpusIssueId": "638dc64c-f9f9-53d5-8bc1-97bd5376736d",
+      "pathNotation": "IP_LAW.RIGHT_OF_PUBLICITY.COMMERCIAL_APPROPRIATION_OF_IDENTITY"
     },
     {
       "id": "e78e89db5cff48c9b0f54392e6687825",
@@ -358201,6 +358415,17 @@
       "uuid": "e496d0e1-8678-4cfe-be43-4141b41ff80f"
     },
     {
+      "id": "37bd54e8302f4eda8b259f73a4c0fd1e",
+      "keys": [
+        "procedural-law/adjudication-without-trial"
+      ],
+      "label": "ADJUDICATION WITHOUT TRIAL",
+      "minted": "2026-11-25",
+      "uuid": "37bd54e8-302f-4eda-8b25-9f73a4c0fd1e",
+      "corpusIssueId": "bf926a98-a23c-5bbb-a869-99d4d5576cba",
+      "pathNotation": "PROCEDURAL_LAW.ADJUDICATION_WITHOUT_TRIAL"
+    },
+    {
       "id": "185cfa4005984a4193ce42299256dd3e",
       "keys": [
         "procedural-law/adjudication/theories-of-adjudication"
@@ -372008,6 +372233,26 @@
       "uuid": "2f6d1abc-2880-419e-b12e-af3323fbc212",
       "corpusIssueId": "781e2c2d-1946-528a-91f4-a773c08892eb",
       "pathNotation": "PROCEDURAL_LAW.JOINDER_OF_PARTIES_AND_CLAIMS.PATENT_INFRINGEMENT_ACTIONS.JOINDER_OF_DEFENDANTS_UNDER_35_U_S_C_299"
+    },
+    {
+      "id": "22e7fd355d16405a956d386ac5970b06",
+      "keys": [
+        "procedural-law/joinder-of-parties/joint-owners-and-co-owners-as-parties"
+      ],
+      "label": "Joint Owners and Co Owners as Parties",
+      "minted": "2026-11-25",
+      "uuid": "22e7fd35-5d16-405a-956d-386ac5970b06"
+    },
+    {
+      "id": "3886c49c333c44d5a2a608820f54bbfd",
+      "keys": [
+        "procedural-law/joinder-of-parties/joint-owners-and-co-owners-as-parties/legal-actions-by-joint-owners-and-tenants-in-common"
+      ],
+      "label": "LEGAL ACTIONS BY JOINT OWNERS AND TENANTS IN COMMON",
+      "minted": "2026-11-25",
+      "uuid": "3886c49c-333c-44d5-a2a6-08820f54bbfd",
+      "corpusIssueId": "3d061dd3-d478-5dc5-84da-fb3341f07eaf",
+      "pathNotation": "PROCEDURAL_LAW.JOINDER_OF_PARTIES.JOINT_OWNERS_AND_CO_OWNERS_AS_PARTIES.LEGAL_ACTIONS_BY_JOINT_OWNERS_AND_TENANTS_IN_COMMON"
     },
     {
       "id": "d6ec7009a2f24bce90e27fe544035c3f",
@@ -413338,6 +413583,17 @@
       "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.LIFE_ESTATES.WASTE.IMPEACHABILITY_FOR_WASTE"
     },
     {
+      "id": "1096805b8b344fc49f15c8657ddd99ef",
+      "keys": [
+        "real-estate-law/estates-and-future-interests/life-estates/waste/injunctive-relief-against-waste"
+      ],
+      "label": "INJUNCTIVE RELIEF AGAINST WASTE",
+      "minted": "2026-11-25",
+      "uuid": "1096805b-8b34-4fc4-9f15-c8657ddd99ef",
+      "corpusIssueId": "60cec4ee-8216-5092-bb13-4311125aae48",
+      "pathNotation": "REAL_ESTATE_LAW.ESTATES_AND_FUTURE_INTERESTS.LIFE_ESTATES.WASTE.INJUNCTIVE_RELIEF_AGAINST_WASTE"
+    },
+    {
       "id": "16aea70f4ca343b5af6ba7ddfe6e0790",
       "keys": [
         "real-estate-law/estates-and-future-interests/life-estates/waste/waste-by-mode-of-cultivation"
@@ -420575,6 +420831,17 @@
       "uuid": "39e66931-4aae-4155-9b0a-dd8df920cf18",
       "corpusIssueId": "f1b94920-25eb-5686-8ca5-3b670a260970",
       "pathNotation": "REAL_ESTATE_LAW.FUTURE_INTERESTS.REMAINDERS.CONTINGENT_REMAINDERS.GENERAL_PRINCIPLES"
+    },
+    {
+      "id": "a72ab4b2d7d84a64b65ceb678014eab3",
+      "keys": [
+        "real-estate-law/future-interests/remainders/creation-and-assignment"
+      ],
+      "label": "CREATION AND ASSIGNMENT",
+      "minted": "2026-11-25",
+      "uuid": "a72ab4b2-d7d8-4a64-b65c-eb678014eab3",
+      "corpusIssueId": "40d0886c-f781-546f-a1bc-b311310c5c4b",
+      "pathNotation": "REAL_ESTATE_LAW.FUTURE_INTERESTS.REMAINDERS.CREATION_AND_ASSIGNMENT"
     },
     {
       "id": "22da072bb75940bca2b07e87c6ae57bd",
@@ -436177,6 +436444,26 @@
       "uuid": "738086be-661b-41bb-8bb5-c2b38e148d40",
       "corpusIssueId": "a8aa3ca2-18f6-5017-9ccb-05166415ec08",
       "pathNotation": "REAL_ESTATE_LAW.MINERAL_LANDS_AND_RIGHTS.CLASSIFICATION_AND_DEFINITION_OF_MINERALS.MINES_MINERALS_AND_QUARRIES_AS_REAL_PROPERTY"
+    },
+    {
+      "id": "5709bafd99ce481e891245a4943dbcb7",
+      "keys": [
+        "real-estate-law/mineral-lands-and-rights/mineral-grants"
+      ],
+      "label": "Mineral Grants",
+      "minted": "2026-11-25",
+      "uuid": "5709bafd-99ce-481e-8912-45a4943dbcb7"
+    },
+    {
+      "id": "51aea589998b4eb7bdecd7077960e3d9",
+      "keys": [
+        "real-estate-law/mineral-lands-and-rights/mineral-grants/general-principles"
+      ],
+      "label": "GENERAL PRINCIPLES",
+      "minted": "2026-11-25",
+      "uuid": "51aea589-998b-4eb7-bdec-d7077960e3d9",
+      "corpusIssueId": "64b4dd78-366e-5b48-854d-018ba161663c",
+      "pathNotation": "REAL_ESTATE_LAW.MINERAL_LANDS_AND_RIGHTS.MINERAL_GRANTS.GENERAL_PRINCIPLES"
     },
     {
       "id": "940f1283489f4bfb9c9883df3201572f",
