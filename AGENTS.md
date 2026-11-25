@@ -17,8 +17,8 @@ FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memor
 corpus sources — the crash site is a symptom, not the cause).
 
 The fix is baked into `package.json`: the `build` script starts with
-`NODE_OPTIONS=--max-old-space-size=24576` (dev/preview/sync likewise) and the
-`deploy:full` script with `NODE_OPTIONS=--max-old-space-size=12288`. `deploy`
+`NODE_OPTIONS=--max-old-space-size=24576` (dev/preview/sync likewise), and
+`deploy:full` runs `pnpm run build` itself, so it uses the same heap. `deploy`
 itself no longer builds: it runs `ids:check` and uploads the existing `dist/`,
 so run it after a successful `build` (or use `deploy:full`, which cleans the
 corpus, mints ids, regenerates the agent skill, builds, checks and deploys in

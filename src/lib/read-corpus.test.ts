@@ -1,5 +1,5 @@
-import { describe, expect, test } from "bun:test";
-import { mkdtemp, mkdir, writeFile } from "node:fs/promises";
+import { afterAll, describe, expect, test } from "bun:test";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -7,6 +7,7 @@ import { readCorpusFile } from "./read-corpus";
 
 describe("readCorpusFile", async () => {
   const dir = await mkdtemp(path.join(tmpdir(), "read-corpus-"));
+  afterAll(() => rm(dir, { force: true, recursive: true }));
 
   test("returns the contents of an existing file", async () => {
     const file = path.join(dir, "a.md");

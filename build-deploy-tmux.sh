@@ -19,7 +19,7 @@ WORKERS=${ASTRO_PRERENDER_WORKERS:-}
 UNIT="digest-build-$STAMP"
 MEMLOG="$PWD/build-deploy-$STAMP.mem.log"
 MEMLOG_INTERVAL=${MEMLOG_INTERVAL:-30}
-if [ "${1:-}" = "full" ]; then
+if [[ "${1:-}" == "full" ]]; then
   STEPS="pnpm run deploy:full"
 else
   STEPS="pnpm run build && pnpm run check:head && pnpm run deploy"
