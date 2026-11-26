@@ -87776,6 +87776,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.FORMATION_AND_OPERATION.PROMOTERS.PROMOTERS_DUTIES_AND_LIABILITIES.UNAUTHORIZED_PROFITS_AND_REMEDIES"
     },
     {
+      "id": "66f24c1ed6184cf882114c5a78feefda",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-operation/share-subscriptions"
+      ],
+      "label": "Share Subscriptions",
+      "minted": "2026-11-26",
+      "uuid": "66f24c1e-d618-4cf8-8211-4c5a78feefda"
+    },
+    {
+      "id": "2a50534783474aad96ab62ca0a44d8bb",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/formation-and-operation/share-subscriptions/contractual-obligations-of-subscribers"
+      ],
+      "label": "CONTRACTUAL OBLIGATIONS OF SUBSCRIBERS",
+      "minted": "2026-11-26",
+      "uuid": "2a505347-8347-4aad-96ab-62ca0a44d8bb",
+      "corpusIssueId": "4fb50538-c6dc-5243-95b8-f7e08bd57e98",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.FORMATION_AND_OPERATION.SHARE_SUBSCRIPTIONS.CONTRACTUAL_OBLIGATIONS_OF_SUBSCRIBERS"
+    },
+    {
       "id": "0ef5ebfde17344c39135925bd972011c",
       "keys": [
         "corporate-law/business-organizations-law/corporations/formation-and-operation/underwriting"
@@ -181386,6 +181406,26 @@
       "pathNotation": "EVIDENCE_LAW.NATURE_AND_CLASSIFICATION_OF_EVIDENCE.JUDICIAL_EVIDENCE_DISTINGUISHED_FROM_EXTRAJUDICIAL_EVIDENCE"
     },
     {
+      "id": "2dc8c52f9929452f911a6e1afaf089a9",
+      "keys": [
+        "evidence-law/notice-and-knowledge"
+      ],
+      "label": "Notice and Knowledge",
+      "minted": "2026-11-26",
+      "uuid": "2dc8c52f-9929-452f-911a-6e1afaf089a9"
+    },
+    {
+      "id": "d61bec4e1c814ea8ae2f95e4a6650218",
+      "keys": [
+        "evidence-law/notice-and-knowledge/constructive-notice"
+      ],
+      "label": "CONSTRUCTIVE NOTICE",
+      "minted": "2026-11-26",
+      "uuid": "d61bec4e-1c81-4ea8-ae2f-95e4a6650218",
+      "corpusIssueId": "c4f7130f-3e49-55d3-8c16-007cebe9abbd",
+      "pathNotation": "EVIDENCE_LAW.NOTICE_AND_KNOWLEDGE.CONSTRUCTIVE_NOTICE"
+    },
+    {
       "id": "7760cf3902e44cf8a847f1d417546707",
       "keys": [
         "evidence-law/notice-requirements"
@@ -217546,6 +217586,17 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_PARTIES.BONA_FIDE_HOLDERS_OR_PURCHASERS.INDORSEMENT_AND_TRANSFER"
     },
     {
+      "id": "b7896a4162ed4d24bf593737e710b3c8",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-parties/bona-fide-holders-or-purchasers/jurisdictional-interpretations-and-application"
+      ],
+      "label": "JURISDICTIONAL INTERPRETATIONS AND APPLICATION",
+      "minted": "2026-11-26",
+      "uuid": "b7896a41-62ed-4d24-bf59-3737e710b3c8",
+      "corpusIssueId": "08211e86-907b-54f9-8288-108ded23fb63",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_LIABILITIES_OF_PARTIES.BONA_FIDE_HOLDERS_OR_PURCHASERS.JURISDICTIONAL_INTERPRETATIONS_AND_APPLICATION"
+    },
+    {
       "id": "2e914ff3567f47de8a7e845ad046936d",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/rights-and-liabilities-of-parties/bona-fide-holders-or-purchasers/recovery-of-damages-by-defrauded-party"
@@ -227188,6 +227239,26 @@
       "pathNotation": "INSURANCE_LAW.FORMATION_AND_ENFORCEABILITY.INSURABLE_INTEREST.ATTACHMENT_OF_RISK_UPON_ACQUISITION_OF_INSURABLE_INTEREST"
     },
     {
+      "id": "c3863318ce404312945a1fae62eda501",
+      "keys": [
+        "insurance-law/formation-and-enforceability/representations-and-warranties"
+      ],
+      "label": "Representations and Warranties",
+      "minted": "2026-11-26",
+      "uuid": "c3863318-ce40-4312-945a-1fae62eda501"
+    },
+    {
+      "id": "930384f83d044e1f927ce4350db24497",
+      "keys": [
+        "insurance-law/formation-and-enforceability/representations-and-warranties/definition-of-representations"
+      ],
+      "label": "DEFINITION OF REPRESENTATIONS",
+      "minted": "2026-11-26",
+      "uuid": "930384f8-3d04-4e1f-927c-e4350db24497",
+      "corpusIssueId": "a27b30b1-ff38-5731-a7c1-67d05a232f0e",
+      "pathNotation": "INSURANCE_LAW.FORMATION_AND_ENFORCEABILITY.REPRESENTATIONS_AND_WARRANTIES.DEFINITION_OF_REPRESENTATIONS"
+    },
+    {
       "id": "3796d2f7207b44d1b63eecbde502b150",
       "keys": [
         "insurance-law/formation-and-execution"
@@ -227935,6 +228006,17 @@
       "uuid": "034983fa-4254-43b2-8631-38ed14a9b90c",
       "corpusIssueId": "4d28b6b4-3898-5026-8724-7b51c0cad70a",
       "pathNotation": "INSURANCE_LAW.FORMATION_OF_INSURANCE_CONTRACT.APPLICATIONS_FOR_INSURANCE.INSURANCE_AGENTS_AUTHORITY.MISREPRESENTATIONS_IN_APPLICATIONS"
+    },
+    {
+      "id": "fbc0316377f34adc894f260c9b01bcce",
+      "keys": [
+        "insurance-law/formation-of-insurance-contract/binders-and-binding-slips"
+      ],
+      "label": "BINDERS AND BINDING SLIPS",
+      "minted": "2026-11-26",
+      "uuid": "fbc03163-77f3-4adc-894f-260c9b01bcce",
+      "corpusIssueId": "d2218d9d-cc95-5d8a-9873-f4e667e78d95",
+      "pathNotation": "INSURANCE_LAW.FORMATION_OF_INSURANCE_CONTRACT.BINDERS_AND_BINDING_SLIPS"
     },
     {
       "id": "40721d61c234404496f5f6c97fd52974",
@@ -243644,6 +243726,26 @@
       "label": "Family Law and Domestic Relations"
     },
     {
+      "id": "e3c893bad42d4221a0aced982e142264",
+      "keys": [
+        "international-and-comparative-law/family-law-and-domestic-relations/adoption"
+      ],
+      "label": "Adoption",
+      "minted": "2026-11-26",
+      "uuid": "e3c893ba-d42d-4221-a0ac-ed982e142264"
+    },
+    {
+      "id": "13352158da69486f881129c610b02333",
+      "keys": [
+        "international-and-comparative-law/family-law-and-domestic-relations/adoption/recognition-of-foreign-adoption"
+      ],
+      "label": "RECOGNITION OF FOREIGN ADOPTION",
+      "minted": "2026-11-26",
+      "uuid": "13352158-da69-486f-8811-29c610b02333",
+      "corpusIssueId": "4127ed30-514d-5790-b515-db902a34730a",
+      "pathNotation": "INTERNATIONAL_AND_COMPARATIVE_LAW.FAMILY_LAW_AND_DOMESTIC_RELATIONS.ADOPTION.RECOGNITION_OF_FOREIGN_ADOPTION"
+    },
+    {
       "id": "b624eac42a034dd99d95f7da204bc28e",
       "uuid": "b624eac4-2a03-4dd9-9d95-f7da204bc28e",
       "keys": [
@@ -253512,6 +253614,24 @@
       "pathNotation": "IP_LAW.COPYRIGHT_LAW.SUBJECT_MATTER_AND_SCOPE_OF_PROTECTION.SEPARABILITY_OF_USEFUL_ARTICLES"
     },
     {
+      "id": "870eedb8dd8c45d7ba6b0e7df334fa9b",
+      "keys": [
+        "ip-law/copyright-law/subject-matter-and-scope-of-protection/sound-recordings-and-music-videos"
+      ],
+      "label": "Sound Recordings and Music Videos",
+      "minted": "2026-11-26",
+      "uuid": "870eedb8-dd8c-45d7-ba6b-0e7df334fa9b"
+    },
+    {
+      "id": "5b8ec57dbf3948adbae92b78a8d4e85f",
+      "keys": [
+        "ip-law/copyright-law/subject-matter-and-scope-of-protection/sound-recordings-and-music-videos/unauthorized-fixation-and-trafficking"
+      ],
+      "label": "Unauthorized Fixation and Trafficking",
+      "minted": "2026-11-26",
+      "uuid": "5b8ec57d-bf39-48ad-bae9-2b78a8d4e85f"
+    },
+    {
       "id": "af6dc51af8074d5bbef2d7d7e31ff99c",
       "keys": [
         "ip-law/copyright-law/subject-matter-and-scope-of-protection/traditional-knowledge"
@@ -258294,6 +258414,17 @@
       "pathNotation": "IP_LAW.PATENT_LAW.PROSECUTION_AND_APPLICATION_PROCEDURE.REGISTER_OF_PATENT_ATTORNEYS_AND_AGENTS"
     },
     {
+      "id": "0eb143aaa74446978560e61da2561d70",
+      "keys": [
+        "ip-law/patent-law/public-health-crisis-and-access-to-medicines"
+      ],
+      "label": "PUBLIC HEALTH CRISIS AND ACCESS TO MEDICINES",
+      "minted": "2026-11-26",
+      "uuid": "0eb143aa-a744-4697-8560-e61da2561d70",
+      "corpusIssueId": "5399cf61-8fe1-5386-8464-5a5e830525d8",
+      "pathNotation": "IP_LAW.PATENT_LAW.PUBLIC_HEALTH_CRISIS_AND_ACCESS_TO_MEDICINES"
+    },
+    {
       "id": "300281bae5ca4d1882c424a66223eec9",
       "keys": [
         "ip-law/patent-law/relationship-with-government-agencies"
@@ -262463,6 +262594,26 @@
       ],
       "minted": "2026-07-31",
       "label": "Classification of Statutes"
+    },
+    {
+      "id": "130f2e658719444d809da620c59f2aee",
+      "keys": [
+        "jurisprudence-and-legal-method/classification-of-statutes/curative-statutes"
+      ],
+      "label": "Curative Statutes",
+      "minted": "2026-11-26",
+      "uuid": "130f2e65-8719-444d-809d-a620c59f2aee"
+    },
+    {
+      "id": "fa272f41959b4553970bc225dac249d4",
+      "keys": [
+        "jurisprudence-and-legal-method/classification-of-statutes/curative-statutes/legislative-power-to-enact-curative-statutes"
+      ],
+      "label": "LEGISLATIVE POWER TO ENACT CURATIVE STATUTES",
+      "minted": "2026-11-26",
+      "uuid": "fa272f41-959b-4553-970b-c225dac249d4",
+      "corpusIssueId": "185a85d3-8390-5cf4-9ef8-c8e012fbc41c",
+      "pathNotation": "JURISPRUDENCE_AND_LEGAL_METHOD.CLASSIFICATION_OF_STATUTES.CURATIVE_STATUTES.LEGISLATIVE_POWER_TO_ENACT_CURATIVE_STATUTES"
     },
     {
       "id": "974bc781979f46129119ae8e2e5ef50c",
@@ -325107,6 +325258,26 @@
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.FRANCHISES.PERFECTION_OF_FRANCHISES"
     },
     {
+      "id": "b2cf152a83374cf498b0bda1d417845c",
+      "keys": [
+        "municipal-law/municipal-corporations/franchises/procedural-requirements-for-public-improvements"
+      ],
+      "label": "Procedural Requirements for Public Improvements",
+      "minted": "2026-11-26",
+      "uuid": "b2cf152a-8337-4cf4-98b0-bda1d417845c"
+    },
+    {
+      "id": "a075d51ec159492e9b221c0a8d884567",
+      "keys": [
+        "municipal-law/municipal-corporations/franchises/procedural-requirements-for-public-improvements/notice-of-proposed-improvement"
+      ],
+      "label": "NOTICE OF PROPOSED IMPROVEMENT",
+      "minted": "2026-11-26",
+      "uuid": "a075d51e-c159-492e-9b22-1c0a8d884567",
+      "corpusIssueId": "d4e9566e-9cc1-5d59-b7a0-75c3b76ad5e4",
+      "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.FRANCHISES.PROCEDURAL_REQUIREMENTS_FOR_PUBLIC_IMPROVEMENTS.NOTICE_OF_PROPOSED_IMPROVEMENT"
+    },
+    {
       "id": "49349391b2884082a2ee27342d3246e2",
       "keys": [
         "municipal-law/municipal-corporations/franchises/protection-of-franchise-rights"
@@ -358312,6 +358483,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.TRUST_ADMINISTRATION.DISTRIBUTION_OF_TRUST_ASSETS.ELECTION_OF_DISTRIBUTION_METHODS_OR_BENEFICIARIES"
     },
     {
+      "id": "8240c45645c54a218b45d2a6b08a0a33",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/trust-administration/equitable-conversion"
+      ],
+      "label": "Equitable Conversion",
+      "minted": "2026-11-26",
+      "uuid": "8240c456-45c5-4a21-8b45-d2a6b08a0a33"
+    },
+    {
+      "id": "45d9216edce542a6b3549ecfa0bf931e",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/trust-administration/equitable-conversion/general-rule-as-to-conversion"
+      ],
+      "label": "GENERAL RULE AS TO CONVERSION",
+      "minted": "2026-11-26",
+      "uuid": "45d9216e-dce5-42a6-b354-9ecfa0bf931e",
+      "corpusIssueId": "a429d140-3cbc-5f94-9e40-269eb966865b",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.TRUST_ADMINISTRATION.EQUITABLE_CONVERSION.GENERAL_RULE_AS_TO_CONVERSION"
+    },
+    {
       "id": "5be1755d15da4a2bbe791aeb42464fcd",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/trust-administration/investment-of-trust-funds"
@@ -376416,6 +376607,33 @@
       "pathNotation": "PROCEDURAL_LAW.FOREIGN_JUDGMENTS_AND_DECREES.FOREIGN_PROBATE_DECREES.CONCLUSIVENESS_OF_FOREIGN_PROBATE"
     },
     {
+      "id": "143f38075ab6403ca455307df036dd33",
+      "keys": [
+        "procedural-law/foreign-judgments/enforcement-of-foreign-judgments"
+      ],
+      "label": "Enforcement of Foreign Judgments",
+      "minted": "2026-11-26",
+      "uuid": "143f3807-5ab6-403c-a455-307df036dd33"
+    },
+    {
+      "id": "313aee9146084ed4a321fa3e2954990f",
+      "keys": [
+        "procedural-law/foreign-judgments/enforcement-of-foreign-judgments/alimony-and-support-judgments"
+      ],
+      "label": "Alimony and Support Judgments",
+      "minted": "2026-11-26",
+      "uuid": "313aee91-4608-4ed4-a321-fa3e2954990f"
+    },
+    {
+      "id": "fb4909fa147e46839ecfce9d2bf95a45",
+      "keys": [
+        "procedural-law/foreign-judgments/enforcement-of-foreign-judgments/alimony-and-support-judgments/estoppel-to-enforce"
+      ],
+      "label": "Estoppel to Enforce",
+      "minted": "2026-11-26",
+      "uuid": "fb4909fa-147e-4683-9ecf-ce9d2bf95a45"
+    },
+    {
       "id": "9b6d0c14aa804beda6d6e6a7ceb4a278",
       "keys": [
         "procedural-law/foreign-judgments/recognition-and-enforcement"
@@ -392182,6 +392400,15 @@
       "uuid": "c1c77124-4725-43c1-9371-80ec3f2b336f",
       "corpusIssueId": "6cd9974a-7d1d-56f2-9f63-fd40ac15386a",
       "pathNotation": "PROCEDURAL_LAW.STATUTES_OF_LIMITATIONS.REAL_PROPERTY_RECOVERY_ACTIONS"
+    },
+    {
+      "id": "eceae8eceb7a430f9a9d05ed6b7a0c4d",
+      "keys": [
+        "procedural-law/statutes-of-limitations/state-specific-limitation-periods"
+      ],
+      "label": "State Specific Limitation Periods",
+      "minted": "2026-11-26",
+      "uuid": "eceae8ec-eb7a-430f-9a9d-05ed6b7a0c4d"
     },
     {
       "id": "8a1d7a6cc58d44bd88be5a39ac097ba7",
@@ -437533,6 +437760,26 @@
       "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LANDLORD_TENANT_RELATIONSHIPS.LESSOR_OBLIGATIONS.LIABILITIES_IN_RESPECT_OF_POSSESSION"
     },
     {
+      "id": "3727ad080f4d4c74bb5f52cfcb43fb63",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/landlord-tenant-relationships/tenant-obligations-and-rights"
+      ],
+      "label": "Tenant Obligations and Rights",
+      "minted": "2026-11-26",
+      "uuid": "3727ad08-0f4d-4c74-bb5f-52cfcb43fb63"
+    },
+    {
+      "id": "20faa18df81b4588a375ab2fab28f7a0",
+      "keys": [
+        "real-estate-law/landlord-tenant-law/landlord-tenant-relationships/tenant-obligations-and-rights/tenant-right-to-deduct"
+      ],
+      "label": "TENANT RIGHT TO DEDUCT",
+      "minted": "2026-11-26",
+      "uuid": "20faa18d-f81b-4588-a375-ab2fab28f7a0",
+      "corpusIssueId": "52f7f306-fc5d-5c8e-887b-502bf6c8d2f6",
+      "pathNotation": "REAL_ESTATE_LAW.LANDLORD_TENANT_LAW.LANDLORD_TENANT_RELATIONSHIPS.TENANT_OBLIGATIONS_AND_RIGHTS.TENANT_RIGHT_TO_DEDUCT"
+    },
+    {
       "id": "d590fee633ff4a2dbc7db736943c2396",
       "keys": [
         "real-estate-law/landlord-tenant-law/lease-as-conveyance"
@@ -444247,6 +444494,26 @@
       "uuid": "90c2ed64-9ae1-451b-8a69-6193d1c0bca3",
       "corpusIssueId": "364f8914-58d1-5f25-bfda-593774e7f033",
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURITY_INTERESTS.EQUITABLE_MORTGAGES.ABSOLUTE_DEED_AS_MORTGAGE.STATUTORY_PROVISIONS"
+    },
+    {
+      "id": "5acee8c6cad14564a3caf07ac1e4b8fb",
+      "keys": [
+        "real-estate-law/mortgages-and-security-interests/equitable-mortgages/absolute-deed-intended-as-mortgage"
+      ],
+      "label": "Absolute Deed Intended as Mortgage",
+      "minted": "2026-11-26",
+      "uuid": "5acee8c6-cad1-4564-a3ca-f07ac1e4b8fb"
+    },
+    {
+      "id": "993529d4779b4d5bab4002db8f20a17a",
+      "keys": [
+        "real-estate-law/mortgages-and-security-interests/equitable-mortgages/absolute-deed-intended-as-mortgage/admissibility-of-parol-evidence"
+      ],
+      "label": "ADMISSIBILITY OF PAROL EVIDENCE",
+      "minted": "2026-11-26",
+      "uuid": "993529d4-779b-4d5b-ab40-02db8f20a17a",
+      "corpusIssueId": "61d1e05b-0cf9-5f84-b7b4-5b686003be16",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURITY_INTERESTS.EQUITABLE_MORTGAGES.ABSOLUTE_DEED_INTENDED_AS_MORTGAGE.ADMISSIBILITY_OF_PAROL_EVIDENCE"
     },
     {
       "id": "15a7441ef48c43ea93048a00f81c03b3",
@@ -451406,6 +451673,17 @@
       "uuid": "9fd0cde6-51a9-4810-bca9-2f81a35c5ef5",
       "corpusIssueId": "0a6018e0-ffee-5f09-b1a4-826539e4b0c4",
       "pathNotation": "REAL_ESTATE_LAW.RULE_AGAINST_PERPETUITIES.VOID_GIFTS_FOR_VIOLATING_RULE_AGAINST_PERPETUITIES"
+    },
+    {
+      "id": "3ce0f84d4cec4ae79e8063737f4a59e8",
+      "keys": [
+        "real-estate-law/running-of-burdens-negative-covenants-binding-successors"
+      ],
+      "label": "RUNNING OF BURDENS (NEGATIVE COVENANTS BINDING SUCCESSORS)",
+      "minted": "2026-11-26",
+      "uuid": "3ce0f84d-4cec-4ae7-9e80-63737f4a59e8",
+      "corpusIssueId": "79f07321-1f59-5f99-a38b-f6d8a34e5e16",
+      "pathNotation": "REAL_ESTATE_LAW.RUNNING_OF_BURDENS_NEGATIVE_COVENANTS_BINDING_SUCCESSORS"
     },
     {
       "id": "d7450419cfd249deb9f42e9c189c7a18",
@@ -496181,6 +496459,26 @@
       "uuid": "14d86e79-919c-44dc-a0c8-12f571f26362",
       "corpusIssueId": "7cb8b289-5528-526a-8520-3b788262d38d",
       "pathNotation": "TRANSPORTATION_LAW.CARRIERS_OF_PASSENGERS.PERFORMANCE_AND_BREACH.DELAY.EXCUSES_FOR_DELAY"
+    },
+    {
+      "id": "f20c456d3ceb40fc857374f79f7bec47",
+      "keys": [
+        "transportation-law/carriers-of-passengers/rights-and-obligations-of-carriers"
+      ],
+      "label": "Rights and Obligations of Carriers",
+      "minted": "2026-11-26",
+      "uuid": "f20c456d-3ceb-40fc-8573-74f79f7bec47"
+    },
+    {
+      "id": "8426807ea7664c7a97352897a1865f42",
+      "keys": [
+        "transportation-law/carriers-of-passengers/rights-and-obligations-of-carriers/route-selection-and-discretion"
+      ],
+      "label": "ROUTE SELECTION AND DISCRETION",
+      "minted": "2026-11-26",
+      "uuid": "8426807e-a766-4c7a-9735-2897a1865f42",
+      "corpusIssueId": "c006d542-8f09-5c3d-81f1-f2e4082f105b",
+      "pathNotation": "TRANSPORTATION_LAW.CARRIERS_OF_PASSENGERS.RIGHTS_AND_OBLIGATIONS_OF_CARRIERS.ROUTE_SELECTION_AND_DISCRETION"
     },
     {
       "id": "7497a837315d4f06abc07083ccd0c060",
