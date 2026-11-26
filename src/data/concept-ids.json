@@ -89528,6 +89528,26 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.PROMOTERS.LIABILITY_AND_DUTIES_OF_PROMOTERS.RECOVERY_OF_BRIBES"
     },
     {
+      "id": "5651bdbedcb3470aa3598f801df71c87",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/promoters/liability-on-pre-incorporation-contracts"
+      ],
+      "label": "Liability on Pre Incorporation Contracts",
+      "minted": "2026-11-26",
+      "uuid": "5651bdbe-dcb3-470a-a359-8f801df71c87"
+    },
+    {
+      "id": "bd8d43de60c64d3cb8a6f035a29e09d6",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/promoters/liability-on-pre-incorporation-contracts/suits-on-contracts-made-prior-to-incorporation"
+      ],
+      "label": "SUITS ON CONTRACTS MADE PRIOR TO INCORPORATION",
+      "minted": "2026-11-26",
+      "uuid": "bd8d43de-60c6-4d3c-b8a6-f035a29e09d6",
+      "corpusIssueId": "a761eced-1b31-5273-9372-3aa410e137bc",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.PROMOTERS.LIABILITY_ON_PRE_INCORPORATION_CONTRACTS.SUITS_ON_CONTRACTS_MADE_PRIOR_TO_INCORPORATION"
+    },
+    {
       "id": "3a3442a88ea64f98bd287d22f8850cc5",
       "keys": [
         "corporate-law/business-organizations-law/corporations/promoters/share-subscribers-as-promoters"
@@ -228123,6 +228143,26 @@
       "uuid": "475c949f-fb0c-4358-816a-ebcfcbf92362",
       "corpusIssueId": "9563be86-2904-5575-bc91-dfa322fb7fef",
       "pathNotation": "INSURANCE_LAW.INSURANCE_CONTRACT_FORMATION_AND_VALIDITY.COMPLETION_OF_THE_CONTRACT.FIDELITY_INSURANCE"
+    },
+    {
+      "id": "4ac107663b6b4f75aedf6fd55006170a",
+      "keys": [
+        "insurance-law/insurance-contract-formation-and-validity/legality-of-insured-subject-matter"
+      ],
+      "label": "Legality of Insured Subject Matter",
+      "minted": "2026-11-26",
+      "uuid": "4ac10766-3b6b-4f75-aedf-6fd55006170a"
+    },
+    {
+      "id": "29eb6cb108074454a4b31fc388dff010",
+      "keys": [
+        "insurance-law/insurance-contract-formation-and-validity/legality-of-insured-subject-matter/unlawful-traffic-or-business"
+      ],
+      "label": "UNLAWFUL TRAFFIC OR BUSINESS",
+      "minted": "2026-11-26",
+      "uuid": "29eb6cb1-0807-4454-a4b3-1fc388dff010",
+      "corpusIssueId": "4af2d105-7a76-589e-94bb-8f9fd3ae08be",
+      "pathNotation": "INSURANCE_LAW.INSURANCE_CONTRACT_FORMATION_AND_VALIDITY.LEGALITY_OF_INSURED_SUBJECT_MATTER.UNLAWFUL_TRAFFIC_OR_BUSINESS"
     },
     {
       "id": "84a0a445b21942c7afe8baca7bb9148a",
@@ -440371,6 +440411,17 @@
       "pathNotation": "REAL_ESTATE_LAW.LIENS_AND_ENCUMBRANCES.MECHANICS_LIENS.FRAUDULENT_OR_INTENTIONAL_OVERCLAIMING_OF_LAND"
     },
     {
+      "id": "77654ae62b3d4d13988fc88d6cf97b86",
+      "keys": [
+        "real-estate-law/liens-and-encumbrances/mechanics-liens/statutory-equality-provisions"
+      ],
+      "label": "STATUTORY EQUALITY PROVISIONS",
+      "minted": "2026-11-26",
+      "uuid": "77654ae6-2b3d-4d13-988f-c88d6cf97b86",
+      "corpusIssueId": "d70e20eb-1521-589a-994c-4056b9457897",
+      "pathNotation": "REAL_ESTATE_LAW.LIENS_AND_ENCUMBRANCES.MECHANICS_LIENS.STATUTORY_EQUALITY_PROVISIONS"
+    },
+    {
       "id": "d7a7526e339f40d4b972fd3dc0b7577e",
       "keys": [
         "real-estate-law/liens-and-encumbrances/mechanics-liens/statutory-lien-for-improvements"
@@ -451766,6 +451817,17 @@
       "minted": "2026-10-02",
       "uuid": "5b862eb9-5958-4272-bd3a-fe6ebbfe0d16",
       "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.PAYMENT_AND_DISCHARGE.CONSIDERATION_FOR_MORTGAGE_RELEASE"
+    },
+    {
+      "id": "e03603bed5e04e99a0d22a0883e23794",
+      "keys": [
+        "real-estate-law/security-interests-in-real-property/mortgages/payment-and-discharge/limited-release-of-mortgage"
+      ],
+      "label": "LIMITED RELEASE OF MORTGAGE",
+      "minted": "2026-11-26",
+      "uuid": "e03603be-d5e0-4e99-a0d2-2a0883e23794",
+      "corpusIssueId": "e6800a21-a696-53c8-8c32-118f405fcd87",
+      "pathNotation": "REAL_ESTATE_LAW.SECURITY_INTERESTS_IN_REAL_PROPERTY.MORTGAGES.PAYMENT_AND_DISCHARGE.LIMITED_RELEASE_OF_MORTGAGE"
     },
     {
       "id": "e8c08cec9d414f3e8434409474967f14",
@@ -492272,6 +492334,26 @@
       "uuid": "a398ea14-8957-418f-be90-36e36baafe2f",
       "corpusIssueId": "9682f42d-94fc-5420-8f28-b7b715862b07",
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.TAX_ASSESSMENT_AND_VALUATION.OVERVAULATION.DEFENSES_IN_COLLECTION_ACTIONS"
+    },
+    {
+      "id": "5f855f54c521411f97cefb1e30094a47",
+      "keys": [
+        "tax-and-revenue-law/tax-law/tax-assessment-and-valuation/procedural-due-process-in-tax-assessment"
+      ],
+      "label": "Procedural Due Process in Tax Assessment",
+      "minted": "2026-11-26",
+      "uuid": "5f855f54-c521-411f-97ce-fb1e30094a47"
+    },
+    {
+      "id": "a17e07e57b474b77a808c7462eac6fe1",
+      "keys": [
+        "tax-and-revenue-law/tax-law/tax-assessment-and-valuation/procedural-due-process-in-tax-assessment/right-to-hearing-on-valuation"
+      ],
+      "label": "RIGHT TO HEARING ON VALUATION",
+      "minted": "2026-11-26",
+      "uuid": "a17e07e5-7b47-4b77-a808-c7462eac6fe1",
+      "corpusIssueId": "d51c0a00-7a25-542b-83b1-a7c5df6ed5e5",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.TAX_ASSESSMENT_AND_VALUATION.PROCEDURAL_DUE_PROCESS_IN_TAX_ASSESSMENT.RIGHT_TO_HEARING_ON_VALUATION"
     },
     {
       "id": "4a63032f7c7b4d4da223a0a076e8c7b0",
