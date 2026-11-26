@@ -19359,6 +19359,24 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.TRUSTEES_IN_BANKRUPTCY.AUTHORITY_AND_POWERS_OF_TRUSTEES.PRESUMPTION_OF_AUTHORITY_TO_REPRESENT_CREDITORS"
     },
     {
+      "id": "1bf93798d9774f7cb52f2b3901dc4084",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/trustees-in-bankruptcy/compensation-of-trustees"
+      ],
+      "label": "Compensation of Trustees",
+      "minted": "2026-11-26",
+      "uuid": "1bf93798-d977-4f7c-b52f-2b3901dc4084"
+    },
+    {
+      "id": "7353b78b9c1240f5a6e1c732840f3c86",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/trustees-in-bankruptcy/compensation-of-trustees/extra-compensation-for-conducting-business"
+      ],
+      "label": "Extra Compensation for Conducting Business",
+      "minted": "2026-11-26",
+      "uuid": "7353b78b-9c12-40f5-a6e1-c732840f3c86"
+    },
+    {
       "id": "2dbf1acdb4a74210b51c11aa90b973a3",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/trustees-in-bankruptcy/creditors-claims-and-proof-thereof"
@@ -63556,6 +63574,26 @@
       "label": "Joint and Several Obligations",
       "minted": "2026-10-02",
       "uuid": "f32a48b6-48f1-40e4-a3c9-e56ac5993174"
+    },
+    {
+      "id": "9c126d35ad044c4ca7b73d1bd95fbdd3",
+      "keys": [
+        "contract-law/joint-and-several-obligations/joint-and-several-liability"
+      ],
+      "label": "Joint and Several Liability",
+      "minted": "2026-11-26",
+      "uuid": "9c126d35-ad04-4c4c-a7b7-3d1bd95fbdd3"
+    },
+    {
+      "id": "b754f4d3261942759b8f99dba96ec6a6",
+      "keys": [
+        "contract-law/joint-and-several-obligations/joint-and-several-liability/breach-of-marriage-promise"
+      ],
+      "label": "BREACH OF MARRIAGE PROMISE",
+      "minted": "2026-11-26",
+      "uuid": "b754f4d3-2619-4275-9b8f-99dba96ec6a6",
+      "corpusIssueId": "37243033-70c6-5787-8927-fe9752307e5d",
+      "pathNotation": "CONTRACT_LAW.JOINT_AND_SEVERAL_OBLIGATIONS.JOINT_AND_SEVERAL_LIABILITY.BREACH_OF_MARRIAGE_PROMISE"
     },
     {
       "id": "4d21b130519a43919019a7de4b53064d",
@@ -129504,6 +129542,26 @@
       "pathNotation": "CRIMINAL_LAW.ATTEMPT_LIABILITY.PREPARATORY_CONDUCT_AND_THE_PREPARATION_ATTEMPT_LINE.PRE_ATTEMPT_CONDUCT"
     },
     {
+      "id": "8976f694bf6742a192a52d02028348ba",
+      "keys": [
+        "criminal-law/attempt/actus-reus-of-attempt"
+      ],
+      "label": "Actus Reus of Attempt",
+      "minted": "2026-11-26",
+      "uuid": "8976f694-bf67-42a1-92a5-2d02028348ba"
+    },
+    {
+      "id": "c932b47341d04a8dbb3563f6252c1d52",
+      "keys": [
+        "criminal-law/attempt/actus-reus-of-attempt/mpc-section-5-01"
+      ],
+      "label": "MPC SECTION 5.01",
+      "minted": "2026-11-26",
+      "uuid": "c932b473-41d0-4a8d-bb35-63f6252c1d52",
+      "corpusIssueId": "f1c5f116-0cb5-59a5-8ce6-604e850dd79d",
+      "pathNotation": "CRIMINAL_LAW.ATTEMPT.ACTUS_REUS_OF_ATTEMPT.MPC_SECTION_5_01"
+    },
+    {
       "id": "03dce456c59c4819aaf3001b0a99c95e",
       "keys": [
         "criminal-law/attempt/assaults-with-intent"
@@ -138188,6 +138246,24 @@
       "uuid": "ee062778-715b-4ad3-9591-523442d6dfff",
       "corpusIssueId": "c34a0902-fa4e-51a8-b445-d15ece17653d",
       "pathNotation": "CRIMINAL_LAW.HOMICIDE.OVERVIEW"
+    },
+    {
+      "id": "58537418b6da46cab5aa27912b9c0723",
+      "keys": [
+        "criminal-law/homicide/protected-persons"
+      ],
+      "label": "Protected Persons",
+      "minted": "2026-11-26",
+      "uuid": "58537418-b6da-46ca-b5aa-27912b9c0723"
+    },
+    {
+      "id": "52dd3701fb344897925dd6cd7631295d",
+      "keys": [
+        "criminal-law/homicide/protected-persons/unborn-child-as-victim"
+      ],
+      "label": "Unborn Child as Victim",
+      "minted": "2026-11-26",
+      "uuid": "52dd3701-fb34-4897-925d-d6cd7631295d"
     },
     {
       "id": "3deba35950d144fe9976ddcf711d68a5",
@@ -165615,6 +165691,17 @@
       "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_OF_EVIDENCE.ADMISSIONS.EXTRAJUDICIAL_ADMISSIONS"
     },
     {
+      "id": "22141ace16434f6b94669acf1d4ce38d",
+      "keys": [
+        "evidence-law/admissibility-of-evidence/agency-and-representative-capacity"
+      ],
+      "label": "AGENCY AND REPRESENTATIVE CAPACITY",
+      "minted": "2026-11-26",
+      "uuid": "22141ace-1643-4f6b-9466-9acf1d4ce38d",
+      "corpusIssueId": "8a59389c-7d52-549d-aa10-05e12395b49e",
+      "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_OF_EVIDENCE.AGENCY_AND_REPRESENTATIVE_CAPACITY"
+    },
+    {
       "id": "c1ecf86f479a4308abb7ba7998a92097",
       "keys": [
         "evidence-law/admissibility-of-evidence/authentication-and-proof-of-documents"
@@ -188857,6 +188944,17 @@
       "label": "Presumptions",
       "minted": "2026-10-18",
       "uuid": "9e1f90ce-3306-48c9-aee0-1c388943c4b6"
+    },
+    {
+      "id": "cf86668fc1134568b49cc7709ffa0cf3",
+      "keys": [
+        "evidence-law/types-of-evidence/presumptions/administrative-assumptions-and-possession-based-inferences"
+      ],
+      "label": "ADMINISTRATIVE ASSUMPTIONS AND POSSESSION-BASED INFERENCES",
+      "minted": "2026-11-26",
+      "uuid": "cf86668f-c113-4568-b49c-c7709ffa0cf3",
+      "corpusIssueId": "e2bf63f6-5043-5e20-b028-89fb4af34f94",
+      "pathNotation": "EVIDENCE_LAW.TYPES_OF_EVIDENCE.PRESUMPTIONS.ADMINISTRATIVE_ASSUMPTIONS_AND_POSSESSION_BASED_INFERENCES"
     },
     {
       "id": "3ed38433efaa4a37b66fba075d093260",
@@ -226309,6 +226407,17 @@
       "pathNotation": "INSURANCE_LAW.FORMATION_AND_ISSUANCE_OF_POLICY.DELIVERY_OF_POLICY.ACTUAL_DELIVERY_REQUIREMENT"
     },
     {
+      "id": "921722c3748c4c8199e4bbf71c636229",
+      "keys": [
+        "insurance-law/formation-and-issuance-of-policy/delivery-of-policy/delivery-affected-by-misrepresentation-or-fraud"
+      ],
+      "label": "DELIVERY AFFECTED BY MISREPRESENTATION OR FRAUD",
+      "minted": "2026-11-26",
+      "uuid": "921722c3-748c-4c81-99e4-bbf71c636229",
+      "corpusIssueId": "24ba5ef5-ec44-5a76-9dd6-b79cecd2e7cd",
+      "pathNotation": "INSURANCE_LAW.FORMATION_AND_ISSUANCE_OF_POLICY.DELIVERY_OF_POLICY.DELIVERY_AFFECTED_BY_MISREPRESENTATION_OR_FRAUD"
+    },
+    {
       "id": "5d5f62a244c941298d65e740dc616309",
       "keys": [
         "insurance-law/formation-and-issuance-of-policy/delivery-of-policy/delivery-by-or-to-agent-and-policy-held-by-agent"
@@ -230926,6 +231035,33 @@
       "uuid": "6e2cede4-b83a-486a-a4e8-bcb2cee0c422",
       "corpusIssueId": "5b003f64-e056-5e93-9d8e-3402443c79e2",
       "pathNotation": "INSURANCE_LAW.LIFE_INSURANCE.POLICY_TERMS_AND_EXCLUSIONS.SUICIDE_CLAUSE"
+    },
+    {
+      "id": "41d1c6bf3b37434ab8339c461c1522a8",
+      "keys": [
+        "insurance-law/life-insurance/policy-validity-and-contestability"
+      ],
+      "label": "Policy Validity and Contestability",
+      "minted": "2026-11-26",
+      "uuid": "41d1c6bf-3b37-434a-b833-9c461c1522a8"
+    },
+    {
+      "id": "49c198a87ced473db6c5c52a0ce6018f",
+      "keys": [
+        "insurance-law/life-insurance/policy-validity-and-contestability/fraud-in-procurement"
+      ],
+      "label": "Fraud in Procurement",
+      "minted": "2026-11-26",
+      "uuid": "49c198a8-7ced-473d-b6c5-c52a0ce6018f"
+    },
+    {
+      "id": "452cc78ce7f6484784be3dfb4ce3fca3",
+      "keys": [
+        "insurance-law/life-insurance/policy-validity-and-contestability/fraud-in-procurement/fraudulent-procurement-of-life-policy"
+      ],
+      "label": "Fraudulent Procurement of Life Policy",
+      "minted": "2026-11-26",
+      "uuid": "452cc78c-e7f6-4847-84be-3dfb4ce3fca3"
     },
     {
       "id": "e96e555b8ed0405aa22ab6b27e1b1cd6",
@@ -286483,6 +286619,35 @@
       "label": "Rulemaking",
       "minted": "2026-10-02",
       "uuid": "d058e4d6-14be-482b-941d-ab85caa05132"
+    },
+    {
+      "id": "15709240d82943beaa8a0ecceba74268",
+      "keys": [
+        "law-of-obligations/rulemaking-and-adjudication"
+      ],
+      "label": "Rulemaking and Adjudication",
+      "minted": "2026-11-26",
+      "uuid": "15709240-d829-43be-aa8a-0ecceba74268"
+    },
+    {
+      "id": "4902ccc4d6eb4f37a17e52363ac3dde6",
+      "keys": [
+        "law-of-obligations/rulemaking-and-adjudication/agency-choice-between-rulemaking-and-adjudication"
+      ],
+      "label": "Agency Choice Between Rulemaking and Adjudication",
+      "minted": "2026-11-26",
+      "uuid": "4902ccc4-d6eb-4f37-a17e-52363ac3dde6"
+    },
+    {
+      "id": "87b5c8478af74cdc9e0a74c8b6680b52",
+      "keys": [
+        "law-of-obligations/rulemaking-and-adjudication/agency-choice-between-rulemaking-and-adjudication/nlrb-v-bell-aerospace-co-1974"
+      ],
+      "label": "NLRB V. BELL AEROSPACE CO. (1974)",
+      "minted": "2026-11-26",
+      "uuid": "87b5c847-8af7-4cdc-9e0a-74c8b6680b52",
+      "corpusIssueId": "67e6da47-3838-56a0-919a-eba4db9e6c2b",
+      "pathNotation": "LAW_OF_OBLIGATIONS.RULEMAKING_AND_ADJUDICATION.AGENCY_CHOICE_BETWEEN_RULEMAKING_AND_ADJUDICATION.NLRB_V_BELL_AEROSPACE_CO_1974"
     },
     {
       "id": "0c2b8c1d413f4ba599f8813871e89486",
@@ -398284,6 +398449,17 @@
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FEDERAL_FOOD_DRUG_AND_COSMETIC_ACT.ADULTERATION.ECONOMICALLY_MOTIVATED_ADULTERATION.ENFORCEMENT"
     },
     {
+      "id": "a3f21c468a5d44aa8414ae5e047de91b",
+      "keys": [
+        "public-and-administrative-law/federal-food-drug-and-cosmetic-act/standards-of-identity"
+      ],
+      "label": "STANDARDS OF IDENTITY",
+      "minted": "2026-11-26",
+      "uuid": "a3f21c46-8a5d-44aa-8414-ae5e047de91b",
+      "corpusIssueId": "f02d9152-6d9e-5146-980b-869a27b02a0c",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.FEDERAL_FOOD_DRUG_AND_COSMETIC_ACT.STANDARDS_OF_IDENTITY"
+    },
+    {
       "id": "8cfa94c6434a4ccdbdfc90c48faeebe3",
       "keys": [
         "public-and-administrative-law/federal-food-safety-system"
@@ -404271,6 +404447,17 @@
       "uuid": "abc60de0-0ed4-488a-93d1-299d7ff672ca",
       "corpusIssueId": "e333bf9f-4b92-5f16-a4b9-54540d1e1cd0",
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.TIMING_OF_JUDICIAL_REVIEW.EXHAUSTION_OF_ADMINISTRATIVE_REMEDIES"
+    },
+    {
+      "id": "7bf5fcd22ce34619a061bce083e45a19",
+      "keys": [
+        "public-and-administrative-law/timing-of-judicial-review/ripeness"
+      ],
+      "label": "RIPENESS",
+      "minted": "2026-11-26",
+      "uuid": "7bf5fcd2-2ce3-4619-a061-bce083e45a19",
+      "corpusIssueId": "28e0cb40-db40-56c3-bb1e-ab5adfd578e0",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.TIMING_OF_JUDICIAL_REVIEW.RIPENESS"
     },
     {
       "id": "8b0e385d0a0a4b7eacc5cf60f5046cbf",
@@ -433247,6 +433434,17 @@
       "uuid": "07e1374a-00f5-4ea6-9d11-52e2d8011ef8",
       "corpusIssueId": "c6e04c4b-7582-5f37-a2eb-3b2265bb2a78",
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.WATER_RIGHTS.RIPARIAN_RIGHTS.LIMITATIONS_ON_RIPARIAN_RIGHTS"
+    },
+    {
+      "id": "be966214bd0a455b8c9aee898a4821ae",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/water-rights/riparian-rights/miscellaneous-riparian-rights"
+      ],
+      "label": "MISCELLANEOUS RIPARIAN RIGHTS",
+      "minted": "2026-11-26",
+      "uuid": "be966214-bd0a-455b-8c9a-ee898a4821ae",
+      "corpusIssueId": "a86d2085-2942-55d2-a92d-b35d3cf0fa03",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.WATER_RIGHTS.RIPARIAN_RIGHTS.MISCELLANEOUS_RIPARIAN_RIGHTS"
     },
     {
       "id": "b474dd0a72af49c59e3bde58118c0224",
