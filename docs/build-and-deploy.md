@@ -94,6 +94,13 @@ its memory keeps growing as it renders. Eleven workers ran fine for 10 minutes
 and then went through 90+ GB of swap. More swap does not help: it only lets
 the build thrash for longer.
 
+**The corpus outgrew the 96 GB cap (2026-11-25).** The content store grew from
+1.5 GB to 4.0 GB, and each of the 5 threads (the main thread and 4 workers)
+loads its own copy. With 4 workers, swap hit 96 GB about 30 minutes into
+rendering, and the build was killed for running out of memory 10 minutes
+later. Host swap is now 190 GB and the scope cap defaults to 170 GB. The worker
+count was left at 4.
+
 **Keep the worker count the same between builds.** Changing it made Astro
 print `Astro config changed` and clear the content store. The next sync is
 then cold: about 3.5–4.3 h on this corpus. Upgrading Astro does the same.
@@ -221,7 +228,7 @@ Settings → DNSSEC), not by the script.
 ## Monitoring and memory
 
 - `build-deploy-tmux.sh` runs the build inside a systemd scope with
-  `MemoryMax=27G` and `MemorySwapMax=${SWAP_MAX:-96G}`. A runaway build gets
+  `MemoryMax=27G` and `MemorySwapMax=${SWAP_MAX:-170G}`. A runaway build gets
   killed for running out of memory without taking Coolify, Temporal or the
   research fleet with it.
 - **Two cron entries watch a run, because a run outlives a working day.**
@@ -256,9 +263,13 @@ Settings → DNSSEC), not by the script.
   with 4 workers). If it keeps climbing toward the cap, the build will die.
 - **Was it killed?** Run `sudo journalctl -k | grep 'Killed process'`. The
   user journal hides kernel messages.
-- **Swap files.** `/swapfile` (8G), `/swapfile2` (16G) and `/swapfile3` (96G)
-  are all in `/etc/fstab`. `/tmp` and `/dev/shm` are 16 GB in-memory
-  filesystems, which the build barely uses. Don't grow them: whatever they hold
+- **Swap files.** `/swapfile` (8G), `/swapfile2` (16G), `/swapfile3` (96G),
+  `/swapfile4` (48G) and `/swapfile5` (22G), 190 GB in all, are all in
+  `/etc/fstab`. The 170 GB scope cap leaves 20 GB of swap for the rest of the
+  host. To raise the cap on a build that is already running, without a
+  restart, run
+  `systemctl --user set-property --runtime digest-build-<stamp>.scope MemorySwapMax=<N>G`.
+  `/tmp` and `/dev/shm` are 16 GB in-memory filesystems, which the build barely uses. Don't grow them: whatever they hold
   comes out of RAM.
 
 ## Pitfalls we hit
