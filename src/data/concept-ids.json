@@ -3796,6 +3796,26 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.AVOIDANCE_AND_RECOVERY_OF_TRANSFERS.PREFERENCES.PREFERENCES_VERSUS_LEGAL_LIENS_ON_INDIVIDUAL_PROPERTY"
     },
     {
+      "id": "b27c6c57ef1f483eacf350a3ff1c4cba",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/avoidance-and-recovery-of-transfers/preferences/voidable-preferences"
+      ],
+      "label": "Voidable Preferences",
+      "minted": "2026-11-27",
+      "uuid": "b27c6c57-ef1f-483e-acf3-50a3ff1c4cba"
+    },
+    {
+      "id": "ae4e79d7f4684691be47e80dd1867e4b",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/avoidance-and-recovery-of-transfers/preferences/voidable-preferences/creditors-holding-voidable-preferences"
+      ],
+      "label": "CREDITORS HOLDING VOIDABLE PREFERENCES",
+      "minted": "2026-11-27",
+      "uuid": "ae4e79d7-f468-4691-be47-e80dd1867e4b",
+      "corpusIssueId": "2070dbad-d61d-5943-97be-8007945e8514",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.AVOIDANCE_AND_RECOVERY_OF_TRANSFERS.PREFERENCES.VOIDABLE_PREFERENCES.CREDITORS_HOLDING_VOIDABLE_PREFERENCES"
+    },
+    {
       "id": "cfcc562da1284ea58193883255c03f76",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/avoidance-of-transactions"
@@ -16969,6 +16989,17 @@
       "uuid": "1468e812-e35f-4e3f-8e5d-93516984b053",
       "corpusIssueId": "4877501e-99e1-50c2-a435-124d63c5681b",
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.PROVISIONAL_REMEDIES.INSOLVENCY_DETERMINATION.BALANCE_SHEET_INSOLVENCY_VERSUS_EQUITY_INSOLVENCY"
+    },
+    {
+      "id": "f491d7f0d7764bae9e3166af62c53ae6",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/provisional-remedies/intervention-in-suits-in-personam"
+      ],
+      "label": "INTERVENTION IN SUITS IN PERSONAM",
+      "minted": "2026-11-27",
+      "uuid": "f491d7f0-d776-4bae-9e31-66af62c53ae6",
+      "corpusIssueId": "1323c428-5ba6-52dd-b939-cf512a98caae",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.PROVISIONAL_REMEDIES.INTERVENTION_IN_SUITS_IN_PERSONAM"
     },
     {
       "id": "296ecb48739b448ebcc3ca4e31702b92",
@@ -36298,6 +36329,26 @@
       "label": "Taxing Power",
       "minted": "2026-11-19",
       "uuid": "d69b3917-3035-45eb-92cf-fd835a0dae2f"
+    },
+    {
+      "id": "5bf949ccf2a644069f1e032c3d3f9ce1",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-state-relations/taxing-power-allocation"
+      ],
+      "label": "Taxing Power Allocation",
+      "minted": "2026-11-27",
+      "uuid": "5bf949cc-f2a6-4406-9f1e-032c3d3f9ce1"
+    },
+    {
+      "id": "4ef3b382654b4382891a3d2f039911ec",
+      "keys": [
+        "constitutional-and-civil-rights-law/federal-state-relations/taxing-power-allocation/federal-versus-state-taxation-boundary"
+      ],
+      "label": "FEDERAL VERSUS STATE TAXATION BOUNDARY",
+      "minted": "2026-11-27",
+      "uuid": "4ef3b382-654b-4382-891a-3d2f039911ec",
+      "corpusIssueId": "3a45861f-3f94-541f-b85a-7cb9d59b3008",
+      "pathNotation": "CONSTITUTIONAL_AND_CIVIL_RIGHTS_LAW.FEDERAL_STATE_RELATIONS.TAXING_POWER_ALLOCATION.FEDERAL_VERSUS_STATE_TAXATION_BOUNDARY"
     },
     {
       "id": "e71113834d8a47faa63d1f7adefb631c",
@@ -59799,6 +59850,17 @@
       "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.OFFER_AND_ACCEPTANCE.TERMINATION_OF_OFFERS.LAPSE_OF_OFFER_BY_DEATH"
     },
     {
+      "id": "94ccf99a244b43e1a71fb097f8e34ec8",
+      "keys": [
+        "contract-law/formation-and-enforceability/offer-and-acceptance/termination-of-offers/lapse-of-time"
+      ],
+      "label": "LAPSE OF TIME",
+      "minted": "2026-11-27",
+      "uuid": "94ccf99a-244b-43e1-a71f-b097f8e34ec8",
+      "corpusIssueId": "2555e528-06e1-5d12-818d-be739ab9e690",
+      "pathNotation": "CONTRACT_LAW.FORMATION_AND_ENFORCEABILITY.OFFER_AND_ACCEPTANCE.TERMINATION_OF_OFFERS.LAPSE_OF_TIME"
+    },
+    {
       "id": "0588527a0ad94cdcb5c0457ee7d9be12",
       "keys": [
         "contract-law/formation-and-enforceability/offer-and-acceptance/termination-of-offers/revocation-by-death-or-refusal"
@@ -76480,6 +76542,44 @@
       "pathNotation": "CONTRACT_LAW.WARRANTIES.IMPLIED_WARRANTIES.IMPLIED_WARRANTY_OF_FITNESS_FOR_PARTICULAR_PURPOSE.UCC_2_315"
     },
     {
+      "id": "14bfaea424024a93bd35ad8599f5f0d4",
+      "keys": [
+        "contract-law/wipo-treaties"
+      ],
+      "label": "Wipo Treaties",
+      "minted": "2026-11-27",
+      "uuid": "14bfaea4-2402-4a93-bd35-ad8599f5f0d4"
+    },
+    {
+      "id": "601075885e744f6ea0ab46cdec3ad5b2",
+      "keys": [
+        "contract-law/wipo-treaties/wipo-copyright-treaty"
+      ],
+      "label": "Wipo Copyright Treaty",
+      "minted": "2026-11-27",
+      "uuid": "60107588-5e74-4f6e-a0ab-46cdec3ad5b2"
+    },
+    {
+      "id": "082333f8fcf44e89ae2a55e4941481dc",
+      "keys": [
+        "contract-law/wipo-treaties/wipo-copyright-treaty/treaty-provisions-and-reservations"
+      ],
+      "label": "Treaty Provisions and Reservations",
+      "minted": "2026-11-27",
+      "uuid": "082333f8-fcf4-4e89-ae2a-55e4941481dc"
+    },
+    {
+      "id": "bc375cf5299045aa94c1ed26407380ce",
+      "keys": [
+        "contract-law/wipo-treaties/wipo-copyright-treaty/treaty-provisions-and-reservations/no-reservations-clause-article-22"
+      ],
+      "label": "NO-RESERVATIONS CLAUSE (ARTICLE 22)",
+      "minted": "2026-11-27",
+      "uuid": "bc375cf5-2990-45aa-94c1-ed26407380ce",
+      "corpusIssueId": "8b690eb2-4ad6-50c2-86ad-6e3403d5b85b",
+      "pathNotation": "CONTRACT_LAW.WIPO_TREATIES.WIPO_COPYRIGHT_TREATY.TREATY_PROVISIONS_AND_RESERVATIONS.NO_RESERVATIONS_CLAUSE_ARTICLE_22"
+    },
+    {
       "id": "f8e43f68d52e400e8c3781a7162daa1a",
       "keys": [
         "contract-law/written-instruments"
@@ -91157,6 +91257,17 @@
       "uuid": "7591078a-68f4-428c-88ef-33c25324b621"
     },
     {
+      "id": "b730420da7784d5486a3301748b96243",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/shareholder-rights-and-interests/enforcement-against-shares"
+      ],
+      "label": "ENFORCEMENT AGAINST SHARES",
+      "minted": "2026-11-27",
+      "uuid": "b730420d-a778-4d54-86a3-301748b96243",
+      "corpusIssueId": "7344fe84-8c85-53a7-8e72-96d08b4dc5fc",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.SHAREHOLDER_RIGHTS_AND_INTERESTS.ENFORCEMENT_AGAINST_SHARES"
+    },
+    {
       "id": "7ee6f52323a94487be9206193acbee47",
       "keys": [
         "corporate-law/business-organizations-law/corporations/shareholder-rights-and-interests/income-rights-in-corporate-stock"
@@ -102003,6 +102114,17 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.DISSOLUTION_AND_WINDING_UP.DISTRIBUTION_OF_ASSETS"
     },
     {
+      "id": "9a582b4da6204d0db72dd34949b783a4",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/dissolution-and-winding-up/effect-of-death-of-a-partner"
+      ],
+      "label": "EFFECT OF DEATH OF A PARTNER",
+      "minted": "2026-11-27",
+      "uuid": "9a582b4d-a620-4d0d-b72d-d34949b783a4",
+      "corpusIssueId": "f9d363c6-acad-5f68-b036-ab0fd24e80aa",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.DISSOLUTION_AND_WINDING_UP.EFFECT_OF_DEATH_OF_A_PARTNER"
+    },
+    {
       "id": "f61beeb9f5c644239d1f9a1bfe899e41",
       "keys": [
         "corporate-law/business-organizations-law/partnerships/dissolution-and-winding-up/expenses-and-contracts-during-winding-up"
@@ -104884,6 +105006,33 @@
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.PARTNERS_RIGHTS_DUTIES_AND_RELATIONSHIPS.ACTIONS_BETWEEN_PARTNERS.MATTERS_OUTSIDE_PARTNERSHIP_SCOPE"
     },
     {
+      "id": "6554721b550f45c0962e48930b199113",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/partners-rights-duties-and-relationships/partners-contractual-obligations"
+      ],
+      "label": "Partners Contractual Obligations",
+      "minted": "2026-11-27",
+      "uuid": "6554721b-550f-45c0-962e-48930b199113"
+    },
+    {
+      "id": "1ec37cee3b494e89b6d45e89a3cf91e4",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/partners-rights-duties-and-relationships/partners-contractual-obligations/scope-of-partners-authority-and-binding-effect"
+      ],
+      "label": "Scope of Partners Authority and Binding Effect",
+      "minted": "2026-11-27",
+      "uuid": "1ec37cee-3b49-4e89-b6d4-5e89a3cf91e4"
+    },
+    {
+      "id": "1dbc3ad562504b6a87aa7019e70c7d58",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/partnership-accounting"
+      ],
+      "label": "Partnership Accounting",
+      "minted": "2026-11-27",
+      "uuid": "1dbc3ad5-6250-4b6a-87aa-7019e70c7d58"
+    },
+    {
       "id": "47d013eb87a94e28badc0c89ff4fe64f",
       "keys": [
         "corporate-law/business-organizations-law/partnerships/partnership-accounting-and-financial-obligations"
@@ -104902,6 +105051,26 @@
       "uuid": "af4a367f-1e6f-4d8c-b974-6552872e4e2e",
       "corpusIssueId": "850442bf-331f-5528-8716-912e2ad87dbc",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.PARTNERSHIP_ACCOUNTING_AND_FINANCIAL_OBLIGATIONS.STATEMENT_OF_ACCOUNTS"
+    },
+    {
+      "id": "1632db20c36047369a8c15bfd4f4fd49",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/partnership-accounting/calculation-of-profits"
+      ],
+      "label": "Calculation of Profits",
+      "minted": "2026-11-27",
+      "uuid": "1632db20-c360-4736-9a8c-15bfd4f4fd49"
+    },
+    {
+      "id": "ec63fb09c7b74c8c88e3fa76bd7fdbaa",
+      "keys": [
+        "corporate-law/business-organizations-law/partnerships/partnership-accounting/calculation-of-profits/gross-versus-net-profits"
+      ],
+      "label": "GROSS VERSUS NET PROFITS",
+      "minted": "2026-11-27",
+      "uuid": "ec63fb09-c7b7-4c8c-88e3-fa76bd7fdbaa",
+      "corpusIssueId": "762488b9-1630-5280-8c4f-b62bd7014f67",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIPS.PARTNERSHIP_ACCOUNTING.CALCULATION_OF_PROFITS.GROSS_VERSUS_NET_PROFITS"
     },
     {
       "id": "34680f313a5047ac9fdb81238511ab3f",
@@ -138781,6 +138950,17 @@
       "label": "Gambling Devices and Games",
       "minted": "2026-11-16",
       "uuid": "ce986238-9ee5-4b7e-913b-000301a6a7df"
+    },
+    {
+      "id": "fb0be0a6b9904c18b57d93214e8a4494",
+      "keys": [
+        "criminal-law/gaming-and-gambling-offenses/gambling-devices-and-games/forfeiture-of-gambling-apparatus"
+      ],
+      "label": "FORFEITURE OF GAMBLING APPARATUS",
+      "minted": "2026-11-27",
+      "uuid": "fb0be0a6-b990-4c18-b57d-93214e8a4494",
+      "corpusIssueId": "4f4686a2-0e07-5ae2-87dc-455af8a27842",
+      "pathNotation": "CRIMINAL_LAW.GAMING_AND_GAMBLING_OFFENSES.GAMBLING_DEVICES_AND_GAMES.FORFEITURE_OF_GAMBLING_APPARATUS"
     },
     {
       "id": "84398282a835494b80a0745397aa3357",
@@ -177379,6 +177559,26 @@
       "pathNotation": "EVIDENCE_LAW.EXCLUSION_OF_EVIDENCE.PRIVILEGES.LEGAL_PROTECTION_OF_PRIVILEGED_COMMUNICATIONS"
     },
     {
+      "id": "e89e9301e428487f9fdc06fafc3d094c",
+      "keys": [
+        "evidence-law/exclusion-of-evidence/statutory-exclusions"
+      ],
+      "label": "Statutory Exclusions",
+      "minted": "2026-11-27",
+      "uuid": "e89e9301-e428-487f-9fdc-06fafc3d094c"
+    },
+    {
+      "id": "80953a0630954ce1993eb46c734c09ce",
+      "keys": [
+        "evidence-law/exclusion-of-evidence/statutory-exclusions/objections-to-evidence"
+      ],
+      "label": "OBJECTIONS TO EVIDENCE",
+      "minted": "2026-11-27",
+      "uuid": "80953a06-3095-4ce1-993e-b46c734c09ce",
+      "corpusIssueId": "72f8cd9a-c377-5a5d-bd87-38cfdfb0b144",
+      "pathNotation": "EVIDENCE_LAW.EXCLUSION_OF_EVIDENCE.STATUTORY_EXCLUSIONS.OBJECTIONS_TO_EVIDENCE"
+    },
+    {
       "id": "70bcc82964784450beee05a7d474d155",
       "keys": [
         "evidence-law/exclusionary-and-parol-evidence-rules"
@@ -187637,6 +187837,26 @@
       "label": "TRUSTEES AS PARTIES IN LITIGATION",
       "corpusIssueId": "3ddb2248-6c75-5b3a-96a5-e1c28cbf1ac6",
       "pathNotation": "EVIDENCE_LAW.ROLE_AND_CAPACITY_OF_PARTIES.TRUSTEES_AS_PARTIES_IN_LITIGATION"
+    },
+    {
+      "id": "6dceadeced2547dfbc5d20836248e546",
+      "keys": [
+        "evidence-law/role-of-court-and-judge"
+      ],
+      "label": "Role of Court and Judge",
+      "minted": "2026-11-27",
+      "uuid": "6dceadec-ed25-47df-bc5d-20836248e546"
+    },
+    {
+      "id": "10fc680698f74388b7950599d547eac0",
+      "keys": [
+        "evidence-law/role-of-court-and-judge/judicial-authority-to-apply-rules-of-law"
+      ],
+      "label": "JUDICIAL AUTHORITY TO APPLY RULES OF LAW",
+      "minted": "2026-11-27",
+      "uuid": "10fc6806-98f7-4388-b795-0599d547eac0",
+      "corpusIssueId": "8191f345-d248-5c39-ac62-5ace7ee331d3",
+      "pathNotation": "EVIDENCE_LAW.ROLE_OF_COURT_AND_JUDGE.JUDICIAL_AUTHORITY_TO_APPLY_RULES_OF_LAW"
     },
     {
       "id": "44566eff90dd498399233a8f9e168b89",
@@ -202506,6 +202726,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.COMMON_LAW_AND_STATUTORY_LIENS.CARRIERS_LIENS.RELATIONSHIP_BETWEEN_STATUTORY_AND_EQUITABLE_REMEDIES"
     },
     {
+      "id": "fef0d440171c45c68bd9421c996d4a30",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/common-law-and-statutory-liens/carriers-liens/requirements-for-validity-and-enforcement"
+      ],
+      "label": "Requirements for Validity and Enforcement",
+      "minted": "2026-11-27",
+      "uuid": "fef0d440-171c-45c6-8bd9-421c996d4a30"
+    },
+    {
+      "id": "7958013651db45adb66b4516b67dc457",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/common-law-and-statutory-liens/carriers-liens/requirements-for-validity-and-enforcement/delivery-of-bill-of-lading-as-essential"
+      ],
+      "label": "DELIVERY OF BILL OF LADING AS ESSENTIAL",
+      "minted": "2026-11-27",
+      "uuid": "79580136-51db-45ad-b66b-4516b67dc457",
+      "corpusIssueId": "6cde51b0-ff15-5d8f-bb34-557120fc3b53",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.COMMON_LAW_AND_STATUTORY_LIENS.CARRIERS_LIENS.REQUIREMENTS_FOR_VALIDITY_AND_ENFORCEMENT.DELIVERY_OF_BILL_OF_LADING_AS_ESSENTIAL"
+    },
+    {
       "id": "ff9f39d1219243b887186c842eb77671",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/common-law-and-statutory-liens/carriers-liens/rights-of-persons-furnishing-necessaries"
@@ -203763,6 +204003,26 @@
       "uuid": "032c3a50-a975-494f-a35f-bb432220909b",
       "corpusIssueId": "26cbf0a9-cfde-5ddd-893b-9130d4774789",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.CONSIDERATION.STATEMENT_OF_CONSIDERATION_IN_NOTE"
+    },
+    {
+      "id": "bb0700b5b294461fbe52637dba19cc1b",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/consideration/sufficiency-of-consideration"
+      ],
+      "label": "Sufficiency of Consideration",
+      "minted": "2026-11-27",
+      "uuid": "bb0700b5-b294-461f-be52-637dba19cc1b"
+    },
+    {
+      "id": "74988872e867400488acaca3db1b25f3",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/consideration/sufficiency-of-consideration/services-as-consideration"
+      ],
+      "label": "SERVICES AS CONSIDERATION",
+      "minted": "2026-11-27",
+      "uuid": "74988872-e867-4004-88ac-aca3db1b25f3",
+      "corpusIssueId": "3669c9a4-b765-59cc-9a9a-6210b70de0b9",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.CONSIDERATION.SUFFICIENCY_OF_CONSIDERATION.SERVICES_AS_CONSIDERATION"
     },
     {
       "id": "38f749bdfbf34ba4a6ad4b75b2ab6324",
@@ -212797,6 +213057,33 @@
       "uuid": "27ff6dd0-9ae9-414c-a9b5-b20dc83c0322",
       "corpusIssueId": "23747006-1abf-5dbb-95a7-a9eba6c9791c",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.NEGOTIABLE_INSTRUMENTS.FORM_OF_ACTION_REMEDY_AND_QUESTIONS_OF_EVIDENCE"
+    },
+    {
+      "id": "c503d47b2dcd498ab8790c35563a1388",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/negotiable-instruments/guaranty-of-promissory-notes"
+      ],
+      "label": "Guaranty of Promissory Notes",
+      "minted": "2026-11-27",
+      "uuid": "c503d47b-2dcd-498a-b879-0c35563a1388"
+    },
+    {
+      "id": "102be306985447b0b57a0d21a5479f91",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/negotiable-instruments/guaranty-of-promissory-notes/negotiability-of-guaranty"
+      ],
+      "label": "Negotiability of Guaranty",
+      "minted": "2026-11-27",
+      "uuid": "102be306-9854-47b0-b57a-0d21a5479f91"
+    },
+    {
+      "id": "a52c8303dc194356b7b9e6c2703c21c5",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/negotiable-instruments/guaranty-of-promissory-notes/negotiability-of-guaranty/guaranty-of-note-held-not-negotiable"
+      ],
+      "label": "Guaranty of Note Held Not Negotiable",
+      "minted": "2026-11-27",
+      "uuid": "a52c8303-dc19-4356-b7b9-e6c2703c21c5"
     },
     {
       "id": "4d811131c5284eeb91f51b0bd802f057",
@@ -221877,6 +222164,26 @@
       "uuid": "8ab59970-6f27-4892-b3ce-2569bc599ccd"
     },
     {
+      "id": "94f8b60149534b3c88e77ff87369ef69",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-of-sureties-against-creditors/discharge-of-surety-by-material-modification"
+      ],
+      "label": "Discharge of Surety by Material Modification",
+      "minted": "2026-11-27",
+      "uuid": "94f8b601-4953-4b3c-88e7-7ff87369ef69"
+    },
+    {
+      "id": "0eefb4783e0a4a89af2aba58effc6177",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-of-sureties-against-creditors/discharge-of-surety-by-material-modification/extension-of-time-to-principal-by-creditor"
+      ],
+      "label": "EXTENSION OF TIME TO PRINCIPAL BY CREDITOR",
+      "minted": "2026-11-27",
+      "uuid": "0eefb478-3e0a-4a89-af2a-ba58effc6177",
+      "corpusIssueId": "2d35b3d7-dffb-5c8b-8a38-58819f96c199",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_OF_SURETIES_AGAINST_CREDITORS.DISCHARGE_OF_SURETY_BY_MATERIAL_MODIFICATION.EXTENSION_OF_TIME_TO_PRINCIPAL_BY_CREDITOR"
+    },
+    {
       "id": "b3755d04a6644e1b8beb6aca4cd076fe",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/rights-of-sureties-against-creditors/discharge-of-surety/discharge-by-creditor-s-negligence"
@@ -222165,6 +222472,17 @@
       "uuid": "40d35916-e355-42a5-ac80-e1ed3ef00675",
       "corpusIssueId": "20495e15-5e93-5732-81f5-7227b5bde867",
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_OF_SURETY_AGAINST_PRINCIPAL.EXONERATION"
+    },
+    {
+      "id": "cf9bdf283c4244d9aa936b075d98f98f",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-of-surety-against-principal/lien-on-principal-s-property"
+      ],
+      "label": "LIEN ON PRINCIPAL'S PROPERTY",
+      "minted": "2026-11-27",
+      "uuid": "cf9bdf28-3c42-44d9-aa93-6b075d98f98f",
+      "corpusIssueId": "9f01af03-8cc2-5665-9fd3-2c0cecdc3599",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_OF_SURETY_AGAINST_PRINCIPAL.LIEN_ON_PRINCIPAL_S_PROPERTY"
     },
     {
       "id": "12ce1321c3c54647b4d55b72a8875f38",
@@ -307728,6 +308046,26 @@
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.MASTER_AND_SERVANT_LIABILITY.NEGLIGENT_EXPOSURE_OF_SERVANT_TO_HAZARD.ORDERING_SERVANT_INTO_MORE_DANGEROUS_POSITION"
     },
     {
+      "id": "2f80e8f058be4349a73fcd569c46ea2a",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/master-and-servant-liability/scope-and-course-of-employment"
+      ],
+      "label": "Scope and Course of Employment",
+      "minted": "2026-11-27",
+      "uuid": "2f80e8f0-58be-4349-a73f-cd569c46ea2a"
+    },
+    {
+      "id": "71eb747a2b1948dbabceda923b52a7a0",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/master-and-servant-liability/scope-and-course-of-employment/deviation-by-servant"
+      ],
+      "label": "DEVIATION BY SERVANT",
+      "minted": "2026-11-27",
+      "uuid": "71eb747a-2b19-48db-abce-da923b52a7a0",
+      "corpusIssueId": "4fa254da-d9bf-5904-8731-4c419a56bd25",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.MASTER_AND_SERVANT_LIABILITY.SCOPE_AND_COURSE_OF_EMPLOYMENT.DEVIATION_BY_SERVANT"
+    },
+    {
       "id": "fa289044f5354671a73d0d12d2f43b37",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/master-and-servant-liability/vicarious-liability-and-respondeat-superior"
@@ -312501,6 +312839,26 @@
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.CARRIERS.CARRIAGE_OF_PASSENGERS.BAGGAGE.COMMENCEMENT_OF_CARRIER_S_LIABILITY"
     },
     {
+      "id": "8c04d64e15954e628850c537819ff385",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/carriers/carriage-of-passengers/passenger-property-liability"
+      ],
+      "label": "Passenger Property Liability",
+      "minted": "2026-11-27",
+      "uuid": "8c04d64e-1595-4e62-8850-c537819ff385"
+    },
+    {
+      "id": "387665638d9c47c784f34b1b81523101",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/carriers/carriage-of-passengers/passenger-property-liability/articles-not-constituting-baggage"
+      ],
+      "label": "ARTICLES NOT CONSTITUTING BAGGAGE",
+      "minted": "2026-11-27",
+      "uuid": "38766563-8d9c-47c7-84f3-4b1b81523101",
+      "corpusIssueId": "d506e6b8-8035-53aa-bbea-cbff8bf3cdb1",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.CARRIERS.CARRIAGE_OF_PASSENGERS.PASSENGER_PROPERTY_LIABILITY.ARTICLES_NOT_CONSTITUTING_BAGGAGE"
+    },
+    {
       "id": "aded6ef6f5e943649026b9bb4b8966a1",
       "uuid": "aded6ef6-f5e9-4364-9026-b9bb4b8966a1",
       "keys": [
@@ -317102,6 +317460,26 @@
       "uuid": "628ef954-c37d-479e-980b-e879c301eb72",
       "corpusIssueId": "f75830fc-0e29-5cca-9b17-fe23a363b4f4",
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.HISTORICAL_AND_COMPARATIVE_SOURCES_OF_BAILMENT_LAW"
+    },
+    {
+      "id": "0d65ec68d8c945d58bb1b9377ef266df",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/historical-and-doctrinal-foundations"
+      ],
+      "label": "Historical and Doctrinal Foundations",
+      "minted": "2026-11-27",
+      "uuid": "0d65ec68-d8c9-45d5-8bb1-b9377ef266df"
+    },
+    {
+      "id": "ac9a1843924e4000895f3008f903c459",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/historical-and-doctrinal-foundations/history-of-bailment-jurisprudence"
+      ],
+      "label": "HISTORY OF BAILMENT JURISPRUDENCE",
+      "minted": "2026-11-27",
+      "uuid": "ac9a1843-924e-4000-895f-3008f903c459",
+      "corpusIssueId": "2d08da74-103d-573f-b8e1-b6106286c7cf",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.HISTORICAL_AND_DOCTRINAL_FOUNDATIONS.HISTORY_OF_BAILMENT_JURISPRUDENCE"
     },
     {
       "id": "5b62b4cc6e0c4274ba54aae9d117f3b9",
@@ -326957,6 +327335,26 @@
       "pathNotation": "LEGAL_PROFESSION_AND_ACCESS_TO_JUSTICE.STATUTORY_PROVISIONS_GOVERNING_PROCEDURE.COMPENSATION_FOR_FIDUCIARIES"
     },
     {
+      "id": "ced52491b49d4266985573b3ecad7a2d",
+      "keys": [
+        "legal-profession-and-access-to-justice/supreme-court-original-jurisdiction"
+      ],
+      "label": "Supreme Court Original Jurisdiction",
+      "minted": "2026-11-27",
+      "uuid": "ced52491-b49d-4266-9855-73b3ecad7a2d"
+    },
+    {
+      "id": "67f45a8225e84ca9882302d44ee3af75",
+      "keys": [
+        "legal-profession-and-access-to-justice/supreme-court-original-jurisdiction/state-against-state-controversies"
+      ],
+      "label": "STATE AGAINST STATE CONTROVERSIES",
+      "minted": "2026-11-27",
+      "uuid": "67f45a82-25e8-4ca9-8823-02d44ee3af75",
+      "corpusIssueId": "3b3b9baf-fbd7-5d8f-a5f9-acfda7fcc628",
+      "pathNotation": "LEGAL_PROFESSION_AND_ACCESS_TO_JUSTICE.SUPREME_COURT_ORIGINAL_JURISDICTION.STATE_AGAINST_STATE_CONTROVERSIES"
+    },
+    {
       "id": "2631fd18f5f844d8a67c0b31eaf35aa1",
       "keys": [
         "legal-profession-and-access-to-justice/tax-practice-ethics"
@@ -329155,6 +329553,24 @@
       "uuid": "233d6d35-8919-4292-b653-ebeda7fa0d0f",
       "corpusIssueId": "a6184001-41e7-56f9-82c3-d8ccdc98e82f",
       "pathNotation": "MUNICIPAL_LAW.MUNICIPAL_CORPORATIONS.MUNICIPAL_CHARTERS.APPOINTMENT_OF_LOCAL_OFFICERS.HEALTH_OFFICERS"
+    },
+    {
+      "id": "abc85f3588ea4f17a252283413c0bb22",
+      "keys": [
+        "municipal-law/municipal-corporations/municipal-contracting-and-procurement"
+      ],
+      "label": "Municipal Contracting and Procurement",
+      "minted": "2026-11-27",
+      "uuid": "abc85f35-88ea-4f17-a252-283413c0bb22"
+    },
+    {
+      "id": "fe0899e9579644daa7359214d5e62803",
+      "keys": [
+        "municipal-law/municipal-corporations/municipal-contracting-and-procurement/certificates-of-approval-for-public-works"
+      ],
+      "label": "Certificates of Approval for Public Works",
+      "minted": "2026-11-27",
+      "uuid": "fe0899e9-5796-44da-a735-9214d5e62803"
     },
     {
       "id": "729e2b78efd64fa59e9acac865dc4aff",
@@ -342372,6 +342788,17 @@
       "uuid": "ef78bee9-1201-459d-97a8-92bd9b564281",
       "corpusIssueId": "9bea084e-b77b-5bb6-bc19-1c7829046758",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMATION_AND_VALIDITY_OF_MARRIAGE.FRAUD_AND_MISREPRESENTATION_IN_MARRIAGE.FALSE_PERSONATION_IN_MARRIAGE"
+    },
+    {
+      "id": "b163f6d3536a400f8ccd5e57a5a7258e",
+      "keys": [
+        "personal-and-family-law/marriage-law/formation-and-validity-of-marriage/fraud-and-misrepresentation-in-marriage/fraudulent-purpose-as-to-marriage-validity"
+      ],
+      "label": "FRAUDULENT PURPOSE AS TO MARRIAGE VALIDITY",
+      "minted": "2026-11-27",
+      "uuid": "b163f6d3-536a-400f-8ccd-5e57a5a7258e",
+      "corpusIssueId": "31ca50da-3e05-5b6a-a870-d798913c82ce",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.FORMATION_AND_VALIDITY_OF_MARRIAGE.FRAUD_AND_MISREPRESENTATION_IN_MARRIAGE.FRAUDULENT_PURPOSE_AS_TO_MARRIAGE_VALIDITY"
     },
     {
       "id": "4268b23bba9940b3a77b32fb33f2205c",
@@ -367423,6 +367850,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.WILLS.REVOCATION_OF_WILLS.REVOCATION_BY_PHYSICAL_ACT.TEARING_OR_BURNING"
     },
     {
+      "id": "43a2acfaba9f4ad3bdd1f6541e100abb",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/wills/revocation-of-wills/statutory-modes-of-revocation"
+      ],
+      "label": "Statutory Modes of Revocation",
+      "minted": "2026-11-27",
+      "uuid": "43a2acfa-ba9f-4ad3-bdd1-f6541e100abb"
+    },
+    {
+      "id": "b586c13e419849c08ed926efede28815",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/wills/revocation-of-wills/statutory-modes-of-revocation/express-revocation"
+      ],
+      "label": "EXPRESS REVOCATION",
+      "minted": "2026-11-27",
+      "uuid": "b586c13e-4198-49c0-8ed9-26efede28815",
+      "corpusIssueId": "dc3abeeb-2df8-53c3-8045-26320338da88",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.WILLS.REVOCATION_OF_WILLS.STATUTORY_MODES_OF_REVOCATION.EXPRESS_REVOCATION"
+    },
+    {
       "id": "efd84f51087a4de3926f049dfeb46be7",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/wills/revocation/revocation-by-physical-act"
@@ -375772,6 +376219,17 @@
       "uuid": "41e0d981-7b4e-4af7-a007-1a80b1bce7c0",
       "corpusIssueId": "febcc77e-3e30-598f-b5e4-12e2b2a559c7",
       "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.PRECLUSIVE_EFFECTS.EQUITABLE_DECREES_AS_RES_JUDICATA"
+    },
+    {
+      "id": "f8790515d42e47ca9723778cf35227f9",
+      "keys": [
+        "procedural-law/effects-of-judgments/preclusive-effects/identity-of-issues"
+      ],
+      "label": "IDENTITY OF ISSUES",
+      "minted": "2026-11-27",
+      "uuid": "f8790515-d42e-47ca-9723-778cf35227f9",
+      "corpusIssueId": "c5c912dc-df2f-575a-8ef7-1f41ee601463",
+      "pathNotation": "PROCEDURAL_LAW.EFFECTS_OF_JUDGMENTS.PRECLUSIVE_EFFECTS.IDENTITY_OF_ISSUES"
     },
     {
       "id": "83ade07c183b47c58a7f5380900adb91",
@@ -385786,6 +386244,26 @@
       "uuid": "be8e5255-bfa4-4a69-846b-c564c6815ab7",
       "corpusIssueId": "e45b4616-9162-5e1a-ad64-93bf55f0e028",
       "pathNotation": "PROCEDURAL_LAW.LEGISLATIVE_PROCEDURE_AND_ENACTMENT.FORMAL_REQUIREMENTS_FOR_LEGISLATION.READING_OF_BILLS"
+    },
+    {
+      "id": "b394a2a6319d4a2fa51c83c521fd53fb",
+      "keys": [
+        "procedural-law/letters-of-administration"
+      ],
+      "label": "Letters of Administration",
+      "minted": "2026-11-27",
+      "uuid": "b394a2a6-319d-4a2f-a51c-83c521fd53fb"
+    },
+    {
+      "id": "2f87253ba5334ae6915e2174f6bf8f62",
+      "keys": [
+        "procedural-law/letters-of-administration/validity-and-effect-of-letters-granted-in-vacation"
+      ],
+      "label": "VALIDITY AND EFFECT OF LETTERS GRANTED IN VACATION",
+      "minted": "2026-11-27",
+      "uuid": "2f87253b-a533-4ae6-915e-2174f6bf8f62",
+      "corpusIssueId": "32548bc2-3d8d-5cd3-a446-c8622037bf00",
+      "pathNotation": "PROCEDURAL_LAW.LETTERS_OF_ADMINISTRATION.VALIDITY_AND_EFFECT_OF_LETTERS_GRANTED_IN_VACATION"
     },
     {
       "id": "96e1d0f7476d4716aaa1691fa61e738c",
@@ -402372,6 +402850,26 @@
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.ADJUDICATION.INFORMAL_ADJUDICATION.AGENCY_OBLIGATIONS"
     },
     {
+      "id": "f46676cabaff46218df19b5b7b20e3b8",
+      "keys": [
+        "public-and-administrative-law/adjudicatory-proceedings"
+      ],
+      "label": "Adjudicatory Proceedings",
+      "minted": "2026-11-27",
+      "uuid": "f46676ca-baff-4621-8df1-9b5b7b20e3b8"
+    },
+    {
+      "id": "c428f781d4a84490974e8c0692b6583a",
+      "keys": [
+        "public-and-administrative-law/adjudicatory-proceedings/agency-adjudication"
+      ],
+      "label": "AGENCY ADJUDICATION",
+      "minted": "2026-11-27",
+      "uuid": "c428f781-d4a8-4490-974e-8c0692b6583a",
+      "corpusIssueId": "3f694d43-f419-547b-8a54-a1349d7fbbbf",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.ADJUDICATORY_PROCEEDINGS.AGENCY_ADJUDICATION"
+    },
+    {
       "id": "4dfc974be8974061a9fc47671481fe5c",
       "keys": [
         "public-and-administrative-law/administrative-adjudication"
@@ -403412,6 +403910,17 @@
       "uuid": "06e53978-9e40-4596-a0b7-899e9c482f6b",
       "corpusIssueId": "0a935f8d-7f69-5866-81fa-da0de7c1d5b0",
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.CLASSIFICATION_OF_OFFICERS.JUDICIAL_OFFICERS.JUDGES_AND_JUSTICES"
+    },
+    {
+      "id": "b3b0cf4f00e54785a1f5dddbc2a666aa",
+      "keys": [
+        "public-and-administrative-law/classification-of-officers/police-and-firefighters-as-public-officers"
+      ],
+      "label": "POLICE AND FIREFIGHTERS AS PUBLIC OFFICERS",
+      "minted": "2026-11-27",
+      "uuid": "b3b0cf4f-00e5-4785-a1f5-dddbc2a666aa",
+      "corpusIssueId": "bb24db4b-0be4-5337-b5e6-e195f0bdf335",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.CLASSIFICATION_OF_OFFICERS.POLICE_AND_FIREFIGHTERS_AS_PUBLIC_OFFICERS"
     },
     {
       "id": "ab15f69816c744788bcd6dbb0c93917a",
@@ -408325,6 +408834,17 @@
       "uuid": "bf396241-1e6f-43c4-8516-7fa0b215bad8",
       "corpusIssueId": "57d7e24d-43e6-53b9-9185-545842298649",
       "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.PROCEDURAL_DUE_PROCESS_IN_AGENCY_PROCEEDINGS.RIGHT_TO_ORAL_HEARING_AND_CROSS_EXAMINATION.LONDONER_V_DENVER"
+    },
+    {
+      "id": "6acbbf3cabbc4809aa04a2a53275179d",
+      "keys": [
+        "public-and-administrative-law/procedural-due-process/amount-of-process-due"
+      ],
+      "label": "AMOUNT OF PROCESS DUE",
+      "minted": "2026-11-27",
+      "uuid": "6acbbf3c-abbc-4809-aa04-a2a53275179d",
+      "corpusIssueId": "1e8e0777-d0fc-587a-95e1-e858dad152e2",
+      "pathNotation": "PUBLIC_AND_ADMINISTRATIVE_LAW.PROCEDURAL_DUE_PROCESS.AMOUNT_OF_PROCESS_DUE"
     },
     {
       "id": "ea1945ff90af4f04985a1d281a68e197",
@@ -436328,6 +436848,24 @@
       "label": "Land Use and Zoning Law"
     },
     {
+      "id": "d0f2718cf8c147c8b49343de53efda70",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/abutting-owners-rights"
+      ],
+      "label": "Abutting Owners Rights",
+      "minted": "2026-11-27",
+      "uuid": "d0f2718c-f8c1-47c8-b493-43de53efda70"
+    },
+    {
+      "id": "aebb1480a568474a8648f22b20cc0937",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/abutting-owners-rights/rights-of-property-owners-adjoining-street-railroads"
+      ],
+      "label": "Rights of Property Owners Adjoining Street Railroads",
+      "minted": "2026-11-27",
+      "uuid": "aebb1480-a568-474a-8648-f22b20cc0937"
+    },
+    {
       "id": "848b5cabdfcd41ffb6b7c7100a2f83a7",
       "keys": [
         "real-estate-law/land-use-and-zoning-law/administrative-determinations-and-permits"
@@ -438492,6 +439030,17 @@
       "uuid": "f84d7acf-193b-4ea6-8645-df7596a3112f",
       "corpusIssueId": "2e94d168-9afa-53b0-9df6-03541a8da250",
       "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.PLANNING_AND_ZONING_ADMINISTRATION.COMPREHENSIVE_PLANS.COMPREHENSIVE_PLANNING"
+    },
+    {
+      "id": "191c13cec3674672a1337806f8c569cc",
+      "keys": [
+        "real-estate-law/land-use-and-zoning-law/private-land-use-controls"
+      ],
+      "label": "PRIVATE LAND USE CONTROLS",
+      "minted": "2026-11-27",
+      "uuid": "191c13ce-c367-4672-a133-7806f8c569cc",
+      "corpusIssueId": "6c7d87ab-8da3-552b-b956-c3a936abdd44",
+      "pathNotation": "REAL_ESTATE_LAW.LAND_USE_AND_ZONING_LAW.PRIVATE_LAND_USE_CONTROLS"
     },
     {
       "id": "927b84885df5493298cc58fc5f7e5d7d",
@@ -449002,6 +449551,26 @@
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_LIENS.MORTGAGES_AS_SECURITY_INTERESTS.INTERACTION_WITH_BANKRUPTCY_PROCEEDINGS.NOTICE_REQUIREMENTS_IN_BANKRUPTCY"
     },
     {
+      "id": "6580ec2feac1467ebf64e7a6fee73233",
+      "keys": [
+        "real-estate-law/mortgages-and-liens/mortgagor-rights"
+      ],
+      "label": "Mortgagor Rights",
+      "minted": "2026-11-27",
+      "uuid": "6580ec2f-eac1-467e-bf64-e7a6fee73233"
+    },
+    {
+      "id": "ae0b43d2c80e4255b2b4446213c1ae8d",
+      "keys": [
+        "real-estate-law/mortgages-and-liens/mortgagor-rights/effect-of-sale-or-conveyance-on-mortgagor-s-interest"
+      ],
+      "label": "EFFECT OF SALE OR CONVEYANCE ON MORTGAGOR'S INTEREST",
+      "minted": "2026-11-27",
+      "uuid": "ae0b43d2-c80e-4255-b2b4-446213c1ae8d",
+      "corpusIssueId": "ddce3579-323d-5d9e-bdea-5cf0861ea338",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_LIENS.MORTGAGOR_RIGHTS.EFFECT_OF_SALE_OR_CONVEYANCE_ON_MORTGAGOR_S_INTEREST"
+    },
+    {
       "id": "30de9271bd1d42298f3c3245371e8e12",
       "keys": [
         "real-estate-law/mortgages-and-liens/obligations-of-the-mortgagor"
@@ -449736,6 +450305,15 @@
       "uuid": "35d46af3-601b-471e-b35d-4fcda9b11b7c",
       "corpusIssueId": "96a384d5-4bdd-552a-8b73-75a6bd1f00f8",
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES_AND_SECURITY_INTERESTS.EQUITABLE_MORTGAGES.DESCRIPTION_OF_THE_DEBT"
+    },
+    {
+      "id": "941a3992555b4af398c6bd88c0602b79",
+      "keys": [
+        "real-estate-law/mortgages-and-security-interests/equitable-mortgages/growing-timber-as-mortgage-subject-matter"
+      ],
+      "label": "Growing Timber as Mortgage Subject Matter",
+      "minted": "2026-11-27",
+      "uuid": "941a3992-555b-4af3-98c6-bd88c0602b79"
     },
     {
       "id": "54e8321a80d647b1afbc290a5614bab3",
@@ -451704,6 +452282,17 @@
       "uuid": "033c881f-8f44-41dd-8b6d-806a550fbf8a",
       "corpusIssueId": "079e364c-cd47-5604-8599-0d5842c914d0",
       "pathNotation": "REAL_ESTATE_LAW.MORTGAGES.EQUITABLE_MORTGAGES.SUBROGATION_RIGHTS"
+    },
+    {
+      "id": "0d9fccf859024645909d8dd860dddc13",
+      "keys": [
+        "real-estate-law/mortgages/equitable-mortgages/validity-of-unrecorded-mortgages"
+      ],
+      "label": "VALIDITY OF UNRECORDED MORTGAGES",
+      "minted": "2026-11-27",
+      "uuid": "0d9fccf8-5902-4645-909d-8dd860dddc13",
+      "corpusIssueId": "395a1150-2dcc-52ab-94ad-4ce571ee5c1a",
+      "pathNotation": "REAL_ESTATE_LAW.MORTGAGES.EQUITABLE_MORTGAGES.VALIDITY_OF_UNRECORDED_MORTGAGES"
     },
     {
       "id": "17a71025eff64490aa92653df6760243",
@@ -462485,6 +463074,26 @@
       "label": "Form and Requisites of Deeds"
     },
     {
+      "id": "f90cf7d4e1b44feba2772b04da41bdb7",
+      "keys": [
+        "real-estate-law/title-and-transfer/deeds/form-and-requisites-of-deeds/acknowledgment"
+      ],
+      "label": "Acknowledgment",
+      "minted": "2026-11-27",
+      "uuid": "f90cf7d4-e1b4-4feb-a277-2b04da41bdb7"
+    },
+    {
+      "id": "8ec7cfeae76942ef938c8492bc6355b6",
+      "keys": [
+        "real-estate-law/title-and-transfer/deeds/form-and-requisites-of-deeds/acknowledgment/acknowledgment-before-de-facto-officer"
+      ],
+      "label": "ACKNOWLEDGMENT BEFORE DE FACTO OFFICER",
+      "minted": "2026-11-27",
+      "uuid": "8ec7cfea-e769-42ef-938c-8492bc6355b6",
+      "corpusIssueId": "57bf4f0d-dbb8-5c95-bc65-db5089ab266e",
+      "pathNotation": "REAL_ESTATE_LAW.TITLE_AND_TRANSFER.DEEDS.FORM_AND_REQUISITES_OF_DEEDS.ACKNOWLEDGMENT.ACKNOWLEDGMENT_BEFORE_DE_FACTO_OFFICER"
+    },
+    {
       "id": "886bd02724ca45859b224f47de7945ea",
       "uuid": "886bd027-24ca-4585-9b22-4f47de7945ea",
       "keys": [
@@ -470907,6 +471516,26 @@
       "pathNotation": "REMEDIES_LAW.COMPENSATORY_DAMAGES.MITIGATION_OF_DAMAGES.PROVOCATION_AS_A_FACTOR_IN_MITIGATION"
     },
     {
+      "id": "7ff7238dcf9946baa55fdfe194954967",
+      "keys": [
+        "remedies-law/compensatory-damages/non-economic-damages"
+      ],
+      "label": "Non Economic Damages",
+      "minted": "2026-11-27",
+      "uuid": "7ff7238d-cf99-46ba-a55f-dfe194954967"
+    },
+    {
+      "id": "e28b04293bb04581b21a4ea47b44313e",
+      "keys": [
+        "remedies-law/compensatory-damages/non-economic-damages/emotional-distress-and-mental-anguish-damages"
+      ],
+      "label": "EMOTIONAL DISTRESS AND MENTAL ANGUISH DAMAGES",
+      "minted": "2026-11-27",
+      "uuid": "e28b0429-3bb0-4581-b21a-4ea47b44313e",
+      "corpusIssueId": "44c5e6f8-9b17-5a85-8382-7f0e1ab682a1",
+      "pathNotation": "REMEDIES_LAW.COMPENSATORY_DAMAGES.NON_ECONOMIC_DAMAGES.EMOTIONAL_DISTRESS_AND_MENTAL_ANGUISH_DAMAGES"
+    },
+    {
       "id": "00894bc8ef3249bbaf9e37233b5e417c",
       "keys": [
         "remedies-law/compensatory-damages/nonpecuniary-damages"
@@ -472173,6 +472802,24 @@
       "uuid": "cc91873e-dbc4-40ab-9bea-9638f02bdb13",
       "corpusIssueId": "d1256d66-bdb1-534a-b505-cca9f42abf24",
       "pathNotation": "REMEDIES_LAW.DAMAGES.NOMINAL_DAMAGES.NATURE_AND_PURPOSE"
+    },
+    {
+      "id": "d0f89394e956471e9800c111494b838e",
+      "keys": [
+        "remedies-law/damages/non-pecuniary-damages"
+      ],
+      "label": "Non Pecuniary Damages",
+      "minted": "2026-11-27",
+      "uuid": "d0f89394-e956-471e-9800-c111494b838e"
+    },
+    {
+      "id": "78637faf2dfd4941bfb3c297dc5f3dd2",
+      "keys": [
+        "remedies-law/damages/non-pecuniary-damages/mental-suffering"
+      ],
+      "label": "Mental Suffering",
+      "minted": "2026-11-27",
+      "uuid": "78637faf-2dfd-4941-bfb3-c297dc5f3dd2"
     },
     {
       "id": "1849e7a08c55407db02a69581981f067",
@@ -490572,6 +491219,15 @@
       "uuid": "69303a6a-ce39-48c6-a789-026aeef598bb"
     },
     {
+      "id": "f2a42c423572470fb74ebd7f2ee348a5",
+      "keys": [
+        "remedies-law/receivership/functions-and-rights-of-receivers/receiver-upon-death-of-parties"
+      ],
+      "label": "Receiver Upon Death of Parties",
+      "minted": "2026-11-27",
+      "uuid": "f2a42c42-3572-470f-b74e-bd7f2ee348a5"
+    },
+    {
       "id": "a716adb1db434c159448f14827e6ac68",
       "keys": [
         "remedies-law/receivership/functions-and-rights-of-receivers/rights-of-action-vested-in-receivers"
@@ -494341,6 +494997,35 @@
       "pathNotation": "REMEDIES_LAW.TYPES_OF_DAMAGES.SPECIAL_DAMAGES.INJURY_TO_REAL_ESTATE"
     },
     {
+      "id": "23c24095f594401abe0d55e0e83192f1",
+      "keys": [
+        "remedies-law/unconscionability-and-fraud"
+      ],
+      "label": "Unconscionability and Fraud",
+      "minted": "2026-11-27",
+      "uuid": "23c24095-f594-401a-be0d-55e0e83192f1"
+    },
+    {
+      "id": "fac37e27a66747e390ffdbc2625c06e9",
+      "keys": [
+        "remedies-law/unconscionability-and-fraud/expectancy-dealings"
+      ],
+      "label": "Expectancy Dealings",
+      "minted": "2026-11-27",
+      "uuid": "fac37e27-a667-47e3-90ff-dbc2625c06e9"
+    },
+    {
+      "id": "9bf620822f1b480fb44a7addf8c92ab1",
+      "keys": [
+        "remedies-law/unconscionability-and-fraud/expectancy-dealings/post-obit-bonds-and-agreements"
+      ],
+      "label": "POST OBIT BONDS AND AGREEMENTS",
+      "minted": "2026-11-27",
+      "uuid": "9bf62082-2f1b-480f-b44a-7addf8c92ab1",
+      "corpusIssueId": "e7535fe7-9849-5496-bc44-0530a8bb49de",
+      "pathNotation": "REMEDIES_LAW.UNCONSCIONABILITY_AND_FRAUD.EXPECTANCY_DEALINGS.POST_OBIT_BONDS_AND_AGREEMENTS"
+    },
+    {
       "id": "1d65a44fd25e4d948d39c5de26747a5a",
       "keys": [
         "remedies-law/usury-defenses-in-judgment-enforcement"
@@ -497172,6 +497857,44 @@
       "minted": "2026-10-02",
       "uuid": "0fe4fce1-ec21-447e-8511-e521fddfad9a",
       "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.FINANCIAL_INSTITUTIONS_AND_REGULATED_ENTITIES.TAXATION_OF_NATIONAL_BANKS_AND_MONEYED_CAPITAL"
+    },
+    {
+      "id": "ca5a056c122c40378ccbf73770103579",
+      "keys": [
+        "tax-and-revenue-law/tax-law/fiscal-powers-of-government"
+      ],
+      "label": "Fiscal Powers of Government",
+      "minted": "2026-11-27",
+      "uuid": "ca5a056c-122c-4037-8ccb-f73770103579"
+    },
+    {
+      "id": "ca921046589e4f1bbaee9d1665c93a21",
+      "keys": [
+        "tax-and-revenue-law/tax-law/fiscal-powers-of-government/payment-and-collection-of-taxes"
+      ],
+      "label": "Payment and Collection of Taxes",
+      "minted": "2026-11-27",
+      "uuid": "ca921046-589e-4f1b-baee-9d1665c93a21"
+    },
+    {
+      "id": "8b9630963505417f8e9794b36e8e6f84",
+      "keys": [
+        "tax-and-revenue-law/tax-law/fiscal-powers-of-government/payment-and-collection-of-taxes/receivable-instruments-for-tax-payment"
+      ],
+      "label": "Receivable Instruments for Tax Payment",
+      "minted": "2026-11-27",
+      "uuid": "8b963096-3505-417f-8e97-94b36e8e6f84"
+    },
+    {
+      "id": "11b3ef31e4174070b8062fbb2939f75f",
+      "keys": [
+        "tax-and-revenue-law/tax-law/fiscal-powers-of-government/payment-and-collection-of-taxes/receivable-instruments-for-tax-payment/bank-notes-and-coupons-as-tax-receivable-instruments"
+      ],
+      "label": "BANK NOTES AND COUPONS AS TAX-RECEIVABLE INSTRUMENTS",
+      "minted": "2026-11-27",
+      "uuid": "11b3ef31-e417-4070-b806-2fbb2939f75f",
+      "corpusIssueId": "a17cfea2-6a1b-5074-bd30-fac15e499096",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.FISCAL_POWERS_OF_GOVERNMENT.PAYMENT_AND_COLLECTION_OF_TAXES.RECEIVABLE_INSTRUMENTS_FOR_TAX_PAYMENT.BANK_NOTES_AND_COUPONS_AS_TAX_RECEIVABLE_INSTRUMENTS"
     },
     {
       "id": "98d373c17ac14cd193886fc515af9cab",
@@ -500129,6 +500852,26 @@
       "label": "Tax Sales and Tax Deeds",
       "minted": "2026-11-17",
       "uuid": "89003ad8-4b93-4b28-8389-c23d53e32c8a"
+    },
+    {
+      "id": "c98fda5d6aa84d609c8631e6a5996350",
+      "keys": [
+        "tax-and-revenue-law/tax-law/tax-sales-and-tax-deeds/evidentiary-effect-of-tax-deeds"
+      ],
+      "label": "Evidentiary Effect of Tax Deeds",
+      "minted": "2026-11-27",
+      "uuid": "c98fda5d-6aa8-4d60-9c86-31e6a5996350"
+    },
+    {
+      "id": "9806be52732b4410a44e4aa5b74857b7",
+      "keys": [
+        "tax-and-revenue-law/tax-law/tax-sales-and-tax-deeds/evidentiary-effect-of-tax-deeds/conclusive-evidence"
+      ],
+      "label": "CONCLUSIVE EVIDENCE",
+      "minted": "2026-11-27",
+      "uuid": "9806be52-732b-4410-a44e-4aa5b74857b7",
+      "corpusIssueId": "7f6ab26a-0625-5cf9-b11b-d917d5317f19",
+      "pathNotation": "TAX_AND_REVENUE_LAW.TAX_LAW.TAX_SALES_AND_TAX_DEEDS.EVIDENTIARY_EFFECT_OF_TAX_DEEDS.CONCLUSIVE_EVIDENCE"
     },
     {
       "id": "8bd7510601a7474d8e162f803fb16625",
