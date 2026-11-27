@@ -21045,6 +21045,26 @@
       "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.PETITION_AND_OBJECTIONS.CREDITOR_ESTOPPEL_BY_CONNIVANCE"
     },
     {
+      "id": "e7938d3a67b046cab9a25ae002aa289d",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/petition-by-partners"
+      ],
+      "label": "Petition by Partners",
+      "minted": "2026-11-27",
+      "uuid": "e7938d3a-67b0-46ca-b9a2-5ae002aa289d"
+    },
+    {
+      "id": "0ea278d72de84ffeae68a1d0f8b4b17d",
+      "keys": [
+        "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/petition-by-partners/petition-by-less-than-all-partners"
+      ],
+      "label": "PETITION BY LESS THAN ALL PARTNERS",
+      "minted": "2026-11-27",
+      "uuid": "0ea278d7-2de8-4ffe-ae68-a1d0f8b4b17d",
+      "corpusIssueId": "c048b5a8-93d8-53bc-9d46-09f83a9c06ee",
+      "pathNotation": "BANKRUPTCY_INSOLVENCY_AND_RESTRUCTURING_LAW.VOLUNTARY_BANKRUPTCY.PETITION_BY_PARTNERS.PETITION_BY_LESS_THAN_ALL_PARTNERS"
+    },
+    {
       "id": "efd8c30a88ec405fb3cae5eb0f66e679",
       "keys": [
         "bankruptcy-insolvency-and-restructuring-law/voluntary-bankruptcy/petition-process"
@@ -101603,6 +101623,24 @@
       "uuid": "bfc4e37a-88a4-4888-93c5-fc62371b679b",
       "corpusIssueId": "f53cba6b-ceb4-5141-8f2e-22b9c571260a",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.PARTNERSHIP_PROPERTY_AND_ASSETS.RIGHTS_OF_CREDITORS_IN_PARTNERSHIP_PROPERTY"
+    },
+    {
+      "id": "0dcdd9b4af394e4d9fb17d1adf1e7b06",
+      "keys": [
+        "corporate-law/business-organizations-law/partnership-property-and-assets/rights-of-surviving-partner"
+      ],
+      "label": "Rights of Surviving Partner",
+      "minted": "2026-11-27",
+      "uuid": "0dcdd9b4-af39-4e4d-9fb1-7d1adf1e7b06"
+    },
+    {
+      "id": "f5872dc62a234f608f4bf5a69591a40c",
+      "keys": [
+        "corporate-law/business-organizations-law/partnership-property-and-assets/rights-of-surviving-partner/control-and-management-on-death-of-copartner"
+      ],
+      "label": "Control and Management on Death of Copartner",
+      "minted": "2026-11-27",
+      "uuid": "f5872dc6-2a23-4f60-8f4b-f5a69591a40c"
     },
     {
       "id": "9d0863e097e243b0998889491115c936",
@@ -183059,6 +183097,26 @@
       "pathNotation": "EVIDENCE_LAW.HEARSAY.PARTY_ADMISSIONS.ADMISSIONS_BY_OTHER_PARTIES_TO_THE_LITIGATION.NOMINAL_AND_REAL_PARTIES"
     },
     {
+      "id": "84ecea78e72d48478ca0f844050d0443",
+      "keys": [
+        "evidence-law/hearsay/prior-statements-by-witnesses"
+      ],
+      "label": "Prior Statements by Witnesses",
+      "minted": "2026-11-27",
+      "uuid": "84ecea78-e72d-4847-8ca0-f844050d0443"
+    },
+    {
+      "id": "65a93726e60944d493c6a73b10193252",
+      "keys": [
+        "evidence-law/hearsay/prior-statements-by-witnesses/prior-consistent-statements-for-rehabilitation-after-impeachment"
+      ],
+      "label": "PRIOR CONSISTENT STATEMENTS FOR REHABILITATION AFTER IMPEACHMENT",
+      "minted": "2026-11-27",
+      "uuid": "65a93726-e609-44d4-93c6-a73b10193252",
+      "corpusIssueId": "bc95bad9-a712-5e94-8a22-ed12f6ecd036",
+      "pathNotation": "EVIDENCE_LAW.HEARSAY.PRIOR_STATEMENTS_BY_WITNESSES.PRIOR_CONSISTENT_STATEMENTS_FOR_REHABILITATION_AFTER_IMPEACHMENT"
+    },
+    {
       "id": "aea9b242bcd04195b66de1be4fcec297",
       "keys": [
         "evidence-law/hearsay/privileges-and-exclusions"
@@ -187599,6 +187657,26 @@
       "uuid": "59482256-7f66-420d-9043-e4193673ff12",
       "corpusIssueId": "3ffa17ea-2bb5-5344-a071-7f32649d24dc",
       "pathNotation": "EVIDENCE_LAW.PRIVILEGES.ATTORNEY_CLIENT_PRIVILEGE.CRIME_FRAUD_EXCEPTION"
+    },
+    {
+      "id": "b980499b388b4cb3abcf91c4bae1ac67",
+      "keys": [
+        "evidence-law/privileges/attorney-client-privilege/scope-and-elements"
+      ],
+      "label": "Scope and Elements",
+      "minted": "2026-11-27",
+      "uuid": "b980499b-388b-4cb3-abcf-91c4bae1ac67"
+    },
+    {
+      "id": "c6564eb384e14683bf77e29eac18b512",
+      "keys": [
+        "evidence-law/privileges/attorney-client-privilege/scope-and-elements/communications-versus-acts"
+      ],
+      "label": "COMMUNICATIONS VERSUS ACTS",
+      "minted": "2026-11-27",
+      "uuid": "c6564eb3-84e1-4683-bf77-e29eac18b512",
+      "corpusIssueId": "3b3cab80-c0d4-52ef-85d0-47dd00003384",
+      "pathNotation": "EVIDENCE_LAW.PRIVILEGES.ATTORNEY_CLIENT_PRIVILEGE.SCOPE_AND_ELEMENTS.COMMUNICATIONS_VERSUS_ACTS"
     },
     {
       "id": "b9ae4279cb3c42cfa57925069e359c0b",
@@ -221635,6 +221713,26 @@
       "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_DISCHARGE_OF_SURETIES.DISCHARGE_BY_OPERATION_OF_LAW_OR_COURT_ORDER.GUARDIAN_SURETY_BONDS"
     },
     {
+      "id": "f0eaefbb969546779cc95c4dd8b1b405",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-discharge-of-sureties/discharge-of-surety-by-creditor-s-conduct"
+      ],
+      "label": "Discharge of Surety by Creditor S Conduct",
+      "minted": "2026-11-27",
+      "uuid": "f0eaefbb-9695-4677-9cc9-5c4dd8b1b405"
+    },
+    {
+      "id": "33f0d61a6a934c6b981ce9e07b7a01ef",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/rights-and-discharge-of-sureties/discharge-of-surety-by-creditor-s-conduct/discharge-of-surety-on-attachment-and-forthcoming-bonds"
+      ],
+      "label": "DISCHARGE OF SURETY ON ATTACHMENT AND FORTHCOMING BONDS",
+      "minted": "2026-11-27",
+      "uuid": "33f0d61a-6a93-4c6b-981c-e9e07b7a01ef",
+      "corpusIssueId": "3c26f6c4-d5c3-572c-9180-52d02c858aed",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.RIGHTS_AND_DISCHARGE_OF_SURETIES.DISCHARGE_OF_SURETY_BY_CREDITOR_S_CONDUCT.DISCHARGE_OF_SURETY_ON_ATTACHMENT_AND_FORTHCOMING_BONDS"
+    },
+    {
       "id": "3814839480d04dc9b6c2c93c7a4a4928",
       "keys": [
         "finance-and-lending-law/commercial-finance-law/rights-and-discharge-of-sureties/effect-of-creditor-s-failure-to-present-claim"
@@ -238418,6 +238516,35 @@
       "uuid": "1008a56a-ac7d-4927-a78f-80a90e908ad4",
       "corpusIssueId": "cdb4c905-d31e-5373-a4ba-bc604819f5e1",
       "pathNotation": "INSURANCE_LAW.MARINE_INSURANCE.MARINE_PERILS.FOUNDERING_AT_SEA"
+    },
+    {
+      "id": "bb37d0cd9b2c4dd7a3569f95451a2e98",
+      "keys": [
+        "insurance-law/marine-insurance/marine-policy-warranties"
+      ],
+      "label": "Marine Policy Warranties",
+      "minted": "2026-11-27",
+      "uuid": "bb37d0cd-9b2c-4dd7-a356-9f95451a2e98"
+    },
+    {
+      "id": "700930011203468ea587a71a8a3b5e85",
+      "keys": [
+        "insurance-law/marine-insurance/marine-policy-warranties/blockade-warranty"
+      ],
+      "label": "Blockade Warranty",
+      "minted": "2026-11-27",
+      "uuid": "70093001-1203-468e-a587-a71a8a3b5e85"
+    },
+    {
+      "id": "f67fbe21e07e472f8a3a3219b62b78a1",
+      "keys": [
+        "insurance-law/marine-insurance/marine-policy-warranties/blockade-warranty/warranty-not-to-abandon"
+      ],
+      "label": "WARRANTY NOT TO ABANDON",
+      "minted": "2026-11-27",
+      "uuid": "f67fbe21-e07e-472f-8a3a-3219b62b78a1",
+      "corpusIssueId": "2a00109c-75b7-5e08-ae88-8e7d10dae99f",
+      "pathNotation": "INSURANCE_LAW.MARINE_INSURANCE.MARINE_POLICY_WARRANTIES.BLOCKADE_WARRANTY.WARRANTY_NOT_TO_ABANDON"
     },
     {
       "id": "96cdf647f0bc4174b6ebc100bd6e7f72",
@@ -256038,6 +256165,35 @@
       "uuid": "68184ce2-45ba-4ec5-aaff-42158261fd01",
       "corpusIssueId": "7430c472-b687-5c14-ab9f-ec0c5d1e0c1a",
       "pathNotation": "IP_LAW.COPYRIGHT_LAW.DESIGN_RIGHTS_UNDER_17_U_S_C_CHAPTER_13.NOTICE_REQUIREMENTS_AND_OMISSION"
+    },
+    {
+      "id": "ac18193ab7ab4e0bb8528ef5a0e165f4",
+      "keys": [
+        "ip-law/copyright-law/digital-audio-recording-devices-and-media"
+      ],
+      "label": "Digital Audio Recording Devices and Media",
+      "minted": "2026-11-27",
+      "uuid": "ac18193a-b7ab-4e0b-b852-8ef5a0e165f4"
+    },
+    {
+      "id": "5af54af0998e4aedb98835be0726cafe",
+      "keys": [
+        "ip-law/copyright-law/digital-audio-recording-devices-and-media/dispute-resolution-and-arbitration"
+      ],
+      "label": "Dispute Resolution and Arbitration",
+      "minted": "2026-11-27",
+      "uuid": "5af54af0-998e-4aed-b988-35be0726cafe"
+    },
+    {
+      "id": "bee8f40dc9da41918dbc2038e8687ed3",
+      "keys": [
+        "ip-law/copyright-law/digital-audio-recording-devices-and-media/dispute-resolution-and-arbitration/determination-of-certain-disputes"
+      ],
+      "label": "DETERMINATION OF CERTAIN DISPUTES",
+      "minted": "2026-11-27",
+      "uuid": "bee8f40d-c9da-4191-8dbc-2038e8687ed3",
+      "corpusIssueId": "a891e419-827e-5b01-b3c8-af59b64ac9d0",
+      "pathNotation": "IP_LAW.COPYRIGHT_LAW.DIGITAL_AUDIO_RECORDING_DEVICES_AND_MEDIA.DISPUTE_RESOLUTION_AND_ARBITRATION.DETERMINATION_OF_CERTAIN_DISPUTES"
     },
     {
       "id": "f632da5503c341fc93ef159c9afd45b1",
@@ -299382,6 +299538,26 @@
       "pathNotation": "LAW_OF_WRONGDOING.FALSE_IMPRISONMENT.DEFENSES.CONSENT"
     },
     {
+      "id": "6167a3888ebd46ae9a9f07102020c34b",
+      "keys": [
+        "law-of-wrongdoing/false-imprisonment/defining-confinement"
+      ],
+      "label": "Defining Confinement",
+      "minted": "2026-11-27",
+      "uuid": "6167a388-8ebd-46ae-9a9f-07102020c34b"
+    },
+    {
+      "id": "4d06ff0f89aa425e9676a51e3c693e0e",
+      "keys": [
+        "law-of-wrongdoing/false-imprisonment/defining-confinement/means-of-confinement"
+      ],
+      "label": "MEANS OF CONFINEMENT",
+      "minted": "2026-11-27",
+      "uuid": "4d06ff0f-89aa-425e-9676-a51e3c693e0e",
+      "corpusIssueId": "ac1be97c-9a9d-5790-a85a-3a91c5fa0091",
+      "pathNotation": "LAW_OF_WRONGDOING.FALSE_IMPRISONMENT.DEFINING_CONFINEMENT.MEANS_OF_CONFINEMENT"
+    },
+    {
       "id": "5ad54d192a9f4c5c92df1b4b82e13cf5",
       "keys": [
         "law-of-wrongdoing/false-imprisonment/duty-of-care-to-others"
@@ -308458,6 +308634,35 @@
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.SPECIAL_DUTIES_OF_PREMISES_AND_STRUCTURES.DRAW_BRIDGES.CONSTRUCTION_AND_MAINTENANCE"
     },
     {
+      "id": "c75d60da29904220886a0b5ec2aab2bb",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/special-duties-of-public-entities"
+      ],
+      "label": "Special Duties of Public Entities",
+      "minted": "2026-11-27",
+      "uuid": "c75d60da-2990-4220-886a-0b5ec2aab2bb"
+    },
+    {
+      "id": "d6d12523681c499682547a32dbdb3f2c",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/special-duties-of-public-entities/municipal-corporations"
+      ],
+      "label": "Municipal Corporations",
+      "minted": "2026-11-27",
+      "uuid": "d6d12523-681c-4996-8254-7a32dbdb3f2c"
+    },
+    {
+      "id": "cb17cd040f644192a2164d22391b55e8",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/special-duties-of-public-entities/municipal-corporations/notice-of-defect-or-dangerous-condition"
+      ],
+      "label": "NOTICE OF DEFECT OR DANGEROUS CONDITION",
+      "minted": "2026-11-27",
+      "uuid": "cb17cd04-0f64-4192-a216-4d22391b55e8",
+      "corpusIssueId": "d1f4ad87-18eb-5bde-a810-4ec47f263998",
+      "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.SPECIAL_DUTIES_OF_PUBLIC_ENTITIES.MUNICIPAL_CORPORATIONS.NOTICE_OF_DEFECT_OR_DANGEROUS_CONDITION"
+    },
+    {
       "id": "60dbd88351b94b209ca799838ddf6b75",
       "keys": [
         "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/special-duties/duties-of-carriers-or-operators-of-vehicles"
@@ -315092,6 +315297,26 @@
       "uuid": "faf17016-b141-464c-9281-98968dc71273"
     },
     {
+      "id": "48ffd1fda5e5424eaabde0030f60c196",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/carriage-of-passengers/carrier-s-rights-and-duties"
+      ],
+      "label": "Carrier S Rights and Duties",
+      "minted": "2026-11-27",
+      "uuid": "48ffd1fd-a5e5-424e-aabd-e0030f60c196"
+    },
+    {
+      "id": "76aba258590e4f04a39c01a5b97d17dc",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/carriage-of-passengers/carrier-s-rights-and-duties/waiver-of-carrier-s-right-to-refuse-passengers"
+      ],
+      "label": "WAIVER OF CARRIER'S RIGHT TO REFUSE PASSENGERS",
+      "minted": "2026-11-27",
+      "uuid": "76aba258-590e-4f04-a39c-01a5b97d17dc",
+      "corpusIssueId": "54581167-f09b-5a2b-995e-6aec59047c56",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.CARRIAGE_OF_PASSENGERS.CARRIER_S_RIGHTS_AND_DUTIES.WAIVER_OF_CARRIER_S_RIGHT_TO_REFUSE_PASSENGERS"
+    },
+    {
       "id": "18623a20cdec48a3b527f5b92827b371",
       "keys": [
         "law-of-wrongdoing/personal-property-law/carriage-of-passengers/distinction-from-bailment"
@@ -318109,6 +318334,15 @@
       "minted": "2026-10-02",
       "uuid": "e67cb1b2-ad16-4ce4-974d-ebde1752e124",
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.COMMON_CARRIERS.NATURE_OF_COMMON_CARRIER_RELATION.CARRIER_AS_BAILEE_IN_ANOTHER_PRELIMINARY_CAPACITY"
+    },
+    {
+      "id": "d724af57941647a9a85df7818904b890",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/common-carriers/nature-of-common-carrier-relation/test-of-responsible-employment-as-against-owner"
+      ],
+      "label": "Test of Responsible Employment as Against Owner",
+      "minted": "2026-11-27",
+      "uuid": "d724af57-9416-47a9-a85d-f7818904b890"
     },
     {
       "id": "89e273e892134a6eb651c74b1911610b",
@@ -323899,6 +324133,26 @@
       "uuid": "d91dad9c-217b-435f-a30f-916130626937",
       "corpusIssueId": "b52af5ee-7c0a-599d-9a5d-c9adf0be7009",
       "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.TRANSFER_OF_PERSONAL_PROPERTY.GIFTS.RIGHTS_AND_REMEDIES_BETWEEN_DONEE_AND_DONOR_S_REPRESENTATIVES"
+    },
+    {
+      "id": "0763d714bf7e45cb80e267d6510480ab",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/transfer-of-personal-property/occupancy-as-mode-of-acquisition"
+      ],
+      "label": "Occupancy as Mode of Acquisition",
+      "minted": "2026-11-27",
+      "uuid": "0763d714-bf7e-45cb-80e2-67d6510480ab"
+    },
+    {
+      "id": "ba297076019841a19aac2c01172e1f10",
+      "keys": [
+        "law-of-wrongdoing/personal-property-law/transfer-of-personal-property/occupancy-as-mode-of-acquisition/abandoned-chattels"
+      ],
+      "label": "ABANDONED CHATTELS",
+      "minted": "2026-11-27",
+      "uuid": "ba297076-0198-41a1-9aac-2c01172e1f10",
+      "corpusIssueId": "73da58d7-e32a-5c18-84b0-4f1e2b2f3f6c",
+      "pathNotation": "LAW_OF_WRONGDOING.PERSONAL_PROPERTY_LAW.TRANSFER_OF_PERSONAL_PROPERTY.OCCUPANCY_AS_MODE_OF_ACQUISITION.ABANDONED_CHATTELS"
     },
     {
       "id": "45c2aa4ad6474b7ba6c06ae5e50fcad7",
@@ -346512,6 +346766,17 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.GROUNDS_FOR_DIVORCE.ENUMERATION_OF_CAUSES"
     },
     {
+      "id": "6b7357e3772c4c9abc0592fbf7947460",
+      "keys": [
+        "personal-and-family-law/marriage-law/grounds-for-divorce/impotence-as-ground-for-annulment"
+      ],
+      "label": "IMPOTENCE AS GROUND FOR ANNULMENT",
+      "minted": "2026-11-27",
+      "uuid": "6b7357e3-772c-4c9a-bc05-92fbf7947460",
+      "corpusIssueId": "fe1afc07-2185-5b81-80b6-430ba330f225",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.MARRIAGE_LAW.GROUNDS_FOR_DIVORCE.IMPOTENCE_AS_GROUND_FOR_ANNULMENT"
+    },
+    {
       "id": "4d90ea133e454bc4ba2467d28e9cf638",
       "keys": [
         "personal-and-family-law/marriage-law/grounds-for-divorce/impotency-or-physical-incapacity-venereal-disease"
@@ -355864,6 +356129,17 @@
       "uuid": "3c52ea2b-9bbf-4c99-a96c-640666f58709",
       "corpusIssueId": "fd6e733f-82da-5abe-92c2-ed6274de50a6",
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.EXECUTORS_AND_ADMINISTRATORS.APPOINTMENT_OF_EXECUTORS.CHALLENGES_TO_APPOINTMENT"
+    },
+    {
+      "id": "f77e7ab0b09948359d3fbf21bfeb2ece",
+      "keys": [
+        "personal-and-family-law/probate-law/executors-and-administrators/appointment-of-executors/presumptions-regarding-intent-to-appoint-an-executor"
+      ],
+      "label": "PRESUMPTIONS REGARDING INTENT TO APPOINT AN EXECUTOR",
+      "minted": "2026-11-27",
+      "uuid": "f77e7ab0-b099-4835-9d3f-bf21bfeb2ece",
+      "corpusIssueId": "b3deb9c7-8d40-510a-9083-275461e2f5c6",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.PROBATE_LAW.EXECUTORS_AND_ADMINISTRATORS.APPOINTMENT_OF_EXECUTORS.PRESUMPTIONS_REGARDING_INTENT_TO_APPOINT_AN_EXECUTOR"
     },
     {
       "id": "1a78f38cf0c5426581bea2f518e9f416",
@@ -437869,6 +438145,44 @@
       "uuid": "989f83bb-9b90-4ea1-8d06-daea738a0f2e",
       "corpusIssueId": "184a1264-5e0b-5848-ae27-0f6f94a08889",
       "pathNotation": "REAL_ESTATE_LAW.INCORPOREAL_RIGHTS.TERMINATION_OF_INCORPOREAL_RIGHTS.NATURAL_TERMINATION"
+    },
+    {
+      "id": "f9287ee413c546beba5e40bd7aa2490d",
+      "keys": [
+        "real-estate-law/information-speech-and-platforms"
+      ],
+      "label": "Information Speech and Platforms",
+      "minted": "2026-11-27",
+      "uuid": "f9287ee4-13c5-46be-ba5e-40bd7aa2490d"
+    },
+    {
+      "id": "9264463dbd774a21869615580603379c",
+      "keys": [
+        "real-estate-law/information-speech-and-platforms/intermediary-liability-and-immunity"
+      ],
+      "label": "Intermediary Liability and Immunity",
+      "minted": "2026-11-27",
+      "uuid": "9264463d-bd77-4a21-8696-15580603379c"
+    },
+    {
+      "id": "e97f7d74ae244694858a849762c5e828",
+      "keys": [
+        "real-estate-law/information-speech-and-platforms/intermediary-liability-and-immunity/section-230-immunity"
+      ],
+      "label": "Section 230 Immunity",
+      "minted": "2026-11-27",
+      "uuid": "e97f7d74-ae24-4694-858a-849762c5e828"
+    },
+    {
+      "id": "44966fb857aa42a4a89ffc9502aaf970",
+      "keys": [
+        "real-estate-law/information-speech-and-platforms/intermediary-liability-and-immunity/section-230-immunity/judicial-interpretation-of-publisher-liability-shield"
+      ],
+      "label": "JUDICIAL INTERPRETATION OF PUBLISHER LIABILITY SHIELD",
+      "minted": "2026-11-27",
+      "uuid": "44966fb8-57aa-42a4-a89f-fc9502aaf970",
+      "corpusIssueId": "87177f68-5635-59e6-9a19-70014d89bfd3",
+      "pathNotation": "REAL_ESTATE_LAW.INFORMATION_SPEECH_AND_PLATFORMS.INTERMEDIARY_LIABILITY_AND_IMMUNITY.SECTION_230_IMMUNITY.JUDICIAL_INTERPRETATION_OF_PUBLISHER_LIABILITY_SHIELD"
     },
     {
       "id": "88819dcc9157455fa5e680fc1e17c8a3",
