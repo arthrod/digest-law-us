@@ -43800,6 +43800,15 @@
       "pathNotation": "CONTRACT_LAW.ASSIGNMENT_OF_CONTRACTUAL_RIGHTS_AND_DUTIES.ASSIGNMENT_OF_RIGHTS.NON_ASSIGNABLE_CONTRACTS_PERSONAL_CONTRACTS"
     },
     {
+      "id": "e6f390021e3d4971bbe9c03253809820",
+      "keys": [
+        "contract-law/assignment-of-contractual-rights-and-duties/assignment-of-rights/notice-of-assignment"
+      ],
+      "label": "Notice of Assignment",
+      "minted": "2026-11-27",
+      "uuid": "e6f39002-1e3d-4971-bbe9-c03253809820"
+    },
+    {
       "id": "534497a256e345c09a3a01bf61724d4a",
       "keys": [
         "contract-law/assignment-of-contractual-rights-and-duties/assignment-of-rights/priorities-between-competing-assignees"
@@ -51385,6 +51394,26 @@
       "uuid": "8593bb1e-2c0c-4211-a06a-65674b1b50fd",
       "corpusIssueId": "7cdceb15-b61e-5fec-ba56-038031154d4f",
       "pathNotation": "CONTRACT_LAW.DISCHARGE_AND_BREACH.FAILURE_OF_CONSIDERATION.DEFINITION_AND_SCOPE"
+    },
+    {
+      "id": "d4fd1a91397c4ef28d47f3f4fc28b12a",
+      "keys": [
+        "contract-law/discharge-and-breach/impossibility-or-frustration-of-performance"
+      ],
+      "label": "Impossibility or Frustration of Performance",
+      "minted": "2026-11-27",
+      "uuid": "d4fd1a91-397c-4ef2-8d47-f3f4fc28b12a"
+    },
+    {
+      "id": "8f8e76d0b855413aa8e921cf0bd19ec8",
+      "keys": [
+        "contract-law/discharge-and-breach/impossibility-or-frustration-of-performance/promisor-caused-impossibility"
+      ],
+      "label": "PROMISOR-CAUSED IMPOSSIBILITY",
+      "minted": "2026-11-27",
+      "uuid": "8f8e76d0-b855-413a-a8e9-21cf0bd19ec8",
+      "corpusIssueId": "4bc2e42f-54de-535f-a283-75b37b52cb85",
+      "pathNotation": "CONTRACT_LAW.DISCHARGE_AND_BREACH.IMPOSSIBILITY_OR_FRUSTRATION_OF_PERFORMANCE.PROMISOR_CAUSED_IMPOSSIBILITY"
     },
     {
       "id": "5f793bf0dcf443f28e63b859d4794961",
@@ -85922,6 +85951,17 @@
       "minted": "2026-10-02",
       "uuid": "6163eff6-9cad-4ac8-bb0e-37a20dd6a29f",
       "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_POWERS_AND_PURPOSES.CHARTER_POWERS.ULTRA_VIRES_ACTS"
+    },
+    {
+      "id": "31df3b4e4b1d45feba8cd3dc2ec7d034",
+      "keys": [
+        "corporate-law/business-organizations-law/corporations/corporate-powers/corporate-powers-generally"
+      ],
+      "label": "CORPORATE POWERS GENERALLY",
+      "minted": "2026-11-27",
+      "uuid": "31df3b4e-4b1d-45fe-ba8c-d3dc2ec7d034",
+      "corpusIssueId": "b72480c4-2f4d-5e51-a614-4df0afd35736",
+      "pathNotation": "CORPORATE_LAW.BUSINESS_ORGANIZATIONS_LAW.CORPORATIONS.CORPORATE_POWERS.CORPORATE_POWERS_GENERALLY"
     },
     {
       "id": "5f01de7674424064b6efedb0efbf0539",
@@ -133625,6 +133665,24 @@
       "pathNotation": "CRIMINAL_LAW.CHARGING_INSTRUMENTS.INDICTMENTS.CONCLUDING_FORMALITIES.STATUTORY_REQUIREMENTS_BY_JURISDICTION"
     },
     {
+      "id": "ebad19f280bf4561acf28f851df0a89e",
+      "keys": [
+        "criminal-law/charging-instruments/indictments/counts"
+      ],
+      "label": "Counts",
+      "minted": "2026-11-27",
+      "uuid": "ebad19f2-80bf-4561-acf2-8f851df0a89e"
+    },
+    {
+      "id": "a118bcb155364a0ab2af1c2a8bdea372",
+      "keys": [
+        "criminal-law/charging-instruments/indictments/counts/open-counts"
+      ],
+      "label": "Open Counts",
+      "minted": "2026-11-27",
+      "uuid": "a118bcb1-5536-4a0a-b2af-1c2a8bdea372"
+    },
+    {
       "id": "3cc38b93509d4e1c8e35e83ed4685c90",
       "uuid": "3cc38b93-509d-4e1c-8e35-e83ed4685c90",
       "keys": [
@@ -156672,6 +156730,15 @@
       "uuid": "f892bd81-349f-4107-817b-4b5ea647708a"
     },
     {
+      "id": "27be1c34994a42ae962f253b9f0a0d20",
+      "keys": [
+        "criminal-law/venue/county-where-offense-committed"
+      ],
+      "label": "County Where Offense Committed",
+      "minted": "2026-11-27",
+      "uuid": "27be1c34-994a-42ae-962f-253b9f0a0d20"
+    },
+    {
       "id": "d9b9ae1ec2144be0b1be6502373abd5c",
       "keys": [
         "criminal-law/venue/venue-in-conspiracy"
@@ -170594,6 +170661,24 @@
       "uuid": "7cd9eb93-ad6a-4d15-ad3a-8fbf2db7f9af",
       "corpusIssueId": "82fe7f32-9d87-5e47-b7ad-cb8f542f011d",
       "pathNotation": "EVIDENCE_LAW.ADMISSIBILITY_OF_EVIDENCE.WITNESS_TESTIMONY.REFRESHING_RECOLLECTION_OF_WITNESSES"
+    },
+    {
+      "id": "b00baf5d10924f4d87edd1795727d087",
+      "keys": [
+        "evidence-law/admissibility-of-evidence/written-evidence"
+      ],
+      "label": "Written Evidence",
+      "minted": "2026-11-27",
+      "uuid": "b00baf5d-1092-4f4d-87ed-d1795727d087"
+    },
+    {
+      "id": "835c075fd52940d7a321a8c0681b1e95",
+      "keys": [
+        "evidence-law/admissibility-of-evidence/written-evidence/rule-of-completeness"
+      ],
+      "label": "Rule of Completeness",
+      "minted": "2026-11-27",
+      "uuid": "835c075f-d529-40d7-a321-a8c0681b1e95"
     },
     {
       "id": "cf804ed42e0b4d06a9587f9493959e66",
@@ -198759,6 +198844,26 @@
       "label": "Formal Requisites",
       "minted": "2026-10-02",
       "uuid": "d81e66f9-9be1-465a-8de9-9465320597fd"
+    },
+    {
+      "id": "811c19fb523f4d89998e8a1777556fff",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange-and-promissory-notes/formal-requisites/amount-specification-and-blank-filling"
+      ],
+      "label": "Amount Specification and Blank Filling",
+      "minted": "2026-11-27",
+      "uuid": "811c19fb-523f-4d89-998e-8a1777556fff"
+    },
+    {
+      "id": "eea2b9b5d7e2481d9f9bc0b48020e140",
+      "keys": [
+        "finance-and-lending-law/commercial-finance-law/bills-of-exchange-and-promissory-notes/formal-requisites/amount-specification-and-blank-filling/marginal-figures-versus-blank-body-amount"
+      ],
+      "label": "MARGINAL FIGURES VERSUS BLANK BODY AMOUNT",
+      "minted": "2026-11-27",
+      "uuid": "eea2b9b5-d7e2-481d-9f9b-c0b48020e140",
+      "corpusIssueId": "41b9ebd9-e7df-584b-a94a-1c2bf0dbc77d",
+      "pathNotation": "FINANCE_AND_LENDING_LAW.COMMERCIAL_FINANCE_LAW.BILLS_OF_EXCHANGE_AND_PROMISSORY_NOTES.FORMAL_REQUISITES.AMOUNT_SPECIFICATION_AND_BLANK_FILLING.MARGINAL_FIGURES_VERSUS_BLANK_BODY_AMOUNT"
     },
     {
       "id": "3cb633a317ff4c48b32696eb0b434edf",
@@ -242909,6 +243014,17 @@
       "pathNotation": "INSURANCE_LAW.SCOPE_OF_COVERAGE.TEMPORARY_COVERAGE.INTERIM_RECEIPTS"
     },
     {
+      "id": "188b9816868943c3867a3a5c1c007642",
+      "keys": [
+        "insurance-law/standard-fire-insurance-policy"
+      ],
+      "label": "STANDARD FIRE INSURANCE POLICY",
+      "minted": "2026-11-27",
+      "uuid": "188b9816-8689-43c3-867a-3a5c1c007642",
+      "corpusIssueId": "70041652-e931-51ae-bdcf-c7c9bb5efceb",
+      "pathNotation": "INSURANCE_LAW.STANDARD_FIRE_INSURANCE_POLICY"
+    },
+    {
       "id": "2e2da5800e0a40dcb7aded79072cc518",
       "keys": [
         "insurance-law/state-insurance-statutes-and-regulations"
@@ -243156,6 +243272,26 @@
       "uuid": "0c8fb647-4d66-4602-8039-7f710f1a570c",
       "corpusIssueId": "3838b624-e66d-5414-8ccc-fd7a3a235cc0",
       "pathNotation": "INSURANCE_LAW.TERMS_AND_CONDITIONS.GRACE_PERIODS.EFFECT_OF_DEATH_WITHIN_GRACE_PERIOD"
+    },
+    {
+      "id": "5ef0c8b07ac94de095ae4b1ea06542ff",
+      "keys": [
+        "insurance-law/terms-and-conditions/other-insurance-clauses"
+      ],
+      "label": "Other Insurance Clauses",
+      "minted": "2026-11-27",
+      "uuid": "5ef0c8b0-7ac9-4de0-95ae-4b1ea06542ff"
+    },
+    {
+      "id": "184fb71abb094003a40a981c9e85a767",
+      "keys": [
+        "insurance-law/terms-and-conditions/other-insurance-clauses/approval-and-consent-requirements"
+      ],
+      "label": "APPROVAL AND CONSENT REQUIREMENTS",
+      "minted": "2026-11-27",
+      "uuid": "184fb71a-bb09-4003-a40a-981c9e85a767",
+      "corpusIssueId": "182bd3bb-671f-5d42-a102-a7908b2e7702",
+      "pathNotation": "INSURANCE_LAW.TERMS_AND_CONDITIONS.OTHER_INSURANCE_CLAUSES.APPROVAL_AND_CONSENT_REQUIREMENTS"
     },
     {
       "id": "e1310590eaee4ecaad6f26a4e3adad3c",
@@ -263999,6 +264135,26 @@
       "uuid": "ad77307d-c005-474d-9dff-672e5d133f73",
       "corpusIssueId": "c62c5d74-e8c7-53c7-b9a9-5cd34816cf63",
       "pathNotation": "IP_LAW.TRADEMARK_AND_TRADE_DRESS_LAW.REGISTRATION.MADRID_PROTOCOL.EXTENSION_OF_PROTECTION_TO_THE_UNITED_STATES"
+    },
+    {
+      "id": "75149fc482ce4adbb5444dde20d4765d",
+      "keys": [
+        "ip-law/trademark-and-trade-dress-law/registration/principal-register"
+      ],
+      "label": "Principal Register",
+      "minted": "2026-11-27",
+      "uuid": "75149fc4-82ce-4adb-b544-4dde20d4765d"
+    },
+    {
+      "id": "cd6c733a418d46c08109a1e336aaf342",
+      "keys": [
+        "ip-law/trademark-and-trade-dress-law/registration/principal-register/interference-proceedings"
+      ],
+      "label": "INTERFERENCE PROCEEDINGS",
+      "minted": "2026-11-27",
+      "uuid": "cd6c733a-418d-46c0-8109-a1e336aaf342",
+      "corpusIssueId": "e563d649-5d16-5e27-913e-bf78ad041f7b",
+      "pathNotation": "IP_LAW.TRADEMARK_AND_TRADE_DRESS_LAW.REGISTRATION.PRINCIPAL_REGISTER.INTERFERENCE_PROCEEDINGS"
     },
     {
       "id": "95100a79659a439cb30dd4d7018462cd",
@@ -296960,6 +297116,24 @@
       "uuid": "45773fce-0b48-400a-b810-635342b88f63"
     },
     {
+      "id": "2f7a26975a8642e88b338ebb2c3cbf50",
+      "keys": [
+        "law-of-wrongdoing/defense-of-property/mechanical-devices-and-spring-guns"
+      ],
+      "label": "Mechanical Devices and Spring Guns",
+      "minted": "2026-11-27",
+      "uuid": "2f7a2697-5a86-42e8-8b33-8ebb2c3cbf50"
+    },
+    {
+      "id": "3f12440db5ef440e990e772f5c32afb9",
+      "keys": [
+        "law-of-wrongdoing/defense-of-property/mechanical-devices-and-spring-guns/privilege-to-use-mechanical-devices-against-intrusion"
+      ],
+      "label": "Privilege to Use Mechanical Devices Against Intrusion",
+      "minted": "2026-11-27",
+      "uuid": "3f12440d-b5ef-440e-990e-772f5c32afb9"
+    },
+    {
       "id": "e447e5c2d4a94773bcb4d32379045cbf",
       "keys": [
         "law-of-wrongdoing/defense-of-property/use-of-deadly-force-to-protect-property"
@@ -305027,6 +305201,15 @@
       "uuid": "7ab49cb4-d28b-47d0-8c05-3496ab568de5",
       "corpusIssueId": "cc1d46f8-a66e-5a81-ade0-5ac4d3d41045",
       "pathNotation": "LAW_OF_WRONGDOING.NEGLIGENCE_AND_MALPRACTICE_LAW.DUTY_OF_CARE.CARRIERS_AND_PASSENGERS.PASSENGER_S_ASSUMPTION_OF_RISK.CIRCUMSTANCES_SUPPORTING_INFERENCE_OF_ASSUMPTION"
+    },
+    {
+      "id": "6f4938cdc6c24b8dbe88309a8c876ed9",
+      "keys": [
+        "law-of-wrongdoing/negligence-and-malpractice-law/duty-of-care/carriers-and-passengers/passenger-s-right-to-assume-safe-approach"
+      ],
+      "label": "Passenger S Right to Assume Safe Approach",
+      "minted": "2026-11-27",
+      "uuid": "6f4938cd-c6c2-4b8d-be88-309a8c876ed9"
     },
     {
       "id": "ddb88a40eab241be964b6fa28fbd9574",
@@ -359431,6 +359614,26 @@
       "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.DIRECTIONS_AND_POWERS.ACCUMULATION_OF_INCOME_OR_CORPUS.IMPLIED_DIRECTIONS_TO_ACCUMULATE"
     },
     {
+      "id": "1c3e638ed3ec4cc18fd838387f1d0dae",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/disqualifications"
+      ],
+      "label": "Disqualifications",
+      "minted": "2026-11-27",
+      "uuid": "1c3e638e-d3ec-4cc1-8fd8-38387f1d0dae"
+    },
+    {
+      "id": "927f603dedfd47f49d88107445871b8a",
+      "keys": [
+        "personal-and-family-law/trusts-and-estate-planning-law/disqualifications/criminal-conduct-as-disqualification"
+      ],
+      "label": "CRIMINAL CONDUCT AS DISQUALIFICATION",
+      "minted": "2026-11-27",
+      "uuid": "927f603d-edfd-47f4-9d88-107445871b8a",
+      "corpusIssueId": "95b27849-2e16-5591-81ce-85fc3b997cad",
+      "pathNotation": "PERSONAL_AND_FAMILY_LAW.TRUSTS_AND_ESTATE_PLANNING_LAW.DISQUALIFICATIONS.CRIMINAL_CONDUCT_AS_DISQUALIFICATION"
+    },
+    {
       "id": "546cf34d22f345caa8d4a0149b111174",
       "keys": [
         "personal-and-family-law/trusts-and-estate-planning-law/distribution-of-trust-assets"
@@ -373826,6 +374029,17 @@
       "uuid": "7b559562-34d3-4d38-b483-71c688d55e63",
       "corpusIssueId": "29bcf859-e4cb-5ab9-ad41-81481d7a9f0a",
       "pathNotation": "PROCEDURAL_LAW.COLLATERAL_ATTACK_ON_JUDGMENTS.REMEDIES_AGAINST_VOID_JUDGMENTS"
+    },
+    {
+      "id": "f4fd1d46d47e4038aae3bed60099e01d",
+      "keys": [
+        "procedural-law/collateral-attack-on-judgments/writ-of-error-coram-nobis"
+      ],
+      "label": "WRIT OF ERROR CORAM NOBIS",
+      "minted": "2026-11-27",
+      "uuid": "f4fd1d46-d47e-4038-aae3-bed60099e01d",
+      "corpusIssueId": "48980d84-bdcd-5d8a-834c-b93d96436938",
+      "pathNotation": "PROCEDURAL_LAW.COLLATERAL_ATTACK_ON_JUDGMENTS.WRIT_OF_ERROR_CORAM_NOBIS"
     },
     {
       "id": "686f24322f0c4720b57fdd94f1440a07",
@@ -395913,6 +396127,33 @@
       "uuid": "385ffc03-7df7-4e66-8955-3d13500c64a1",
       "corpusIssueId": "ea611f17-30e4-551c-9fd5-31fbacc616a8",
       "pathNotation": "PROCEDURAL_LAW.PROPERTY_SUBJECT_TO_EXECUTION.REAL_PROPERTY_INTERESTS.MORTGAGEE_S_ESTATE"
+    },
+    {
+      "id": "9073af7c637b4b00bd3f679fa0ed68e7",
+      "keys": [
+        "procedural-law/property-subject-to-execution/statutory-exemptions-from-execution"
+      ],
+      "label": "Statutory Exemptions From Execution",
+      "minted": "2026-11-27",
+      "uuid": "9073af7c-637b-4b00-bd3f-679fa0ed68e7"
+    },
+    {
+      "id": "8d76343f49b54dfda82c78fc9248d8f9",
+      "keys": [
+        "procedural-law/property-subject-to-execution/statutory-exemptions-from-execution/exemption-of-specific-personal-property"
+      ],
+      "label": "Exemption of Specific Personal Property",
+      "minted": "2026-11-27",
+      "uuid": "8d76343f-49b5-4dfd-a82c-78fc9248d8f9"
+    },
+    {
+      "id": "ef4c48ccac1c4f6eb1bf22149e72b988",
+      "keys": [
+        "procedural-law/property-subject-to-execution/statutory-exemptions-from-execution/exemption-of-specific-personal-property/exemption-of-a-horse"
+      ],
+      "label": "Exemption of a Horse",
+      "minted": "2026-11-27",
+      "uuid": "ef4c48cc-ac1c-4f6e-b1bf-22149e72b988"
     },
     {
       "id": "b09c4cb1dede4d14b5f5985bd910dcac",
@@ -468046,6 +468287,17 @@
       "minted": "2026-11-06",
       "uuid": "7113985f-8c47-41ae-b813-e00295dada35",
       "pathNotation": "REAL_ESTATE_LAW.TRANSFER_AND_CONVEYANCING.DEEDS.DEED_WHEN_A_MORTGAGE.ABSOLUTE_DEED_AS_MORTGAGE"
+    },
+    {
+      "id": "f7b209407e2d4c0998ff3d1fbbc07f5e",
+      "keys": [
+        "real-estate-law/transfer-and-conveyancing/deeds/deeds-executed-by-married-women"
+      ],
+      "label": "DEEDS EXECUTED BY MARRIED WOMEN",
+      "minted": "2026-11-27",
+      "uuid": "f7b20940-7e2d-4c09-98ff-3d1fbbc07f5e",
+      "corpusIssueId": "76b320ee-292e-5657-8ff3-f321aa22aa59",
+      "pathNotation": "REAL_ESTATE_LAW.TRANSFER_AND_CONVEYANCING.DEEDS.DEEDS_EXECUTED_BY_MARRIED_WOMEN"
     },
     {
       "id": "79a8c382fd0345deb1acdd40a8182687",
