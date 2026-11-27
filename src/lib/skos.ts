@@ -147,6 +147,17 @@ function iriRefs(urns: string[], corpus: Corpus) {
   }));
 }
 
+/**
+ * SKOS S27: skos:related is disjoint from the hierarchy. Drafters sometimes
+ * list a parent or child as related too; the asserted hierarchy wins.
+ */
+function relatedOutside(
+  refs: { "@id": string }[],
+  ...hierarchy: Map<string, unknown>[]
+) {
+  return refs.filter((ref) => !hierarchy.some((ids) => ids.has(ref["@id"])));
+}
+
 function httpOnly(values: unknown): string[] {
   if (!Array.isArray(values)) {
     return [];
@@ -301,7 +312,14 @@ export function conceptFor(
   }
 
   if (related.length) {
-    concept["skos:related"] = iriRefs(related, corpus);
+    const refs = relatedOutside(
+      iriRefs(related, corpus),
+      broaderIds,
+      narrowerIds
+    );
+    if (refs.length) {
+      concept["skos:related"] = refs;
+    }
   }
 
   // External mappings (FOLIO, EuroVoc, SALI/LMSS…) — IRIs only.
