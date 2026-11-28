@@ -94,6 +94,8 @@ const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   PUBLIC_DIR = path.join(APP_ROOT, "public"),
   SHARD_SERVICE_PREFIX = "digest-law-shard-",
   WRANGLER_BIN = path.join(APP_ROOT, "node_modules/.bin/wrangler"),
+  /** Heap for each wrangler deploy (MB); it holds the whole dist/ listing. */
+  WRANGLER_HEAP_MB = Number(process.env.WRANGLER_HEAP_MB ?? 16_384),
   isPart = (name: string) => /\.part-\d{3}$/u.test(name),
   /** `--only=root` or `--only=a,c,root`: deploy just these; absent = all. */
   only = process.argv
@@ -791,6 +793,13 @@ function deploy(configPath: string): void {
   // oxlint-disable-next-line node/no-sync -- deploys are deliberately sequential, output inherited
   const result = Bun.spawnSync([WRANGLER_BIN, "deploy", "-c", configPath], {
     cwd: APP_ROOT,
+    // wrangler lists every file under dist/ before .assetsignore narrows it
+    // to one shard: 1.36M files ran out of node's default ~4 GB heap.
+    env: {
+      ...process.env,
+      NODE_OPTIONS:
+        `${process.env.NODE_OPTIONS ?? ""} --max-old-space-size=${WRANGLER_HEAP_MB}`.trim(),
+    },
     stderr: "inherit",
     stdout: "inherit",
   });
