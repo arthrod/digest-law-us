@@ -37,9 +37,14 @@
  *   bun scripts/deploy-shards.ts --only=root        redeploy just the root
  *   bun scripts/deploy-shards.ts --only=a,c,root    or any subset
  *
- * Deliberately NOT handled: a single top-level folder larger than the 100k
- * cap, or an oversized file inside a folder (shards have no Worker to
- * reassemble it). Both need a human decision — this script refuses loudly.
+ * A folder past the 100k cap is split one level deeper only where
+ * src/lib/shard-split.ts says how: Pagefind's flat fragment folder buckets by
+ * hash prefix (`pagefind/fragment/en_3`), each bucket a unit the packer
+ * places like a folder and the root Worker routes by longest prefix.
+ *
+ * Deliberately NOT handled: any other folder larger than the 100k cap, or an
+ * oversized file inside a folder (shards have no Worker to reassemble it).
+ * Both need a human decision — this script refuses loudly.
  */
 
 import type { Dirent } from "node:fs";
@@ -59,6 +64,7 @@ import {
   staleCopies,
   staysOnRoot,
 } from "../src/lib/deploy-root";
+import { shardIgnoreLines, splitUnitOf } from "../src/lib/shard-split";
 
 const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   ASSIGNMENTS_PATH = path.resolve(
@@ -207,12 +213,18 @@ async function inventory(): Promise<Inventory> {
           recursive: true,
           withFileTypes: true,
         }),
-        nested = all.filter((n) => n.isFile());
+        nested = all.filter((n) => n.isFile()),
+        // A folder in SPLIT_DIRS (src/lib/shard-split.ts) routes its split
+        // dir's files as buckets of their own; the rest stays one unit.
+        units = new Map<string, number>();
       for (const file of nested) {
         const full = path.join(file.parentPath, file.name),
+          rel = path.relative(DIST, full),
+          unit = splitUnitOf(rel) ?? entry.name,
           { size } = await stat(full);
+        units.set(unit, (units.get(unit) ?? 0) + 1);
         if (size > MAX_ASSET_BYTES) {
-          oversizeNested.push(path.relative(DIST, full));
+          oversizeNested.push(rel);
         }
       }
       if (staysOnRoot(entry.name)) {
@@ -220,7 +232,9 @@ async function inventory(): Promise<Inventory> {
         // src/lib/deploy-root.ts.
         rootFiles += nested.length;
       } else {
-        folders.push({ files: nested.length, name: entry.name });
+        for (const [name, files] of units) {
+          folders.push({ files, name });
+        }
       }
     } else if (entry.name !== ".assetsignore" && !isPart(entry.name)) {
       rootFiles += 1;
@@ -425,10 +439,7 @@ function serviceNameOf(letter: string): string {
 
 /** Manifest whitelist for one shard: its folders plus the 404 page. */
 function shardIgnoreFile(shard: Shard): string {
-  const lines = ["/*", "!/404.html"];
-  for (const folder of shard.folders) {
-    lines.push(`!/${folder.name}/`);
-  }
+  const lines = shardIgnoreLines(shard.folders.map((folder) => folder.name));
   return `${lines.join("\n")}\n`;
 }
 
@@ -441,8 +452,11 @@ function rootIgnoreFile(
   oversize: Record<string, OversizeAsset>
 ): string {
   const lines = [
+    // Split buckets live under a folder that is already excluded whole.
     ...shards.flatMap((shard) =>
-      shard.folders.map((folder) => `/${folder.name}/`)
+      shard.folders
+        .filter((folder) => !folder.name.includes("/"))
+        .map((folder) => `/${folder.name}/`)
     ),
     ...Object.keys(oversize),
   ];

@@ -14,6 +14,7 @@
  */
 
 import { LIMITS, topicById } from "../src/lib/committee";
+import { shardKeyFor } from "../src/lib/shard-split";
 import { negotiateMarkdown, prefersMarkdown, varyOnAccept } from "./markdown";
 import type { MarkdownAi, MarkdownCache } from "./markdown";
 import { handleMcp, withAgentLinks } from "./mcp";
@@ -62,7 +63,8 @@ interface Env {
   OVERSIZE_ASSETS?: Record<string, OversizeAsset>;
   /**
    * dist/ is split across several Workers to stay under the 100k
-   * files-per-Worker cap: top-level folder → service-binding name, alongside
+   * files-per-Worker cap: top-level folder (or split bucket, e.g.
+   * `pagefind/fragment/en_3`; src/lib/shard-split.ts) → service-binding name, alongside
    * one SHARD_* binding per shard Worker. Both are generated into the deploy
    * config by scripts/deploy-shards.ts; absent under `wrangler dev`, where
    * ASSETS still holds all of dist.
@@ -501,8 +503,9 @@ async function dispatch(
   const { pathname } = new URL(request.url),
     // The shard rules in run_worker_first are prefix globs, so a root file
     // like /sitemap-index.xml can land here via the /sitemap* rule — only an
-    // exact first-segment match forwards; everything else is a root asset.
-    bindingName = env.SHARD_MAP?.[pathname.split("/")[1] ?? ""],
+    // exact first-segment match (or a split bucket's prefix) forwards;
+    // everything else is a root asset.
+    bindingName = shardKeyFor(env.SHARD_MAP, pathname),
     conceptId = /^\/id\/(?<id>[^/]+)\/?$/u.exec(pathname),
     oversize = env.OVERSIZE_ASSETS?.[pathname];
   if (pathname === "/mcp" || pathname === "/mcp/") {
