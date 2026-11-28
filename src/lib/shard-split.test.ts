@@ -1,5 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
+import ignore from "ignore";
+
 import { shardIgnoreLines, shardKeyFor, splitUnitOf } from "./shard-split";
 
 describe("splitUnitOf", () => {
@@ -90,6 +92,62 @@ describe("shardIgnoreLines", () => {
       "!/pagefind/",
       "/pagefind/fragment/*",
       "!/pagefind/fragment/en_1*",
+    ]);
+  });
+});
+
+// Exact strings above pin the rules; these pin what they mean, through the
+// gitignore engine wrangler bundles (ignore@5.3.1) — rule order and
+// directory re-inclusion are where a plausible string goes wrong.
+describe("shardIgnoreLines membership (wrangler's ignore engine)", () => {
+  const FILES = [
+      "404.html",
+      "index.html",
+      "contract-law/a/index.html",
+      "pagefind/pagefind.js",
+      "pagefind/index/en_1x.pf_index",
+      "pagefind/fragment/en_1ab.pf_fragment",
+      "pagefind/fragment/en_2ab.pf_fragment",
+    ],
+    shipped = (units: string[]) => {
+      // wrangler always prepends its own metafile rules.
+      const engine = ignore().add([
+        "/.assetsignore",
+        "/_redirects",
+        "/_headers",
+        ...shardIgnoreLines(units),
+      ]);
+      return FILES.filter((file) => !engine.ignores(file));
+    };
+
+  test("the split folder alone ships everything but its fragments", () => {
+    expect(shipped(["pagefind"])).toEqual([
+      "404.html",
+      "pagefind/pagefind.js",
+      "pagefind/index/en_1x.pf_index",
+    ]);
+  });
+
+  test("a bucket alone ships only its own fragments", () => {
+    expect(shipped(["pagefind/fragment/en_1"])).toEqual([
+      "404.html",
+      "pagefind/fragment/en_1ab.pf_fragment",
+    ]);
+  });
+
+  test("the folder plus a bucket ships both, not the other bucket", () => {
+    expect(shipped(["pagefind", "pagefind/fragment/en_2"])).toEqual([
+      "404.html",
+      "pagefind/pagefind.js",
+      "pagefind/index/en_1x.pf_index",
+      "pagefind/fragment/en_2ab.pf_fragment",
+    ]);
+  });
+
+  test("a plain folder shard ships no pagefind file", () => {
+    expect(shipped(["contract-law"])).toEqual([
+      "404.html",
+      "contract-law/a/index.html",
     ]);
   });
 });
