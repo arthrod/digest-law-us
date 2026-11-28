@@ -232,6 +232,33 @@ describe("related is disjoint from hierarchy (SKOS S27)", () => {
   });
 });
 
+describe("related is disjoint from the transitive hierarchy (SKOS S27)", () => {
+  const AREA = "urn:legal-taxonomy:issue:EVIDENCE_LAW",
+    LEAF =
+      "urn:legal-taxonomy:issue:EVIDENCE_LAW.DOCUMENTARY_EVIDENCE.LOG_BOOKS",
+    MID = URN,
+    // A three-level chain asserted through broader only: leaf → mid → area.
+    chain = (extra: { area?: Frontmatter; leaf?: Frontmatter }) => {
+      const area = node("evidence-law", { ...extra.area }),
+        leaf = node("evidence-law/documentary-evidence/log-books", {
+          broader: [MID],
+          ...extra.leaf,
+        }),
+        mid = node("evidence-law/documentary-evidence", { broader: [AREA] });
+      return { area, corpus: corpusOf(area, mid, leaf), leaf };
+    };
+
+  test("an indirect ancestor is left out of skos:related", () => {
+    const { corpus, leaf } = chain({ leaf: { related: [AREA] } });
+    expect(conceptFor(corpus, leaf)["skos:related"]).toBeUndefined();
+  });
+
+  test("an indirect descendant is left out of skos:related", () => {
+    const { area, corpus } = chain({ area: { related: [LEAF] } });
+    expect(conceptFor(corpus, area)["skos:related"]).toBeUndefined();
+  });
+});
+
 describe("identity block (P1-001 / P1-014C)", () => {
   test("unminted concepts publish the legacy route IRI and no notation", () => {
     const concept = conceptFor(corpusOf(), node("evidence-law/unminted"));

@@ -153,9 +153,63 @@ function iriRefs(urns: string[], corpus: Corpus) {
  */
 function relatedOutside(
   refs: { "@id": string }[],
-  ...hierarchy: Map<string, unknown>[]
+  ...hierarchy: { has: (id: string) => boolean }[]
 ) {
   return refs.filter((ref) => !hierarchy.some((ids) => ids.has(ref["@id"])));
+}
+
+/** slugPath → asserted broader slugPaths, and its inverse, once per corpus. */
+// oxlint-disable-next-line eslint/one-var -- module cache kept beside the helpers that read it
+const hierarchyCache = new WeakMap<
+  Corpus,
+  { down: Map<string, string[]>; up: Map<string, string[]> }
+>();
+
+function hierarchyOf(corpus: Corpus) {
+  let graph = hierarchyCache.get(corpus);
+  if (!graph) {
+    graph = { down: new Map(), up: new Map() };
+    for (const node of corpus.nodeBySlugPath.values()) {
+      const broader =
+        (node.digest?.data?.broader as string[] | undefined) ?? [];
+      for (const urn of broader) {
+        const parent = resolveRefIn(corpus.nodeBySlugPath, urn).slugPath;
+        graph.up.set(node.slugPath, [
+          ...(graph.up.get(node.slugPath) ?? []),
+          parent,
+        ]);
+        graph.down.set(parent, [
+          ...(graph.down.get(parent) ?? []),
+          node.slugPath,
+        ]);
+      }
+    }
+    hierarchyCache.set(corpus, graph);
+  }
+  return graph;
+}
+
+/**
+ * IRIs of every concept above or below this one through asserted broader
+ * links — what skos-validate's transitive S27 check walks (broaderTransitive
+ * and its inverse).
+ */
+function transitiveHierarchy(corpus: Corpus, slugPath: string): Set<string> {
+  const { down, up } = hierarchyOf(corpus),
+    found = new Set<string>();
+  for (const edges of [up, down]) {
+    const seen = new Set<string>(),
+      stack = [...(edges.get(slugPath) ?? [])];
+    while (stack.length > 0) {
+      const next = stack.pop() ?? "";
+      if (!seen.has(next)) {
+        seen.add(next);
+        found.add(conceptIri(next));
+        stack.push(...(edges.get(next) ?? []));
+      }
+    }
+  }
+  return found;
 }
 
 function httpOnly(values: unknown): string[] {
@@ -315,7 +369,8 @@ export function conceptFor(
     const refs = relatedOutside(
       iriRefs(related, corpus),
       broaderIds,
-      narrowerIds
+      narrowerIds,
+      transitiveHierarchy(corpus, node.slugPath)
     );
     if (refs.length) {
       concept["skos:related"] = refs;
