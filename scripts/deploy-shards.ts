@@ -219,7 +219,8 @@ async function inventory(): Promise<Inventory> {
         units = new Map<string, number>();
       for (const file of nested) {
         const full = path.join(file.parentPath, file.name),
-          rel = path.relative(DIST, full),
+          // Unit keys and ignore rules are POSIX paths on every platform.
+          rel = path.relative(DIST, full).split(path.sep).join("/"),
           unit = splitUnitOf(rel) ?? entry.name,
           { size } = await stat(full);
         units.set(unit, (units.get(unit) ?? 0) + 1);
