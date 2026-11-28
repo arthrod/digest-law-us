@@ -53,7 +53,7 @@ Astro static site (AstroPaper v6 base), Astro-native throughout:
 
 Hard constraints (learned from a failed publish, structural here): no global
 navigation tree inlined into pages (route-scoped trees; the full map lives
-on `/` and `/sitemap/` only); no monolithic search index; giant sources
+on `/` and `/sitemap/` only, with each area's full tree on `/sitemap/<area>/`); no monolithic search index; giant sources
 never produce giant pages.
 
 ## SKOS

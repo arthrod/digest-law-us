@@ -5,7 +5,8 @@
  * resolution — reads from here. Navigation data is handed out per route
  * scope only (hard constraint 1): digest pages get breadcrumbs + rail,
  * area/container pages get their own subtree, and the full map exists on
- * the home page and /sitemap/ alone.
+ * the home page and /sitemap/ alone (/sitemap/ lists the areas; each area's
+ * full tree is on /sitemap/<area>/).
  */
 
 import type { CollectionEntry } from "astro:content";

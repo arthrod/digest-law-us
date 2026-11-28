@@ -38,10 +38,10 @@ const corpus = await getCorpus(),
       </div>
       {corpus.areas.map(area => (
           <a
-            class="border-hairline mt-5 flex items-baseline gap-3 border-t py-3 no-underline hover:opacity-70"
+            class="group border-hairline mt-5 flex items-baseline gap-3 border-t py-3 no-underline"
             href={`/sitemap/${area.slugPath}/`}
           >
-            <span class="font-display text-[1.3125rem] leading-tight tracking-[-0.02em]">
+            <span class="font-display text-[1.3125rem] leading-tight tracking-[-0.02em] group-hover:opacity-70">
               {area.label}
             </span>
             <span class="flex-1" />
