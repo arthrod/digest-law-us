@@ -37,9 +37,14 @@
  *   bun scripts/deploy-shards.ts --only=root        redeploy just the root
  *   bun scripts/deploy-shards.ts --only=a,c,root    or any subset
  *
- * Deliberately NOT handled: a single top-level folder larger than the 100k
- * cap, or an oversized file inside a folder (shards have no Worker to
- * reassemble it). Both need a human decision — this script refuses loudly.
+ * A folder past the 100k cap is split one level deeper only where
+ * src/lib/shard-split.ts says how: Pagefind's flat fragment folder buckets by
+ * hash prefix (`pagefind/fragment/en_3`), each bucket a unit the packer
+ * places like a folder and the root Worker routes by longest prefix.
+ *
+ * Deliberately NOT handled: any other folder larger than the 100k cap, or an
+ * oversized file inside a folder (shards have no Worker to reassemble it).
+ * Both need a human decision — this script refuses loudly.
  */
 
 import type { Dirent } from "node:fs";
@@ -59,6 +64,11 @@ import {
   staleCopies,
   staysOnRoot,
 } from "../src/lib/deploy-root";
+import {
+  deployOrder,
+  shardIgnoreLines,
+  splitUnitOf,
+} from "../src/lib/shard-split";
 
 const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   ASSIGNMENTS_PATH = path.resolve(
@@ -88,6 +98,8 @@ const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   PUBLIC_DIR = path.join(APP_ROOT, "public"),
   SHARD_SERVICE_PREFIX = "digest-law-shard-",
   WRANGLER_BIN = path.join(APP_ROOT, "node_modules/.bin/wrangler"),
+  /** Heap for each wrangler deploy (MB); it holds the whole dist/ listing. */
+  WRANGLER_HEAP_MB = Number(process.env.WRANGLER_HEAP_MB ?? 16_384),
   isPart = (name: string) => /\.part-\d{3}$/u.test(name),
   /** `--only=root` or `--only=a,c,root`: deploy just these; absent = all. */
   only = process.argv
@@ -207,12 +219,19 @@ async function inventory(): Promise<Inventory> {
           recursive: true,
           withFileTypes: true,
         }),
-        nested = all.filter((n) => n.isFile());
+        nested = all.filter((n) => n.isFile()),
+        // A folder in SPLIT_DIRS (src/lib/shard-split.ts) routes its split
+        // dir's files as buckets of their own; the rest stays one unit.
+        units = new Map<string, number>();
       for (const file of nested) {
         const full = path.join(file.parentPath, file.name),
+          // Unit keys and ignore rules are POSIX paths on every platform.
+          rel = path.relative(DIST, full).split(path.sep).join("/"),
+          unit = splitUnitOf(rel) ?? entry.name,
           { size } = await stat(full);
+        units.set(unit, (units.get(unit) ?? 0) + 1);
         if (size > MAX_ASSET_BYTES) {
-          oversizeNested.push(path.relative(DIST, full));
+          oversizeNested.push(rel);
         }
       }
       if (staysOnRoot(entry.name)) {
@@ -220,7 +239,9 @@ async function inventory(): Promise<Inventory> {
         // src/lib/deploy-root.ts.
         rootFiles += nested.length;
       } else {
-        folders.push({ files: nested.length, name: entry.name });
+        for (const [name, files] of units) {
+          folders.push({ files, name });
+        }
       }
     } else if (entry.name !== ".assetsignore" && !isPart(entry.name)) {
       rootFiles += 1;
@@ -425,10 +446,7 @@ function serviceNameOf(letter: string): string {
 
 /** Manifest whitelist for one shard: its folders plus the 404 page. */
 function shardIgnoreFile(shard: Shard): string {
-  const lines = ["/*", "!/404.html"];
-  for (const folder of shard.folders) {
-    lines.push(`!/${folder.name}/`);
-  }
+  const lines = shardIgnoreLines(shard.folders.map((folder) => folder.name));
   return `${lines.join("\n")}\n`;
 }
 
@@ -441,8 +459,11 @@ function rootIgnoreFile(
   oversize: Record<string, OversizeAsset>
 ): string {
   const lines = [
+    // Split buckets live under a folder that is already excluded whole.
     ...shards.flatMap((shard) =>
-      shard.folders.map((folder) => `/${folder.name}/`)
+      shard.folders
+        .filter((folder) => !folder.name.includes("/"))
+        .map((folder) => `/${folder.name}/`)
     ),
     ...Object.keys(oversize),
   ];
@@ -776,6 +797,13 @@ function deploy(configPath: string): void {
   // oxlint-disable-next-line node/no-sync -- deploys are deliberately sequential, output inherited
   const result = Bun.spawnSync([WRANGLER_BIN, "deploy", "-c", configPath], {
     cwd: APP_ROOT,
+    // wrangler lists every file under dist/ before .assetsignore narrows it
+    // to one shard: 1.36M files ran out of node's default ~4 GB heap.
+    env: {
+      ...process.env,
+      NODE_OPTIONS:
+        `${process.env.NODE_OPTIONS ?? ""} --max-old-space-size=${WRANGLER_HEAP_MB}`.trim(),
+    },
     stderr: "inherit",
     stdout: "inherit",
   });
@@ -870,7 +898,17 @@ try {
   if (planOnly) {
     console.log("--plan: configs written to .wrangler-shards/, not deploying.");
   } else {
-    for (const shard of shards.filter((s) => wanted(s.letter))) {
+    // A split folder's base shard goes last (see deployOrder).
+    // oxlint-disable-next-line eslint/one-var -- the order is only needed once deploying starts
+    const order = deployOrder(
+      shards.map((s) => ({
+        folders: s.folders.map((f) => f.name),
+        letter: s.letter,
+      }))
+    );
+    for (const shard of order
+      .map((letter) => shards.find((s) => s.letter === letter))
+      .filter((s): s is Shard => s !== undefined && wanted(s.letter))) {
       console.log(`\n=== deploying ${serviceNameOf(shard.letter)} ===`);
       await writeFile(IGNORE_PATH, configs.shardIgnoreOf(shard));
       deploy(configs.shardConfigPathOf(shard));
