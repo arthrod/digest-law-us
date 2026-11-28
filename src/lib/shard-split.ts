@@ -86,3 +86,24 @@ export function shardIgnoreLines(units: readonly string[]): string[] {
   }
   return lines;
 }
+
+/**
+ * Shard deploy order. The live root routes a split folder's whole URL space
+ * (`/pagefind/*`) to the shard holding its base unit until the root itself
+ * redeploys. Once that shard ships the new layout, buckets now placed on
+ * other shards 404 through the old route, so it deploys last: the gap
+ * shrinks to the root cutover, the same brief window a moved folder gets.
+ * (Keeping every bucket on the old shard instead would break the 100k cap.)
+ */
+export function deployOrder(
+  shards: readonly { folders: readonly string[]; letter: string }[]
+): string[] {
+  const tops = new Set(SPLIT_DIRS.map((dir) => dir.split("/")[0])),
+    // oxlint-disable-next-line eslint/sort-vars -- servesBase closes over tops (TDZ)
+    servesBase = (shard: { folders: readonly string[] }) =>
+      shard.folders.some((folder) => tops.has(folder));
+  return [
+    ...shards.filter((shard) => !servesBase(shard)),
+    ...shards.filter(servesBase),
+  ].map((shard) => shard.letter);
+}

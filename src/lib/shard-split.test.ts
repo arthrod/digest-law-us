@@ -2,7 +2,12 @@ import { describe, expect, test } from "bun:test";
 
 import ignore from "ignore";
 
-import { shardIgnoreLines, shardKeyFor, splitUnitOf } from "./shard-split";
+import {
+  deployOrder,
+  shardIgnoreLines,
+  shardKeyFor,
+  splitUnitOf,
+} from "./shard-split";
 
 describe("splitUnitOf", () => {
   test("a fragment buckets by its first hash character", () => {
@@ -149,5 +154,27 @@ describe("shardIgnoreLines membership (wrangler's ignore engine)", () => {
       "404.html",
       "contract-law/a/index.html",
     ]);
+  });
+});
+
+describe("deployOrder", () => {
+  test("shards serving a split folder's base deploy last, just before root", () => {
+    expect(
+      deployOrder([
+        { folders: ["about", "pagefind/fragment/en_0"], letter: "a" },
+        { folders: ["contract-law"], letter: "b" },
+        { folders: ["pagefind", "pagefind/fragment/en_1"], letter: "d" },
+        { folders: ["pagefind/fragment/en_6"], letter: "g" },
+      ])
+    ).toEqual(["a", "b", "g", "d"]);
+  });
+
+  test("without a split folder the order is unchanged", () => {
+    expect(
+      deployOrder([
+        { folders: ["b-law"], letter: "b" },
+        { folders: ["a-law"], letter: "a" },
+      ])
+    ).toEqual(["b", "a"]);
   });
 });

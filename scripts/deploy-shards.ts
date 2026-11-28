@@ -64,7 +64,11 @@ import {
   staleCopies,
   staysOnRoot,
 } from "../src/lib/deploy-root";
-import { shardIgnoreLines, splitUnitOf } from "../src/lib/shard-split";
+import {
+  deployOrder,
+  shardIgnoreLines,
+  splitUnitOf,
+} from "../src/lib/shard-split";
 
 const APP_ROOT = path.resolve(import.meta.dirname, ".."),
   ASSIGNMENTS_PATH = path.resolve(
@@ -894,7 +898,17 @@ try {
   if (planOnly) {
     console.log("--plan: configs written to .wrangler-shards/, not deploying.");
   } else {
-    for (const shard of shards.filter((s) => wanted(s.letter))) {
+    // A split folder's base shard goes last (see deployOrder).
+    // oxlint-disable-next-line eslint/one-var -- the order is only needed once deploying starts
+    const order = deployOrder(
+      shards.map((s) => ({
+        folders: s.folders.map((f) => f.name),
+        letter: s.letter,
+      }))
+    );
+    for (const shard of order
+      .map((letter) => shards.find((s) => s.letter === letter))
+      .filter((s): s is Shard => s !== undefined && wanted(s.letter))) {
       console.log(`\n=== deploying ${serviceNameOf(shard.letter)} ===`);
       await writeFile(IGNORE_PATH, configs.shardIgnoreOf(shard));
       deploy(configs.shardConfigPathOf(shard));
