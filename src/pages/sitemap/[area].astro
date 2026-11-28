@@ -8,12 +8,21 @@ import AreaTree from "@/components/AreaTree.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
+import { cacheKeyFrom, subtreeStamps } from "@/lib/cache-keys";
 import { getCorpus } from '@/lib/corpus';
 import type { Corpus, TreeNode } from '@/lib/corpus';
 
 export async function getStaticPaths() {
   const corpus = await getCorpus();
-  return corpus.areas.map((area) => ({ params: { area: area.slugPath } }));
+  // Incremental builds reuse a page unless its cacheKey moves; AreaTree reads
+  // the whole subtree (labels, digests, source counts), so key on it exactly
+  // as the area page does (lib/cache-keys.ts).
+  return corpus.areas.map((area) => ({
+    cacheKey: cacheKeyFrom("sitemap-area", [
+      ...subtreeStamps(area, corpus.sourcesByBundle),
+    ]),
+    params: { area: area.slugPath },
+  }));
 }
 
 function areaNode(corpus: Corpus, slug: string | undefined): TreeNode {
