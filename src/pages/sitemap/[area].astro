@@ -1,0 +1,62 @@
+---
+/**
+ * One area's full topic tree, linked from /sitemap/. Native
+ * details/summary; readable with JS off.
+ */
+
+import AreaTree from "@/components/AreaTree.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCorpus } from '@/lib/corpus';
+import type { Corpus, TreeNode } from '@/lib/corpus';
+
+export async function getStaticPaths() {
+  const corpus = await getCorpus();
+  return corpus.areas.map((area) => ({ params: { area: area.slugPath } }));
+}
+
+function areaNode(corpus: Corpus, slug: string | undefined): TreeNode {
+  const found = corpus.nodeBySlugPath.get(slug ?? "");
+  if (!found) {
+    throw new Error(`no area ${slug}`);
+  }
+  return found;
+}
+
+/* oxlint-disable eslint/sort-vars -- each value reads the one before it; sorting would hit the TDZ */
+const node = areaNode(await getCorpus(), Astro.params.area),
+  topics = `${node.topicCount} topic${node.topicCount === 1 ? "" : "s"}`,
+  title = `${node.label} — Sitemap — American Legal Digest`,
+  description = `The full topic tree for ${node.label}: ${topics}.`;
+/* oxlint-enable eslint/sort-vars */
+---
+
+<Layout {description} {title}>
+  <SiteHeader />
+  <main class="mx-auto w-full max-w-[900px] flex-1 px-5 sm:px-9" id="main">
+    <div class="pt-8 pb-11">
+      <h1
+        class="font-display text-[1.75rem] leading-[1.1] tracking-[-0.03em] sm:text-[2.25rem]"
+      >
+        {node.label}
+      </h1>
+      <div class="ald-meta text-ink-muted mt-3">
+        {`${topics} · `}
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href={`/${node.slugPath}/`}>area page</a
+        >
+        {" · "}
+        <a
+          class="decoration-cite-ext underline underline-offset-2"
+          href="/sitemap/">full map</a
+        >
+      </div>
+      <div class="border-hairline mt-5 border-t pb-3 pl-1">
+        <AreaTree node={node} depth={1} />
+      </div>
+    </div>
+  </main>
+  <SiteFooter />
+</Layout>

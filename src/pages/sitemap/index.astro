@@ -1,10 +1,10 @@
 ---
 /**
- * The full corpus map — the only page besides home that renders all areas
- * (hard constraint 1). Native details/summary; readable with JS off.
+ * The corpus map: every area, each linking to its own full tree at
+ * /sitemap/<area>/. One page holding every tree outgrew the 25 MiB
+ * static-asset cap (36 MB at 24,862 digests), so the trees live per area.
  */
 
-import AreaTree from "@/components/AreaTree.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -37,25 +37,18 @@ const corpus = await getCorpus(),
         >
       </div>
       {corpus.areas.map(area => (
-          <details class="border-hairline mt-5 border-t">
-            <summary class="flex list-none items-baseline gap-3 py-3 [&::-webkit-details-marker]:hidden">
-              <span class="font-display text-[1.3125rem] leading-tight tracking-[-0.02em]">
-                <a
-                  href={`/${area.slugPath}/`}
-                  class="no-underline hover:opacity-70"
-                >
-                  {area.label}
-                </a>
-              </span>
-              <span class="flex-1" />
-              <span class="ald-meta text-ink-muted text-[0.625rem]">
-                {area.topicCount} topic{area.topicCount === 1 ? "" : "s"}
-              </span>
-            </summary>
-            <div class="pb-3 pl-1">
-              <AreaTree node={area} depth={1} />
-            </div>
-          </details>
+          <a
+            class="border-hairline mt-5 flex items-baseline gap-3 border-t py-3 no-underline hover:opacity-70"
+            href={`/sitemap/${area.slugPath}/`}
+          >
+            <span class="font-display text-[1.3125rem] leading-tight tracking-[-0.02em]">
+              {area.label}
+            </span>
+            <span class="flex-1" />
+            <span class="ald-meta text-ink-muted text-[0.625rem]">
+              {area.topicCount} topic{area.topicCount === 1 ? "" : "s"}
+            </span>
+          </a>
         ))}
     </div>
   </main>
